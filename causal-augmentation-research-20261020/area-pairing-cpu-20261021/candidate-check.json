@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-21",
+  "checked_at_utc": "2026-10-21T03:29:32.162057+00:00",
+  "status": "retained_as_exploratory_metadata_program_mechanism_candidate",
+  "one_candidate_question": "独立抽背景之后，依赖前景与该背景ratio的缩放是否产生条件来源依赖；改用另一张独立背景的ratio决定缩放，能否在保持P(Y,T)和背景边际时切断该依赖？",
+  "primary_executed_experiment": "scale-results.json: pinned ForAug range scalar, not hypothetical area matcher",
+  "primary_result": {
+    "conditional_mi_bits": 0.009237347759344577,
+    "independent_ratio_control_bits": 7.611365566242484e-17,
+    "marginal_y_c_mi_bits": 1.2384637080706714e-16,
+    "permutation_max_bits": 0.0028025813755272588,
+    "permutation_rank_fraction": 0.01,
+    "mean_variant_point_bits": 0.022275368197755573,
+    "foreground": 2400,
+    "background": 2223,
+    "source_overlap": 0,
+    "cpu_wall_seconds": 22.052610708
+  },
+  "preliminary_pilot_kept_separate": {
+    "file": "results.json",
+    "question": "Proposed area-bin background matching, not ForAug default",
+    "mi_bits": 0.056758009116591776,
+    "permutation_max_bits": 0.02077957646084693,
+    "cpu_wall_seconds": 2.2794415
+  },
+  "existing_record_quick_check": "Local Markdown keyword check found no earlier area-matching/scale-coupling MI experiment. Existing per-class pruning counts and fallback notes are not treated as new findings.",
+  "search": {
+    "timing": "First 12 queries after actual pilot result; final 4 after actual range-scalar result",
+    "query_count": 16,
+    "queries": [
+      "\"foreground\" \"background\" \"area\" \"spurious\" augmentation",
+      "\"background\" \"matching\" \"spurious correlations\" augmentation",
+      "\"copy-paste\" \"object size\" \"bias\" augmentation",
+      "\"ForAug\" \"matching\" background",
+      "\"copy paste\" scale \"spurious\"",
+      "augmentation \"mask\" \"area\" \"bias\"",
+      "\"background\" \"geometric\" \"matching\" augmentation",
+      "\"background\" \"mutual information\" augmentation",
+      "\"background\" \"size matching\" augmentation",
+      "\"background\" \"area matching\" augmentation",
+      "\"copy-paste\" \"scale\" \"shortcut\"",
+      "\"augmentation\" \"label-agnostic\" \"spurious\"",
+      "\"ForAug\" \"collider\"",
+      "\"foreground\" \"background\" \"conditional dependence\" scale",
+      "\"data augmentation\" \"collider\" scale",
+      "\"background\" \"scaling\" \"spurious correlations\""
+    ],
+    "domains": "Queries1-4 broad web discovery; queries5-16 restricted to arxiv.org, openaccess.thecvf.com, proceedings.neurips.cc, openreview.net",
+    "scope": "Targeted keyword discovery and relevant primary-paper sections, not citation-graph exhaustion, all languages, inaccessible/private work, all versions or a systematic global novelty proof"
+  },
+  "nearest_sources": [
+    {
+      "title": "ForAug: Mitigating Biases in Image Classification via Controlled Image Compositions",
+      "id": "2503.09399v4",
+      "url": "https://arxiv.org/html/2503.09399v4",
+      "coverage": "sections3.1-3.2, background-choice analysis, AppendixA.4; pinned fornet.py constructor and recombine code",
+      "already_known": "Foreground/background independence, marginal-versus-joint distinction, foreground scale and background choice diagnostics already explicit. Both input ratios enter mean/range scaling.",
+      "limited_difference": "Our finite-metadata conditional source-dependence measurement and independent-ratio control matching P(Y,T) were not located in these sections; no claim ForAug globally fails or this is a new independence theorem."
+    },
+    {
+      "title": "Automated Background Swapping for Robustness against Spurious Backgrounds",
+      "id": "2606.32018v1",
+      "url": "https://arxiv.org/html/2606.32018v1",
+      "coverage": "identity/date June30 2026, Algorithm1, section3.3 recomposition and proxy source-class sampling",
+      "already_known": "Independent attribute/source-class-balanced background sampling and extra foreground transforms are established.",
+      "limited_difference": "Read algorithm samples background independently, rather than the tested two-ratio scale control; no equivalent conditional-source audit located in read sections."
+    },
+    {
+      "title": "Out-of-Domain Robustness via Targeted Augmentations",
+      "id": "2302.11861v3",
+      "url": "https://arxiv.org/html/2302.11861v3",
+      "coverage": "SameY/all-background methods, habitat preservation ablation, AppendixB.1",
+      "already_known": "Some background relationships encode useful habitat; removing every correlation can harm OOD performance.",
+      "limited_difference": "Explicit label/habitat conditioned sampling differs from two-ratio scalar coupling. Our information signal alone cannot establish harm."
+    },
+    {
+      "title": "Depth-Copy-Paste: Multimodal and Depth-Aware Compositing for Robust Face Detection",
+      "id": "2512.11683v1",
+      "url": "https://arxiv.org/html/2512.11683v1",
+      "coverage": "intro, sectionIII geometry/semantic retrieval and depth sliding-window matching",
+      "already_known": "Geometry/semantic compatibility matching is already used; merely proposing it is not new.",
+      "limited_difference": "Different detection setting and score; no matched-marginal scale-collider audit found in the inspected portions."
+    },
+    {
+      "title": "Interventional Knowledge Distillation for Few-Shot Object Detection",
+      "id": "2208.12681v2",
+      "url": "https://arxiv.org/html/2208.12681v2",
+      "coverage": "primary search excerpt discussing collider conditional dependence; not full-paper audit",
+      "already_known": "Collider conditional dependence and causal reasoning in object detection are established, not a new theory here."
+    }
+  ],
+  "novelty_verdict": "Within this explicitly bounded read, no equivalent experiment with the same two-ratio target scalar and matched P(Y,T)/background control was located. This permits an exploratory candidate under the user criterion; it does not certify originality or publication potential.",
+  "limitations": [
+    "R means published ratio parameter consumed by pinned loader; pilot language mask area must not be read as proven nontransparent-pixel fraction. Loader doc describes foreground-image area ignoring alpha.",
+    "T is pre-alpha/pre-crop requested target scale, not measured final visible object area.",
+    "C is removed-object source class, not human-verified scene category or a recovered visual feature.",
+    "No composites, classifier training, real OOD performance or semantic causal intervention tested.",
+    "Independence and collider facts are known; the code-scalar signal is small.",
+    "Follow-up hypothesis arose during exploratory reading; local pre-run threshold locking is not external registration or a globally selection-adjusted confirmatory study.",
+    "Control zero and matched marginals follow from its construction, not a trained model improvement."
+  ],
+  "next_bounded_check": {
+    "goal": "在合法可得的小样本cutout/背景上重放原缩放与独立ratio控制，检查裁剪后实际可见面积是否保留条件来源信号。先检验程序传导，不先宣称性能收益。",
+    "scope_cap": "最多64份源图cutout/background配对、最多256次256px合成；下载上限100MB、CPU上限10分钟，均为停止预算而非已测时长。",
+    "requirements": "本地尚无该项目的真实成对像素图；默认Python无Pillow/NumPy，图像解码环境和具体图包许可/小文件入口尚需确认。只提供计划，本轮未安装或取图。",
+    "GPU_required": false,
+    "paid_service_required": false,
+    "run_started": false
+  },
+  "boundaries": {
+    "ARIS_used": false,
+    "new_subagents": 0,
+    "A100_or_GPU_used": false,
+    "visual_model_used": false,
+    "new_dataset_download_bytes": 0,
+    "8A_accessed": false,
+    "classroom_materials_changed": false,
+    "old_results_overwritten": false
+  }
+}

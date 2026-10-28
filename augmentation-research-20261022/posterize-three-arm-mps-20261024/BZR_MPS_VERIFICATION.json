@@ -1,0 +1,222 @@
+{
+  "status": "saved_records_verified",
+  "classification": "unresolved_below_direction_threshold",
+  "arms": {
+    "B": {
+      "correct": 552,
+      "accuracy": 0.9371816638370118,
+      "NLL": 0.23262573558451083,
+      "steps": 1110,
+      "training_presentations": 17730,
+      "final_training_CE": 0.025395118733852244,
+      "last_LR": 2.4723412770377708e-09,
+      "checkpoints": [
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch05.pt",
+          "sha256": "db8814482e03a5c8ad3f64f55359fa2e9ec784bb4ba7d8ed0781de564bdcceb7"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch10.pt",
+          "sha256": "0be6ac9ab2367644ff0e93ea9200c88df3615eab675bbec0403d94096d5cb324"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch20.pt",
+          "sha256": "34d5bf5bab6e40fc75d79aae8d835c28b84c61815b5b5f723d42416d1c645e29"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch30.pt",
+          "sha256": "b2ec8bf8b95ddba5066c31b4f1ac283a2bfec3ffd2590ff9eed8b069808bb605"
+        }
+      ],
+      "mean_step_seconds": 0.2878457993620638,
+      "max_step_seconds": 0.39925833299639635
+    },
+    "Z": {
+      "correct": 552,
+      "accuracy": 0.9371816638370118,
+      "NLL": 0.23259377434796716,
+      "steps": 1110,
+      "training_presentations": 17730,
+      "final_training_CE": 0.02540511655575531,
+      "last_LR": 2.4723412770377708e-09,
+      "checkpoints": [
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch05.pt",
+          "sha256": "cec67ed70dd82d460bfc869524b718bfc27463d6e6c5b925c1e87bd91af2d74b"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch10.pt",
+          "sha256": "b0627d3156e459f9009e20ef0345340ab3b9e3e2da8d9e87ac6f3b204f11d6da"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch20.pt",
+          "sha256": "163b29d6b380add103c98941428321ee9799315d63939b720667cde7f49b9300"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch30.pt",
+          "sha256": "c339e1e3478197d4853869be532e38947f354357210deaa544c9356d13213a09"
+        }
+      ],
+      "mean_step_seconds": 0.2911105999747199,
+      "max_step_seconds": 0.41218279100576183
+    },
+    "R": {
+      "correct": 550,
+      "accuracy": 0.933786078098472,
+      "NLL": 0.2336224712358027,
+      "steps": 1110,
+      "training_presentations": 17730,
+      "final_training_CE": 0.02576419882564577,
+      "last_LR": 2.4723412770377708e-09,
+      "checkpoints": [
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch05.pt",
+          "sha256": "bb2c5cc67e069579cac6cd6469701df6e23f0cdf08facb8aabd353ef259ee2e6"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch10.pt",
+          "sha256": "c2f11019434ee820992eff1f67ce165ffc86ff37c9b88097b00c938f252c3df8"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch20.pt",
+          "sha256": "0d2939adb1c247ae08644263a1fd52fcda3f2bdd0c8fc9952059862d57215761"
+        },
+        {
+          "path": "augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch30.pt",
+          "sha256": "3d83f550c40848d3af84de6aee259bf6aaf0961df886f3628f4433f72bb29730"
+        }
+      ],
+      "mean_step_seconds": 0.2904945389910518,
+      "max_step_seconds": 0.4245792090005125
+    }
+  },
+  "pairs": {
+    "Z-B": {
+      "fixes": 0,
+      "breaks": 0,
+      "net_correct": 0,
+      "delta_pp": 0.0,
+      "NLL_delta": -3.196123654367056e-05
+    },
+    "R-B": {
+      "fixes": 0,
+      "breaks": 2,
+      "net_correct": -2,
+      "delta_pp": -0.3395585738539898,
+      "NLL_delta": 0.0009967356512918801
+    },
+    "R-Z": {
+      "fixes": 0,
+      "breaks": 2,
+      "net_correct": -2,
+      "delta_pp": -0.3395585738539898,
+      "NLL_delta": 0.0010286968878355507
+    }
+  },
+  "patterns": {
+    "110": 2,
+    "111": 550,
+    "000": 37
+  },
+  "dZ_count": 0,
+  "dR_count": -2,
+  "max_raw_logits_NLL_discrepancy": 8.881784197001252e-16,
+  "checkpoint_byte_hashes_checked": 12,
+  "initialization_hashes_identical": true,
+  "frozen_backbone_hashes_unchanged": true,
+  "three_final_trainable_hashes_distinct": true,
+  "first5_CPU_MPS_pixel_receipt_hashes_equal": true,
+  "trace_rows": 17730,
+  "slots": 35460,
+  "Posterize_slots": 2562,
+  "affected_views": 2455,
+  "operator_counts": {
+    "B": {
+      "ShearX": 2541,
+      "Solarize": 2573,
+      "Color": 2589,
+      "Rotate": 2516,
+      "AutoContrast": 2506,
+      "Brightness": 2528,
+      "ShearY": 2513,
+      "Contrast": 2507,
+      "Equalize": 2447,
+      "Sharpness": 2567,
+      "TranslateX": 2530,
+      "Identity": 2539,
+      "Posterize": 2562,
+      "TranslateY": 2542
+    },
+    "Z": {
+      "ShearX": 2541,
+      "Solarize": 2573,
+      "Color": 2589,
+      "Rotate": 2516,
+      "AutoContrast": 2506,
+      "Brightness": 2528,
+      "ShearY": 2513,
+      "Contrast": 2507,
+      "Equalize": 2447,
+      "Sharpness": 2567,
+      "TranslateX": 2530,
+      "Identity": 5101,
+      "TranslateY": 2542
+    },
+    "R": {
+      "ShearX": 2763,
+      "Solarize": 2759,
+      "Color": 2778,
+      "Rotate": 2710,
+      "AutoContrast": 2717,
+      "Brightness": 2709,
+      "ShearY": 2695,
+      "Contrast": 2709,
+      "Equalize": 2647,
+      "Sharpness": 2765,
+      "TranslateX": 2740,
+      "Identity": 2734,
+      "TranslateY": 2734
+    }
+  },
+  "counts_formal": {
+    "training_forward_images": 53190,
+    "dev_forward_images": 1767,
+    "training_forward_calls": 3330,
+    "dev_forward_calls": 111,
+    "backward_calls": 3330,
+    "optimizer_updates": 3330,
+    "train_image_reads": 53331,
+    "dev_image_reads": 1767,
+    "parity_image_reads": 48
+  },
+  "preflight_updates": 9,
+  "preflight_training_presentations": 141,
+  "total_known_training_updates_including_preflight": 3339,
+  "total_known_training_presentations_including_preflight": 53331,
+  "total_known_model_image_presentations_including_dev_and_preflight": 55098,
+  "phase_elapsed_seconds": 1399.2658731937408,
+  "immutable_start_utc": "2026-10-24T12:43:56.683066+00:00",
+  "immutable_deadline_utc": "2026-10-24T14:13:56.683066+00:00",
+  "first_startup_updates": 0,
+  "checked_input_hashes": {
+    "worker-v1.py": "847f4b0903a4aca0f8e0eadab6ff2df2ac522272c496190b833008805f3629b3",
+    "EXPERIMENT_NOTE_ZH.md": "b7e77d00af37aa20d9ab8099f6de18dd00fdf17ffa78131a4228f384067679a3",
+    "budget.json": "e393b1ac74e7ab2cd7eebf4c08520267938d43133460dc0227e3d62d561b32eb",
+    "environment-spec.json": "614e8257bfb974104824541247cbabe2017c141e1654a2aefeffe288c6e38d78",
+    "kernel_witness.py": "58c8f07a46346bbd2d12ac8371a6bc4b67987a62cad3c8d8833b49d779f895ff",
+    "environment-ledger.md": "d402140ac4ceb4eb8f2b6d9fc812ae4ebd7d9a162c7cb81c768263ebafcfcf86",
+    "worker-v2.py": "b891e936ef26726d30311aa074a73c90cea4f3fb5d585944a4ffcb0a4af43980",
+    "supervisor-v2.py": "6fbb8e0cbeeb21ed210876dce7820968a1b3349b805a65d6e1810552e05c0c76",
+    "augmentation-research-20261022/pilot-20261022/common.py": "d12fd21604331ba032686eda26c93306945596a76e11f03b223740c73e9b1853",
+    "augmentation-research-20261022/pilot-20261022/fit-manifest.json": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+    "causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/selection.json": "233527cc44593d00496d3ac998ab1d20a330e15f3d97b67218a8bec58a6df4b3"
+  },
+  "limits": [
+    "no fresh inference or rerun in verification",
+    "checkpoint bytes hashed, tensor payload not deserialized",
+    "single training seed; no independent-seed confirmation",
+    "fixed development split repeatedly explored; not final test",
+    "old/new CPU/MPS differ in device and batching; not isolated epoch causal comparison"
+  ]
+}

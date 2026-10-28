@@ -1,0 +1,71 @@
+{
+  "status": "completed_once_on64_fresh_original_photos",
+  "at_utc": "2026-10-21T06:01:20.655728+00:00",
+  "table": {
+    "clean_equal_source": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.17868919321833626,
+      "accuracy": 0.90625
+    },
+    "all_views_equal_source": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.17125589906544197,
+      "accuracy": 0.921875
+    },
+    "filtered_standard_counts": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.1788722972693657,
+      "accuracy": 0.90625
+    },
+    "all_views_matched_filtered_source_weights": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.1729808023695768,
+      "accuracy": 0.90625
+    },
+    "filtered_equal_source": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.1773897790826656,
+      "accuracy": 0.90625
+    },
+    "clean_matched_filtered_source_weights": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.18039987072082675,
+      "accuracy": 0.90625
+    },
+    "filtered_fallback_to_clean_fixed_count": {
+      "original_test_photos": 64,
+      "mean_LL_nats": 0.1770875901933093,
+      "accuracy": 0.90625
+    }
+  },
+  "primary_benefit_LL_matched_source_control_minus_filtered": -0.005891494899788944,
+  "primary_paired_species_bootstrap95_CI": [
+    -0.013308939503308621,
+    7.219524208376255e-05
+  ],
+  "gains_LL_other_arm_minus_filtered": {
+    "clean_equal_source": -0.000183104051029454,
+    "all_views_equal_source": -0.007616398203923743,
+    "all_views_matched_filtered_source_weights": -0.005891494899788944,
+    "filtered_equal_source": -0.0014825181867001225,
+    "clean_matched_filtered_source_weights": 0.0015275734514610165,
+    "filtered_fallback_to_clean_fixed_count": -0.0017847070760564285
+  },
+  "gates": {
+    "primary_gain_at_least001": false,
+    "paired_bootstrap95_lower_positive": false,
+    "filtered_better_than_clean": false
+  },
+  "screen_passed": false,
+  "fresh_test_used_for_hypothesis_or_hyperparameters": false,
+  "test_is_unaugmented": true,
+  "test_source_photos": 64,
+  "exact_train_test_RGB_duplicates": 0,
+  "encoder_seconds": 0.9386778750340454,
+  "wall_seconds": 1.1806883339886554,
+  "model_fit_after_test": false,
+  "CPU_only": true,
+  "ARIS": false,
+  "GPU": false,
+  "interpretation": "Frozen-feature logistic training only, not end-to-end representation learning or causal identification. Bootstrap covers fresh-photo sampling conditional on the fixed64training photos and one augmentation draw bank; animal identity and pretraining independence unknown."
+}

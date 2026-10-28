@@ -1,0 +1,71 @@
+{
+  "task": "增强耦合群体实验：真正减少源物体后的执行前文本复核",
+  "date": "2026-10-21",
+  "output": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/addendum-gate.json",
+  "model_request": {
+    "requested": "GPT-6.1-Sol / max",
+    "actual_verified": false
+  },
+  "scope": "仅审查父线程提供的修订协议；无新检索、图片/特征读取或运算、训练、GPU、ARIS、外部模型、自动化。未审实现代码，未声称曝光/逆变换已实测通过。",
+  "verdict": {
+    "status": "有条件通过文本设计；实现前必须锁定两项关键细节。",
+    "fatal_arithmetic_error_found": false,
+    "hard_conditions": [
+      "独立臂抽样索引必须区分少类同一物体的三个槽。",
+      "完整源参照目标必须匹配实际按类平衡的曝光权重。"
+    ],
+    "interpretation": "可检验固定材料中耦合与少源物体/少原图的交互，不能单独归因物体数或视图数，也不是完整RA/TA或自然IID流的实验。"
+  },
+  "arithmetic_check": {
+    "selected_objects_per_scenario": 13,
+    "unique_original_images_per_scenario": 156,
+    "unique_images_per_batch": 15,
+    "unique_objects_per_batch": 13,
+    "group_slots_per_batch": 3,
+    "data_positions": 12,
+    "augmentation_states": 21,
+    "epochs_per_complete_cycle": 21,
+    "updates_per_complete_cycle": 252,
+    "cycles": 3,
+    "final_updates": 756,
+    "feature_presentations_per_run": 11340,
+    "derivation": "少类1物体×12图；其余4类×3物体×12图。少类q=(3b+j)%12在12步内每图3次，其他图q=b每图1次。完整21epoch每个位置/槽遍历所有21态后，两臂的每图每态次数匹配；少类为3次，其他为1次。"
+  },
+  "required_schedule_index": {
+    "issue": "若沿用旧独立臂π_(b,object)，少类三个槽因为object相同仍共享增强状态，独立性会按类不同。",
+    "correct_form": "共享臂π_(cycle,b)(e)供全15槽使用；逐图臂π_(cycle,b,class,slot_j)(e)分别生成排列，或使用一一对应的15个固定槽ID。",
+    "consequence": "每槽在完整周期中各遍历21态一次；同一少类原图在三个数据位置出现，故每态3次且仍与共享臂严格匹配。",
+    "temporal_boundary": "周期是否重抽排列及RNG键需在协议锁时固定；有限bank、固定计数与时间负相关均需明示，不称跨时间IID。"
+  },
+  "required_objective_weights": {
+    "issue": "对156张unique图等权求平均不等于当前类平衡采样的期望训练目标。",
+    "matching_objective": "每类权重1/5，类内每张原图均匀，图内21态均匀；等价于完整曝光表中少类各图每态权重3、其他图权重1后再归一化。",
+    "regularizer": "固定采用λ/2乘参数平方范数，或若实现采用其他系数约定则同步修正步长界。",
+    "uses": "源训练目标、梯度/曲率参照、曝光断言和优化诊断都应使用同一权重；开发主要量仍按预定各类LL汇总。"
+  },
+  "inverse_cache_gate": {
+    "valid_if": "旧z确实逐坐标满足z=(φ-μ)/scale，scale非零，且其后未做clip、PCA/降维、再次样本归一化或其他不可逆处理。",
+    "operation": "先恢复φ=scale*z+μ，再仅乘固定sqrt(512)；偏置特征单独附加常数1。",
+    "information_boundary": "精确算术下μ/scale消去，不再作为新训练分布统计量。有限精度只能称容差内恢复，不应无证据宣称与原φ字节一致。",
+    "further_condition": "缓存编码器应为固定eval、每图独立编码；若曾有训练态BN导致跨图依赖，逆标准化不能移除该依赖。",
+    "status": "本轮未读取缓存或代码，以上前提未独立核验；父线程需在现有代码/元数据中确认。"
+  },
+  "stepsize_audit": {
+    "proposed": "η=1/(0.5*max_selected_source_state ||[x,1]||²+0.01)",
+    "valid_for": "按15槽取mean的多类softmax CE，加λ/2||W||²且λ=0.01；softmax对logit的Hessian谱范数不超过1/2，因此该式是安全的曲率上界倒数。",
+    "required_max": "覆盖该场景实际选入训练的全部原图和全部21态；两臂使用相同值，不读开发数据来定步长。",
+    "bias": "若bias不正则，+λ仍是保守上界；若正则实现为λ||W||²，则Hessian项是2λ，应调整公式。",
+    "limit": "逐批光滑性界不保证随机每步完整目标下降，不预言群体泛化或共享臂必然更慢。"
+  },
+  "remaining_claim_limits": [
+    "固定SHA选择少类源物体是预先选择，不是对开发表现挑物体；但每类只保留一个物体，不能估计换另一物体后效应的总体变异。",
+    "少类独立源物体数1vs3、原图12vs36、对象内重复采样及梯度相关同时变化，不能拆成单一物体数效应。",
+    "每批各类k仍为3；不能将结果解释为批内稀少k导致的惩罚。",
+    "先在每个排布种子内汇总五个轮换场景，再给16种子的条件CI；不把80场景或视图当独立物体。",
+    "development_seen已消费，结果仅为条件于这些对象/bank的开发探索，不是盲测或总体群体确认。",
+    "零θ加类平衡可能抵消公共状态梯度；单一θ阴性不否定后续轨迹，正性也不证明开发泛化。",
+    "保持最终756updates作为固定主要终点，不按开发结果在1/2/3周期中选最佳。",
+    "没有新增先例检索；此前精确实证覆盖未发现及Balestriero全文未知的边界保持。"
+  ],
+  "outcome": "文本排布可行；在槽级独立抽样和类平衡参照目标两项落实、缓存可逆前提确认后，可进入父线程预定的source-only核验。此审查未执行核验或训练。"
+}

@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "method": "Independent stdlib recomputation from saved logits/labels and frozen metadata; no model rerun",
+  "classification": "unresolved_below_direction_threshold",
+  "correct_counts": {
+    "B": 544,
+    "Z": 544,
+    "R": 542
+  },
+  "gZ_count": 0,
+  "gR_count": -2,
+  "h_count": -2,
+  "patterns_BZR": {
+    "000": 44,
+    "001": 1,
+    "010": 0,
+    "011": 0,
+    "100": 0,
+    "101": 0,
+    "110": 3,
+    "111": 541
+  },
+  "pairwise": {
+    "B_Z": {
+      "both_correct": 544,
+      "a_only_correct": 0,
+      "b_only_correct": 0,
+      "both_wrong": 45,
+      "prediction_label_disagreements": 0
+    },
+    "B_R": {
+      "both_correct": 541,
+      "a_only_correct": 3,
+      "b_only_correct": 1,
+      "both_wrong": 44,
+      "prediction_label_disagreements": 4
+    },
+    "Z_R": {
+      "both_correct": 541,
+      "a_only_correct": 3,
+      "b_only_correct": 1,
+      "both_wrong": 44,
+      "prediction_label_disagreements": 4
+    }
+  },
+  "max_per_image_NLL_recomputation_error": 8.881784197001252e-16,
+  "all_initial_trainables_identical": true,
+  "all_base_parameters_preserved_by_before_after_hash": true,
+  "all_LR_sequences_and_logical_batch_sizes_identical": true,
+  "saved_checkpoints_verified": [
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/B/checkpoint-epoch01.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/B/checkpoint-epoch02.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/B/checkpoint-epoch03.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/B/checkpoint-epoch04.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/B/checkpoint-epoch05.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/Z/checkpoint-epoch01.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/Z/checkpoint-epoch02.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/Z/checkpoint-epoch03.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/Z/checkpoint-epoch04.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/Z/checkpoint-epoch05.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/R/checkpoint-epoch01.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/R/checkpoint-epoch02.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/R/checkpoint-epoch03.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/R/checkpoint-epoch04.pt",
+    "augmentation-research-20261022/posterize-three-arm-cpu-20261023/R/checkpoint-epoch05.pt"
+  ],
+  "target_slots": 432,
+  "prior_stage_manifest_files_unchanged": [
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/PROTOCOL_ZH.md",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/REPORT_ZH.md",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/SCREEN_SPEC_ZH.md",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/STARTED.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/code-lock.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/compute-ledger.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/decision.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/events.jsonl",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/historical-endpoint-basis.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/protocol-lock.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/protocol.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/resource-budget.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/result.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/selection.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/stderr.txt",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/stdout.txt",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/verification.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/watchdog.json",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/watchdog.py",
+    "augmentation-research-20261022/posterize-cpu-budget-20261023/worker.py",
+    "CURRENT_CHECKPOINT_20261023_POSTERIZE_CPU_BUDGET.json"
+  ],
+  "new_model_forwards": 0,
+  "new_backward_calls": 0,
+  "new_updates": 0,
+  "worker_wall_seconds": 0.050918125081807375,
+  "worker_cpu_seconds": 0.049824,
+  "stage_elapsed_at_verification": 2587.925065374933,
+  "images_read": 0,
+  "sealed_data_read": false
+}

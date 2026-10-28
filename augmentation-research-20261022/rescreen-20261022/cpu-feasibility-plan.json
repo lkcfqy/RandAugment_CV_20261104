@@ -1,0 +1,23 @@
+{
+  "status": "frozen_before_new_numeric_read",
+  "purpose": "Necessary-condition screening of controller-only temperature sensitivity; not training, calibration fitting, SRA reproduction, or novelty proof.",
+  "source_project": "/Users/lkc/Downloads/RandAugment_CV_20261104",
+  "source_npz": "augmentation-research-20261022/pilot-20261022/results/front-weak/development-epoch030.npz",
+  "selection_reason": "Preselected front-weak final fixed epoch as the first named weak arm; no comparison or selection across models, epochs, or seeds in this check.",
+  "allowed_rows": "589 previously consumed development photos; validate each ID and label against existing fit-manifest. No reserved confirmation access.",
+  "method": "For stored logits z and label y, use SRA equation MIS=(cos(softmax(z/T),onehot(y)))^(epsilon/log(C)), epsilon=2, C=37. Compare T=0.5,1,2. Temperatures perturb only the hypothetical controller; no labels, parameters, loss, or predictions are changed.",
+  "main_contrast": [1.0, 2.0],
+  "secondary_contrast": [0.5, 2.0],
+  "matching": "Match the exact T=1 magnitude multiset by assigning its sorted values in the ranking induced by each temperature. Use source-ID tie breaks; rank in stable log space to avoid saturation ties.",
+  "required_checks": ["finite logits and scores", "identical argmax predictions", "direct cosine formula versus sqrt(softmax(2*z/T)[y]) identity", "exact sorted-multiset equality after matching", "source ID and class consistency", "input SHA before/after equality"],
+  "engineering_gate": {
+    "both_required_on_main_contrast": {
+      "95th_percentile_raw_absolute_MIS_change_at_least": 0.1,
+      "fraction_of_photos_moving_at_least_one_normalized_rank_decile_at_least": 0.1
+    },
+    "meaning": "Only permission-to-invest scientific recommendation for a subsequent CPU paired-image diagnostic. Not significance, independent replication, training benefit, calibration quality, or originality. Secondary contrast cannot rescue a main-contrast failure."
+  },
+  "resources": {"CPU_threads": 1, "max_seconds": 60, "new_training_runs": 0, "images_decoded": 0, "GPU_allowed": false, "new_downloads": false},
+  "output_scope": "/Users/lkc/Documents/Codex/2026-10-23/task-4/rescreen-20261022 only",
+  "model_request": {"model": "gpt-6-astra", "reasoning": "max", "tier": "Fast", "actual_backend_verified": false}
+}

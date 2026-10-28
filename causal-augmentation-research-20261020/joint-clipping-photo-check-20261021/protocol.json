@@ -1,0 +1,33 @@
+{
+  "purpose": "One frozen exploratory check of whether a joint-only clipping boundary mass predicts joint classification failure better than prespecified simpler information. Not independent validation or an augmentation training study.",
+  "version": 2,
+  "pre_execution_review_amendment": "Before any photo-model execution, independent review required predicted total joint saturation and direct forward simulation as stronger comparisons. S is not necessarily zero: eligibility requires single predictions correct, not their pixels unsaturated. No observed new outcomes were used for this amendment.",
+  "data": "All and only the 64 previously designated custom training photos in stage-validity-pilot-20261021/protocol.json train_rows; each was already used in model fitting and research development.",
+  "independent_test_images": 0,
+  "models": {
+    "base": {"file": "base-step2048.pt", "sha256": "51f987c08c95d1af116ac65ec59791c26f94906d06e1f568a8eba85eee40c234"},
+    "TA": {"file": "TA-step2048.pt", "sha256": "1d8e4875cd3b09b642e831974d9f3bcfefd0e5974c034a66b62f0a1491e90952"}
+  },
+  "model_selection": "Both final-step checkpoints from the one recovered recipe, fixed before this photo check; no best checkpoint or new fitting.",
+  "preprocessing": "PIL RGB, torchvision bilinear resize short edge256 and center crop224, as in the original fitting; decode to float32/255. Gains and clipping applied in encoded RGB, then the fixed ImageNet normalization. No inverse-ISP or actual RAW claim.",
+  "transforms": {"source": [1.0,1.0], "exposure_only": [1.4,1.0], "illumination_only": [1.0,1.4], "joint": [1.4,1.4]},
+  "transform_definition": "First gain multiplies all channels; second gain multiplies red only; clamp[0,1] after each. No intermediate 8bit quantization. The gains and order are fixed from the prior mathematical example.",
+  "predictions_available_before_joint_evaluation": {
+    "B_joint_only_red_boundary_mass": "mean_p(25/49 <= source_R[p] < 5/7); no observed joint predictions or labels used in this score",
+    "S_single_red_saturation": "max over two singles of fraction of red pixels reaching the white threshold",
+    "M_single_margin_risk": "negative minimum true-label logit margin among the two singles; on eligible samples both margins are positive",
+    "T_predicted_total_joint_red_saturation": "mean_p(source_R[p] >= 25/49)",
+    "D_direct_reconstructed_joint_margin": "Negative true-label margin after forwarding clip(I10*I01/I00) through the same fixed model. This is an expected tautological ceiling under an exact software forward model, not independent evidence or an original diagnostic."
+  },
+  "primary_evaluation": {
+    "eligible": "Same photo is classified correctly in source and both singles, per fixed model",
+    "event": "That photo is misclassified in joint",
+    "metric": "Tie-correct pairwise AUROC for each prespecified score, separately for each fixed model. Higher score predicts event. No fitted decision threshold, classifier or combined score.",
+    "screen_for_event_count": "At least5 event and5 non-event photos per model is a minimal usability screen only, not a claim of statistical power or significance. If either class is missing AUC is undefined; with fewer than5 it is descriptive only.",
+    "weak_directional_hypothesis": "B exceeds S, M and T in AUROC in both fixed models. The direct-query D comparator is an expected ceiling and is reported separately. Failure gives no support to this unweighted boundary-mass diagnostic on this development setting; it does not refute every clipping mechanism or causal model. Parallel AUROCs alone do not establish independent information conditional on margin.",
+    "stop": "One execution, no extra gains, photos, metrics, models or repeated holdout selection after viewing results. Insufficient events mean inconclusive, not useful or useless proven."
+  },
+  "resources": {"device": "CPU", "torch_threads": 1, "interop_threads": 1, "workers": 0, "hard_wall_seconds": 180, "soft_wall_seconds": 150},
+  "prohibitions": ["GPU or MPS", "A100", "ARIS", "new images or weights", "training", "new dependency", "heldout data", "8A access", "automation", "retrying blocked paper or dataset URLs"],
+  "nearest_prior_boundary": "Semantify-NN CVPR2020 already models two-parameter brightness/contrast plus clipping and verifies classifier margins. Existence of a joint clipping failure boundary is a teaching example, not a new result. This check only asks if a cheap boundary-mass diagnostic has useful incremental predictive signal."
+}

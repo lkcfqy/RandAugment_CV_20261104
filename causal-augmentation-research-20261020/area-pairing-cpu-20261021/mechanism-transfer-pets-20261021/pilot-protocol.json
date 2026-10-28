@@ -1,0 +1,50 @@
+{
+  "status": "fixed_before_payloads",
+  "primary": "source-disjoint heldout model log-loss change caused by replacing actual BG-source scale coupling with exact independent BG marginal; protected-edge renderer",
+  "labels": "Cat/Dog species; foreground label Y and removed background-source species C; not background scene labels",
+  "selection": "fixed hash independent of RGB/model scores; archived trainval vs test photograph split",
+  "mask": "strict trimap 1 foreground, 2 certified background, 3 excluded/unknown",
+  "foreground_geometry_min": {
+    "nonzero_pixels": 400,
+    "bbox_min_side": 16
+  },
+  "background_eligibility": {
+    "original_foreground_bbox_area_ratio_below": 0.8,
+    "largest_all_class_2_rectangle_min_side": 64,
+    "rectangle_min_original_area_ratio": 0.05
+  },
+  "sample_independence": "64 distinct photographs target; 32 fit and 32 heldout, FG/BG roles disjoint; exact duplicate decoded images excluded; no animal identity guarantee",
+  "heldout_macroblocks": 4,
+  "sampling": "every foreground with every base background; same hashed U creates T uniform[0.7 min(Rf,Rb),1.3 max(Rf,Rb)]",
+  "scale_implementation": "alpha mean correction, rounded aspect preserving dimensions, random crop oversized foreground, uniform placement (Bates n=1), sigma uniformly .4 to 4 Gaussian alpha blur then p>128 ? 2p-255 :0; size_fact=1; no foreground rotation; software bitmap resampling not Pillow pixel exact",
+  "independent_control": "for every foreground/T raster render with all actual BG images in its block, equal weights; exactly preserves P(F,T) and P(B), C independent of F,T in finite control",
+  "visibility_control": "same prepared FG and paste mask/position reused for coupled and independent actual BG; primary renderer inserts RGB128 within final-mask dilation radius3 then pastes FG, so all foreground/local edge RGB fixed across BGs; ordinary paste secondary",
+  "composites_target": {
+    "fit_coupled": 256,
+    "fit_independent": 4096,
+    "heldout_coupled": 64,
+    "heldout_independent": 256,
+    "layouts": 2,
+    "total": 9344
+  },
+  "CPU_readout": "4x4 grid RGB means and mean absolute grayscale edge magnitude=64 base features; train-standardized base features plus all i<=j products; nearest class centroids, logits=-squared_distance/2144; fixed before test",
+  "checks": [
+    "RGB-only image model gets no T/C/mask/path",
+    "background-only C decoder on source-independent heldout BG photos",
+    "foreground-neutral-only features identical between policies",
+    "exact same crop, alpha geometry and foreground/guard pixels for each F/T across actual BGs",
+    "both class source proportions matched; no image performance selection"
+  ],
+  "results_reporting": "paired average across exact independent BG marginal, four source-disjoint heldout macroblock estimates, class results; no independent-image p values over generated composites; small pilot no power guarantee",
+  "causal_scope": "controlled renderer mechanism migration, not ForNet reproduction or natural OOD evidence; no claim original method refuted or originality established",
+  "execution": {
+    "new_software": false,
+    "GPU": false,
+    "ARIS": false,
+    "CPU_cap_seconds": 300,
+    "processes": 1,
+    "network_download_threads": 3,
+    "large_archive": false,
+    "8A_access": false
+  }
+}

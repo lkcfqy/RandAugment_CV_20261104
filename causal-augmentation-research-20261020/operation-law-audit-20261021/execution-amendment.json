@@ -1,0 +1,12 @@
+{
+  "at_UTC": "2026-10-21T17:11:57.586266+00:00",
+  "reason": "Pillow13 rejects Posterize(bits=0); v1 reached the optional LUT section after completing translation assertions, then failed before committing results. Handle and report this unsupported parameter without changing photo selection, translation states, bounds, or criteria. One short recovery rerun required because no result checkpoint was written.",
+  "original_code": "check.py",
+  "original_code_sha256": "cd46f7d2c69326b6f8514f6962d7b8715554f5b09dd2d5f97eaca4c2d67be7e2",
+  "recovery_code": "check-v2.py",
+  "recovery_code_sha256": "1745842f17b6f0b97ea57a42cb828d2b9933ab9a3b3707885b4a6dac3eda63b1",
+  "unchanged_protocol_sha256": "266c5a67edf29960bebcb5ef84bd8b00aac6dfbb1e0835f2d174c03a6857330a",
+  "scientific_hypothesis_or_sample_selection_changed": false,
+  "failure_trace": "ValueError: bits must be between or equal to 1 and 8; PIL/ImageOps.py:712; check.py:158",
+  "priority_attempt_not_retried": true
+}

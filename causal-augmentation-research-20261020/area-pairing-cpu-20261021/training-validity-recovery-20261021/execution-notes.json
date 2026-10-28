@@ -1,0 +1,36 @@
+{
+  "source_last_write_UTC": "2026-10-21T07:57:41.437500+00:00",
+  "result_write_UTC": "2026-10-21T08:01:00.061218+00:00",
+  "source_write_to_result_seconds": 198.62371802330017,
+  "timing_evidence": "filesystem timestamp span from final source edit before launch to result write; includes launch/approval/startup before main, not a separately measured process elapsed time",
+  "memory_pressure_checks_free_percent": [
+    93,
+    93
+  ],
+  "thermal_query_action": "/usr/bin/pmset -g therm",
+  "thermal_query_result": "Failed to get thermal warning/performance warning level and CPU power status:0xe00002bc",
+  "thermal_monitor_available": false,
+  "security_settings_changed": false,
+  "CPU_processes": 1,
+  "torch_CPU_threads": 1,
+  "nice_increment": 10,
+  "observed_memory_pressure": false,
+  "unverified": "cannot certify absence of thermal throttling or impact on8A from unavailable thermal API",
+  "independent_review": {
+    "agent": "audit_cpu_archive",
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "ultra",
+    "checks_received_in_intermediate_messages": "4096steps,4480savedpredictions,16384riskviews independently checked; final-answer turn failed",
+    "terminal_status": "failed_model_capacity",
+    "exact_error": "Agent errored: Selected model is at capacity. Please try a different model.",
+    "actual_model_effort_execution_receipt_available": false,
+    "retried": false,
+    "model_switched": false
+  },
+  "preflight_failure": {
+    "type": "KeyError",
+    "source_id": "Sphynx_252",
+    "training_updates_before_failure": 0,
+    "reason": "custom64training subset is not wholly officialtrainval; fullpublicmetadata filter to same64IDs resolves lookup without changing labels or optimizer"
+  }
+}

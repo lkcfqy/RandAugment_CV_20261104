@@ -1,0 +1,79 @@
+{
+  "at_utc": "2026-10-22T12:39:05.499548+00:00",
+  "kind": "pre_result_static_review",
+  "decision": "conditional_go_one_frozen_development_pilot",
+  "originality_established": false,
+  "protocol_sha256": "ef8a096b874c86a204fe02d93d595c1f7825a53f0a829f1f92e96288ccafa4c3",
+  "code_sha256": "e7dd4ecf3ade7e15a0cfad615af486db129ac631fcb1d97a2ac88d9a927e11f0",
+  "inputs": {
+    "protocol.json": {
+      "expected": "3c99ddfd56fba0913c69d94ad9bb5ebd6e31d256510456ca14354168abf5aa02",
+      "actual": "3c99ddfd56fba0913c69d94ad9bb5ebd6e31d256510456ca14354168abf5aa02"
+    },
+    "source-feature-bank.npz": {
+      "expected": "0ce87873d0d299982c6e802af30cf97e43e6b761d6da577d2ad58ebcefc877d5",
+      "actual": "0ce87873d0d299982c6e802af30cf97e43e6b761d6da577d2ad58ebcefc877d5"
+    },
+    "normalizer.npz": {
+      "expected": "7d3eb9b068b14536023bc63a69388ec84ec9b38629ab8e31c945e0b6011198eb",
+      "actual": "7d3eb9b068b14536023bc63a69388ec84ec9b38629ab8e31c945e0b6011198eb"
+    }
+  },
+  "checks": {
+    "new_protocol_hash_matches_parent": true,
+    "new_code_hash_matches_parent": true,
+    "all_input_bytes_match": true,
+    "source_metadata_exact_cartesian_grid": true,
+    "source_object_ordinals_match_existing_order": true,
+    "source_dev_objects_disjoint": true,
+    "dev_exactly_2_objects_per_class": true,
+    "dev_36_rows_per_object": true,
+    "11_required_state_members_available": true,
+    "source_bank_has_dev_seen": true,
+    "source_bank_has_no_final_member": true
+  },
+  "source_bank_member_names": [
+    "clean.npy",
+    "development_seen.npy",
+    "rotate_05_plus.npy",
+    "rotate_05_minus.npy",
+    "rotate_15_plus.npy",
+    "rotate_15_minus.npy",
+    "shearX_005_plus.npy",
+    "shearX_005_minus.npy",
+    "shearX_015_plus.npy",
+    "shearX_015_minus.npy",
+    "shearY_005_plus.npy",
+    "shearY_005_minus.npy",
+    "shearY_015_plus.npy",
+    "shearY_015_minus.npy",
+    "translateX_09_plus.npy",
+    "translateX_09_minus.npy",
+    "translateX_18_plus.npy",
+    "translateX_18_minus.npy",
+    "translateY_09_plus.npy",
+    "translateY_09_minus.npy",
+    "translateY_18_plus.npy",
+    "translateY_18_minus.npy"
+  ],
+  "static_code_assessment": {
+    "weights": "Exact Fraction design follows category/physical-instance metadata; group indices and old source_objects ordinal map match protocol.",
+    "weak_state_selection": "11 named clean/low states selected from prior source bank. Shape photo,state,feature=(540,11,512); reshape aligns np.repeat labels and q(r)*p(s).",
+    "normalization": "Old mean/scalar scale is inverted, then fixed sqrt512 applied; all source states checked at squared norm512.",
+    "solver": "22 separate zero-initialized float64 CPU heads; same CE+L2, LBFGS caps and independent NumPy objective/gradient check <=1e-5.",
+    "access_order": "Only selected source state members are decoded until all heads and source diagnostics saved and hashed in training-freeze.json. development_seen decoded afterwards. No evaluation-features archive path is used.",
+    "primary": "Per-object36-view means, five fixed configuration interaction mean, then balanced10-object mean. Positive J means weak is relatively worse under B.",
+    "resampling": "All1024 ordered within-class size2-with-replacement selections enumerated. Arms/configurations remain paired; no view pseudo-replication.",
+    "failure": "Measurement gate separated from effect gates. No alpha/C/strength/metric/stop tuning branch; exclusive JSON writes stop incidental reruns.",
+    "budget": "120 scientific seconds and Mac2GiB peakRSS checked, single-threadTorch. Need launcher BLAS environment limits as protocol requires."
+  },
+  "critical_issues": [],
+  "scope_notes": [
+    "Static review and ZIP central directory only; no NPY payload, model, training, development value or final array read.",
+    "Cached feature row association is supported by original extraction/encoding order and unchanged input SHA, not an independent re-encoding.",
+    "Kish concentration is matched between B/S, but qS induces object-by-condition associations; no unique shortcut mechanism inferred.",
+    "All50objects consumed. Interval is conditional object stability; positive screen would still need new independent-object confirmation.",
+    "Capability failure may leave computed effect numbers in results; interpretation must prioritize gates and not call this a scientific effect falsification."
+  ],
+  "next_authorized_independent_step": "After parent runs once, recompute only from new frozen heads/source states and development_seen/new development outputs, with no training and no final archive access."
+}

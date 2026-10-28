@@ -1,0 +1,34 @@
+{
+  "status": "execution_incomplete_not_scientific_negative",
+  "error": "StopRun('absolute_budget_save_margin')",
+  "type": "StopRun",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/worker-v1.py\", line 251, in <module>\n    try:main()\n        ~~~~^^\n  File \"/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/worker-v1.py\", line 67, in main\n    event('source_locks_verified');guard()\n                                   ~~~~~^^\n  File \"/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/worker-v1.py\", line 33, in guard\n    if time.monotonic()>=BUDGET['deadline_monotonic']-30:raise StopRun('absolute_budget_save_margin')\n                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopRun: absolute_budget_save_margin\n",
+  "counts": {
+    "training_forward_images": 0,
+    "dev_forward_images": 0,
+    "training_forward_calls": 0,
+    "dev_forward_calls": 0,
+    "backward_calls": 0,
+    "optimizer_updates": 0,
+    "train_image_reads": 0,
+    "dev_image_reads": 0,
+    "parity_image_reads": 0
+  },
+  "progress": {
+    "phase": "initialization",
+    "arm": null,
+    "epoch": null,
+    "logical_step": null,
+    "micro_completed": 0,
+    "inflight": null
+  },
+  "completed_arm_summaries": {},
+  "checkpoint": null,
+  "stage_elapsed": 34428.566849227005,
+  "worker_wall_seconds": 0.1454657079957542,
+  "worker_cpu_seconds": 0.148705,
+  "compute_wall_seconds": 0.0,
+  "compute_cpu_seconds": 0.0,
+  "peak_RSS_bytes": 34226176,
+  "automatic_retry": false
+}

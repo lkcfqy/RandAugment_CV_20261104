@@ -1,0 +1,50 @@
+{
+  "status": "saved_runtime_and_coordination_receipts_reviewed_not_a_pure_speed_benchmark",
+  "pause_duration_seconds_verified_from_UTC": 334.004606,
+  "same_PID": 49366,
+  "no_restart_or_budget_reset_in_receipts": true,
+  "original_cap_seconds": 7200,
+  "completed_wall_seconds": 3679.2947202500654,
+  "wall_includes_pause": true,
+  "arithmetic_wall_minus_known_pause_seconds": 3345.2901142500655,
+  "wall_minus_pause_is_not_pure_model_time": true,
+  "per_cell": {
+    "front-weak": {
+      "training_instrumented_active_seconds": 299.8336136742728,
+      "cell_wall_seconds": 999.0664529169444,
+      "periodic_evaluation_instrumented_active_seconds": 16.80707229266409,
+      "includes_known_full_process_pause": false
+    },
+    "front-ra": {
+      "training_instrumented_active_seconds": 297.5717504946515,
+      "cell_wall_seconds": 1003.1404947910924,
+      "periodic_evaluation_instrumented_active_seconds": 16.817171244882047,
+      "includes_known_full_process_pause": false
+    },
+    "back-weak": {
+      "training_instrumented_active_seconds": 180.1418556899298,
+      "cell_wall_seconds": 972.666216374957,
+      "periodic_evaluation_instrumented_active_seconds": 16.79665504267905,
+      "includes_known_full_process_pause": true
+    },
+    "back-ra": {
+      "training_instrumented_active_seconds": 179.00543073110748,
+      "cell_wall_seconds": 645.475273707998,
+      "periodic_evaluation_instrumented_active_seconds": 16.77122109278571,
+      "includes_known_full_process_pause": false
+    }
+  },
+  "pause_not_entirely_counted_as_back_weak_training_active": true,
+  "pause_active_interpretation": "Back-weak recorded training active is less than the334.004606s process suspension, so the entire suspension was not charged into that training-active aggregate. This does not prove every scheduling delay was excluded; the instrument includes host work/synchronization and is not a GPU event timer.",
+  "known_CPU_overlap_from_resume_utc": "2026-10-22T15:27:29.146174+00:00",
+  "known_CPU_overlap_finished_by_minute": "2026-10-22 15:32 UTC",
+  "overlap_end_seconds_precision_available": false,
+  "coordination_source": "Parent coordination as recorded in this RandAugment project; no8A files/environment/processes accessed by this reviewer.",
+  "timing_conclusion": "Report the same-PID pause and known CPU parallel interval. Do not use raw cell wall or instrumented active times as uncontended model/LoRA placement speed measurements.",
+  "input_SHA256": {
+    "resource-pause-01.json": "a574cc444257c43bb4019ea4dfed55f82ed2abdb13fd102a9711b05416bb1749",
+    "resource-resume-01.json": "61a373af64bd71870667249deb4b457609cebed3a4a15609aae66826cec6b3e2",
+    "resume-progress-confirmation.json": "60be6cef18a4e0719eb229b2582bbd9d328a8e96d6afcb5ad575c9057289d749",
+    "results/completed.json": "3d90b1340312e3166f8c39ed608d742286645b60b081c150f51f7c357bf7c85a"
+  }
+}

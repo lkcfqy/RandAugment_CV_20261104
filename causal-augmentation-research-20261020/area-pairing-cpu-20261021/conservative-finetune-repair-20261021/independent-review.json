@@ -1,0 +1,24 @@
+{
+  "reviewer": "/root/base_static_audit_astra",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_execution_receipt_available": false,
+  "capacity_error": false,
+  "scope": "Read-only source, JSON/JSONL, byte hashes and checkpoint ZIP/pickle structure; no model execution, no photographs read, no file modifications.",
+  "static_review_passed": true,
+  "saved_results_review_passed": true,
+  "verified": [
+    "Both arms2048updates; exact per-step learning rates match fixed128stepwarmup and target rates.",
+    "All prespecified success criteria independently recomputed True.",
+    "Both complete source/RGB training-order chains match historical2048step runs.",
+    "All six checkpoint byte counts and SHA256 match.",
+    "128/1024 checkpoints omit optimizer;2048 checkpoints include optimizer param_groups and momentum_buffer."
+  ],
+  "limitations": [
+    "This is the joint body-LR-reduction and warmup repair, not causal separation of those two changes.",
+    "64previouslyusedtrainingoriginals,256alreadyseenTAviews and one initialization do not support generalization claims.",
+    "If an early stop had occurred, the arms could have differed by one128stepblock; no stop occurred here."
+  ],
+  "next_question_review": "A matched-per-source-marginal foreground/background parameter-coupling contrast is testable. Its estimand is the effect of the specified training process. Relative contrast and boundary changes are part of that intervention, not eliminated by matching marginals; do not claim isolation of pure statistical dependence or semantic causality.",
+  "ARIS_used": false
+}

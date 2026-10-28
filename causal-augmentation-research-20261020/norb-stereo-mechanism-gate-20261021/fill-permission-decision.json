@@ -1,0 +1,24 @@
+{
+  "at_UTC": "2026-10-21T21:09:55.361467+00:00",
+  "allow_one_implementation_diagnostic": true,
+  "independent_prior_SHA256": "0d175fd515b8c56c79b0171e4427600e0c1d15050ee4a40d6e6f70e8c001b482",
+  "root_scope": "Two new source-trained fixed-feature readouts, changing fill128 to source-calibrated global gray227; only old development10 evaluation, no new final25 inference. Not an original research contribution or independent confirmation.",
+  "primary_signed": "I=(oldY-oldX)-(matchedY-matchedX)",
+  "screen_absolute_gap": "abs(matchedY-matchedX)<=0.5*(oldY-oldX) AND matchedY<oldY, with oldY-oldX>0 pre-observed",
+  "interpretation_guard": "Report DeltaX and DeltaY; smaller gap can partly arise because X worsens. Do not claim at least half of Y damage explained unless DeltaY itself warrants it.",
+  "resource_limit": "oneCPUthread,2160 images encoded,2 readouts,180seconds encoder hard cap; no retuning after outcome",
+  "new_training_outcomes_read": false,
+  "old_fixed_geometry_score_not_modified": true,
+  "prior_review_metadata_erratum": {
+    "target": "fill-mechanism-prior-gate.json motivating_observations_parent_reported_not_recomputed",
+    "correction": "The reported1.04 feature-energy and1.096 pixel-MSE ratios are max/min (Y/X), not X/Y; the invariant near-matching gate used max/min.",
+    "source_values": {
+      "X9_feature_energy": 61.902359360226825,
+      "Y9_feature_energy": 64.39536039600077,
+      "X9_pixel_MSE": 0.011389929905568284,
+      "Y9_pixel_MSE": 0.012484673367537284
+    },
+    "prior_artifact_preserved": true,
+    "no_effect_on_diagnostic_recipe_or_go_decision": true
+  }
+}

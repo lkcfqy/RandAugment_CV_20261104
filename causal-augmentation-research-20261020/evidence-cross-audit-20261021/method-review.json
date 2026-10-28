@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "task": "AA/RA/TA 方法假设及直接后续独立原文审查",
+  "date": "2026-10-21",
+  "requested_model": "GPT-6.1-Sol",
+  "requested_reasoning_effort": "max",
+  "actual_model_and_effort_verified": false,
+  "model_verification_note": "没有每次实际执行档位回执；不声称已核验模型或推理级别。",
+  "outcome": {
+    "status": "completed_read_only_review",
+    "retained_candidate_count": 0,
+    "retained_candidates": [],
+    "decision_zh": "本轮未形成同时具有明确先例差异、可推翻的新解释和现有测量能力的候选。不安排训练、推理或追加旧照片实验；此结论只收口本轮文献审查。",
+    "novelty_scope_zh": "只核查下列四项直接后续，不是完整引用链穷尽或全网无新意证明。对已覆盖命题作关闭判断，不断言其他尚未形成的问题不存在。"
+  },
+  "constraints": {
+    "no_training_or_model_execution": true,
+    "no_image_or_large_data_downloads": true,
+    "no_gpu_mps_a100_aris_or_scheduling": true,
+    "no_8A_access": true,
+    "no_old_record_modifications": true,
+    "historical_blocked_targets_retried": [],
+    "sole_new_file": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/method-review.json"
+  },
+  "local_context_review": {
+    "read_mode": "各 finding/result-zh 的决策段与关闭/先例段；operation-law-audit 和 filter-audit 文本完整读取。首次批量输出被截断后，用限定摘录补读，未把截断输出宣称为全部完整阅读。",
+    "project": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020",
+    "records": [
+      "joint-clipping-mechanism-20261021/finding-zh.md",
+      "joint-clipping-photo-check-20261021/result-zh.md",
+      "operation-law-audit-20261021/finding-zh.md",
+      "filter-audit-20261021/intermediate-findings.md",
+      "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-result-zh.md",
+      "area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/transfer-result-zh.md",
+      "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/training-numerics-repair-20261021/repair-result-zh.md",
+      "area-pairing-cpu-20261021/training-validity-recovery-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/conservative-finetune-repair-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/base-learning-diagnostic-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/result-zh.md",
+      "area-pairing-cpu-20261021/mac-mps-check-20261021/result-zh.md"
+    ],
+    "current_round_summary": "以父线程本轮委派及既有对话摘要为当前状态；不复活干预目标解码等已关闭分支。",
+    "excluded_revivals": [
+      "背景配对、面积或尺度捷径",
+      "Equalize 背景统计配对",
+      "标签一致性过滤与原图重加权",
+      "区域亮度耦合",
+      "联合饱和或多参数 clipping",
+      "干预 target 解码或元数据传播作为原创贡献",
+      "CER、群作用或非 Haar 的旧反例",
+      "32px 全图擦除及其 Bayes 下界",
+      "实现或强度映射差异作为新贡献",
+      "操作覆盖配平或无放回采样的旧方向",
+      "BN 共批变化的已知现象"
+    ]
+  },
+  "original_method_assumptions": [
+    {
+      "method": "AutoAugment",
+      "original_url": "https://arxiv.org/html/1805.09501",
+      "version_read": "v3, 2019-04-11",
+      "sections_read": [
+        "3",
+        "1 中 transfer 的范围"
+      ],
+      "direct_evidence_zh": "策略由五个双操作 sub-policy 构成，每个操作有执行概率与幅度；每图均匀选一个 sub-policy。搜索以固定 child architecture 的 validation accuracy 作反馈，另以实验展示跨模型/数据集迁移。",
+      "boundary_zh": "迁移是所报告任务上的实证，不是所有目标模型或自然变化上的普遍排序保证。只重现搜索迁移失配，或在 Pet 上重新调参，不构成新问题。",
+      "version_publication_date": "2019-04-11"
+    },
+    {
+      "method": "RandAugment",
+      "original_url": "https://papers.nips.cc/paper/2020/file/d85b63ef0ccb114d0a3bb7b7d808028f-Paper.pdf",
+      "sections_read": [
+        "3 / Figure 1",
+        "4（结合既有操作审计记录）"
+      ],
+      "direct_evidence_zh": "共同 M 与 N 缩小搜索空间；原文已系统考察模型、数据量对最优强度的影响，并明确给出小代理任务不够准确的实证。",
+      "boundary_zh": "共同 M 不是相同物理变化；等概率有放回抽操作也不是完整群均匀抽样。这些均已核实，不能再次作为新机制。",
+      "publication_year": 2020,
+      "exact_publication_day_verified": false
+    },
+    {
+      "method": "TrivialAugment",
+      "original_url": "https://arxiv.org/html/2103.10158v2",
+      "provenance": "本轮未新增远程读取；复用 operation-law-audit 的已核原文 §3 / Table 8 记录，不重新访问历史受阻 CVF 入口。",
+      "direct_evidence_zh": "每图抽一项操作，另均匀抽 level；不是固定强度的 RA，也不承诺任意任务、每个操作或每个增强输入均安全。",
+      "boundary_zh": "单操作、每图强度不同、实际映射及极端端点均属已知机制/实现审计；不作为本轮候选。",
+      "version_date_verified_this_round": false,
+      "version_date_note": "本轮未重取原文日期；只复用既有核对的 v2 方法记录，不补写未经核实的日期。"
+    }
+  ],
+  "direct_followups_reviewed_count": 4,
+  "direct_followups": [
+    {
+      "title": "FreeAugment: Data Augmentation Search Across All Degrees of Freedom",
+      "authors": [
+        "Tom Bekor",
+        "Niv Nayman",
+        "Lihi Zelnik-Manor"
+      ],
+      "year": 2024,
+      "original_url": "https://arxiv.org/html/2409.04820v1",
+      "sections_read": [
+        "§3 的问题定义与重复抽样段",
+        "§4.3 深度/重复消融",
+        "Appendix E.1",
+        "Appendix E.2",
+        "Appendix E.5"
+      ],
+      "directly_observed_zh": "联合学习深度、类型/顺序和幅度；§4.3 对照固定/可变深度及允许/抑制重复的采样参数化。E.1 已比较 per-image 与 per-batch；E.2 检验策略 warm-up；E.5 比较接续搜索权重与重新训练。",
+      "closest_known_explanation_zh": "策略表达能力、重复操作、策略梯度方差与未成熟分类器的搜索反馈已被直接讨论和消融。",
+      "rejection_zh": "有限频数配平、去重复、共享批策略或训练阶段代理差异，均不足以在本项目形成新增问题。其 Gumbel 参数化对照也不能被误写成严格固定其他因素的纯采样律因果识别。",
+      "arxiv_id": "2409.04820v1",
+      "version_read": "v1",
+      "submitted_at_utc": "2024-09-07T13:26:12Z",
+      "submission_history_url": "https://arxiv.org/abs/2409.04820",
+      "cannot_extrapolate_zh": "不同 Gumbel 参数化的结果不能单独识别去重复的机制贡献；单个 CIFAR/DomainNet 消融也不是所有训练配方的普遍保证。",
+      "available_before_review_cutoff": true
+    },
+    {
+      "title": "RangeAugment: Efficient Online Augmentation with Range Learning",
+      "authors": [
+        "Sachin Mehta",
+        "Saeid Naderiparizi",
+        "Fartash Faghri",
+        "Maxwell Horton",
+        "Lailin Chen",
+        "Ali Farhadi",
+        "Oncel Tuzel",
+        "Mohammad Rastegari"
+      ],
+      "year": 2022,
+      "original_url": "https://arxiv.org/html/2212.10553v1",
+      "sections_read": [
+        "3.1–3.3",
+        "4.2",
+        "4.3"
+      ],
+      "directly_observed_zh": "以任务损失和目标图像相似度辅助损失联合学习幅度区间；实验用 PSNR。§4.2 已比较固定与课程目标，§4.3 已报告不同模型对强正则化的不同响应。",
+      "closest_known_explanation_zh": "固定幅度区间、早期过难增强、模型容量与正则化强度不匹配均已有直接解释。",
+      "rejection_zh": "像素距离不等于语义难度、相同 M 对不同操作含义不同、课程优于从开始就强增强，都不能作为新贡献；亦不重开亮度或饱和分支。",
+      "arxiv_id": "2212.10553v1",
+      "version_read": "v1",
+      "submitted_at_utc": "2022-12-20T18:55:54Z",
+      "submission_history_url": "https://arxiv.org/abs/2212.10553",
+      "cannot_extrapolate_zh": "PSNR 是其优化辅助量，不是增强语义安全或目标环境风险的保证；模型特定的强度结果不能直接解释现有两个 Pet checkpoint 的因果差异。",
+      "available_before_review_cutoff": true
+    },
+    {
+      "title": "Ctrl-A: Control-Driven Online Data Augmentation",
+      "authors": [
+        "Jesper B. Christensen",
+        "Ciaran Bench",
+        "Spencer A. Thomas",
+        "Hüsnü Aslan",
+        "David Balslev-Harder",
+        "Nadia A. S. Smith",
+        "Alessandra Manzin"
+      ],
+      "year": 2026,
+      "original_url": "https://arxiv.org/html/2603.21819v1",
+      "version_note": "页面标 arXiv v1 / 2026-03-23；正文页眉另写 August 24, 2026，保留该元数据不一致，不擅自判定新版本。",
+      "sections_read": [
+        "§3.1–3.2",
+        "§3.3 的 Eq.4 相关段",
+        "§3.5–3.6",
+        "§4.1 概述",
+        "§4.2–4.3",
+        "§4.5 开头"
+      ],
+      "directly_observed_zh": "用增强验证集的逐操作响应和训练/验证损失比反馈更新强度分布。初始比较使用 test 前1000张反馈；§4.3/Table3 又报告从训练集划出1000张验证、与测试不交叠的对照。",
+      "closest_known_explanation_zh": "在线强度适配及训练配方对方法比较的影响已在原文研究。",
+      "rejection_zh": "控制反馈不是自动获得独立测试。验证准确率不高于测试准确率，也不是一般的无自适应过拟合证明；但不能省略其第二套不交叠划分，指称全文没有独立测试。此为评估审计，不升级为增强机制候选。",
+      "arxiv_id": "2603.21819v1",
+      "version_read": "v1",
+      "submitted_at_utc": "2026-03-23T11:03:02Z",
+      "submission_history_url": "https://arxiv.org/abs/2603.21819",
+      "body_header_date": "2026-08-24",
+      "cannot_extrapolate_zh": "验证准确率未高于测试准确率不是一般无自适应过拟合定理；也不能忽略 Table3 的训练/验证划分而把全文判为单一测试泄漏设置。没有固定数据量等条件下的完整机制识别。",
+      "available_before_review_cutoff": true,
+      "validation_protocol_distinction": {
+        "first_setup": {
+          "section": "§4.2 及 §4.3/Table2",
+          "validation": "测试集前1000张作为反馈验证集",
+          "overlap": true
+        },
+        "second_setup": {
+          "section": "§4.3/Table3",
+          "validation": "完整训练集中随机划出1000张，与测试不交叠；训练集相应减少1000张",
+          "overlap": false
+        },
+        "audit_conclusion_zh": "两套设置必须并列报告。Table3 改变了训练样本量，不能把两表的数值差直接全部归于验证适配或泄漏；原文两套实验亦不构成任意反馈策略无过拟合的定理。"
+      }
+    },
+    {
+      "title": "Regularising for invariance to data augmentation improves supervised learning",
+      "authors": [
+        "Aleksander Botev",
+        "Matthias Bauer",
+        "Soham De"
+      ],
+      "year": 2022,
+      "original_url": "https://arxiv.org/html/2203.03304v1",
+      "sections_read": [
+        "§2 的目标定义相关段",
+        "§4–4.1",
+        "§5.1",
+        "Appendix C.2"
+      ],
+      "directly_observed_zh": "已比较平均单视图损失、平均概率和平均 logits，并以单视图预测 KL 正则化区分预测器自身不变性与集成不变性。§5.1 在 RandAugment 下检验；附录提醒强 RA 的 TTA 未必提高准确率。",
+      "closest_known_explanation_zh": "增强梯度方差、多视图聚合目标和单视图预测一致性均已有直接先例。",
+      "rejection_zh": "用固定 checkpoint 计算视图分歧或 Jensen gap 是可做诊断，不能仅凭该可观测量称为新机制，更不能从两个已拟合模型推出训练收益的因果解释。",
+      "arxiv_id": "2203.03304v1",
+      "version_read": "v1",
+      "submitted_at_utc": "2022-03-07T11:25:45Z",
+      "submission_history_url": "https://arxiv.org/abs/2203.03304",
+      "cannot_extrapolate_zh": "预测不变性与其训练实验中的收益不等于任意任务的单调规律；固定 checkpoint 上的低分歧不能识别端到端增强训练的反事实收益。",
+      "available_before_review_cutoff": true
+    }
+  ],
+  "minimum_control_and_falsification_gate": {
+    "applies_to": "未来真正提出的单一新命题；本轮没有保留命题，故不构成待执行实验。",
+    "evidence_required_zh": "须先给出上述直接先例未等价检验的具体预测，并固定新旧解释给出不同预期的最小对照。不能以在另一数据集再现已知现象作为差异。",
+    "available_material_limit_zh": "既有64张照片是训练/开发材料；base/TA 两个终点 checkpoint 不是多随机种子的独立策略样本。固定模型只测输入响应，不能代替策略训练效果的干预对照。",
+    "closure_rule_zh": "若最小对照只能复现已有强度、重复、梯度方差、聚合不变性或调参解释，或只有旧训练照片上的敏感性差异而没有新解释的区分证据，则关闭，不通过换指标、模型、强度或旧留出筛选追阳性。",
+    "experiments_executed": []
+  },
+  "access_and_execution": {
+    "new_access_failures": [],
+    "historical_restricted_resources_accessed": [],
+    "remote_content": "仅原始论文文字及 RA 原文 PDF 的工具抽取；未下载数据、模型或图像。",
+    "local_files_changed": [
+      "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/method-review.json"
+    ],
+    "pending_operations": [],
+    "independent_blockers_zh": "没有工具执行阻塞；缺的是有明确先例差异的新命题，而非未经批准的算力。"
+  },
+  "review_cutoff_date": "2026-10-21"
+}

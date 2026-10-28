@@ -1,0 +1,11 @@
+{
+  "at_UTC": "2026-10-21T08:59:32.642439+00:00",
+  "training_pixels_only": true,
+  "preview": "training-implementation-preview.png",
+  "original_v0_preserved": "development-v0-wide-trimap-guard",
+  "reason_for_pretraining_boundary_fix": "Unknown trimap band was too wide; common union obscured 39.407660percent of training pixels. Resolved nearest known labels before same radius2 guard; now12.245645percent. No model outcomes or heldout pixels inspected.",
+  "visual_checks": "Fixed first cat/dog previews retain recognizable objects; shared and both independent arms have identical guard. All four mask-label2 donor patches inspected; no visible cat/dog in patches. Patches are enlarged real textures, not natural-scene OOD.",
+  "mean_guard_fraction": 0.12245645328443877,
+  "mean_shifted_FG_IoU": 0.2131212654429248,
+  "limitation": "Estimated uncertain boundary and artificial common gray outline; not a proof of semantic preservation for every photo."
+}

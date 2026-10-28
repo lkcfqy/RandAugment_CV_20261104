@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "verified_saved_predictions": 4480,
+  "maximum_mean_LL_reconstruction_error": 1.4027132608229742e-08,
+  "training_trace_rows_verified": 4096,
+  "learning_rate_schedule_verified": true,
+  "full_RGB_order_chains_match_previous": true,
+  "all_checkpoints": [
+    {
+      "file": "base-step128.pt",
+      "bytes": 44786251,
+      "sha256": "e524eb9a529fc0c538e9966eabe96aa43eb2c12e2cbd963e3960397b543bbd9a",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 8.106231689453125e-06,
+      "optimizer_saved": false
+    },
+    {
+      "file": "base-step1024.pt",
+      "bytes": 44786379,
+      "sha256": "618b53c4df38dd6f422603216698d1cce596a11c2c3ecaddb023edfa8ad3a08e",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 8.106231689453125e-06,
+      "optimizer_saved": false
+    },
+    {
+      "file": "base-step2048.pt",
+      "bytes": 89515011,
+      "sha256": "51f987c08c95d1af116ac65ec59791c26f94906d06e1f568a8eba85eee40c234",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 6.67572021484375e-06,
+      "optimizer_saved": true
+    },
+    {
+      "file": "TA-step128.pt",
+      "bytes": 44785995,
+      "sha256": "2ee68bc83930ed529bb3bcfee0b3300cdafbc4347436b3378d442b9785939c82",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 7.62939453125e-06,
+      "optimizer_saved": false
+    },
+    {
+      "file": "TA-step1024.pt",
+      "bytes": 44786123,
+      "sha256": "0353f961be6b99a5c8a8a686eb7840a1c52bea0927eb0fea60b9f29a9d97ab62",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 1.430511474609375e-05,
+      "optimizer_saved": false
+    },
+    {
+      "file": "TA-step2048.pt",
+      "bytes": 89514631,
+      "sha256": "1d8e4875cd3b09b642e831974d9f3bcfefd0e5974c034a66b62f0a1491e90952",
+      "strict_model_load": true,
+      "CPU_first8_logit_maxabs": 1.239776611328125e-05,
+      "optimizer_saved": true
+    }
+  ],
+  "maximum_checkpoint_CPU_first8_logit_error": 1.430511474609375e-05,
+  "criteria_recomputed": {
+    "base": {
+      "completed_all_finite": true,
+      "clean_learning": true,
+      "own_distribution_learning": true,
+      "online_learning": true,
+      "no_old_collapse": true
+    },
+    "TA": {
+      "completed_all_finite": true,
+      "clean_learning": true,
+      "own_distribution_learning": true,
+      "online_learning": true,
+      "no_old_collapse": true
+    }
+  },
+  "device": "cpu",
+  "model_forwards": 6,
+  "training_updates": 0,
+  "heldout_images_read": 0,
+  "wall_seconds": 1.3993824160424992
+}

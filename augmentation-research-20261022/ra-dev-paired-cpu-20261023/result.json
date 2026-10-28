@@ -1,0 +1,368 @@
+{
+  "at_utc": "2026-10-23T12:21:57.493104+00:00",
+  "status": "completed_exploratory",
+  "n": 16,
+  "summary": {
+    "epoch20_shared_wrong": {
+      "front-weak": {
+        "n": 8,
+        "clean30_correct": 0,
+        "weak_correct": 2,
+        "ra_correct": 0,
+        "clean_to_weak_prediction_changed": 4,
+        "weak_to_ra_prediction_changed": 3,
+        "weak_to_ra_transitions": {
+          "correct_to_wrong": 2,
+          "wrong_to_wrong": 6
+        },
+        "paired_metrics": {
+          "p_true": {
+            "mean_signed": -0.08647549108658648,
+            "median_signed": 0.0035633730281305733,
+            "mean_absolute": 0.13326973698860195,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "p_fixed_rival": {
+            "mean_signed": 0.06771632483087475,
+            "median_signed": -0.007898541688656113,
+            "mean_absolute": 0.14006665378032468,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "fixed_rival_margin": {
+            "mean_signed": -0.5061812922358513,
+            "median_signed": 0.3387167453765869,
+            "mean_absolute": 1.3081775680184364,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "p_dynamic_rival": {
+            "mean_signed": 0.07188681487297922,
+            "median_signed": 0.008783418479761773,
+            "mean_absolute": 0.13626854685672762,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "dynamic_rival_margin": {
+            "mean_signed": -0.5186888501048088,
+            "median_signed": 0.28868651390075684,
+            "mean_absolute": 1.295670010149479,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "max_confidence": {
+            "mean_signed": -0.004029271478429089,
+            "median_signed": -0.026428959767775984,
+            "mean_absolute": 0.14605304975481032,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "nll": {
+            "mean_signed": 0.3433079903463301,
+            "median_signed": -0.21221295029062415,
+            "mean_absolute": 1.030047840633064,
+            "negative": 5,
+            "positive": 3,
+            "zero": 0
+          },
+          "own_weak_fixed_rival_margin": {
+            "mean_signed": -0.5061812922358513,
+            "median_signed": 0.3387167453765869,
+            "mean_absolute": 1.3081775680184364,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          }
+        }
+      },
+      "front-ra": {
+        "n": 8,
+        "clean30_correct": 0,
+        "weak_correct": 3,
+        "ra_correct": 0,
+        "clean_to_weak_prediction_changed": 5,
+        "weak_to_ra_prediction_changed": 3,
+        "weak_to_ra_transitions": {
+          "correct_to_wrong": 3,
+          "wrong_to_wrong": 5
+        },
+        "paired_metrics": {
+          "p_true": {
+            "mean_signed": -0.10759472597473993,
+            "median_signed": -0.040134345085571024,
+            "mean_absolute": 0.13108733722318344,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "p_fixed_rival": {
+            "mean_signed": 0.0909284718683098,
+            "median_signed": 0.06347540895115056,
+            "mean_absolute": 0.14215888428535853,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "fixed_rival_margin": {
+            "mean_signed": -0.47333580255508423,
+            "median_signed": -0.1376340389251709,
+            "mean_absolute": 1.269010603427887,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "p_dynamic_rival": {
+            "mean_signed": 0.0909284718683098,
+            "median_signed": 0.06347540895115056,
+            "mean_absolute": 0.14215888428535853,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "dynamic_rival_margin": {
+            "mean_signed": -0.47333580255508423,
+            "median_signed": -0.1376340389251709,
+            "mean_absolute": 1.269010603427887,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "max_confidence": {
+            "mean_signed": -0.018814432868078525,
+            "median_signed": -0.01869084232721585,
+            "mean_absolute": 0.13676029471318818,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "nll": {
+            "mean_signed": 0.250026602720348,
+            "median_signed": 0.05841859045890069,
+            "mean_absolute": 0.9510285229330615,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "own_weak_fixed_rival_margin": {
+            "mean_signed": -0.47333580255508423,
+            "median_signed": -0.1376340389251709,
+            "mean_absolute": 1.269010603427887,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          }
+        }
+      },
+      "joint_counts": {
+        "both_clean30_wrong": 8,
+        "all4_new_views_wrong": 5,
+        "all4_new_views_same_prediction": 4,
+        "ra_trained_abs_ptrue_response_smaller": 4,
+        "ra_trained_abs_margin_response_smaller": 5,
+        "predeclared_joint_counterexample": 2
+      }
+    },
+    "epoch20_both_correct": {
+      "front-weak": {
+        "n": 8,
+        "clean30_correct": 8,
+        "weak_correct": 8,
+        "ra_correct": 8,
+        "clean_to_weak_prediction_changed": 0,
+        "weak_to_ra_prediction_changed": 0,
+        "weak_to_ra_transitions": {
+          "correct_to_correct": 8
+        },
+        "paired_metrics": {
+          "p_true": {
+            "mean_signed": -0.05176825417846928,
+            "median_signed": -0.022901604241060247,
+            "mean_absolute": 0.054072162545722335,
+            "negative": 7,
+            "positive": 1,
+            "zero": 0
+          },
+          "p_fixed_rival": {
+            "mean_signed": 0.02815786173264783,
+            "median_signed": 0.0013270104912365603,
+            "mean_absolute": 0.03973170800139297,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "fixed_rival_margin": {
+            "mean_signed": -0.28910015523433685,
+            "median_signed": -0.21766406297683716,
+            "mean_absolute": 0.6376054733991623,
+            "negative": 5,
+            "positive": 3,
+            "zero": 0
+          },
+          "p_dynamic_rival": {
+            "mean_signed": 0.0467297864078037,
+            "median_signed": 0.016487889686282713,
+            "mean_absolute": 0.04747819043630328,
+            "negative": 2,
+            "positive": 6,
+            "zero": 0
+          },
+          "dynamic_rival_margin": {
+            "mean_signed": -0.5576288402080536,
+            "median_signed": -0.4811552166938782,
+            "mean_absolute": 0.6303887367248535,
+            "negative": 6,
+            "positive": 2,
+            "zero": 0
+          },
+          "max_confidence": {
+            "mean_signed": -0.05176825417846928,
+            "median_signed": -0.022901604241060247,
+            "mean_absolute": 0.054072162545722335,
+            "negative": 7,
+            "positive": 1,
+            "zero": 0
+          },
+          "nll": {
+            "mean_signed": 0.06606410250310037,
+            "median_signed": 0.024774817404456796,
+            "mean_absolute": 0.06847509454147731,
+            "negative": 1,
+            "positive": 7,
+            "zero": 0
+          },
+          "own_weak_fixed_rival_margin": {
+            "mean_signed": -0.28910015523433685,
+            "median_signed": -0.21766406297683716,
+            "mean_absolute": 0.6376054733991623,
+            "negative": 5,
+            "positive": 3,
+            "zero": 0
+          }
+        }
+      },
+      "front-ra": {
+        "n": 8,
+        "clean30_correct": 8,
+        "weak_correct": 8,
+        "ra_correct": 8,
+        "clean_to_weak_prediction_changed": 0,
+        "weak_to_ra_prediction_changed": 0,
+        "weak_to_ra_transitions": {
+          "correct_to_correct": 8
+        },
+        "paired_metrics": {
+          "p_true": {
+            "mean_signed": -0.04497794215117208,
+            "median_signed": -0.01898475949666789,
+            "mean_absolute": 0.04915768221769255,
+            "negative": 6,
+            "positive": 2,
+            "zero": 0
+          },
+          "p_fixed_rival": {
+            "mean_signed": 0.02946788822171849,
+            "median_signed": 0.000260166939129194,
+            "mean_absolute": 0.03901533977947353,
+            "negative": 3,
+            "positive": 5,
+            "zero": 0
+          },
+          "fixed_rival_margin": {
+            "mean_signed": -0.2599267363548279,
+            "median_signed": -0.10888564586639404,
+            "mean_absolute": 0.5912836194038391,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          },
+          "p_dynamic_rival": {
+            "mean_signed": 0.04179956832644392,
+            "median_signed": 0.013933027916342496,
+            "mean_absolute": 0.04416812426962317,
+            "negative": 2,
+            "positive": 6,
+            "zero": 0
+          },
+          "dynamic_rival_margin": {
+            "mean_signed": -0.493456095457077,
+            "median_signed": -0.5492421388626099,
+            "mean_absolute": 0.6127123534679413,
+            "negative": 5,
+            "positive": 3,
+            "zero": 0
+          },
+          "max_confidence": {
+            "mean_signed": -0.04497794215117208,
+            "median_signed": -0.01898475949666789,
+            "mean_absolute": 0.04915768221769255,
+            "negative": 6,
+            "positive": 2,
+            "zero": 0
+          },
+          "nll": {
+            "mean_signed": 0.0569248742454726,
+            "median_signed": 0.019887516256199767,
+            "mean_absolute": 0.061432642511222296,
+            "negative": 2,
+            "positive": 6,
+            "zero": 0
+          },
+          "own_weak_fixed_rival_margin": {
+            "mean_signed": -0.2599267363548279,
+            "median_signed": -0.10888564586639404,
+            "mean_absolute": 0.5912836194038391,
+            "negative": 4,
+            "positive": 4,
+            "zero": 0
+          }
+        }
+      },
+      "joint_counts": {
+        "both_clean30_wrong": 0,
+        "all4_new_views_wrong": 0,
+        "all4_new_views_same_prediction": 8,
+        "ra_trained_abs_ptrue_response_smaller": 6,
+        "ra_trained_abs_margin_response_smaller": 5,
+        "predeclared_joint_counterexample": 0
+      }
+    }
+  },
+  "predeclared_joint_counterexample_count": 2,
+  "predeclared_joint_counterexample_ids": [
+    "american_pit_bull_terrier_15",
+    "Birman_180"
+  ],
+  "resource": {
+    "this_stage_prepare_seconds": 1.5105656249215826,
+    "this_stage_preflight_seconds": 2.083400125033222,
+    "this_stage_continuation_seconds": 5.376584290992469,
+    "this_stage_total_child_inclusive_seconds": 8.970550040947273,
+    "this_stage_forwards": 64,
+    "previous_stage_total_child_inclusive_seconds": 13.712448499980383,
+    "previous_stage_forwards": 148,
+    "paired_stages_cumulative_child_inclusive_seconds": 22.682998540927656,
+    "paired_stages_cumulative_forwards": 212,
+    "scope": "Only these two paired CPU probe stages; earlier training/cache generation remains in original records and is not included or reset.",
+    "peak_RSS_bytes": 1153515520,
+    "forward_wall_seconds": 4.3451707100030035,
+    "forward_cpu_seconds": 4.336640000000002,
+    "new_training_runs": 0,
+    "GPU_forwards": 0
+  },
+  "prior_art_candidate_decision": "Archive generic sensitivity/semantic-proxy candidate; existing work overlaps and finite diagnostic cannot establish new mechanism or algorithm. No further sample/seed/strength expansion.",
+  "limits": [
+    "Class matching does not remove image difficulty or different operation-sequence confounding.",
+    "Smaller ptrue or margin response cannot certify semantic preservation or cause of errors.",
+    "Raw logit scales differ between checkpoints.",
+    "Existing dev results and this selected cohort are exploratory, not held-out or population estimates."
+  ],
+  "all_counterexamples_retained": true,
+  "visual_review_before_new_scores": true
+}

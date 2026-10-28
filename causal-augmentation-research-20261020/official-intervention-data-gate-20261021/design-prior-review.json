@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "task": "smallNORB angle-alignment choice and finite-view augmentation conclusions: independent design/prior review",
+  "model_request": {
+    "requested": "GPT-6.1-Sol/max",
+    "actual_execution_receipt_available": false,
+    "actual_model_and_effort_verified": false
+  },
+  "decision": {
+    "original_research_candidates_retained": 0,
+    "retained_status": "replication_or_benchmark_sensitivity_audit_only",
+    "training_or_pixel_acquisition_recommended_now": false,
+    "verdict_zh": "否决当前表述作为可信原创候选。角度起点改变若只重命名而一致传播选择规则，结论应严格不变；若固定数字窗口重新选图，则是采样支持改变。现无作者具体offset实现核验，也无区别普通样本/目标难度变化的增强特异预测或独立观察。A.2的新阅读发现本身不是新机制。不能将此判断升级为已证明AA/RA/TA排名对配准不敏感。"
+  },
+  "sources": [
+    {
+      "id": "JEON2025",
+      "url": "https://arxiv.org/html/2501.04288v1",
+      "title": "An Analysis of Model Robustness across Concurrent Distribution Shifts",
+      "section": "A.2 Dataset Configuration; Table2; A.6/Table9",
+      "access": "read",
+      "checked_facts_zh": "A.2说沿用官方train/test对象划分，取elevation[0,2,4,6,8]、azimuth[0,8,16,24,32]及lighting[0,1,2,3,4]，手工调整animal的方位角起点，并从train划20%验证。Table2将角度列为0/80/160/240/320度。Table9含AA/RA设置；所读方法列表未给TA，不能称复现其TA结论。",
+      "not_verified_zh": "该段没有给每对象/类别offset表、算法、操作先后或两split独立执行记录；不能从文字确定调整单位、精确规则或两split完全相同。"
+    },
+    {
+      "id": "AUTHORS_REPO",
+      "url": "https://github.com/schoi828/robustness",
+      "title": "Official author implementation",
+      "access": "repository landing page read; relevant directory access blocked",
+      "checked_facts_zh": "主页说明这是论文官方实现，依托DomainBed，列SMALLNORB及no_aug/autoaug/randaug配置。README说明预处理数据尚待发布；这不证明目录中不存在预处理代码。",
+      "unknown_zh": "未能直接审读domainbed的smallNORB预处理/采样实现，不能声称已核对offset或train/test同规则。"
+    },
+    {
+      "id": "WILES2022",
+      "url": "https://arxiv.org/html/2110.11328v2",
+      "title": "A Fine-Grained Analysis on Distribution Shift",
+      "section": "D.1 SmallNorb; D.2/Table2; Takeaways1,3,7; B.2/B.3",
+      "access": "read",
+      "closest_prior_zh": "已用smallNORB对象类别和azimuth构造LDD/UDS，比较AA/RA，分解RA单操作；也指出方法排序随数据与shift变化、属性选择影响结果。其D.2以未见属性值子集定义UDS。",
+      "exact_overlap_boundary_zh": "所读章节没有对同对象/类别的循环角度offset作系统敏感性分析。B.3更换label/nuisance角色，非起点重配准。因此它覆盖一般取样/属性敏感性与有限视角增强比较，未据此宣称精确覆盖offset命题。"
+    }
+  ],
+  "literature_search_scope": {
+    "primary_sources_only": true,
+    "papers_read": 2,
+    "additional_equivalent_work_searched_or_claimed": 0,
+    "exhaustive_novelty_exclusion": false,
+    "reason_zh": "两篇指定原文已足够判断当前增量不足；不另搜泛化失配或泛泛benchmark论文凑先例。未找到精确同题不等于新颖性成立。"
+  },
+  "implementation_verification": {
+    "completed_zh": [
+      "作者仓库主页及README核对",
+      "Jeon A.2/A.6与Wiles相关方法/小NORB设置核对",
+      "以下坐标与采样支持的独立数学检查"
+    ],
+    "direct_code_read_completed": false,
+    "offset_values_known": false,
+    "per_object_vs_per_class_adjustment_known": false,
+    "adjustment_before_or_after_subsampling_known": false,
+    "same_rule_train_test_verified": false,
+    "physical_canonical_pose_known": false,
+    "access_blocks": [
+      {
+        "action": "read author domainbed directory",
+        "target": "https://github.com/schoi828/robustness/tree/main/domainbed",
+        "status": "blocked",
+        "tool_reason": "Failed to fetch restricted URL",
+        "automatic_approval_rejection": false,
+        "followup_zh": "已停止；未换raw、镜像或其他入口取得同一受阻目录代码。"
+      },
+      {
+        "action": "read official repository recursive tree metadata",
+        "target": "https://api.github.com/repos/schoi828/robustness/git/trees/main?recursive=1",
+        "status": "tool_unavailable",
+        "tool_reason": "URL is not accessible via this tool",
+        "automatic_approval_rejection": false,
+        "followup_zh": "此调用与目录检查同批发出；受阻结果后未重试。"
+      }
+    ],
+    "interpretation_zh": "访问受阻不证明源码缺失、实现有误、作者泄漏或不当选择。论文自述与已验证实现必须分开。"
+  },
+  "mathematical_distinction": {
+    "setup": "Record physical object o, class y(o), original angle a in a finite cyclic set Z_m, elevation e, light l and immutable view ID i. Pixel x_i is unchanged by a metadata reparameterization r_delta(o,a)=a-delta_o mod m.",
+    "coordinate_rename_null": {
+      "selector_pushforward": "If original selector/weight is w(o,a,e,l), use w_delta(o,a',e,l)=w(o,a'+delta_o,e,l) and preserve the same physical view IDs, pixel preprocessing, sample weights, order and augmentation RNG assignment.",
+      "conclusion_zh": "固定模型不读角度元数据时逐图预测严格相同；固定读出风险及同一训练目标相同。若训练顺序/增强随机赋值亦保持，数值训练路径没有由重命名引起的差异。只保持图片集合而改变顺序/RNG不构成纯重命名对照。",
+      "caveat_zh": "如果模型、文件hash取样、类别权重、排序或超参选择使用了重命名后的字段，必须同时一致传播，否则该操作已不再是零影响的坐标替换。"
+    },
+    "fixed_numeric_window_changes_support": {
+      "selector": "Keeping a fixed numeric window W after relabeling chooses original angles a in W+delta_o, rather than W.",
+      "conclusion_zh": "即使offset对train/test采用同一确定规则，也可能改变两split所选图片和难度。若在既定少数角度集合内只置换坐标，初始像素池可不变，但UDS/LDD再按数字子集取样仍可改变训练支持。",
+      "conditional_grid_observation_zh": "若原始合法角度构成Z_18的完整轨道，A.2的原编码五点[0,8,16,24,32]等价于索引集合W={0,4,8,12,16}。任一非零循环位移若保持W，其周期长度须同时整除18和|W|=5，不可能；因此先平移后按同数值五点筛选一定换支持。这里仅是条件数学结论，未验证作者代码是否使用此顺序或这些合法offset。",
+      "not_identified_zh": "数量、类别比例、角度标签边际、seen/unseen数相同，并不保证像素可辨性或源—目标学习难度相同。按类别/对象定offset可改变类别条件的视角支持，不能把排名变化唯一归于新的增强机制。"
+    },
+    "no_canonical_pose_claim_zh": "没有独立物理canonical-pose真值，不能判哪个起点正确、把未配准称错误数据或把配准称有利于某法。元数据一致性与生物/几何正面姿态真值不同。",
+    "no_leakage_claim_zh": "对象/类别相关的确定预处理本身不等于泄漏；需实际规则、使用信息和选择时间证据，不能从手工二字推断作者按测试成绩选择。"
+  },
+  "falsifiable_estimand_if_future_evidence_exists": {
+    "status": "not retained as a new candidate; formalization only",
+    "fixed_target": "A single predeclared pixel-level target distribution Q_star on held-out physical objects and a fixed view weighting; keep this target identical across source-origin choices.",
+    "method_gain": "Delta_m(delta)=E_seed[R_Qstar(h_base trained on source support delta)-R_Qstar(h_m trained on source support delta)], m in a prespecified AA/RA/TA set.",
+    "interaction": "Gamma_m(delta1,delta0)=Delta_m(delta1)-Delta_m(delta0). Pure consistent renaming predicts exactly zero; changed source support need not.",
+    "distinction_zh": "Delta改变只说明该训练支持下的相对方法效果变了；不自动说明augmentation对坐标不变性失效。若目标Q也跟着delta变，Gamma混合训练覆盖与测试组成，不能仅称训练迁移差异。",
+    "minimum_controls_if_ever_reopened_zh": [
+      "先核验可复现offset表/代码及每split视图ID清单；纯重命名负控保持全部ID/权重/顺序。",
+      "把训练支持变化和测试支持变化分开：固定Q_star为主；必要时用两种train支持×两种test支持的交叉报告定位来源。",
+      "固定物理对象train/test分离、类别/每对象预算、elevation/light及训练设置；按对象聚类而非视图当独立样本，并分离training seed不确定性。",
+      "起点族、基线和主对比在结果前锁定，报告全族及相对baseline的interaction，不挑最差起点。"
+    ],
+    "extra_substantive_information_needed_zh": "至少须有一个由明确可观测机制给出的、区别一般像素样本难度的方向性预测，或在固定Q_star和对象/预算匹配下可复现且有实际决策幅度的method×support交互/排序反转证据，并解释为何直接原文比较尚未覆盖。无需发明更优算法，但不能仅以手工配准存在或任意改split会换排名作为贡献。",
+    "failure_close_conditions_zh": [
+      "纯重命名负控产生差异时先认作实现/数据流问题，不命名新学习机制。",
+      "只改变测试组成即可解释观察，或固定Q_star后交互不足时，关闭为普通benchmark组成敏感性。",
+      "找不到可核验offset实现/支持清单，或增量只剩一般样本难度时，不以先导训练弥补。",
+      "预定起点族无稳定实质interaction时，关闭该窄命题；不搜更多offset/模型追反转。"
+    ],
+    "execution_authorized": false
+  },
+  "data_gate_and_actions": {
+    "official_smallNORB_info_HEAD": "reported passed by parent; not independently repeated",
+    "pixels_acquired": false,
+    "training_performed": false,
+    "models_loaded": false,
+    "old_results_or_test_metrics_read": false,
+    "GPU_MPS_A100_used": false,
+    "ARIS_used": false,
+    "automations_created": false,
+    "eightA_accessed": false,
+    "old_files_modified": false,
+    "new_file_only": "/Users/lkc/Documents/Codex/2026-10-21/task/official-intervention-data-gate-20261021/design-prior-review.json"
+  },
+  "final_limits_zh": "当前否决的是缺少实质新增信息的研究候选，不是证明配准无影响。精确作者实现的代码核验受阻；未跨入口绕过，未声称完整复现或穷尽查新。",
+  "audit_utc": "2026-10-21T20:09:53.306640+00:00"
+}

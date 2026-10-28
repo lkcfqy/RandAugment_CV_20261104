@@ -1,0 +1,37 @@
+{
+  "at_UTC": "2026-10-21T20:16:45.166058+00:00",
+  "status": "screened_not_retained_as_new_candidate",
+  "observational_anchor": {
+    "source": "https://arxiv.org/html/2110.11328v2",
+    "section": "B.2 / Figure14",
+    "observation": "The reported single-operation RandAugment ablation includes Invert harming SmallNORB. This is a published training experiment, not a new local observation; its exact training configuration has not been reproduced here."
+  },
+  "question_screened": "Could a shared normalization state for clean and polarity-inverted training images, rather than destruction of object category, account for this reported harm?",
+  "closest_primary_prior": {
+    "title": "Does Data Augmentation Benefit from Split BatchNorms",
+    "authors": "Amil Merchant, Barret Zoph, Ekin Dogus Cubuk",
+    "submitted": "2020-10-15",
+    "url": "https://arxiv.org/abs/2010.07810",
+    "read_scope": "official arXiv abstract and submission metadata; full implementation or SmallNORB-specific result not read",
+    "covered_mechanism": "Strong augmentation induces train/evaluation disparity; auxiliary normalization and choice of clean/weak augmentation statistics at evaluation are directly examined. Thus generic normalization mismatch or split normalization is an existing research mechanism, not a new contribution."
+  },
+  "decision": "Do not train merely to re-demonstrate the known normalization principle on a new toy dataset. No new augmentation-specific differentiating prediction has been established.",
+  "exact_coverage_limit": "The read prior does not establish the actual cause of the reported Invert/SmallNORB loss, nor prove an exactly equivalent SmallNORB study exists. Lack of an exact dataset match is not alone a substantive increment.",
+  "falsification_controls_if_a_substantive_increment_later_appears": [
+    "First reproduce a prespecified training-value contrast on untouched physical objects; a frozen classifier reaction is insufficient.",
+    "Prespecify same source images, updates, initialization pairing and augmentation assignment; separately vary normalization-state policy and report all arms on one fixed clean target.",
+    "Any evaluation-statistics recalibration must use training-side images only and remain separate from full training-policy effects.",
+    "A normalization intervention also changes optimization; recovery is not unique causal mediation evidence unless other explanations are distinguished."
+  ],
+  "kill_conditions": [
+    "If no training-value harm is reproducible under a fixed valid protocol, do not pursue an explanation of that absent local phenomenon.",
+    "If the increment is only clean/strong augmentation normalization mismatch, mark replication of existing mechanism.",
+    "Do not tune inversion probability, BN mode, model or test subset until an appealing outcome appears."
+  ],
+  "current_experiment_started": false,
+  "current_image_acquisition_recommended": false,
+  "new_data_or_compute_request": false,
+  "old_brightness_background_saturation_branches_reopened": false,
+  "reviewer": "root focused primary-source screen, not an additional independent reviewer",
+  "exhaustive_novelty_search_claimed": false
+}

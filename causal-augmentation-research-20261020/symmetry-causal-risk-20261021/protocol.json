@@ -1,0 +1,74 @@
+{
+  "at_UTC": "2026-10-21T16:46:46.759359+00:00",
+  "question": "Does exact structural outcome invariance alone ensure non-increasing original-do(X)-marginal causal excess risk for population OLS under non-Haar random reflection?",
+  "scope": "2D analytic SCM/population mechanism check; not real-image training or counterevidence to a theorem whose assumptions exclude this kernel",
+  "covariance": [
+    [
+      "1",
+      "9/10"
+    ],
+    [
+      "9/10",
+      "1"
+    ]
+  ],
+  "f": [
+    "1",
+    "0"
+  ],
+  "confounding_bias_v": [
+    "1",
+    "1/10"
+  ],
+  "SCM": "C,NX mutually independent centered Gaussians covarianceSigma/2; NY independent N(0,1). X=C+NX; Y=f^T X+2v^T C+NY. Thus xi=2v^T C+NY, c=Cov(X,xi)=Sigma v. Nondegenerate acyclic SCM.",
+  "augmentation": "G=diag(1,S), S=-1 withprob1/5 and+1withprob4/5; independent of C,NX,NY; retainY. f(GX)=f(X)pointwise. No input-coordinate redefinition at evaluation.",
+  "exact_estimand": "CER_original(h)=E_{Xnew~N(0,Sigma),independentC,NY}[(Ynew-h^TXnew)^2-(Ynew-f^TXnew)^2]=(h-f)^T Sigma(h-f)",
+  "population_OLS": "h0=f+Sigma^-1 c; for A=E G,B=E G Sigma G^T, hDA=f+B^-1 A c",
+  "exact_controls": [
+    "identitykernel",
+    "Haaruniformreflectionprob1/2",
+    "uncorrelatedcoordinatesrho0",
+    "zero_hidden_confounding"
+  ],
+  "fixed_composition_counts": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "composition": "k independent copies of the same reflectionkernel; mu=(3/5)^k; no selection of bestk",
+  "general_condition": "M=A^T B^-1 Sigma B^-1 A-Sigma^-1. CERDA-CER0=c^T M c; no harm for every feasiblec iff M negative semidefinite, when B andSigma positive definite and everyG fixesf.",
+  "reflection_lemma": "ForSigma=[[1,rho],[rho,1]],0<abs(rho)<1, no-ridge OLS and mu=E S in[-1,1], universal non-harm holds only at mu0(Haar) ormu1(identity). T=B^-1 A Sigma fixes e1. H=T^T Sigma T-Sigma has H11=0,H12=rho*mu*(1-mu)*(1-rho^2)/(1-mu^2*rho^2); nonzero H12 makesdetH<0. This is a proposed elementary boundary lemma, originality unestablished.",
+  "numerical_checks": "exactFraction2x2 normal equations and risk; float64 direct matrix agreement<1e-12; independent2D SCM simulation only as sanity check",
+  "simulation": {
+    "n": 200000,
+    "train_seed": 2026102121,
+    "doX_seed": 2026102122,
+    "OLS": "direct leastsquares2columns no intercept; centered population; no iteration/tuning",
+    "outcome_invariance_max_abs": 0.0,
+    "purpose": "verify SCMinvariance, moments and analytical predictions; not an independent CV efficacy test",
+    "fixed_CER_original_population_vs_doX_MC_abs_tolerance": 0.03
+  },
+  "resources": {
+    "CPU_threads": 1,
+    "nice_increment": 10,
+    "GPU": false,
+    "MPS": false,
+    "A100": false,
+    "ARIS": false,
+    "downloads": false,
+    "software_changes": false,
+    "other_project_access": false
+  },
+  "novelty_status": "boundary-observation candidate only; Haar projection, generic DA normal equations and bias shifts already studied; no exact-equivalence claim until closest2026work checked",
+  "model_request": "GPT-6.1-Sol/max priority; actual execution receipt unavailable"
+}

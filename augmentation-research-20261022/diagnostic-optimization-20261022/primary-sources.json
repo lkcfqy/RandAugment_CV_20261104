@@ -1,0 +1,39 @@
+{
+  "as_of_utc": "2026-10-22",
+  "scope": "Targeted primary-source interpretation of zero initialization and step scaling; not exhaustive novelty search.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/2106.09685v2",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "body_obtained": true,
+      "read_sections": "4.1-4.2",
+      "supports": "Frozen base with BA correction, random Gaussian A and zero B, alpha/r scaling. Our gradient formulas are direct differentiation of this parameterization.",
+      "not_established": "No proof of equal function learning rates for different ViT block placements."
+    },
+    {
+      "url": "https://arxiv.org/html/2406.08447v1",
+      "title": "The Impact of Initialization on LoRA Finetuning Dynamics",
+      "body_obtained": true,
+      "read_sections": "Abstract,1,2.1-2.2,3.1-3.2",
+      "supports": "Initial BA equality does not guarantee matching dynamics; initialization, features and stable-learning scales are coupled.",
+      "not_established": "Large-width simplified analysis and language-model evidence do not prove this finite ViT positional mechanism."
+    },
+    {
+      "url": "https://arxiv.org/html/2402.12354",
+      "resolved_version": "2402.12354v2",
+      "title": "LoRA+: Efficient Low Rank Adaptation of Large Models",
+      "body_obtained": true,
+      "read_sections": "Abstract/introduction,3.1 initialization,4 introduction and feature definitions; relevant passages only, not full proofs or experiments",
+      "supports": "A/B learning rates and parameterization can influence feature-learning efficiency. We do not apply its LR ratio here.",
+      "not_established": "Does not identify our optimal position-specific LR or establish novelty for update-scale matching."
+    }
+  ],
+  "technical_failure": {
+    "action": "open arXiv HTML version3",
+    "target": "https://arxiv.org/html/2402.12354v3",
+    "reason": "404 nonexistent version, ordinary technical error rather than access denial",
+    "status": "not retried; canonical HTML returned existing version2"
+  },
+  "historical_denied_or_verification_sources_retried": false,
+  "ARiS_or_external_model_calls": false
+}

@@ -1,0 +1,58 @@
+# macOS and Python runtime files
+.DS_Store
+._*
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+torch-cache/
+*.whl
+
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials.json
+token.json
+
+# Model checkpoints and downloaded dataset archives (kept locally)
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.mat
+*.mat.gz
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.bin
+
+# Large precomputed feature banks; small prediction/result arrays are tracked
+*-features.npy
+*-features.jsonl
+source-feature-bank.npz
+evaluation-features.npz
+fill-feature-bank.npz
+
+# Original dataset photos, masks, and generated per-image view caches
+/augmentation-research-20261022/pilot-20261022/data/images/
+/augmentation-research-20261022/pilot-20261022/data/masks/
+/augmentation-research-20261022/ra-paired-view-cpu-20261023/views/
+/augmentation-research-20261022/ra-dev-paired-cpu-20261023/views/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/pixel-substance-check-20261021/images/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/masks/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-photos/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/heldout-photos/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/heldout-masks/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/guards-fit/
+/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/guards-heldout/

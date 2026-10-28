@@ -1,0 +1,53 @@
+{
+  "status": "failed_convolution_coordinates_recomputed_in_FP64",
+  "module": "layer2.0.conv2",
+  "all_inputs_and_parameters_finite": true,
+  "evidence": [
+    {
+      "index": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "FP32_output": "-inf",
+      "FP64_dot_product": -3.5275053973597194e+39,
+      "FP32_max_finite": 3.4028234663852886e+38,
+      "FP64_magnitude_exceeds_FP32_range": true,
+      "maximum_abs_FP64_product": 1.1813114082739624e+39,
+      "FP64_sum_abs_products": 3.527506116999925e+39
+    },
+    {
+      "index": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "FP32_output": "-inf",
+      "FP64_dot_product": -5.814312959253281e+39,
+      "FP32_max_finite": 3.4028234663852886e+38,
+      "FP64_magnitude_exceeds_FP32_range": true,
+      "maximum_abs_FP64_product": 1.2131793120930526e+39,
+      "FP64_sum_abs_products": 5.81431410954577e+39
+    },
+    {
+      "index": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "FP32_output": "-inf",
+      "FP64_dot_product": -6.855267826175873e+39,
+      "FP32_max_finite": 3.4028234663852886e+38,
+      "FP64_magnitude_exceeds_FP32_range": true,
+      "maximum_abs_FP64_product": 1.2273684978457682e+39,
+      "FP64_sum_abs_products": 6.855268974543971e+39
+    }
+  ],
+  "supports_real_output_out_of_FP32_range": true,
+  "CPU_only": true,
+  "no_test_use": true,
+  "no_new_data": true
+}

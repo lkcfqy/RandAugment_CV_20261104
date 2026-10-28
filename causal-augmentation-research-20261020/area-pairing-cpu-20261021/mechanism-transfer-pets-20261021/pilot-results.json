@@ -1,0 +1,697 @@
+{
+  "status": "completed_small_RGB_mechanism_transfer_pilot",
+  "dataset": "Oxford-IIIT Pet",
+  "real_source_photographs": 64,
+  "species_classes": 2,
+  "independent_heldout_macroblocks": 4,
+  "primary_layout": "protected",
+  "background_C_readout": {
+    "records": 16,
+    "mean_log_loss_nats": 0.5947380229634525,
+    "accuracy": 0.625
+  },
+  "neutral_foreground_Y_readout": {
+    "records": 64,
+    "mean_log_loss_nats": 0.7008671520064391,
+    "accuracy": 0.46875
+  },
+  "layouts": {
+    "protected": {
+      "overall": {
+        "table": {
+          "coupled": {
+            "coupled": {
+              "records": 64,
+              "mean_log_loss_nats": 0.696192948424313,
+              "accuracy": 0.453125
+            },
+            "independent": {
+              "records": 256,
+              "mean_log_loss_nats": 0.6937648676542382,
+              "accuracy": 0.5
+            }
+          },
+          "independent": {
+            "coupled": {
+              "records": 64,
+              "mean_log_loss_nats": 0.6946328144947767,
+              "accuracy": 0.46875
+            },
+            "independent": {
+              "records": 256,
+              "mean_log_loss_nats": 0.6935563983999645,
+              "accuracy": 0.484375
+            }
+          }
+        },
+        "effects": {
+          "coupled_trained_delta_LL_independent_minus_coupled": -0.0024280807700748364,
+          "coupled_trained_accuracy_drop_coupled_minus_independent": -0.046875,
+          "independent_trained_delta_LL_independent_minus_coupled": -0.001076416094812127,
+          "independent_trained_accuracy_drop_coupled_minus_independent": -0.015625,
+          "difference_in_differences_LL": -0.0013516646752627093
+        }
+      },
+      "heldout_source_disjoint_macroblocks": {
+        "0": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.709847462401804,
+                "accuracy": 0.125
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.7072735681485617,
+                "accuracy": 0.25
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.709323284257846,
+                "accuracy": 0.25
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.7060216996825985,
+                "accuracy": 0.25
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.0025738942532422815,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.125,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0033015845752474293,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.0,
+            "difference_in_differences_LL": 0.0007276903220051478
+          }
+        },
+        "1": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.689837530736599,
+                "accuracy": 0.625
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6893902043835727,
+                "accuracy": 0.59375
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.690610012569102,
+                "accuracy": 0.6875
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6899641289481604,
+                "accuracy": 0.625
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.00044732635302635604,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": 0.03125,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0006458836209416452,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.0625,
+            "difference_in_differences_LL": 0.00019855726791528916
+          }
+        },
+        "2": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6874473744135146,
+                "accuracy": 0.625
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6833772754797174,
+                "accuracy": 0.65625
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6842717612537605,
+                "accuracy": 0.5625
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6845994363556571,
+                "accuracy": 0.625
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.004070098933797173,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.03125,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.000327675101896574,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.0625,
+            "difference_in_differences_LL": -0.004397774035693747
+          }
+        },
+        "3": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6976394261453344,
+                "accuracy": 0.4375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6950184226051009,
+                "accuracy": 0.5
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.694326199898398,
+                "accuracy": 0.375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.693640328613442,
+                "accuracy": 0.4375
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.002621003540233424,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.0625,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0006858712849560078,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.0625,
+            "difference_in_differences_LL": -0.0019351322552774164
+          }
+        }
+      },
+      "per_class": {
+        "0": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.7024623197718122,
+                "accuracy": 0.21875
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.7031374335980649,
+                "accuracy": 0.2578125
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.7009902098224463,
+                "accuracy": 0.375
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.703266009397332,
+                "accuracy": 0.3203125
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": 0.0006751138262527379,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.0390625,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.002275799574885662,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.0546875,
+            "difference_in_differences_LL": -0.001600685748632924
+          }
+        },
+        "1": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6899235770768138,
+                "accuracy": 0.6875
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6843923017104114,
+                "accuracy": 0.7421875
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6882754191671071,
+                "accuracy": 0.5625
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6838467874025971,
+                "accuracy": 0.6484375
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.005531275366402411,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.0546875,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.004428631764510027,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.0859375,
+            "difference_in_differences_LL": -0.0011026436018923835
+          }
+        }
+      },
+      "crop_strata": {
+        "False": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 22,
+                "mean_log_loss_nats": 0.6955353948555524,
+                "accuracy": 0.36363636363636365
+              },
+              "independent": {
+                "records": 88,
+                "mean_log_loss_nats": 0.6866954389001481,
+                "accuracy": 0.5
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 22,
+                "mean_log_loss_nats": 0.6906640411907897,
+                "accuracy": 0.45454545454545453
+              },
+              "independent": {
+                "records": 88,
+                "mean_log_loss_nats": 0.6873585176349799,
+                "accuracy": 0.4772727272727273
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.008839955955404322,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.13636363636363635,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0033055235558098195,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.022727272727272763,
+            "difference_in_differences_LL": -0.005534432399594502
+          }
+        },
+        "True": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 42,
+                "mean_log_loss_nats": 0.6965373812460447,
+                "accuracy": 0.5
+              },
+              "independent": {
+                "records": 168,
+                "mean_log_loss_nats": 0.6974679017635235,
+                "accuracy": 0.5
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 42,
+                "mean_log_loss_nats": 0.6967116957492461,
+                "accuracy": 0.47619047619047616
+              },
+              "independent": {
+                "records": 168,
+                "mean_log_loss_nats": 0.6968029073720993,
+                "accuracy": 0.4880952380952381
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": 0.0009305205174787723,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": 0.0,
+            "independent_trained_delta_LL_independent_minus_coupled": 9.12116228531934e-05,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.011904761904761918,
+            "difference_in_differences_LL": 0.0008393088946255789
+          }
+        }
+      },
+      "block_delta_LL_min": -0.004070098933797173,
+      "block_delta_LL_max": -0.00044732635302635604,
+      "positive_delta_LL_blocks": 0,
+      "positive_DID_blocks": 2,
+      "cautious_pilot_screen": false
+    },
+    "ordinary": {
+      "overall": {
+        "table": {
+          "coupled": {
+            "coupled": {
+              "records": 64,
+              "mean_log_loss_nats": 0.692802334653814,
+              "accuracy": 0.484375
+            },
+            "independent": {
+              "records": 256,
+              "mean_log_loss_nats": 0.6921912361437494,
+              "accuracy": 0.51953125
+            }
+          },
+          "independent": {
+            "coupled": {
+              "records": 64,
+              "mean_log_loss_nats": 0.6920589672808336,
+              "accuracy": 0.53125
+            },
+            "independent": {
+              "records": 256,
+              "mean_log_loss_nats": 0.692320673173345,
+              "accuracy": 0.546875
+            }
+          }
+        },
+        "effects": {
+          "coupled_trained_delta_LL_independent_minus_coupled": -0.0006110985100645783,
+          "coupled_trained_accuracy_drop_coupled_minus_independent": -0.03515625,
+          "independent_trained_delta_LL_independent_minus_coupled": 0.0002617058925113991,
+          "independent_trained_accuracy_drop_coupled_minus_independent": -0.015625,
+          "difference_in_differences_LL": -0.0008728044025759774
+        }
+      },
+      "heldout_source_disjoint_macroblocks": {
+        "0": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.7033181182700698,
+                "accuracy": 0.375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.7012554340775446,
+                "accuracy": 0.421875
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.7030630759498853,
+                "accuracy": 0.375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.700792275144817,
+                "accuracy": 0.40625
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.0020626841925251993,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.046875,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0022708008050682515,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.03125,
+            "difference_in_differences_LL": 0.00020811661254305225
+          }
+        },
+        "1": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6916055844329118,
+                "accuracy": 0.5
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6914060737730183,
+                "accuracy": 0.53125
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6920969377446667,
+                "accuracy": 0.4375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6916247667771841,
+                "accuracy": 0.515625
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.00019951065989343153,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.03125,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.00047217096748264353,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.078125,
+            "difference_in_differences_LL": 0.000272660307589212
+          }
+        },
+        "2": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6837551687817843,
+                "accuracy": 0.625
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6832821642928714,
+                "accuracy": 0.625
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6825991566461145,
+                "accuracy": 0.6875
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6850082799140635,
+                "accuracy": 0.671875
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.00047300448891296476,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": 0.0,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.002409123267949065,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.015625,
+            "difference_in_differences_LL": -0.0028821277568620296
+          }
+        },
+        "3": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6925304671304899,
+                "accuracy": 0.4375
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6928212724315636,
+                "accuracy": 0.5
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 16,
+                "mean_log_loss_nats": 0.6904766987826678,
+                "accuracy": 0.625
+              },
+              "independent": {
+                "records": 64,
+                "mean_log_loss_nats": 0.6918573708573154,
+                "accuracy": 0.59375
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": 0.0002908053010736156,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.0625,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.0013806720746475376,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.03125,
+            "difference_in_differences_LL": -0.001089866773573922
+          }
+        }
+      },
+      "per_class": {
+        "0": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6952512729763256,
+                "accuracy": 0.6875
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6974142064506849,
+                "accuracy": 0.7421875
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6946075195282788,
+                "accuracy": 0.78125
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6976877930969007,
+                "accuracy": 0.7734375
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": 0.002162933474359252,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.0546875,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.0030802735686218385,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.0078125,
+            "difference_in_differences_LL": -0.0009173400942625864
+          }
+        },
+        "1": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6903533963313023,
+                "accuracy": 0.28125
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6869682658368141,
+                "accuracy": 0.296875
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 32,
+                "mean_log_loss_nats": 0.6895104150333884,
+                "accuracy": 0.28125
+              },
+              "independent": {
+                "records": 128,
+                "mean_log_loss_nats": 0.6869535532497894,
+                "accuracy": 0.3203125
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.0033851304944881866,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.015625,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0025568617835990404,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.0390625,
+            "difference_in_differences_LL": -0.0008282687108891462
+          }
+        }
+      },
+      "crop_strata": {
+        "False": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 22,
+                "mean_log_loss_nats": 0.6928762264476969,
+                "accuracy": 0.4090909090909091
+              },
+              "independent": {
+                "records": 88,
+                "mean_log_loss_nats": 0.6883986157057479,
+                "accuracy": 0.5
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 22,
+                "mean_log_loss_nats": 0.689746207001358,
+                "accuracy": 0.4090909090909091
+              },
+              "independent": {
+                "records": 88,
+                "mean_log_loss_nats": 0.6887690565491478,
+                "accuracy": 0.5113636363636364
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": -0.0044776107419489675,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.09090909090909088,
+            "independent_trained_delta_LL_independent_minus_coupled": -0.0009771504522102514,
+            "independent_trained_accuracy_drop_coupled_minus_independent": -0.10227272727272724,
+            "difference_in_differences_LL": -0.003500460289738716
+          }
+        },
+        "True": {
+          "table": {
+            "coupled": {
+              "coupled": {
+                "records": 42,
+                "mean_log_loss_nats": 0.6927636294284467,
+                "accuracy": 0.5238095238095238
+              },
+              "independent": {
+                "records": 168,
+                "mean_log_loss_nats": 0.6941778468493693,
+                "accuracy": 0.5297619047619048
+              }
+            },
+            "independent": {
+              "coupled": {
+                "records": 42,
+                "mean_log_loss_nats": 0.6932704131415113,
+                "accuracy": 0.5952380952380952
+              },
+              "independent": {
+                "records": 168,
+                "mean_log_loss_nats": 0.6941810437860197,
+                "accuracy": 0.5654761904761905
+              }
+            }
+          },
+          "effects": {
+            "coupled_trained_delta_LL_independent_minus_coupled": 0.0014142174209226255,
+            "coupled_trained_accuracy_drop_coupled_minus_independent": -0.005952380952380931,
+            "independent_trained_delta_LL_independent_minus_coupled": 0.00091063064450847,
+            "independent_trained_accuracy_drop_coupled_minus_independent": 0.029761904761904767,
+            "difference_in_differences_LL": 0.0005035867764141555
+          }
+        }
+      },
+      "block_delta_LL_min": -0.0020626841925251993,
+      "block_delta_LL_max": 0.0002908053010736156,
+      "positive_delta_LL_blocks": 1,
+      "positive_DID_blocks": 2,
+      "cautious_pilot_screen": false
+    }
+  },
+  "model_input": "RGB-derived features only, no T/C/mask/path",
+  "fixed_model": "64 standardized/clipped spatial RGB/gradient features with products; centroid distance logits divided by 2144",
+  "normalized_using": "coupled training images only; both policy models share this normalizer within each layout",
+  "geometry_cases": {
+    "total": 320,
+    "cropped": 227,
+    "no_visible_foreground": 0
+  },
+  "wall_seconds": 1.995557667,
+  "cpu_seconds": 1.9938509999999998,
+  "CPU_only": true,
+  "ARIS": false,
+  "GPU": false,
+  "new_dependencies": false,
+  "interpretation_limits": [
+    "Mechanism migration, not ForNet reconstruction or evaluation.",
+    "Protected renderer adds a fixed neutral guard, not part of original ForAug.",
+    "Four heldout macroblocks; no p-value over generated frames or proof of generalization to unseen animals.",
+    "Fixed weak readout; a null result does not rule out other models.",
+    "Positive screen is exploratory candidate evidence, not originality or an established contribution."
+  ]
+}

@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "task": "独立数据使用、主张及历史状态衔接审查",
+  "requested_model": "GPT-6.1-Sol",
+  "requested_reasoning_effort": "max",
+  "actual_execution_model_and_effort_verified": false,
+  "model_receipt_note_zh": "实际执行档位无回执；请求值不是运行值证明。",
+  "scope": {
+    "project_root": "/Users/lkc/Downloads/RandAugment_CV_20261104",
+    "research_root": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020",
+    "read_only_except_this_new_file": true,
+    "prohibited_actions_not_executed": [
+      "训练",
+      "模型推理",
+      "图片或测试像素读取",
+      "GPU/MPS/A100",
+      "ARIS",
+      "调度或自动化",
+      "外部模型或网络访问",
+      "8A访问",
+      "PPT读取或修改",
+      "旧文档修改"
+    ],
+    "sole_written_file": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-quality-closeout-20261021/data-claims-review.json",
+    "method_zh": "先读已有 fact-ledger；枚举355个可见 md/json/txt 文件，搜索角色、收益、因果、独立性和状态词，定向读取相关决策段、协议及结构化结果。另仅搜索两份既有HTML中的文字主张，未解码或渲染任何图片。检索长输出截断后，以定向字段/行号补核关键处。",
+    "completeness_limit_zh": "这是可见文字、协议、聚合结果与清单角色的审查，不声称逐项审完所有355文件、二进制载荷或受保护目录；未重新验证预测、训练轨迹、像素、动物身份或预训练去重。"
+  },
+  "fact_ledger_reuse": {
+    "path": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/fact-ledger.json",
+    "sha256": "07642972ec0ee79d18ba1e3404f697b05a595ebf6100c464a0599e03256fbf64",
+    "ledger_audited_at_utc": "2026-10-21T18:28:50.253169+00:00",
+    "provenance_text_files_rehashed": 13,
+    "all_13_provenance_hashes_match": true,
+    "meaning_zh": "哈希一致证明本轮沿用的对应文字/JSON与账本冻结版本一致；不是新的独立实验复现。",
+    "source_ID_set_intersections": {
+      "training64_with_filter_test64": 0,
+      "training64_with_stage_development64": 0,
+      "filter_test64_with_stage_development64": 64,
+      "training64_with_equalize_former_heldout_foreground16": 16,
+      "brightness48_with_training64": 0,
+      "brightness48_with_filter_test64": 0,
+      "brightness48_with_equalize_former_heldout_foreground16": 0
+    }
+  },
+  "overall_verdict": {
+    "result_zh": "未发现足以把过滤64或亮度48的首次锁定测试追溯性判成泄漏的证据。主要风险是旧快照、局部 heldout/fresh 标签和机器字段被脱离时间与实验范围复用。",
+    "confirmed_later_prose_claiming_world_do_identified_or_views_independent_count": 0,
+    "interpretation_of_zero_zh": "只指本轮定向核对的后续结论文本中未发现此类明确断言，不是穷尽所有文件的证明。",
+    "material_structured_verdict_risk": "stage pilot 的原始 final_judgements 仍是 positive；同目录 prose/delivery 已明确其训练有效性不足，不能把该字符串当算法收益或代理有效性通过。",
+    "current_available_untouched_confirmation_set_from_listed_consumed_cohorts": false,
+    "original_algorithm_benefit_or_real_world_causal_claim_supported": false,
+    "no_new_experiment_or_candidate_proposed": true,
+    "recommended_action_zh": "保留历史文件及数值，用本新审查追加逐项角色与状态更正映射；不改写原始时间、哈希、结果和当时合法的第一次测试。"
+  },
+  "data_role_chronology": [
+    {
+      "cohort": "既有训练/开发64",
+      "count": 64,
+      "original_and_later_roles_zh": "由早期机制迁移/冻结读出等探索材料成为后续过滤读出拟合、stage/训练修复、亮度三臂训练及 clipping 开发检查的训练来源。",
+      "current_role_zh": "训练/开发材料；不能再成为新命题的独立测试。",
+      "official_split_boundary_zh": "含官方 trainval 和 test 来源，是自定义源照片互斥小样本划分；不能称官方 trainval-only 或完整 Pet benchmark。",
+      "identity_and_pretraining_independence": "unknown",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 15,
+          "quote": "旧64张照片已全部参加探索，故本轮把它们明确用作训练/发展材料。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/result-zh.md",
+          "line": 19,
+          "quote": "全部64张既有训练照片；已经参与模型拟合和多次开发，不是新测试集。"
+        }
+      ]
+    },
+    {
+      "cohort": "filter 首次测试64 / 后来 stage 开发64",
+      "count": 64,
+      "first_test_at_utc": "2026-10-21T06:01:20.655728+00:00",
+      "first_test_status_zh": "现有协议与冻结/消费记录支持：当时先冻结问题、超参及七个读出，再取得并一次评价这64张新照片；不因后来开发使用而反推当时泄漏。",
+      "later_role_zh": "stage protocol 明确说明全部64张来自 prior filter test，属于已消费开发集；账本核验为完全相同的ID集合。",
+      "current_role_zh": "已消费的历史测试/开发数据，不是新确认集。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 19,
+          "quote": "全部拟合并冻结→下载新64张JPEG→一次读取测试像素和评价。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json",
+          "json_pointer": "/future_use",
+          "quote": "Do not claim these64photos are untouched confirmation for a new hypothesis or hyperparameter choice."
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/protocol.json",
+          "json_pointer": "/development_status",
+          "quote": "all64previously used for the prior filter training-value test; explicitly consumed data; no independent confirmation claim"
+        }
+      ]
+    },
+    {
+      "cohort": "Equalize 局部 heldout 前景16",
+      "count": 16,
+      "historical_role_zh": "Equalize 实验内与拟合侧源照片互斥；原报告已说明此前被历史实验使用，故当时也只是探索性、局部 heldout。",
+      "later_role_zh": "全部16个前景源ID进入后续微调训练64；账本交集16。",
+      "current_role_zh": "后续模型的训练来源，不能用旧 heldout 文件名建立对这些模型的独立测试主张。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 20,
+          "quote": "源照片互斥，但留出照片在历史实验中已使用，所以仍属探索性检查。"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/fact-ledger.json",
+          "json_pointer": "/data_roles/pairwise_ID_intersections/finetune_training64__equalize_consumed_foreground16",
+          "value": 16
+        }
+      ]
+    },
+    {
+      "cohort": "brightness 首次留出48",
+      "count": 48,
+      "first_test_status_zh": "按现有协议和结果记录，48张在三臂最终模型冻结后取得，且与已用来源ID及已知CRC重复排除；没有证据表明当时先用其选强度或模型。",
+      "current_role_zh": "已消费的锁定问题测试集；不恢复为未来新命题的未触碰测试。没有证据表明它们后来被用于训练，不擅自将其改称训练集。",
+      "scope_zh": "48个来源照片、4个固定训练背景供体、1个训练seed；192个合成视图不是192个独立照片或自然环境样本。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 9,
+          "quote": "该48张在协议、代码、训练结果与最终模型冻结后才下载和解码。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 35,
+          "quote": "192张合成图不是192个独立样本；区间不包含训练随机性或背景总体的不确定性。"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "D01",
+      "priority": "P1",
+      "type": "superseded_overview_snapshot",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/research-status.md",
+          "line": 7,
+          "quote": "当前阶段：文献可行性探索完成……保留两项候选：锁定的配对处理及跨编辑器迁移审计优先，具体过滤规则误拒审计次之。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/research-status.md",
+          "line": 9,
+          "quote": "未训练、未生成推理、未使用GPU/A100、未安装软件……"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/feasibility-report-zh.md",
+          "line": 7,
+          "quote": "最优先的两个候选是：①配对处理控制与跨编辑器、自然OOD迁移的联合审计；②对具体样本过滤规则的分群体误拒审计。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/review-disposition.md",
+          "line": 13,
+          "quote": "候选一PROCEED WITH CAUTION；候选二仅作为测量问题PROCEED。"
+        }
+      ],
+      "historical_judgement_zh": "这些文件明确截止2026-10-20，当时的未训练与候选状态可作为历史记录保留；不是伪造或当时数据泄漏。",
+      "current_risk_zh": "脱离截止日期读取“当前”“保留”会遗漏后续已完成训练与关闭决定，使已关闭方向看起来仍是当前主线。",
+      "recommended_addendum_zh": "历史快照，截至2026-10-20。其候选和资源/未训练状态已被2026-10-21各分支关闭记录及 evidence-cross-audit/morning-facts-zh.md 取代；本文件不代表当前待执行方案、实证收益或新颖性状态。",
+      "strongest_supported_claim_zh": "早期文献可行性与条件设计，不是当前原创候选通过或算法实证结果。",
+      "minimum_supplement_zh": "仅需追加时间/继承映射；不需新实验，也不应为恢复旧优先级追加训练。"
+    },
+    {
+      "id": "D02",
+      "priority": "P1",
+      "type": "machine_readable_verdict_needs_scientific_override",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/final_judgements/frozen",
+          "quote": "positive"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/final_judgements/finetune",
+          "quote": "positive"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/effects_by_fixed_checkpoint/128/D",
+          "quote": 0.6988593339920044
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 18,
+          "quote": "该自动符号规则不是有效训练/科学结论的充分条件。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 22,
+          "quote": "尚不能可靠判断冻结表征的增强判断与短微调是否一致。"
+        }
+      ],
+      "historical_judgement_zh": "原始正号是预设G>0.02的算术标签；文件也标 development-only 和 no_independent_test_claim。不能说原实验隐藏了开发集身份。",
+      "current_risk_zh": "只提取 final_judgements 或大正D，会将未学成的TA臂与失稳/过拟合基础臂之差误报为TA训练收益或冻结代理有效。",
+      "recommended_addendum_zh": "保留 raw positive 字段为符号记录；当前科学判定为 inconclusive_for_proxy_validity_due_to_training_state，不能覆盖训练有效性门槛。不得从这些字段生成“有效/通过”的项目摘要。",
+      "strongest_supported_claim_zh": "短预算下训练状态不适合承担该代理判断；开发损失差的数值本身可保留。",
+      "minimum_supplement_zh": "更正摘要只需引用已存训练侧指标与 result-zh/delivery 解释。若未来重提代理命题，需另锁定稳定训练与新评价设计；后来的不同修复配方不能追溯性使本轮D有效。"
+    },
+    {
+      "id": "D03",
+      "priority": "P2",
+      "type": "historical_fresh_label_not_current_freshness",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "json_pointer": "/status",
+          "quote": "completed_once_on64_fresh_original_photos"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 63,
+          "quote": "保留……真正未触碰的新测试记录和阴性结论。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json",
+          "json_pointer": "/status",
+          "quote": "consumed_for_this_fixed_question"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 7,
+          "quote": "64张已在此前实验中使用过的开发照片；后者明确不是未触碰测试集。"
+        }
+      ],
+      "historical_judgement_zh": "第一次测试的 freshness 与冻结顺序有记录支持；后来的开发使用不使当时的测试追溯性失效。",
+      "current_risk_zh": "fresh/test 文件名和结果状态若脱离消费记录，会被误当作当前仍可确认新命题的数据。",
+      "recommended_addendum_zh": "fresh 仅指2026-10-21T06:01该次锁定测试前；同一64张随后成为stage开发集，现已消费。保留历史结果，禁止恢复未触碰身份。",
+      "strongest_supported_claim_zh": "特定冻结ResNet特征、固定视图库和逻辑读出下，过滤相对源权重匹配对照的LL收益为-0.00589149 nat，区间含零；未支持额外过滤收益，不证明过滤普遍无效或两组等价。",
+      "minimum_supplement_zh": "角色更正无需新实验；任何新确认性训练收益主张须有未参与选择的新来源单位及冻结协议，不能靠重新划分这64张恢复独立性。"
+    },
+    {
+      "id": "D04",
+      "priority": "P2",
+      "type": "former_local_holdout_now_training",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "json_pointer": "/split",
+          "quote": "heldout"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/verification.json",
+          "json_pointer": "/fit_and_heldout_sources_disjoint",
+          "quote": true
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 20,
+          "quote": "留出照片在历史实验中已使用，所以仍属探索性检查。"
+        }
+      ],
+      "historical_judgement_zh": "fit/heldout源互斥只针对该次局部划分。原报告没有声称其对整个项目全新。",
+      "current_risk_zh": "这16张前景后来全部进入微调训练64；其旧heldout标签不能支持后续模型的独立测试。",
+      "recommended_addendum_zh": "该heldout是历史局部角色；前景16/16现属后续训练来源。保留旧数组与结果，不对后续模型复用为独立评估。",
+      "strongest_supported_claim_zh": "固定模型和指定有限交叉配对图像上的损失差-0.00165441 nat；预定配对损害筛查未通过。不能推出Equalize或完整RA/TA的训练优劣。",
+      "minimum_supplement_zh": "当前标签衔接只需已有ID清单交集。若升级为泛化研究，需要先有新命题和真正未参与选择的来源单位，不在这些图上继续筛模型。"
+    },
+    {
+      "id": "D05",
+      "priority": "P2",
+      "type": "consumed_brightness_test_and_conditional_effect",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 9,
+          "quote": "48张新照片……在协议、代码、训练结果与最终模型冻结后才下载和解码。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 31,
+          "quote": "A=0.00311082；95%区间[0.00151742,0.00468280]；相对共享改善3.532%。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 35,
+          "quote": "区间固定了一个训练seed、训练样本与四个供体，不包含训练随机性或背景总体的不确定性。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/passes_large_effect_pilot_screen",
+          "quote": false
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/actual_world_causal_effect_identified",
+          "quote": false
+        }
+      ],
+      "historical_judgement_zh": "该次锁定问题上的新照片测试可保留；未发现当时用其调强度或选最终模型的证据。",
+      "current_risk_zh": "48张现在已消费；3.532%是特定归一化背景敏感性的相对下降，不是准确率提升、训练种子总体效应或真实背景do效应。未过20%筛查亦不等于效应为零。",
+      "recommended_addendum_zh": "48张为已消费的历史测试集。保留条件性小幅观测与未过投入筛查两者，不写“无效”，也不写“稳健泛化/因果机制已显著”。",
+      "strongest_supported_claim_zh": "单训练seed、48来源照片和4固定纹理供体下，语义独立臂的预定敏感性点估计较低；未达到预设大效应投入标准，亦未建立新算法或语义机制。",
+      "minimum_supplement_zh": "更正只需已有报告。若将来提出更强总体主张，需预先定义效应目标、训练随机性与新场景/供体来源；当前不因小效应而追加调参或训练。"
+    },
+    {
+      "id": "D06",
+      "priority": "P2",
+      "type": "superseded_retained_candidate_entries",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/candidate-check.json",
+          "json_pointer": "/status",
+          "quote": "retained_as_exploratory_metadata_program_mechanism_candidate"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-mechanism-20261021/finding-zh.md",
+          "line": 3,
+          "quote": "结论：保留一个具体候选——单因素验证均保留判别线索，但联合新增饱和……"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-mechanism-20261021/review-record.json",
+          "json_pointer": "/decision",
+          "quote": "Retain a specific controlled-mechanism candidate, not a validated real-CV or novelty claim."
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/symmetry-causal-risk-20261021/theory-note-zh.md",
+          "line": 5,
+          "quote": "当前保留一个窄的理论边界问题……"
+        }
+      ],
+      "historical_judgement_zh": "都是有明确范围的探索状态，不应删除原数值或把曾经保留候选说成伪造结果。",
+      "current_risk_zh": "只聚合 retained/current 字符串会复活已被后续结果/先例限制关闭的方向。",
+      "recommended_addendum_zh": "状态继承：面积/尺度→encoder-resnet18-round2的阴性探索；联合clipping→joint-clipping-photo-check的课堂机制降级与零错误事件；CER反射→operation-law-audit限定为指定SCM数学边界，关闭向Pet/RA/TA自然识别的直接外推。旧数学结果保留，原创或真实CV收益状态不保留。",
+      "strongest_supported_claim_zh": "有限元数据/渲染机制、指定SCM精确边界和已知成像示例；不支持当前新候选、世界因果效果或AA/RA/TA性能结论。",
+      "minimum_supplement_zh": "仅需追加上述关闭映射；缺少新命题时不以更多模拟或训练替代增量。"
+    },
+    {
+      "id": "D07",
+      "priority": "P3",
+      "type": "terminology_needs_narrow_scope",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 3,
+          "quote": "出现了真实增强失败，但未验证新的配对损害机制。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 32,
+          "quote": "未对全部变体做盲法人工标签有效性审查。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 43,
+          "quote": "Equalize相对无操作损失增加0.058343 nat，准确率下降10.9375个百分点，确有增强失败。"
+        }
+      ],
+      "historical_judgement_zh": "报告已清楚给出固定读出、合成视图和缺少全量盲审的限制，没有声称完整RA/TA训练失败。",
+      "current_risk_zh": "截取“真实增强失败”可能被理解成所有视图已独立确认语义标签保持，或整个增强算法失败。",
+      "recommended_addendum_zh": "将该术语解释为：固定分类器在指定处理图像、沿用源标签的评价中损失上升/准确率下降；未独立认证全部变体的语义可识别性，也未测试增强训练效果。",
+      "strongest_supported_claim_zh": "所报告有限处理分布上的固定模型响应，不归因于未通过筛查的配对机制。",
+      "minimum_supplement_zh": "当前表述收窄不需补实验；若要声称语义保持下的普遍失效，需独立标签/可识别性证据和新来源数据，不能由一次查看的示例外推。"
+    },
+    {
+      "id": "D08",
+      "priority": "P2",
+      "type": "obsolete_future_plan_and_resource_scope",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/measurement-scope-decision-20261021/next-experiment-and-cost.json",
+          "json_pointer": "/status",
+          "quote": "concrete_proposal_not_executed_pending_expanded_data_and_A100_approval"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/measurement-scope-decision-20261021/decision-zh.md",
+          "line": 23,
+          "quote": "训练采用官方trainval3,680张……排除历史曝光后的3,541个未读ID……当前没有下载或查看这些新像素。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 28,
+          "quote": "不再推进全37类三种子方案；也不为此次开发结果追加训练。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/focused-feasibility-appendix.md",
+          "line": 43,
+          "quote": "NO-GO：暂不启动原定最小实证验证。"
+        }
+      ],
+      "historical_judgement_zh": "这些是未执行提案和特定跨编辑器/自然OOD数据门，不是已经取得独立测试证据。",
+      "current_risk_zh": "pending_A100 被读成当前等待批准的任务；或把10/20特定资源门的NO-GO泛化成后来所有Pet实证不可用。3,541只是当时元数据候选池，不是已评价样本。",
+      "recommended_addendum_zh": "37类三种子/A100提案已暂停、不是当前待执行事项；旧NO-GO仍仅针对原跨编辑器→自然OOD设计。后来的Pet数据与本机测量不自动解除那个原设计的数据/识别缺口。",
+      "strongest_supported_claim_zh": "成本和资源边界的历史规划，以及后续已完成的本地训练能力诊断；无新泛化结果。",
+      "minimum_supplement_zh": "当前只需计划状态与数据源范围更正；不需要请求算力或下载提案中的数据。"
+    }
+  ],
+  "delivery_record_interpretation": {
+    "evidence": [
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/delivery-verification.json",
+        "json_pointer": "/status",
+        "quote": "completed"
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/delivery-verification.json",
+        "json_pointer": "/scope",
+        "quote": "literature_feasibility_report_only"
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/delivery-verification.json",
+        "json_pointer": "/verified_at_utc",
+        "quote": "2026-10-20T19:40:14.453888+00:00"
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/delivery-verification.json",
+        "json_pointer": "/checks/copy_bytes_and_sha256",
+        "quote": "pass"
+      }
+    ],
+    "finding": "not_an_error_when_read_with_scope_and_time",
+    "required_rule_zh": "completed/pass 表示该次交付、语法/链接或字节核验完成，不表示科学主张、独立测试、原创性或整个研究项目通过；not_executed 数组也只针对当次。",
+    "recommended_export_fields": [
+      "record_time",
+      "record_scope",
+      "current_disposition_pointer",
+      "scientific_claim_status_separate_from_delivery_status"
+    ],
+    "old_file_edit_applied": false
+  },
+  "sample_unit_audit": [
+    {
+      "records": "过滤训练：64原图×9视图=576；七个学生读出",
+      "valid_unit_zh": "训练来源仍为64照片，视图和七个读出不形成576或7个独立训练重复；首次测试的照片单位为64，身份独立未知。",
+      "current_text_assessment": "原报告已限定冻结特征、固定库和条件bootstrap；未发现将576当独立测试n的表述。"
+    },
+    {
+      "records": "Equalize：16前景、64标准视图、256交叉视图、4宏块",
+      "valid_unit_zh": "按来源照片及共享背景结构处理；宏块不是四个独立训练seed；视图数不是独立样本数。",
+      "current_text_assessment": "result-zh §数据/门槛已明确，不将其判为伪重复显著性结果。"
+    },
+    {
+      "records": "旧机制迁移：8,704渲染帧/9,344策略特征记录；64来源照片",
+      "valid_unit_zh": "来源照片为聚类标识；同RGB的不同策略归属和多背景状态不增加独立来源。",
+      "current_text_assessment": "transfer-result-zh 已明确记录数与独立来源区别；冻结读出复用旧holdout也不能称新确认。"
+    },
+    {
+      "records": "亮度：48测试照片×4固定供体=192视图；3臂×3检查点=9份",
+      "valid_unit_zh": "48照片上的条件性比较，1训练seed与4固定供体；192视图和9检查点都不是独立复制。",
+      "current_text_assessment": "result-zh 第35行已明确；不把3臂当3随机种子。"
+    },
+    {
+      "records": "训练修复：64训练照片的256个固定TA探针",
+      "valid_unit_zh": "所有源照片已参与训练；TA还见过具体探针视图。base未见该视图也不使源照片成为测试。",
+      "evidence": {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/result-zh.md",
+        "line": 20,
+        "quote": "它们不是256个独立原图，也不是独立测试集；base虽未训练这些具体增强视图，也见过全部原图。"
+      },
+      "current_text_assessment": "原文已正确限定为训练能力诊断。"
+    },
+    {
+      "records": "clipping：64旧训练照片、base/TA两固定checkpoint、四环境",
+      "valid_unit_zh": "同源的重复观测；2模型不是独立seed，4环境不是4份独立样本。",
+      "current_text_assessment": "protocol/result均标开发检查。两模型新增错误均0，AUROC未定义；既不支持预警能力，也不证明预警无用、TA更好或真实鲁棒。"
+    }
+  ],
+  "strongest_current_claims": [
+    {
+      "topic": "过滤",
+      "allowed_zh": "该固定特征/视图库/分类读出设置未获得超出源权重控制的额外收益证据。",
+      "not_allowed_zh": "所有过滤无效；收益已完全由重加权解释；端到端TA/RA失败。"
+    },
+    {
+      "topic": "区域亮度",
+      "allowed_zh": "固定seed与四供体条件下出现小幅敏感性下降，未过预设投入筛查。",
+      "not_allowed_zh": "总体效应为零；新语义机制成立；准确率提升3.53%；真实do背景已识别。"
+    },
+    {
+      "topic": "面积/尺度和Equalize",
+      "allowed_zh": "固定读出和受控有限图像分布上的预定机制筛查未通过。",
+      "not_allowed_zh": "相关现象在其他任务不存在；ForAug/AA/RA/TA原算法被证伪。"
+    },
+    {
+      "topic": "训练修复",
+      "allowed_zh": "特定本机配方在训练侧能正常学习；一次联合修复通过数值/训练门槛。",
+      "not_allowed_zh": "TA泛化优势；LR或warmup的贡献已经单独识别；后续新模型有独立测试。"
+    },
+    {
+      "topic": "clipping与CER",
+      "allowed_zh": "指定软件/SCM中的已知机制或精确数学边界；开发检查没有失败事件可评价预警。",
+      "not_allowed_zh": "真实CV因果效应；RA/TA训练排序；零事件证明机制无用。"
+    }
+  ],
+  "false_positive_accusations_explicitly_rejected": [
+    "后来使用 filter64 作开发集，不证明首次锁定测试当时泄漏。",
+    "亮度48第一次测试合法性不能因已经消费而被追溯性否定；也没有证据将其改称后来训练集。",
+    "Equalize fit/heldout source-disjoint 字段在其局部实验内可以为真，尽管不代表全项目未曝光。",
+    "delivery completed/hash pass 不是伪造科学通过，只是不应脱离 scope 当成科学认证。",
+    "文献/数据资源的旧NO-GO限当时设计，不能拿来否定后来不同来源的Pet开发测量。",
+    "没有达到预设投入门槛不等于零效应；区间含零不等于等价；零失败事件不能给出AUROC或诊断无用结论。"
+  ],
+  "recommended_append_only_notice_zh": "本记录为历史局部实验/交付快照。test、heldout、fresh仅描述当时角色，不代表当前未参与训练或假设选择。当前数据角色、训练有效性及关闭状态以本data-claims-review及evidence-cross-audit的fact-ledger/morning-facts为准；保留原数值、时间和哈希，不据历史标签重新启动已关闭分支。",
+  "blockers": {
+    "denied_actions": [],
+    "pending_actions": [],
+    "uncertain_outcomes": [],
+    "remaining_evidence_limits_zh": [
+      "动物身份及近重复独立性未知",
+      "ImageNet预训练重合未知",
+      "已列测试集均已消费",
+      "单seed/固定供体结果不覆盖训练与环境总体",
+      "未实施新的独立验证或真实世界干预"
+    ],
+    "execution_blocker": "none"
+  }
+}

@@ -1,0 +1,1061 @@
+{
+  "verified_at_utc": "2026-10-24T13:07:36.341560+00:00",
+  "status": "all_deterministic_checks_passed",
+  "run": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024",
+  "verifier_sha256": "6691da91da31fd41eb7bac16ef9b839aae0ab29f1c30c61044f5eaf9fe207f46",
+  "classification": "unresolved_below_direction_threshold",
+  "metrics_from_saved_logits": {
+    "B": {
+      "correct": 552,
+      "n": 589,
+      "accuracy": 0.9371816638370118,
+      "mean_NLL_from_logits": 0.2326257355845109
+    },
+    "Z": {
+      "correct": 552,
+      "n": 589,
+      "accuracy": 0.9371816638370118,
+      "mean_NLL_from_logits": 0.23259377434796707
+    },
+    "R": {
+      "correct": 550,
+      "n": 589,
+      "accuracy": 0.933786078098472,
+      "mean_NLL_from_logits": 0.23362247123580276
+    }
+  },
+  "paired_changes": {
+    "Z-B": {
+      "corrected": 0,
+      "new_errors": 0,
+      "delta_correct": 0,
+      "delta_percentage_points": 0.0
+    },
+    "R-B": {
+      "corrected": 0,
+      "new_errors": 2,
+      "delta_correct": -2,
+      "delta_percentage_points": -0.3395585738539898
+    },
+    "R-Z": {
+      "corrected": 0,
+      "new_errors": 2,
+      "delta_correct": -2,
+      "delta_percentage_points": -0.3395585738539898
+    }
+  },
+  "patterns_BZR": {
+    "000": 37,
+    "001": 0,
+    "010": 0,
+    "011": 0,
+    "100": 0,
+    "101": 0,
+    "110": 2,
+    "111": 550
+  },
+  "formal_counts": {
+    "training_forward_images": 53190,
+    "dev_forward_images": 1767,
+    "training_forward_calls": 3330,
+    "dev_forward_calls": 111,
+    "backward_calls": 3330,
+    "optimizer_updates": 3330,
+    "train_image_reads": 53331,
+    "dev_image_reads": 1767,
+    "parity_image_reads": 48
+  },
+  "benchmark_updates": 9,
+  "benchmark_forward_images": 141,
+  "total_optimizer_updates_including_benchmark": 3339,
+  "total_backward_calls_including_benchmark": 3339,
+  "total_model_forward_presentations_including_benchmark": 55098,
+  "parity_image_reads_without_model_forward": 48,
+  "total_image_reads_including_benchmark_and_parity": 55146,
+  "stage_elapsed_seconds": 1399.0058885053368,
+  "exit_receipt": {
+    "returncode": 0,
+    "at_utc": "2026-10-24T13:07:15.948930+00:00",
+    "phase_elapsed": 1399.2658731937408,
+    "deadline_term_sent": false,
+    "deadline_kill_sent": false
+  },
+  "trace": {
+    "sha256": "858035231e62a4ebd85af78581fae0fbb7e8a8f671bffad46d0e014c2c3b4bed",
+    "rows": 17730,
+    "target_slots": 2562,
+    "target_views": 2455,
+    "op_counts": {
+      "B": {
+        "ShearX": 2541,
+        "Solarize": 2573,
+        "Color": 2589,
+        "Rotate": 2516,
+        "AutoContrast": 2506,
+        "Brightness": 2528,
+        "ShearY": 2513,
+        "Contrast": 2507,
+        "Equalize": 2447,
+        "Sharpness": 2567,
+        "TranslateX": 2530,
+        "Identity": 2539,
+        "Posterize": 2562,
+        "TranslateY": 2542
+      },
+      "Z": {
+        "ShearX": 2541,
+        "Solarize": 2573,
+        "Color": 2589,
+        "Rotate": 2516,
+        "AutoContrast": 2506,
+        "Brightness": 2528,
+        "ShearY": 2513,
+        "Contrast": 2507,
+        "Equalize": 2447,
+        "Sharpness": 2567,
+        "TranslateX": 2530,
+        "Identity": 5101,
+        "TranslateY": 2542
+      },
+      "R": {
+        "ShearX": 2763,
+        "Solarize": 2759,
+        "Color": 2778,
+        "Rotate": 2710,
+        "AutoContrast": 2717,
+        "Brightness": 2709,
+        "ShearY": 2695,
+        "Contrast": 2709,
+        "Equalize": 2647,
+        "Sharpness": 2765,
+        "TranslateX": 2740,
+        "Identity": 2734,
+        "TranslateY": 2734
+      }
+    }
+  },
+  "independent_random_stream_recomputation": {
+    "status": "all_random_streams_recomputed_exactly",
+    "verified_at_utc": "2026-10-24T12:58:32.543402+00:00",
+    "orders": 30,
+    "weak_views": 17730,
+    "baseline_slots": 35460,
+    "replacement_slots": 2562,
+    "seed": 20261024,
+    "torch": "2.14.1",
+    "numpy": "2.5.4",
+    "device": "cpu",
+    "model_loading_or_forward_or_backward": false,
+    "image_reads": 0,
+    "protocol_sha256": "d65152902497e072975270b8b913f056dd239d8f098ded10e992f8c3e486d382",
+    "trace_sha256": "858035231e62a4ebd85af78581fae0fbb7e8a8f671bffad46d0e014c2c3b4bed",
+    "verifier_sha256": "bd30ef8cddbc9052594cddbf996148d45bb7a215aef90e7e95ad9057a01e5359"
+  },
+  "checkpoint_checks": [
+    {
+      "arm": "B",
+      "epoch": 5,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch05.pt",
+      "sha256": "db8814482e03a5c8ad3f64f55359fa2e9ec784bb4ba7d8ed0781de564bdcceb7",
+      "bytes": 1072974,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "B",
+      "epoch": 10,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch10.pt",
+      "sha256": "0be6ac9ab2367644ff0e93ea9200c88df3615eab675bbec0403d94096d5cb324",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "B",
+      "epoch": 20,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch20.pt",
+      "sha256": "34d5bf5bab6e40fc75d79aae8d835c28b84c61815b5b5f723d42416d1c645e29",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "B",
+      "epoch": 30,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch30.pt",
+      "sha256": "b2ec8bf8b95ddba5066c31b4f1ac283a2bfec3ffd2590ff9eed8b069808bb605",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "Z",
+      "epoch": 5,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch05.pt",
+      "sha256": "cec67ed70dd82d460bfc869524b718bfc27463d6e6c5b925c1e87bd91af2d74b",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "Z",
+      "epoch": 10,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch10.pt",
+      "sha256": "b0627d3156e459f9009e20ef0345340ab3b9e3e2da8d9e87ac6f3b204f11d6da",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "Z",
+      "epoch": 20,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch20.pt",
+      "sha256": "163b29d6b380add103c98941428321ee9799315d63939b720667cde7f49b9300",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "Z",
+      "epoch": 30,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch30.pt",
+      "sha256": "c339e1e3478197d4853869be532e38947f354357210deaa544c9356d13213a09",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "R",
+      "epoch": 5,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch05.pt",
+      "sha256": "bb2c5cc67e069579cac6cd6469701df6e23f0cdf08facb8aabd353ef259ee2e6",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "R",
+      "epoch": 10,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch10.pt",
+      "sha256": "c2f11019434ee820992eff1f67ce165ffc86ff37c9b88097b00c938f252c3df8",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "R",
+      "epoch": 20,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch20.pt",
+      "sha256": "0d2939adb1c247ae08644263a1fd52fcda3f2bdd0c8fc9952059862d57215761",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    },
+    {
+      "arm": "R",
+      "epoch": 30,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch30.pt",
+      "sha256": "3d83f550c40848d3af84de6aee259bf6aaf0961df886f3628f4433f72bb29730",
+      "bytes": 1073038,
+      "zip_crc_valid": true,
+      "tensors_deserialized": false
+    }
+  ],
+  "epoch_receipts": [
+    {
+      "arm": "B",
+      "epoch": 1,
+      "updates": 37,
+      "order_sha256": "df038fb4b76ad1577ed3efb4c0b5941bdbf8bf9bcfb408147385448349b216bb",
+      "worker_rendered_RGB_sha256": "bf22e0e3972998b80ba0542d469fb008ebaf8c3b28238effd9d84db97cb05049"
+    },
+    {
+      "arm": "B",
+      "epoch": 2,
+      "updates": 74,
+      "order_sha256": "7802735d1649e4bdc24480ecc01fcf410fb65782737679a4dac7ee4173d7383a",
+      "worker_rendered_RGB_sha256": "2767db5d0af0d21a4ad4318bb8189dc1286cc97e17777b3113e02d27d1238384"
+    },
+    {
+      "arm": "B",
+      "epoch": 3,
+      "updates": 111,
+      "order_sha256": "6b2851610cd4468a517995bebdeaff637159a44f7e43669b615666c8f09b1807",
+      "worker_rendered_RGB_sha256": "45fa77c601b65dab13d11821280733029a0155d20e5861ae3bcb8ae8d75b7374"
+    },
+    {
+      "arm": "B",
+      "epoch": 4,
+      "updates": 148,
+      "order_sha256": "d1e2cb7b96e02eeadb35d082c707de3d2d854714e785533e31472070df286926",
+      "worker_rendered_RGB_sha256": "2642eb07e0a4a9345e88e80dcc16361090dc4115e4eff56cc4909c89e955e8e4"
+    },
+    {
+      "arm": "B",
+      "epoch": 5,
+      "updates": 185,
+      "order_sha256": "2515ff858872ebc03a31c24fdfd569e3d62882fb80513198f605068334cfd111",
+      "worker_rendered_RGB_sha256": "1521c0e88e5b3a67d70fdebd3678910a6fe0fb549b73da6ddc0c84ffe60a5ae3"
+    },
+    {
+      "arm": "B",
+      "epoch": 6,
+      "updates": 222,
+      "order_sha256": "ab39c8b6a8762b0ff3cc142bc5f2d6c0101a74ae08d3b4e19aac6ca49f005b92",
+      "worker_rendered_RGB_sha256": "27bc279e1688d566ae28d7e4bcf5ea95a4e4466607beae685086605e6e6aab83"
+    },
+    {
+      "arm": "B",
+      "epoch": 7,
+      "updates": 259,
+      "order_sha256": "9d809a7de64cbab7fbcb7995d6cb5f7a9dbc8511518f6730efa919cfa4b21ac3",
+      "worker_rendered_RGB_sha256": "b6a6c35d464e5c9c469413c7a473d3bdf7828e37e0b1730b9b15d2a04504997d"
+    },
+    {
+      "arm": "B",
+      "epoch": 8,
+      "updates": 296,
+      "order_sha256": "1758985ac57055b4291427b633906405230d90cc26bcefbaf4df0fbda371e613",
+      "worker_rendered_RGB_sha256": "1ad53807231e51a8f706237bb88851a2692e0a86456c22c5d13ad69659ee5e5d"
+    },
+    {
+      "arm": "B",
+      "epoch": 9,
+      "updates": 333,
+      "order_sha256": "efa1dad69f963f9796db9f1616d3b25b83128922357d7c94becca7504a664e47",
+      "worker_rendered_RGB_sha256": "8499c64415c062ac8501eaa68d2edd3e15affa51d049872fcfea6d4e363add44"
+    },
+    {
+      "arm": "B",
+      "epoch": 10,
+      "updates": 370,
+      "order_sha256": "431768bb9fb0fa2212178fbc951b96d7b888379fe1e09925f1609861411c81a9",
+      "worker_rendered_RGB_sha256": "0dffd501da15cfcbdeccc9c87117d837bce8ed84faca68f43e106560d46a90f4"
+    },
+    {
+      "arm": "B",
+      "epoch": 11,
+      "updates": 407,
+      "order_sha256": "7b3b723143cdedacfd6eb29c6597184f4ae32dd2e9909ee559591313675adfe8",
+      "worker_rendered_RGB_sha256": "dfda86411782f93297a90032184b4d10f1a5d0e7925b02d204d100ad4dd3fec3"
+    },
+    {
+      "arm": "B",
+      "epoch": 12,
+      "updates": 444,
+      "order_sha256": "9bf12d9ff4eef20f40d3905ea081bd21e1298b8f5fe45864866599045d619679",
+      "worker_rendered_RGB_sha256": "dbdfafe6fcb91b4f270f4d907c5e51878203ed6d3aec748765800da10a8c005b"
+    },
+    {
+      "arm": "B",
+      "epoch": 13,
+      "updates": 481,
+      "order_sha256": "2b53443f7ca52206c2fefa78b4b62d223fa3dc0d9ed65a4804d44dd00266bd93",
+      "worker_rendered_RGB_sha256": "c65ce33078efea77591571f39d08476528dac3bbece07d790f463fa199a858b7"
+    },
+    {
+      "arm": "B",
+      "epoch": 14,
+      "updates": 518,
+      "order_sha256": "ff67fd511ff3026b9cfc0ef2e6a20d53cab925dd22effcb833120a2053ee9fc3",
+      "worker_rendered_RGB_sha256": "11a3001f5587a7d006b8d119dbeeb4b8a37afdadc9ce64181adbc1266ef1411f"
+    },
+    {
+      "arm": "B",
+      "epoch": 15,
+      "updates": 555,
+      "order_sha256": "402b13b1cf2d979adf1b983b33803b5d556bc4ba8891f6e7ca633d935b719221",
+      "worker_rendered_RGB_sha256": "a8f4f29fefb5d3050488f0895e4db3950933648b20b9e867a565279d8e09afb7"
+    },
+    {
+      "arm": "B",
+      "epoch": 16,
+      "updates": 592,
+      "order_sha256": "b0e29e026655d677374e6c6f5d40a10bf737a7b1585980ba731b9e1744fe88c2",
+      "worker_rendered_RGB_sha256": "354fdea5f5563840f53eeb817579c6f5aed760e3b42ea50fdabd37d7a1552b10"
+    },
+    {
+      "arm": "B",
+      "epoch": 17,
+      "updates": 629,
+      "order_sha256": "c3b3a1bab10aa35082dbca9b04d280c9669ed199e0eb992ef2ad8486048fa935",
+      "worker_rendered_RGB_sha256": "4f090b108791fca7add07314faba7836b8de94adc15bc0528e6f667dce69f0b6"
+    },
+    {
+      "arm": "B",
+      "epoch": 18,
+      "updates": 666,
+      "order_sha256": "6d8c1a63370dde2c159f963a12f3df734d0ca6acf98c38901e19ac9e670cf29c",
+      "worker_rendered_RGB_sha256": "0920ff3fbcef8ee848f586bac8407f93b0f4e94d18fd21725a21caa9948d5584"
+    },
+    {
+      "arm": "B",
+      "epoch": 19,
+      "updates": 703,
+      "order_sha256": "6db2c9a31010e4fd4877ea7a5ffc542756b55546144aa856ae6d0cfa9632cdf1",
+      "worker_rendered_RGB_sha256": "06b45cc75910ef24a06636d52a97b2e8323272c38f4cab1293fd99ae85d6acef"
+    },
+    {
+      "arm": "B",
+      "epoch": 20,
+      "updates": 740,
+      "order_sha256": "9d9adde4ec90b486947fc6d205e3013c8eb175db14a8873dfaaf529b7e6ba333",
+      "worker_rendered_RGB_sha256": "61a30a9af5395f7a0aecb837ccfef662d15c03c2cd79e6eecd1d262e8d326a7a"
+    },
+    {
+      "arm": "B",
+      "epoch": 21,
+      "updates": 777,
+      "order_sha256": "e05809d4a59dc68c4670fd6f39a073f702f4739e17ae8a996bccf3e0cabbacdb",
+      "worker_rendered_RGB_sha256": "d989cd748efe1ff69143c974db318416b2a1a5804f6d2c328fa55ef60e818dc5"
+    },
+    {
+      "arm": "B",
+      "epoch": 22,
+      "updates": 814,
+      "order_sha256": "44dea5a975afa5bf9ecd5c82e0f4dae539fb522b743a4c5cc5e277c60dfb8f68",
+      "worker_rendered_RGB_sha256": "35bab621bba436d360d8a2a1cf5abd86b41650422f81cb94d7a2395d2e16cd4d"
+    },
+    {
+      "arm": "B",
+      "epoch": 23,
+      "updates": 851,
+      "order_sha256": "0ecd6fd1f08e0668c97ad9982906b0ef6eae9469c47688410ac35e4d99bd7a9c",
+      "worker_rendered_RGB_sha256": "b05b966b3f8f688edf2eed349c6468b304760444585bf063bd0dca33a5414998"
+    },
+    {
+      "arm": "B",
+      "epoch": 24,
+      "updates": 888,
+      "order_sha256": "a45c19ad80b83966cf7bde379df2333294e8244477d7d3381b871d165bfc4ad0",
+      "worker_rendered_RGB_sha256": "dea98db9f45d54112628731aadae8106942544ecaccdb6a769f6419ed6cc173f"
+    },
+    {
+      "arm": "B",
+      "epoch": 25,
+      "updates": 925,
+      "order_sha256": "cc430cbd1c05464100dce52902f9fb97b8ed404b491e79e52ded94d479eeb6dc",
+      "worker_rendered_RGB_sha256": "a304c568a0d298894e07428d8fb86c6b7105fe3c50272c2a138c193c0d3bbcb8"
+    },
+    {
+      "arm": "B",
+      "epoch": 26,
+      "updates": 962,
+      "order_sha256": "8d9bebf01c6f1c72f9ea2523d842df27e39328bde1c1c1a74e33d64d5a0710eb",
+      "worker_rendered_RGB_sha256": "f8dbf7a941bde82b543d34362e3726dbd3f2a1bed52fc6c678306094a71d2c53"
+    },
+    {
+      "arm": "B",
+      "epoch": 27,
+      "updates": 999,
+      "order_sha256": "fbc95a7f92cef91b42fceed76a90d939d76a0e45e3b1f4e4a839344c51438057",
+      "worker_rendered_RGB_sha256": "cc49654be5fea4ff04ac044f7024d51b66aad1423128b05d35f18098a54eb9a9"
+    },
+    {
+      "arm": "B",
+      "epoch": 28,
+      "updates": 1036,
+      "order_sha256": "010603456743cb23690e174103ac0c1c4d2b3f4759d864a2943bbc8f0c775770",
+      "worker_rendered_RGB_sha256": "dbcb9f35728aa67f9b6d9a2fdc963845e3bcf8aff4f760ebd2f6ff03450543b8"
+    },
+    {
+      "arm": "B",
+      "epoch": 29,
+      "updates": 1073,
+      "order_sha256": "0930e7b1220c51a0a0897987d343bad5968e80ed83bde67ec16bf0309cdd5f08",
+      "worker_rendered_RGB_sha256": "bcac368ffcebcca5d6e7bcf184d7c2cad01c1fac541445ba4d0f9a6dc4d35c69"
+    },
+    {
+      "arm": "B",
+      "epoch": 30,
+      "updates": 1110,
+      "order_sha256": "ac66971641d691eb4162e7528293743be2cbe063fe53dd6b05e184f672a5ece4",
+      "worker_rendered_RGB_sha256": "5597489947aa57ea5242cee671932a378aadce875be3996d67305dda75cbc628"
+    },
+    {
+      "arm": "Z",
+      "epoch": 1,
+      "updates": 37,
+      "order_sha256": "df038fb4b76ad1577ed3efb4c0b5941bdbf8bf9bcfb408147385448349b216bb",
+      "worker_rendered_RGB_sha256": "364c4a202e90959b0b4919829558189444b481ead5e2c7cc3f47eb849b02db6a"
+    },
+    {
+      "arm": "Z",
+      "epoch": 2,
+      "updates": 74,
+      "order_sha256": "7802735d1649e4bdc24480ecc01fcf410fb65782737679a4dac7ee4173d7383a",
+      "worker_rendered_RGB_sha256": "30917ef9fc42e2ca849983c72f551853a34a93c11afbbddf56fe1349bee60bbb"
+    },
+    {
+      "arm": "Z",
+      "epoch": 3,
+      "updates": 111,
+      "order_sha256": "6b2851610cd4468a517995bebdeaff637159a44f7e43669b615666c8f09b1807",
+      "worker_rendered_RGB_sha256": "aead8561e81cdbf5b36bad9a3de9339930a1eae60ea34a90643a8558673edd06"
+    },
+    {
+      "arm": "Z",
+      "epoch": 4,
+      "updates": 148,
+      "order_sha256": "d1e2cb7b96e02eeadb35d082c707de3d2d854714e785533e31472070df286926",
+      "worker_rendered_RGB_sha256": "c878eae6639a1ef069229331516e6899174d29f64e95117ea130dc30737a40d0"
+    },
+    {
+      "arm": "Z",
+      "epoch": 5,
+      "updates": 185,
+      "order_sha256": "2515ff858872ebc03a31c24fdfd569e3d62882fb80513198f605068334cfd111",
+      "worker_rendered_RGB_sha256": "e87112e6fcacad2ad0d94f70b49542b7d90b034126b3fb6c671e36704bbeeb58"
+    },
+    {
+      "arm": "Z",
+      "epoch": 6,
+      "updates": 222,
+      "order_sha256": "ab39c8b6a8762b0ff3cc142bc5f2d6c0101a74ae08d3b4e19aac6ca49f005b92",
+      "worker_rendered_RGB_sha256": "fc882219f581f8995f8782ed323d6825df4eb73c03ec0568cd3f971c5fdc67ef"
+    },
+    {
+      "arm": "Z",
+      "epoch": 7,
+      "updates": 259,
+      "order_sha256": "9d809a7de64cbab7fbcb7995d6cb5f7a9dbc8511518f6730efa919cfa4b21ac3",
+      "worker_rendered_RGB_sha256": "4ebd48f6fc29294e9497c7b2e281a901451d1a6f4eb3b8515f218f2cd81ceb94"
+    },
+    {
+      "arm": "Z",
+      "epoch": 8,
+      "updates": 296,
+      "order_sha256": "1758985ac57055b4291427b633906405230d90cc26bcefbaf4df0fbda371e613",
+      "worker_rendered_RGB_sha256": "0d30221ecd2b5a9d706d571c615e4011bac041fd3a54b4c0cd3790c60e2792c1"
+    },
+    {
+      "arm": "Z",
+      "epoch": 9,
+      "updates": 333,
+      "order_sha256": "efa1dad69f963f9796db9f1616d3b25b83128922357d7c94becca7504a664e47",
+      "worker_rendered_RGB_sha256": "39068dc2227c74a35f133f8bb60aa6547fcd6144a0819e5c04e92cf108bb8814"
+    },
+    {
+      "arm": "Z",
+      "epoch": 10,
+      "updates": 370,
+      "order_sha256": "431768bb9fb0fa2212178fbc951b96d7b888379fe1e09925f1609861411c81a9",
+      "worker_rendered_RGB_sha256": "1cd524d414b091cba799a8e0d9e615e7fb980c64cd1ab60817f8b2fbf8f79e15"
+    },
+    {
+      "arm": "Z",
+      "epoch": 11,
+      "updates": 407,
+      "order_sha256": "7b3b723143cdedacfd6eb29c6597184f4ae32dd2e9909ee559591313675adfe8",
+      "worker_rendered_RGB_sha256": "9b7a155458da21e42cd12b2b7701e7e3213962331a17bf329fd26f5271db7e43"
+    },
+    {
+      "arm": "Z",
+      "epoch": 12,
+      "updates": 444,
+      "order_sha256": "9bf12d9ff4eef20f40d3905ea081bd21e1298b8f5fe45864866599045d619679",
+      "worker_rendered_RGB_sha256": "22939a6ef295467f6d326b3bc70e4b5e011bdbe86f8b10aee35cbb075bdc10c1"
+    },
+    {
+      "arm": "Z",
+      "epoch": 13,
+      "updates": 481,
+      "order_sha256": "2b53443f7ca52206c2fefa78b4b62d223fa3dc0d9ed65a4804d44dd00266bd93",
+      "worker_rendered_RGB_sha256": "82bf6fb7a0cdd108ed9518df076782f00150651102c96575380d71047524c24f"
+    },
+    {
+      "arm": "Z",
+      "epoch": 14,
+      "updates": 518,
+      "order_sha256": "ff67fd511ff3026b9cfc0ef2e6a20d53cab925dd22effcb833120a2053ee9fc3",
+      "worker_rendered_RGB_sha256": "3f847b4b73dcdd2dbd09326a66fe1f0933150c8e50f7a49c3d8a6256af9ee49b"
+    },
+    {
+      "arm": "Z",
+      "epoch": 15,
+      "updates": 555,
+      "order_sha256": "402b13b1cf2d979adf1b983b33803b5d556bc4ba8891f6e7ca633d935b719221",
+      "worker_rendered_RGB_sha256": "8cb887f7aa9d1b5b5cdf1fe34818a6768151bde6933124d878b0189ba8c2877d"
+    },
+    {
+      "arm": "Z",
+      "epoch": 16,
+      "updates": 592,
+      "order_sha256": "b0e29e026655d677374e6c6f5d40a10bf737a7b1585980ba731b9e1744fe88c2",
+      "worker_rendered_RGB_sha256": "f59d9f94424bdea13d877f2f65ce044b80ddbb164ae8e8ec0f8ec31f8b9343f0"
+    },
+    {
+      "arm": "Z",
+      "epoch": 17,
+      "updates": 629,
+      "order_sha256": "c3b3a1bab10aa35082dbca9b04d280c9669ed199e0eb992ef2ad8486048fa935",
+      "worker_rendered_RGB_sha256": "de65f2ebfa90c75baa7a79a60625cf6def4f60348285a2fa46adaf80d67dee5b"
+    },
+    {
+      "arm": "Z",
+      "epoch": 18,
+      "updates": 666,
+      "order_sha256": "6d8c1a63370dde2c159f963a12f3df734d0ca6acf98c38901e19ac9e670cf29c",
+      "worker_rendered_RGB_sha256": "635cdc62bd54b174f454e679b35845ce9b670f5d8b76c581d204e2a383c95e22"
+    },
+    {
+      "arm": "Z",
+      "epoch": 19,
+      "updates": 703,
+      "order_sha256": "6db2c9a31010e4fd4877ea7a5ffc542756b55546144aa856ae6d0cfa9632cdf1",
+      "worker_rendered_RGB_sha256": "74bac33fd2a9a22595482a1fff9894b232d6c8cee0c7d477d35a7dbf43d05686"
+    },
+    {
+      "arm": "Z",
+      "epoch": 20,
+      "updates": 740,
+      "order_sha256": "9d9adde4ec90b486947fc6d205e3013c8eb175db14a8873dfaaf529b7e6ba333",
+      "worker_rendered_RGB_sha256": "d147704ebcf514a9add5b46873966f22f86238b4a6f66e07d06ffe69787fde06"
+    },
+    {
+      "arm": "Z",
+      "epoch": 21,
+      "updates": 777,
+      "order_sha256": "e05809d4a59dc68c4670fd6f39a073f702f4739e17ae8a996bccf3e0cabbacdb",
+      "worker_rendered_RGB_sha256": "0149de9b067cfc34f58ebfd99aacae2ec9c5f8d45943c0d845bdc7c9ba1ea974"
+    },
+    {
+      "arm": "Z",
+      "epoch": 22,
+      "updates": 814,
+      "order_sha256": "44dea5a975afa5bf9ecd5c82e0f4dae539fb522b743a4c5cc5e277c60dfb8f68",
+      "worker_rendered_RGB_sha256": "320f3a629d24775bc0f2f4681e0ab1495ba20b054120baabbd63638e0723e861"
+    },
+    {
+      "arm": "Z",
+      "epoch": 23,
+      "updates": 851,
+      "order_sha256": "0ecd6fd1f08e0668c97ad9982906b0ef6eae9469c47688410ac35e4d99bd7a9c",
+      "worker_rendered_RGB_sha256": "21c988cf9ed09e8ae2cd222e42b6b683a64d1752286696a753fe5fe7de756f5f"
+    },
+    {
+      "arm": "Z",
+      "epoch": 24,
+      "updates": 888,
+      "order_sha256": "a45c19ad80b83966cf7bde379df2333294e8244477d7d3381b871d165bfc4ad0",
+      "worker_rendered_RGB_sha256": "342c266f4da019d3fb06b75b6e1d09ef1a1b20a372eed4f06d60d492153d8016"
+    },
+    {
+      "arm": "Z",
+      "epoch": 25,
+      "updates": 925,
+      "order_sha256": "cc430cbd1c05464100dce52902f9fb97b8ed404b491e79e52ded94d479eeb6dc",
+      "worker_rendered_RGB_sha256": "adaa62c473c362989bcd879de74b34e8edf0ffed28aa2c85a4598e86876b9e6a"
+    },
+    {
+      "arm": "Z",
+      "epoch": 26,
+      "updates": 962,
+      "order_sha256": "8d9bebf01c6f1c72f9ea2523d842df27e39328bde1c1c1a74e33d64d5a0710eb",
+      "worker_rendered_RGB_sha256": "0f32dbb5d6674d75d8b0f2a02ac61c1675a46ddb34eadfce76945807a681d85b"
+    },
+    {
+      "arm": "Z",
+      "epoch": 27,
+      "updates": 999,
+      "order_sha256": "fbc95a7f92cef91b42fceed76a90d939d76a0e45e3b1f4e4a839344c51438057",
+      "worker_rendered_RGB_sha256": "4fae6667f6193f8f5b77661c451762d8abcf0127dbee74994f6abfd409deb3de"
+    },
+    {
+      "arm": "Z",
+      "epoch": 28,
+      "updates": 1036,
+      "order_sha256": "010603456743cb23690e174103ac0c1c4d2b3f4759d864a2943bbc8f0c775770",
+      "worker_rendered_RGB_sha256": "80e582193aaadecca603241fcb193d23e494f56a6eacd6f29f02505786dc32bd"
+    },
+    {
+      "arm": "Z",
+      "epoch": 29,
+      "updates": 1073,
+      "order_sha256": "0930e7b1220c51a0a0897987d343bad5968e80ed83bde67ec16bf0309cdd5f08",
+      "worker_rendered_RGB_sha256": "3ac0011d3888c6e8c63e1ad7052c25d8fb0b4d0599b087f85889fefa0a0a5b6f"
+    },
+    {
+      "arm": "Z",
+      "epoch": 30,
+      "updates": 1110,
+      "order_sha256": "ac66971641d691eb4162e7528293743be2cbe063fe53dd6b05e184f672a5ece4",
+      "worker_rendered_RGB_sha256": "097ae9810b11ae169aab8ff0be835ae3ae014c9ac169b5435652d8beea73b4a2"
+    },
+    {
+      "arm": "R",
+      "epoch": 1,
+      "updates": 37,
+      "order_sha256": "df038fb4b76ad1577ed3efb4c0b5941bdbf8bf9bcfb408147385448349b216bb",
+      "worker_rendered_RGB_sha256": "e17329659670009edaf2f735c57467f7061b0daa512360eb7e67192afa911c6b"
+    },
+    {
+      "arm": "R",
+      "epoch": 2,
+      "updates": 74,
+      "order_sha256": "7802735d1649e4bdc24480ecc01fcf410fb65782737679a4dac7ee4173d7383a",
+      "worker_rendered_RGB_sha256": "bef42a9ef05b5a5c2b3a13cadeb06fd80db7e839a9fbd3fa584d697b4036fb96"
+    },
+    {
+      "arm": "R",
+      "epoch": 3,
+      "updates": 111,
+      "order_sha256": "6b2851610cd4468a517995bebdeaff637159a44f7e43669b615666c8f09b1807",
+      "worker_rendered_RGB_sha256": "98828039b4776e169cf3b9705a12801160c098fbd41439e4249136dbe9cdfd90"
+    },
+    {
+      "arm": "R",
+      "epoch": 4,
+      "updates": 148,
+      "order_sha256": "d1e2cb7b96e02eeadb35d082c707de3d2d854714e785533e31472070df286926",
+      "worker_rendered_RGB_sha256": "59a8b19f89a06a7389f4d0bff5d24d36648fa341c103917d94434a0917661c21"
+    },
+    {
+      "arm": "R",
+      "epoch": 5,
+      "updates": 185,
+      "order_sha256": "2515ff858872ebc03a31c24fdfd569e3d62882fb80513198f605068334cfd111",
+      "worker_rendered_RGB_sha256": "af5169001fa8d545532333a15c40dcc77eb77cbe8f5bae039260dbafbaf986d8"
+    },
+    {
+      "arm": "R",
+      "epoch": 6,
+      "updates": 222,
+      "order_sha256": "ab39c8b6a8762b0ff3cc142bc5f2d6c0101a74ae08d3b4e19aac6ca49f005b92",
+      "worker_rendered_RGB_sha256": "2c5724c4b1cfebc6a4fe10fa67433de8c37632a46251597e7d8ee31a551f85e9"
+    },
+    {
+      "arm": "R",
+      "epoch": 7,
+      "updates": 259,
+      "order_sha256": "9d809a7de64cbab7fbcb7995d6cb5f7a9dbc8511518f6730efa919cfa4b21ac3",
+      "worker_rendered_RGB_sha256": "c95b72c6b77fcb06c03d4172238f12098654abe073e5dab4a6ad199da1272315"
+    },
+    {
+      "arm": "R",
+      "epoch": 8,
+      "updates": 296,
+      "order_sha256": "1758985ac57055b4291427b633906405230d90cc26bcefbaf4df0fbda371e613",
+      "worker_rendered_RGB_sha256": "80b70b0cfdee9fc93ddf1e575b182d927f56990f4f22fc09cc827cf522801315"
+    },
+    {
+      "arm": "R",
+      "epoch": 9,
+      "updates": 333,
+      "order_sha256": "efa1dad69f963f9796db9f1616d3b25b83128922357d7c94becca7504a664e47",
+      "worker_rendered_RGB_sha256": "22f06cce071aa4a39e8a6f14fc892cba7df69bf9b34db6125f6cc05fa5800ef0"
+    },
+    {
+      "arm": "R",
+      "epoch": 10,
+      "updates": 370,
+      "order_sha256": "431768bb9fb0fa2212178fbc951b96d7b888379fe1e09925f1609861411c81a9",
+      "worker_rendered_RGB_sha256": "b5fcbebb677aeb9ee9e0c12fbd8ac31314356db4669edd381bc6da711956c25b"
+    },
+    {
+      "arm": "R",
+      "epoch": 11,
+      "updates": 407,
+      "order_sha256": "7b3b723143cdedacfd6eb29c6597184f4ae32dd2e9909ee559591313675adfe8",
+      "worker_rendered_RGB_sha256": "07052af28b23e022c806dcace46b0227a94fa542ca4f61c614fe9dbef86ed5d7"
+    },
+    {
+      "arm": "R",
+      "epoch": 12,
+      "updates": 444,
+      "order_sha256": "9bf12d9ff4eef20f40d3905ea081bd21e1298b8f5fe45864866599045d619679",
+      "worker_rendered_RGB_sha256": "cf7556152b79957ed20527425c5cde2747d8f91f2f0a807c7dbc071f8b36a099"
+    },
+    {
+      "arm": "R",
+      "epoch": 13,
+      "updates": 481,
+      "order_sha256": "2b53443f7ca52206c2fefa78b4b62d223fa3dc0d9ed65a4804d44dd00266bd93",
+      "worker_rendered_RGB_sha256": "667d8befb2e2b64e57a75077d8721e34a4e3da01a76036563f9af8a0d4a6fa19"
+    },
+    {
+      "arm": "R",
+      "epoch": 14,
+      "updates": 518,
+      "order_sha256": "ff67fd511ff3026b9cfc0ef2e6a20d53cab925dd22effcb833120a2053ee9fc3",
+      "worker_rendered_RGB_sha256": "92c4dd88063451b59b9a71abaf25f2465c17f52d9b4aa4bafe2bc798f5a6f79e"
+    },
+    {
+      "arm": "R",
+      "epoch": 15,
+      "updates": 555,
+      "order_sha256": "402b13b1cf2d979adf1b983b33803b5d556bc4ba8891f6e7ca633d935b719221",
+      "worker_rendered_RGB_sha256": "6ece228bbffa6e03a779900277c682b8b6638a6c6b3c046f7b9161026a85fb8d"
+    },
+    {
+      "arm": "R",
+      "epoch": 16,
+      "updates": 592,
+      "order_sha256": "b0e29e026655d677374e6c6f5d40a10bf737a7b1585980ba731b9e1744fe88c2",
+      "worker_rendered_RGB_sha256": "d9ecae7c02786354525aabc89d496b30ed44c9885ea00eab507810030afc5919"
+    },
+    {
+      "arm": "R",
+      "epoch": 17,
+      "updates": 629,
+      "order_sha256": "c3b3a1bab10aa35082dbca9b04d280c9669ed199e0eb992ef2ad8486048fa935",
+      "worker_rendered_RGB_sha256": "fbc82505ecc9765d9866553fdc1bb17937ba1d7efa8382b6662579f2ab5819be"
+    },
+    {
+      "arm": "R",
+      "epoch": 18,
+      "updates": 666,
+      "order_sha256": "6d8c1a63370dde2c159f963a12f3df734d0ca6acf98c38901e19ac9e670cf29c",
+      "worker_rendered_RGB_sha256": "54ec63cada84b56314872b30d48b962fa4dd2255f0212a765e02900f551ee3e6"
+    },
+    {
+      "arm": "R",
+      "epoch": 19,
+      "updates": 703,
+      "order_sha256": "6db2c9a31010e4fd4877ea7a5ffc542756b55546144aa856ae6d0cfa9632cdf1",
+      "worker_rendered_RGB_sha256": "0c0ce85b9948aaed7ce8312679898fcf59558cea7c40e20e8d554b2c268fd084"
+    },
+    {
+      "arm": "R",
+      "epoch": 20,
+      "updates": 740,
+      "order_sha256": "9d9adde4ec90b486947fc6d205e3013c8eb175db14a8873dfaaf529b7e6ba333",
+      "worker_rendered_RGB_sha256": "74acc9cbfcdf6f2f33bffefb9ab4f07f250accdf3936cca0906f7bcd1ba0fead"
+    },
+    {
+      "arm": "R",
+      "epoch": 21,
+      "updates": 777,
+      "order_sha256": "e05809d4a59dc68c4670fd6f39a073f702f4739e17ae8a996bccf3e0cabbacdb",
+      "worker_rendered_RGB_sha256": "828ba6452408d7dd58e2443c837e7d88827e51d74ed24b4317bd8cba39edb78c"
+    },
+    {
+      "arm": "R",
+      "epoch": 22,
+      "updates": 814,
+      "order_sha256": "44dea5a975afa5bf9ecd5c82e0f4dae539fb522b743a4c5cc5e277c60dfb8f68",
+      "worker_rendered_RGB_sha256": "a34cabb1f5f6562ba1c59c9aa83ef94de4247acb824921d7771dad38678439f2"
+    },
+    {
+      "arm": "R",
+      "epoch": 23,
+      "updates": 851,
+      "order_sha256": "0ecd6fd1f08e0668c97ad9982906b0ef6eae9469c47688410ac35e4d99bd7a9c",
+      "worker_rendered_RGB_sha256": "0095669442ce40c5c4c2f520efed755cf58fb28677dc46ccc8b7a6688ecde66b"
+    },
+    {
+      "arm": "R",
+      "epoch": 24,
+      "updates": 888,
+      "order_sha256": "a45c19ad80b83966cf7bde379df2333294e8244477d7d3381b871d165bfc4ad0",
+      "worker_rendered_RGB_sha256": "faf0883898a6ba9cb3d0ced22d119109fe3e440604aa42354286e555ae96b1c6"
+    },
+    {
+      "arm": "R",
+      "epoch": 25,
+      "updates": 925,
+      "order_sha256": "cc430cbd1c05464100dce52902f9fb97b8ed404b491e79e52ded94d479eeb6dc",
+      "worker_rendered_RGB_sha256": "7f543af2f3fe66dfbb0abdc86d19ae4276d51cf80b4ad9c9715a20b69d55744d"
+    },
+    {
+      "arm": "R",
+      "epoch": 26,
+      "updates": 962,
+      "order_sha256": "8d9bebf01c6f1c72f9ea2523d842df27e39328bde1c1c1a74e33d64d5a0710eb",
+      "worker_rendered_RGB_sha256": "a67f0e1b625f085fcefc46b20251c5f20e5cde45fc8e6d263668af133e349b7e"
+    },
+    {
+      "arm": "R",
+      "epoch": 27,
+      "updates": 999,
+      "order_sha256": "fbc95a7f92cef91b42fceed76a90d939d76a0e45e3b1f4e4a839344c51438057",
+      "worker_rendered_RGB_sha256": "864798f5f0c260f638111266412ab7c5b6e1f48fe0d7179082c2d5a45533c18f"
+    },
+    {
+      "arm": "R",
+      "epoch": 28,
+      "updates": 1036,
+      "order_sha256": "010603456743cb23690e174103ac0c1c4d2b3f4759d864a2943bbc8f0c775770",
+      "worker_rendered_RGB_sha256": "2566a84b20abe1f9a9146863e3caee8b7c7ecacd0ec25686950c4c30024ab086"
+    },
+    {
+      "arm": "R",
+      "epoch": 29,
+      "updates": 1073,
+      "order_sha256": "0930e7b1220c51a0a0897987d343bad5968e80ed83bde67ec16bf0309cdd5f08",
+      "worker_rendered_RGB_sha256": "5b275a6919875b9ecec3edccb7f2b3bac16c019da13d4c938cc7ad472f0ef00a"
+    },
+    {
+      "arm": "R",
+      "epoch": 30,
+      "updates": 1110,
+      "order_sha256": "ac66971641d691eb4162e7528293743be2cbe063fe53dd6b05e184f672a5ece4",
+      "worker_rendered_RGB_sha256": "e5a6bdbb40d77c2b3404fb140b31c403a2f02bf56b3ad00161c80944ec6adda6"
+    }
+  ],
+  "event_counts": {
+    "source_locks_verified": 1,
+    "environment": 1,
+    "preflight_passed": 1,
+    "arm_initialized": 3,
+    "micro_start": 3330,
+    "backward_start": 3330,
+    "micro_complete": 3330,
+    "update_complete": 3330,
+    "epoch_complete": 90,
+    "dev_forward_start": 111,
+    "dev_batch_complete": 111,
+    "arm_complete": 3,
+    "complete": 1
+  },
+  "audited_input_hashes": {
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/protocol.json": "d65152902497e072975270b8b913f056dd239d8f098ded10e992f8c3e486d382",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/worker-v1.py": "847f4b0903a4aca0f8e0eadab6ff2df2ac522272c496190b833008805f3629b3",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/EXPERIMENT_NOTE_ZH.md": "b7e77d00af37aa20d9ab8099f6de18dd00fdf17ffa78131a4228f384067679a3",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/budget.json": "e393b1ac74e7ab2cd7eebf4c08520267938d43133460dc0227e3d62d561b32eb",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/environment-spec.json": "614e8257bfb974104824541247cbabe2017c141e1654a2aefeffe288c6e38d78",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/kernel_witness.py": "58c8f07a46346bbd2d12ac8371a6bc4b67987a62cad3c8d8833b49d779f895ff",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/environment-ledger.md": "d402140ac4ceb4eb8f2b6d9fc812ae4ebd7d9a162c7cb81c768263ebafcfcf86",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/worker-v2.py": "b891e936ef26726d30311aa074a73c90cea4f3fb5d585944a4ffcb0a4af43980",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/supervisor-v2.py": "6fbb8e0cbeeb21ed210876dce7820968a1b3349b805a65d6e1810552e05c0c76",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022/common.py": "d12fd21604331ba032686eda26c93306945596a76e11f03b223740c73e9b1853",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022/fit-manifest.json": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-cpu-budget-20261023/selection.json": "233527cc44593d00496d3ac998ab1d20a330e15f3d97b67218a8bec58a6df4b3",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022/data/vit_b_16-c867db91.pth": "c867db91d3e12c6cbadabb610d73c24a546bf82d8c03a9fea34f43a712ddb0e9",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/trajectories.jsonl": "858035231e62a4ebd85af78581fae0fbb7e8a8f671bffad46d0e014c2c3b4bed",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/orders.json": "5c8223a54b373832ef3e059df4a38df8ab866ff53fce1e9d1ecc13802a1282be",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/readiness.json": "79fcaa9fe1cc40bf1f78b497a95ddb50077906572620a64dedd83578ca368687",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch01.json": "26c4fdbf8ecb10df726d74e2cd62aab0cbf22904efb2044fec5d5d2fed0e6560",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch02.json": "fe976a76d8c73b05f018ee04be1dd95ca59ba23a20490000e51ee601eec2fe7a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch03.json": "5f7250ecac0cd9111691c40ff0e6bd4ac08a39070fdd303d40e64237313b3a00",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch04.json": "e46944452fb5fad1c2563343160a916432580a00f83a836c9eefce2a24205f38",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch05.pt": "db8814482e03a5c8ad3f64f55359fa2e9ec784bb4ba7d8ed0781de564bdcceb7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch05.json": "6c47e573ae0e68bd0f18028e122ba5c781a1b9edae69350c0a18ffbe03ed9815",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch06.json": "2d67cabf5a9fe1c090a65bb0f8cfd96c5fde803faf6623c84373746a09d59a5a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch07.json": "b6b57150dccf8645428308fa023d51ff01c82196136fd31b3dd3d26522d59394",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch08.json": "5ab189394a99932823e06b8268548a7c56177ae52470a537e331df6a17db7ed8",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch09.json": "dc7ae4baaac918c269ab54a62e5cc901e5ade0fa310afed9ea56184e95d1f3f9",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch10.pt": "0be6ac9ab2367644ff0e93ea9200c88df3615eab675bbec0403d94096d5cb324",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch10.json": "381dc4a3d1625a70ae6d094d5d3ec3c70bb40daa9d78517ca1d16f46622f0a31",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch11.json": "0aa4d26039bdce04bedfe03bbbf1163ecf9c06e4eca76e6f731e514e965b2a85",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch12.json": "b109f4a93240adf96b70e3e0a765d90392784a0418549c1125985ba30b7c5688",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch13.json": "29e533988b3a9bcac134f4f5461c61200ac4b1cfad9ab9eead86a344f871f210",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch14.json": "792d674b95162f9abe6f3e99e54a95eaa95c5b477f6834c1398b2df57b73bcb1",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch15.json": "ee24fe1e22bac47aef6bbf3e1172b84d2686138ffb077371363acda20f1f9b15",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch16.json": "c0e31020629ebee3f9e291f60aba06f56aed3f7915989aa7bf5bb1f66d6b9c8f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch17.json": "6dae8ff6ff11f16f4b44b0022517a141be0016992cab6823758f091de0b8f11c",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch18.json": "e627110ad731dc0912805308e43b9469ff9d6131a1a0c8c342dba806167fcda3",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch19.json": "78e22c234722d930ac01e6793ae8f91146a78853e79da7104ac689b2f3419845",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch20.pt": "34d5bf5bab6e40fc75d79aae8d835c28b84c61815b5b5f723d42416d1c645e29",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch20.json": "90b3f219b3241c2be72e367f98001f719ebf42e17597a52d60b6621515138fdf",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch21.json": "44a6d3da09e60dfd0c0a07eecad6f643ec756f29f551f2439947df09042de414",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch22.json": "411e2087aebea198c399dfe19278e0ff95fc78b4f5600a6423d236d864d4dd98",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch23.json": "e2e7a20b3ef8e1f1532fa881952c4864a0ab265ee65eeccfce1490a3dbd05f96",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch24.json": "06bb565d916c00e29fe18677e9854515fd61a9de9d14db0f8c0f2b4ee70c8b8c",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch25.json": "77354f8d42cc2a70b887f97c340d173381ab6d4c2579881ba700944bd8ad1e01",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch26.json": "33ce3df0d15b96b85ac3e5f9a5dd2295144f8eda0476ecba6f9c79e47232345c",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch27.json": "5bfad25c8726d80bd7d8486489167e14b32771aecac095ea4c8c1aa947cd618e",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch28.json": "16fc88c63c6230d9c2905165e1f0737ad5fb7fbf5f39130db692a8b9981b06e3",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch29.json": "5333eda2b2f6b81327730a665d71e21a7d7be0f5074b89f5912843fcbb1b521b",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/checkpoint-epoch30.pt": "b2ec8bf8b95ddba5066c31b4f1ac283a2bfec3ffd2590ff9eed8b069808bb605",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/epoch30.json": "5237c325c3250444fb8f35c21daab0c089e3f685eb2c95daf8326df5ad193a6f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/development-predictions.jsonl": "b7166d663f462288d51f4ce75b8b07383ef998cdf70db66f0b2d33f32318154b",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/summary.json": "cd046eba0a7d6159ca6be95d52e8ec9c76f81bf98820deca583cfd909804dd1f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/steps.jsonl": "872d94bee9860209b289d6b0fcc7e0349d450c48bf02e1161072d41385c25e8a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/B/initialization.json": "c65d80a65abc7e9ea6072b5402719a9f5f21b49ccfb4d833a168308ef9624b4d",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch01.json": "d2748653e10e1d72a74d6032a35f15ca0378b3c7791c6a9ae764100f5b06923d",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch02.json": "af51ebef1f7e90dd10030761cec26e96d704a83286496209ba095ab08ed4b0f7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch03.json": "1fd01e39cbd966db2fd4af4a87e3f5dbde69877be3945210fac0bd0626d48e86",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch04.json": "6ba94bccdb7888dcd7250bc6e9cd8646a392c816eff88f53593ff4b8dc1fbde0",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch05.pt": "cec67ed70dd82d460bfc869524b718bfc27463d6e6c5b925c1e87bd91af2d74b",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch05.json": "610a88ba736a30ac8ca03ad4da1133073ca81cbcbc024a9a86ac3abdcb9b5b39",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch06.json": "c28255b80854530d72aef45ba2bc3ab7a1b326df6a1c1633cc0614829b16196f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch07.json": "aa966dd20a4d7cf9beff0bfb1d79b2546a393638904ab89d9312e9d68e50b16f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch08.json": "7361eefbb10559a446c164941021226cfd6ec73043e8d732cf6eb2c201dd7d5f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch09.json": "dffa44fe3c70fab221db4544956a5457a990d15dc05df8330991a397c9a2da0a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch10.pt": "b0627d3156e459f9009e20ef0345340ab3b9e3e2da8d9e87ac6f3b204f11d6da",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch10.json": "117af07f1614d9cad441eb4aa4bba959cd8e919f5b622f558a9b385882973414",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch11.json": "6f32aa1232da8bf40a32e34c41b9e09e7705016088ffa55b248fb60ee9356b29",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch12.json": "35c1d2fb8af44a76d9a26729a4888aeca6e693696f7c4a33d0cbdb3117d9d0ee",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch13.json": "2f1552fd72992e66202fb86e7dbb2003f1079dfd731d573bd27d3d04ee3b7565",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch14.json": "ce0a59aafe7552b36da4e5532e77cf5c9eda8b3463a44c7caec15565af2f3a53",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch15.json": "4adde22506cb24b6256bfe6d14d45abe51083d7d9cf86178080454ce4d5f016a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch16.json": "ba8c4773962eb1f5cb35e0232aab11ea4d0dd08f2695945617f2f7ab79bc030b",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch17.json": "1dd5bc8c473d4e19fbe09b8011d7a9f619831daad7678c7c7b901ea4bfbfb2dd",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch18.json": "95c5553efbae69d1b4d05c2a05a660b649bd8233314b1ca33de2fc133bcc082f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch19.json": "98537143cef84c056e694368f1bfc5bc0c2c673bf705b319b379f5004b957fe7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch20.pt": "163b29d6b380add103c98941428321ee9799315d63939b720667cde7f49b9300",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch20.json": "e8c603f5be4e0b9b80ec61fd7a610c45ad4711ceda833e8ad2ed30b90dbff90a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch21.json": "ff78f597a683df3cc13986785b5506ecf3cafad9a0873da1775ccf908861486e",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch22.json": "16559cfc9b5f9eec4a889493538c053c757dacaf44781477e4b41071b1fe0afd",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch23.json": "1706301fccc48af09f064005ad2c1f14e0823514f65ec566bbdde959b6afca2d",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch24.json": "9f79c5d4a8e4ce6d41c017382d4237f99bd9337d6581a2c1e34ca227eb2f88ba",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch25.json": "04921dd5e3e8202d3944f73ec9be94f8d10d506e1a680e005a77aced4bd35208",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch26.json": "6e9f3f349f0221daff8e3d1e6a69189761442e6cdaf9c54bf4427fd44f7e5944",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch27.json": "fea1b584a9fe6266f5dc4b66cc46a2124c332e7a6abf74ea840102be896f6407",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch28.json": "a5e60a289f475b55743591c5a82b7bf7407be1dd4d6819972bd6160b2e71d565",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch29.json": "c753173bddd67fc2595af01112c7608115120fb6853fd75e432c9db3ac0f4540",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/checkpoint-epoch30.pt": "c339e1e3478197d4853869be532e38947f354357210deaa544c9356d13213a09",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/epoch30.json": "2d36b3e1a75c1a180f68f6813a81f055c52e671478c8f7a5116e46ebc67ad3cc",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/development-predictions.jsonl": "65f0dbaa4d6dad79d60369e66c686778474a1ae61b63f5127963e13e527959b7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/summary.json": "ff47802bc934581b611300a1d1878569d74e260b5f164c0e16fbec2992f12d4e",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/steps.jsonl": "ddc6123a75ab85305d6f9e612cf23d3cce571ee727323aff7a7565caf0083378",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/Z/initialization.json": "c65d80a65abc7e9ea6072b5402719a9f5f21b49ccfb4d833a168308ef9624b4d",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch01.json": "dccf3b0b8a9bbdf8e930d4249f913a743ed04d531cb6f6237a6851e9b5bda127",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch02.json": "3d82f067b02f7bee459a0f3f0f07197b3eff1160b48fcd8bbfe6bc989ddbff76",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch03.json": "3e8454e01c4707bf6a96ace49b010c7157d27e84dc7428e2e51a0e50d99d1b38",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch04.json": "db3c7ccc3aad90662e30051964bbe16e4e437c8955af9b2c60ae9761744a8788",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch05.pt": "bb2c5cc67e069579cac6cd6469701df6e23f0cdf08facb8aabd353ef259ee2e6",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch05.json": "c1929645c000327002ec2cbc8a1f92d6934beec5b803598b3acff16943d19a57",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch06.json": "fd99704c53d870f7dbba5168c0c7b2b64ad51f464f77b21667119d3ba7003a69",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch07.json": "8abf73fb4d034c3474e5aadda5db178eb82c0e4ef615788838e2b7fa2319d640",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch08.json": "be05d3fcc395bffe22154c22700d57b61609c177266df5cb6d5a9c4f8515c958",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch09.json": "b3726435b042bb1a2e3c0b812639af4118de80e05dcabfc6c57d44a625419e22",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch10.pt": "c2f11019434ee820992eff1f67ce165ffc86ff37c9b88097b00c938f252c3df8",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch10.json": "6548c11b6bd37840f68f50722b7a963c26b0963ee273932d41d40afba4232b01",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch11.json": "462fd62b18fb99dee2d06c1a96e66976b6e7199e933ed998d52cb8c92376c528",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch12.json": "f25d284eaaa12fad9bc33f2c0efd5c5bfa72182c264ca4b9335a382cb654a887",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch13.json": "03cb8c95165df0593a86794b4acc5ef17a55528349a8829b8f2ab4fabbbb283f",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch14.json": "09df8e2c16a26e944204fb2c424d2a0f79905193f4edef2a0bee138090293a8a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch15.json": "86d9703bb74b4586953f19a75adc4f3c75f7b71ffd2f79e4d8896153f72e1d01",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch16.json": "2192e8fd94a1aed628de9061bc5e24611daa6d59dda19643e9bb54b7a5c5c007",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch17.json": "7cb37efbf18e1ba60a02387fd5a238b69d494fa24572503882a0153a30841670",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch18.json": "6a564836ba52f7de8869b33b6213269162c8808cf1d2f576e35677e8c87b2ac6",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch19.json": "a87a53c859af4f6dca3a0ec8c047c804dcd504320c7f1412f719a9dc68632eab",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch20.pt": "0d2939adb1c247ae08644263a1fd52fcda3f2bdd0c8fc9952059862d57215761",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch20.json": "8c8110926d8c2b4c110fde6f1f3bf7a6ed2054993d62c225479203e59cf63648",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch21.json": "da11085ee4606fee9648d22bbcc25baebf4b7e7f1ea441504ec1763e2f9ff1d1",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch22.json": "8bdca3fe21b475407a478e08715c9e8cc63cedd8495bdc13f42e716f423540aa",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch23.json": "5bfa18dc234800e1e364c560a106b73541efb9e09e8b543b76724083de4529ff",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch24.json": "593e59e110053b5f1bf1f6368584e2736956dad86b4dad0d853b0a51f2b1fb9a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch25.json": "9fe891baee0c7f80d7b885d682ec69d99919043d15190032c29a93edcd4349c7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch26.json": "c56ca7bcdb67257cec5ec790398ae147d63e2d9ed42aa916645da71f2d241304",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch27.json": "7675050f4e0b17c15ba41461859c0f8c5842a1b7447c808f01616571289e49b2",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch28.json": "e0460d05f1485bd6a6802ec1ab4025dd82f7165f994ea00babb050ada5e5f27a",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch29.json": "2eaa45b4753d9a538fc8b8e0c264ff915ac91d85831abdaa92cb13766bd3b29b",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/checkpoint-epoch30.pt": "3d83f550c40848d3af84de6aee259bf6aaf0961df886f3628f4433f72bb29730",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/epoch30.json": "6331a7f73215a58dd9ed5a2a02d033da0b85bfc28de83596ce5069dcecf2d3cd",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/development-predictions.jsonl": "39aed7acd703e7909787f68f4031dcf97cd8a8bd9339878cdf73c07c03b57f15",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/summary.json": "08fac417b76eb5c33f8edac3e1261bd0ea0c257430efac55d52842c9f503e849",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/steps.jsonl": "ba3d09fe6fc0d89e3009cbf26eb01784ae93a80578e492df27825976f33363b7",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/R/initialization.json": "c65d80a65abc7e9ea6072b5402719a9f5f21b49ccfb4d833a168308ef9624b4d",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/result.json": "eff3ce28fbb91ef26fc7a49dcf03e654cb5081f080cbf83c0c7b87ac24b9e400",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/joint-correctness.json": "98121ac25f3ac73b9a0d22fb8081e91e94ce2301000b01414f408f8450c4bb51",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/preflight.json": "8f7ac196c60de8e404560863019630d9574e5bebbd04310a6f14e762d509b7bc",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/formal-training-start.json": "8aeaab7e10627e0541a97b1725e1be09c44df354d4e01368824e3a2b1d968adb",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/clock-incident.json": "8caa509f72f191335f3e83b7bbc0faf8c1636b2c9de85cbf7a379e3bd2eee066",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/attempt-001/failure.json": "4b54e15de3605d6a2f21f98f90c12e9c6b0a512a11bcafc34a17245fe6e74d7e",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/attempt-001/process-exit.json": "16a3259ecec083748b2eec576a8bc1be83c3a31b998692d3728bc942caa5a03e",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/attempt-002/events.jsonl": "3bec3dfb0e10222c7c6c7f8b8381c4d725f4fd6a4ee776bc66339b3f889107ae",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/attempt-002/launch.json": "95cbbcd4fc6b6e1b78e785bff36ce95a44ce36bbeb61b83083c01cf01284ef22",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/posterize-three-arm-mps-20261024/attempt-002/process-exit.json": "b4acfc8ad7911e6dcd3106c7a8af1a3d4dd7bba68581e3a2a197aceba2133d91"
+  },
+  "limits": [
+    "No raw images read or rendered.",
+    "No model inference/training performed.",
+    "No tensor deserialization; checkpoint verification is bytes/hash/ZIP CRC only.",
+    "Parameter and rendered-pixel digests are worker-produced receipts, not independently recomputed.",
+    "One development seed; no inferential or generalization guarantee."
+  ]
+}

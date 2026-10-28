@@ -1,0 +1,120 @@
+{
+  "scope": "Validation ratio-key eligibility after earlier mask selection; archive/image usability unverified",
+  "source_revision": "dd6b027a1a01b00fea442276668a54a697eb838b",
+  "source_index_rows": 50000,
+  "source_index_unique_values": 50000,
+  "ratio_rows": 49751,
+  "ratio_unique_source_ids": 49751,
+  "ratio_keys_not_in_source_index": [],
+  "source_rows_missing_ratio": 249,
+  "source_class_count": 1000,
+  "source_index_counts_per_class": {
+    "50": 1000
+  },
+  "threshold": 0.8,
+  "comparison": "ratio < 0.8",
+  "metadata_eligible_background_keys": 45315,
+  "metadata_excluded_background_keys": 4436,
+  "excluded_fraction": 0.08916403690378083,
+  "exact_threshold_rows": 1,
+  "zero_eligible_classes": [],
+  "ten_lowest_eligibility_classes": [
+    {
+      "source_imagenet_class": "n03843555",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 13,
+      "metadata_excluded_keys": 37,
+      "eligibility_fraction": 0.26
+    },
+    {
+      "source_imagenet_class": "n02776631",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 15,
+      "metadata_excluded_keys": 35,
+      "eligibility_fraction": 0.3
+    },
+    {
+      "source_imagenet_class": "n03841143",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 16,
+      "metadata_excluded_keys": 34,
+      "eligibility_fraction": 0.32
+    },
+    {
+      "source_imagenet_class": "n04005630",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 16,
+      "metadata_excluded_keys": 34,
+      "eligibility_fraction": 0.32
+    },
+    {
+      "source_imagenet_class": "n04275548",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 19,
+      "metadata_excluded_keys": 31,
+      "eligibility_fraction": 0.38
+    },
+    {
+      "source_imagenet_class": "n09256479",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 19,
+      "metadata_excluded_keys": 31,
+      "eligibility_fraction": 0.38
+    },
+    {
+      "source_imagenet_class": "n03042490",
+      "source_index_rows": 50,
+      "ratio_rows": 48,
+      "missing_ratio": 2,
+      "metadata_eligible_keys": 19,
+      "metadata_excluded_keys": 29,
+      "eligibility_fraction": 0.3958333333333333
+    },
+    {
+      "source_imagenet_class": "n04523525",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 21,
+      "metadata_excluded_keys": 29,
+      "eligibility_fraction": 0.42
+    },
+    {
+      "source_imagenet_class": "n04589890",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 22,
+      "metadata_excluded_keys": 28,
+      "eligibility_fraction": 0.44
+    },
+    {
+      "source_imagenet_class": "n06359193",
+      "source_index_rows": 50,
+      "ratio_rows": 50,
+      "missing_ratio": 0,
+      "metadata_eligible_keys": 22,
+      "metadata_excluded_keys": 28,
+      "eligibility_fraction": 0.44
+    }
+  ],
+  "interpretation_limits": [
+    "ImageNet source class is not actual background scene truth",
+    "Ratio keys do not establish actual archive files, masks or semantic validity",
+    "Missing ratio entries cannot individually be attributed to segmentation failure without logs",
+    "No false rejection, causal effect or downstream performance estimated",
+    "Same-class loader fallback can reintroduce a background if a class has zero eligible backgrounds; none found in these metadata"
+  ]
+}

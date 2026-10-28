@@ -1,0 +1,31 @@
+{
+  "audit_date": "2026-10-21",
+  "original_candidates_retained": 0,
+  "experiments_executed": 0,
+  "designs": [
+    {
+      "id": "A_shared_independent_pair_policy",
+      "claim": "At matched single-view augmentation marginals and prespecified class-risk equivalence, independent pre/post augmentation increases the loss of a fixed historical-intervention-target decoder relative to shared augmentation.",
+      "estimand": "E[loss(d(O_independent),I)-loss(d(O_shared),I)] on the prespecified source-unit population",
+      "causal_scope": "Effect of randomized augmentation policy assignment on that fixed decoder's loss; not the effect of the historical world intervention and not Bayes-information identification.",
+      "requirements": ["Nondegenerate classY and intervention variation withinY", "Verified pre/post unit metadata and independent unit-level evaluation", "Oracle class stability established before augmentation assignment", "Fixed decoders with interpretable source-side positive control", "Known, matched per-view marginal laws", "Predeclared equivalence margin and main paired loss"],
+      "falsification_or_failure": ["No prespecified directional or practically relevant decoder loss gap", "Class-risk equivalence fails", "Target decoder has no positive-control ability", "View marginals or unit independence fail", "The original historical intervention metadata is actually incorrect"],
+      "negative_control_scope": "Providing augmentation parameters, restoring inputs or relabeling targets in a new coordinate system changes information, policy or task. Gap removal under these controls does not automatically refute the original fixed-decoder estimand.",
+      "closest_prior": ["https://arxiv.org/html/2106.04619", "https://arxiv.org/html/2311.08815v2", "https://arxiv.org/html/2111.09613"],
+      "novelty_decision": "Rejected as an original candidate: known information-retention/structured-pair principle; using intervention-target decoding alone is not established incremental novelty.",
+      "one_day_condition": "Potentially a small CPU frozen-decoder replication if lawful matched data and decoder already exist; current public-data execution prerequisites are incomplete. No measured runtime claim."
+    },
+    {
+      "id": "B_target_metadata_equivariance_negative_control",
+      "claim": "When an image transform is verified to correspond to a known node permutation and componentwise invertible latent map, propagating target indices, values, units and mechanisms should remove purely representational inconsistency in the oracle intervention-distribution description, not necessarily a fixed neural decoder's loss.",
+      "estimand": "Oracle intervention/measurement consistency defect under the specified known mapping, not a correlation or a new physical causal effect",
+      "requirements": ["Verified image-to-latent transform correspondence", "Valid mapping of the allowed intervention family", "Calibrated measurement units and fixed original world query"],
+      "falsification_or_failure": ["Corrected intervention semantics still disagree under an allegedly exact mapping", "Transform leaves the original rendering manifold", "General axis mixing is incorrectly assumed to preserve single-node interventions", "Uncalibrated postprocessing measurements are interpreted as the original world outcome"],
+      "closest_prior": ["https://proceedings.neurips.cc/paper_files/paper/2022/file/fa567e2b2c870f8f09a87b6e73370869-Paper-Conference.pdf", "https://arxiv.org/abs/1707.00819"],
+      "novelty_decision": "Rejected as an original candidate; retained as an implementation/semantics negative control only.",
+      "one_day_condition": "An oracle synthetic unit check needs no neural network and is small in principle; no new generator or experiment was run in this audit."
+    }
+  ],
+  "world_effect_not_identified_by_target_decoding": "tau_j(v1,v0)=E[W_(t+h)^(do(Z_j(t)=v1))-W_(t+h)^(do(Z_j(t)=v0))] requires a defined horizon, units, treatment values/assignment regime and sufficient identification design or known mechanisms.",
+  "global_actions": {"training":false,"data_download":false,"external_model_call":false,"GPU":false,"ARIS":false,"scheduler":false,"PPT_edit":false,"8A_access":false}
+}

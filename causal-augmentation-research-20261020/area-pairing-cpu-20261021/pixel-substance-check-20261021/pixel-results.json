@@ -1,0 +1,166 @@
+{
+  "status": "controlled_one_photo_pixel_carrier_check_completed",
+  "interpretation": "Only a known cat against two bright same-photo crops; not ForNet RGB or source-category decodability, visual-shortcut or OOD evidence.",
+  "calibration": {
+    "statistic": "fraction of opaque RGB pixels with luminance <128",
+    "formula": "T_hat = intercept + slope * dark_fraction",
+    "intercept": -0.0011313198751127518,
+    "slope": 1.3746995464001357,
+    "fit_points": 4,
+    "fit": {
+      "n": 4,
+      "mae": 0.0003356200064453443,
+      "max_absolute_error": 0.00048159900016286894,
+      "rmse": 0.00035254303821877843,
+      "points": [
+        {
+          "background": 0,
+          "target_T": 0.03,
+          "predicted_T": 0.029619863215442042,
+          "was_cropped": false
+        },
+        {
+          "background": 0,
+          "target_T": 0.07,
+          "predicted_T": 0.07048159900016288,
+          "was_cropped": false
+        },
+        {
+          "background": 0,
+          "target_T": 0.11,
+          "predicted_T": 0.11018964101272782,
+          "was_cropped": false
+        },
+        {
+          "background": 0,
+          "target_T": 0.15,
+          "predicted_T": 0.14970889677166727,
+          "was_cropped": false
+        }
+      ]
+    },
+    "heldout_T_and_background": {
+      "n": 4,
+      "mae": 0.0007184365762970685,
+      "max_absolute_error": 0.0015173591177962131,
+      "rmse": 0.0008991222838564384,
+      "points": [
+        {
+          "background": 1,
+          "target_T": 0.05,
+          "predicted_T": 0.049882921104579786,
+          "was_cropped": false
+        },
+        {
+          "background": 1,
+          "target_T": 0.09,
+          "predicted_T": 0.09034610813164677,
+          "was_cropped": false
+        },
+        {
+          "background": 1,
+          "target_T": 0.13,
+          "predicted_T": 0.13089320016032507,
+          "was_cropped": false
+        },
+        {
+          "background": 1,
+          "target_T": 0.17,
+          "predicted_T": 0.1684826408822038,
+          "was_cropped": true
+        }
+      ]
+    },
+    "cropped_extrapolation_probes": {
+      "n": 6,
+      "mae": 0.31475550809460723,
+      "max_absolute_error": 0.7433246548332584,
+      "rmse": 0.39848635787968884,
+      "points": [
+        {
+          "background": 1,
+          "target_T": 0.22,
+          "predicted_T": 0.19556298015226262,
+          "was_cropped": true
+        },
+        {
+          "background": 1,
+          "target_T": 0.35,
+          "predicted_T": 0.24578012361664747,
+          "was_cropped": true
+        },
+        {
+          "background": 1,
+          "target_T": 0.5,
+          "predicted_T": 0.3066741785360748,
+          "was_cropped": true
+        },
+        {
+          "background": 1,
+          "target_T": 0.7,
+          "predicted_T": 0.3675472572050994,
+          "was_cropped": true
+        },
+        {
+          "background": 1,
+          "target_T": 0.9,
+          "predicted_T": 0.4092270667555308,
+          "was_cropped": true
+        },
+        {
+          "background": 1,
+          "target_T": 1.2,
+          "predicted_T": 0.4566753451667416,
+          "was_cropped": true
+        }
+      ]
+    }
+  },
+  "no_crop": {
+    "n": 14,
+    "max_abs_visible_alpha_minus_T": 0.0014003499348958504
+  },
+  "background_only_statistics": [
+    {
+      "file": "background-0.png",
+      "dark_fraction": 1.52587890625e-05
+    },
+    {
+      "file": "background-1.png",
+      "dark_fraction": 0.0
+    }
+  ],
+  "oracle_alpha_note": "Visible alpha uses the compositing mask and is not automatically provided to the default classifier.",
+  "area_examples": [
+    {
+      "target_T": 0.05,
+      "visible_alpha_fraction": 0.04913551480162376,
+      "retained_fraction_of_requested_T": 0.9827102960324752,
+      "cropped": false
+    },
+    {
+      "target_T": 0.15,
+      "visible_alpha_fraction": 0.14865770526960745,
+      "retained_fraction_of_requested_T": 0.9910513684640497,
+      "cropped": false
+    },
+    {
+      "target_T": 0.5,
+      "visible_alpha_fraction": 0.3016770306755508,
+      "retained_fraction_of_requested_T": 0.6033540613511016,
+      "cropped": true
+    },
+    {
+      "target_T": 1.2,
+      "visible_alpha_fraction": 0.42621112898284147,
+      "retained_fraction_of_requested_T": 0.3551759408190346,
+      "cropped": true
+    }
+  ],
+  "causal_interpretation": "Positive I(Y;C|T) is expected collider dependence. It is not unconditional Y-C dependence or proof of a new causal mechanism.",
+  "source_class_C_image_only_recovery_tested": false,
+  "full_class_conditional_pixel_distribution_tested": false,
+  "preprocessing": "manual foreground outline, same-photo background crops, centered resize/crop/paste, CoreGraphics interpolation",
+  "pixel_exact_ForAug_reproduction": false,
+  "no_ARIS_no_GPU_no_new_download_no_install": true
+}

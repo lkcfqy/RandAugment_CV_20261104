@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "date_UTC": "2026-10-21",
+  "completed_UTC": "2026-10-21T21:58:49Z",
+  "role": "independent_design_challenger",
+  "review_scope": "独立核对1项提案的直接先例、有限总体可识别性、决策价值及CPU必要条件门；未共同生成提案，未做结果审查。",
+  "model_and_independence": {
+    "requested_by_parent": "GPT-6.1-Sol/max",
+    "actual_model_and_effort_receipt": null,
+    "actual_execution_tier_verified": false,
+    "note_zh": "只记录请求档位；工具未提供本次实际模型/effort回执，不声称已核验max。没有启动ARIS、外部模型或嵌套审查者。"
+  },
+  "input_snapshot": {
+    "directory": "/Users/lkc/Documents/Codex/2026-10-21/task/independent-design-challenge-20261021",
+    "proposals_json_SHA256": "771f5ac6417faf19a8971e0a375ce0d0dcdcaebe8f02c783305efc4592a74989",
+    "challenge_scope_json_SHA256": "9947671a922f52ee0cf04e51753c6fe122ac73d2408d5569c1dd89add74e1d29",
+    "reviewed_proposals": 1,
+    "proposal_id": "independent_objects_vs_real_views_magnitude",
+    "proposal_file_status_zh": "此快照仍是RA方向的单侧投入门；root在读取特征前提出对称门修订，本审查同意，须另存冻结协议，不改写本快照的历史内容。"
+  },
+  "overall": {
+    "novelty_verdict": "PROCEED_WITH_CAUTION",
+    "experimental_gate": "CONDITIONAL_GO_ONE_LOCKED_CPU_NECESSARY_CONDITION_CHECK",
+    "established_positive_candidates": 0,
+    "established_contributions": 0,
+    "direct_equivalent_published_result_found": false,
+    "reason_zh": "已核读先例覆盖图片数与最优强度、固定图片数下物体/视图多样性及冻结最后层设计，但未找到相同完整物理条件频数下、两种真实采集分配导致有材料性且优于clean的固定强弱池翻转。其精确实证增量可以存在；不是新独立性原理，也不是已成立原创贡献。",
+    "no_publication_guarantee_zh": "一次已消费smallNORB开发检验只决定是否值得独立确认；新理论或新算法不是准入要求，未找到精确先例也不是发表保证。"
+  },
+  "nearest_original_sources": [
+    {
+      "id": "randaugment_neurips2020",
+      "title": "RandAugment: Practical Automated Data Augmentation with a Reduced Search Space",
+      "url": "https://proceedings.neurips.cc/paper/2020/file/d85b63ef0ccb114d0a3bb7b7d808028f-Paper.pdf",
+      "read_scope": "正式NeurIPS2020 PDF，§3与Figure1(c,d)，PDF pp.3–4。",
+      "covers_zh": "改变CIFAR-10图片数，最优失真幅度随训练集增大；小数据强增强低信噪比是解释假说。",
+      "does_not_answer_zh": "未把相同图片数拆成真实物体数与每物体视图数，未匹配本提案完整物理条件联合计数。",
+      "citation_correction_zh": "正式版应引§3/Figure1；不能混用arXiv布局的§4.1/Figure3。"
+    },
+    {
+      "id": "emmi2017",
+      "title": "An Object is Worth Six Thousand Pictures: The Egocentric, Manual, Multi-Image (EMMI) Dataset",
+      "url": "https://cdn-dev.vanderbilt.edu/t2-my-dev/wp-content/uploads/sites/2127/2022/03/Wang-et-al-2017-An-object-is-worth-six-thousand-pictures-EMMI-dataset.pdf",
+      "read_scope": "§4、§5.1–5.2、§6。",
+      "covers_zh": "冻结ImageNet Inception的最后层，总图片/类固定1100时改变物体数；另固定物体数改变每物体视图。",
+      "does_not_answer_zh": "§6明确该再训练未用数据增强，把真实视图与合成增强协同留待后续；没有本提案强弱翻转。",
+      "relevance_zh": "这是比一般有效样本量原则更直接的先例，必须纳入定位；不能把等图片数下多物体更好或冻结读出设计称为新发现。"
+    },
+    {
+      "id": "toybox",
+      "title": "The Toybox Dataset of Egocentric Visual Object Transformations",
+      "url": "https://arxiv.org/html/1806.06034v3",
+      "version": "arXiv:1806.06034v3",
+      "read_scope": "Sample Experiments，Experiment1；Discussion and Future Work。",
+      "covers_zh": "同样冻结预训练Inception最后层；固定1100图/类改变1至30物体，并另扫views/object。",
+      "does_not_answer_zh": "已读Experiment1不是在完整物理条件联合频数匹配下比较预锁定弱/强增强池的最佳选择；物体/视图配置本身已经是旧问题。",
+      "relevance_zh": "本提案的增量只能落在采集分配与增强选择的交互，不能落在物体/视图多样性主效应。"
+    },
+    {
+      "id": "jeon2025",
+      "title": "An Analysis of Model Robustness across Concurrent Distribution Shifts",
+      "url": "https://arxiv.org/html/2501.04288v1",
+      "version": "arXiv:2501.04288v1",
+      "read_scope": "A.1–A.2、A.4–A.6、B.3及B.10说明。",
+      "covers_zh": "smallNORB官方对象划分、方位/仰角/光照shift与AA/RA；A.6给固定RA参数。B.3的三档数据量表仅列Shapes3D/CelebA。",
+      "does_not_answer_zh": "未在已读材料中见同图片数及完整条件联合频数下的真实物体/视图分配与强度选择交互。",
+      "limitation_zh": "没有读取受阻代码目录/API，不宣称代码或所有补充材料的全面覆盖。"
+    },
+    {
+      "id": "fort2022",
+      "title": "Drawing Multiple Augmentation Samples Per Image During Training Efficiently Decreases Test Error",
+      "url": "https://arxiv.org/html/2105.13343v2",
+      "version": "arXiv:2105.13343v2",
+      "read_scope": "§1–3、Appendix A–C，重点C/Figure11。",
+      "covers_zh": "增强副本、批内独特图片数、增强与数据抽样方差及within/neighbouring排布。",
+      "does_not_answer_zh": "真实物体采集分配不同于同图增强副本；本提案精确有限期望、收敛凸读出没有该SGD路径处理。"
+    },
+    {
+      "id": "diversity_regularization",
+      "title": "Data Diversity as Implicit Regularization: How Does Diversity Shape the Weight Space of Deep Neural Networks?",
+      "url": "https://arxiv.org/html/2410.14602v2",
+      "version": "arXiv:2410.14602v2",
+      "read_scope": "§3.3、§4.1–4.2.2及相关实验设置。",
+      "covers_zh": "增强与dropout/weight decay、权重谱及表征多样性的联系；改变增强种类及噪声比例。",
+      "does_not_answer_zh": "已读实验未分解真实对象数与对象内视图数，也未执行本提案的条件联合频数匹配强度翻转。",
+      "mechanism_boundary_zh": "因此即使翻转成立，也不能直接宣称新信噪比机制；固定λ下的常规正则化解释仍可能成立。"
+    }
+  ],
+  "search_scope_and_limits": {
+    "search_forms": [
+      "augmentation number of objects number of views diversity",
+      "data augmentation NORB instances views diversity",
+      "augmentation strength object diversity",
+      "augmentation strength effective sample size",
+      "data augmentation repeated independent samples magnitude",
+      "data augmentation object diversity Toybox",
+      "augmentation view diversity NORB",
+      "augmentation instance diversity Toybox",
+      "augmentation strength data diversity arxiv 2026",
+      "最近约六个月arXiv：augmentation + correlation/dataset size/strength、object diversity/strength、views per object/magnitude"
+    ],
+    "finding_zh": "定向检索未命中完整等价实证；按原文核对而非邻近关键词作判决。近六个月查询包含新工作，但没有建立穷尽查新。",
+    "unread_potential_neighbor": {
+      "title": "How much Data is Augmentation Worth?",
+      "attempted_url": "https://openreview.net/pdf?id=TMs-EYm4_ms",
+      "observed_result": "页面跳转到OpenReview browser verification，没有论文正文。",
+      "status": "ACCESS_RESTRICTION_UNRESOLVED",
+      "action_taken": "停止该目标，未重试、未切换镜像/接口；搜索摘要未当作全文证据。",
+      "implication": "覆盖存在一项明确缺口；不据其未知内容宣称精确重合或完全排除重合。"
+    }
+  },
+  "estimand_and_identification": {
+    "notation_zh": "R_d,m：对固定(h,b)配置拟合策略m，在dev10物体上先各物体平均36图，再按类别平衡；δ_d=R_d,strong−R_d,weak。",
+    "primary": "C = mean_(h,b in {0,1,2}^2) [delta_O(h,b) - delta_V(h,b)]",
+    "identified_zh": "在固定15源物体、10开发物体、给定缓存/λ/优化目标下，所有臂均可拟合并评价，有限采集分配平均差可计算。无需以视图独立同分布或隐藏因果图为前提。",
+    "exact_controls_accepted": [
+      "O/V都是180图且所有五类对称；每类完整azimuth/elevation/lighting联合条件各出现一次。",
+      "S是两种扩展的共同60图子集；完整九个锚/块映射锁定，O只有3个唯一数据集、V只有3个，S有9个。",
+      "物体身份/条件覆盖在源池内经轮换平衡；不得事后挑某类、物体、块。",
+      "逐图L2特征可由旧标准化精确还原，再乘固定sqrt512；不把完整源池新统计量注入单物体臂。",
+      "状态权重相同且归一化：clean为1/3，10个低/高档状态各1/15；精确期望消除了增强抽样和批内耦合机制。",
+      "meanCE加同一λ/2||W||²、同零初值与梯度收敛门，避免把不同求解误差当作采集交互。"
+    ],
+    "not_identified": [
+      "不分离独立物体数量、物体身份支持及物体×条件连接结构的唯一机制；只能称这套采集分配的效应。",
+      "不识别自然世界do(物体身份)、总体视频/连拍规律或普适有效样本量定律。",
+      "不验证RA低SNR解释：没有直接信号/噪声测量及排除普通正则化的对照。",
+      "不推出完整RA的最佳M、端到端骨干训练、AA/RA/TA排序；两池仅为五家族两档单操作。",
+      "不包含从新源物体总体抽样的不确定性；当前所有50个smallNORB物体已经消费。"
+    ],
+    "common_baseline_note_zh": "S60可描述两条等量新增图片路径，但在C=(δO−δS)−(δV−δS)中代数抵消；不能把S分解算作第二项独立主检验证据。",
+    "statistical_unit_zh": "dev10个物理对象（每类2个）是评价单位；视图、45读出、9配置和5000次bootstrap都不增加独立对象数。"
+  },
+  "decision_and_gate_review": {
+    "symmetry": {
+      "verdict": "AGREE_BEFORE_FEATURE_ACCESS",
+      "reason_zh": "用户问题是采集结构是否改变有用强度选择，反向材料性翻转同样有操作价值；在读NPZ前预锁定双侧C与两个方向不构成看结果后换假设。",
+      "required_separation_zh": "另单列RA动机方向C<0是否支持；C>0翻转只支持选择问题，不能算RA方向预测成功。"
+    },
+    "recommended_primary_reporting": "完整双侧报告C、δO、δV、三策略风险及各自相对clean收益。",
+    "acceptable_material_choice_screen": [
+      "|C|≥.02 nat。",
+      "δO与δV异号，且各自绝对值≥.01 nat。",
+      "两种采集分配内，各自弱/强赢家都比clean至少低.01 nat。",
+      "类别内配对物体bootstrap的C条件95%区间不跨0；所有配置与策略随同一物体带走。",
+      "如保留7/9方向敏感性门，应在冻结前改成至少7/9 C_h,b与主C同号；其重叠性必须说明，不能当9次独立复现。"
+    ],
+    "gate_redundancy_zh": "两δ异号且各≥.01已经蕴含|C|≥.02（同一汇总权重下）；保留两者便于解读，但不能把冗余门包装成额外证据。",
+    "two_value_tiers": {
+      "relative_pool_flip": "仅排序翻转达门，可保留有范围的两池交互信号；若clean胜，实际建议仍是clean。",
+      "operational_choice": "两个结构的不同赢家都胜clean达到预定材料性门，才值得把采集结构纳入这套训练配方的强度选择。"
+    },
+    "interpretation_of_uncertainty_zh": "10个开发物体、每类仅2个使bootstrap区间很脆弱；它是固定源、固定数据开发稳定性门，不保证名义总体覆盖，也不把clean点门冒充显著性。",
+    "result_outcomes": [
+      "测量门通过但材料性翻转门失败：关闭这一固定bank/λ/特征下的预定翻转，不调池、强度、fill、λ或指标。",
+      "C显著或很大但两δ同号：有交互，没有方法选择翻转。",
+      "两池翻转但任一结构clean更好：相对排序层可记录，三选一操作价值门失败。",
+      "双侧价值门通过且C<0：获得进一步独立确认资格；RA动机方向一致，机制仍未识别。",
+      "双侧价值门通过且C>0：获得进一步独立确认资格；RA方向预测失败，须如实保留。",
+      "只在一个旧类/锚/块有阳性：不得替换整体主量或另开选择门。"
+    ]
+  },
+  "one_day_cpu_information_value": {
+    "verdict": "INFORMATIVE_AS_A_NECESSARY_DEVELOPMENT_SCREEN",
+    "reason_zh": "既有缓存足以给出可失败的、精确期望且排除SGD耦合的O/V排序交互。正结果会决定是否投入新的独立对象确认；负结果可关闭这一明确固定方案。它不是仅计算已知恒等式或换终点重排旧结果。",
+    "resource_scope_accepted": "最多45个唯一收敛凸读出；CPU单线程、1小时/2GiB预定上限、一次5000次对象bootstrap。此审查没有实测运行时间。",
+    "success_not_sufficient_zh": "即使阳性，也缺独立未消费对象确认、跨数据/模型及完整RA范围；单一冻结表征结果可能受常规正则化或既有表征偏置解释。",
+    "numerical_vs_scientific_stop_zh": "收敛/内存/时间/能力门失败应记计算或测量不充分，不能写科学效应被反证。特别是S只辅助，若仅S失败而按协议整体停止，必须说明O/V主命题未完成检验。",
+    "no_result_driven_repair_zh": "科学字段、状态映射、正负权重、λ、方向/双侧门和停止规则须在首次新拟合/评价前锁定；失败后不以工程修复名义调出阳性。"
+  },
+  "old_branch_distinction": [
+    {
+      "branch": "source geometric view-score",
+      "status": "KEEP_CLOSED",
+      "difference_zh": "旧题检验源几何评分能否预言角度迁移策略；新题不算/选该评分，处理是采集分配，评价是已见条件上的新物体。共享NORB/缓存不等于同一命题。",
+      "remaining_risk_zh": "不得用旧单操作收益挑池成员或重命名某个事后子组。"
+    },
+    {
+      "branch": "stereo/crop/fill",
+      "status": "KEEP_CLOSED",
+      "difference_zh": "新题只有camera0和既有fill128，既不识别跨眼对应也不比较填充值；不能拿新交互复活已失败解释。"
+    },
+    {
+      "branch": "matched-exposure coupling × few-class risk",
+      "status": "KEEP_CLOSED",
+      "difference_zh": "旧题改变批内状态联合排布、有限SGD预算及少类支持；新题所有类对称，改变真实训练集合并优化精确期望到收敛，估计目标不同。"
+    }
+  ],
+  "prefreeze_required_actions": [
+    {
+      "id": "freeze_symmetric_gate",
+      "status": "PENDING_ROOT_PROTOCOL",
+      "action_zh": "若root采纳双侧选择问题，冻结协议应明确覆盖proposals.json中的单向C门、7/9单向门、相反方向只描述及赢家clean定义；同时保留单独RA方向预测。",
+      "why_zh": "当前快照与拟执行无向主问题尚不一致；在读取特征前修订即可。"
+    },
+    {
+      "id": "include_emmi_toybox",
+      "status": "REQUIRED_IN_POSITIONING",
+      "action_zh": "把上述EMMI/Toybox精确邻近实验写入最终定位，不以一般独立样本原则取代其覆盖。",
+      "why_zh": "等图片数物体/视图配置及冻结最后层本身已做过。"
+    },
+    {
+      "id": "separate_stop_states",
+      "status": "REQUIRED_IN_RESULT_SCHEMA",
+      "action_zh": "区分测量/数值未完成、科学排序门失败、clean操作价值门失败和RA方向失败；明确S辅助地位。",
+      "why_zh": "这些失败不支持相同结论。"
+    }
+  ],
+  "remaining_research_requirements": [
+    "独立确认对象尚未就绪；现有50个NORB与Pets64/64/48不得恢复盲测资格。",
+    "外部确认数据的许可、可用包大小、物体/条件对齐及对象级评价精度须另做有界预检；本次不下载。",
+    "如果未来声称完整RA或一般采集建议，需另外冻结实际操作分布及训练/验证范围。",
+    "Geiping原文访问缺口及其他未穷尽文献覆盖应保留为限制，不能冒称已排除全部直接先例。"
+  ],
+  "local_records_read": [
+    "evidence-cross-audit-20261021/morning-facts-zh.md",
+    "norb-view-transfer-pilot-20261021/result-zh.md",
+    "norb-stereo-mechanism-gate-20261021/stage-result-zh.md",
+    "augmentation-coupling-groups-20261021/finding-zh.md",
+    "norb-view-transfer-pilot-20261021/experiment.py 与protocol.json的目标/归一化等文本字段",
+    "augmentation-coupling-groups-20261021/experiment.py的归一化还原文本字段",
+    "independent-design-challenge-20261021/challenge-scope.json",
+    "independent-design-challenge-20261021/proposals.json"
+  ],
+  "execution_and_blockers": {
+    "completed": "只读项目文本/元数据、普通公开原文web与检索；仅在本次staging目录写本审查文件。",
+    "feature_archive_opened": false,
+    "pixels_decoded": false,
+    "encoder_or_model_inference": false,
+    "training_or_readout_fitting": false,
+    "new_data_or_dependency_download": false,
+    "GPU_MPS_A100": false,
+    "ARIS": false,
+    "automation": false,
+    "CUA_or_CodexUI": false,
+    "PPT_or_8A_access": false,
+    "historical_denied_targets_retried": false,
+    "automatic_approval_rejections": [],
+    "pending_approval_actions": [],
+    "uncertain_outcome_actions": [],
+    "blocked_action": {
+      "action": "读取论文原文",
+      "target": "https://openreview.net/pdf?id=TMs-EYm4_ms",
+      "reason": "OpenReview返回浏览器验证页，未给论文正文。",
+      "disposition": "访问受阻且已停止，未重试或绕路；不是自动审批拒绝。",
+      "independent_work_completed": "其余六项原文近先例核查、设计识别审查、门槛挑战及本JSON均已完成。"
+    },
+    "current_review_complete": true,
+    "experiment_authorized_by_this_reviewer": "仅有条件支持root冻结后的一次CPU必要条件检查；本审查未启动实验。",
+    "project_complete": false
+  }
+}

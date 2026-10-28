@@ -1,0 +1,115 @@
+{
+  "status": "completed_fixed_subset_visual_review_before_task_fit",
+  "reviewer": "independent_question_review",
+  "scope": "Direct tools.view_image inspection at original detail of fixed visibility pages2/3 (classes20..36) and near-duplicates page0; local QA metadata summaries only. No model outputs, GPU, training, downloads, old sealed arrays or reserved-confirmation pixels.",
+  "method": "Limited visual inspection of fixed preselected source/weak/RA contact-sheet panels. This is not expert breed certification or an audit of all1184 photographs/all augmentation epochs.",
+  "files_viewed": [
+    {
+      "path": "qa/visibility-2.png",
+      "sha256": "c2c138c4108cd29c4afebbcf1eee52c62122d0c270a018430494ed79ed7aefa9",
+      "classes": [20,21,22,23,24,25,26,27,28,29]
+    },
+    {
+      "path": "qa/visibility-3.png",
+      "sha256": "89b4799ac85071baa3982a766699ea34938f1ff82bf57e25ffd24103e0e1a1fd",
+      "classes": [30,31,32,33,34,35,36]
+    },
+    {
+      "path": "qa/near-duplicates-0.png",
+      "sha256": "4fcdfc25fcc3d23253376e1eb630176fa760c82efaf15ce6b7e6c702f8fa02e3",
+      "pairs": [["Bombay_132","Bombay_107"],["keeshond_103","keeshond_167"]]
+    }
+  ],
+  "visibility_summary": {
+    "fixed_examples_reviewed": 17,
+    "pet_subject_visible_in_all_reviewed_weak_and_RA_panels": true,
+    "background_only_or_total_subject_removal_observed": false,
+    "obvious_appearance_damage_classes": [21,22,28,29,33,35],
+    "additional_color_or_contrast_uncertainty_classes": [23,27],
+    "notable_geometric_fill_or_rotation_classes": [24,31],
+    "breed_semantics_preservation_certified": false,
+    "decision": "Report appearance/recognizability uncertainty and retain these fixed sources. Do not filter solarized/low-contrast examples or modify RA to obtain favorable task performance. Original annotated breed remains the operational training target; actual breed-cue availability is not guaranteed.",
+    "observations_zh": "17例都仍可辨为宠物主体，未见完整主体被移除或只剩背景。但多个RA面板明显反色、伪彩或对比度失真；粗粒度可见性不等于细粒度品种可辨，也不证明标签保持。"
+  },
+  "per_fixed_example": [
+    {"class_id":20,"source_id":"Maine_Coon_123","subject_visible":true,"note":"Weak crop zooms/reframes the cat; head and substantial body remain visible. No additional coarse subject loss apparent in RA; breed identity not independently certified."},
+    {"class_id":21,"source_id":"miniature_pinscher_172","subject_visible":true,"note":"RA has severe dark/false-color edge and surface changes. Head/body shape remain visible; coat-color and fine appearance cues uncertain."},
+    {"class_id":22,"source_id":"newfoundland_176","subject_visible":true,"note":"RA strongly alters background tonal appearance and dark fur/lighting. Head/silhouette remain visible; fine coat/appearance evidence uncertain."},
+    {"class_id":23,"source_id":"Persian_133","subject_visible":true,"note":"Close face retained, with noticeably flatter/altered color and contrast in RA. Fine color/texture evidence uncertain; not a breed-label certificate."},
+    {"class_id":24,"source_id":"pomeranian_170","subject_visible":true,"note":"RA rotates/repositions image and adds visible fill. Face/ears remain largely visible, with altered framing; no complete subject loss."},
+    {"class_id":25,"source_id":"pug_135","subject_visible":true,"note":"Face and upper/full body remain visible in weak and RA. No coarse failure observed; fine breed recognition was not tested."},
+    {"class_id":26,"source_id":"Ragdoll_127","subject_visible":true,"note":"Close head/ears retained. Small tonal/framing differences do not remove the coarse subject; breed cues not certified."},
+    {"class_id":27,"source_id":"Russian_Blue_131","subject_visible":true,"note":"RA darkens/changes contrast across face and fur; cat head/posture retained, but appearance/color evidence is less reliable."},
+    {"class_id":28,"source_id":"saint_bernard_171","subject_visible":true,"note":"RA has false-color/solarized regions over face/chest and surroundings. Head remains recognizable as a dog; coat-color/texture evidence uncertain."},
+    {"class_id":29,"source_id":"samoyed_172","subject_visible":true,"note":"RA severely recolors fur and face into blue/green/contrasting regions. Dog outline/head remains visible; fine appearance evidence substantially altered."},
+    {"class_id":30,"source_id":"scottish_terrier_11","subject_visible":true,"note":"Dog head and substantial body remain visible; no obvious total-loss or severe recoloring in this fixed RA panel. No expert breed assertion."},
+    {"class_id":31,"source_id":"shiba_inu_177","subject_visible":true,"note":"RA rotation/reframing and fill are visible; face, ears and torso remain in view. Framing changes can still affect fine evidence."},
+    {"class_id":32,"source_id":"Siamese_114","subject_visible":true,"note":"Cat head and body remain visible across panels; no obvious coarse loss in this draw. Breed preservation not certified."},
+    {"class_id":33,"source_id":"Sphynx_176","subject_visible":true,"note":"RA creates pronounced false-color/edge regions on head and skin. Head/torso remain visible but skin/color/texture cues are altered."},
+    {"class_id":34,"source_id":"staffordshire_bull_terrier_105","subject_visible":true,"note":"Head, ears and upper body remain visible with modest tonal/framing changes. No expert discrimination from neighboring breeds performed."},
+    {"class_id":35,"source_id":"wheaten_terrier_102","subject_visible":true,"note":"RA has pronounced false-color over head and large dark/inverted regions. Dog remains visible; ordinary fur/color/texture evidence is substantially altered. Dark regions are not automatically interpreted as geometric occlusion."},
+    {"class_id":36,"source_id":"yorkshire_terrier_187","subject_visible":true,"note":"Head and body remain visible; modest apparent tone/detail changes. No coarse subject-loss observed, without breed certification."}
+  ],
+  "duplicate_adjudications": [
+    {
+      "source_ids": ["Bombay_132","Bombay_107"],
+      "decision": "same_capture",
+      "confidence": "high_visual_confidence_not_byte_identity",
+      "evidence_zh": "黑猫的姿态、眼睛/耳朵位置、构图、墙砖及背景结构相同，符合相同照片的分辨率/重编码版本；不是两个独立拍摄样本。",
+      "metadata": {"partitions":["development","development"],"dimensions":[[600,450],[300,225]],"dhash_distance":0,"decoded_RGB_SHA_equal":false},
+      "action_under_predeclared_rule": "Remove both IDs from development, without replacement."
+    },
+    {
+      "source_ids": ["keeshond_103","keeshond_167"],
+      "decision": "same_capture",
+      "confidence": "high_visual_confidence_not_byte_identity",
+      "evidence_zh": "犬脸、口舌、毛发轮廓及门框/网门/室内背景的空间关系高度相同，符合相同拍摄的重复/重编码，而不是独立捕获。",
+      "metadata": {"partitions":["train","development"],"dimensions":[[500,401],[500,401]],"dhash_distance":0,"decoded_RGB_SHA_equal":false},
+      "action_under_predeclared_rule": "Remove both IDs from train/development, without replacement. This also prevents the known pair crossing the training/development boundary."
+    }
+  ],
+  "duplicate_rule_application": {
+    "remove_ids": ["Bombay_132","Bombay_107","keeshond_103","keeshond_167"],
+    "no_replacement": true,
+    "expected_counts_if_only_these_four_are_removed": {"train":591,"development":589,"train_class18":15,"development_class7":14,"development_class18":15,"all_other_class_partition_counts":16},
+    "scope": "Expected arithmetic from current candidate metadata; not a claim that final fit-manifest has already been written or independently validated."
+  },
+  "local_QA_metadata_read": {
+    "qa/source-qa.json_sha256": "3be3a2a8eaebe7d9c06b9c4213a6a86b9af688e00284ad885c04b5ebe2ead8e4",
+    "qa/geometry-visibility.json_sha256": "086405a0a40fa3de0aa857f682f061a5351c3f48bcc6fd079c28403091467955",
+    "source_rows":1184,
+    "exact_decoded_duplicate_groups_reported":0,
+    "dhash_candidate_pairs_reported":2,
+    "EXIF_or_other_source_issues_reported":[],
+    "geometry_rows_train_epoch0":592,
+    "usable_foreground_proxy_rows":591,
+    "unavailable_train_foreground_proxy_source_id":"saint_bernard_15",
+    "zero_foreground_after_RA_among_usable_proxies":0,
+    "usable_weak_original_foreground_retention_range":[0.6695457278740502,1.0],
+    "usable_RA_to_weak_pixel_count_ratio_range":[0.7068568798895536,1.0005423833875717],
+    "caveat":"Mask counts certify neither subject identity nor breed-cue preservation. A ratio slightly above1 is a resampled pixel-count proxy, not a probability of semantic information retained. Only one predeclared draw/epoch is covered."
+  },
+  "missing_mask_boundary": {
+    "all_background_source_ids_from_metadata":["miniature_pinscher_14","saint_bernard_108","saint_bernard_15"],
+    "partitions":{"miniature_pinscher_14":"development","saint_bernard_108":"development","saint_bernard_15":"train"},
+    "interpretation":"Unavailable auxiliary foreground proxy, not evidence that the actual photo contains no pet or that RA removed it. The train row has null retention ratios and foreground_proxy_available=false; its zero visible-mask count must not be counted as an augmentation failure.",
+    "independent_visual_review_of_these_three":false,
+    "parent_handles_fixed_missing_mask_sheet":true,
+    "decision":"Preserve qa-attempt01 failure and source images. No deletion based only on missing/all-background mask. This review does not certify the unviewed missing-mask photographs."
+  },
+  "remaining_gates": [
+    "Combine with parent's fixed pages0/1 and three missing-mask source review; preserve the scope and uncertainty of each reviewer.",
+    "Write/freeze final manifest after the predeclared duplicate deletions and validate source-photo IDs, class counts and known duplicate boundaries.",
+    "Verify dummy runtime/memory/RNG receipt and formal protocol lock before scientific fitting. This visual review is not hardware approval or evidence of a task effect."
+  ],
+  "independence_and_authorization_limits": {
+    "animal_identity_verified":false,
+    "pretraining_overlap_absence_verified":false,
+    "all_augmentation_draws_label_preserving":false,
+    "finite_sample_exploration_only":true,
+    "task_fitting_or_model_result_selection_performed":false,
+    "reserved_confirmation_read":false,
+    "historical_blocked_sources_retried":false,
+    "parent_thread_direct_message_sent":false
+  }
+}

@@ -1,0 +1,785 @@
+{
+  "at_utc": "2026-10-22T16:32:51.236865+00:00",
+  "status": "partial_diagnostic_preserved_original_failure_no_continuation",
+  "executed_isolated_optimizer_steps": 5,
+  "completed_case_receipts": 4,
+  "complete8_case_primary_analysis_available": false,
+  "new_GPU_forward_or_optimizer_calls": 0,
+  "frozen_protocol_or_tolerance_modified": false,
+  "post_failure_analysis_not_preregistered_new_scientific_test": true,
+  "cases": [
+    {
+      "case": "back-batch0",
+      "all_original_AdamW_oracles_passed": true,
+      "all_A_data_gradients_exact_zero": true,
+      "all_B_data_gradients_nonzero": true,
+      "all_finite": true,
+      "merged_QV_joint_Frobenius": 0.00010182200184458708,
+      "parameters": [
+        {
+          "name": "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.210178175678152e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0012766854886203166,
+          "actual_parameter_delta_norm": 0.00014924480148435264,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.190266173362828e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.826613064922718e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.01327746565253003,
+          "actual_parameter_delta_norm": 0.0001497599789672717,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.53118904452078e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_10.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.024523799131316e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_10.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0016407917268268463,
+          "actual_parameter_delta_norm": 0.0001491743544021382,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.379185114822921e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_10.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.434358086424233e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_10.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.009939158470966646,
+          "actual_parameter_delta_norm": 0.00014972758518594736,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.440790003796481e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_11.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.0778112569109766e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_11.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0037508345253273443,
+          "actual_parameter_delta_norm": 0.00014953802922414988,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.287497787807824e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_11.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.846716692545442e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_11.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.021791374113490074,
+          "actual_parameter_delta_norm": 0.00014977000385865414,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.399641413661739e-13
+        },
+        {
+          "name": "heads.head.weight",
+          "finite": true,
+          "gradient_nonzero": 28416,
+          "gradient_norm": 4.687180282036215,
+          "actual_parameter_delta_norm": 0.0015186440303149012,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.5248258379850785e-09
+        },
+        {
+          "name": "heads.head.bias",
+          "finite": true,
+          "gradient_nonzero": 37,
+          "gradient_norm": 0.2667988642169805,
+          "actual_parameter_delta_norm": 5.479528579516707e-05,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.145193828129166e-09
+        }
+      ]
+    },
+    {
+      "case": "front-batch0",
+      "all_original_AdamW_oracles_passed": true,
+      "all_A_data_gradients_exact_zero": true,
+      "all_B_data_gradients_nonzero": true,
+      "all_finite": true,
+      "merged_QV_joint_Frobenius": 0.00010143521020966819,
+      "parameters": [
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.210178175678152e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0005167194011486155,
+          "actual_parameter_delta_norm": 0.00014833289899621963,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.189216119323611e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.826613064922718e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.017414369189791057,
+          "actual_parameter_delta_norm": 0.00014965521753797014,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.400939788722609e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.024523799131316e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.000663314821552797,
+          "actual_parameter_delta_norm": 0.00014879161064779216,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.491306857580643e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.434358086424233e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.006667448482954285,
+          "actual_parameter_delta_norm": 0.0001496297665019662,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.429238981613456e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.0778112569109766e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0008279126668585367,
+          "actual_parameter_delta_norm": 0.00014900376430956687,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.432267751204271e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.846716692545442e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.008350998352132913,
+          "actual_parameter_delta_norm": 0.00014968206888231483,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 6.391597833308859e-13
+        },
+        {
+          "name": "heads.head.weight",
+          "finite": true,
+          "gradient_nonzero": 28416,
+          "gradient_norm": 4.687180115193064,
+          "actual_parameter_delta_norm": 0.0015186440338199269,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.52482848864255e-09
+        },
+        {
+          "name": "heads.head.bias",
+          "finite": true,
+          "gradient_nonzero": 37,
+          "gradient_norm": 0.26679886416985477,
+          "actual_parameter_delta_norm": 5.479528579516707e-05,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.145193828129166e-09
+        }
+      ]
+    },
+    {
+      "case": "front-batch1",
+      "all_original_AdamW_oracles_passed": true,
+      "all_A_data_gradients_exact_zero": true,
+      "all_B_data_gradients_nonzero": true,
+      "all_finite": true,
+      "merged_QV_joint_Frobenius": 0.00010164074631933798,
+      "parameters": [
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.210178175678152e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0008976299365037237,
+          "actual_parameter_delta_norm": 0.00014823632101887795,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.139206248032027e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.826613064922718e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.012031229936910305,
+          "actual_parameter_delta_norm": 0.00014968803946748877,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 6.843518502266163e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.024523799131316e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0008621409328228632,
+          "actual_parameter_delta_norm": 0.0001488039802997646,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.882649318337095e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.434358086424233e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.009742700194914924,
+          "actual_parameter_delta_norm": 0.00014963034165725456,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.997976967058398e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.0778112569109766e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0009973373758880733,
+          "actual_parameter_delta_norm": 0.00014906220760694153,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.391928493187972e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.846716692545442e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.007773923252636055,
+          "actual_parameter_delta_norm": 0.00014966274869498858,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.153987358361606e-13
+        },
+        {
+          "name": "heads.head.weight",
+          "finite": true,
+          "gradient_nonzero": 28416,
+          "gradient_norm": 4.294892264318202,
+          "actual_parameter_delta_norm": 0.0015186468951966803,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.505705733180097e-09
+        },
+        {
+          "name": "heads.head.bias",
+          "finite": true,
+          "gradient_nonzero": 37,
+          "gradient_norm": 0.22830641142171307,
+          "actual_parameter_delta_norm": 5.4797027255120873e-05,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.145906029260569e-09
+        }
+      ]
+    },
+    {
+      "case": "front-batch2",
+      "all_original_AdamW_oracles_passed": true,
+      "all_A_data_gradients_exact_zero": true,
+      "all_B_data_gradients_nonzero": true,
+      "all_finite": true,
+      "merged_QV_joint_Frobenius": 0.00010152354364021336,
+      "parameters": [
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.210178175678152e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.00038623721548646943,
+          "actual_parameter_delta_norm": 0.00014804484470135032,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 6.874373960123693e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.826613064922718e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.011562856582664366,
+          "actual_parameter_delta_norm": 0.00014966242985652104,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.24423216285654e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.024523799131316e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0005927683893312631,
+          "actual_parameter_delta_norm": 0.00014869944319419718,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.336484109328782e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.434358086424233e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.006917634604080326,
+          "actual_parameter_delta_norm": 0.00014966677751537051,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.359646267623098e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.0778112569109766e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.00101486797957353,
+          "actual_parameter_delta_norm": 0.0001491059314277888,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.026025282103434e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.846716692545442e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.008381406016456256,
+          "actual_parameter_delta_norm": 0.00014966452151243478,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.530794915855258e-13
+        },
+        {
+          "name": "heads.head.weight",
+          "finite": true,
+          "gradient_nonzero": 28416,
+          "gradient_norm": 4.616536072084977,
+          "actual_parameter_delta_norm": 0.0015186515000519326,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.5211398836655352e-09
+        },
+        {
+          "name": "heads.head.bias",
+          "finite": true,
+          "gradient_nonzero": 37,
+          "gradient_norm": 0.25614959779238106,
+          "actual_parameter_delta_norm": 5.4797103876507064e-05,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.1456121948593143e-09
+        }
+      ]
+    },
+    {
+      "case": "front-batch3",
+      "all_original_AdamW_oracles_passed": true,
+      "all_A_data_gradients_exact_zero": true,
+      "all_B_data_gradients_nonzero": true,
+      "all_finite": true,
+      "merged_QV_joint_Frobenius": 0.00010139511660453624,
+      "parameters": [
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.210178175678152e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0005589723977180383,
+          "actual_parameter_delta_norm": 0.00014794888643801944,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 6.965923589227719e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.826613064922718e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.01153173908043785,
+          "actual_parameter_delta_norm": 0.00014967070762194256,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.497935005350027e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.024523799131316e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0005287881903439778,
+          "actual_parameter_delta_norm": 0.000148712451223514,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.681521354089562e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 9.434358086424233e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_1.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.011954097588872363,
+          "actual_parameter_delta_norm": 0.00014962443758341753,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.263094718383122e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.aq",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 1.0778112569109766e-09
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bq",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.0010325551280606633,
+          "actual_parameter_delta_norm": 0.00014909793847432264,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.223489100405758e-13
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.av",
+          "finite": true,
+          "gradient_nonzero": 0,
+          "gradient_norm": 0.0,
+          "actual_parameter_delta_norm": 0.0,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 8.846716692545442e-10
+        },
+        {
+          "name": "encoder.layers.encoder_layer_2.self_attention.parametrizations.in_proj_weight.0.bv",
+          "finite": true,
+          "gradient_nonzero": 3072,
+          "gradient_norm": 0.009997240959277462,
+          "actual_parameter_delta_norm": 0.00014969917963990675,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 7.320781994664665e-13
+        },
+        {
+          "name": "heads.head.weight",
+          "finite": true,
+          "gradient_nonzero": 28416,
+          "gradient_norm": 4.864163836604553,
+          "actual_parameter_delta_norm": 0.0015186477312552904,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.521318341608403e-09
+        },
+        {
+          "name": "heads.head.bias",
+          "finite": true,
+          "gradient_nonzero": 37,
+          "gradient_norm": 0.272868021932914,
+          "actual_parameter_delta_norm": 5.4798635335999935e-05,
+          "original_AdamW_oracle_passed": true,
+          "oracle_max_abs_error": 2.1459045582150615e-09
+        }
+      ]
+    }
+  ],
+  "paired_head_gradient_comparison_batch0": [
+    {
+      "parameter": "heads.head.weight",
+      "max_abs_difference": 2.682209014892578e-07,
+      "relative_L2_difference": 1.0038273122285934e-06,
+      "failed_elements_original_tolerance": 142,
+      "total_elements": 28416,
+      "max_error_over_original_tolerance": 7.262470880599389
+    },
+    {
+      "parameter": "heads.head.bias",
+      "max_abs_difference": 7.450580596923828e-09,
+      "relative_L2_difference": 7.615871892073449e-08,
+      "failed_elements_original_tolerance": 0,
+      "total_elements": 37,
+      "max_error_over_original_tolerance": 0.010031486219029929
+    }
+  ],
+  "initial_eval_probe_front_back_max_abs_difference": 0.0,
+  "front_only_feature_changes": [
+    {
+      "gradient_batch": 0,
+      "pooled_CLS_change_RMS": 1.016576595970935e-06,
+      "probe_RMS": [
+        9.052828585234771e-07,
+        1.1168343194114648e-06
+      ],
+      "probe_floor": [
+        7.227612286442309e-08,
+        7.284614866875927e-08
+      ],
+      "probes_resolved": [
+        true,
+        true
+      ]
+    },
+    {
+      "gradient_batch": 1,
+      "pooled_CLS_change_RMS": 9.753811939848976e-07,
+      "probe_RMS": [
+        8.715541856471855e-07,
+        1.0691726935531415e-06
+      ],
+      "probe_floor": [
+        7.227612286442309e-08,
+        7.284614866875927e-08
+      ],
+      "probes_resolved": [
+        true,
+        true
+      ]
+    },
+    {
+      "gradient_batch": 2,
+      "pooled_CLS_change_RMS": 9.549913392538918e-07,
+      "probe_RMS": [
+        8.852385238910382e-07,
+        1.019985133185332e-06
+      ],
+      "probe_floor": [
+        7.227612286442309e-08,
+        7.284614866875927e-08
+      ],
+      "probes_resolved": [
+        true,
+        true
+      ]
+    },
+    {
+      "gradient_batch": 3,
+      "pooled_CLS_change_RMS": 1.0005241017336316e-06,
+      "probe_RMS": [
+        8.860877507585724e-07,
+        1.1031525072515561e-06
+      ],
+      "probe_floor": [
+        7.227612286442309e-08,
+        7.284614866875927e-08
+      ],
+      "probes_resolved": [
+        true,
+        true
+      ]
+    }
+  ],
+  "front_back_CLS_change_ratio": null,
+  "training_batch_CE_before_step": {
+    "front": "3.7156782150268555",
+    "back": "3.7156777381896973"
+  },
+  "started_to_failure_UTC_seconds_not_perf_counter_total": 11.830232,
+  "cause": "Not localized. Tiny training-mode FP32/head-gradient discrepancy is observed; backend/autograd-dependent numerics is a hypothesis, not a demonstrated root cause.",
+  "decision": "Stop. Do not increase LR, relax tolerance, add batches/seeds or run a full training experiment."
+}

@@ -1,0 +1,10 @@
+{
+  "status": "resolved_before_any_numeric_impact_run",
+  "failed_actions": 4,
+  "failed_manifest_followup": 1,
+  "reason": "Git blob hash prefix accidentally used literal backslash-zero rather than a NUL byte in the archival script; all source batches failed at first pre-write assert. Manifest follow-up consequently found no files.",
+  "correction": "Build git header as ASCII('blob '+size)+bytes([0]); retained exact content and expected source SHA. All10 source blobs then matched.",
+  "scientific_inputs_or_comparisons_changed": false,
+  "permission_denial": false,
+  "overwritten_files": 0
+}

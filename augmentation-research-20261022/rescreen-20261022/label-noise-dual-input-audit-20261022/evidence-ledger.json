@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "task": "Bounded full-text and official-source audit of label-noise dual-entry augmentation question",
+  "task_start_utc": "2026-10-22 18:52:33 UTC",
+  "task_deadline_utc": "2026-10-22 19:37:33 UTC",
+  "evidence_collection_completed_utc": "2026-10-22 19:10:38 UTC",
+  "requested_model_settings": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "speed": "Fast",
+    "backend_routing_verified": false
+  },
+  "restrictions": {
+    "ARiS_used": false,
+    "new_training": false,
+    "model_inference": false,
+    "GPU_MPS_A100_or_paid_compute": false,
+    "sealed_test_read": false,
+    "SCI_CV_accessed": false,
+    "PPT_modified": false,
+    "background_jobs_started": 0
+  },
+  "search": {
+    "engine": "web search; public primary-source websites; GitHub connector for official code",
+    "queries": [
+      "\"augmentation\" \"label noise\" \"adaptive\" \"magnitude\"",
+      "\"confidence\" \"augmentation\" \"noisy labels\"",
+      "\"Augmentation Strategies for Learning with Noisy Labels\" github",
+      "\"Sample-aware RandAugment\" github",
+      "\"AutoDO\" \"Robust AutoAugment\" github",
+      "\"label noise\" \"adaptive augmentation\" -\"graph\" -\"language\" -\"prompt\"",
+      "\"data augmentation\" \"noisy labels\" \"sample\" \"adaptive\" -graph -language -prompt",
+      "\"augmentation\" \"label noise\" \"controller\"",
+      "\"augmentation\" \"noisy labels\" \"confidence-based\" -graph",
+      "\"augmentation\" \"clean label\" \"noisy label\" \"oracle\"",
+      "\"SelectMix\" \"github\"",
+      "\"curriculum data augmentation\" \"noisy labels\"",
+      "\"CUDA\" \"augmentation\" \"label noise\"",
+      "\"adaptive augmentation\" \"label noise\" 2025 2026",
+      "\"ExploreAugment\"",
+      "\"AdaAug\" \"label noise\"",
+      "\"LA3\" \"label-aware\" \"noise\"",
+      "\"AdaAug: Learning Class- and Instance-adaptive Data Augmentation Policies\"",
+      "\"LA3: Efficient Label-Aware AutoAugment\"",
+      "\"Confidence-based\" \"Time Warping\" noisy labels",
+      "\"Sample-aware RandAugment\" \"noise\"",
+      "\"augmentation controller\" \"clean labels\"",
+      "\"CTW: Confident Time-Warping\""
+    ],
+    "query_count": 23,
+    "query_log_basis": "Query text from this task's tool-call record; no claim of systematic or exhaustive literature coverage",
+    "stop_reason": "Sufficient bounded evidence for non-greenlight decision; do not expand search to force a candidate"
+  },
+  "scientific_decision": {
+    "broad_novelty_claim": "closed_as_already_covered",
+    "exact_four_grid": "not_identified_in_read_material; novelty_not_established",
+    "training_recommendation": "do_not_start_now",
+    "retained_deliverable": "conditional classroom mechanism-audit protocol, not a new method",
+    "investment_gate_from_previous_temperature_check": "not_reused; no scientific equivalence or mechanism-null claim"
+  },
+  "primary_papers": [
+    {
+      "id": "sra",
+      "title": "Sample-aware RandAugment: Search-free Automatic Data Augmentation for Effective Image Recognition",
+      "url": "https://arxiv.org/html/2508.08004v1",
+      "status": "full_text_available_targeted_read",
+      "scope": "Sections 2, 3.1–3.3, equations 1–2 and algorithm; official implementation data flow. Earlier screening already examined experiments.",
+      "repo": "https://github.com/ainieli/Sample-awareRandAugment",
+      "dependence": "Current label directly enters MIS; supervised loss uses same observed label in released loop.",
+      "novelty_boundary": "Formula dependence is already explicit. Exact oracle label-routing four-cell ablation not identified in read portions; not an exhaustive absence claim."
+    },
+    {
+      "id": "augdesc",
+      "title": "Augmentation Strategies for Learning with Noisy Labels",
+      "url": "https://arxiv.org/html/2103.02130v3",
+      "status": "full_text_available_targeted_read",
+      "scope": "Sections 3.1–3.4, 4.1–4.7 including weak/strong comparisons, Appendix A.1–A.3 algorithms; official CIFAR train/dataloader/config/RA.",
+      "repo": "https://github.com/KentoNishi/Augmentation-for-LNL",
+      "dependence": "Image transforms accept image only; CE loss modeling and target refinement use observed label.",
+      "novelty_boundary": "Already separates augmentation for loss analysis/pseudo-labeling from gradient update. WW/SS/WS is not independent oracle labels for controller and loss.",
+      "version_caveat": "dataloader eval_train uses test transform; author note says intended weak augmentation, negligible impact not independently verified. RandAugment stores m but samples random strength."
+    },
+    {
+      "id": "autodo",
+      "title": "AutoDO: Robust AutoAugment for Biased Data with Label Noise via Scalable Probabilistic Implicit Differentiation",
+      "url": "https://arxiv.org/html/2103.05863v2",
+      "status": "full_text_available_targeted_read",
+      "scope": "Sections 3–5, augmentation/weights/soft-label joint optimization and A/AW/AWS ablations; official implicit-augment.py and automodels.py.",
+      "repo": "https://github.com/gudovskiy/autodo",
+      "dependence": "Fixed augmentation model accepts index,image; observed labels and validation supervision influence learned hyperparameters through optimization.",
+      "novelty_boundary": "Joint label-noise and augmentation optimization is prior art; not same fixed SRA four-cell routing."
+    },
+    {
+      "id": "cbs",
+      "title": "Learning with Imbalanced Noisy Data by Preventing Bias in Sample Selection",
+      "url": "https://arxiv.org/html/2402.11242v1",
+      "status": "full_text_available_targeted_read",
+      "scope": "Sections III-B–D, IV-D; official main.py robust_train path.",
+      "repo": "https://github.com/NUST-Machine-Intelligence-Laboratory/CBS",
+      "dependence": "Current observed label affects clean pool and p_y threshold; fixed-pool Mixup weight ordering uses max softmax, while pseudo-target also uses label.",
+      "novelty_boundary": "Confidence controlled augmentation and noise routing are established; component ablations read do not show exact oracle four-cell routing."
+    },
+    {
+      "id": "ctw",
+      "title": "CTW: Confident Time-Warping for Time-Series Label-Noise Learning",
+      "url": "https://www.ijcai.org/proceedings/2023/0450.pdf",
+      "publication": "IJCAI 2023, 4046–4054, doi:10.24963/ijcai.2023/450",
+      "status": "full_text_available_targeted_read",
+      "scope": "Main text sections 3, 4.3–4.4 and visible component ablation table; official training helper and two experiment shell scripts read as text only. Supplementary PDF not read.",
+      "repo": "https://github.com/qianlima-lab/CTW",
+      "dependence": "CE and classwise selection use noisy labels; selected data are time-warped then supervised with corresponding noisy targets.",
+      "novelty_boundary": "Direct prior for avoiding indiscriminate noisy-data augmentation; time-series domain; all/confident and component ablations differ from oracle two-label routing."
+    },
+    {
+      "id": "la3",
+      "title": "LA3: Efficient Label-Aware AutoAugment",
+      "url": "https://arxiv.org/html/2304.10310v1",
+      "status": "full_text_available_targeted_read",
+      "scope": "Sections 3.2–3.3, 4.4; official dataset policy[target] and training loss.",
+      "repo": "https://github.com/Simpleple/LA3-Label-Aware-AutoAugment",
+      "dependence": "Current target directly selects class policy and is returned for supervised loss.",
+      "novelty_boundary": "The generic label-used-twice mechanism already exists; exact noisy/clean two-entry experiment not identified in read sections."
+    },
+    {
+      "id": "adaaugment",
+      "title": "AdaAugment: A Tuning-Free and Adaptive Approach to Enhance Data Augmentation",
+      "url": "https://arxiv.org/html/2405.11467v3",
+      "version_date": "2025-07-13",
+      "status": "full_text_available_targeted_read",
+      "scope": "Section III reward/state/action and IV-G/H analyses/ablations; official train.py, A2C.py, dataset and WRN forward.",
+      "repo": "https://github.com/Jackbrocp/AdaAugment",
+      "dependence": "Label directly enters policy reward through three CE terms, thus future actions/cache. Audited WRN labels formal argument is unused in its forward body.",
+      "novelty_boundary": "Distinct from current-score SRA but closes generic adaptive label-conditioned training feedback claim. AdaAug (ICLR 2022) is a different paper."
+    },
+    {
+      "id": "entaugment",
+      "title": "EntAugment: Entropy-Driven Adaptive Data Augmentation Framework for Image Classification",
+      "url": "https://arxiv.org/html/2409.06290v1",
+      "status": "full_text_available_targeted_read",
+      "scope": "Method Section 3.1–3.2 and algorithm; official train_EntAugment.py and cached-magnitude dataset.",
+      "repo": "https://github.com/Jackbrocp/EntAugment",
+      "dependence": "Entropy magnitude does not directly use observed label at fixed logits; CE changes future model. Cached update timing differs from extra-score-forward SRA.",
+      "novelty_boundary": "Potential score-level negative control only; entire method is not a perfectly matched baseline and is not noise-immune."
+    },
+    {
+      "id": "selectmix",
+      "title": "SelectMix: Enhancing Label Noise Robustness through Targeted Sample Mixing",
+      "url": "https://arxiv.org/html/2509.11265v1",
+      "status": "full_text_available_targeted_read_code_unconfirmed",
+      "scope": "Method and alpha ablations; Appendix B Algorithm 1, Appendix C settings.",
+      "repo": null,
+      "dependence": "Given-label/OOF mismatch selects mixing; given label determines partner class pool and contributes to soft target.",
+      "novelty_boundary": "Very close generic double-entry prior; exact oracle independent-label grid not identified. No author-linked official code confirmed; search failure is not proof code is unavailable."
+    },
+    {
+      "id": "sada",
+      "title": "On-the-Fly Data Augmentation via Gradient-Guided and Sample-Aware Influence Estimation",
+      "url": "https://arxiv.org/html/2510.00434v1",
+      "status": "full_text_available_targeted_read_code_unconfirmed",
+      "scope": "Section 3 equations 2–7.",
+      "repo": null,
+      "dependence": "Derivation uses label, efficient approximation replaces one-hot labels with current predictions. Released-code behavior unverified.",
+      "novelty_boundary": "Do not misclassify efficient score as current observed-label dependence based solely on intermediate derivation."
+    },
+    {
+      "id": "madaug",
+      "title": "When to Learn What: Model-Adaptive Data Augmentation Curriculum",
+      "url": "https://arxiv.org/html/2309.04747v2",
+      "status": "full_text_available_method_read_code_not_read",
+      "scope": "Section 3, equations and joint-training algorithm; code link observed but not audited.",
+      "repo": "https://github.com/JackHck/MADAug",
+      "dependence": "Feature-input policy learned through train/validation objectives, according to paper.",
+      "novelty_boundary": "Background on indirect label dependence; not used as proof of exact coverage."
+    },
+    {
+      "id": "activeaugment",
+      "title": "ActiveAugment: Online Active Learning for Augmentation Selection in Deep Learning",
+      "url": "https://arxiv.org/html/2608.28923v1",
+      "status": "full_text_available_targeted_read_code_not_read",
+      "scope": "Sections 3–4 selection/learning and evaluation; official link observed but no code audit.",
+      "repo": "https://github.com/noahvide/ActiveAugment",
+      "dependence": "Paper uses predictive informativeness and feature displacement for selection; supervised terms use labels. Individual strategy implementations unverified.",
+      "novelty_boundary": "Recent proximity check; not evidence that oracle label-routing study was already done."
+    },
+    {
+      "id": "exploreaugment",
+      "title": "ExploreAugment (exact version/authorship not verified from full text)",
+      "url": "https://openreview.net/pdf/44737a43d938147e967d6e47a4996467fc4a44db.pdf",
+      "status": "blocked_browser_verification_no_full_text",
+      "scope": "Search lead only; full-text attempt redirected to challenge.",
+      "repo": null,
+      "novelty_boundary": "Snippet not used to confirm or exclude duplication; do not clear novelty against this work."
+    }
+  ],
+  "code_audit": {
+    "method": "Official public repositories read via GitHub connector, pinned refetches; no clone/install/import/execution.",
+    "repository_count": 8,
+    "file_count": 25,
+    "files": [
+      {
+        "id": "sra",
+        "repo": "ainieli/Sample-awareRandAugment",
+        "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+        "path": "models/cifar/preact_resnet.py",
+        "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/cifar/preact_resnet.py",
+        "blob_sha": "b557e9fdf23deed2a1acb02568910556775201eb",
+        "line_count": 126,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "sra",
+        "repo": "ainieli/Sample-awareRandAugment",
+        "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+        "path": "transforms/SRA.py",
+        "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/transforms/SRA.py",
+        "blob_sha": "946570ba9da2adf368b608d6474a874a7803075f",
+        "line_count": 428,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "sra",
+        "repo": "ainieli/Sample-awareRandAugment",
+        "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+        "path": "loss/__init__.py",
+        "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/loss/__init__.py",
+        "blob_sha": "b135542156edb359c6c084cca257f24a5c833c32",
+        "line_count": 38,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "augdesc",
+        "repo": "KentoNishi/Augmentation-for-LNL",
+        "commit": "908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda",
+        "path": "dataloader_cifar.py",
+        "url": "https://github.com/KentoNishi/Augmentation-for-LNL/blob/908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda/dataloader_cifar.py",
+        "blob_sha": "8bdd98d720f5063b942d7cfa12805b7924988944",
+        "line_count": 492,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "augdesc",
+        "repo": "KentoNishi/Augmentation-for-LNL",
+        "commit": "908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda",
+        "path": "randaugment.py",
+        "url": "https://github.com/KentoNishi/Augmentation-for-LNL/blob/908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda/randaugment.py",
+        "blob_sha": "4ae80df8f49ba6c1886e651ce0426ad677e62ea7",
+        "line_count": 173,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "augdesc",
+        "repo": "KentoNishi/Augmentation-for-LNL",
+        "commit": "908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda",
+        "path": "presets.json",
+        "url": "https://github.com/KentoNishi/Augmentation-for-LNL/blob/908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda/presets.json",
+        "blob_sha": "d0ba633555c967d2d61e378977aa87be4f82c67d",
+        "line_count": 866,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "autodo",
+        "repo": "gudovskiy/autodo",
+        "commit": "ad80c5ca84d52fcc0cb4b8e5f6204b7e0eb19f7a",
+        "path": "custom_models/automodels.py",
+        "url": "https://github.com/gudovskiy/autodo/blob/ad80c5ca84d52fcc0cb4b8e5f6204b7e0eb19f7a/custom_models/automodels.py",
+        "blob_sha": "f643598ec4773d7a632e452451d7f59a105e259c",
+        "line_count": 540,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "autodo",
+        "repo": "gudovskiy/autodo",
+        "commit": "ad80c5ca84d52fcc0cb4b8e5f6204b7e0eb19f7a",
+        "path": "implicit-augment.py",
+        "url": "https://github.com/gudovskiy/autodo/blob/ad80c5ca84d52fcc0cb4b8e5f6204b7e0eb19f7a/implicit-augment.py",
+        "blob_sha": "e4aa5e337d173d4209d7c766144d03552b86cbb7",
+        "line_count": 484,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "cbs",
+        "repo": "NUST-Machine-Intelligence-Laboratory/CBS",
+        "commit": "215708e383e3017b1628854f65469003158bbccb",
+        "path": "main.py",
+        "url": "https://github.com/NUST-Machine-Intelligence-Laboratory/CBS/blob/215708e383e3017b1628854f65469003158bbccb/main.py",
+        "blob_sha": "709223923f9af321c95eacb0ce837e5696508846",
+        "line_count": 492,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "train.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/train.py",
+        "blob_sha": "1d95455878b4f88b6ae26752b7a70c2857f99be3",
+        "line_count": 237,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "A2C.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/A2C.py",
+        "blob_sha": "3f2fc085f08a42291645f7b15bed359d79e37586",
+        "line_count": 99,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "entaugment",
+        "repo": "Jackbrocp/EntAugment",
+        "commit": "e6ed83ad41beddf47cff434b512abc222dc3ee8f",
+        "path": "train_EntAugment.py",
+        "url": "https://github.com/Jackbrocp/EntAugment/blob/e6ed83ad41beddf47cff434b512abc222dc3ee8f/train_EntAugment.py",
+        "blob_sha": "5ca92651b137096f1ef6bdbc8326ba6704b1976d",
+        "line_count": 197,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "entaugment",
+        "repo": "Jackbrocp/EntAugment",
+        "commit": "e6ed83ad41beddf47cff434b512abc222dc3ee8f",
+        "path": "Dataset.py",
+        "url": "https://github.com/Jackbrocp/EntAugment/blob/e6ed83ad41beddf47cff434b512abc222dc3ee8f/Dataset.py",
+        "blob_sha": "f7716571cc8f05372ccce7ecaf39b7083f6c19ff",
+        "line_count": 156,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "sra",
+        "repo": "ainieli/Sample-awareRandAugment",
+        "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+        "path": "SRA_CIFAR.py",
+        "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/SRA_CIFAR.py",
+        "blob_sha": "7631d7dcea0e107a52a6b4f7f6d540d79206bdb9",
+        "line_count": 269,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "augdesc",
+        "repo": "KentoNishi/Augmentation-for-LNL",
+        "commit": "908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda",
+        "path": "train_cifar.py",
+        "url": "https://github.com/KentoNishi/Augmentation-for-LNL/blob/908a22b23ca4cd5c70c52bdaa6a4304a5cbb1fda/train_cifar.py",
+        "blob_sha": "0ee2c9f49d7c5874bb9d30aa9bc6f8b85fa1994d",
+        "line_count": 435,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "la3",
+        "repo": "Simpleple/LA3-Label-Aware-AutoAugment",
+        "commit": "3e593946980912524fb167dad00e83b1b08ec16e",
+        "path": "LA3/dataset.py",
+        "url": "https://github.com/Simpleple/LA3-Label-Aware-AutoAugment/blob/3e593946980912524fb167dad00e83b1b08ec16e/LA3/dataset.py",
+        "blob_sha": "8fa94601331c34fc28a684aa40cf3336ebbdec03",
+        "line_count": 1414,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "la3",
+        "repo": "Simpleple/LA3-Label-Aware-AutoAugment",
+        "commit": "3e593946980912524fb167dad00e83b1b08ec16e",
+        "path": "LA3/data.py",
+        "url": "https://github.com/Simpleple/LA3-Label-Aware-AutoAugment/blob/3e593946980912524fb167dad00e83b1b08ec16e/LA3/data.py",
+        "blob_sha": "3cc8ebc7979430543fb208d76f10aa30cd4b79ef",
+        "line_count": 728,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "la3",
+        "repo": "Simpleple/LA3-Label-Aware-AutoAugment",
+        "commit": "3e593946980912524fb167dad00e83b1b08ec16e",
+        "path": "LA3/train_label_aware.py",
+        "url": "https://github.com/Simpleple/LA3-Label-Aware-AutoAugment/blob/3e593946980912524fb167dad00e83b1b08ec16e/LA3/train_label_aware.py",
+        "blob_sha": "1ad0c8a62dc7d9570d727384f569b8ae3e0e0f41",
+        "line_count": 362,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "ctw",
+        "repo": "qianlima-lab/CTW",
+        "commit": "1a622be6cb352d9af29b90ebc4012f47c0bbc74f",
+        "path": "src/utils/training_helper_CTW.py",
+        "url": "https://github.com/qianlima-lab/CTW/blob/1a622be6cb352d9af29b90ebc4012f47c0bbc74f/src/utils/training_helper_CTW.py",
+        "blob_sha": "4f43a5082218f1abc60e110d6d071a97fcd3e6c8",
+        "line_count": 466,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "ctw",
+        "repo": "qianlima-lab/CTW",
+        "commit": "1a622be6cb352d9af29b90ebc4012f47c0bbc74f",
+        "path": "run_ablation.sh",
+        "url": "https://github.com/qianlima-lab/CTW/blob/1a622be6cb352d9af29b90ebc4012f47c0bbc74f/run_ablation.sh",
+        "blob_sha": "9f5590b91e2367953a50f0439c322785b4df25ec",
+        "line_count": 18,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "ctw",
+        "repo": "qianlima-lab/CTW",
+        "commit": "1a622be6cb352d9af29b90ebc4012f47c0bbc74f",
+        "path": "run_CAug_vs_AAug.sh",
+        "url": "https://github.com/qianlima-lab/CTW/blob/1a622be6cb352d9af29b90ebc4012f47c0bbc74f/run_CAug_vs_AAug.sh",
+        "blob_sha": "0646e3d64dabc0065e55bbc7f6138fb908e8e63f",
+        "line_count": 60,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "Network/Wide_Resnet.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/Network/Wide_Resnet.py",
+        "blob_sha": "c6ba93caea97b46c7dd941fc5b4aa38ba85c000a",
+        "line_count": 87,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "Network/pyramidnet.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/Network/pyramidnet.py",
+        "blob_sha": "36515ae24a83a5eecc83b9cc6a4eaeb867454fa0",
+        "line_count": 229,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "Network/shake_pyramidnet.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/Network/shake_pyramidnet.py",
+        "blob_sha": "71824e98372554c766e5bf70355617cc010997f8",
+        "line_count": 90,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      },
+      {
+        "id": "adaaugment",
+        "repo": "Jackbrocp/AdaAugment",
+        "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+        "path": "Dataset.py",
+        "url": "https://github.com/Jackbrocp/AdaAugment/blob/d854af15467285ad8f46500d6fc2da5225fb5bd0/Dataset.py",
+        "blob_sha": "2643eb431d639316a89d809c2ac7acadfc786b68",
+        "line_count": 164,
+        "read_mode": "static source text only; selected data-flow portions inspected; not executed"
+      }
+    ],
+    "extent": "Targeted data-flow review of listed files. Not a full-repository or line-by-line audit.",
+    "license_boundary": "Read-only evidence audit. No assumption that all inspected repositories license code reuse; no wholesale source copied into deliverables."
+  },
+  "data_candidate": {
+    "name": "Fashion-MNIST",
+    "commit": "b2617bb6d3ffa2e429640350f613e3291e10b141",
+    "README_url": "https://github.com/zalandoresearch/fashion-mnist/blob/b2617bb6d3ffa2e429640350f613e3291e10b141/README.md",
+    "LICENSE_url": "https://github.com/zalandoresearch/fashion-mnist/blob/b2617bb6d3ffa2e429640350f613e3291e10b141/LICENSE",
+    "README_blob_sha": "9e98787139bc900f9d620737cf91be0dfdaf13b2",
+    "LICENSE_blob_sha": "6bc221fc3a933bbcba0161c926d69e4897382eda",
+    "declared_license": "MIT",
+    "files_read": "README and LICENSE text only; no dataset images or labels downloaded",
+    "proposed_split": "6000 fit / 2000 dev from official train; official test untouched; not executed"
+  },
+  "unverified_leads": [
+    {
+      "name": "AdaAug (different from AdaAugment)",
+      "url": "https://openreview.net/forum?id=rWXfFogxRJN",
+      "status": "bibliographic lead only, no full-text audit",
+      "caveat": "Official entry says ICLR 2022; do not inherit erroneous 2021 references from other papers."
+    },
+    {
+      "name": "ACTLL",
+      "url": "https://arxiv.org/html/2505.07320v1",
+      "status": "related-work/method sections used as a discovery lead for CTW; not part of core code audit"
+    },
+    {
+      "name": "RobustLR and MetaAugment",
+      "status": "previous screening background; no new official code audit this round; not used to establish exact-four-grid absence"
+    }
+  ],
+  "blocker": {
+    "action": "Read ExploreAugment PDF full text",
+    "target": "https://openreview.net/pdf/44737a43d938147e967d6e47a4996467fc4a44db.pdf",
+    "redirect": "https://openreview.net/challenge?redirect=/pdf/44737a43d938147e967d6e47a4996467fc4a44db.pdf",
+    "reason": "Browser verification challenge; full text not returned",
+    "status": "blocked_stopped",
+    "auto_approval_denial": false,
+    "bypassed": false,
+    "retried_through_other_access_path": false,
+    "independent_work_completed": "Other full-text/code audit, protocol and staging"
+  },
+  "limitations": [
+    "No empirical risk estimate for the new hypothesis.",
+    "Four-grid alone does not identify special harm of identical incorrect class reused twice.",
+    "Control-label changes alter both average magnitude and sample allocation.",
+    "Entropy-based direct-label independence does not imply immunity to training-label noise.",
+    "Absence of a located four-grid is not proof of no prior art.",
+    "CPU training wall-clock and semantic validity of toy-data operator pool not measured."
+  ]
+}

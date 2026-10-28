@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "input_normalization_labels_and_finite_initial_state_checked": true,
+  "same_init_between_original_and_repair": true,
+  "no_optimizer_parameter_duplication": true,
+  "first_SGD_update_matches_manual_weight_decay_equation_max_abs_error": 2.9802322387695312e-08,
+  "worst_manual_update_parameter": "conv1.weight",
+  "reversing_disjoint_optimizer_group_order_bitwise_equal": true,
+  "first_nonfinite_forward_module": {
+    "module": "layer2.0.conv2",
+    "type": "Conv2d",
+    "input_finite": true,
+    "parameters_finite": true,
+    "output_shape": [
+      8,
+      128,
+      28,
+      28
+    ],
+    "output_nonfinite_elements": 381636
+  },
+  "first_nonfinite_forward_events": [
+    {
+      "module": "layer2.0.conv2",
+      "type": "Conv2d",
+      "input_finite": true,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 381636
+    },
+    {
+      "module": "layer2.0.bn2",
+      "type": "BatchNorm2d",
+      "input_finite": false,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 392172
+    },
+    {
+      "module": "layer2.0.relu",
+      "type": "ReLU",
+      "input_finite": false,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 327963
+    },
+    {
+      "module": "layer2.1.conv1",
+      "type": "Conv2d",
+      "input_finite": false,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 802816
+    },
+    {
+      "module": "layer2.1.bn1",
+      "type": "BatchNorm2d",
+      "input_finite": false,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 802816
+    },
+    {
+      "module": "layer2.1.relu",
+      "type": "ReLU",
+      "input_finite": false,
+      "parameters_finite": true,
+      "output_shape": [
+        8,
+        128,
+        28,
+        28
+      ],
+      "output_nonfinite_elements": 802816
+    }
+  ],
+  "original_finite_parameter_update_then_activation_overflow_verified": true,
+  "repaired30_detailed_and20_guarded_steps_all_finite": true,
+  "nonzero_backbone_and_head_updates_verified": true,
+  "original_failure_files_preserved": true,
+  "repair_code_sha_matches_execution": true,
+  "no_validation_or_test_use": true,
+  "no_new_data": true,
+  "CPU_only": true,
+  "GPU": false,
+  "ARIS": false
+}

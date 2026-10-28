@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-23",
+  "scope": "N/M/operator-composition screen; no claimed novel method",
+  "requested_configuration": "gpt-6-astra / max / Standard",
+  "backend_configuration_verified": false,
+  "inherited_closed": [
+    "label-noise dual route",
+    "temperature",
+    "interpolation kernels",
+    "patch phase",
+    "LoRA front/back interaction",
+    "joint clipping",
+    "cross-image sampling coupling",
+    "fixed-model response as semantic proxy",
+    "stale feedback cache"
+  ],
+  "candidates": [
+    {
+      "id": "NM1",
+      "question": "Remove duplicate operations or reinterpret N as effective depth",
+      "status": "closed_direct_prior",
+      "sources": [
+        "freeaugment2024"
+      ],
+      "experiment": "none"
+    },
+    {
+      "id": "NM2",
+      "question": "Single-operation calibration does not capture generic order/composition interactions",
+      "status": "closed_generic_claim",
+      "sources": [
+        "tree2024",
+        "kharyuk2025",
+        "ctrla2026"
+      ],
+      "experiment": "none"
+    },
+    {
+      "id": "NM3",
+      "question": "Stratify finite augmentation exposure/couple operations across images",
+      "status": "keep_previous_no_go",
+      "local_evidence": "causal-augmentation-research-20261020/augmentation-sampling-granularity-20261021/finding-zh.md",
+      "experiment": "none"
+    },
+    {
+      "id": "NM4",
+      "question": "At fixed N2/M9, do full-pool/slot-disabled/pool-deleted policies yield opposite final-dev keep/drop recommendations for preselected Posterize?",
+      "status": "unresolved_empirical_audit_question_not_novelty_qualified_training_no_go",
+      "sources": [
+        "randaugment2020",
+        "sra2025",
+        "kharyuk2025",
+        "ctrla2026"
+      ],
+      "actual_result": "Only exact sampling-law difference established; no image/model/accuracy result.",
+      "what_is_not_new": "Probability redistribution, Identity switches and conditional attribution are established tools.",
+      "minimum_experiment": "Three matched training arms at one fixed seed/endpoint; unexecuted; exact design in PROTOCOL_ZH.md.",
+      "evidence_gap": "No matched trained-policy comparison; current caches cannot identify the outcome; no sufficient new empirical motivation yet."
+    }
+  ],
+  "new_image_reads": 0,
+  "new_model_forwards": 0,
+  "new_training_runs": 0,
+  "new_gpu_calls": 0,
+  "denied_resources_retried": false,
+  "not_claimed": [
+    "Novelty established by search absence",
+    "Existing papers' pool deletion is a bug",
+    "Sequence total variation is image/semantic damage",
+    "Fixed-model response predicts trained accuracy"
+  ]
+}

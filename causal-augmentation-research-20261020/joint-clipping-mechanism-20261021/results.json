@@ -1,0 +1,681 @@
+{
+  "status": "all_prespecified_exact_checks_passed",
+  "finished_utc": "2026-10-21T17:46:08.314693+00:00",
+  "protocol_sha256": "ca0798fbdf1cfa2d556f90c7bb67b4072030e549f1af7911b1309180448dd466",
+  "code_sha256": "8cf80f67c80e61c2129d3b474ac2efcf9407425e0030eb5845f0036d2d60354c",
+  "execution": {
+    "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:04:32) [Clang 20.1.8 ]",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "device": "CPU",
+    "dependencies": "Python standard library only",
+    "elapsed_seconds": 0.06430462503340095,
+    "peak_rss_native_units": 19431424,
+    "peak_rss_units": "bytes on macOS; KiB on Linux"
+  },
+  "exact_grid": {
+    "identity_and_commutation_cases": 3636,
+    "pure_power_cases": 7272,
+    "joint_only_at_white_cases": 351,
+    "joint_only_strictly_truncated_cases": 350
+  },
+  "main_exact_population_risks": {
+    "source": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "exposure_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "illumination_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "joint": {
+      "h_color": {
+        "exact": "1/2",
+        "decimal": 0.5
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    }
+  },
+  "joint_selection_regret": {
+    "exact": "2/5",
+    "decimal": 0.4
+  },
+  "without_truncation_mathematical_control": {
+    "source": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "exposure_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "illumination_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "joint": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    }
+  },
+  "lower_gain_6_over_5_control": {
+    "source": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "exposure_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "illumination_only": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    },
+    "joint": {
+      "h_color": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "h_blue": {
+        "exact": "1/10",
+        "decimal": 0.1
+      }
+    }
+  },
+  "thresholds": {
+    "high_first_reaches_white_product_gain": {
+      "exact": "20/13",
+      "decimal": 1.5384615384615385
+    },
+    "low_reaches_white_and_color_cue_collapses_product_gain": {
+      "exact": "20/11",
+      "decimal": 1.8181818181818181
+    },
+    "joint_only_at_white_interval_lower_inclusive": {
+      "exact": "25/49",
+      "decimal": 0.5102040816326531
+    },
+    "joint_only_at_white_interval_upper_exclusive": {
+      "exact": "5/7",
+      "decimal": 0.7142857142857143
+    }
+  },
+  "fixed_margin_phase_checks": [
+    {
+      "product_gain": {
+        "exact": "1",
+        "decimal": 1.0
+      },
+      "red_margin": {
+        "exact": "1/10",
+        "decimal": 0.1
+      },
+      "red_patches_at_white": 0,
+      "color_risk": {
+        "exact": "0",
+        "decimal": 0.0
+      }
+    },
+    {
+      "product_gain": {
+        "exact": "3/2",
+        "decimal": 1.5
+      },
+      "red_margin": {
+        "exact": "3/20",
+        "decimal": 0.15
+      },
+      "red_patches_at_white": 0,
+      "color_risk": {
+        "exact": "0",
+        "decimal": 0.0
+      }
+    },
+    {
+      "product_gain": {
+        "exact": "20/13",
+        "decimal": 1.5384615384615385
+      },
+      "red_margin": {
+        "exact": "2/13",
+        "decimal": 0.15384615384615385
+      },
+      "red_patches_at_white": 1,
+      "color_risk": {
+        "exact": "0",
+        "decimal": 0.0
+      }
+    },
+    {
+      "product_gain": {
+        "exact": "8/5",
+        "decimal": 1.6
+      },
+      "red_margin": {
+        "exact": "3/25",
+        "decimal": 0.12
+      },
+      "red_patches_at_white": 1,
+      "color_risk": {
+        "exact": "0",
+        "decimal": 0.0
+      }
+    },
+    {
+      "product_gain": {
+        "exact": "20/11",
+        "decimal": 1.8181818181818181
+      },
+      "red_margin": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "red_patches_at_white": 2,
+      "color_risk": {
+        "exact": "1/2",
+        "decimal": 0.5
+      }
+    },
+    {
+      "product_gain": {
+        "exact": "49/25",
+        "decimal": 1.96
+      },
+      "red_margin": {
+        "exact": "0",
+        "decimal": 0.0
+      },
+      "red_patches_at_white": 2,
+      "color_risk": {
+        "exact": "1/2",
+        "decimal": 0.5
+      }
+    }
+  ],
+  "unknown_fixed_monotone_response_counterexample": {
+    "shared_observed_source_and_singles": [
+      {
+        "exact": "11/20",
+        "decimal": 0.55
+      },
+      {
+        "exact": "77/100",
+        "decimal": 0.77
+      },
+      {
+        "exact": "77/100",
+        "decimal": 0.77
+      }
+    ],
+    "world_A": "identity response, latent source 11/20, joint raw signal 539/500 > 1",
+    "world_B": "fixed strictly increasing piecewise-linear response, latent source 3/10, joint raw signal 147/250 < 1",
+    "world_B_response_knots": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "3/10",
+        "11/20"
+      ],
+      [
+        "21/50",
+        "77/100"
+      ],
+      [
+        "147/250",
+        "9/10"
+      ],
+      [
+        "1",
+        "1"
+      ]
+    ],
+    "world_A_joint": {
+      "exact": "1",
+      "decimal": 1.0
+    },
+    "world_B_joint": {
+      "exact": "9/10",
+      "decimal": 0.9
+    }
+  },
+  "enumerated_states_not_independent_empirical_samples": [
+    {
+      "environment": "source",
+      "unit_Y": -1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "11/20",
+          "1/20",
+          "1/50"
+        ],
+        [
+          "13/20",
+          "1/20",
+          "1/10"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "source",
+      "unit_Y": -1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "11/20",
+          "1/20",
+          "1/10"
+        ],
+        [
+          "13/20",
+          "1/20",
+          "1/50"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "source",
+      "unit_Y": 1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "13/20",
+          "1/20",
+          "1/10"
+        ],
+        [
+          "11/20",
+          "1/20",
+          "1/50"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "source",
+      "unit_Y": 1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "13/20",
+          "1/20",
+          "1/50"
+        ],
+        [
+          "11/20",
+          "1/20",
+          "1/10"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "exposure_only",
+      "unit_Y": -1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "77/100",
+          "7/100",
+          "7/250"
+        ],
+        [
+          "91/100",
+          "7/100",
+          "7/50"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "exposure_only",
+      "unit_Y": -1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "77/100",
+          "7/100",
+          "7/50"
+        ],
+        [
+          "91/100",
+          "7/100",
+          "7/250"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "exposure_only",
+      "unit_Y": 1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "91/100",
+          "7/100",
+          "7/50"
+        ],
+        [
+          "77/100",
+          "7/100",
+          "7/250"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "exposure_only",
+      "unit_Y": 1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "91/100",
+          "7/100",
+          "7/250"
+        ],
+        [
+          "77/100",
+          "7/100",
+          "7/50"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "illumination_only",
+      "unit_Y": -1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "77/100",
+          "1/20",
+          "1/50"
+        ],
+        [
+          "91/100",
+          "1/20",
+          "1/10"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "illumination_only",
+      "unit_Y": -1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "77/100",
+          "1/20",
+          "1/10"
+        ],
+        [
+          "91/100",
+          "1/20",
+          "1/50"
+        ]
+      ],
+      "prediction_color": -1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "illumination_only",
+      "unit_Y": 1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "91/100",
+          "1/20",
+          "1/10"
+        ],
+        [
+          "77/100",
+          "1/20",
+          "1/50"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "illumination_only",
+      "unit_Y": 1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "91/100",
+          "1/20",
+          "1/50"
+        ],
+        [
+          "77/100",
+          "1/20",
+          "1/10"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "joint",
+      "unit_Y": -1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "1",
+          "7/100",
+          "7/250"
+        ],
+        [
+          "1",
+          "7/100",
+          "7/50"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": -1
+    },
+    {
+      "environment": "joint",
+      "unit_Y": -1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "1",
+          "7/100",
+          "7/50"
+        ],
+        [
+          "1",
+          "7/100",
+          "7/250"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "joint",
+      "unit_Y": 1,
+      "unit_N": 1,
+      "probability": {
+        "exact": "9/20",
+        "decimal": 0.45
+      },
+      "rgb_patches": [
+        [
+          "1",
+          "7/100",
+          "7/50"
+        ],
+        [
+          "1",
+          "7/100",
+          "7/250"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": 1
+    },
+    {
+      "environment": "joint",
+      "unit_Y": 1,
+      "unit_N": -1,
+      "probability": {
+        "exact": "1/20",
+        "decimal": 0.05
+      },
+      "rgb_patches": [
+        [
+          "1",
+          "7/100",
+          "7/250"
+        ],
+        [
+          "1",
+          "7/100",
+          "7/50"
+        ]
+      ],
+      "prediction_color": 1,
+      "prediction_blue": -1
+    }
+  ],
+  "scope": "Controlled synthetic exact expectation, not an estimated accuracy or trained-policy comparison"
+}

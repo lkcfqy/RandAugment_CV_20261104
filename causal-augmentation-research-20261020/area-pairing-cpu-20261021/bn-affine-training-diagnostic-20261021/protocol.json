@@ -1,0 +1,60 @@
+{
+  "at_utc": "2026-10-21T07:44:29.913048+00:00",
+  "question": "Can freezing BN affine rescue training-side learning under the exact old TA input bank and fixed short budget?",
+  "purpose": "training implementation/measurement diagnosis only; known FrozenBN control, not original contribution or augmentation-benefit evaluation",
+  "arms": [
+    {
+      "name": "affine_trainable",
+      "freeze_BN_affine": false
+    },
+    {
+      "name": "affine_frozen",
+      "freeze_BN_affine": true
+    }
+  ],
+  "invariant": "both arms on same local MPS FP32, same ResNet18/ImageNetV1 weight, Linear512to2 seed0, BN running stats fixed; all non-BN-affine backbone parameters train in both arms",
+  "data": "64 already used training photos only; exact 16-pass1024-image old TA bank and order regenerated and checked against old RGB hashes; no development/test photo access or evaluation",
+  "augmentation": "torchvision TrivialAugmentWide31bins NEAREST fill128 after bilinearresize256 centercrop224, before ImageNet normalization",
+  "optimizer": {
+    "type": "SGD",
+    "head_LR": 0.01,
+    "body_LR": 0.001,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "clipping": false,
+    "scheduler": false
+  },
+  "budget": {
+    "steps_per_arm": 128,
+    "batch": 8,
+    "source_photos": 64,
+    "presentations_per_arm": 1024,
+    "arms": 2,
+    "wall_seconds": 240,
+    "guarded_compute_seconds": 120
+  },
+  "evaluation": {
+    "steps": [
+      0,
+      64,
+      128
+    ],
+    "clean_training_photos": 64,
+    "fixed_TA_training_views": 64,
+    "TA_bank": "first already-generated training pass; secondary diagnostic, not held out"
+  },
+  "gate": {
+    "learned": "final clean training accuracy>=.9 AND mean LL<=.2nat",
+    "underlearning": "final clean training accuracy<=.8 OR mean LL>=.5nat",
+    "positive_diagnostic": "MPS affine-trainable control underlearning AND affine-frozen learned; supports role only in this fixed development setting",
+    "otherwise": "if MPS control not underlearning, old CPU failure not reproduced, cannot attribute old failure; if no rescue report failure and stop"
+  },
+  "stop": "nonfinite loss/gradient/parameters, mismatched controls, wall or compute cap; no more steps/seeds/retuning",
+  "CPU_baseline_rerun": false,
+  "MPS_benchmark_rerun": false,
+  "new_software_or_data": false,
+  "A100": false,
+  "ARIS": false,
+  "requested_LLM": "GPT-6.1-Sol/ultra",
+  "actual_LLM_execution_receipt_available": false
+}

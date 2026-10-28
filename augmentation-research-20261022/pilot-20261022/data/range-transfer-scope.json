@@ -1,0 +1,8 @@
+{
+  "purpose": "Precise interpretation of public ZIP range transport versus sealed-member access",
+  "selected_complete_members": "Only the 1184 train/development JPEGs and their 1184 trimaps are extracted, CRC-checked, stored and decoded.",
+  "range_construction": "Each public byte range reserves up to512 bytes for the unknown local ZIP extra field. The received buffer can therefore extend past the selected compressed member into adjacent archive bytes; the trailing margin is discarded without parsing, extraction, storage or image decoding.",
+  "reserved_confirmation": "No reserved member is requested by name, extracted, stored, decoded, scored or used for decisions. A literal claim that no transport byte could belong to an adjacent reserved archive entry is not supported by this fetcher.",
+  "research_seal": "The seal is preserved at member/image access and scientific-use level. No held-out labels, images or model outputs are used in the pilot.",
+  "future_fetcher": "Use a separate exact local-header read followed by an exact compressed-payload range when transport-byte exclusion itself is required. Do not redownload or inspect the discarded margin in this round."
+}

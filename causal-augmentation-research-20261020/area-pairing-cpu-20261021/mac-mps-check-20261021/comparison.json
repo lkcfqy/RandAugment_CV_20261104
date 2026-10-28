@@ -1,0 +1,91 @@
+{
+  "status": "completed_measured_CPU_MPS_comparison",
+  "rows": [
+    {
+      "batch": 8,
+      "CPU_inference_images_sec": 81.89099533164982,
+      "MPS_inference_images_sec": 999.2817669193503,
+      "inference_speedup": 12.202584214202862,
+      "CPU_guarded_training_images_sec": 29.035811434435654,
+      "MPS_guarded_training_images_sec": 189.1655435055064,
+      "guarded_training_speedup": 6.5149046697954995,
+      "inference_max_abs_logit_error": 3.1888484954833984e-06,
+      "inference_relative_L2_error": 9.664993642015343e-07,
+      "inference_argmax_agreement": 1.0,
+      "max_short_training_loss_trajectory_abs_error": 0.00030146166682243347,
+      "short_training_argmax_agreement": 1.0,
+      "CPU_initial_final_loss": [
+        4.115756034851074,
+        0.003326602280139923
+      ],
+      "MPS_initial_final_loss": [
+        4.115755558013916,
+        0.0033402773551642895
+      ],
+      "numerical_gates": {
+        "inference_abs_error": true,
+        "inference_relative_error": true,
+        "inference_argmax": true,
+        "training_finite": true,
+        "training_loss_decline": true,
+        "training_loss_trajectory_error": true,
+        "training_argmax": true
+      },
+      "all_numerical_gates_passed": true,
+      "useful_measured_speedup": true,
+      "accepted_for_future_similar_local_development": true,
+      "MPS_max_sampled_tensor_allocated_bytes": 137797632,
+      "MPS_max_sampled_driver_allocated_bytes": 1204453376,
+      "MPS_inference_warmup_seconds": 0.99775654199766,
+      "MPS_training_warmup_seconds": 2.3251961250207387
+    },
+    {
+      "batch": 32,
+      "CPU_inference_images_sec": 30.252029392111584,
+      "MPS_inference_images_sec": 1393.930596466838,
+      "inference_speedup": 46.077259095560535,
+      "CPU_guarded_training_images_sec": 17.602564972912102,
+      "MPS_guarded_training_images_sec": 251.89303123132572,
+      "guarded_training_speedup": 14.310018546669422,
+      "inference_max_abs_logit_error": 7.957220077514648e-06,
+      "inference_relative_L2_error": 4.101250603192811e-06,
+      "inference_argmax_agreement": 1.0,
+      "max_short_training_loss_trajectory_abs_error": 0.00029009580612182617,
+      "short_training_argmax_agreement": 1.0,
+      "CPU_initial_final_loss": [
+        4.115756988525391,
+        0.0033440343104302883
+      ],
+      "MPS_initial_final_loss": [
+        4.115755558013916,
+        0.003357247682288289
+      ],
+      "numerical_gates": {
+        "inference_abs_error": true,
+        "inference_relative_error": true,
+        "inference_argmax": true,
+        "training_finite": true,
+        "training_loss_decline": true,
+        "training_loss_trajectory_error": true,
+        "training_argmax": true
+      },
+      "all_numerical_gates_passed": true,
+      "useful_measured_speedup": true,
+      "accepted_for_future_similar_local_development": true,
+      "MPS_max_sampled_tensor_allocated_bytes": 140353536,
+      "MPS_max_sampled_driver_allocated_bytes": 2372550656,
+      "MPS_inference_warmup_seconds": 0.15698937501292676,
+      "MPS_training_warmup_seconds": 0.7429142079781741
+    }
+  ],
+  "CPU_process_peak_RSS_bytes": 1893498880,
+  "MPS_process_peak_RSS_bytes": 784777216,
+  "CPU_worker_wall_seconds": 35.37794641696382,
+  "MPS_worker_wall_seconds": 6.6739352499716915,
+  "memory_caution": "MPS tensor/driver values are samples, not guaranteed peaks; Apple unified memory overlaps process/RAM accounting, do notadd them.",
+  "scope": "same8training photos and fixedFP32model only; not a whole-pilot or allworkload speed benchmark; oldCPUresults unchanged",
+  "A100_or_remote_GPU": false,
+  "new_install_or_security_change": false,
+  "no_test_use": true,
+  "ARIS": false
+}

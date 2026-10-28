@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "locked_before_execution_utc": "2026-10-21T17:46:07.894243+00:00",
+  "purpose": "Exact controlled-synthetic mechanism and identifiability check; not training or real CV evidence",
+  "white_level": "1",
+  "red_high": "13/20",
+  "red_low": "11/20",
+  "green": "1/20",
+  "blue_high": "1/10",
+  "blue_low": "1/50",
+  "exposure_gain": "7/5",
+  "illumination_red_gain": "7/5",
+  "illumination_other_gains": "1",
+  "label_probabilities": {
+    "-1": "1/2",
+    "1": "1/2"
+  },
+  "blue_cue_flip_probability": "1/10",
+  "sampling": "Enumerate all four (Y,N) support states with exact rational weights. Draw N once per unit and preserve it in every environment. No random sampling.",
+  "readouts": {
+    "h_color": "sign(left red minus right red); a zero margin predicts +1",
+    "h_blue": "sign(left blue minus right blue); a zero margin predicts +1"
+  },
+  "environments": [
+    "source",
+    "exposure_only",
+    "illumination_only",
+    "joint"
+  ],
+  "controls": [
+    "Same signals without truncation: mathematical control, not recovery of an already clipped image",
+    "Same construction with both gains fixed to 6/5",
+    "Reverse operation order",
+    "Fixed unknown-monotone-camera-response observational equivalence counterexample",
+    "Pure-power response exception"
+  ],
+  "exact_grid": {
+    "x": "i/100 for i=0,...,100",
+    "gains": [
+      "1",
+      "6/5",
+      "7/5",
+      "3/2",
+      "2",
+      "3"
+    ],
+    "pure_power_exponents": [
+      2,
+      3
+    ]
+  },
+  "success_or_falsification": "Exact assertions must confirm or refute the prespecified identities, threshold, risks and counterexample. Any mismatch is reported; no parameter search follows.",
+  "limits": [
+    "Two synthetic RGB patches and two fixed readouts, not trained AA/RA/TA policies",
+    "No photographs, final holdout, training, model download, GPU, new dependency, scheduler or ARIS",
+    "No claim of novel gain physics, a novel formula, causal identification from arbitrary JPEGs, or real-world augmentation improvement"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "at_utc": "2026-10-22T14:20:30.157809+00:00",
+  "status": "design_draft_before_data_QA_not_a_final_preregistration",
+  "primary_question": "Equal-budget early versus late Q/V-LoRA placement changes fixed RandAugment clean-generalization benefit.",
+  "checkpoint": {
+    "architecture": "torchvision vit_b_16",
+    "weights": "IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/vit_b_16-c867db91.pth",
+    "head_classes": 37,
+    "weights_downloaded": false
+  },
+  "primary_arms": [
+    {
+      "layout": "front",
+      "blocks_zero_based": [
+        0,
+        1,
+        2
+      ],
+      "rank_Q_and_V": 4
+    },
+    {
+      "layout": "back",
+      "blocks_zero_based": [
+        9,
+        10,
+        11
+      ],
+      "rank_Q_and_V": 4
+    }
+  ],
+  "reference_arms": [
+    {
+      "layout": "spread_equal_budget",
+      "blocks_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "rank_Q_and_V": 1
+    },
+    {
+      "layout": "standard_all_blocks_LoRA",
+      "blocks_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "rank_Q_and_V": 4
+    },
+    {
+      "layout": "full_finetune",
+      "trainable": "all"
+    }
+  ],
+  "LoRA_parameters_per_main_arm": 36864,
+  "classification_head_parameters": 28453,
+  "main_trainable_total": 65317,
+  "LoRA_scaling": "alpha=rank; alpha/r=1. Q and V only; K correction identically zero. A random and B zero initially. Same scaling for both main arms.",
+  "frozen_in_LoRA_arms": [
+    "base projection weights",
+    "base biases",
+    "LayerNorm affine",
+    "patch embedding",
+    "position embedding",
+    "class token"
+  ],
+  "planned_augmentation": {
+    "weak": "RRC scale[.8,1],ratio[.9,1.1],224 plus horizontal_flip .5",
+    "strong": "same weak plus torchvision RandAugment N2 magnitude9 num_magnitude_bins31 full14-operation pool",
+    "interpolation": "BILINEAR",
+    "fill_rgb": [
+      124,
+      116,
+      104
+    ],
+    "shared_pixels_across_layouts": true,
+    "global_model_rng_not_used_for_augmentation_keys": true
+  },
+  "optimizer_draft": {
+    "name": "AdamW",
+    "LoRA_lr_grid": [
+      0.0001,
+      0.0003,
+      0.001
+    ],
+    "full_lr_grid": [
+      1e-05,
+      3e-05,
+      0.0001
+    ],
+    "head_lr": 0.001,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.1,
+    "schedule": "cosine",
+    "logical_batch": 16,
+    "epochs_max": 30,
+    "same_search_and_validation_budget_each_cell": true,
+    "LR_search_budget_counts_in_wall_cap": true
+  },
+  "data": "candidate-data-plan.json; candidate IDs only, no image pixels or new masks read",
+  "before_fitting_required": [
+    "source/image integrity",
+    "exact and near duplicate grouping",
+    "source-label and augmented-visibility QA",
+    "actual training loader and AdamW timing/memory",
+    "verify pixel hashes and zero-increment initialization",
+    "lock final split, LR-selection policy, endpoint, interval algorithm and stopping rule"
+  ],
+  "primary_endpoint": "I=(E_front_weak-E_front_RA)-(E_back_weak-E_back_RA) on clean image-level classification error.",
+  "engineering_investment_gate_draft": {
+    "I_percentage_points_min": 1.0,
+    "paired_run_sign_consistency": true,
+    "not_a_significance_power_or_equivalence_claim": true
+  },
+  "failure_interpretation": {
+    "valid_negative": "I near zero/opposite under adequate optimization and fixed protocol; retain all four absolute errors.",
+    "insufficient_measurement": "Numerical failure, underfitting, incomplete optimization or exhausted resource budget; do not reject the scientific hypothesis."
+  },
+  "budget": {
+    "development_core_runs": 4,
+    "development_epochs_per_run": 10,
+    "development_wall_cap_hours": 2,
+    "complete_matrix_runs": 30,
+    "complete_matrix_definition": "5 training modes x2 augmentations x3 paired seeds",
+    "epochs_per_run_max": 30,
+    "complete_wall_cap_hours_including_LR_selection": 12,
+    "single_process": true,
+    "planned_active_compute_fraction_approx": 0.3333333333333333,
+    "actual_utilization_fraction_measured": false,
+    "MPS_per_process_memory_fraction": 0.1,
+    "8A_priority": true,
+    "A100_or_Colab_automatic_escalation": false
+  },
+  "backup": "One reserve: identical post-CutMix augmented RGB with stale/transported/permuted source-area targets plus canonical RA-before-CutMix; do not train concurrently.",
+  "actual_execution": {
+    "dataset_training_runs": 0,
+    "synthetic_compatibility_cases": 4,
+    "synthetic_update_steps": 16,
+    "device": "mps:0",
+    "timing_is_dataset_throughput": false
+  },
+  "model_request": {
+    "model": "GPT-6.1-Sol",
+    "reasoning_effort": "max",
+    "service_tier": "existing Fast request retained",
+    "actual_backend_receipt_exposed": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "at_utc": "2026-10-21T06:16:57.879321+00:00",
+  "action": "CPU fwd/backward/SGD runtime calibration",
+  "outcome": "runtime assertion failure, not permission denial",
+  "completed": "frozen-backbone batch8 mean0.09826746533508413sec/step,81.41046451865473images/sec",
+  "failure": "finetune-backbone batch8 encountered nonfinite cross-entropy with headLR0.1/bodyLR0.01 and repeated8training photos, frozenBNrunningstats; exact step not logged",
+  "weights_saved": false,
+  "test_pixels_read": false,
+  "recovery": "Set all benchmark optimizer learning rates0 to prevent weight drift while measuring same forward/backward/momentum/step machinery. This is timing only, not a successful training recipe.",
+  "formal_training_implication": "Any proposed fine-tuning recipe needs a training-only finite loss/gradient gate before final test use; do not claim these initial LRs are validated."
+}

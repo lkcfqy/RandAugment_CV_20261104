@@ -1,0 +1,12 @@
+{"completed_case": "front-batch0", "completed_reset_steps": 1, "of": 8, "wall_seconds": 4.138510709046386}
+{"completed_case": "front-batch1", "completed_reset_steps": 2, "of": 8, "wall_seconds": 5.748802709043957}
+{"completed_case": "front-batch2", "completed_reset_steps": 3, "of": 8, "wall_seconds": 7.375328500056639}
+{"completed_case": "front-batch3", "completed_reset_steps": 4, "of": 8, "wall_seconds": 8.995299250003882}
+Traceback (most recent call last):
+  File "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/diagnostic-optimization-20261022/diagnostic.py", line 200, in <module>
+    try:main()
+        ~~~~^^
+  File "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/diagnostic-optimization-20261022/diagnostic.py", line 161, in main
+    else:assert all(np.allclose(g,paired_head_grads[batch][n],**cfg['precision']['paired_head_gradient_allclose']) for n,g in head_grads.items())
+                ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

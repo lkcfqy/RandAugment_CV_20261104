@@ -1,0 +1,875 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent statistical evidence reviewer",
+  "source_root": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020",
+  "model_request": {
+    "requested": "GPT-6.1-Sol/max",
+    "actual_execution_receipt_available": false,
+    "actual_model_and_effort_verified": false,
+    "note_zh": "沿用明确请求；不能把请求当作已核验的实际执行档位。"
+  },
+  "overall_verdict": {
+    "critical_numerical_or_pseudoreplication_errors_found": 0,
+    "major_result_reversal_required": false,
+    "additive_clarifications": 3,
+    "new_experiment_recommended_for_current_closeout": false,
+    "summary_zh": "主要亮度和过滤区间按原始照片配对重采样，未将增强副本、四个背景或两个固定模型冒充独立训练重复。主要报告保留了正向小效应、含零区间、反向点估计和事件不足。需以新状态索引补足两处机器字段解释，并收紧一处汇总措辞；不修改旧哈希记录，不恢复已关闭候选。",
+    "severity_definition_zh": "medium表示脱离报告引用时可能改变结论的状态歧义；low表示措辞精度问题。没有发现已据错误独立单位计算主要CI的证据。"
+  },
+  "methods": {
+    "performed_zh": [
+      "只读实验协议、冻结/锁定回执、结果及verification文本",
+      "静态阅读主要bootstrap与筛查代码",
+      "复用上一轮69份文本来源审查，不重跑验证程序",
+      "标准库校验六条现存文本SHA链接",
+      "只写指定新JSON及必要父目录"
+    ],
+    "not_performed_zh": [
+      "训练或拟合",
+      "模型加载/推理",
+      "图像或掩码读取",
+      "测试指标/CI重算",
+      "GPU/MPS/A100",
+      "8A访问",
+      "ARIS",
+      "下载",
+      "调度",
+      "PPT",
+      "旧记录修改"
+    ],
+    "prior_review_reused": {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/experiment-review.json",
+      "coverage": {
+        "result_reports": 12,
+        "protocol_documents": 17,
+        "verification_receipts": 20,
+        "training_trace_files": 8,
+        "text_fingerprints": 69
+      },
+      "note_zh": "过去verification的模型读回不是本轮执行。",
+      "sha256": "38e6cdf795b548db46afc79aff7632409ce8a17c0d44b6727398dc5891a4ddbc"
+    },
+    "limits_zh": "没有重新执行实验或验证脚本。未执行分支无经验CI；精确有限枚举和已知SCM总体计算无需抽样CI。身份/近重复/预训练重合未知，无可信外部时间戳。"
+  },
+  "findings": [
+    {
+      "id": "STAT-001",
+      "severity": "medium",
+      "category": "legacy_machine_status_ambiguity",
+      "title_zh": "短程阶段先导的自动positive不能当成有效增强收益",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/final_judgements/finetune"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/interpretation"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line_numbers": [
+            3,
+            16,
+            18,
+            20,
+            22,
+            26
+          ]
+        }
+      ],
+      "observed": {
+        "final_judgements": {
+          "frozen": "positive",
+          "finetune": "positive"
+        },
+        "interpretation": "same_direction_in_this_development_run_only",
+        "finetune_TA_train_LL_rounded": 0.692339,
+        "finetune_TA_train_accuracy": 0.5625,
+        "finetune_TA_development_accuracy": 0.5,
+        "G_finetune_final_rounded": 0.74666
+      },
+      "assessment_zh": "positive只是G超过0.02的符号标签；微调TA组未学成，不能判TA有效或验证阶段排序一致。人读报告已明确纠正。冻结组的positive也只是此开发运行的点差，不提供跨seed或泛化保证。",
+      "minimal_additive_correction_zh": "新索引侧录scientific_status=inconclusive_training_state_invalid，保留raw_sign_label=positive并指向result-zh.md:3、18–22。旧JSON和hash不变。",
+      "minimal_additional_evidence_zh": "本次关闭无需新实验。未来若坚持科学排序结论，需有效且匹配的训练状态、未参与选择的评价单位和独立训练重复；后续联合修复不追溯赋予本先导有效性。",
+      "new_execution_authorized": false
+    },
+    {
+      "id": "STAT-002",
+      "severity": "medium",
+      "category": "not_evaluable_not_ineffective",
+      "title_zh": "零事件诊断需要独立的不可评估状态",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/weak_diagnostic_screen_supported"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/models/base/joint_only_errors"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/models/TA/joint_only_errors"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/models/base/AUROC_descriptive_only"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/protocol.json",
+          "json_pointer": "/primary_evaluation/stop"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/result-zh.md",
+          "line_numbers": [
+            7,
+            19,
+            21,
+            33,
+            41,
+            42,
+            54
+          ]
+        }
+      ],
+      "observed": {
+        "photos": 64,
+        "fixed_models": 2,
+        "events_each_model": 0,
+        "non_events_each_model": 64,
+        "all_AUROC": null,
+        "weak_diagnostic_screen_supported": false
+      },
+      "assessment_zh": "supported=false可表示未获支持，但布尔值未区分反证与不可计算。所有AUROC因没有正事件而未定义，不能说AUC=0.5、预警无效或B不优于基线。人读报告和停止规则正确。两个模型不是两份独立照片集或两个训练seed。",
+      "minimal_additive_correction_zh": "新索引加入diagnostic_status=not_evaluable_no_events、evidence_for_effectiveness=none、evidence_of_ineffectiveness=none；保留原false和null。",
+      "minimal_additional_evidence_zh": "关闭无需新实验。5事件/5非事件只是可计算性筛，不是功效保证。若另有可信新命题，应来自未参与选择的对象/条件并有足够事件，不能在同64图调gain或score造事件。",
+      "new_execution_authorized": false
+    },
+    {
+      "id": "STAT-003",
+      "severity": "low",
+      "category": "CI_wording",
+      "title_zh": "条件效应不是零宜改成观测及条件区间表述",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/evidence-cross-audit-20261021/morning-facts-zh.md",
+          "line_numbers": [
+            35
+          ]
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/primary_A_mean"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/A_bootstrap95"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/B_bootstrap95"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line_numbers": [
+            3,
+            31,
+            32,
+            35,
+            37
+          ]
+        }
+      ],
+      "observed": {
+        "A_mean": 0.0031108189701196023,
+        "A_bootstrap95": [
+          0.00151741755999804,
+          0.0046828021944961325
+        ],
+        "B_mean": 0.002038285737198264,
+        "B_bootstrap95": [
+          8.721636479354016e-05,
+          0.004067637107660725
+        ],
+        "relative_reduction": 0.035321209613892256,
+        "practical_point_screen": 0.2
+      },
+      "assessment_zh": "不能因小于20%抹去正向条件信号；同样，CI不含零不是人口真效应非零的逻辑证明，也不覆盖seed或背景总体。原报告边界比该汇总短句准确。",
+      "minimal_additive_correction_zh": "建议新侧录写：所报条件差值为正，48原图重采样的条件区间不含零；相对点估计3.532%未达20%投入筛查。未证明普遍无效、跨seed稳健非零或新语义机制。",
+      "minimal_additional_evidence_zh": "改措辞无需计算。若扩大为总体效应或统计上小于20%，须先定义目标总体与训练/背景抽样及相应区间；当前未提供相对改善率CI，未过点门槛不等于证明总体小于20%。",
+      "new_execution_authorized": false
+    }
+  ],
+  "main_inference_audit": {
+    "brightness": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+          "json_pointer": "/uncertainty"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+          "json_pointer": "/candidate_screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/experiment.py",
+          "line_numbers": [
+            114,
+            116,
+            118,
+            120,
+            122,
+            125,
+            126,
+            129,
+            364,
+            365,
+            366,
+            367,
+            377
+          ]
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/verification.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line_numbers": [
+            9,
+            13,
+            21,
+            31,
+            32,
+            35,
+            37,
+            57
+          ]
+        }
+      ],
+      "unit": "paired source photo; resample24cats and24dogs,5000replicates,RNG2026102117",
+      "original_photos": 48,
+      "composites_not_independent_n": 192,
+      "fixed_donors": 4,
+      "training_seed_count": 1,
+      "conditioning_zh": "固定三个已训练模型、训练样本与训练侧归一化分母、共同seed和四个纹理供体。共享臂只训练一次并复用；四供体总体SD描述这个固定银行，不估计自然背景总体方差。",
+      "assumptions_zh": "照片级配对正确；名义percentile95% CI仍依赖类内来源照片可交换/代表性。确定性SHA选样、文件大小/重复排除不是已验证的总体概率抽样设计；动物身份未知。不覆盖训练随机性、自然OOD、背景总体。",
+      "positive_negative_balance_zh": "保留A/B区间下界为正及B下界接近零；20%仅投入筛。失败≠零效应，正向条件CI≠语义特异机制或普遍方法优势。",
+      "practical_threshold_zh": "3.532%为点估计，无比率CI。0.20不是效应存在分界或等效界；准确率下降不超过5pp的点值门槛不构成正式非劣效检验。",
+      "multiplicity_zh": "A/B是各自边际95%区间，不是联合95%置信集。不能仅因合取要求两者下界正就断言必须Bonferroni：此逻辑与intersection-union相容；次要指标没有同时覆盖保证，不能挑最好项充确认。",
+      "verdict": "mostly_accurate_conditional_exploratory_claim"
+    },
+    "filter": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/protocol.json",
+          "json_pointer": "/uncertainty"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/protocol.json",
+          "json_pointer": "/screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/train_probe.py",
+          "line_numbers": [
+            208,
+            209,
+            210,
+            211,
+            212,
+            214,
+            215,
+            222,
+            224,
+            225
+          ]
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "json_pointer": "/primary_paired_species_bootstrap95_CI"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line_numbers": [
+            15,
+            17,
+            19,
+            23,
+            29,
+            33,
+            37,
+            51,
+            53,
+            55,
+            65
+          ]
+        }
+      ],
+      "orientation": "LL(matched unfiltered sourceweight control)-LL(filtered),positive favors filtering",
+      "point_nats": -0.005891494899788944,
+      "paired_species_bootstrap95_CI": [
+        -0.013308939503308621,
+        7.219524208376255e-05
+      ],
+      "unit": "64original test photos,32/species,paired across fixed arms,5000resamples",
+      "not_independent_n": [
+        "576training views",
+        "554retained views",
+        "7correlated readouts",
+        "4crossfit teachers"
+      ],
+      "conditioning_zh": "固定64训练原图、冻结编码器、一份增强库与已拟合读出。有效源权重样本量约63.20只是权重集中度，不是CI独立n。",
+      "assessment_zh": "负点差和含零区间诚实报告，不证明显著伤害或两组等效。条件区间上界也远小于0.01nat实用收益，但不支持所有过滤无用、端到端无效或收益完全由重加权解释。全部增强多对1/64仅次要点差。",
+      "optional_wording_zh": "result-zh.md:53的在这个设置中没有帮助可在新索引精确为此固定设置未获额外收益支持；:55/65已防止等效和总体无效误读。",
+      "verdict": "accurate_negative_point_and_CI_containing_zero"
+    },
+    "Equalize": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/protocol.json",
+          "json_pointer": "/primary_screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "json_pointer": "/primary_delta_LL_global_minus_cross"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "json_pointer": "/block_deltas"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "json_pointer": "/positive_source_count"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line_numbers": [
+            18,
+            20,
+            28,
+            32,
+            41,
+            51
+          ]
+        }
+      ],
+      "orientation": "LL(global Equalize)-LL(crosspaired),predicted harm positive",
+      "point_nats": -0.0016544127707039946,
+      "positive_sources": {
+        "observed": 10,
+        "required": 12,
+        "n": 16
+      },
+      "positive_macroblocks": {
+        "observed": 2,
+        "required": 3,
+        "n": 4
+      },
+      "block_deltas": [
+        0.004294981714859578,
+        -0.003568615992178392,
+        -0.008506713909725142,
+        0.0011626971042284356
+      ],
+      "CI_or_significance_test_reported": false,
+      "unit_zh": "16前景来源与交叉背景组成4来源互斥宏块；同源副本、共享背景有关联。不能把所有帧或16符号当独立Bernoulli试验。",
+      "assessment_zh": "负主均值与10/16为正可由影响大小差异产生，无矛盾。没有CI/预设检验，不能称显著反向或证明机制不存在。报告明确启发式筛；Equalize相对no-op的失败只是固定模型观察。旧heldout历史已用，非新确认集。",
+      "verdict": "accurate_exploratory_heuristic_screen_failure"
+    },
+    "joint_photo": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/protocol.json",
+          "json_pointer": "/primary_evaluation"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/models"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/results.json",
+          "json_pointer": "/independent_validation"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/result-zh.md",
+          "line_numbers": [
+            19,
+            21,
+            28,
+            30,
+            31,
+            33,
+            35,
+            41,
+            42,
+            52,
+            54
+          ]
+        }
+      ],
+      "unit": "64previously fitted/developed source photos,separate fixed-model reporting",
+      "AUC_status": "undefined_zero_events",
+      "comparators_zh": "两single红增益相同，S只有一个有效基线；T=B+S不增加独立物理信息；D是同软件定义下的直接仿真上界。并列AUC即使可算也不证明margin外条件新增信息。",
+      "zero_errors_zh": "不能对训练照片0/64套独立新test二项上界作总体低风险结论；同图两模型不能合成n=128。",
+      "verdict": "human_text_correctly_inconclusive;boolean_needs_status_sidecar"
+    }
+  },
+  "other_coverage": [
+    {
+      "branch": "background/design-only and ALIA material audit",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/filter-audit-20261021/background-audit-design.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/filter-audit-20261021/reviewed-draft.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/feasibility-report-zh.md"
+        }
+      ],
+      "assessment_zh": "计划n、未审核有效性标签与有限池最坏界不是已执行样本CI；256构造配置等逻辑检查不是发现次数。"
+    },
+    {
+      "branch": "ForNet metadata and scale",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/results.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/scale-results.json"
+        }
+      ],
+      "assessment_zh": "有限元数据池/模拟分布MI计算及99次置换不是模型性能或自然总体CI。条件关联不能升级为边际捷径、视觉网络作用或世界因果效应。"
+    },
+    {
+      "branch": "Pets weak/fixed ResNet18 area-scale transfer",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/transfer-result-zh.md",
+          "line_numbers": [
+            7,
+            23,
+            38,
+            42,
+            58
+          ]
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-result-zh.md",
+          "line_numbers": [
+            5,
+            19,
+            25,
+            26,
+            28,
+            36,
+            42,
+            46,
+            47
+          ]
+        }
+      ],
+      "assessment_zh": "4宏块同号筛不是显著性检验；9344策略记录不是独立照片，校准64状态仅4照片。弱读出限制已说明；事后T/C诊断标事后，未替换主结果。"
+    },
+    {
+      "branch": "engineering: Mac/MPS,numerics,recovery,BN/base,conservative repair",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mac-mps-check-20261021/result-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/repair-result-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/result-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/result-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/result-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/result-zh.md"
+        }
+      ],
+      "assessment_zh": "单轨迹/检查点不增加seed。0.69315/50%故障、短程欠拟合及联合修复不是增强收益。bodyLR与warmup同时改，未隔离贡献。两臂100%干净训练只证明该运行学成；条件时长不具备跨任务速度CI。"
+    },
+    {
+      "branch": "exact SCM symmetry counterexample",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/symmetry-causal-risk-20261021/theory-note-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/symmetry-causal-risk-20261021/protocol.json"
+        }
+      ],
+      "assessment_zh": "总体矩阵/有理数为限定SCM精确反例，不需要经验CI。200kMC及SE仅核对模拟实现，不是Pets/OOD分类证据。"
+    },
+    {
+      "branch": "translation operation law and mathematical clipping example",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/operation-law-audit-20261021/finding-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/operation-law-audit-20261021/execution-amendment.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-mechanism-20261021/protocol.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-mechanism-20261021/results.json"
+        }
+      ],
+      "assessment_zh": "8旧训练照片、2976状态不等于2976独立照片。q/2、q ln2为规定增强律的不可分辨支持界，非人口风险CI。clipping是有限支持上两个固定读出，非已训练AA/RA/TA策略。格点/gamma检查为确定验证。v1 bits0失败后v2明确修正，不回写首次全通过。"
+    },
+    {
+      "branch": "deployment selection and intervention-preservation designs",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/deployment-selection-20261021/comparison-zh.md"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/intervention-preservation-design-audit-20261021/audit-zh.md"
+        }
+      ],
+      "assessment_zh": "设计未执行，无新训练效应或经验CI。历史目标解码、augmentation对固定loss效应和世界do效应不同；paired/temporal记录不自动独立或为单位反事实。"
+    },
+    {
+      "branch": "rejected sampling/coverage and literature-only branches",
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/evidence-cross-audit-20261021/morning-facts-zh.md",
+          "line_numbers": [
+            5,
+            36,
+            37,
+            43,
+            47,
+            49,
+            50,
+            51,
+            68,
+            69,
+            72
+          ]
+        }
+      ],
+      "assessment_zh": "未执行候选无性能CI。已有解释/增量不足/不可测量等关闭理由，不等于已证明机制永远无效。"
+    }
+  ],
+  "test_consumption": {
+    "refs": [
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json"
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+        "line_numbers": [
+          15,
+          17,
+          19,
+          23,
+          65
+        ]
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+        "line_numbers": [
+          9,
+          35
+        ]
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+        "line_numbers": [
+          18,
+          20
+        ]
+      },
+      {
+        "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/evidence-cross-audit-20261021/morning-facts-zh.md",
+        "line_numbers": [
+          11,
+          60,
+          61,
+          62,
+          64
+        ]
+      }
+    ],
+    "conclusions_zh": [
+      "ID/CRC/decodedRGB不重叠不等于动物身份、近重复或预训练独立；类内bootstrap须承认未核验假设。",
+      "filter64、brightness48首次固定问题新鲜性有本地记录支持；后来消费不追溯抹去首次观察，但今后不是新假设确认集。",
+      "filter64后来为stage开发；Equalize16前景后来进微调训练64；副本/供体/检查点不能增加n。",
+      "物种分层固定各半，条件估计针对平衡混合，不直接代表任意部署类比例。"
+    ],
+    "minimal_extra_evidence_zh": "当前收口无需重评旧test。未来只有独立增量命题才另定未参与选择的对象/条件；若覆盖动物或供体总体，应设计时记录相应聚类单位。这不是执行授权。"
+  },
+  "threshold_and_stop_timing": {
+    "evidence_grades_zh": {
+      "content_claim": "协议自称预先/锁定只是内容主张。",
+      "hash_linked_local_receipt": "现存协议/代码hash被freeze、fetch和result引用且代码检查链接，支持内部版本与顺序。",
+      "mtime": "mtime可能为复制/归档/编辑时间，不能单独证明运行前锁定；晚于内容时间也不单独证明造假。",
+      "external_preregistration": "可信外部/不可后改运行前存证本次未见；不能把本地UTC/hash称为已证实外部预注册。"
+    },
+    "brightness": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+          "json_pointer": "/candidate_screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol-lock.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/training-freeze.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/heldout-fetch-receipt.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/experiment.py",
+          "line_numbers": [
+            118,
+            129,
+            130,
+            212,
+            214,
+            215,
+            217,
+            218,
+            310,
+            316,
+            329,
+            334
+          ]
+        }
+      ],
+      "local_content_times_UTC": [
+        "2026-10-21T08:58:18.253280+00:00",
+        "2026-10-21T09:00:22.359138+00:00",
+        "2026-10-21T09:05:14.178815+00:00",
+        "2026-10-21T09:08:12.295271+00:00",
+        "2026-10-21T09:08:37.292244+00:00"
+      ],
+      "order": "protocol→lock→training freeze→fetch receipt→result",
+      "threshold": "20%point reduction,positive A/B lower bounds,and training/accuracy checks",
+      "qualification_zh": "v0宽灰带在训练/新留出前调整的说法与保存版本/锁相容，无外部时间证明。"
+    },
+    "filter": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/protocol.json",
+          "json_pointer": "/screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/training-freeze.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-fetch-receipt.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/train_probe.py",
+          "line_numbers": [
+            169,
+            170,
+            183,
+            184,
+            185,
+            187,
+            214,
+            215,
+            224,
+            225
+          ]
+        }
+      ],
+      "local_content_times_UTC": [
+        "2026-10-21T05:55:35.182088+00:00",
+        "2026-10-21T05:59:06.048952+00:00",
+        "2026-10-21T06:00:11.491117+00:00",
+        "2026-10-21T06:01:20.655728+00:00"
+      ],
+      "order": "protocol→training freeze→fetch receipt→result",
+      "threshold": "0.01nat point benefit,positive lower bound,filtered better than clean",
+      "qualification_zh": "代码核对时间与hash并禁止已有结果时同入口再评；强于mtime，但不证明所有未记录历史路径不存在。"
+    },
+    "Equalize": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/protocol.json",
+          "json_pointer": "/primary_screen"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/development-freeze.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/run_equalize_audit.py",
+          "line_numbers": [
+            62,
+            64,
+            65,
+            66,
+            67,
+            173,
+            174,
+            175,
+            176
+          ]
+        }
+      ],
+      "local_content_times_UTC": [
+        "2026-10-21T05:40:51.299152+00:00",
+        "2026-10-21T05:44:00.485614+00:00",
+        "2026-10-21T05:44:25.883148+00:00"
+      ],
+      "order": "protocol→development freeze→heldout result",
+      "threshold": ">=0.01nat,>=12/16positive sources,>=3/4positive blocks,plus pixel/no-op checks",
+      "qualification_zh": "此次内部版本先冻结，但照片历史已用，不能恢复未触碰地位。"
+    },
+    "joint_photo": {
+      "refs": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/protocol.json",
+          "json_pointer": "/pre_execution_review_amendment"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/protocol.json",
+          "json_pointer": "/primary_evaluation/stop"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/lock-receipt.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/verification.json"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/result-zh.md",
+          "line_numbers": [
+            33,
+            35,
+            48
+          ]
+        }
+      ],
+      "lock_content_UTC": "2026-10-21T17:57:56.097950+00:00",
+      "result_finished_UTC": "2026-10-21T17:58:09.752335+00:00",
+      "qualification_zh": "T/D在锁前加入的记录与hash相容；无外部时间戳。事件不足按预定规则停止，属于不可评估。"
+    },
+    "adaptive_engineering_zh": "故障后修配方属于开发适应，不是确认性增强效果检验。0候选是投入/先例差异/可测量性决定，不是统一检验接受全部无效假设。",
+    "status_taxonomy_zh": "未达实用筛、CI含零、反向点差、无事件、训练无效、材料未齐是六种状态，不应统一标negative/ineffective。"
+  },
+  "text_hash_link_checks": [
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol-lock.json",
+      "field": "hashes",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+      "expected_sha256": "dab505c8b9b83b83d9a586aa25d0b797ab69b11a9c1ae06f824a6cb6875419fb",
+      "current_text_sha256": "dab505c8b9b83b83d9a586aa25d0b797ab69b11a9c1ae06f824a6cb6875419fb",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    },
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/training-freeze.json",
+      "field": "protocol_lock_sha256",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol-lock.json",
+      "expected_sha256": "f2efea32663149d0842dd77d2ffa253e6e1f4b9e534832e41a2c2927e470a496",
+      "current_text_sha256": "f2efea32663149d0842dd77d2ffa253e6e1f4b9e534832e41a2c2927e470a496",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    },
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/heldout-fetch-receipt.json",
+      "field": "training_freeze_sha256",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/training-freeze.json",
+      "expected_sha256": "e548913391466d1e5bb2e89926860fb733751db8dd4d3bbe42d76e479dfc0e6a",
+      "current_text_sha256": "e548913391466d1e5bb2e89926860fb733751db8dd4d3bbe42d76e479dfc0e6a",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    },
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/training-freeze.json",
+      "field": "protocol_sha256",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/protocol.json",
+      "expected_sha256": "2a179d79aec4d5cf69f272a036dc1f35662396efaff65e35d4784203ebbce5f9",
+      "current_text_sha256": "2a179d79aec4d5cf69f272a036dc1f35662396efaff65e35d4784203ebbce5f9",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    },
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-fetch-receipt.json",
+      "field": "training_freeze_sha256",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/training-freeze.json",
+      "expected_sha256": "0d16ce01b4d4da15c6932508b48d56b41abcd5228b6632bf15dba8d73b975ce3",
+      "current_text_sha256": "0d16ce01b4d4da15c6932508b48d56b41abcd5228b6632bf15dba8d73b975ce3",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    },
+    {
+      "receipt": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/development-freeze.json",
+      "field": "protocol_sha256",
+      "target": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/protocol.json",
+      "expected_sha256": "c958c50552b56f1916d53d6b86cb937f197b4a72ec725d390c82d130b0a3ac88",
+      "current_text_sha256": "c958c50552b56f1916d53d6b86cb937f197b4a72ec725d390c82d130b0a3ac88",
+      "matches": true,
+      "meaning_zh": "文本版本链接相符，不证明外部时间或未记录路径不存在。"
+    }
+  ],
+  "proposed_additive_status_index": [
+    {
+      "run": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/",
+      "raw_status": "positive",
+      "scientific_status": "inconclusive_training_state_invalid"
+    },
+    {
+      "run": "joint-clipping-photo-check-20261021/",
+      "raw_status": false,
+      "scientific_status": "not_evaluable_no_events"
+    },
+    {
+      "run": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/",
+      "scientific_status": "positive_conditional_small_signal_practical_screen_failed"
+    },
+    {
+      "run": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/",
+      "scientific_status": "negative_point_CI_contains_zero_practical_screen_failed"
+    },
+    {
+      "run": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/",
+      "scientific_status": "opposite_mean_heuristic_screen_failed_no_significance_claim"
+    }
+  ],
+  "minimal_closeout_action_zh": "用新状态索引/侧录完成3处澄清，旧协议/结果/hash全部保留。未发现需重跑模型或CI才能修复的主要数值问题。补证仅在未来扩大结论时需要，不列作本次待执行任务。",
+  "blockers": {
+    "execution_denied": [],
+    "pending_approvals": [],
+    "uncertain_actions": [],
+    "epistemic_limits": [
+      "实际档位无回执",
+      "无可信外部锁定时间戳",
+      "身份/近重复/预训练独立未知",
+      "单seed/固定供体CI不覆盖训练和环境总体",
+      "零事件诊断不可评估"
+    ]
+  },
+  "audit_utc": "2026-10-21T18:48:02.904669+00:00",
+  "reference_integrity": {
+    "unique_referenced_text_paths": 49,
+    "all_referenced_paths_exist": true,
+    "test_metrics_recomputed": false,
+    "models_or_images_read": false
+  }
+}

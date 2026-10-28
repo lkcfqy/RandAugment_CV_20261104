@@ -1,0 +1,174 @@
+{
+  "status": "frozen_pre_result_single_seed_development_protocol",
+  "frozen_at_utc": "2026-10-22T14:51:37.896397+00:00",
+  "question": "Does equal-parameter front versus back Q/V-LoRA placement modify the clean-error benefit of fixed RandAugment in this common training recipe?",
+  "directional_prediction": "I=(E_front_weak-E_front_RA)-(E_back_weak-E_back_RA)>0",
+  "epochs": 30,
+  "seed": 20261022,
+  "batch": 16,
+  "wall_cap_seconds": 7200,
+  "cell_order": [
+    [
+      "front",
+      "weak"
+    ],
+    [
+      "back",
+      "ra"
+    ],
+    [
+      "back",
+      "weak"
+    ],
+    [
+      "front",
+      "ra"
+    ]
+  ],
+  "evaluation_epochs": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "endpoint": "Final fixed epoch only. No best epoch, class selection, seed/LR search or final-test reading.",
+  "resource_decision": {
+    "rule": "30 epochs if 1.25 times dummy-measured compute+pacing estimate <=7200 seconds; otherwise 10 if feasible, else stop.",
+    "dummy_30epoch_estimate_seconds": 2932.2719460516237,
+    "estimated_seconds_with_25percent_overhead": 3665.3399325645296,
+    "original_draft_core_epochs": 10,
+    "pre_result_revision_reason": "370 updates at 10 epochs may undertrain a random 37-class head. Use the draft maximum30 uniformly if actual local resource cost permits; no task outcome has been inspected."
+  },
+  "architecture": {
+    "name": "torchvision vit_b_16",
+    "weights": "IMAGENET1K_V1",
+    "head_classes": 37,
+    "patch_tokenization": "224x224 RGB, patch16 stride16 ->196 patches plus one class token; same learned position embedding; no text tokenizer.",
+    "layout_front": [
+      0,
+      1,
+      2
+    ],
+    "layout_back": [
+      9,
+      10,
+      11
+    ],
+    "LoRA": "Q and V only, r4, alpha/r1, A~N(0,.01^2) shared by slot, B0; K correction identically zero.",
+    "trainable_backbone": 36864,
+    "trainable_head": 28453,
+    "trainable_total": 65317,
+    "frozen": "All base projection/bias, patch embedding, positional/class token, LayerNorm and all other original parameters.",
+    "dropout": 0.0,
+    "attention_dropout": 0.0,
+    "precision": "FP32, no AMP"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "adapter_lr": 0.0003,
+    "head_lr": 0.001,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "amsgrad": false,
+    "schedule": "10% integer-floor linear warmup then cosine by logical update, as locked common.py.",
+    "gradient_clipping": false,
+    "gradient_accumulation": 1,
+    "LR_search_runs": 0,
+    "sensitivity_scope": "A common recipe interaction; equal LR is not proof of equal optimization difficulty or layout-optimal performance. No selective LR repair or extension after seeing the sign."
+  },
+  "augmentation": {
+    "weak": "PIL RRC scale[.8,1] ratio[.9,1.1],224 bilinear antialias; independent HFlip .5.",
+    "ra": "Same weak image then torchvision full14-operation RandAugment, N2 M9/31, bilinear, fill[124,116,104].",
+    "RNG": "Separate SHA256 keyed CPU RNG for weak and RA by source ID/epoch/seed, source-order key independent of model RNG.",
+    "pairing": "Every epoch ordered RGB, normalized FP32 input tensor and source-ID order SHA must match across layouts within each augmentation."
+  },
+  "data": {
+    "train_photos": 591,
+    "development_photos": 589,
+    "source": "Oxford-IIIT Pet fixed mirror revision003aeb4bc80d584ef307dc24e8b38d26cf9f9e43, original trainval only.",
+    "reuse": "Each training source once per epoch; same source exposure and logical updates in every cell, no repeated/resampled sources to fill batches.",
+    "updates_per_cell": 1110,
+    "presentations_per_cell": 17730,
+    "evaluation": "Deterministic shorter-edge256 bilinear antialias, center crop224, ImageNet normalization; argmax takes first maximum, natural-log NLL from FP32 logits in float64.",
+    "label_preservation": "Original annotated breed identity is the target; geometry/visual QA supports visibility only. Photometric or crop loss of breed cues can remain; no causal invariance proof.",
+    "independence": "Source photograph after conservative known duplicate removal. Unknown animal identity and ImageNet overlap remain unverified.",
+    "reserved_confirmation": "592 candidate IDs remain sealed: no reserved members requested by name, extracted, stored, decoded, scored or used for training/selection. Public ZIP range buffers include a discarded header margin; see data/range-transfer-scope.json rather than claiming literal transport-byte exclusion.",
+    "license": "Official current CC BY-SA4.0, legacy research/original-site notice preserved. Local research only, attribution/modification notes; no redistribution."
+  },
+  "primary_metric": "source-photo micro classification error on clean development images",
+  "secondary_metrics": [
+    "macro error",
+    "natural-log NLL",
+    "all37 per-class errors",
+    "front-minus-back absolute baseline gaps",
+    "training CE and representation/parameter-change diagnostics"
+  ],
+  "bootstrap": {
+    "algorithm": "Pair the four cell errors by source ID; independently resample with replacement inside each of37 observed breeds, preserving original breed counts; sum sampled d_i /total N.",
+    "replicates": 5000,
+    "seed": 73102,
+    "generator": "numpy.default_rng PCG64",
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "method": "numpy.quantile linear",
+    "unit": "source photograph after all confirmed/uncertain duplicate clusters removed",
+    "scope": "Fixed-model conditional photo-sampling sensitivity only; not training variability, animal-level independence, population coverage or confirmatory inference."
+  },
+  "engineering_gate_I_min": 0.01,
+  "gate_rationale": "One percentage point is the pre-existing proposal engineering investment scale (~6 net error-count units out of592); it is not significance, power, equivalence or a novelty criterion. No CI lower-bound condition is added.",
+  "decision": {
+    "I_below_gate": "Retain failure of this common-recipe development gate. No extra seeds to rescue sign, no test opening. Inspect optimization sufficiency honestly; cannot reject all possible position x augmentation effects.",
+    "I_above_gate": "Potential development signal only; requires predeclared paired seeds, fair optimization sensitivity and stronger reference arms before an original contribution claim.",
+    "both_RA_gaps_negative": "At most moderation of RA harm, not unlocked enhancement benefit.",
+    "measurement_failure": "Nonfinite gradients/loss, OOM, missing/frozen/wrong parameters, unequal pixels, budget stop or incomplete endpoints -> incomplete/invalid measurement, not scientific negative.",
+    "underfitting": "Report CE and late trajectory without post-hoc numeric convergence threshold. Fixed budget is not a convergence guarantee; do not extend only a weak cell."
+  },
+  "not_run": [
+    "spread all12 r1 LoRA",
+    "all12 r4 LoRA",
+    "full fine-tuning",
+    "backup CutMix",
+    "additional seeds",
+    "LR grid"
+  ],
+  "claim_boundary": "No SOTA/full-FT superiority, unique mechanism, causal effect identification, publication or teacher-approval guarantee.",
+  "resources": {
+    "device": "mps:0",
+    "MPS_fallback": false,
+    "CPU_threads": 1,
+    "nice_increment": 10,
+    "MPS_per_process_memory_fraction": 0.1,
+    "paced_sleep_multiple_of_active_compute": 2,
+    "actual_utilization_measured": false,
+    "serial_only": true,
+    "8A_priority": true,
+    "A100_Colab_ARiS_paid_upload_publish": false,
+    "STOP.request": "Create file in run root for graceful stop after logical update."
+  },
+  "model_request": {
+    "model": "GPT-6.1-Sol",
+    "reasoning_effort": "max",
+    "Fast": "existing requested configuration retained",
+    "actual_backend_receipt_exposed": false
+  },
+  "fit_manifest_sha256": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+  "weight_sha256": "c867db91d3e12c6cbadabb610d73c24a546bf82d8c03a9fea34f43a712ddb0e9",
+  "evidence_sha256": {
+    "qa-intent.json": "022b3ded9c20e9658b147c8e53408e4d0afc54e8b2193e156dab53b34ed740f0",
+    "qa/source-qa.json": "3be3a2a8eaebe7d9c06b9c4213a6a86b9af688e00284ad885c04b5ebe2ead8e4",
+    "qa/geometry-visibility.json": "086405a0a40fa3de0aa857f682f061a5351c3f48bcc6fd079c28403091467955",
+    "qa/visual-review.json": "ef7440aefa7fdec823e29c4499c97d476052eb1f95ee719495e12694bc9596e2",
+    "data/license-receipt.json": "9351e336dd904c16ac24c1256cb7f740db740fa5a5a26222f3ba3ac182525127",
+    "data/range-transfer-scope.json": "cbbb3dbd51b85dd5274b0dbebe7ba8ab0002f6ecf9bf683b96074170aee89ac2",
+    "old-id-exclusion-check.json": "0d65f65dd31ef6eeb528a93dd1265933ba6e2f378c3b101c81b85fdb5883c728",
+    "preflight.json": "be740cd5001993089b9291e7a7dbc6196e30ce7937a8949f374c1735913ee253",
+    "independent/code-review.md": "1e78d85c7b89d09f48bdd29421654d47e534b50c1239d0385018370cff5e2a0f",
+    "independent/code-review-closure.md": "2f047ffb18b00b1322a5aa5252511a37c7a3618d557c0dc4ad9bb9243622cba8"
+  }
+}

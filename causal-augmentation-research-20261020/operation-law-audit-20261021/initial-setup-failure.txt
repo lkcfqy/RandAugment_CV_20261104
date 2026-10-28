@@ -1,0 +1,10 @@
+Initial setup attempt, before protocol lock or pixel execution:
+  File "check.py", line 9, in <module>
+    os.nice(10)
+PermissionError: [Errno 1] Operation not permitted
+
+Action: lower this process's scheduling priority via os.nice(10).
+Target: newly launched local Python process.
+Outcome: OS refused; no priority change, protocol creation or image processing occurred.
+Resolution: omit this nonessential priority-changing operation. Do not retry or elevate it.
+The actual audit retains one CPU thread and performs no training or GPU work.

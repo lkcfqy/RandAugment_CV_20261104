@@ -1,0 +1,55 @@
+{
+  "status": "posthoc_diagnostic_completed",
+  "purpose": "Distinguish train-to-heldout parameter predictability from image-readout failure; NOT a default-RGB model or a primary result",
+  "declared_after_primary_negative_result": true,
+  "training_only_histogram": "width .1,14bins; Beta(1,1) for T-only, Beta(.5,.5) per C/T cell, no tuning",
+  "privileged_features": [
+    "true requested T",
+    "true removed-source species C"
+  ],
+  "blocks": [
+    {
+      "block": 0,
+      "coupled_cases": 16,
+      "T_only_LL": 0.9637555885988733,
+      "T_and_C_coupled_LL": 0.9245135353978924,
+      "T_and_C_independent_LL": 1.0090988886674939,
+      "CT_over_T_heldout_gain_nats": 0.03924205320098095,
+      "CT_policy_delta_LL": 0.08458535326960148
+    },
+    {
+      "block": 1,
+      "coupled_cases": 16,
+      "T_only_LL": 0.7389213107746426,
+      "T_and_C_coupled_LL": 0.7395916720943384,
+      "T_and_C_independent_LL": 0.7545327357322226,
+      "CT_over_T_heldout_gain_nats": -0.0006703613196957781,
+      "CT_policy_delta_LL": 0.014941063637884167
+    },
+    {
+      "block": 2,
+      "coupled_cases": 16,
+      "T_only_LL": 0.6608837687865933,
+      "T_and_C_coupled_LL": 0.6344150047100858,
+      "T_and_C_independent_LL": 0.6790715344112553,
+      "CT_over_T_heldout_gain_nats": 0.026468764076507445,
+      "CT_policy_delta_LL": 0.04465652970116951
+    },
+    {
+      "block": 3,
+      "coupled_cases": 16,
+      "T_only_LL": 0.6683441517429324,
+      "T_and_C_coupled_LL": 0.7195711837772413,
+      "T_and_C_independent_LL": 0.6907577675720794,
+      "CT_over_T_heldout_gain_nats": -0.051227032034308895,
+      "CT_policy_delta_LL": -0.028813416205161868
+    }
+  ],
+  "mean_gain_CT_over_T": 0.0034533559808709313,
+  "mean_CT_policy_delta_LL": 0.028842382600873323,
+  "does_not_establish": [
+    "RGB model can recover T/C",
+    "new contribution",
+    "harm to ForNet or natural OOD"
+  ]
+}

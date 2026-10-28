@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "requested_model": "GPT-6.1-Sol",
+  "requested_reasoning_effort": "max",
+  "actual_model_and_effort_verified": false,
+  "model_receipt_note_zh": "没有实际执行档位回执；不把请求值当成实际运行核验。",
+  "scope": {
+    "intended_named_papers": 4,
+    "successfully_read_original_papers": 3,
+    "attempted_but_unavailable_original_papers": 1,
+    "read_only_literature": true,
+    "no_old_registration_or_data_quality_reaudit": true,
+    "no_pixels_models_training_or_large_data_download": true,
+    "no_gpu_a100_aris_automation_8A_ppt_or_external_model": true,
+    "forbidden_schoi828_domainbed_or_API_tree_access": false,
+    "sole_new_file": "/Users/lkc/Documents/Codex/2026-10-21/task/norb-view-transfer-pilot-20261021/prior-review.json"
+  },
+  "decision": {
+    "disposition": "CONDITIONAL_PROCEED_FOR_ONE_SOURCE_LOCKED_FALSIFICATION",
+    "retained_falsifiable_question_count": 1,
+    "original_contribution_established": false,
+    "verdict_zh": "值得一次严格源侧锁定后的反证，限冻结ResNet18特征与实际拟合读出。已读原文没有展示完整等价的物理视角对齐分数→新物体新角度额外收益预测；但一般理论、增强选择和smallNORB角度shift均已有覆盖，Wiles全文亦未排除。因此不称新方法、首个benchmark或全网无等价先例。",
+    "why_informative_zh": "它让真实训练对象的三维视角变化几何在看测试之前给出具体策略排序，然后以扣除新物体已见角度收益的交互量检验。失败可直接否定这一固定配方下的预测，不需先发明更优算法。"
+  },
+  "parent_proposition": {
+    "encoder": "fixed pretrained ResNet18 feature map phi",
+    "training": "actually fit classification readouts on fixed source features/views; backbone remains frozen",
+    "policy_pool": "six fully specified fixed random 2D geometric policies, e.g. signed Rotate/Shear/Translate variants; not full AA/RA/TA",
+    "source_only_score": "s(p)=<Ca(p),Cv>F/(||Ca(p)||F||Cv||F)-<Ca(p),Cl>F/(||Ca(p)||F||Cl||F)",
+    "covariance_meaning": {
+      "Cv": "training-source real within-object viewpoint feature differences",
+      "Ca": "feature differences induced by candidate 2D geometric policy",
+      "Cl": "training-source real within-object lighting feature differences"
+    },
+    "score_is_heuristic_not_theorem": true,
+    "selected_policies": "source-side argmax and argmin of fixed score before any evaluation on heldout objects or angles",
+    "primary_prediction": {
+      "risk_definition": "R_p(E): preregistered classification risk for trained readout p in evaluation stratum E",
+      "gain_definition": "G_p(E)=R_base(E)-R_p(E)",
+      "seen_stratum": "same heldout physical objects at training-seen angle values",
+      "unseen_stratum": "same heldout physical objects at predeclared unseen angle values",
+      "main_statistic": "D=[G_high(unseen)-G_high(seen)]-[G_low(unseen)-G_low(seen)]",
+      "predicted_direction": "D>0",
+      "interpretation_zh": "新角度的相对额外收益排序；即使D为正，也须另报各G。若新角度收益本身非正，不能称高分策略提高了新角度识别。base项在D中代数抵消，但为实际收益陈述仍需报告base。"
+    }
+  },
+  "original_sources": [
+    {
+      "id": "P1",
+      "title": "A Kernel Theory of Modern Data Augmentation",
+      "authors": [
+        "Tri Dao",
+        "Albert Gu",
+        "Alexander J. Ratner",
+        "Virginia Smith",
+        "Christopher De Sa",
+        "Christopher Ré"
+      ],
+      "venue": "ICML / PMLR 97, 2019",
+      "version_read": "arXiv:1803.06084v2",
+      "version_date": "2019-03-20",
+      "original_url": "https://arxiv.org/html/1803.06084v2",
+      "proceedings_supplement_url": "https://proceedings.mlr.press/v97/dao19b/dao19b-supp.pdf",
+      "sections_read": [
+        "§4.1–4.2，尤其Eq.5",
+        "§5.1 / Figure2",
+        "Appendix E.2；PMLR补充PDF第19页（零起始p18），lines1931–1939"
+      ],
+      "direct_coverage_zh": "增强目标近似包含平均特征与方差正则。§5.1已在训练前以增强平均特征kernel对类别label kernel的归一化Frobenius对齐，预测增强价值；E.2在MNIST/CIFAR10以多种操作和实际训练核验。",
+      "precise_difference_zh": "其target是类别相似度，不是同一物体真实3D视角差的协方差；未在已读段落出现smallNORB物体×角度的差分收益、照明参照或所拟源侧排序。",
+      "significance_zh": "不能将训练前对齐选增强、协方差正则或tangent直觉称新意；source-side KTA是必须面对的廉价已知参照。",
+      "limitations_of_inference_zh": "该理论不推出本分数单调预测新角度收益；方差项还依赖读出方向、损失曲率与平均特征。归一化协方差余弦不保留这些全部信息。"
+    },
+    {
+      "id": "P2",
+      "title": "An Analysis of Model Robustness across Concurrent Distribution Shifts",
+      "authors": [
+        "Myeongho Jeon",
+        "Suhwan Choi",
+        "Hyoje Lee",
+        "Teresa Yeo"
+      ],
+      "version_read": "arXiv:2501.04288v1",
+      "version_date": "2025-01-08",
+      "original_url": "https://arxiv.org/html/2501.04288",
+      "sections_read": [
+        "§3.2–3.3",
+        "§4 / Table1",
+        "§5.1 / Table2",
+        "Appendix A.2 / A.6",
+        "Appendix B.7–B.9相关段落"
+      ],
+      "direct_coverage_zh": "使用smallNORB官方物体train/test划分，对方位角、仰角、光照构造unseen等单一/并发shift，比较RA/AA等策略并以源分布验证集调参。故新物体与角度/光照shift相结合的评估框架已有直接先例。",
+      "precise_difference_zh": "已读设计是算法与shift benchmark；未见训练前真实视角差协方差匹配、照明对齐减项，或从六个固定几何策略中先挑高低并预测G_unseen-G_seen的检验。",
+      "significance_zh": "不能把物体独立、未见角度、受控真实拍摄或smallNORB本身当新增点。窄增量只能是预先可失败的几何预测。",
+      "limitations_of_inference_zh": "其完整算法含骨干学习和超参搜索，不能直接代表本次固定特征读出的效果。未访问该文链接的schoi828/domainbed仓库或API树。"
+    },
+    {
+      "id": "P3",
+      "title": "How Data Augmentation Shapes Neural Representations",
+      "authors": [
+        "Tianxiao He",
+        "Alex H. Williams",
+        "Sarah E. Harvey"
+      ],
+      "version_read": "arXiv:2605.15306v1",
+      "version_date": "2026-05-14",
+      "original_url": "https://arxiv.org/html/2605.15306v1",
+      "sections_read": [
+        "§2–3 / Eq.1–3",
+        "§4，尤其Figure1、Figure4与ensemble定义",
+        "Appendix A / B"
+      ],
+      "direct_coverage_zh": "比较分别用增强训练后的网络表示，在clean test probes上计算去平移/尺度/正交变换后的形状轨迹；轨迹间角度与模型集成收益相关。主实验为CIFAR10，附录含ImageNet微调。",
+      "precise_difference_zh": "其几何量是在训练后、跨学习模型测量，预测ensemble增益；本方案是在同一固定phi中、训练前仅用源图真实因素差，预测单读出在未见角度的额外收益。测量对象、信息时点与预测目标均不同。",
+      "significance_zh": "几何能刻画增强效应或预测功能差异这一大方向不新；该文不直接验证本方案的完整预测。",
+      "limitations_of_inference_zh": "不能从其训练后shape-space相关性推出本源侧Ca/Cv/Cl分数有效；固定坐标协方差余弦也不是它的Procrustes/Riemannian形状距离。"
+    }
+  ],
+  "uncompleted_source": {
+    "id": "P4",
+    "requested_author_year": "Wiles et al., ICLR 2022",
+    "title": "A Fine-Grained Analysis on Distribution Shift",
+    "attempted_original_url": "https://openreview.net/references/pdf?id=rUmwzTFD-9",
+    "action": "web.open of original PDF endpoint",
+    "tool_result": "URL https://openreview.net/references/pdf?id=rUmwzTFD-9 is not accessible via this tool.",
+    "HTTP_status_exposed": false,
+    "full_text_obtained": false,
+    "full_text_read_or_download_completed": false,
+    "retry_or_alternate_path_attempted": false,
+    "disposition_zh": "停止该访问，不换arXiv、镜像或其他路径取得被阻全文。搜索元数据可定位标题/年份，但本轮不据此宣称已核其全部实验或排除等价覆盖。",
+    "remaining_blocker_zh": "Wiles全文的精确覆盖尚不能由本轮确认；结论仅限已读三项。"
+  },
+  "overlap_matrix": [
+    {
+      "claim": "增强与真实不变方向/切线相关",
+      "status": "general_principle_already_known",
+      "novelty_credit": false
+    },
+    {
+      "claim": "训练前对齐分数可选增强",
+      "status": "directly_covered_by_Dao2019",
+      "novelty_credit": false
+    },
+    {
+      "claim": "smallNORB物体留出加角度/光照shift",
+      "status": "directly_covered_in_Jeon2025_protocol",
+      "novelty_credit": false
+    },
+    {
+      "claim": "增强导致表示几何变化并关联功能结果",
+      "status": "directly_covered_by_2026_representation_paper",
+      "novelty_credit": false
+    },
+    {
+      "claim": "Cv/Ca对齐减Cl、源侧先选高低、预测未见物体上未见角度相对已见角度的额外训练收益",
+      "status": "complete_equivalent_test_not_observed_in_three_read_sources",
+      "novelty_credit": "possible_bounded_diagnostic_increment_only; Wiles gap and non-exhaustive search remain"
+    }
+  ],
+  "minimum_discriminating_controls": [
+    {
+      "control": "source-only KTA",
+      "calculation_zh": "在同一源样本与候选增强特征上计算增强平均特征kernel对训练类别kernel的对齐变化；不读取目标结果，也不追加分类器搜索。",
+      "role_zh": "最接近Dao2019的替代解释。若KTA对预选高低也同向，一对成功不足以证明物理视角分数提供了新增排序信息；应完整并列记录，不伪称击败KTA。"
+    },
+    {
+      "control": "source feature-change energy",
+      "calculation_zh": "同一源库记录平均||phi(Tx)-phi(x)||^2或trace(Ca)，预先固定定义。",
+      "role_zh": "检验排序是否只是增强扰动大小/一般正则化的换说法。归一化消除了分数本身的尺度，并不消除训练作用中幅度的影响。"
+    },
+    {
+      "control": "seen-angle stratum and base readout",
+      "calculation_zh": "同一新物体集合分别评价已见与未见角度，并报告两层各自收益及D；其余条件权重固定。",
+      "role_zh": "区分一般物体泛化提升与角度特有提升。仅在新角度上准确率更高，不等于D预测成立。"
+    }
+  ],
+  "source_lock_requirements": [
+    "Cv与Cl仅使用分类器允许训练的源对象和源角度支持；不得为分数读取后来称未见的角度，包括训练对象上的那些角度。若使用，应明确变成已见无标签角度信息的另一任务。",
+    "先固定特征层、预处理、协方差居中/平均规则、真实变化配对、六个策略/幅度、随机视图库、Cl系数与零分母/并列处理，再计算分数并冻结高低选择。",
+    "训练读出、正则化、训练视图数/权重及评价损失预先固定；不能用目标结果选择lambda、层、角度划分或最佳策略。",
+    "Cl减项仅是特异性参照，不是投影残差化或因果去混杂。视角与光照可共享特征方向，不能从减项的效果唯一解释物理机制。",
+    "主统计量D预先固定；建议以平均交叉熵作连续主要风险，准确率另报，不按测试结果切换。",
+    "只训练预选高低并不等于检验全部六策略的完整排序；结论限制为预选对及该冻结表征。"
+  ],
+  "falsification_and_stop": {
+    "precise_prediction": "s_high>s_low and D>0 under the locked protocol",
+    "directional_failure_zh": "D≤0时，不支持这一预定高低排序，关闭该分数/配方，不改分数方向、照明权重、幅度、层或角度划分追阳性。",
+    "pretest_failure_zh": "分数无可区分高低、关键分母为零或源侧信息边界不能落实时，记录不可检验并停止，不用目标数据挑替代策略。",
+    "insufficient_precision_zh": "D>0但不确定性仍容许反向或有意义负值时，仅记弱/不确定支持，不写已验证机制；单次先导不能确立总体排序。",
+    "known_explanation_zh": "若已知KTA或特征变化能量对同一预选对给出相同预测，阳性只支持该有限预测，不支持分数的新增预测力或新机制；无需因此追加更多测试来寻找分歧。",
+    "scope_after_negative_zh": "只是否定这套固定特征、源支持、策略池和读出下的预测，不推广成2D增强不能帮助3D视角泛化或AA/RA/TA无效。",
+    "no_additional_algorithm_requirement_zh": "该反证的资格不依赖提出优于现有方法的新算法；但若没有区分先例解释的信息，就不升级为原创贡献。"
+  },
+  "access_and_outputs": {
+    "new_failed_target_count": 1,
+    "failed_target": "https://openreview.net/references/pdf?id=rUmwzTFD-9",
+    "failure_is_403": null,
+    "exact_failure_class": "tool-reported URL not accessible; no HTTP status supplied",
+    "no_bypass_or_retry": true,
+    "experiments_or_model_calls": [],
+    "images_or_dataset_downloads": [],
+    "current_pending_external_operation": false,
+    "result_scope_zh": "仅文献和设计资格判断；没有执行源侧分数、读出训练或目标评价。",
+    "HTTP_status_known": false
+  }
+}

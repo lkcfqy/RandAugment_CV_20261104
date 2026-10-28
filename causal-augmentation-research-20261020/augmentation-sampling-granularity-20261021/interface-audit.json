@@ -1,0 +1,261 @@
+{
+  "created_utc": "2026-10-21T21:27:03.667503+00:00",
+  "kind": "static_source_audit_no_import_or_execution",
+  "package_metadata_only": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0"
+  },
+  "sources": [
+    {
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py",
+      "bytes": 28105,
+      "sha256": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+      "classes": [
+        {
+          "name": "AutoAugment",
+          "start": 103,
+          "end": 283,
+          "methods": [
+            {
+              "name": "_augmentation_space",
+              "start": 222,
+              "end": 239,
+              "sampling_calls": []
+            },
+            {
+              "name": "get_params",
+              "start": 242,
+              "end": 252,
+              "sampling_calls": [
+                {
+                  "line": 249,
+                  "expression": "torch.rand((2,))"
+                },
+                {
+                  "line": 250,
+                  "expression": "torch.randint(2, (2,))"
+                },
+                {
+                  "line": 248,
+                  "expression": "torch.randint(transform_num, (1,)).item()"
+                },
+                {
+                  "line": 248,
+                  "expression": "torch.randint(transform_num, (1,))"
+                }
+              ]
+            },
+            {
+              "name": "forward",
+              "start": 254,
+              "end": 280,
+              "sampling_calls": [
+                {
+                  "line": 269,
+                  "expression": "self.get_params(len(self.policies))"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RandAugment",
+          "start": 286,
+          "end": 376,
+          "methods": [
+            {
+              "name": "_augmentation_space",
+              "start": 320,
+              "end": 337,
+              "sampling_calls": []
+            },
+            {
+              "name": "forward",
+              "start": 339,
+              "end": 364,
+              "sampling_calls": [
+                {
+                  "line": 356,
+                  "expression": "torch.randint(len(op_meta), (1,)).item()"
+                },
+                {
+                  "line": 360,
+                  "expression": "torch.randint(2, (1,))"
+                },
+                {
+                  "line": 356,
+                  "expression": "torch.randint(len(op_meta), (1,))"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrivialAugmentWide",
+          "start": 379,
+          "end": 462,
+          "methods": [
+            {
+              "name": "_augmentation_space",
+              "start": 406,
+              "end": 423,
+              "sampling_calls": []
+            },
+            {
+              "name": "forward",
+              "start": 425,
+              "end": 452,
+              "sampling_calls": [
+                {
+                  "line": 441,
+                  "expression": "torch.randint(len(op_meta), (1,)).item()"
+                },
+                {
+                  "line": 449,
+                  "expression": "torch.randint(2, (1,))"
+                },
+                {
+                  "line": 445,
+                  "expression": "magnitudes[torch.randint(len(magnitudes), (1,), dtype=torch.long)].item()"
+                },
+                {
+                  "line": 441,
+                  "expression": "torch.randint(len(op_meta), (1,))"
+                },
+                {
+                  "line": 445,
+                  "expression": "torch.randint(len(magnitudes), (1,), dtype=torch.long)"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/v2/_auto_augment.py",
+      "bytes": 33141,
+      "sha256": "959ea3929bbcc7c0020873cde37977876b000c10956fa9eac8b806d54a4299c5",
+      "classes": [
+        {
+          "name": "AutoAugment",
+          "start": 177,
+          "end": 353,
+          "methods": [
+            {
+              "name": "forward",
+              "start": 329,
+              "end": 353,
+              "sampling_calls": [
+                {
+                  "line": 333,
+                  "expression": "torch.randint(len(self._policies), ())"
+                },
+                {
+                  "line": 336,
+                  "expression": "torch.rand(())"
+                },
+                {
+                  "line": 344,
+                  "expression": "torch.rand(())"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RandAugment",
+          "start": 356,
+          "end": 442,
+          "methods": [
+            {
+              "name": "forward",
+              "start": 425,
+              "end": 442,
+              "sampling_calls": [
+                {
+                  "line": 430,
+                  "expression": "self._get_random_item(self._AUGMENTATION_SPACE)"
+                },
+                {
+                  "line": 434,
+                  "expression": "torch.rand(())"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrivialAugmentWide",
+          "start": 445,
+          "end": 515,
+          "methods": [
+            {
+              "name": "forward",
+              "start": 498,
+              "end": 515,
+              "sampling_calls": [
+                {
+                  "line": 502,
+                  "expression": "self._get_random_item(self._AUGMENTATION_SPACE)"
+                },
+                {
+                  "line": 507,
+                  "expression": "torch.rand(())"
+                },
+                {
+                  "line": 506,
+                  "expression": "torch.randint(self.num_magnitude_bins, ())"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "helpers": [
+        {
+          "name": "_get_random_item",
+          "start": 40,
+          "end": 43,
+          "sampling_calls": [
+            {
+              "line": 42,
+              "expression": "torch.randint(len(keys), ())"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "classroom_assets_readonly_baseline": [
+    {
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/RandAugment_NeurIPS_2020.pdf",
+      "bytes": 1283252,
+      "sha256": "00796fa0e1edf667567fbdd43cfca7644f8176cbd2bb55dc33d448ea83e73fa7"
+    },
+    {
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/randaugment-animation.html",
+      "bytes": 18594,
+      "sha256": "2c8d58279b4b81cb14d219d8ad580404fa2537a25064e7f137acc07df17cd1af"
+    },
+    {
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-comparison.html",
+      "bytes": 207907,
+      "sha256": "8cada22ff8ff88c1c92ae12886737338dc6e9d784b0c773993a0dc0ef8a752bd"
+    }
+  ],
+  "conclusion": "For these local v1/v2 sources, operation/policy, magnitude and sign draws are scalar per forward call. A batched call shares these sampled parameters. This is static call-scope evidence, not a pixelwise equivalence test and not evidence of an error in paper-author implementations.",
+  "not_performed": [
+    "import torch/torchvision",
+    "image/model reads or encoding",
+    "training",
+    "GPU/MPS",
+    "new data download",
+    "8A access",
+    "ARIS",
+    "automation"
+  ]
+}

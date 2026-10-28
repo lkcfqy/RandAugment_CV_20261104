@@ -1,0 +1,308 @@
+{
+  "scope": "Exploratory fixed 37 training images, one original epoch0 draw, two existing front checkpoints; not independent validation or semantic certification",
+  "complete": true,
+  "unique_images": 37,
+  "unique_forwards": 148,
+  "primary_fixed_directional_probe_survives": true,
+  "summary": {
+    "front-weak": {
+      "n": 37,
+      "paired_stats": {
+        "delta_p_true": {
+          "mean": -0.01477503769919944,
+          "median": -0.000293400186844317,
+          "negative": 21,
+          "zero": 0,
+          "positive": 16,
+          "min": -0.2101231492169564,
+          "max": 0.008849611767205778
+        },
+        "delta_p_fixed_rival": {
+          "mean": 0.005377459417577918,
+          "median": 6.673777340597011e-06,
+          "negative": 18,
+          "zero": 0,
+          "positive": 19,
+          "min": -0.01877069638771308,
+          "max": 0.07327125201500893
+        },
+        "delta_fixed_rival_margin": {
+          "mean": -0.132804591913481,
+          "median": -0.010903120040893555,
+          "negative": 19,
+          "zero": 0,
+          "positive": 18,
+          "min": -2.2606735229492188,
+          "max": 1.6727821826934814
+        },
+        "delta_p_dynamic_rival": {
+          "mean": 0.00706314735165309,
+          "median": 7.676774856403421e-05,
+          "negative": 17,
+          "zero": 0,
+          "positive": 20,
+          "min": -0.008444868442299611,
+          "max": 0.10850285220259792
+        },
+        "delta_dynamic_rival_margin": {
+          "mean": -0.2003720789342313,
+          "median": -0.021465063095092773,
+          "negative": 20,
+          "zero": 0,
+          "positive": 17,
+          "min": -2.2606735229492188,
+          "max": 1.6727821826934814
+        },
+        "delta_max_confidence": {
+          "mean": -0.01477503769919944,
+          "median": -0.000293400186844317,
+          "negative": 21,
+          "zero": 0,
+          "positive": 16,
+          "min": -0.2101231492169564,
+          "max": 0.008849611767205778
+        },
+        "delta_nll": {
+          "mean": 0.016492215763275475,
+          "median": 0.0002942889146679262,
+          "negative": 16,
+          "zero": 0,
+          "positive": 21,
+          "min": -0.008937146207066735,
+          "max": 0.25115042885226757
+        },
+        "delta_own_weak_fixed_rival_margin": {
+          "mean": -0.132804591913481,
+          "median": -0.010903120040893555,
+          "negative": 19,
+          "zero": 0,
+          "positive": 18,
+          "min": -2.2606735229492188,
+          "max": 1.6727821826934814
+        }
+      },
+      "weak_correct": 37,
+      "ra_correct": 37,
+      "prediction_changed": 0,
+      "dynamic_rival_changed": 9,
+      "transitions": {
+        "correct_to_correct": 37
+      },
+      "changed_predictions": [],
+      "counterexamples_to_individual_true_probability_drop": [
+        "Bengal_104",
+        "Bombay_105",
+        "Egyptian_Mau_102",
+        "Persian_10",
+        "Siamese_100",
+        "Sphynx_103",
+        "chihuahua_118",
+        "great_pyrenees_109",
+        "havanese_101",
+        "leonberger_104",
+        "miniature_pinscher_10",
+        "pomeranian_12",
+        "saint_bernard_10",
+        "samoyed_102",
+        "scottish_terrier_10",
+        "yorkshire_terrier_100"
+      ],
+      "counterexamples_to_individual_fixed_margin_drop": [
+        "Bengal_104",
+        "Bombay_105",
+        "Egyptian_Mau_102",
+        "Persian_10",
+        "Siamese_100",
+        "Sphynx_103",
+        "american_bulldog_101",
+        "american_pit_bull_terrier_101",
+        "chihuahua_118",
+        "great_pyrenees_109",
+        "havanese_101",
+        "leonberger_104",
+        "miniature_pinscher_10",
+        "pomeranian_12",
+        "saint_bernard_10",
+        "samoyed_102",
+        "scottish_terrier_10",
+        "yorkshire_terrier_100"
+      ]
+    },
+    "front-ra": {
+      "n": 37,
+      "paired_stats": {
+        "delta_p_true": {
+          "mean": -0.0051107778183036145,
+          "median": 1.6163786814127334e-05,
+          "negative": 18,
+          "zero": 0,
+          "positive": 19,
+          "min": -0.07428117780724874,
+          "max": 0.020138841325696877
+        },
+        "delta_p_fixed_rival": {
+          "mean": 0.001088104890122273,
+          "median": -4.443197558193489e-06,
+          "negative": 19,
+          "zero": 0,
+          "positive": 18,
+          "min": -0.03656485406022207,
+          "max": 0.03222078566230195
+        },
+        "delta_fixed_rival_margin": {
+          "mean": -0.0022637997124646163,
+          "median": 0.021065592765808105,
+          "negative": 18,
+          "zero": 0,
+          "positive": 19,
+          "min": -1.9207754135131836,
+          "max": 1.900794267654419
+        },
+        "delta_p_dynamic_rival": {
+          "mean": 0.0024006520385369823,
+          "median": 2.5620716186072973e-05,
+          "negative": 17,
+          "zero": 0,
+          "positive": 20,
+          "min": -0.03656485406022207,
+          "max": 0.05239265739663366
+        },
+        "delta_dynamic_rival_margin": {
+          "mean": -0.07555045469387157,
+          "median": -0.0802377462387085,
+          "negative": 20,
+          "zero": 0,
+          "positive": 17,
+          "min": -1.9207754135131836,
+          "max": 1.795773983001709
+        },
+        "delta_max_confidence": {
+          "mean": -0.0051107778183036145,
+          "median": 1.6163786814127334e-05,
+          "negative": 18,
+          "zero": 0,
+          "positive": 19,
+          "min": -0.07428117780724874,
+          "max": 0.020138841325696877
+        },
+        "delta_nll": {
+          "mean": 0.005428203287700129,
+          "median": -1.6212326755628455e-05,
+          "negative": 19,
+          "zero": 0,
+          "positive": 18,
+          "min": -0.022195842302283858,
+          "max": 0.08320251128217103
+        },
+        "delta_own_weak_fixed_rival_margin": {
+          "mean": -0.01726582565823117,
+          "median": 0.050105512142181396,
+          "negative": 18,
+          "zero": 0,
+          "positive": 19,
+          "min": -1.9207754135131836,
+          "max": 1.900794267654419
+        }
+      },
+      "weak_correct": 37,
+      "ra_correct": 37,
+      "prediction_changed": 0,
+      "dynamic_rival_changed": 8,
+      "transitions": {
+        "correct_to_correct": 37
+      },
+      "changed_predictions": [],
+      "counterexamples_to_individual_true_probability_drop": [
+        "Bengal_104",
+        "Bombay_105",
+        "Egyptian_Mau_102",
+        "Persian_10",
+        "Siamese_100",
+        "Sphynx_103",
+        "american_bulldog_101",
+        "american_pit_bull_terrier_101",
+        "chihuahua_118",
+        "great_pyrenees_109",
+        "havanese_101",
+        "leonberger_104",
+        "miniature_pinscher_10",
+        "pomeranian_12",
+        "pug_102",
+        "saint_bernard_10",
+        "samoyed_102",
+        "scottish_terrier_10",
+        "yorkshire_terrier_100"
+      ],
+      "counterexamples_to_individual_fixed_margin_drop": [
+        "Bengal_104",
+        "Bombay_105",
+        "Egyptian_Mau_102",
+        "Persian_10",
+        "Siamese_100",
+        "Sphynx_103",
+        "american_bulldog_101",
+        "american_pit_bull_terrier_101",
+        "chihuahua_118",
+        "great_pyrenees_109",
+        "havanese_101",
+        "leonberger_104",
+        "miniature_pinscher_10",
+        "pomeranian_12",
+        "pug_102",
+        "saint_bernard_10",
+        "samoyed_102",
+        "scottish_terrier_10",
+        "yorkshire_terrier_100"
+      ]
+    }
+  },
+  "descriptive_front_ra_minus_front_weak_paired_response": {
+    "p_true": 0.009664259880895825,
+    "p_fixed_rival": -0.004289354527455644,
+    "fixed_rival_margin": 0.1305407922010164,
+    "p_dynamic_rival": -0.004662495313116108,
+    "dynamic_rival_margin": 0.12482162424035974,
+    "max_confidence": 0.009664259880895825,
+    "nll": -0.011064012475575346
+  },
+  "observed_operator_counts": {
+    "Color": 6,
+    "Identity": 7,
+    "TranslateX": 5,
+    "Contrast": 8,
+    "Brightness": 5,
+    "ShearY": 6,
+    "AutoContrast": 5,
+    "ShearX": 4,
+    "TranslateY": 6,
+    "Sharpness": 4,
+    "Posterize": 6,
+    "Equalize": 4,
+    "Rotate": 3,
+    "Solarize": 5
+  },
+  "resource": {
+    "preflight_child_inclusive_wall_seconds": 2.027744749910198,
+    "continuation_child_inclusive_wall_seconds": 11.684703750070184,
+    "combined_child_inclusive_wall_seconds": 13.712448499980383,
+    "peak_RSS_bytes": 1182203904,
+    "combined_forward_wall_seconds": 9.820346382097341,
+    "combined_forward_cpu_seconds": 9.806375999999993,
+    "training_runs": 0,
+    "neural_GPU_forwards": 0
+  },
+  "interpretation_limits": [
+    "Scores alone cannot certify loss of breed semantics.",
+    "No manipulation of operation type or magnitude: no operator-causal attribution.",
+    "Training images and prior development exploration: not held-out preregistered confirmation.",
+    "Two checkpoints from one seed are not independent retraining replications.",
+    "Original back-pair dev confidence counterexample remains open and unchanged."
+  ],
+  "previous_secondary_back_counterexample": {
+    "shared_wrong_n": 32,
+    "mean_NLL_delta": 0.03080015,
+    "median_NLL_delta": -0.04000993,
+    "max_confidence_delta": -0.0001478412,
+    "status": "Retained original exploratory development result; not recomputed here"
+  }
+}

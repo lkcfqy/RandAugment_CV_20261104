@@ -1,0 +1,49 @@
+{
+  "kind": "algebraic_necessary_condition_review_not_array_validation",
+  "no_project_arrays_images_or_models_read": true,
+  "rows_assumed": "5 classes x 3 objects x 6 azimuths x 3 elevations x 2 lights",
+  "azimuth_partition": "rank 0,1,2 versus rank 3,4,5",
+  "lighting_partition": "rank 0 versus rank 1",
+  "alpha": "4/5",
+  "t": [
+    "-1",
+    "-1/2",
+    "0",
+    "1/2",
+    "1"
+  ],
+  "checks": {
+    "class": true,
+    "physical_object": true,
+    "class_azimuth": true,
+    "class_elevation": true,
+    "class_lighting": true,
+    "object_azimuth": true,
+    "object_elevation": true,
+    "object_lighting": true,
+    "unconditional_azimuth_elevation_lighting": true,
+    "class_azimuth_elevation": true,
+    "class_elevation_lighting": true,
+    "normalization": true,
+    "full_positive_support": true,
+    "mean_configuration_equals_q0_pointwise": true,
+    "label_azimuth_lighting_is_changed": true
+  },
+  "q_min": "1/2700",
+  "q_max": "1/300",
+  "q0_kish_image_weight_neff": "540",
+  "qk_kish_image_weight_neff": "4500/11",
+  "qk_kish_image_weight_neff_float": 409.09090909090907,
+  "relative_weight_second_moment": "33/25",
+  "metadata_joint_cue_u_only_bayes_accuracy": "9/25",
+  "metadata_joint_cue_u_only_bayes_accuracy_float": 0.36,
+  "metadata_label_mutual_information_nats": 0.18013883426941957,
+  "cautions": [
+    "No change to support: all 540 source rows retain positive weight.",
+    "Distinct images and total/object/marginal loss masses match; loss weights do not.",
+    "Kish value is a weight concentration diagnostic, not independent object count or literal lost images.",
+    "Average weighted objective equals q0 before fitting; each qk must be fitted separately.",
+    "Metadata cue predictivity does not establish cue recovery from frozen image features.",
+    "Correct actual cache metadata/row alignment remains to be verified by the execution code."
+  ]
+}

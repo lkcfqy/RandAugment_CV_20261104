@@ -1,0 +1,66 @@
+{
+  "as_of_utc":"2026-10-22",
+  "scope_change":{
+    "project":"Existing RandAugment_CV_20261104; no separate project or thread created.",
+    "accepted_user_evidence":[
+      "User Sentinel_013d56e03cf88191ae0eff69fd0af21c: randaugment项目也是不限于因果了",
+      "User Sentinel_e60ba7dde40481919af6d1edbe3b0d57: 就是只要老师觉得我厉害就行"
+    ],
+    "interpretation":"General augmentation research with a clear, defensible question and convincing experiment/visual explanation; no praise/publication guarantee.",
+    "old_results_or_classroom_material_overwritten":false
+  },
+  "primary":{
+    "question":"Does the clean-task generalization benefit of fixed RandAugment depend on equal-budget early versus late Q/V-LoRA placement in the same pretrained ViT?",
+    "direction":"I=(E_early_weak-E_early_RA)-(E_late_weak-E_late_RA)>0",
+    "status":"conditional_go_to_data_QA_implementation_and_protocol_lock",
+    "new_algorithm_or_mechanism_claim":false,
+    "novelty_established":false,
+    "precise_delta":"Both main arms adapt representations and have the same Q/V rank, number of blocks and total trainable parameters. Shared source images, augmentation RGB trajectory and optimization/selection budgets isolate a practical training-policy interaction.",
+    "closest_primary_sources":[
+      {"url":"https://arxiv.org/html/2210.11466v3","title":"Surgical Fine-Tuning Improves Adaptation to Distribution Shifts","read":"Sections1-3, relevant4 and2.2","body_obtained":true,"already_covers":"Update location versus shift type; augmentation-based MEMO test-time adaptation with freezing.","remaining_difference_in_read_sections":"Not the exact same-parameter Q/V-LoRA placement × fixed training-RA clean-generalization interaction."},
+      {"url":"https://arxiv.org/html/2304.12520v3","title":"Hint-Aug: Drawing Hints from Foundation Vision Transformers towards Boosted Few-shot Parameter-Efficient Tuning","version_date":"2023-06-26","read":"1,3.1,4.1-4.2","body_obtained":true,"already_covers":"Few-shot PEFT augmentation, LoRA/Adapter/VPT, No-Aug and an RA-plus-color-jitter recipe that can harm fine-grained tasks.","remaining_difference_in_read_sections":"Not the fixed total Q/V budget moved from early to late layers. Combination-recipe harm is not RA-only evidence."},
+      {"url":"https://link.springer.com/article/10.1007/s11063-024-11626-9","title":"DynamicAug: Enhancing Transfer Learning Through Dynamic Data Augmentation Strategies Based on Model State","publication_date":"2024-05-20","read":"Sections3-4","body_obtained":true,"already_covers":"Adaptive RA/Mixup/Drop for LoRA, Adapter and Prompt-deep; model-state-dependent intensity.","remaining_difference_in_read_sections":"Our main comparison holds RA fixed and varies equal-budget placement; no new scheduling method proposed."},
+      {"url":"https://arxiv.org/html/2512.12824","title":"Adapting Multimodal Foundation Models for Few-Shot Learning: A Comprehensive Study on Contrastive Captioners","publication_date":"2025-12-14","read":"4.3-4.5 and5","body_obtained":true,"already_covers":"Strong-augmentation response differs for linear probing versus LoRA in the reported CoCa setting.","remaining_difference_in_read_sections":"Main arms here both use representation adaptation; not a rediscovery of probe-vs-LoRA divergence.","claims_not_adopted":"Gradient activity or t-SNE compactness proves generalization or causal mechanism."}
+    ],
+    "less_direct_2026_sources_inspected":[
+      {"url":"https://arxiv.org/html/2405.14438v5","read":"AppendixG placement and extra-trainable-component results","role":"Related placement/capacity work, not evidence our exact augmentation interaction is original."},
+      {"url":"https://arxiv.org/html/2604.08749v1","read":"AppendixF setup","role":"Different random-scaffold/rank question with strong augmentation held fixed; no performance claims reused."}
+    ],
+    "ordinary_explanations":["Optimization and gradient scaling differ by placement.","Pretrained feature sensitivity or finite-data regularization suffices.","Augmentation damages discriminative class evidence."],
+    "minimum_interpretation":"Conditional recipe interaction for this checkpoint/task/training budget, not a universal early-layer invariance mechanism.",
+    "data_plan":"candidate-data-plan.json; metadata only, not final test lock",
+    "scientific_fitting_started":false,
+    "final_preregistered_protocol_exists":false
+  },
+  "backup":{
+    "question":"On exactly identical post-CutMix RA images, does geometrically transported source-area weighting change training outcomes relative to stale weights and canonical RA-before-CutMix?",
+    "status":"reserve_only_not_parallel_training",
+    "closest_primary_source":{"url":"https://arxiv.org/html/2606.04820v1","title":"OA-CutMix: Correcting the Label Bias of CutMix","version_date":"2026-06-03","read":"3-5 andAppendixA","body_obtained":true,"already_covers":"Object-mask-based label correction and spatially aligned mask transformations; label correction while RGB mixing is unchanged.","remaining_difference_in_read_sections":"Input-provenance geometry, stale/transported targets on identical post-mix RGB, plus canonical order and permuted-target controls.","overlap_risk":"High; not a new label-correction principle and standard order already avoids this extra bookkeeping issue."},
+    "official_data_source":"https://github.com/zalandoresearch/fashion-mnist",
+    "published_license":"MIT",
+    "published_training_download_approx":"26MB images plus29KB labels",
+    "new_data_downloaded":false,
+    "actual_full_matrix_timing_measured":false,
+    "meaningful_result_requires":"Improve over stale target and remain practically competitive with canonical order; same-input target change alone does not establish semantic truth or a useful general method."
+  },
+  "search_exhaustive":false,
+  "empty_search_implies_unexplored":false,
+  "independent_review":{
+    "file":"independent-proposal-review.md",
+    "sha256":"076913ec8fad637474fe907c03fa9561c6d5be2cdc306ed24361c485ba9c5bba",
+    "decision":"primary_conditional_go;one_higher_overlap_backup",
+    "root_read_report":true,
+    "root_engineering_threshold_choice":"1pp primary; reviewer suggested0.5pp as an example. No dataset outcomes have been seen.",
+    "root_final_wording_rereviewed_in_full":false
+  },
+  "technical_boundaries":[
+    {"action":"sysctl -n hw.memsize hw.logicalcpu","target":"Mac hardware sysctl read","reason":"Operation not permitted in sandbox; current memory/cpu values not obtained by that command.","status":"denied_stopped_not_retried","next":"Use already-recorded same-Mac hardware receipt; completed separately authorized MPS compatibility check. No system/security settings changed."},
+    {"action":"browser read binary archive","target":"https://thor.robots.ox.ac.uk/~vgg/data/pets/images.tar.gz","reason":"Browser unsupported application/octet-stream.","status":"technical_format_failure_not_access_denial","body_obtained":false},
+    {"action":"browser read binary archive","target":"https://thor.robots.ox.ac.uk/~vgg/data/pets/annotations.tar.gz","reason":"Browser unsupported application/octet-stream.","status":"technical_format_failure_not_access_denial","body_obtained":false},
+    {"action":"HEAD same official image/annotation download URLs","target":"Pets old official download URLs","reason":"HTTP308 permanent redirect; no binary read. Same image URL response Location inspected once.","status":"redirect_metadata_recorded","location_for_images":"https://thor.robots.ox.ac.uk/pets/images.tar.gz","redirected_binary_download_started":false},
+    {"action":"read README","target":"https://www.robots.ox.ac.uk/~vgg/data/flowers/102/README.txt","reason":"Tool500 after redirect reports destination inaccessible/nonretryable.","status":"stopped_no_alternate","body_obtained":false,"impact":"Flowers not selected as this round's executable data route."}
+  ],
+  "historical_boundaries":"No retry or bypass of Geiping/PMC verification, venue403, restricted author sources, Places or PUG/dSprites inaccessible targets.",
+  "model_request":{"model":"GPT-6.1-Sol","reasoning_effort":"max","service_tier":"existing Fast request retained","settings_changed":false,"actual_backend_receipt_exposed":false},
+  "A100_Colab_paid_ARIS_private_uploads_publication":false
+}

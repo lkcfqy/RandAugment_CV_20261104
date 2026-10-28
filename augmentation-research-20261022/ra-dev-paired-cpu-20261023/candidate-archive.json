@@ -1,0 +1,22 @@
+{
+  "at_utc": "2026-10-23T12:28:16.330956+00:00",
+  "candidate": "Treat fixed-model augmentation response as a new semantic-preservation or correctness proxy/controller",
+  "status": "archived_as_diagnostic_case_not_new_algorithm",
+  "evidence": {
+    "fixed_dev_images": 16,
+    "predeclared_joint_counterexample_ids": [
+      "american_pit_bull_terrier_15",
+      "Birman_180"
+    ],
+    "correct_controls_remain_correct": 8,
+    "earlier_training_phase_and_secondary_back_counterexamples_preserved": true
+  },
+  "reason": "Two label-relative persistent-error examples satisfy smaller response; response alone does not certify correctness/semantics. Existing Ctrl-A/Affinity/calibration/confusion work removes the generic novelty premise. No new causal or deployable algorithm intervention.",
+  "decision": "No more samples,seeds,magnitudes,temperature fits,LoRA comparisons or training for this candidate. Retain as talk/audit evidence.",
+  "not_claimed": [
+    "No proof all augmentations harmful",
+    "No semantic ground-truth verification",
+    "No population rate or independent confirmation",
+    "No critique of Ctrl-A performance from this selected cohort"
+  ]
+}

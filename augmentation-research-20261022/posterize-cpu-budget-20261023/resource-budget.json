@@ -1,0 +1,80 @@
+{
+  "measurement": {
+    "steady_step_count": 4,
+    "median_16_image_logical_update_seconds": 4.181902208481915,
+    "observed_step_range_seconds": [
+      4.12580141692888,
+      4.358319333055988
+    ],
+    "includes_input_preparation": true,
+    "clean_inference_16_training_images_seconds": 0.8486407089512795,
+    "observed_peak_RSS_bytes": 1600618496,
+    "steady_images_per_second": 3.8260100792285643,
+    "fixed_overhead_reference_seconds_per_arm": 1.0449793321313336,
+    "model": "fresh pretrained-base front LoRA r4 ViT-B16",
+    "timed_policy": "B only",
+    "threads": 1,
+    "nice": 10,
+    "file_cache": "16 deterministic training images reused; OS-cache/cold-corpus costs not bounded by this sample",
+    "confidence_interval": null
+  },
+  "proposals": [
+    {
+      "epochs_per_arm": 5,
+      "arms": 3,
+      "seed_count": 1,
+      "seed": 20261024,
+      "logical_batch": 16,
+      "microbatch": 4,
+      "updates_total": 555,
+      "train_presentations": 8865,
+      "dev_presentations": 1767,
+      "image_forwards_total": 10632,
+      "training_microbatch_forward_backward_calls": 2220,
+      "dev_microbatch_forward_calls": 444,
+      "estimated_train_seconds_using_median": 2320.955725707463,
+      "estimated_eval_seconds": 93.72175829480693,
+      "estimated_three_model_setup_seconds": 3.134937996394001,
+      "estimated_total_seconds": 2417.812421998664,
+      "estimated_total_minutes": 40.29687369997773,
+      "slowest_observed_step_reference_total_minutes": 41.9287321022879,
+      "hard_wall_cap_seconds_if_parent_authorizes": 3600,
+      "authorized": false
+    },
+    {
+      "epochs_per_arm": 30,
+      "arms": 3,
+      "seed_count": 1,
+      "seed": 20261024,
+      "logical_batch": 16,
+      "microbatch": 4,
+      "updates_total": 3330,
+      "train_presentations": 53190,
+      "dev_presentations": 1767,
+      "image_forwards_total": 54957,
+      "training_microbatch_forward_backward_calls": 13320,
+      "dev_microbatch_forward_calls": 444,
+      "estimated_train_seconds_using_median": 13925.734354244778,
+      "estimated_eval_seconds": 93.72175829480693,
+      "estimated_three_model_setup_seconds": 3.134937996394001,
+      "estimated_total_seconds": 14022.591050535979,
+      "estimated_total_minutes": 233.70985084226632,
+      "slowest_observed_step_reference_total_minutes": 243.50100125612735,
+      "hard_wall_cap_seconds_if_parent_authorizes": null,
+      "authorized": false
+    }
+  ],
+  "recommended_for_parent_decision": 5,
+  "full_30_epoch_estimate_not_a_new_authorization": true,
+  "future_observed_RSS_stop_bytes": 2684354560,
+  "future_observed_RSS_stop_is_not_an_OS_hard_limit": true,
+  "future_interference_stop": "Stop own process when cumulative model-compute wall/CPU>2 after at least 2.5 seconds; explicit STOP.request honored; no other-process queries",
+  "contingency": "5-epoch hard wall cap includes startup, trace checks, all three arms and terminal evaluation; stop incomplete rather than extend or switch device",
+  "extrapolation_limits": [
+    "four steady timing updates only",
+    "B policy only; Z/R input preparation not directly timed",
+    "long-run thermal drift and other workload not measured",
+    "no complete-corpus I/O benchmark",
+    "no training/validation accuracy conclusion from this probe"
+  ]
+}

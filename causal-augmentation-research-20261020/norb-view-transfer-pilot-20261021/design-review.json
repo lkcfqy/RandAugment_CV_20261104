@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0",
+  "task": "Independent design audit: source real-view feature moments predicting angle-specific augmentation transfer",
+  "model_request": {
+    "requested": "GPT-6.1-Sol/max",
+    "actual_execution_receipt_available": false,
+    "actual_model_and_effort_verified": false
+  },
+  "decision": {
+    "verdict": "proceed_as_one_falsifiable_pilot_after_one_estimand_and_measurement_clarification",
+    "credible_falsifiable_prediction": true,
+    "original_method_established": false,
+    "exact_prior_equivalence_established": false,
+    "one_revision_round_only": true,
+    "summary_zh": "可保留为一次可推翻的源侧预测先导。源真实视角变化与2D增强方向匹配是否预测未见物体上的额外新方位角优势，并不由已知一般原理直接保证；也不能仅因一般理论已有就判完全等价。最简修正是保留Gamma但明确它是high/low策略×方位角交互，另报告相对clean的绝对收益，并锁清二阶矩及两个已知基线。无需新增训练臂或扩成端到端实验。"
+  },
+  "reviewed_inputs": {
+    "basis": "parent proposal; no experiment protocol file existed at the initial staging-directory check",
+    "physical_objects": {
+      "training": 15,
+      "development": 10,
+      "final_official_test": 25,
+      "per_class": {
+        "training": 3,
+        "development": 2,
+        "final": 5
+      }
+    },
+    "source_seen_azimuth_codes": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "final_novel_azimuth_codes": [
+      18,
+      20,
+      22,
+      24,
+      26,
+      28
+    ],
+    "elevation_codes": [
+      0,
+      4,
+      8
+    ],
+    "lighting_codes": [
+      0,
+      3
+    ],
+    "camera": "fixed left",
+    "policies": "six geometric policies and all magnitudes/interpolation/fill/probabilities fixed before source scoring",
+    "encoder": "fixed existing encoder; actual supervised readouts trained per policy; no end-to-end inference",
+    "label_access_zh": "官方类别/对象/因子元数据已知。准确承诺是不以最终像素、预测或标签相关结果构造/选择分数与指标，而不是从未见过公开标签；最终LL评价当然需要标签。",
+    "data_permission_zh": "父线程已提供官方smallNORB图像文件250.60MiB内、CPU特征实验许可；本审查不行使取像素或训练许可。"
+  },
+  "single_minimal_revision": {
+    "name": "Clarify interaction estimand and freeze the source predictor implementation",
+    "required_zh": [
+      "保留预定Gamma主检验，称策略×新方位角交互；同时固定输出clean/high/low及全六策略在seen、novel的LL与相对clean的gain。",
+      "若继续使用正增强收益措辞，必须看到high在novel上的gain点估计>0；否则即使Gamma通过，也只报告相对交互，不新增事后判据。",
+      "在取最终像素前一次写清C的矩定义、源对象权重、view家族权重、六策略参数、零范数/并列规则，以及distortion与label-kernel alignment基线。"
+    ],
+    "no_added_training_arms": true,
+    "no_extra_search_or_dev_effect_screen_required": true,
+    "scope_zh": "这是一次合并澄清，不要求连环追加门槛、提出更优算法、穷尽理论或先取得阳性开发效应。"
+  },
+  "estimand_check": {
+    "notation": "ell_m(i,a) is the mean cross-entropy in nats for final physical object i under model/policy m and angle regime a in {S,N}; average equally over the fixed36views (6azimuth×3elevation×2light).",
+    "proposed_gain": "g_m(i,a)=ell_base(i,a)-ell_m(i,a)",
+    "per_object_Gamma": "Gamma_i=[g_high(i,N)-g_high(i,S)]-[g_low(i,N)-g_low(i,S)]",
+    "simplified": "Gamma_i=[ell_low(i,N)-ell_high(i,N)]-[ell_low(i,S)-ell_high(i,S)]",
+    "baseline_cancels_exactly": true,
+    "interpretation_zh": "Gamma>0说明high对low的相对优势在novel角度比seen角度更大。两项都用最终新物体，故这是在未见物体上额外的角度交互；seen-angle gain可作新物体泛化的操作性参照，但不是单独识别物体新颖性的因果效应。",
+    "does_not_imply_zh": [
+      "high优于clean",
+      "high在novel角度绝对有益",
+      "纯新物体变化的独立效应",
+      "源协方差匹配是泛化改善的唯一原因",
+      "固定编码器结果能推广到端到端AA/RA/TA训练"
+    ],
+    "algebraic_counterexample": {
+      "base_LL": {
+        "seen": 0.4,
+        "novel": 0.8
+      },
+      "low_LL": {
+        "seen": 0.4,
+        "novel": 0.8
+      },
+      "high_LL": {
+        "seen": 0.5,
+        "novel": 0.85
+      },
+      "Gamma": 0.05,
+      "high_novel_gain": -0.05,
+      "meaning_zh": "所有数值均为设计审查的假想值，未运行模型。Gamma为正但high在两个环境都伤害了clean。"
+    },
+    "report_table_zh": "每策略固定报告LL_S、LL_N、g_S、g_N、g_N-g_S，以及Gamma主对比；无需把clean取消出报告。"
+  },
+  "source_predictor_identification": {
+    "validity_zh": "只用15训练物体的真实配对视角/光照与六策略增强取分数，先选high/low，再在25官方test物体一次检验，能避免按最终结果挑策略。选择极端源分数不污染独立最终集，但最终推断条件于这15源物体、分数实现、固定encoder和所选策略。",
+    "source_pairs": {
+      "azimuth": "same object,elevation,light; adjacent source azimuth codes in the increasing ordered source grid",
+      "elevation": "same object,azimuth,light; adjacent fixed elevation values",
+      "lighting": "same object,azimuth,elevation; light0 versus3",
+      "pair_counts_derived_not_observed": {
+        "azimuth": 450,
+        "elevation": 360,
+        "lighting": 270
+      },
+      "count_boundary_zh": "这些是若网格完整时由设计推得的差向量数量，不是独立样本数；训练物理对象仍为15。"
+    },
+    "moments_need_definition": {
+      "proposed_simple_definition": "For each paired/augmented feature difference d, use the uncentered second moment M=E[d d^T], equal weight per physical object. Define C_v as a fixed mixture of source azimuth/elevation M and C_l from source light pairs; use exactly the same convention for C_a.",
+      "terminology_zh": "若选E[ddᵀ]，应称二阶矩。若坚持中心化Cov(d)，需明示减均值及差向量方向；它会丢平均位移，并可能依赖逐对定向，不能与未中心化定义混用。",
+      "family_weighting_zh": "Cv中的azimuth/elevation家族权重必须预定，例如各1/2；不能让450与360的边数隐含决定权重，或看目标结果后换权重。",
+      "degeneracy_zh": "零矩范数时cos未定义，应报告源测量无效；全部分数并列时没有可由分数预测的high/low差异。数值容差与并列顺序提前固定，不能看最终表现打破并列。",
+      "fixed_metric_zh": "特征层、归一化与坐标度量先固定。Frobenius匹配是这个encoder下的描述，非与任意特征缩放无关的物理几何真值。"
+    },
+    "mechanistic_limits_zh": [
+      "源局部视角差并不保证外推到180–280度：背面可见性、自遮挡及特征流形均可改变；正向Gamma是待检经验预测。",
+      "Cv同时含elevation，但目标novelty只改变azimuth。固定混合仍是可反证预测；不能事后换成效果更好的家族。这个限制无需现在增加新训练臂。",
+      "固定照明编号时转动物体也可改变阴影/反射。Cv不是已纯化的几何潜变量，减去与Cl的cos不能识别或消除全部光照效应。",
+      "真实物体类别保持不等于任意2D几何操作都保持可识别标签；裁切、fill、插值和遮挡可改变其监督价值，全部需固定并作为处理组成解释。"
+    ]
+  },
+  "minimal_strong_controls": {
+    "distortion": {
+      "required": true,
+      "source_only_score": "D_feature(a)=E_source,r ||phi(A_a,r x)-phi(x)||_2^2 = tr(M_a); report the fixed pixel distortion definition as a complementary scalar if available.",
+      "reason_zh": "cosF去掉整体幅度，但实际读出训练仍受扰动大小影响。若仅与distortion共变，不能说方向匹配提供独立信息。",
+      "evaluation_zh": "六策略本就全部拟合，可一次输出各自的D、预定源分数及最终收益。D的预测方向或min/max对比在最终评价前固定；不可按六个目标点选择有利符号、回归或阈值。若未匹配强度，只能评价预测增量，不能声称已因果隔离幅度。"
+    },
+    "source_label_kernel_alignment": {
+      "required": true,
+      "construction": "For each source view x_j, define the feature mean under the actual clean+augmentation training mixture: psi_a,j=0.5*phi(x_j)+0.5*E_r phi(A_a,r x_j). Set K_a[j,k]=psi_a,j^T psi_a,k and L[j,k]=1[y_j=y_k]. Use a preselected centered or uncentered normalized Frobenius alignment; all source views/objects keep the training weights.",
+      "crucial_zh": "固定clean kernel对所有策略都相同，不能充当策略预测基线。平均特征/核必须随各策略和实际clean:augment权重变化。Dao的原始KTA是未中心化形式；若用centered版本，应标为Cortes等已知变体并预锁。",
+      "source_only_policy_choice_zh": "KTA自己的最高/最低策略或其全六策略排序须在最终评价前产生。与几何分数用同一候选池和同一已拟合读出，不能给本方法额外目标反馈。",
+      "inference_boundary_zh": "同物体多视图的核条目不变成独立样本；这只是源侧预测量，不据核条目数计算独立样本置信区间。"
+    },
+    "interpreting_increment_zh": "主Gamma通过只支持预定high/low预测。只有当几何评分与已知基线存在可观测预测差异、且目标结果支持这些差异时，才有超出已知预测器的证据；若排序相同或基线同样解释，就保留复现信号。全六策略相关仅6个候选点，宜描述，不拟合高维组合或声称已确立普适预测器。",
+    "not_required_now_zh": "无需追加最佳策略搜索、新encoder、端到端训练、更多角度或第四组物体条件来使现有交互命题有效。"
+  },
+  "training_and_split_gate": {
+    "source_development_zh": "开发10物体只用于共同训练有效性/CPU预算及实现核验，不按策略收益、Gamma符号、目标样分数或排序决定继续；不据开发反转改评分。",
+    "objective_zh": "clean与每策略都以总经验权重1拟合；aug臂逐源图clean:augment=1:1，总物体权重相同。L2以相同规范施加，避免复制数据隐式改变正则化。所有读出须满足同一预定收敛/数值门槛，而不只是相同迭代数。",
+    "freeze_zh": "先锁对象ID、六策略及幅度、encoder/预处理、所有源分数/基线、readout目标、主对比/门槛/停止规则，再保存源排序和全部模型冻结回执；最终物体像素/预测只用于唯一评价。",
+    "metadata_zh": "官方对象类别已公开且此前读取，不声称标签盲或从未见过官方test标签；准确范围是未用最终像素/结果选方法与指标。"
+  },
+  "uncertainty_and_stopping": {
+    "independent_unit": "final physical object,not view or stereo frame",
+    "n_objects": 25,
+    "objects_per_fixed_class": 5,
+    "views_per_regime_per_object": 36,
+    "total_final_views_if_complete": 1800,
+    "per_object_pairing_zh": "对同一物体先平均各固定视角/仰角/照明，再构造Gamma_i；class等权平均。按5个固定类别内物体配对重采样，每次同一物体的所有模型和两角度条件一起重采样。不能把1800视图或模型×视图当n。",
+    "CI_scope_zh": "若报告物体bootstrap95%区间，它条件于源15物体、固定encoder/策略/模型/seed，并需类别内物体可交换的外推假设。对这25个有限官方test物体，Gamma本身是精确基准描述；区间不是整个自然视觉总体或训练seed不确定性。",
+    "practical_screen": {
+      "point_Gamma_min_nats": 0.01,
+      "paired_object_CI95_lower_positive": true,
+      "power_guarantee": false
+    },
+    "multiple_comparisons_zh": "唯一预定high-low Gamma为主；基线与其余策略固定报告为辅助，不能看目标后换主策略或选最佳显著性。未经相应区间不能把正Gamma宣传为显著优于两个基线预测器。",
+    "failure_zh": "源测量有效且训练有效后，主Gamma反向、未达.01或区间不排零均按预定狭义预测未获支持收口；不在同一最终集换指标、角度或score追阳性。区间宽/含零不证明不存在所有视角机制。",
+    "no_additional_power_gate_required": true
+  },
+  "primary_literature": [
+    {
+      "url": "https://proceedings.mlr.press/v97/dao19b/dao19b.pdf",
+      "title": "A Kernel Theory of Modern Data Augmentation",
+      "year": 2019,
+      "sections": "4.1–4.2;5.1",
+      "checked_zh": "增强被分解为特征平均及二阶方差正则；§5.1已用增强平均特征的标签核对齐作训练前增强价值诊断。",
+      "overlap_zh": "源侧预测增强价值、核/二阶解释已知，必须比较KTA。",
+      "distinction_zh": "所读内容未直接保证真实3D源view矩匹配减light匹配能预测未见物体上的新方位角交互；不可由其一般原理判精确等价或保证Gamma>0。"
+    },
+    {
+      "url": "https://jmlr.org/papers/volume13/cortes12a/cortes12a.pdf",
+      "title": "Algorithms for Learning Kernels Based on Centered Alignment",
+      "year": 2012,
+      "sections": "2–4",
+      "checked_zh": "提供centered、normalized kernel alignment与label kernel的学习和泛化分析。",
+      "distinction_zh": "可作为强已知预测基线的依据，其定理不自动给本source-to-novel-angle设计或任意冻结特征上的Gamma符号保证。"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v119/wu20g.html",
+      "title": "On the Generalization Effects of Linear Transformations in Data Augmentation",
+      "year": 2020,
+      "sections": "abstract and stated model scope",
+      "checked_zh": "在过参数线性回归的ridge设定分析线性变换的span扩展与正则作用。",
+      "distinction_zh": "不是任意非线性固定encoder、有限几何编辑及multiclass对数损失的通用保证。"
+    }
+  ],
+  "why_alignment_is_not_a_sufficiency_theorem": {
+    "local_expansion": "E ell(phi+d,y) approximately equals ell(phi,y)+grad(ell)^T E[d]+0.5*tr(H_ell E[d d^T]).",
+    "conclusion_zh": "Frobenius score只取全局方向矩相似性，没有一阶均值、类别/对象条件差异或训练所得loss Hessian；相同二阶矩也可对应不同均值和损害。不能从source score本身识别增强因果机制或严格推出目标风险改善。这个不足使经验预言可失败，而不使实验失去信息。"
+  },
+  "action_record": {
+    "training_or_fitting": false,
+    "model_or_feature_computation": false,
+    "images_or_masks_read": false,
+    "data_download": false,
+    "literature_text_read": true,
+    "old_angle_alignment_branch_reopened": false,
+    "old_test_metrics_recomputed": false,
+    "GPU_MPS_A100": false,
+    "ARIS": false,
+    "automations": false,
+    "eightA_access": false,
+    "old_files_modified": false,
+    "authorized_new_file_only": "/Users/lkc/Documents/Codex/2026-10-21/task/norb-view-transfer-pilot-20261021/design-review.json"
+  },
+  "blockers": {
+    "execution_denied": [],
+    "pending_approvals": [],
+    "uncertain_actions": [],
+    "remaining_definitions_to_freeze": [
+      "six exact policy parameterizations",
+      "centered covariance versus uncentered second moment",
+      "azimuth/elevation mixture weights",
+      "fixed distortion/KTA comparator directions and construction",
+      "readout objective normalization and convergence rule"
+    ],
+    "scope_zh": "这些是同一次协议冻结中的必要定义，不是新增实验或无限完美门槛。实际训练与数据取用由父线程原许可管理，本审查未执行。"
+  },
+  "audit_utc": "2026-10-21T20:28:44.846522+00:00"
+}

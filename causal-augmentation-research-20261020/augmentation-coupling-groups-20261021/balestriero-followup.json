@@ -1,0 +1,32 @@
+{
+  "at_utc": "2026-10-21T21:43:12.286574+00:00",
+  "initial_attempt": {
+    "actor": "independent_prior_reviewer",
+    "action": "web.open",
+    "target": "https://arxiv.org/html/2204.03632",
+    "result": "Internal Error;(400)Timeout fetching, no text",
+    "confirmed_security_or_source_HTTP_denial": false
+  },
+  "followup": {
+    "actor": "root",
+    "reason": "A transient read failure may be retried safely; no safety rejection to circumvent",
+    "action": "web.open, same exact official target once",
+    "target": "https://arxiv.org/html/2204.03632",
+    "result": "success,317HTMLlines",
+    "alternate_URL_or_mirror": false,
+    "version_read": "arXiv:2204.03632v2",
+    "title": "The Effects of Regularization and Data Augmentation are Class Dependent",
+    "read_sections": [
+      "abstract/introduction",
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "scope": "Source-side training policies vary RRC lower-bound; weight-decay experiments and linear transfer to INaturalist examine per-class risks. In the read sections no fixed per-photo exposure/data order experiment changing only within-batch shared-vs-independent augmentation coupling was found.",
+    "not_claimed": "No exhaustive source-code/supplement audit and no universal novelty clearance."
+  },
+  "remaining_literature_blocker": null,
+  "historical_initial_review_preserved": true
+}

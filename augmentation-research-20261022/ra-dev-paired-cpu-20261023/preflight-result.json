@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "phase": "preflight",
+  "completed_forwards": 8,
+  "total_completed_forwards_including_preflight": 8,
+  "worker_wall_seconds": 1.824867167044431,
+  "forward_wall_seconds": 0.5399675412336364,
+  "forward_cpu_seconds": 0.5394239999999999,
+  "single_forward_wall_seconds": [
+    0.06829866697080433,
+    0.06729854107834399,
+    0.06814712507184595,
+    0.06822295801248401,
+    0.0662420829758048,
+    0.06669087510090321,
+    0.06676562502980232,
+    0.06830166699364781
+  ],
+  "pair_preparation_wall_seconds": [
+    0.0035403339425101876,
+    0.002063542022369802
+  ],
+  "model_build_seconds": 0.33516991697251797,
+  "peak_RSS_bytes": 1123385344,
+  "device": "cpu",
+  "dtype": "float32",
+  "intraop_threads": 1,
+  "interop_threads": 1,
+  "nice": 10,
+  "model_eval": true,
+  "all_parameters_frozen": true,
+  "frozen_sha256_before": "2dd2ac7fc3743946ea30715ebfbfd4066dcb2e658c5b51edc011e5b7f01cf559",
+  "frozen_sha256_after": "2dd2ac7fc3743946ea30715ebfbfd4066dcb2e658c5b51edc011e5b7f01cf559",
+  "checkpoint_restores": [
+    {
+      "arm": "front-weak",
+      "checkpoint_sha256": "fb2266e2f6919ae3fdf775bec11199f23abf4e426efa59014b461dd0673f816a",
+      "restored_parameter_count": 14,
+      "restored_scalar_count": 65317,
+      "exact_values_verified": true
+    },
+    {
+      "arm": "front-ra",
+      "checkpoint_sha256": "c9565896e0349f4fa7ffcc072660484c625a957426018cd4c504fd10871db5d4",
+      "restored_parameter_count": 14,
+      "restored_scalar_count": 65317,
+      "exact_values_verified": true
+    }
+  ],
+  "training_runs": 0,
+  "neural_GPU_forwards": 0
+}

@@ -1,0 +1,66 @@
+--- verify_saved_pilot.py (frozen)
++++ verify_saved_pilot_continue.py
+@@ -1,4 +1,4 @@
+-"""Independent CPU-only audit. Do not execute until all four cells completed.
++"""Post-failure CPU-only continuation. Preserve strict norm discrepancies; all scientific checks unchanged.
+ 
+ No import of common/train/analyze, forward pass, optimization or image decoding.
+ Torch is imported lazily only for CPU weights_only loading of small checkpoints.
+@@ -26,6 +26,7 @@
+ CELLS = ['front-weak', 'front-ra', 'back-weak', 'back-ra']
+ SIGNS = np.array([1, -1, -1, 1], dtype=np.int64)
+ CHECKS = []
++STRICT_NORM_DISCREPANCIES = []
+ 
+ 
+ def sha(p):
+@@ -48,8 +49,19 @@
+ 
+ def close(name, actual, expected, atol=1e-10, rtol=1e-10):
+     a, b = np.asarray(actual), np.asarray(expected)
+-    check(name, a.shape == b.shape and np.isfinite(a).all() and np.isfinite(b).all()
+-          and np.allclose(a, b, atol=atol, rtol=rtol))
++    same = a.shape == b.shape and np.isfinite(a).all() and np.isfinite(b).all()
++    same = same and np.allclose(a, b, atol=atol, rtol=rtol)
++    is_norm = name.endswith((':Q_delta_frobenius', ':V_delta_frobenius', ':Bq_frobenius', ':Bv_frobenius'))
++    if is_norm and not same:
++        # Preserve the original strict predicate and report failure; continue only
++        # these auxiliary norm comparisons, never metrics or any other checks.
++        STRICT_NORM_DISCREPANCIES.append({'check': name, 'CPU_FP64_value': a.tolist(),
++            'reported_value': b.tolist(), 'absolute_difference': float(np.max(np.abs(a-b))),
++            'relative_difference': float(np.max(np.abs(a-b)/np.abs(b))),
++            'atol_unchanged': atol, 'rtol_unchanged': rtol, 'strict_check_passed': False})
++        CHECKS.append(name + ':FAILED_STRICT_TOLERANCE_RECORDED')
++    else:
++        check(name, same)
+     return float(np.max(np.abs(a - b))) if a.size else 0.0
+ 
+ 
+@@ -349,11 +361,16 @@
+         raise FileExistsError(save_arrays_path)
+     np.savez_compressed(save_arrays_path, source_ids=ids, labels=labels, errors=errors, NLL=nll,
+                         interaction_contributions=contribution, bootstrap_interactions=bootstrap)
+-    result = {'status': 'passed_independent_saved_run_verification',
++    result = {'status': 'metrics_and_saved_state_audit_completed_with_strict_norm_discrepancies',
++              'original_frozen_verifier_passed': False,
++              'original_frozen_verifier_SHA256': 'c3dfbbf4bfd3323e100fa440db3acb33c1146c0d7fe187dc846b24b860a13720',
++              'strict_norm_discrepancies': STRICT_NORM_DISCREPANCIES,
++              'norm_tolerances_relaxed': False,
++              'norm_diagnostic_SHA256': sha(OUT / 'norm-diagnostic.json'),
+               'at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+               'script_sha256': sha(__file__), 'protocol_sha256': PROTOCOL_SHA,
+               'protocol_lock_sha256': sha(ROOT / 'protocol-lock.json'),
+-              'checks_count': len(CHECKS), 'checks_passed': CHECKS,
++              'check_log_events_count': len(CHECKS), 'check_log': CHECKS,
+               'all_saved_development_epochs_recomputed': per_epoch, 'final_cells': per_cell,
+               'G_front': Gf, 'G_back': Gb, 'primary_I': I,
+               'primary_I_percentage_points': I * 100, 'bootstrap_interval': ci.tolist(),
+@@ -385,7 +402,7 @@
+         failure = {'status': 'independent_verification_failed_not_retrained', 'error': repr(exc),
+                    'traceback': traceback.format_exc(), 'checks_passed': CHECKS,
+                    'script_sha256': sha(__file__), 'protocol_sha256_expected': PROTOCOL_SHA}
+-        path = OUT / 'result-verification-failed.json'
++        path = OUT / 'result-verification-continuation-failed.json'
+         if not path.exists():
+             save(path, failure)
+         raise

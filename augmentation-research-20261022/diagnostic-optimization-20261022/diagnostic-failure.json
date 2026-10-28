@@ -1,0 +1,11 @@
+{
+  "at_utc": "2026-10-22T16:29:21.264021+00:00",
+  "phase": {
+    "stage": "paired_head_and_optimizer_oracle",
+    "layout": "back",
+    "gradient_batch": 0
+  },
+  "error": "AssertionError()",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/diagnostic-optimization-20261022/diagnostic.py\", line 200, in <module>\n    try:main()\n        ~~~~^^\n  File \"/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/diagnostic-optimization-20261022/diagnostic.py\", line 161, in main\n    else:assert all(np.allclose(g,paired_head_grads[batch][n],**cfg['precision']['paired_head_gradient_allclose']) for n,g in head_grads.items())\n                ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "no_automatic_retry_or_parameter_change": true
+}

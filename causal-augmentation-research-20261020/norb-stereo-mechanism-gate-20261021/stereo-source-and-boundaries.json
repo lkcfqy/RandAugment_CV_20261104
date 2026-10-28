@@ -1,0 +1,52 @@
+{
+  "at_UTC": "2026-10-21T21:09:18.506222+00:00",
+  "official_smallNORB": {
+    "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/",
+    "directly_read_this_round": true,
+    "published_variables": "paired camera images, category, instance, elevation, azimuth, lighting",
+    "published_checked_geometry_truth": {
+      "K": false,
+      "F": false,
+      "dense_disparity": false,
+      "pixel_correspondences": false
+    },
+    "does_not_prove_none_exists_elsewhere": true,
+    "research_license_already_checked": true
+  },
+  "additional_primary": {
+    "title": "CNN²: Viewpoint Generalization via a Binocular Vision",
+    "year": 2019,
+    "authors": "Wei-Da Chen; Shan-Hung Wu",
+    "main": "https://www.cs.nthu.edu.tw/~shwu/pubs/shwu-neurips-19.pdf",
+    "supplement": "https://www.cs.nthu.edu.tw/~shwu/pubs/shwu-neurips-19-sup.pdf",
+    "read_sections": "main§2,§4.2,§4.3; supplement§3",
+    "facts": "Uses binocular classification including smallNORB; parallax augmentation appends hR-hL and hL-hR channels and is an architecture feature construction, not independently sampled AA-style image augmentation.",
+    "no_newness_credit_for_binocular_classification": true
+  },
+  "own_necessary_derivations": [
+    {
+      "name": "coordinate_change_not_geometry_annihilation",
+      "assumptions": "invertible image homographies, same still-visible scene correspondences, continuous homogeneous coordinates",
+      "equations": [
+        "pR^T F pL=0",
+        "pLnew=HL pL; pRnew=HR pR",
+        "Fnew=HR^(-T) F HL^(-1)",
+        "pRnew^T Fnew pLnew=pR^T F pL=0"
+      ],
+      "interpretation": "Old fixed-F or horizontal-line residual may change; transformed geometry is not generally absent. Interpolation/cropping/noninvertibility are separate.",
+      "new_theory": false
+    },
+    {
+      "name": "separable_single_image_objective_cannot_detect_coupling_at_fixed_marginals",
+      "assumptions": "model and per-image loss do not depend on the paired input or changing batch state; exact augmentation expectation; left/right marginals identical across couplings",
+      "equation": "E_Q[ell(f(TL xL),y)+ell(f(TR xR),y)] = E_QL ell(f(TL xL),y)+E_QR ell(f(TR xR),y)",
+      "interpretation": "Changing only augmentation coupling has identical objective here. Nonseparable fusion/loss or finite stochastic optimization must be explicit before attributing any effect to stereo geometry.",
+      "new_theory": false
+    }
+  ],
+  "geometry_damage_pixel_experiment_done": false,
+  "reason_not_run": "Direct prior coverage plus absent independently verified correspondence truth and task-mechanism specificity. No original stereo candidate passed.",
+  "original_stereo_research_candidates_retained": 0,
+  "old_fixed_angle_score_remains_closed": true,
+  "new_source_crop_probe_is_exploratory_not_confirmation": true
+}

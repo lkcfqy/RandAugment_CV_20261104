@@ -1,0 +1,22 @@
+{
+  "status": "failed_before_any_feature_observation",
+  "action": "VNGenerateImageFeaturePrintRequest revision2 with every supported compute stage explicitly assigned a CPU device",
+  "target": "/Users/lkc/Documents/Codex/2026-10-21/task/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/qa/case256-neutral.png",
+  "exit_code": 133,
+  "error_domain": "com.apple.Vision",
+  "error_code": 8,
+  "reason": "Failed to create CVPixelBufferPool",
+  "stderr": [
+    "kIOSurfaceMethodSetCoreVideoBridgedKeys failed: 10000003",
+    "sysctlbyname for kern.hv_vmm_present failed with status -1",
+    "Fatal error: Error Domain=com.apple.Vision Code=8 Failed to create CVPixelBufferPool"
+  ],
+  "automatic_approval_rejection": false,
+  "escalation_or_alternate_path_retry": false,
+  "requested_GPU_or_ANE": false,
+  "feature_observations_obtained": 0,
+  "weights_or_software_download_requested": false,
+  "CPU_device_configuration_evidence": "source code sets/readbacks .cpu before perform; no successful runtime feature result",
+  "code_sha256": "c9d9d312e3c77b2e4c20e3c6e3bbfc0296345dfc2c34d7a161d89a9a6c63b720",
+  "relationship_to_primary": "bounded posthoc backend availability probe after fixed weak RGB primary result; does not alter primary files"
+}

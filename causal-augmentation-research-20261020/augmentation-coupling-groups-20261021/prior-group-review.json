@@ -1,0 +1,107 @@
+{
+  "task": "严格等曝光的增强批内耦合与少样本类/群体泛化：先例与必要条件复审",
+  "date": "2026-10-21",
+  "model_request": {
+    "requested": "GPT-6.1-Sol / max",
+    "actual_verified": false,
+    "note": "无实际执行档位回执。"
+  },
+  "verdict": {
+    "conditional_empirical_question_count": 1,
+    "status": "可保留有条件实证问题；不是新颖性确认，也不是当前实验执行许可。",
+    "question": "每图有限增强bank与曝光计数、每步原图集合及次序、batchsize、更新数、优化器和学习率全部固定时，仅改变逐图/逐批的联合状态安排，是否实质改变预先定义少样本类/稀有群体在独立物体上的风险？",
+    "correction": "不因共享随机量的方差原理已知而否决有意义的新实证。此前平均优化噪声命题的0候选结论，不能自动覆盖本次新增的严格对照与群体泛化问题。",
+    "novelty_boundary": "已读原文未找到完整等价实证；未找到不等于证明无人做过。Balestriero目标全文未读，覆盖仍未知。",
+    "effect_direction": "不预设共享一定更坏、少数一定受损，或Latin一定改善泛化；群体效应必须实测。",
+    "current_execution": "本轮只读文本，未读像素/特征、未建bank、未训练或运行模型。"
+  },
+  "focused_prior_coverage": [
+    {
+      "work": "FreeAugment: Data Augmentation Search Across All Degrees of Freedom",
+      "version": "ECCV2024 官方论文",
+      "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03848.pdf",
+      "evidence": "复用上一轮已读§3.4 p.8、§4.2与§4.3。明确说逐图各抽policy而非整批只抽一次可降低估计方差；主文未看到该因子的等曝光独立消融。",
+      "mechanism_covered": true,
+      "exact_exposure_steps_order_coupling_only_group_generalization_covered": "在已读主文中未找到。",
+      "limit": "双层policy搜索；未读补充/代码，不能排除更近覆盖。平均准确率或搜索batchsize结果不是稀有群体耦合实验。"
+    },
+    {
+      "work": "Drawing Multiple Augmentation Samples Per Image During Training Efficiently Decreases Test Error",
+      "version": "arXiv:2105.13343v2，2022-02-24",
+      "url": "https://arxiv.org/html/2105.13343v2",
+      "evidence": "复用已读§2–3、Appendix A/C。Appendix C明确比较同批多个增强副本与相邻批重用同一组原图，评价训练loss与平均test表现。",
+      "mechanism_covered": true,
+      "exact_exposure_steps_order_coupling_only_group_generalization_covered": "未找到；within与neighbouring每批unique image数不同，不是固定每步原图集合后仅重排跨图状态。",
+      "limit": "已读附录没有少样本类或稀有群体风险分解；不能因使用相同算力/步数就称满足本题全部控制。"
+    },
+    {
+      "work": "Understanding the Detrimental Class-level Effects of Data Augmentation",
+      "version": "arXiv:2401.01764v1",
+      "url": "https://arxiv.org/html/2401.01764v1",
+      "newly_read_sections": [
+        "§3–6",
+        "Appendix A",
+        "Appendix G.1–G.2"
+      ],
+      "evidence": "研究RRC强度、class-conditional policy及RA/mixup/colorjitter；分析标签歧义、类条件分布重叠、较少代表类及非对称类混淆。",
+      "mechanism_covered": "类级异质性、欠代表类可能受更强增强影响、其他类的增强也可影响目标类；这些不能再称新发现。",
+      "exact_exposure_steps_order_coupling_only_group_generalization_covered": "已读实验改变增强边际/强度或类条件政策，未找到只改变批内联合抽样而严格保持每图增强曝光的对照。",
+      "limit": "其中“minority of classes”不都等于人口学少数或训练稀有组；不能混用定义，也不能忽略标签歧义造成的表观差异。"
+    },
+    {
+      "work": "父线程指定 Balestriero 原文目标",
+      "url": "https://arxiv.org/html/2204.03632",
+      "title_and_fulltext_verified": false,
+      "status": "读取失败，覆盖未知",
+      "action": "web.open",
+      "result": "Internal Error；Failed to fetch: (400) Timeout fetching",
+      "source_http_status_verified": false,
+      "denied_or_pending": "不是已确认的HTTP403/安全审批拒绝；只读获取失败，无正文，服务端请求是否完成未知。",
+      "followup": "停止该目标；未重试，未换PDF、作者站或镜像。Kirichenko对它的转述不计独立全文核验。"
+    }
+  ],
+  "necessary_condition_audit": {
+    "notation": "固定θ和同一批B图。z_i(s)=g_i(s)-E_s g_i(s)，C_ij=E_s[z_i(s) z_j(s)^T]。所有条件保持同一状态边际。",
+    "total_difference": "ΔΣ=Σ_shared-Σ_independent=B^(-2) Σ_{i≠j} C_ij。",
+    "group_partition": "设组G有k图，R为其余图；总和包含G内、R内以及G与R的交叉项。以1/B加权的组梯度贡献，其组内差为B^(-2)Σ_{i≠j∈G}C_ij。",
+    "rarity_not_sufficient": "k较小只改变项数/权重，不确定协方差符号、幅度或方向；k=1时该组内部交叉项为0。若改用组均值1/k归一化，系数也改变，必须明确统计量。",
+    "group_risk_limit": "即使总梯度噪声更大，也不能直接推出某组泛化更差；全局更新如何影响组风险还取决于梯度方向、曲率、有限步长与时间相关。",
+    "exact_epoch_boundary": "完整有限bank的每图曝光相同时，固定θ下整轮梯度和相同；单步方差不能称为整轮不可消除的噪声下界。",
+    "fixed_theta_limit": "单一θ的阴性只否定该θ/批次下的共同噪声解释，不能自动外推整条训练轨迹；阳性也不是群体泛化证据。",
+    "implication": "同意父线程的必要边界；不得把稀少k本身当作更大共享惩罚的预测。"
+  },
+  "falsifiable_empirical_scope": {
+    "target": "预先定义群体、稀少程度和物理独立单位，比较相同有限预算下的群体LL/错误率及平均指标；不能结果后挑最差类来定义假说。",
+    "primary_null": "在锁定材料性阈值δ和不确定性规则后，耦合对预定少样本群风险的变化不超过δ。δ须在运行前确定，本审查不捏造阈值或效果。",
+    "meaningful_increment": "在边际增强分布、每图曝光与数据次序相同的条件下，定位是否存在平均指标未反映的群体风险效应，及其适用范围；这不是已知协方差恒等式本身。",
+    "falsification": "若足够精确的区间排除了预定方向上大于δ的群体影响，关闭该材料、预算和群体下的效应命题；低功效宽区间只能判未知。",
+    "interpretation_controls": "同时报告源训练目标、平均风险和完整预定群体结果。若只表现为整体欠优化，不能宣称发现了独立于平均收敛的稀有组专属机制。",
+    "no_universal_prediction": "即使局部阳性，也不推广成所有少数群体、TA、RA或AA的普遍优劣结论。"
+  },
+  "minimum_data_and_execution_gate": [
+    "需明确的类/群体标签及独立物体单位；少样本类与真实稀有人群不是同一概念，人工下采样应如实命名。",
+    "每组需有足以估计预定材料性效应的独立评价单位；seed、增强视图和同物体双目不能增加独立物体数。",
+    "需同一预先锁定的source featurebank、完整(image,state)计数、固定每步原图顺序与相同优化预算；训练态BN/跨图loss会改变问题。",
+    "当前项目test已消费，使用旧开发/测试物体只能得到探索性结果；真正独立确认需要尚未用于选择或分析的群体评价材料。",
+    "现有数据/featurebank是否满足这些条件，本轮未读取或核验；不据文献空缺直接安排训练。",
+    "严格固定每图曝光时，逐图对照通常是各图独立随机排列同一bank，而非跨时间完全IID抽样；需准确命名，并保留由固定计数造成的时间相关。"
+  ],
+  "execution_record": {
+    "new_group_targets_attempted": 2,
+    "new_group_fulltexts_completed": 1,
+    "earlier_mechanism_fulltexts_reused": 2,
+    "aris": false,
+    "pixels_features_models_or_training": false,
+    "gpu_external_models_automation": false,
+    "historical_refusal_retries": false,
+    "output_only": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/prior-group-review.json"
+  },
+  "root_preselected_plan_text_audit": {
+    "exposure_and_steps": "21增强epoch×12数据位置×3周期=756更新；两臂每步原图相同且完整周期每图每态曝光匹配，未见算术硬漏洞。此为文本审查，未执行曝光检查。",
+    "target_scope": "每类均3个源物体、每批均k=3；few类仅每物体4原图而其他类12原图。应称物体内少视图/重复采样类，而非少数物体或批内稀有组。few类每原图每态3次、其他类1次；曝光严格相同仅在两臂之间。",
+    "uncertainty": "每个排布种子内先平均5个轮换场景，再基于16个种子给条件CI；不能把80场景作为独立物体证据。旧development_seen已消费，仅为探索性开发结果。",
+    "fixed_theta_limit": "零初值和类平衡可能抵消公共状态梯度；单一θ阴性不否定后续轨迹，正性也不证明开发泛化。",
+    "remaining_locks": "运行前固定学习率、lambda、标准化、动量及loss权重；完整报告平均源目标和全部预定类LL。0.01nat只是预定开发筛查阈值。",
+    "prior_equivalence": "已读原文未给此完整排布的等价群体实证；Balestriero全文仍未知。不因一般原理已知拒绝局部实证，但结果不代表完整TA或真实少数群体。"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-10-23T11:35:35.623727+00:00",
+  "queries": [
+    "data augmentation per sample harmful beneficial prediction stability fine tuning 2025 2026 RandAugment",
+    "data augmentation prediction flips confidence margins sample level improvement harm classification 2024 2025",
+    "RandAugment fine grained classification augmentation benefits errors confidence training dynamics",
+    "data augmentation overconfident 2025 classification",
+    "data augmentation confidence 2026 errors classification",
+    "RandAugment NLL confidence",
+    "When Data Augmentation Improves the Calibration",
+    "data augmentation confident errors",
+    "data augmentation prediction churn"
+  ],
+  "primary_sources": [
+    {
+      "title": "Understanding the Detrimental Class-level Effects of Data Augmentation",
+      "venue": "NeurIPS2023, arXiv2401.01764v1",
+      "url": "https://arxiv.org/html/2401.01764v1",
+      "read_scope": "Introduction, related work, evaluation setup, sections5-6 with augmentation-induced class confusion and source-class interventions; RandAugment extension explicitly stated.",
+      "finding": "Average improvement can coexist with class harms; class-distribution overlap, ambiguous labels and false-positive destination classes already studied.",
+      "boundary": "Current finite-cache loss accounting is not a new harm mechanism or class-conditional algorithm; no reannotation/causal training intervention."
+    },
+    {
+      "title": "Impact of Data Augmentation on Confidence Calibration in Melanoma Classification",
+      "version_date": "2026-10-05 arXiv2610.06146v1",
+      "url": "https://arxiv.org/html/2610.06146v1",
+      "read_scope": "Abstract and sections1-4, Table1.",
+      "finding": "Partial RandAugment/mixing augmentation compared via AUC and ECE on two pretrained EfficientNets with imbalanced melanoma labels; accuracy/ranking versus calibration can move differently.",
+      "boundary": "This project uses fixed37-class Pet predictions, NLL/correctness-group accounting; no medical claim, calibration certification or new method."
+    },
+    {
+      "title": "On the Reproducibility of Neural Network Predictions",
+      "url": "https://arxiv.org/abs/2102.03349",
+      "read_scope": "Abstract only",
+      "finding": "Training randomness can produce prediction churn at similar accuracy.",
+      "boundary": "Within-run epoch stability and two fixed augmentation trajectories do not estimate retraining churn or seed variability."
+    }
+  ],
+  "unread_blocked": [
+    {
+      "title": "When Data Augmentation Improves the Calibration and Accuracy of Deep Neural Networks",
+      "url": "https://ieeexplore.ieee.org/document/11673098/",
+      "doi": "10.1109/ACCESS.2026.3728878",
+      "status": "browser_verification_blocked_stopped",
+      "observed": "JavaScript is disabled; need to verify not a robot.",
+      "scope": "Search metadata describes RandAugment accuracy/ECE/NLL comparison. No full text claims; no alternate mirror, PDF or GUI used after denial."
+    }
+  ],
+  "not_exhaustive": true,
+  "remote_publication_or_contact": false,
+  "shared_noise_status": "Read existing AUDIT and PROTOCOL_DRAFT. No new equivalence/novelty conclusion, no21run. Current label-independent RA cache cannot identify the proposed label-routing effect."
+}

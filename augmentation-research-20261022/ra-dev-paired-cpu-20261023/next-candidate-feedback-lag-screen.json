@@ -1,0 +1,41 @@
+{
+  "at_utc": "2026-10-23T12:28:16.330956+00:00",
+  "candidate": "Sample-adaptive augmentation feedback lag from per-index magnitude caches",
+  "trigger": "EntAugment official code explicitly stores sample magnitudes and uses them on later image retrievals; this is a different scheduling question from temperature or static probability response.",
+  "action_completed": "Bounded primary-source search and pinned-source control-flow review;0newneuralforwards,0training,0newdatasetreads",
+  "queries": [
+    "data augmentation cached stale sample scores entropy augmentation policy feedback delay",
+    "adaptive data augmentation per sample cached magnitude stale entropy EntAugment",
+    "\"EntAugment\" \"epoch\" \"magnitude\"",
+    "\"data augmentation\" \"stale\" adaptive"
+  ],
+  "official_commit": "e6ed83ad41beddf47cff434b512abc222dc3ee8f",
+  "sources": [
+    {
+      "url": "https://github.com/Jackbrocp/EntAugment/blob/e6ed83ad41beddf47cff434b512abc222dc3ee8f/Dataset.py#L76-L88",
+      "read_via": "https://raw.githubusercontent.com/Jackbrocp/EntAugment/e6ed83ad41beddf47cff434b512abc222dc3ee8f/Dataset.py",
+      "observation": "Index-specific stored magnitude is read during image retrieval; setter writes cache. Actual worker timing not experimentally tested."
+    },
+    {
+      "url": "https://github.com/Jackbrocp/EntAugment/blob/e6ed83ad41beddf47cff434b512abc222dc3ee8f/train_EntAugment.py#L136-L152",
+      "read_via": "https://raw.githubusercontent.com/Jackbrocp/EntAugment/e6ed83ad41beddf47cff434b512abc222dc3ee8f/train_EntAugment.py",
+      "observation": "Current training-view output supplies entropy, then index cache is written before optimizer update; loader uses8workers. This alone does not prove a performance defect."
+    },
+    {
+      "url": "https://arxiv.org/html/2508.08004v1",
+      "read_scope": "Section2 and3.3;real-time-feedback discussion",
+      "observation": "SRA already explicitly identifies non-real-time EntAugment feedback as a concern and motivates current-model refinement. Therefore generic feedback-lag novelty is rejected."
+    },
+    {
+      "url": "https://arxiv.org/html/2405.11467v3",
+      "read_scope": "Search-result excerpt of method schedule only; not newly full-read",
+      "observation": "AdaAugment explicitly applies estimated magnitudes in the next epoch. Not treated as an unreported bug."
+    }
+  ],
+  "decision": "Generic stale-feedback candidate archived at direct-prior-art gate without a model experiment. No claim of independent matched-delay effect established or excluded.",
+  "narrower_unresolved_question": "A same-score, same-view, same-update-count, same-compute delayed-versus-fresh replay could isolate age; novelty of that exact control has not been established. Do not launch it from this screen.",
+  "current_cache_feasibility": "Existing local cache is clean development logits at epochs0/5/10/20/30 and final front/back models, not per-step training-state EntAugment cache with matched augmented views. It cannot identify delay-only effect.",
+  "evidence_gap_status": "Missing matched training-state/augmentation trace evidence and sufficient distinct hypothesis; not an access denial and not a reason to use sealed data or start18–21runs.",
+  "not_exhaustive": true,
+  "denied_resources_retried": false
+}

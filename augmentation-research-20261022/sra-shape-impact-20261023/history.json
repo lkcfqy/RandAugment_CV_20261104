@@ -1,0 +1,37 @@
+{
+  "at_utc": "2026-10-23T11:15:22.803Z",
+  "repo": "https://github.com/ainieli/Sample-awareRandAugment",
+  "commits": [
+    {
+      "sha": "785c3b12944251af81201083a9698a87f1d490f2",
+      "message": "Update operations.py",
+      "date": "2024-11-14T09:17:42Z",
+      "parents": [
+        "cd3f8d182d7908d8c56fe9d1a926fb113512e717"
+      ],
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/commit/785c3b12944251af81201083a9698a87f1d490f2"
+    },
+    {
+      "sha": "cd3f8d182d7908d8c56fe9d1a926fb113512e717",
+      "message": "init",
+      "date": "2024-11-08T03:25:45Z",
+      "parents": [],
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/commit/cd3f8d182d7908d8c56fe9d1a926fb113512e717"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "title": "Release ResNet-50 (trained with SRA) on Hugging Face",
+      "state": "open",
+      "comments": 0,
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/issues/1",
+      "updated_at": "2025-08-12T15:19:10Z"
+    }
+  ],
+  "pull_requests": [],
+  "latest_commit_diff": "@@ -498,7 +498,7 @@ def __init__(self, min_val, max_val):\n         self.op_name = 'Solarize'\r\n \r\n     def _magnitude_to_arg(self, magnitude):\r\n-        threshold = (self.max_val - self.min_val) * magnitude + self.min_val\r\n+        threshold = 256. - ((self.max_val - self.min_val) * magnitude + self.min_val)\r\n         return threshold\r\n \r\n     def forward(self, x, magnitude):\r\n@@ -532,8 +532,8 @@ def __init__(self, min_val, max_val):\n         self.op_name = 'Posterize'\r\n \r\n     def _magnitude_to_arg(self, magnitude):\r\n-        # return torch.tensor((self.max_val - self.min_val) * magnitude + self.min_val, requires_grad=True).to(torch.int32)   # 类似原来的实现\r\n-        return (self.max_val - self.min_val) * magnitude + self.min_val                     # 当前计算方法特有\r\n+        # return torch.tensor((self.max_val - self.min_val) * magnitude + self.min_val, requires_grad=True).to(torch.int32)\r\n+        return (self.max_val - self.min_val) * magnitude + self.min_val                     \r\n \r\n     def forward(self, x, magnitude):\r\n         bits = self._magnitude_to_arg(magnitude)   # 类似原来的实现\r\n@@ -722,4 +722,4 @@ def forward(self, x, magnitude=None):\n     # print(out.shape)\r\n     # print(out / 255.)\r\n     plt.imshow((out[0]) / 255.)\r\n-    plt.show()\n\\ No newline at end of file\n+    plt.show()\r",
+  "initial_preact_blob": "b557e9fdf23deed2a1acb02568910556775201eb",
+  "current_preact_blob": "b557e9fdf23deed2a1acb02568910556775201eb",
+  "scope": "Public default-branch commit list returned 2 records, public issues list 1 and PR list 0; no contact or publication, not proof about private/off-platform fixes."
+}

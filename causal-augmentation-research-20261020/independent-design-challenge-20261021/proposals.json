@@ -1,0 +1,413 @@
+{
+  "schema_version": "1.0",
+  "date_UTC": "2026-10-21",
+  "role": "independent_problem_proposer",
+  "model_request": {
+    "requested": "GPT-6.1-Sol/max",
+    "actual_model_and_effort_receipt": null,
+    "verified": false
+  },
+  "project": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020",
+  "result": "仅保留1项供独立资格审查的具体实证问题；0项已验证贡献。没有训练或读取特征/图像。本提案不是项目结束。",
+  "number_of_proposals": 1,
+  "evidence_read_local": [
+    "evidence-cross-audit-20261021/morning-facts-zh.md",
+    "evidence-quality-closeout-20261021/morning-quality-report-zh.md",
+    "augmentation-coupling-groups-20261021/finding-zh.md",
+    "norb-view-transfer-pilot-20261021/result-zh.md",
+    "norb-stereo-mechanism-gate-20261021/stage-result-zh.md",
+    "operation-law-audit-20261021/finding-zh.md",
+    "intervention-preservation-design-audit-20261021/audit-zh.md",
+    "norb-view-transfer-pilot-20261021/protocol.json"
+  ],
+  "proposals": [
+    {
+      "id": "independent_objects_vs_real_views_magnitude",
+      "title_zh": "图片数相同，新增物体与新增同物体视图会要求相反的增强强度吗？",
+      "status": "可供资格审查；纯元数据可行性已核实，研究结果未检验，原创性未确立，确认数据尚未就绪",
+      "origin": {
+        "kind": "原论文明确经验观察及解释假说，不从旧阴性分支寻找阳性子组",
+        "source": "Cubuk et al., RandAugment, NeurIPS 2020, §3 / Figure 1(c,d), PDF p.4",
+        "url": "https://papers.nips.cc/paper/2020/file/d85b63ef0ccb114d0a3bb7b7d808028f-Paper.pdf",
+        "observation_zh": "正式论文在改变CIFAR-10训练图片数时观察到最优失真幅度随数据量增大；提出强增强在小数据下信噪比较低这一可能解释。论文并未把图片数拆成独立物体数与每物体真实视图数。",
+        "citation_version_note": "此前给协调者的临时消息曾用arXiv v2的§4.1/Fig.3编号，已更正。此处采用正式NeurIPS版本的§3/Fig.1，不混合版本。"
+      },
+      "precise_question_zh": "在同一物体类别任务、同一个固定编码器、同样180张训练图、每类完全相同的(方位,仰角,光照)联合频数和同一收敛目标下，多物体采集O=每类3个物体各12视图，与多视图采集V=每类1个物体36视图，是否使预先固定弱/强有限增强池出现有实用幅度的相对排序翻转：O优先强，V优先弱？第二级再问：两边赢家都超过clean时，是否真正改变clean/weak/strong三者的最佳选择？",
+      "decision_value_zh": "第一级若成立，说明同样图片数和条件覆盖不能决定弱/强两池排序，提供采集结构与增强排序的具体经验边界；若clean仍胜，只能讲该有限两池排序，不能建议实际采用增强。第二级若两边各自赢家都超过clean，才支持把视频/连拍数据的独立物体与视图结构纳入强度选择。已知相关样本原理不是创新，结果不必须能发论文才有实证价值。",
+      "closest_precise_priors": [
+        {
+          "title": "RandAugment: Practical Automated Data Augmentation with a Reduced Search Space",
+          "year": 2020,
+          "url": "https://papers.nips.cc/paper/2020/file/d85b63ef0ccb114d0a3bb7b7d808028f-Paper.pdf",
+          "read_scope": "正式PDF §3、Figure1与相关说明；另读作者反馈第6–7、29–31行",
+          "covered_zh": "直接覆盖训练集大小、网络大小与最优增强强度的关系。",
+          "uncovered_difference_zh": "本问题固定图片数和完整拍摄条件频数，显式干预训练集的物体/视图配置，估计其与增强强度的交互。不是再画一次n对M曲线。",
+          "caveat_zh": "原文只声称其数据中的关系；本实验不把论文观察错误解释为适用于所有数据集的定理。"
+        },
+        {
+          "title": "An Analysis of Model Robustness across Concurrent Distribution Shifts",
+          "year": 2025,
+          "version": "arXiv:2501.04288v1",
+          "url": "https://arxiv.org/html/2501.04288v1",
+          "read_scope": "§5、Appendix A.2/A.4/A.6与B.3",
+          "covered_zh": "已有smallNORB物体划分、方位/仰角/光照shift及AA/RA。B.3还研究Shapes3D/CelebA的三档数据量；A.6给RA固定参数。",
+          "uncovered_difference_zh": "已读部分未见相同图片数且相同完整拍摄条件频数下，分开增加独立物体与增加同物体视图，再测强度选择翻转。",
+          "caveat_zh": "没有访问已受阻的schoi828/robustness目录/API；不声称代码全面核验。"
+        },
+        {
+          "title": "Drawing Multiple Augmentation Samples Per Image During Training Efficiently Decreases Test Error",
+          "year": 2022,
+          "version": "arXiv:2105.13343v2",
+          "url": "https://arxiv.org/html/2105.13343v2",
+          "read_scope": "§1–3与Appendix B/C",
+          "covered_zh": "直接研究增强副本数、每批独特图片数、梯度计算/更新预算和泛化，也区分增强方差与数据抽样方差。",
+          "uncovered_difference_zh": "这里比较的是两种真实数据采集结构，精确枚举同一有限增强期望并拟合收敛凸读出，不改变批内副本、共享参数或SGD随机性。",
+          "caveat_zh": "不是把multiplicity重新命名；原理可解释一部分预期，但不能直接给出该实际强度交互的方向和量级。"
+        },
+        {
+          "title": "Data Diversity as Implicit Regularization: How Does Diversity Shape the Weight Space of Deep Neural Networks?",
+          "year": 2025,
+          "version": "arXiv:2410.14602v2",
+          "url": "https://arxiv.org/html/2410.14602v2",
+          "read_scope": "§1、§4.2.1–4.2.2和实验设置",
+          "covered_zh": "已比较增强、dropout与weight decay及多样性/权重谱的联系，也讨论像素与表征多样性不同。",
+          "uncovered_difference_zh": "已读部分不是在真实条件联合频数匹配下比较物体数与同物体视图数的强度选择交互；本提案不用新多样性分数或谱指标选策略。"
+        }
+      ],
+      "novelty_claim_boundary_zh": "定向已读材料中未见完整等价对照，不等于全网无人做过。可能贡献是大幅、可复现且能改变强度选择的经验边界；没有新理论、新算法或已成立原创性。本阶段的小缓存结果即使阳性也只能建立投入资格。",
+      "development_design": {
+        "data_role": "smallNORB source15物体/540张与development_seen10物体/360张；全部为已消费开发资料。旧final25物体及其其他角度不使用。",
+        "task": "所有5类同样配置，目标为相同已见拍摄条件分布下的新物体类别识别。不是少类风险、视角外推评分或双目任务。",
+        "cell_S": "每类1个锚物体×12条件，共5物体/60图，共同小数据基线。",
+        "cell_O": "每类3个物体各取12条件，共15物体/180图；每类三物体分别取三个互斥块，完整36条件各出现一次。",
+        "cell_V": "每类同一个锚物体取全部36条件，共5物体/180图；每类完整36条件各出现一次。",
+        "factor_levels_from_metadata": {
+          "azimuth_codes": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ],
+          "elevation_codes": [
+            0,
+            4,
+            8
+          ],
+          "lighting_codes": [
+            0,
+            3
+          ],
+          "camera": 0
+        },
+        "block_rule": "把各因子的有序等级编码为a=0..5,e=0..2,l=0..1。B_t={(a,e,l):(a+e+l) mod3=t}；每块12条件，三个因子边际均平衡。",
+        "assignment_rule": "各类3个源物体沿原protocol.source_objects顺序编号j=0,1,2。锚编号h∈{0,1,2}、锚块b∈{0,1,2}。S取锚h的B_b；O中物体j取B_((b+j−h) mod3)；V取锚h的全部36。九个(h,b)全部报告。",
+        "key_exact_controls": [
+          "O与V不仅因子边际相同；每类完整(azimuth,elevation,lighting)联合计数完全相同。",
+          "每个S都是对应O、V的相同原始图片子集。",
+          "所有类别的物体数、图数、损失质量均对称；不引入少样本类。",
+          "使用同一已冻结编码器、相同只依单张图的固定L2尺度、同一CE平均与同一L2系数。",
+          "不使用全源池的新均值/方差给单物体臂额外对象信息；可沿用此前已验证的可逆还原获得逐图L2特征，再乘固定sqrt512。",
+          "精确枚举增强期望、同零初值、同梯度收敛标准；没有批内耦合、随机梯度方差或训练曝光计数作为处理。",
+          "O/V最终目标样本数一致；S仅辅助。该凸目标对照研究统计目标，不宣称匹配端到端实际训练FLOPs。"
+        ],
+        "policies": {
+          "clean": "原图权重1。",
+          "weak": "clean权重1/3；五家族低档的10个正负状态各权重1/15，总增强质量2/3。",
+          "strong": "clean权重1/3；同五家族高档的10个正负状态各权重1/15，总增强质量2/3。",
+          "low": [
+            "rotate ±5°",
+            "shearX/Y ±.05",
+            "translateX/Y ±9px"
+          ],
+          "high": [
+            "rotate ±15°",
+            "shearX/Y ±.15",
+            "translateX/Y ±18px"
+          ],
+          "implementation": "全部复用原224输入、BILINEAR、fill128的21-state缓存。此处不比较fill、几何评分或单操作排序。",
+          "scope_limit": "fixed_state_weights_v1是唯一固定版。weak/strong是本地缓存的五家族两档单操作有限池，所有概率明确；不是canonical RA的同一个M，不能把结果写成RA M最优值。没有完整14操作、N>1组合、AA/TA比较。high仅表示家族内参数更大，不声称统一语义难度。",
+          "fixed_state_weights_v1": [
+            {
+              "cache_index": 0,
+              "state_id": "clean",
+              "clean": "1",
+              "weak": "1/3",
+              "strong": "1/3"
+            },
+            {
+              "cache_index": 1,
+              "state_id": "rotate_05_plus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 2,
+              "state_id": "rotate_05_minus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 3,
+              "state_id": "rotate_15_plus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 4,
+              "state_id": "rotate_15_minus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 5,
+              "state_id": "shearX_005_plus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 6,
+              "state_id": "shearX_005_minus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 7,
+              "state_id": "shearX_015_plus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 8,
+              "state_id": "shearX_015_minus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 9,
+              "state_id": "shearY_005_plus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 10,
+              "state_id": "shearY_005_minus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 11,
+              "state_id": "shearY_015_plus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 12,
+              "state_id": "shearY_015_minus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 13,
+              "state_id": "translateX_09_plus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 14,
+              "state_id": "translateX_09_minus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 15,
+              "state_id": "translateX_18_plus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 16,
+              "state_id": "translateX_18_minus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 17,
+              "state_id": "translateY_09_plus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 18,
+              "state_id": "translateY_09_minus",
+              "clean": "0",
+              "weak": "1/15",
+              "strong": "0"
+            },
+            {
+              "cache_index": 19,
+              "state_id": "translateY_18_plus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            },
+            {
+              "cache_index": 20,
+              "state_id": "translateY_18_minus",
+              "clean": "0",
+              "weak": "0",
+              "strong": "1/15"
+            }
+          ],
+          "state_mapping_source": "augmentation-coupling-groups-20261021/protocol.json 的states字段，按该顺序；只读JSON核验，未打开NPZ。",
+          "canonical_RA_M_claim": false
+        },
+        "learner": {
+          "type": "固定表征上的5类多项logistic读出",
+          "objective": "均匀原图和上述精确状态权重的平均CE + .01/2 ||W||_F²；bias不惩罚",
+          "dtype": "float64",
+          "initialization": "zero",
+          "LBFGS_max_iter": 300,
+          "max_eval": 450,
+          "history": 30,
+          "convergence_gradient_infinity_max": 1e-05,
+          "no_tuning_if_failed": true,
+          "unique_readouts": 45,
+          "deduplication": "S有9个、O有3个、V有3个唯一训练集合；各拟合clean/weak/strong。重复的(h,b)引用相同拟合，不浪费重训或充当额外重复。"
+        }
+      },
+      "identifiable_target_and_assumptions": {
+        "estimand": "令R_{d,m}为development_seen每物体先平均、再类平衡的CE，d∈{S,O,V},m∈{clean,weak,strong}。δ_d=R_{d,strong}−R_{d,weak}；C=平均_(h,b)[δ_O−δ_V]。辅助G_O=R_{O,clean}−R_{O,strong}、G_Vweak=R_{V,clean}−R_{V,weak}。",
+        "predicted_direction": "C<0；严格候选是O中强较好、V中弱较好的实用选择翻转。",
+        "identification_zh": "对这个固定对象池，全部处理目标由同一学习算法可计算，有限池平均处理差可识别；若要把(h,b)视作随机采集策略，则事先均匀随机化锚/块并以同一分布评价，所有臂必须有支持、一致性与无跨拟合信息泄漏。拍摄条件精确匹配不要求恢复完整因果图。",
+        "cannot_identify_zh": "这不是世界中do(物体身份)的视觉因果效应。采集方案同时改变物体×条件的连接结构；因此不能称纯抽象“独立性”的唯一机制。全部物体已探索，不能识别新总体效应或无选择偏差的确认。冻结编码器对结果的限制须保留。"
+      },
+      "preregistered_investment_gate_proposal": {
+        "nature": "以下是投入筛查，不是等效性检验、功效保证或已执行的预注册。独立审查后若接受，必须先锁协议再读特征/拟合。",
+        "validity_conditions_all_required": [
+          "元数据O/V完整条件计数逐项相等，S确为共同子集，源/开发物体无交叉。",
+          "所有45个读出参数有限，梯度∞范数≤1e−5；任何臂不收敛则停止，不按结果延长或换λ。",
+          "各S/O/V clean读出开发物体类平衡准确率均值至少40%（随机20%）；这是测量能力门，不是研究阳性。",
+          "所有9个(h,b)、全部10开发物体以及三策略完整公开；不得用其中一个类/锚/块替换主平均。"
+        ],
+        "effect_conditions_all_required": [
+          "C点估计≤−.02 nat。",
+          "平均δ_O≤−.01 nat，平均δ_V≥+.01 nat，确有弱/强选择翻转，而不只是两臂同向的微小差。",
+          "以开发物体为单位、类别内重抽的条件95%区间中，C上界<0；所有(h,b)一起随物体带走。区间条件于固定源物体、特征及策略，不包含训练对象总体不确定性。",
+          "9个(h,b)中至少7个C_{h,b}<0，作为预定敏感性门；它们重叠且只有O3/V3唯一数据集，不能当9个独立实验或用seed区间代替物体区间。"
+        ],
+        "minimal_falsification_zh": "在测量门通过后，只要主排序效果条件任一失败，就不支持这套预定翻转命题，关闭固定方案；不换操作、强度、fill、λ、编码器、主要指标、角度层或阈值追阳性。若主门通过但clean赢家额外门失败，保留第一级两池排序事实，明确第二级实际三选一结论未成立，不把两池实证因不能发论文而抹去。相反方向只作完整描述，不改名原命题成功。失败不证明C严格为0或完整RA普遍错误。",
+        "threshold_rationale_zh": ".01/.02 nat旨在要求实际方法选择改变和可见效应，沿用项目投入筛查量级，并非从当前未计算结果选定。只有10个开发物体，区间可能宽；不能把未过门解释为等效。",
+        "escalation_only_if_pass_zh": "主排序门通过只取得有限池交互的后续确认资格；两项clean赢家门也通过才具有明确实际选择动机。无论哪一级，都需另锁新数据、实现、评价精度与模型范围，不能自动升级为论文贡献或完整RA结论。",
+        "additional_operational_choice_gate_all_required": [
+          "在主排序门已通过的前提下，O中strong对clean平均CE收益G_O≥+.01nat。",
+          "在主排序门已通过的前提下，V中weak对clean平均CE收益G_Vweak≥+.01nat。",
+          "完整报告三策略点值和逐物体区间；上述额外点门仅是投入门，不冒充对clean的显著性或总体确认。"
+        ]
+      },
+      "cpu_one_day_necessary_condition_test": {
+        "already_completed_without_features": {
+          "source": "只解析既有protocol.json的roles/source_objects/development_objects；Python标准库Counter/集合，不导入numpy/torch。",
+          "nine_metadata_checks_passed": true,
+          "S_O_V_image_counts_each_assignment": [
+            60,
+            180,
+            180
+          ],
+          "O_V_complete_condition_counts_equal_each_assignment": true,
+          "S_subset_of_both_each_assignment": true,
+          "source_development_objects_disjoint": true,
+          "unique_dataset_counts": {
+            "S": 9,
+            "O": 3,
+            "V": 3
+          },
+          "image_decode": false,
+          "feature_read_or_computation": false,
+          "training": false,
+          "state_weight_rational_sums_exactly_one": true,
+          "state_ids_match_prior_protocol": true
+        },
+        "proposed_future_execution": "若资格审查接受，只读既有21-state源特征与development_seen清洁特征；先拟合/冻结45个读出，再一次性生成完整开发表。无需新编码、图像解码、下载或GPU。",
+        "compute_cap_not_benchmark": "CPU单线程；整阶段墙钟上限1小时、内存上限2GiB、最多45次LBFGS拟合与一次5000次物体bootstrap。现阶段未实测，不作速度承诺；超预算记计算不充分并停止，不改变科学方案。",
+        "readouts_scope": "只训练线性凸读出；不读取旧25物体的final特征，不运行ResNet18前向，不对checkpoint做新推理。",
+        "output_if_authorized_later": "协议锁、元数据匹配表、全部目标/梯度、冻结权重、逐物体损失、唯一主量与所有失败门。当前未创建或执行这些实验文件。"
+      },
+      "necessary_new_data_and_resources": {
+        "development_gate": "不需要新数据、模型、软件或硬件。既有source15/dev10缓存足够。Pets训练64/开发64/亮度48不使用，后续checkpoint信息未用于制造问题。",
+        "independent_confirmation_requirement": "需要项目从未用于选题/选择的物理物体，类别内至少能形成≥3个源物体和独立目标物体，并具有跨物体可对齐的拍摄条件或视图索引。全部50个smallNORB物体都不能恢复独立确认资格。确认样本量需按对象级精度设计，不能凭3个seed充数。",
+        "candidate_data_not_acquired": [
+          {
+            "dataset": "ETH-80",
+            "official_page": "https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/object-recognition-and-scene-understanding/analyzing-appearance-and-contour-based-methods-for-object-categorization",
+            "verified_zh": "官方MPI页面可读，列出标准256×256包、固定每物体尺度，以及128×128变体。",
+            "unresolved_zh": "本轮未取得或解码数据；官方页面未给本轮可核验的许可条款/最小包字节数，跨物体视图索引完整性尚未核实。因而还不是可立即执行的确认数据。无需让用户临时收集物体。",
+            "action": "将来仅在开发门通过后做有界元数据/许可预检；当前不下载。"
+          },
+          {
+            "dataset": "CORe50",
+            "official_page": "https://vlomonaco.github.io/core50/",
+            "paper": "https://proceedings.mlr.press/v78/lomonaco17a/lomonaco17a.pdf",
+            "verified_zh": "官方页明确10类别×每类5物体、11会话和CC-BY4.0；类别识别与默认50物体身份识别要区别。",
+            "unresolved_zh": "连续帧只有时间/物体/会话，不是已校准方位/仰角真值；不能把相同帧序号当相同物理条件。最小下载包字节数未核实。只能作为采集策略的外部生态检验候选，不能直接替代精确条件匹配确认。"
+          }
+        ],
+        "full_RA_requirement": "若要讲完整RA的方法选择，需要合法小型新数据上预先冻结实际14操作、N/M与训练配方，并承担新的CPU编码/训练预算。当前45个读出结果即使阳性也不足以声称AA/RA/TA整体强弱。",
+        "blocker_status": "开发必要门无资源阻塞；独立确认未就绪，原因是独立物体、许可/包尺寸、条件索引尚未核实。未发生审批拒绝、待批操作或不确定执行。"
+      },
+      "not_reopening_closed_branches": [
+        "不复活面积/尺度、Equalize、标签过滤、区域亮度或饱和预警。",
+        "不做干预目标解码、坐标传播或CER外推。",
+        "不选择几何评分、fill/crop或立体对应解释。",
+        "所有类别等量，精确期望收敛目标；不研究批内共享参数、少类风险或同曝光排布。",
+        "不依据旧source/final单操作收益选weak/high成员；五家族两档全纳入，规则由同家族参数大小与RA原文问题决定。"
+      ],
+      "overall_recommendation_zh": "建议只把本项送独立审查；若其精确先例差异或方法价值不成立，可保留0项。允许在已知原理下提出有用新实证，但不把未找到等价先例当原创性证明。",
+      "value_tiers": {
+        "tier_A": "有限弱/强两池的排序交互；通过主门即可保留为具体实证信号，即使没有通过赢家相对clean门，也不把该信号说成不存在。",
+        "tier_B": "三选一实际方法选择：O的strong与V的weak分别比clean至少好.01nat；主门与两项额外门均通过才支持。",
+        "not_allowed": "如果clean两边都胜，不能宣称最佳增强策略改变、RA更好或增强有实用提升；可保留有范围的两池排序事实。"
+      }
+    }
+  ],
+  "discarded_without_experiment": [
+    {
+      "direction": "校准指标下重排AA/RA/TA",
+      "reason": "已有直接训练增强/校准研究；仅更换指标不足以提供本轮明确增量。"
+    },
+    {
+      "direction": "AA两操作的联合配对依赖与相同边际的因子化控制",
+      "reason": "存在直接composition/tree先例，需新复合特征与完整门控匹配；没有为数量追加第二题，避免把一般组合重要性或旧操作边界改名。"
+    }
+  ],
+  "access_and_execution_log": {
+    "actual_restrictions_respected": "只读项目文本/元数据和普通web原文；只写此新staging目录。不用ARIS技能、外部模型、训练、推理、图片解码、特征运算、新数据下载、GPU、自动化、PPT、8A、CUA/CodexUI。",
+    "new_fetch_failure": {
+      "target": "https://par.nsf.gov/servlets/purl/10593552",
+      "result": "web读取502 Bad Gateway",
+      "status": "临时读取失败；未重试该地址、未下载数据。随后读同一论文公开arXiv HTML原文，非任何历史403/拒绝的绕路。"
+    },
+    "historical_denied_targets": "全部保持不重试；TA只沿用已读记录，没有重新获取受阻全文。",
+    "terminal_or_permission_blockers": [],
+    "current_stage_complete": true,
+    "research_project_complete": false
+  }
+}

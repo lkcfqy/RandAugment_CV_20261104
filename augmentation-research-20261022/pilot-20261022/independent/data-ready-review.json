@@ -1,0 +1,196 @@
+{
+  "status": "passed_data_QA_resource_lock_and_copy_audit",
+  "at_utc": "2026-10-22T14:56:14.570604+00:00",
+  "script_sha256": "bd55860846fafe0ef72edd026135cc3261cb863702e8f6cd7ca4a645d8b4ce56",
+  "checks": [
+    {
+      "check": "old_ID_count177_filenames_only",
+      "passed": true
+    },
+    {
+      "check": "candidate_IDs_unique1776",
+      "passed": true
+    },
+    {
+      "check": "QA_rows_exactly_train_and_development_candidates",
+      "passed": true
+    },
+    {
+      "check": "all_candidate_IDs_disjoint_old177",
+      "passed": true
+    },
+    {
+      "check": "final_kept1180_unique",
+      "passed": true
+    },
+    {
+      "check": "four_whole_duplicate_members_excluded_no_replacement",
+      "passed": true
+    },
+    {
+      "check": "final_order_is_QA_order_minus_four",
+      "passed": true
+    },
+    {
+      "check": "final_partition_counts591_589",
+      "passed": true
+    },
+    {
+      "check": "all37_classes_retained_each_partition",
+      "passed": true
+    },
+    {
+      "check": "post_exclusion_imbalanced_counts_expected",
+      "passed": true
+    },
+    {
+      "check": "kept_metadata_matches_source_candidates",
+      "passed": true
+    },
+    {
+      "check": "all_kept_duplicate_clusters_unique",
+      "passed": true
+    },
+    {
+      "check": "all_duplicate_candidates_adjudicated_same_capture",
+      "passed": true
+    },
+    {
+      "check": "no_other_QA_issues_or_exact_groups",
+      "passed": true
+    },
+    {
+      "check": "manifest_source_hashes_match",
+      "passed": true
+    },
+    {
+      "check": "only1184_selected_members_stored",
+      "passed": true
+    },
+    {
+      "check": "all2368_stored_source_payloads_size_CRC_SHA_match",
+      "passed": true
+    },
+    {
+      "check": "visual_reviews_and_links_closed",
+      "passed": true
+    },
+    {
+      "check": "empty_mask_failure_preserved",
+      "passed": true
+    },
+    {
+      "check": "geometry_unavailable_proxy_correctly_identified",
+      "passed": true
+    },
+    {
+      "check": "all_three_empty_masks_retained_as_classification_sources",
+      "passed": true
+    },
+    {
+      "check": "official_license_evidence_hash_and_link",
+      "passed": true
+    },
+    {
+      "check": "resource_actual_two_layouts_succeeded",
+      "passed": true
+    },
+    {
+      "check": "resource_estimate_independently_recomputed",
+      "passed": true
+    },
+    {
+      "check": "resource_rule_selects30_epochs_without_task_outcomes",
+      "passed": true
+    },
+    {
+      "check": "formal_protocol_hash_matches_report_and_lock",
+      "passed": true
+    },
+    {
+      "check": "protocol_data_and_resource_hashes_match",
+      "passed": true
+    },
+    {
+      "check": "locked_sources_and_evidence_SHA_match",
+      "passed": true
+    },
+    {
+      "check": "actual_pretrained_weight_hash_matches_protocol",
+      "passed": true
+    },
+    {
+      "check": "all2412_attested_prefit_copies_independently_hashed",
+      "passed": true
+    },
+    {
+      "check": "QA_manifest_then_protocol_lock_copy_then_fit",
+      "passed": true
+    },
+    {
+      "check": "started_receipt_has_same_protocol_and_nice_cpu_settings",
+      "passed": true
+    }
+  ],
+  "fitting_root": "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022",
+  "fit_manifest_sha256": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+  "protocol_sha256": "9386fc378f876cf12c68ef5d7248f073d7313433d158350b4143942ac1b52a3f",
+  "protocol_lock_sha256": "771ada75904673752c22bbdc3a62bcb93b936e4ce957932b88e5f2c9db5d8216",
+  "copy_receipt_sha256": "604cafdb4fc80d5e14f181c787451c75835ccc091727cbd20a987e2ec9513cb2",
+  "counts": {
+    "train": 591,
+    "development": 589,
+    "reserved_candidates_not_opened": 592,
+    "excluded_whole_duplicate_members": 4,
+    "replacement": 0,
+    "payload_members_verified": 2368,
+    "payload_bytes_verified": 123074027,
+    "copied_files_verified": 2412,
+    "copied_bytes_verified": 483359685,
+    "retained_training_geometry_proxies_available": 590,
+    "retained_training_geometry_proxy_unavailable": 1
+  },
+  "resource": {
+    "status": "completed_resource_only_calibration",
+    "steady_step_seconds_by_layout": {
+      "front": 0.2776904272614047,
+      "back": 0.16259064571931958
+    },
+    "max_observed_MPS_driver_bytes": 3748102144,
+    "estimated_30epoch_compute_plus_pacing_seconds": 2932.2719460516237,
+    "with_predeclared_25percent_margin_seconds": 3665.3399325645296,
+    "actual_complete_training_walltime_guaranteed": false
+  },
+  "timeline_from_saved_records": {
+    "manifest": "2026-10-22T14:50:40.472125+00:00",
+    "visual": "2026-10-22T14:50:39.734559+00:00",
+    "protocol": "2026-10-22T14:51:37.896397+00:00",
+    "lock": "2026-10-22T14:51:37.898343+00:00",
+    "copy": "2026-10-22T14:52:10.621914+00:00",
+    "training_start_metadata_only": "2026-10-22T14:52:39.141088+00:00"
+  },
+  "time_verification_limit": "Saved internal timestamps and SHA/copy consistency; not independent cryptographic timestamp attestation.",
+  "minimal_source_changes_accepted": {
+    "train.py": "Only actual_process_nice/Pillow/CUDA_available receipt fields added after the static closure; locked source re-read and hashes checked.",
+    "preflight.py": "Use final validated train rows591 and actual ceil(N/16) estimate; preserve dummy labels, two layouts, five paced updates, cap and RNG assertions; add actual nice.",
+    "make_fit_manifest.py": "Pre-result exact/near decision coverage, connected clusters, remove all confirmed/uncertain members, preserve source order, no replacement; actual manifest independently reconstructed.",
+    "qa.py": "Empty-source-mask diagnostic changes ratios to unavailable proxy without deleting classification source; failure and original code preserved."
+  },
+  "remaining_limits": [
+    "Finite fixed source-photo pool; unknown animal identity and ImageNet pretraining overlap.",
+    "37 predetermined visual examples, only36 retained after duplicate deletion; not expert breed certification or all-epoch preservation.",
+    "Three all-background trimaps remain; no mask supervision and no mask-based classification deletion.",
+    "Header-margin network buffers may include adjacent bytes; no reserved member extraction/storage/decoding/scoring is claimed.",
+    "Single common LR/seed development pilot; no cross-seed or general mechanism inference."
+  ],
+  "permission_events_preserved_not_retried": [
+    "Prior denied global py_compile cache write",
+    "Prior denied nice mutation for first CPU QA PID"
+  ],
+  "current_review_is_permission_blocked": false,
+  "scientific_metrics_or_training_curves_inspected": false,
+  "new_GPU_or_training_or_download_started_by_reviewer": false,
+  "reserved_confirmation_pixels_or_old_test_arrays_read": false,
+  "resource_pending": false,
+  "scientific_completion_and_result_verification_pending": true
+}

@@ -1,0 +1,76 @@
+{
+  "at_utc": "2026-10-22T15:55:37.268729+00:00",
+  "actual_device": "mps:0",
+  "fallback": false,
+  "CUDA_available": false,
+  "CPU_threads": 1,
+  "actual_process_nice": 10,
+  "MPS_recommended_working_set_fraction_limit": 0.1,
+  "started_at_utc": "2026-10-22T14:52:39.141088+00:00",
+  "completed_at_utc": "2026-10-22T15:53:57.331559+00:00",
+  "original_wall_cap_seconds": 7200,
+  "training_wall_seconds_including_pause": 3679.2947202500654,
+  "SIGSTOP_pause_seconds": 334.004606,
+  "wall_minus_known_pause_seconds": 3345.2901142500655,
+  "remaining_original_training_budget_at_completion_seconds": 3520.7052797499346,
+  "peak_process_RSS_bytes": 2467872768,
+  "max_observed_MPS_driver_bytes": 4934893568,
+  "cells": [
+    {
+      "cell": "front-weak",
+      "updates": 1110,
+      "source_presentations": 17730,
+      "training_synchronized_section_seconds": 299.8336136742728,
+      "evaluation_synchronized_section_seconds": 21.15697970672045,
+      "cell_wall_seconds": 999.0664529169444,
+      "max_observed_MPS_driver_bytes": 4934893568,
+      "known_SIGSTOP_pause_seconds_in_cell": 0.0,
+      "cell_wall_minus_known_pause_seconds": 999.0664529169444
+    },
+    {
+      "cell": "back-ra",
+      "updates": 1110,
+      "source_presentations": 17730,
+      "training_synchronized_section_seconds": 179.00543073110748,
+      "evaluation_synchronized_section_seconds": 21.00164063111879,
+      "cell_wall_seconds": 645.475273707998,
+      "max_observed_MPS_driver_bytes": 1646559232,
+      "known_SIGSTOP_pause_seconds_in_cell": 0.0,
+      "cell_wall_minus_known_pause_seconds": 645.475273707998
+    },
+    {
+      "cell": "back-weak",
+      "updates": 1110,
+      "source_presentations": 17730,
+      "training_synchronized_section_seconds": 180.1418556899298,
+      "evaluation_synchronized_section_seconds": 20.983325000153854,
+      "cell_wall_seconds": 972.666216374957,
+      "max_observed_MPS_driver_bytes": 1646559232,
+      "known_SIGSTOP_pause_seconds_in_cell": 334.004606,
+      "cell_wall_minus_known_pause_seconds": 638.661610374957
+    },
+    {
+      "cell": "front-ra",
+      "updates": 1110,
+      "source_presentations": 17730,
+      "training_synchronized_section_seconds": 297.5717504946515,
+      "evaluation_synchronized_section_seconds": 21.048094200436026,
+      "cell_wall_seconds": 1003.1404947910924,
+      "max_observed_MPS_driver_bytes": 3861151744,
+      "known_SIGSTOP_pause_seconds_in_cell": 0.0,
+      "cell_wall_minus_known_pause_seconds": 1003.1404947910924
+    }
+  ],
+  "training_synchronized_section_sum_seconds": 956.5526505899616,
+  "evaluation_synchronized_section_sum_seconds": 84.19003953842912,
+  "compute_timing_definition": "Timed host sections bracketed by MPS synchronization, including finite-gradient checks/CPU synchronization or result transfer; not GPU-kernel-only time or utilization measurement. CPU image augmentation/loading/hashing outside these sections adds wall time. Each timed section followed by sleep2x active.",
+  "runtime_comparison_limits": [
+    "back-weak cell wall includes334.004606seconds temporarySIGSTOP; samePID, no model or optimizer reset.",
+    "Parent reported8A four-threadCPU work concurrent after15:27:29 resume and complete by15:32UTC, minute precision; no8A files/env/processes inspected.",
+    "Do not attribute cell wall differences solely to LoRA placement or compare as uncontended benchmark.",
+    "Maximum MPS driver allocation is sampled after steps/evaluations; not continuous instantaneous peak or physical-memory percentage."
+  ],
+  "A100_Colab_ARiS_new_dependencies": false,
+  "training_exec_session_exit_code": 0,
+  "original_training_process_still_present": false
+}

@@ -1,0 +1,253 @@
+{
+  "at_utc": "2026-10-23T11:01:43.298Z",
+  "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+  "source_records": [
+    {
+      "name": "preact_current",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/main/models/cifar/preact_resnet.py",
+      "blob_sha": "b557e9fdf23deed2a1acb02568910556775201eb",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 83,
+          "text": "if y.shape[-1] != ori.shape[-1]:"
+        },
+        {
+          "line": 85,
+          "text": "cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y) ** (2 / np.log(y.shape[-1]))   # (N,)"
+        }
+      ]
+    },
+    {
+      "name": "shakeshake",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/cifar/shakeshake.py",
+      "blob_sha": "5a406bb9876b458caef709d062f8f6e8efbf1c85",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 163,
+          "text": "if y.shape[-1] != ori.shape[-1]:"
+        },
+        {
+          "line": 165,
+          "text": "cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y) ** (2 / np.log(y.shape[-1]))  # (N,)"
+        }
+      ]
+    },
+    {
+      "name": "resnet_timm",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/imagenet/resnet_timm.py",
+      "blob_sha": "bf12b955ef6c3ada8e324520e1f142855c4d960b",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 49,
+          "text": "if y.shape[-1] != ori.shape[-1]:"
+        },
+        {
+          "line": 51,
+          "text": "cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y) ** (2 / np.log(y.shape[-1]))"
+        }
+      ]
+    },
+    {
+      "name": "deit",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/imagenet/deit.py",
+      "blob_sha": "48029afdc706a62cba2b36aeb280e4895f65beea",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 50,
+          "text": "if y.shape[-1] != ori.shape[-1]:"
+        },
+        {
+          "line": 52,
+          "text": "cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y)"
+        }
+      ]
+    },
+    {
+      "name": "swin",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/imagenet/swin.py",
+      "blob_sha": "80aaaa62250e6a15bfc8e7c87b9ef2e99b812cd6",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 50,
+          "text": "if y.shape[-1] != ori.shape[-1]:"
+        },
+        {
+          "line": 52,
+          "text": "cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y)"
+        }
+      ]
+    },
+    {
+      "name": "data_load",
+      "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/dataset/load_data.py",
+      "blob_sha": "25435951a1f7d20c811f5f25285230b7bd8f86f0",
+      "scope": "Full file returned; target-shape, score and loader paths inspected",
+      "relevant_lines": [
+        {
+          "line": 44,
+          "text": "val_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 45,
+          "text": "val_data, batch_size=train_batch_size, shuffle=True,"
+        },
+        {
+          "line": 46,
+          "text": "pin_memory=True, num_workers=2)"
+        },
+        {
+          "line": 48,
+          "text": "train_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 49,
+          "text": "train_data, batch_size=train_batch_size, shuffle=True,"
+        },
+        {
+          "line": 50,
+          "text": "pin_memory=True, num_workers=2)"
+        },
+        {
+          "line": 51,
+          "text": "test_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 53,
+          "text": "pin_memory=True, num_workers=2)"
+        },
+        {
+          "line": 71,
+          "text": "train_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 72,
+          "text": "train_data, batch_size=train_batch_size, shuffle=True,"
+        },
+        {
+          "line": 73,
+          "text": "pin_memory=True, num_workers=2)"
+        },
+        {
+          "line": 74,
+          "text": "test_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 76,
+          "text": "pin_memory=True, num_workers=2)"
+        },
+        {
+          "line": 147,
+          "text": "val_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 148,
+          "text": "val_data, batch_size=train_batch_size, shuffle=True,"
+        },
+        {
+          "line": 157,
+          "text": "train_loader = torch.utils.data.DataLoader("
+        },
+        {
+          "line": 158,
+          "text": "train_data, batch_size=train_batch_size, shuffle=True,"
+        },
+        {
+          "line": 160,
+          "text": "test_loader = torch.utils.data.DataLoader("
+        }
+      ]
+    }
+  ],
+  "source_current_check": "preact_resnet.py default main blob equals pinned commit blob b557e9fdf23deed2a1acb02568910556775201eb",
+  "issues_check": {
+    "url": "https://api.github.com/repos/ainieli/Sample-awareRandAugment/issues?state=all&per_page=100",
+    "returned": 1,
+    "title": "Release ResNet-50 (trained with SRA) on Hugging Face",
+    "interpretation": "No relevant issue in this one returned public page; not evidence of originality, exhaustive nonexistence or author confirmation."
+  },
+  "source_excerpt_for_primary": {
+    "url": "https://github.com/ainieli/Sample-awareRandAugment/blob/785c3b12944251af81201083a9698a87f1d490f2/models/cifar/preact_resnet.py#L83",
+    "lines": [
+      "                if y.shape[-1] != ori.shape[-1]:\r",
+      "                    y = torch.zeros(ori.shape).to(y.device).scatter_(-1, y[..., None], 1.0)\r",
+      "                cos_sim = F.cosine_similarity(F.softmax(ori.detach(), dim=-1), y) ** (2 / np.log(y.shape[-1]))   # (N,)\r"
+    ]
+  },
+  "default_cifar": {
+    "file": "SRA_CIFAR.py",
+    "batch_size": 256,
+    "score_batch_full": 128,
+    "standard_train_count": 50000,
+    "last_total": 80,
+    "last_score_batch": 40,
+    "classes": [
+      10,
+      100
+    ],
+    "conclusion": "Neither 128 nor 40 equals 10 or 100; static default CIFAR path not triggered, not executed here."
+  },
+  "literature": [
+    {
+      "title": "Sample-aware RandAugment",
+      "year": 2025,
+      "url": "https://arxiv.org/html/2508.08004v1",
+      "read_scope": "Method score, asymmetric training and official code link",
+      "difference": "This audit tests implementation equivalence of the existing score; no new score or method."
+    },
+    {
+      "title": "Does Data Augmentation Benefit from Split BatchNorms?",
+      "year": 2020,
+      "url": "https://arxiv.org/html/2010.07810",
+      "read_scope": "Abstract, overview and normalization experiments",
+      "difference": "Directly covers augmentation/BN statistics interplay; screened out broad new-mechanism claim."
+    },
+    {
+      "title": "EntAugment",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2409.06290v1",
+      "read_scope": "Prior local audit plus current official train_EntAugment.py lines 95-180",
+      "difference": "Current inspected score uses label-independent entropy; this shape ambiguity does not apply to that expression, not an overall code certification."
+    },
+    {
+      "title": "Test Accuracy Conflates Learned Weights with Normalization State",
+      "reported_date": "2026-09-27",
+      "url": "https://openreview.net/forum?id=Ff9byKDIY7",
+      "read_scope": "Search metadata only; ordinary open redirected to browser verification",
+      "difference": "Unverified recent lead; full text not read, no bypass, not used to assert exact overlap."
+    },
+    {
+      "title": "Identifying Implementation Bugs in Machine Learning based Image Classifiers using Metamorphic Testing",
+      "year": 2018,
+      "url": "https://arxiv.org/abs/1808.05353",
+      "read_scope": "Abstract",
+      "difference": "Metamorphic testing is established; the audit does not claim a new testing paradigm."
+    }
+  ],
+  "queries": [
+    "Sample-aware RandAugment batch normalization",
+    "adaptive data augmentation batch normalization scoring",
+    "data augmentation stale difficulty cache",
+    "data augmentation batch norm statistics recomputation augmentation clean 2025 2026",
+    "augmentation scoring running statistics",
+    "adaptive augmentation BatchNorm",
+    "Test Accuracy Conflates Learned Weights",
+    "data augmentation batch normalization 2026 recalibration",
+    "Data Augmentation Revisited Distribution Gap",
+    "Sample-awareRandAugment shape",
+    "Sample-aware RandAugment bug",
+    "y.shape[-1] cosine_similarity RandAugment",
+    "metamorphic testing machine learning class label permutation batch permutation paper",
+    "Sample-aware RandAugment 2026 2025 augmentation controller"
+  ],
+  "limits": [
+    "Not an exhaustive novelty search.",
+    "No original benchmark reproduction.",
+    "No upstream modification or communication.",
+    "Six source records plus SRA_CIFAR.py and EntAugment train excerpt reviewed; no whole-repository audit."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "kind": "pre_result_exact_index_grid_review_v2",
+  "training_ran": false,
+  "project_arrays_read": false,
+  "actual_row_alignment_verified": false,
+  "azimuth_partition": "rank 0,1,2 versus rank 3,4,5",
+  "lighting_partition": "rank 0 versus rank 1",
+  "C": [
+    [
+      "-1",
+      "0",
+      "1"
+    ],
+    [
+      "-1/2",
+      "1/2",
+      "0"
+    ],
+    [
+      "0",
+      "1",
+      "-1"
+    ],
+    [
+      "1/2",
+      "-1",
+      "1/2"
+    ],
+    [
+      "1",
+      "-1/2",
+      "-1/2"
+    ]
+  ],
+  "checks": {
+    "class": true,
+    "physical_object": true,
+    "class_azimuth": true,
+    "class_elevation": true,
+    "class_lighting": true,
+    "object_azimuth": true,
+    "object_elevation": true,
+    "object_lighting": true,
+    "unconditional_full_nuisance_joint": true,
+    "class_azimuth_elevation": true,
+    "class_elevation_lighting": true,
+    "C_row_sums_zero": true,
+    "C_each_column_t_permutation": true,
+    "C_all_coefficient_counts_three_each": true,
+    "normalization_and_positive_support": true,
+    "qS_class_full_nuisance_joint_equal_q0": true,
+    "qB_class_azimuth_lighting_changed": true,
+    "per_configuration_global_weight_histograms_equal": true,
+    "each_arm_configuration_mean_q0_pointwise": true,
+    "each_object_coefficient_multiset_matched_across_configurations": true,
+    "kish_concentration_matches": true
+  },
+  "distinct_source_images": 540,
+  "distinct_source_objects": 15,
+  "development_objects_as_reported_not_read": 10,
+  "qB_qS_weight_histogram": {
+    "1/2700": 108,
+    "1/900": 108,
+    "1/540": 108,
+    "7/2700": 108,
+    "1/300": 108
+  },
+  "kish_image_weight_concentration": "4500/11",
+  "maximum_weight_ratio": "9",
+  "gate": "conditional_go_one_development_pilot_original_contribution_not_established",
+  "allowed_estimand": "mean_k[(LLweak-LLclean)_qB - (LLweak-LLclean)_qS] on predesignated consumed development objects",
+  "remaining_limits": [
+    "qS induces physical-object by condition dependence; it is not an absence of all nuisance association.",
+    "qB/qS per-object weight histograms differ within a configuration; they match over all five fixed configurations.",
+    "Both arms average to q0 before fitting. Fit separate heads first; average risks afterwards.",
+    "No conclusion of pixel shortcut use, physical do effects, or full RandAugment benefit follows from the primary interaction alone.",
+    "Actual source object ordinal mapping must come from the pre-existing locked source_objects order."
+  ]
+}

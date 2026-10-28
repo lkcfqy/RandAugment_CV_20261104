@@ -1,0 +1,86 @@
+{
+  "status": "completed_training_only_MPS_diagnostic_archived",
+  "at_utc": "2026-10-21T07:48:15.704785+00:00",
+  "source": "/Users/lkc/Documents/Codex/2026-10-21/task/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021",
+  "destination": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021",
+  "files": [
+    {
+      "relative_path": "affine_frozen-result.json",
+      "bytes": 48507,
+      "sha256": "e52da43bbcea71422126e1ae19dd8c5a15becf8fb2276f97eb4b2e09d00df80d"
+    },
+    {
+      "relative_path": "affine_frozen-steps.jsonl",
+      "bytes": 13678,
+      "sha256": "79db94c551cbd2c962023c32a623a07d7b8cfdcd5c2ec49384a2e8066acbac52"
+    },
+    {
+      "relative_path": "affine_trainable-result.json",
+      "bytes": 48350,
+      "sha256": "a9fae41b57fe3a92cda864f1b12558e5b3d7258fb8bb6923904606cc51e0cb46"
+    },
+    {
+      "relative_path": "affine_trainable-steps.jsonl",
+      "bytes": 13665,
+      "sha256": "e35bdbba6fcf7627a473dc56d5c3e2bab9197f4098382f3ea917fe7f3899ba2d"
+    },
+    {
+      "relative_path": "diagnostic-results.json",
+      "bytes": 32835,
+      "sha256": "2dae4637b02d5660ed56a6ae6ded2a7a1602a5f55505c9da1255ae5231008d39"
+    },
+    {
+      "relative_path": "diagnostic.py",
+      "bytes": 12507,
+      "sha256": "7e2eaf44e41c887eee545541d68d4d7bc8f1276cc601231c1b777243de336c5d"
+    },
+    {
+      "relative_path": "input-verification.json",
+      "bytes": 10257,
+      "sha256": "be0b2887362321eadae21b263be81125c386fc079f0a7b4814dcf41e017ef555"
+    },
+    {
+      "relative_path": "protocol.json",
+      "bytes": 2441,
+      "sha256": "c226355a4a76153c78e9eb99a6a8f26a2293fc7e95daa70d9152bd6a8863121d"
+    },
+    {
+      "relative_path": "result-zh.md",
+      "bytes": 4833,
+      "sha256": "ee1c2b56beab09abdb1e2cf58c0ff4590c69ae72eb6b1259ae566a3cb37d43b6"
+    },
+    {
+      "relative_path": "verification.json",
+      "bytes": 536,
+      "sha256": "c6bff46cc7170b9bed529c6efa24d35ccaaf5a3e3c7dc2ece5a29276c5d4d663"
+    },
+    {
+      "relative_path": "verify_saved_results.py",
+      "bytes": 4464,
+      "sha256": "accb3e3e1c2f61ad565cd0fde226e5e10f12d071b0e03a80dde58b396ae52a7f"
+    }
+  ],
+  "all_source_destination_bytes_and_SHA256_match": true,
+  "old_archive_receipt_hashes_unchanged": {
+    "stage-validity-pilot-20261021": "091fdb9f51a0e2fee66bd7db0ba042afb1dbffab0c590a8a795401723e1f12fd",
+    "mac-mps-check-20261021": "60ee119e8e6c1ef666df9e54e1b7b3381ed5a5cbbe5e10c0ba9a2fd7c2f3b8cc"
+  },
+  "stored_predictions_independently_recomputed": 768,
+  "training_steps": 256,
+  "training_compute_seconds": 11.035303407232277,
+  "total_wall_seconds": 13.62394449999556,
+  "independent_read_only_review": "audit_cpu_archive verified control isolation,256logs,768storedpredictions; no independent train/inference rerun",
+  "scientific_outcome": "neither arm learned to predeclared threshold; freezingBNaffine did not rescue fixed training setting; noaugmentationbenefit/newcontribution claim",
+  "benchmarks_rerun": false,
+  "PyTorch_upgraded": false,
+  "new_data_or_software": false,
+  "device": "localAppleMPS",
+  "A100": false,
+  "ARIS": false,
+  "development_or_test_evaluations": 0,
+  "requested_LLM": "GPT-6.1-Sol/ultra",
+  "actual_LLM_execution_receipt_available": false,
+  "remaining_execution_blockers": [],
+  "timing_clarification": "13.62394449999556 seconds is main-flow wall time excluding Python/library import startup; numeric results unchanged",
+  "previous_receipt_sha256": "47be83aab12069bb67335413ae06f73276bf868aff8a715a79ede70048eb22fa"
+}

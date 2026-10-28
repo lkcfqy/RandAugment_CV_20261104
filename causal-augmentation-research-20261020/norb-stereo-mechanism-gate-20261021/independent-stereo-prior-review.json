@@ -1,0 +1,186 @@
+{
+  "task": "smallNORB 独立单图增强与真实双目关系：有限直接先例资格审查",
+  "review_date": "2026-10-21",
+  "output": "/Users/lkc/Documents/Codex/2026-10-21/task/norb-stereo-mechanism-gate-20261021/independent-stereo-prior-review.json",
+  "model_request": {
+    "requested": "GPT-6.1-Sol / max",
+    "actual_model_and_effort_verified": false,
+    "explanation": "沿用父线程明确请求；本执行环境未提供可独立核验的实际模型/推理档位回执。"
+  },
+  "scope": {
+    "original_research_works_read": 3,
+    "method": "只读三项直接原文及两个作者官方仓库首页；未使用 ARIS 技能/流程。",
+    "excluded": [
+      "未读取新像素、模型权重或任何测试图像",
+      "未训练、运行模型、下载数据/大包、安装依赖",
+      "未使用 GPU/MPS/A100、外部模型、ARIS、自动化/调度",
+      "未访问 8A、PPT 或历史受阻来源",
+      "未重读父线程已核查的 CNN²；其 smallNORB 双目分类/视角泛化覆盖仅作为父线程提供的补充限制，不计本轮独立原文证据"
+    ]
+  },
+  "qualification": {
+    "eligible_new_research_candidates": 0,
+    "decision": "不升级为新研究候选；可保留已知立体假设失配的实现/机制复查，但当前不建议为此启动 smallNORB 分类训练。",
+    "evidence_summary": "右图小几何扰动、左右独立外观扰动、输入不对称与重建损失失配的分离均有直接先例。三篇未直接给出 smallNORB 上同边际共享/独立几何增强对类别读出训练收益的完整因果分解，但未覆盖该精确组合不等于具备新贡献；现有几何真值和任务机制证据不足。",
+    "cpu_one_day_gate": "目前没有经核实能在一天 CPU 内同时识别真实几何受损及其分类收益机制的窄命题。已知变换矩阵的代数检查可以低成本完成，但不产生新的物理对应真值；本轮未运行计时或实验。"
+  },
+  "direct_prior_evidence": [
+    {
+      "id": "RAFT-Stereo-2021",
+      "title": "RAFT-Stereo: Multilevel Recurrent Field Transforms for Stereo Matching",
+      "authors": "Lahav Lipson; Zachary Teed; Jia Deng",
+      "version": "arXiv:2109.07547v1",
+      "version_date": "2021-09-15",
+      "venue": "3DV 2021",
+      "primary_url_read": "https://arxiv.org/html/2109.07547",
+      "official_code_repository_read": "https://github.com/princeton-vl/RAFT-Stereo",
+      "read_sections": [
+        "§1",
+        "§3.2",
+        "§3.5",
+        "§4 implementation/training details",
+        "§4.4",
+        "§4.6"
+      ],
+      "observed_facts": [
+        "The stereo correlation volume restricts candidate matches to equal image rows; disparity supervision uses ground-truth horizontal displacement.",
+        "Training explicitly perturbs the right image to simulate imperfect rectification, and jointly stretches images and disparity. Small geometric asymmetry is therefore an intentional robustness augmentation.",
+        "The paper's architecture ablations retain right-image vertical perturbation; they are not a clean synchronized-versus-independent augmentation ablation."
+      ],
+      "coverage_boundary": "Directly covers fixed horizontal-search assumptions and training with right-view geometric perturbations. Does not establish that independent single-image augmentation must harm category recognition, or isolate that effect on smallNORB.",
+      "code_verification_limit": "Official repository homepage and its training instructions were readable. The linked core directory failed retrieval; the augmentor source, exact photometric probabilities and perturbation distributions were not independently verified. No such constants are asserted here."
+    },
+    {
+      "id": "CREStereo-2022",
+      "title": "Practical Stereo Matching via Cascaded Recurrent Network with Adaptive Correlation",
+      "authors": "Jiankun Li; Peisen Wang; Pengfei Xiong; Tao Cai; Ziwei Yan; Lei Yang; Jiangyu Liu; Haoqiang Fan; Shuaicheng Liu",
+      "version": "arXiv:2203.11483v1",
+      "version_date": "2022-03-22",
+      "venue": "CVPR 2022",
+      "primary_url_read": "https://arxiv.org/html/2203.11483v1",
+      "official_code_repository_read": "https://github.com/megvii-research/crestereo",
+      "read_sections": [
+        "§1",
+        "§3.1",
+        "§3.4",
+        "§4.2",
+        "§4.3"
+      ],
+      "observed_facts": [
+        "Non-ideal rectification can move corresponding points off the same scan line; the adaptive correlation layer uses alternating two-dimensional and one-dimensional local searches.",
+        "Training applies asymmetric brightness, contrast and gamma to the two inputs, a small random homography and vertical shift below two pixels only to the right image, rectangle occlusions, and groupwise resize/crop of images and disparity.",
+        "Correlation/search ablations address robustness to the stereo matching setup; the reported table does not isolate augmentation coupling as its sole treatment."
+      ],
+      "coverage_boundary": "This is a direct counterexample to a universal demand for synchronized geometry or appearance. Deliberate small asymmetry can train robustness to real camera mismatch. The paper does not study AA/RA/TA policy ranking or smallNORB category-readout benefit.",
+      "code_verification_limit": "Only the official repository homepage was read; augmentation statements above are verified in the original paper, not asserted as a line-by-line audit of its implementation."
+    },
+    {
+      "id": "Degradation-agnostic-2022",
+      "title": "Degradation-agnostic Correspondence from Resolution-asymmetric Stereo",
+      "authors": "Xihao Chen; Zhiwei Xiong; Zhen Cheng; Jiayong Peng; Yueyi Zhang; Zheng-Jun Zha",
+      "version": "arXiv:2204.01429v1",
+      "version_date": "2022-04-04",
+      "venue": "本轮仅核验 arXiv v1 原文",
+      "primary_url_read": "https://arxiv.org/html/2204.01429",
+      "read_sections": [
+        "§1",
+        "§2",
+        "§3.1",
+        "§3.2 and Table 1",
+        "§4.1 and Table 2"
+      ],
+      "observed_facts": [
+        "Resolution asymmetry can violate photometric consistency while scene-point correspondence still exists.",
+        "A four-setting experiment independently varies symmetry of network inputs and images used for photometric loss, using the original high-resolution right image for idealized controls.",
+        "In that experiment, repairing loss-side symmetry matters more than repairing input symmetry. Feature invariance alone is insufficient: their contrastive features can be degradation-agnostic yet poor for matching."
+      ],
+      "coverage_boundary": "Directly covers separating input asymmetry from loss misspecification and separating invariant representations from useful correspondence features. It studies resolution degradation and stereo error with disparity evaluation, not independently sampled AA/RA/TA geometry or smallNORB category loss."
+    }
+  ],
+  "geometry_and_claim_boundaries": [
+    {
+      "claim": "独立可逆单应不会一般性消灭双目极几何。",
+      "status": "标准坐标变换推导；非本轮新理论",
+      "statement": "若原对应满足 p_R^T F p_L=0，p'_L=H_L p_L、p'_R=H_R p_R，则 F'=H_R^{-T} F H_L^{-1}，且 p'_R^T F' p'_L=0。",
+      "assumptions": "两单应可逆；讨论连续齐次坐标、变换后仍可见的同一场景点。有限图像插值、量化、裁切、遮挡和非可逆操作另行处理。",
+      "forbidden_inference": "不能由固定 F 的残差变大推出全部几何消失。"
+    },
+    {
+      "claim": "同步也不是保留固定水平极线的充要条件。",
+      "status": "条件性几何例子；不假定 smallNORB 已核实 rectification",
+      "statement": "对原本同一行的对应，独立水平平移仍保持行坐标相等，但改变水平位移与共同可见区域；相同的非零旋转一般使原水平极线倾斜。共同一般单应仍需更新 F。",
+      "implication": "必须按实际变换及模型搜索约束判断，不能把 shared/independent 两个名称直接当作几何有效/无效标签。"
+    },
+    {
+      "claim": "外观不对称、几何坐标变化和共同可见性是不同对象。",
+      "status": "已知机制及本轮综合",
+      "statement": "光度变换可以保留场景点坐标关系却破坏亮度恒常；单应可保留新的极几何却违反旧的水平搜索；裁切/遮挡可移除原对应，逆变换不能恢复已丢失观测。",
+      "forbidden_inference": "共同 resize/crop 或共同增强也不能保证每个原对应都仍在两幅有限图像内。"
+    },
+    {
+      "claim": "smallNORB 当前不能提供已核实的稠密几何真值。",
+      "status": "父线程数据发布核验结论，非本轮重新访问数据源",
+      "statement": "官方已核实发布项为 dat/cat/info；没有已核实 K/F、稠密视差或像素对应真值。匹配器输出、估计 F、重投影残差只能按估计量/代理指标报告，不能升级为真值。",
+      "forbidden_inference": "类别标签仍成立不意味着立体一致性成立；类别准确率降低也不自动识别几何损害。"
+    },
+    {
+      "claim": "若训练损失按左右单图可分离且每眼边际分布相同，随机耦合不改变其 population 期望目标。",
+      "status": "父线程正在核对的必要边界；这里仅列审查限制，不宣称新证明",
+      "statement": "只有明确的跨视图交互、非可分离融合/损失或训练随机性等，才可能让 shared/independent 耦合产生不同效果；有限样本/SGD 差异仍不能单独归因为几何。",
+      "forbidden_inference": "不能把普通两图平均分类结果的耦合差异直接解释成真实立体关系受损。"
+    }
+  ],
+  "nearest_known_explanation_and_discriminating_controls": {
+    "closest_known_explanations": [
+      "固定 rectification/水平搜索先验与输入变换不匹配。",
+      "photometric reconstruction loss 与独立外观变化不匹配。",
+      "有限图像共同可见区域、插值信息损失或单眼难度变化。",
+      "普通跨视图融合或随机训练耦合效应，并非立体几何特有。"
+    ],
+    "minimum_controls_if_a_later_known_mechanism_audit_is_authorized": [
+      "两条件严格匹配每眼增强边际、曝光次数及标签；共享/独立只改变联合耦合。",
+      "记录 H_L/H_R，对已独立验证的对应传播坐标；区分旧 F/水平假设残差与更新 F 后残差。",
+      "明确共同可见点集合；把裁切/遮挡与可逆坐标变换分开。",
+      "将固定几何搜索与能使用更新坐标关系的对照比较；光度不对称单独作控制。",
+      "对类别收益使用真正跨视图交互读出与可分离单图损失对照；单眼或可分离读出上的相同差异不能支持立体专属机制。"
+    ],
+    "not_a_new_candidate": true,
+    "reason": "上述是防止把已知失配包装成新结果的必要对照，不能因完成它们就宣称超出已有立体增强工作。"
+  },
+  "falsification_and_stop_rules": [
+    "若只复现独立垂直扰动降低固定行匹配性能，归入 RAFT-Stereo/CREStereo 已覆盖机制，不升级。",
+    "若更新坐标/搜索假设后惩罚消失，只能主张旧 rectification 假设失配，不能主张真实几何消失。",
+    "若后果由裁切共同可见性或单眼难度解释，关闭立体几何机制解释。",
+    "若只有类别准确率差、模型输出残差或估计 F，而没有独立几何证据，关闭真实几何受损及其分类收益的因果主张。",
+    "若相同差异存在于可分离单图目标，优先审计边际/实现/随机优化，不归因于跨视图几何。",
+    "不把本轮三篇未研究的精确 smallNORB 组合宣称为已经证明的新颖性；也不把本轮 0 候选解释成穷尽文献后的不可能性结论。"
+  ],
+  "minimum_remaining_evidence": [
+    "预先固定少量真实左右对应点或经独立核验的相机/rectification 信息，才能把已知 H 传播到物理对应；不需先追求稠密真值，但不能用同一匹配器自证。",
+    "一个实际利用跨视图对应而非只聚合类别证据的任务/读出，以及能区分坐标假设、可见性和一般融合效应的对照。",
+    "运行时间/依赖尚未核验，不能声称上述补证和分类收益测试已能在一天 CPU 内完成。"
+  ],
+  "access_log": {
+    "successful_primary_reads": [
+      "https://arxiv.org/html/2109.07547",
+      "https://github.com/princeton-vl/RAFT-Stereo",
+      "https://arxiv.org/html/2203.11483v1",
+      "https://github.com/megvii-research/crestereo",
+      "https://arxiv.org/html/2204.01429"
+    ],
+    "failed_action": {
+      "action": "web.click on official RAFT-Stereo repository core link",
+      "target": "https://github.com/princeton-vl/RAFT-Stereo/tree/main/core",
+      "tool_result": "Internal Error",
+      "http_status": null,
+      "reason_known": "工具未返回正文或 HTTP 状态，不能确定是解析、网络或服务器原因；没有证据称为 HTTP403 或自动安全审批拒绝。",
+      "status": "retrieval_failed_stopped",
+      "execution_certainty": "没有写入或模型执行；服务端是否收到该只读请求未知。",
+      "response": "停止该代码目标；未重试、未改 raw URL、未镜像或换路径获取 augmentor。",
+      "remaining_blocker": "RAFT 官方 augmentation 实现的精确概率/扰动分布未核验；原论文已足以支持本轮已知机制覆盖的资格结论。"
+    },
+    "historical_blocked_targets_retried": false,
+    "automatic_approval_denial": false
+  },
+  "strongest_supported_conclusion": "普通单图增强独立作用左右眼，可以改变固定立体模型所依赖的行约束、外观一致性或共同可见区域；这些后果已有直接先例。它不普遍消灭更新后的极几何，也不必然损害类别识别。当前 smallNORB 条件下没有被原文和真值条件共同支撑的新候选；如继续，只应定位为已知机制复查。"
+}

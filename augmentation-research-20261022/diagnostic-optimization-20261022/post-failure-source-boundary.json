@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-10-22T16:36:11.426806+00:00",
+  "document": "https://docs.pytorch.org/docs/2.14/generated/torch.nn.functional.scaled_dot_product_attention.html",
+  "read_passage": "Note on numerical differences between backend kernels and C++ float64 support; not the CUDA-specific nondeterminism paragraph as a claim about MPS",
+  "supports": "Different floating-point execution kernels can differ; a higher-precision reference is possible on supported CPU math path.",
+  "does_not_establish": "No measured kernel dispatch or localization of this MPS/head-gradient discrepancy.",
+  "local_static_inspection": "torchvision EncoderBlock.forward uses need_weights=False; torch.nn.functional multi_head_attention_forward calls scaled_dot_product_attention on this path. No runtime dispatch instrumentation or additional forward was done.",
+  "original_diagnostic_frozen_source_or_tolerances_changed": false,
+  "historical_access_denials_retried": false
+}

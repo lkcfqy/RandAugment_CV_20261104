@@ -1,0 +1,19 @@
+{
+  "model_request": "GPT-6.1-Sol / max",
+  "actual_per_execution_model_and_effort_receipt": "Unavailable; requests, defaults and self-statements are not execution evidence",
+  "literature_reviewer": {
+    "agent": "/root/distinct_design_sol",
+    "sources": ["https://arxiv.org/html/1912.09533v2", "https://arxiv.org/html/1704.03296", "https://arxiv.org/html/1801.10578"],
+    "conclusion": "Semantify-NN already covers multi-parameter photometric transformations with clipping and fixed classifier margins. Fong-Vedaldi covers predictive explanation via deletion/retention and combined regions. CLEVER covers margin and local sensitivity stability. Exact three-image-calibrated joint-only clipping diagnostics on real captured joint changes were not found in these three papers. This bounded check is not proof of novelty.",
+    "strong_comparators_requested_before_execution": ["Predicted total joint saturation", "Source/single classification margins", "Ordinary perturbation sensitivity", "Unweighted and spatially shuffled cue overlap if weighting is used", "Direct model evaluation on the reconstructed joint image"],
+    "amendment_implemented_before_execution": "Protocol v2 adds total predicted joint saturation T and direct reconstructed joint query D. No saliency-weighted predictor is implemented. No photo-model execution occurred before the lock.",
+    "clarification": "Reviewer initially considered a pixel-unsaturated-single stratum. The executed eligibility only requires single classification correct, so S is not constant zero. B, S, T are not independent features: T=B+S in the chosen transform."
+  },
+  "math_and_design_reviewer": {
+    "agent": "/root/next_question_audit_sol",
+    "pre_execution": "One informative development diagnostic, no outcome leakage: B/S/margin/eligibility do not use joint predictions. The two checkpoints and images are dependent, not independent replicates. Fix risk-score direction. AUC comparison is not evidence of conditional incremental information. Encoded-RGB software boundary is not a real RAW intervention.",
+    "post_execution": "Static review confirms two models each have64 eligible images and0 new joint errors, so every AUC is undefined. The weak_diagnostic_screen_supported false flag means not supported, not diagnostic useless. T=B+S; reconstructed-joint query only verifies software. Cannot infer natural robustness, TA benefit or no red dependence. Stop adjusting gain/score or finding positive cases on these64 photos.",
+    "rerun_requested": false
+  },
+  "disposition": "General clipping/classification boundary example demoted to classroom mechanism illustration. Specific real-capture predictive diagnostic remains unvalidated and is not a current contribution claim or priority candidate. No tuning after this event-limited development result."
+}

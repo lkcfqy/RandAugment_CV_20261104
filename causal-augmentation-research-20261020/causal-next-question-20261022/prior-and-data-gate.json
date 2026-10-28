@@ -1,0 +1,41 @@
+{
+  "scope": "One materially different candidate only: environment-proxy error placement in targeted background intervention compared with full RandAugment",
+  "status": "no_go_before_image_experiment",
+  "scientific_gate": {
+    "passed": false,
+    "reason": "Same aggregate proxy accuracy and structured error effects are already directly studied; chosen policy changes the count of genuinely new conflict examples. No distinct, justified prediction beyond known sampling/edit coverage has been established.",
+    "exact_equivalent_full_experiment_found": false,
+    "not_seen_is_not_originality": true,
+    "no_fitting_protocol_frozen": true,
+    "no_new_model_or_toy_experiment": true
+  },
+  "primary_sources": [
+    {"title":"BARACK: Partially Supervised Group Robustness With Guarantees","url":"https://arxiv.org/html/2201.00072","version":"v2,2022-04-10","read":"5.5.1 and B.3.4","body_obtained":true,"relevant":"Pseudo group labels vs random errors matched to error rate and confusion matrix; downstream GDRO comparison. Not background editing/full RA."},
+    {"title":"Improving Group Robustness on Spurious Correlation Requires Preciser Group Inference","url":"https://arxiv.org/html/2404.13815","version":"v2,2024-06-04","read":"4.3-4.5 and C.3","body_obtained":true,"relevant":"Semantic error structure may harm resampling and help Mixup; group-metadata error not automatically intervention-semantic error."},
+    {"title":"Automated Background Swapping for Robustness against Spurious Backgrounds","url":"https://arxiv.org/html/2606.32018v1","version":"v1,2026-06-30","read":"5.2,5.4,G.3","body_obtained":true,"relevant":"Background swapping plus biased/noisy auxiliary masks and background sampling; mask noise not same as proxy group error."},
+    {"title":"Learning Fair Classifiers with Partially Annotated Group Labels","url":"https://sanghyukchun.github.io/home/media/papers/jung2022cvpr_cgl.pdf","read":"AppendixD/FigureD.2","body_obtained":true,"limit":"Author same-accuracy statement read; exact implementation matching not independently verified, not treated as a proven numerical guarantee."},
+    {"title":"SAGE: Subpopulation-Aware Generative Enhancement for Mitigating Spurious Correlations","url":"https://arxiv.org/html/2609.01051","version":"v1,2026-09-01","read":"Method and AppendixC","body_obtained":true,"relevant":"Proxy-cluster-guided generation already exists; clusters explicitly not ground-truth spurious groups."}
+  ],
+  "data_gate": {
+    "passed": false,
+    "CUB_official_page": {"url":"https://www.vision.caltech.edu/datasets/cub_200_2011/","read":true,"permitted_scope_as_published":"non-commercial research and educational purposes","approx_published_image_annotation_archive":"1.1GB","approx_published_segmentation_archive":"37MB","ImageNet_overlap_warning":true,"exact_download_bytes_or_minimum_subset_verified":false},
+    "Waterbirds_author_README": {"url":"https://github.com/kohpangwei/group_DRO","read":true,"known_label_mapping_errors_acknowledged":true,"tar_payload_contents_verified":false},
+    "Waterbirds_author_generator": {"url":"https://github.com/kohpangwei/group_DRO/blob/master/dataset_scripts/generate_waterbirds.py","read":true,"requires":"CUB original images/segmentations plus Places backgrounds; metadata saves original paths","code_license_not_data_license":true},
+    "Places_terms": {"target":"https://places2.csail.mit.edu/download.html","action":"read public download/terms page","attempts":2,"result":"both ordinary web fetch timeouts; body not obtained","denied_or_browser_verification":false,"alternate_routes":0,"status":"stopped,not_pending","license_verified":false},
+    "label_evidence": {"retained_foreground_and_no_extra_targets_required":true,"benchmark_storedY_not_automatically_ecological_truth":true,"mixed_water_land_semantics_not_exactly_binary_metadata":true,"post_edit_semantic_recognizability_verified":false},
+    "new_images_downloaded":false,
+    "new_licenses_asserted_from_repository_code_license":false,
+    "public_source_existence_is_not_full_execution_readiness":true
+  },
+  "identification": "Finite controlled error-placement policy effect on fixed public photo pool, not natural-world do(background) identification. K edits do not match number of genuinely new conflict examples.",
+  "policy_mapping_derivation": "M majority,C conflict,E proxy errors,x errors in conflict: eligible=M-E+2x; expected genuine new conflicts=K(M-E+x)/(M-E+2x), same-type replacements=Kx/(M-E+2x). No image/ML experiment needed for this arithmetic.",
+  "RA_comparison_boundary": "Full operation-pool N2/M9 can be a predeclared development comparator with matched original-photo presentation/update budgets. RA cancels in the between-proxy contrast; absolute gains and any loss-of-advantage claim must be separately tested. No RA computation performed.",
+  "protected_access_boundaries": [
+    {"target":"https://openreview.net/pdf?id=TMs-EYm4_ms","status":"historical browser verification; stopped; this-round attempts0; no alternate routes; precise coverage unknown"},
+    {"target":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10923583/","status":"previous-round browser verification; stopped; this-round attempts0; no alternate routes; precise coverage unknown"},
+    {"target":"historical403/restricted author sources","status":"not retried or bypassed"}
+  ],
+  "resource_state": {"existing_Mac_capability_record":"../causal-resume-20261022/environment.json","new_scientific_CPU_or_MPS_job":false,"A100_Colab_paid_resources_ARIS":false,"private_data_sharing":false,"8A_access":false,"installs":false},
+  "model_request": {"model":"GPT-6.1-Sol","reasoning_effort":"max","service_tier":"existing Fast configuration retained","actual_backend_receipt_exposed":false,"configuration_changed_this_round":false},
+  "pending_or_uncertain_actions":false
+}

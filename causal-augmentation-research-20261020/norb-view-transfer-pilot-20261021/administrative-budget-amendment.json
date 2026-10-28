@@ -1,0 +1,44 @@
+{
+  "at_UTC": "2026-10-21T20:42:16.286293+00:00",
+  "kind": "administrative_compute_budget_only_before_final_data",
+  "original_protocol_lock_SHA256": "3880402fe82b46731a7d60781326c4c9d9330b55b1ddb022a0d1150bd67a4ca2",
+  "original_scientific_specification_remains_fixed": true,
+  "sole_protocol_field_change": {
+    "resources.encoder_wall_seconds_cap_per_phase": {
+      "old": 360,
+      "new": 480
+    }
+  },
+  "reason": "Observed CPU source encoding approximately18.5seconds/540views; forecasted total~400seconds exceeds initial360s cap. One source computation restart, no scientific parameter or outcome-based method change.",
+  "aborted_run": {
+    "session": 95676,
+    "exit_code": 130,
+    "last_completed_encoded_phase_seconds": 140.92816608422436,
+    "completed_banks": [
+      "source-clean",
+      "development-seen-clean",
+      "rotate_05+",
+      "rotate_05-",
+      "rotate_15+",
+      "rotate_15-",
+      "shearX_005+",
+      "shearX_005-"
+    ],
+    "source_original_photos_decoded": 900,
+    "source_policy_scores_written": false,
+    "readouts_fitted": false,
+    "final_pixels_read": 0,
+    "no_complete_feature_banks_persisted": true
+  },
+  "stop_action": "Unified exec session Ctrl-C succeeded; no process remains in that session.",
+  "process_inventory_attempt": {
+    "action": "pgrep with exact own Python fit invocation",
+    "status": "failed",
+    "reason": "sysmon request failed: sysmond service not found; Cannot get process list",
+    "retried": false
+  },
+  "new_source_computation_restart_limit": 1,
+  "GPU": false,
+  "threads": 1,
+  "not_a_research_negative_or_positive_result": true
+}

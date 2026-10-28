@@ -1,0 +1,148 @@
+{
+  "at_utc": "2026-10-22T14:09:04.237525+00:00",
+  "purpose": "Synthetic-input compatibility and timing only; no dataset, pretrained weight, scientific result or CUDA.",
+  "torch": "2.14.1",
+  "MPS_built": true,
+  "MPS_available": true,
+  "CUDA_available": false,
+  "cpu_threads": 1,
+  "cpu_count": 18,
+  "MPS_fallback_enabled": false,
+  "input_shape": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "new_dependencies": false,
+  "cases": [
+    {
+      "mode": "front",
+      "device": "mps:0",
+      "trainable_parameters": 65317,
+      "trainable_backbone_parameters": 36864,
+      "all_step_seconds": [
+        1.6500031249597669,
+        0.04207308404147625,
+        0.04188149992842227,
+        0.04158241592813283
+      ],
+      "steady_step_seconds_mean": 0.041845666632677116,
+      "loss_values_not_a_scientific_result": [
+        3.528132438659668,
+        3.161670207977295,
+        2.492260456085205,
+        1.637017846107483
+      ],
+      "sampled_backbone_parameter_changes": {
+        "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq": 4.865170194534585e-05
+      },
+      "all_losses_finite": true,
+      "MPS_current_allocated_bytes": 349922560,
+      "MPS_driver_allocated_bytes": 758972416
+    },
+    {
+      "mode": "back",
+      "device": "mps:0",
+      "trainable_parameters": 65317,
+      "trainable_backbone_parameters": 36864,
+      "all_step_seconds": [
+        0.12398183299228549,
+        0.025129042100161314,
+        0.024887457955628633,
+        0.02482087491080165
+      ],
+      "steady_step_seconds_mean": 0.02494579165553053,
+      "loss_values_not_a_scientific_result": [
+        3.5281333923339844,
+        3.161693572998047,
+        2.4923200607299805,
+        1.6371171474456787
+      ],
+      "sampled_backbone_parameter_changes": {
+        "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.bq": 1.3792164281767327e-06
+      },
+      "all_losses_finite": true,
+      "MPS_current_allocated_bytes": 349922560,
+      "MPS_driver_allocated_bytes": 524091392
+    },
+    {
+      "mode": "spread",
+      "device": "mps:0",
+      "trainable_parameters": 65317,
+      "trainable_backbone_parameters": 36864,
+      "all_step_seconds": [
+        0.15042070799972862,
+        0.049472249927930534,
+        0.04854224994778633,
+        0.04868712497409433
+      ],
+      "steady_step_seconds_mean": 0.04890054161660373,
+      "loss_values_not_a_scientific_result": [
+        3.528132438659668,
+        3.161682605743408,
+        2.4922900199890137,
+        1.637067198753357
+      ],
+      "sampled_backbone_parameter_changes": {
+        "encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0.bq": 4.865211667492986e-05,
+        "encoder.layers.encoder_layer_9.self_attention.parametrizations.in_proj_weight.0.bq": 1.3520032098313095e-06
+      },
+      "all_losses_finite": true,
+      "MPS_current_allocated_bytes": 349916416,
+      "MPS_driver_allocated_bytes": 826081280
+    },
+    {
+      "mode": "full",
+      "device": "mps:0",
+      "trainable_parameters": 85827109,
+      "trainable_backbone_parameters": 85798656,
+      "all_step_seconds": [
+        0.40378595795482397,
+        0.0614920420339331,
+        0.061354084056802094,
+        0.06123333296272904
+      ],
+      "steady_step_seconds_mean": 0.06135981968448808,
+      "loss_values_not_a_scientific_result": [
+        3.528132438659668,
+        2.396627902984619,
+        1.0080419778823853,
+        0.3613077700138092
+      ],
+      "sampled_backbone_parameter_changes": {
+        "encoder.layers.encoder_layer_0.ln_1.weight": 0.00020873546600341797,
+        "encoder.layers.encoder_layer_0.ln_1.bias": 0.0013606110587716103,
+        "encoder.layers.encoder_layer_0.self_attention.in_proj_weight": 0.0005775606259703636,
+        "encoder.layers.encoder_layer_0.self_attention.in_proj_bias": 0.002050135750323534,
+        "encoder.layers.encoder_layer_0.self_attention.out_proj.weight": 0.0007043462246656418,
+        "encoder.layers.encoder_layer_0.self_attention.out_proj.bias": 0.0033201754558831453,
+        "encoder.layers.encoder_layer_0.ln_2.weight": 0.00017654895782470703,
+        "encoder.layers.encoder_layer_0.ln_2.bias": 0.00018709774303715676,
+        "encoder.layers.encoder_layer_0.mlp.0.weight": 0.0005510430783033371,
+        "encoder.layers.encoder_layer_0.mlp.0.bias": 0.00019281286222394556,
+        "encoder.layers.encoder_layer_0.mlp.3.weight": 0.0006788335740566254,
+        "encoder.layers.encoder_layer_0.mlp.3.bias": 0.0003921256575267762,
+        "encoder.layers.encoder_layer_9.ln_1.weight": 2.872943878173828e-05,
+        "encoder.layers.encoder_layer_9.ln_1.bias": 4.487673140829429e-05,
+        "encoder.layers.encoder_layer_9.self_attention.in_proj_weight": 7.712095975875854e-05,
+        "encoder.layers.encoder_layer_9.self_attention.in_proj_bias": 6.608155672438443e-05,
+        "encoder.layers.encoder_layer_9.self_attention.out_proj.weight": 0.00010037608444690704,
+        "encoder.layers.encoder_layer_9.self_attention.out_proj.bias": 0.0001030707499012351,
+        "encoder.layers.encoder_layer_9.ln_2.weight": 8.797645568847656e-05,
+        "encoder.layers.encoder_layer_9.ln_2.bias": 5.833751492900774e-05,
+        "encoder.layers.encoder_layer_9.mlp.0.weight": 0.00018360093235969543,
+        "encoder.layers.encoder_layer_9.mlp.0.bias": 6.158459291327745e-05,
+        "encoder.layers.encoder_layer_9.mlp.3.weight": 0.0002142039593309164,
+        "encoder.layers.encoder_layer_9.mlp.3.bias": 0.00011857126810355112
+      },
+      "all_losses_finite": true,
+      "MPS_current_allocated_bytes": 1103045888,
+      "MPS_driver_allocated_bytes": 1464696832
+    }
+  ],
+  "per_process_memory_fraction": 0.1,
+  "wall_seconds_including_builds": 4.020759415929206,
+  "peak_RSS_bytes_Mac": 939999232,
+  "status": "bounded_mps_forward_backward_update_completed"
+}

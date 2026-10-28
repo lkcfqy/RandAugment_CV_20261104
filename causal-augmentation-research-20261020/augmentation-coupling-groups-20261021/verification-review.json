@@ -1,0 +1,1045 @@
+{
+  "schema_version": "1.0",
+  "task": "Independent post-run implementation and statistical audit of the locked CPU augmentation-coupling development experiment",
+  "model_request": {
+    "requested": "GPT-6.1-Sol/max",
+    "actual_execution_receipt_available": false,
+    "actual_model_and_effort_verified": false
+  },
+  "verdict": {
+    "status": "verification_passed_for_stated_fixed_development_scope",
+    "fatal_implementation_errors_found": 0,
+    "primary_screen_passed": false,
+    "retraining_needed_for_verification": false,
+    "summary_zh": "实际少类支持、槽级独立排布、逐图逐态曝光匹配、类平衡源目标、160头冻结顺序及16排程种子主CI均与锁定设计一致。主结果未通过.01nat与区间排零联合筛；不能据此称普遍无效。有限756步的优化目标仍下降，未验证收敛；theta0共享trace更小仅为已知跨样本抵消，不推出泛化或创新。",
+    "limitations_not_fatal_zh": [
+      "源对象数、源原图数与重复程度一起改变，不能分离其贡献",
+      "固定已消费development_seen，仅条件开发探索",
+      "CI覆盖排程随机性，不覆盖新物体/源物体选择/数据集总体",
+      "未重放任何SGD训练或重新编码图像",
+      "未做文献新颖性独立复查；不把旧访问状态当作当前文献阻塞"
+    ]
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol-lock.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/review-resolution.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/addendum-gate.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/necessary-checks.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/source-training.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/training-start.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/training-freeze.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/results.json"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/schedules.npz"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/readouts.npz"
+    },
+    {
+      "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/evaluation-arrays.npz"
+    }
+  ],
+  "implementation_checks": [
+    {
+      "id": "SUPPORT",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+          "json_pointer": "/scenarios"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            96,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104
+          ]
+        }
+      ],
+      "checked_zh": "逐scenario核实13物体156张图；少类1物体12图，其他每类3物体36图；每批15张不同图、13不同物体，类别槽数均为3。",
+      "supports": [
+        {
+          "few_class": 0,
+          "objects_per_class": [
+            1,
+            3,
+            3,
+            3,
+            3
+          ],
+          "photos_per_class": [
+            12,
+            36,
+            36,
+            36,
+            36
+          ],
+          "rare_object": [
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "few_class": 1,
+          "objects_per_class": [
+            3,
+            1,
+            3,
+            3,
+            3
+          ],
+          "photos_per_class": [
+            36,
+            12,
+            36,
+            36,
+            36
+          ],
+          "rare_object": [
+            [
+              1,
+              9
+            ]
+          ]
+        },
+        {
+          "few_class": 2,
+          "objects_per_class": [
+            3,
+            3,
+            1,
+            3,
+            3
+          ],
+          "photos_per_class": [
+            36,
+            36,
+            12,
+            36,
+            36
+          ],
+          "rare_object": [
+            [
+              2,
+              9
+            ]
+          ]
+        },
+        {
+          "few_class": 3,
+          "objects_per_class": [
+            3,
+            3,
+            3,
+            1,
+            3
+          ],
+          "photos_per_class": [
+            36,
+            36,
+            36,
+            12,
+            36
+          ],
+          "rare_object": [
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "few_class": 4,
+          "objects_per_class": [
+            3,
+            3,
+            3,
+            3,
+            1
+          ],
+          "photos_per_class": [
+            36,
+            36,
+            36,
+            36,
+            12
+          ],
+          "rare_object": [
+            [
+              4,
+              6
+            ]
+          ]
+        }
+      ],
+      "interpretation_zh": "少类是源物体/视图多样性不足而非批内低类别频率。其1vs3物体与12vs36原图同时变化，不能单独命名为物体数因果效应。"
+    },
+    {
+      "id": "SLOT_COUPLING",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+          "json_pointer": "/sampler"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/review-resolution.json",
+          "json_pointer": "/independent_slot_sampling"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            38,
+            39,
+            40
+          ]
+        }
+      ],
+      "checked_zh": "读取全部160份保存排程，按锁定SHA标签RNG独立再生成，全部相同。独立臂每cycle、data_position、slot分别采21态排列，包括少类同一物体的三个槽；共享臂每步全15槽同态。",
+      "counts": {
+        "schedules": 160,
+        "updates_per_schedule": 756,
+        "slots": 15,
+        "cycles": 3,
+        "epochs_per_cycle": 21,
+        "data_positions": 12
+      },
+      "all_per_slot_permutations": true,
+      "all_recreated_RNG_schedules_match": true,
+      "descriptive_not_a_new_statistical_test": {
+        "independent_rare_all3_slots_same_state": 131,
+        "rare_batches_checked": 60480
+      },
+      "temporal_scope_zh": "每槽一周期遍历各态一次，跨时间无放回且有负相关；逐图状态序列、跨槽/跨时间依赖随处理改变。不能称自然IID流，亦不能仅归因单步theta0方差。"
+    },
+    {
+      "id": "EXPOSURE",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            124,
+            125,
+            126,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            138,
+            139,
+            140
+          ]
+        }
+      ],
+      "checked_zh": "所有5情景×16seed×2臂逐photo/state计数与预设表一致；同seed同情景两臂的原图ID与位置顺序相同。",
+      "per_photo_per_state_per_cycle": {
+        "rare": 3,
+        "common": 1
+      },
+      "per_photo_per_state_all3cycles": {
+        "rare": 9,
+        "common": 3
+      },
+      "feature_presentations_per_readout": 11340,
+      "key_boundary_zh": "匹配是两臂之间，不是少类与常类每图权重相同。少类图在类平衡采样中重复3倍正是设计组成。"
+    },
+    {
+      "id": "OBJECTIVE_AND_STEP",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+          "json_pointer": "/model"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/addendum-gate.json",
+          "json_pointer": "/required_objective_weights"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            94
+          ]
+        }
+      ],
+      "target": "(1/5) sum_class mean_photo_in_class mean_21states CE +0.005||W||_F^2",
+      "checked_zh": "每batch类槽均衡，源完整目标先按类取均值再平均，匹配实际曝光；不是156张unique图直接等权。SGD使用CE mean及0.01W正则梯度，bias不正则，符合lambda/2约定。",
+      "eta": 0.0038984834823233335,
+      "eta_reason_zh": "softmax logit Hessian谱范数≤1/2；恢复特征平方范数512并附bias1，1/[.5*(513+1e-6)+.01]为保守光滑性界倒数。此界不保证随机每步完整目标下降，也不保证756步已收敛。",
+      "final_source_class_LL_recompute_max_error": 0,
+      "final_source_objective_recompute_max_error": 0,
+      "final_source_clean_LL_recompute_max_error": 0
+    },
+    {
+      "id": "INVERSE_CACHE",
+      "result": "pass_with_float_tolerance",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/review-resolution.json",
+          "json_pointer": "/inverse_cache_evidence"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93
+          ]
+        }
+      ],
+      "upstream_code_path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/norb-view-transfer-pilot-20261021/experiment.py",
+      "upstream_lines_checked": [
+        215,
+        235,
+        252,
+        253,
+        254,
+        255,
+        260,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        341,
+        342,
+        365,
+        366
+      ],
+      "checked_zh": "上游锁定代码用model.eval、inference_mode逐图编码并L2归一化，保存仅经(z=(phi-mu)/scalar)的缓存。本轮逆变换再乘sqrt512，没有沿用旧数据标准化、PCA或额外样本归一化作为分类器输入。",
+      "squared_norm_max_error": 2.2737367544323206e-13,
+      "limitation_zh": "未重新编码原图，不宣称恢复与未保存phi逐位相同；依据代码/hash与容差内球面范数检查。eta是固定理论界，不由排除对象或development拟合。"
+    },
+    {
+      "id": "FREEZE_AND_ROLE_ACCESS",
+      "result": "internally_consistent",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol-lock.json"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/training-start.json"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/training-freeze.json"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            86,
+            89,
+            160,
+            161,
+            162,
+            166,
+            167,
+            182,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197
+          ]
+        }
+      ],
+      "checked_zh": "代码在全部160头写出并保存training-freeze后才解码development_seen特征。np.load(NPZ)早先打开的是惰性archive；训练前读取21个source态成员，development成员在line193才取值。输入archive只有这些21源态和development_seen，无final或其他评价数组。",
+      "archive_members_checked": "21source-state members +development_seen only",
+      "source_objects": 15,
+      "development_objects": 10,
+      "source_development_object_overlap": 0,
+      "development_views_per_object": 36,
+      "development_objects_per_class": 2,
+      "byte_access_qualification_zh": "训练前输入SHA核验会读取含development成员的压缩archive字节；准确陈述是训练前未解码/使用其数值特征，不是从未接触development文件字节。其本身又已在此前项目消费，不能恢复盲测。",
+      "provenance_limit_zh": "hash与内容时间和代码路径支持内部先后顺序，不是外部不可篡改预注册或完整OS访问日志。未凭mtime证明预锁。"
+    },
+    {
+      "id": "PREDICTIONS_AND_AGGREGATION",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            198,
+            199,
+            200,
+            201,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218
+          ]
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/results.json",
+          "json_pointer": "/runs"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/evaluation-arrays.npz"
+        }
+      ],
+      "checked_zh": "160冻结头对已缓存development_seen重算线性logits/CE/prediction；未训练、未执行encoder。逐视图保存LL与预测、逐类LL/accuracy及10物体LL全部相符。每类2物体各36视图，所以代码class mean等于先物体均值再类均值。",
+      "maximum_per_view_LL_error": 0,
+      "prediction_mismatches": 0,
+      "maximum_class_summary_error": 0,
+      "maximum_object_summary_error": 0
+    },
+    {
+      "id": "PRIMARY_CI",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+          "json_pointer": "/primary"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            237
+          ]
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/results.json",
+          "json_pointer": "/primary_interaction"
+        }
+      ],
+      "definition": "Each schedule seed: mean over all5few-class scenarios of [few-class(shared-independent CE)-mean_other4classes(shared-independent CE)]. Then mean over16seed values and paired schedule bootstrap.",
+      "bootstrap_recomputed": {
+        "replicates": 20000,
+        "sample_size": 16,
+        "unit": "paired schedule seed after all5scenario averaging",
+        "fixed_rng_tag": "coupling-groups-v1:bootstrap:paired-schedule-seeds",
+        "percentiles": [
+          0.025,
+          0.975
+        ]
+      },
+      "independent_recompute": {
+        "mean": 0.002463110443528646,
+        "CI95_schedule_conditional": [
+          -0.0032676307519465294,
+          0.007958663119910876
+        ],
+        "per_seed": [
+          -0.005716479000086936,
+          0.013131286366027044,
+          0.0017419075916142834,
+          0.018440923369708578,
+          0.008854644600666376,
+          0.001232200096576455,
+          -0.00978511416442997,
+          -0.002124597670549353,
+          0.016937560860448557,
+          0.01879764178112147,
+          -0.019714268446621015,
+          -0.007558845239031368,
+          0.015776260686177022,
+          -0.012123569141496477,
+          -0.00252481586025174,
+          0.004045031266585413
+        ]
+      },
+      "rare_delta_mean": 0.0021916022623690882,
+      "common_delta_mean": -0.00027150818115955806,
+      "tolerance_zh": "与结果JSON的主均值/CI只差约1e-17量级求和顺序误差。源和开发损失/预测均逐项一致。",
+      "screen": {
+        "abs_mean_threshold_nat": 0.01,
+        "CI95_must_exclude_zero": true,
+        "passed": false
+      },
+      "scope_zh": "16个排程种子是固定数据/bank的条件算法随机性单位；不是80独立情景、360独立物体或新的物体总体CI。相同开发对象在所有情景复用而不增加N。"
+    },
+    {
+      "id": "THETA0_NOISE",
+      "result": "pass",
+      "refs": [
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+          "json_pointer": "/necessary_conditions"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/review-resolution.json",
+          "json_pointer": "/projective_noise"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+          "line_numbers": [
+            105,
+            106,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            122,
+            123,
+            159
+          ]
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/necessary-checks.json",
+          "json_pointer": "/gradient_covariance"
+        }
+      ],
+      "recomputed_mean_shared_minus_independent": [
+        -0.6440760695101584,
+        -0.5473087890097178,
+        -0.6620481562596366,
+        -0.6913450216018008,
+        -0.5892707189242478
+      ],
+      "maximum_recompute_or_cross_covariance_identity_error": 2.886579864025407e-15,
+      "interpretation_zh": "五情景的theta0差值均负，说明这一固定点的公共状态变化发生跨样本/类别抵消；既不是共享必伤的证据，也不能据单点反证后续轨迹。代码未以正方差差为执行门槛。",
+      "negative_control_boundary_zh": "代码实际执行的是常数state bank的100步两臂相同更新控制，记录差0；本审查仅静态核其相同输入递推，未重放这100步或另跑identical-schedule训练控制。"
+    }
+  ],
+  "optimization_and_claim_limits": {
+    "refs": [
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/source-training.json",
+        "json_pointer": "/models"
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+        "json_pointer": "/stop"
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/results.json",
+        "json_pointer": "/not_claimed"
+      }
+    ],
+    "steps": [
+      [
+        0,
+        252,
+        504,
+        756
+      ]
+    ],
+    "mean_objective_over160_models": [
+      1.6094379124340956,
+      0.1980153371094902,
+      0.11644125377968921,
+      0.08709850665528356
+    ],
+    "all_recorded_cycle_end_objectives_decreased": true,
+    "endpoint_zh": "固定主终点756步已完整结束；此有限预算比较本身有效，不必声称到达共同最优解。下降轨迹不等于逐步单调或已收敛。",
+    "intermediate_history_verification_zh": "0、252、504、756的均值由既有记录汇总；仅最终head权重保存，所以252/504步数值未从中间权重独立重算。初始ln5可直接核算，末点源目标已全部从冻结头重算。",
+    "allowed_zh": "本固定材料/预算下，没有通过预设实用交互筛查；保留条件小点差与宽度。",
+    "not_allowed_zh": [
+      "共享排布普遍伤害少数群体",
+      "CI含零证明无效或等效",
+      "较小theta0 trace证明更好泛化或新理论",
+      "事后选few_class4的正向点差替代汇总主终点",
+      "把少物体/少原图/重复曝光归因拆开",
+      "宣称完整RA/TA、自然IID流、端到端学习或独立确认"
+    ],
+    "novelty_zh": "本审核不进行网络查新，亦不将Balestriero先前访问失败当作当前仍阻塞；新的文献追加由父线程独立记录。"
+  },
+  "actual_numeric_verification": {
+    "source_array_shape": [
+      540,
+      21,
+      512
+    ],
+    "development_array_shape": [
+      360,
+      512
+    ],
+    "archive_has_only_source_states_and_development_seen": true,
+    "source_objects": 15,
+    "development_objects": 10,
+    "development_views_per_object": [
+      36
+    ],
+    "development_objects_per_class": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "support": [
+      {
+        "few_class": 0,
+        "objects_per_class": [
+          1,
+          3,
+          3,
+          3,
+          3
+        ],
+        "photos_per_class": [
+          12,
+          36,
+          36,
+          36,
+          36
+        ],
+        "rare_object": [
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      {
+        "few_class": 1,
+        "objects_per_class": [
+          3,
+          1,
+          3,
+          3,
+          3
+        ],
+        "photos_per_class": [
+          36,
+          12,
+          36,
+          36,
+          36
+        ],
+        "rare_object": [
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      {
+        "few_class": 2,
+        "objects_per_class": [
+          3,
+          3,
+          1,
+          3,
+          3
+        ],
+        "photos_per_class": [
+          36,
+          36,
+          12,
+          36,
+          36
+        ],
+        "rare_object": [
+          [
+            2,
+            9
+          ]
+        ]
+      },
+      {
+        "few_class": 3,
+        "objects_per_class": [
+          3,
+          3,
+          3,
+          1,
+          3
+        ],
+        "photos_per_class": [
+          36,
+          36,
+          36,
+          12,
+          36
+        ],
+        "rare_object": [
+          [
+            3,
+            8
+          ]
+        ]
+      },
+      {
+        "few_class": 4,
+        "objects_per_class": [
+          3,
+          3,
+          3,
+          3,
+          1
+        ],
+        "photos_per_class": [
+          36,
+          36,
+          36,
+          36,
+          12
+        ],
+        "rare_object": [
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    ],
+    "schedules_checked": 160,
+    "readouts_checked": 160,
+    "all_per_slot_permutations": true,
+    "all_recreated_RNG_schedules_match": true,
+    "all_shared_slots_equal": true,
+    "all_per_photo_state_counts_match": true,
+    "total_per_photo_per_state_counts": {
+      "rare": 9,
+      "common": 3
+    },
+    "independent_rare_all3_slots_same_state": 131,
+    "independent_rare_batches_checked": 60480,
+    "cache_inverse_squared_norm_max_error": 2.2737367544323206e-13,
+    "theta0_trace_mean_shared_minus_independent": [
+      -0.6440760695101584,
+      -0.5473087890097178,
+      -0.6620481562596366,
+      -0.6913450216018008,
+      -0.5892707189242478
+    ],
+    "theta0_trace_recompute_max_error": 2.886579864025407e-15,
+    "final_source_class_LL_recompute_max_error": 0,
+    "final_source_clean_LL_recompute_max_error": 0,
+    "final_source_objective_recompute_max_error": 0,
+    "development_LL_per_view_recompute_max_error": 0,
+    "development_prediction_mismatches_max_per_model": 0,
+    "development_class_LL_accuracy_summary_max_error": 0,
+    "development_object_LL_summary_max_error": 0,
+    "primary_interaction": {
+      "mean": 0.002463110443528646,
+      "CI95_schedule_conditional": [
+        -0.0032676307519465294,
+        0.007958663119910876
+      ],
+      "per_seed": [
+        -0.005716479000086936,
+        0.013131286366027044,
+        0.0017419075916142834,
+        0.018440923369708578,
+        0.008854644600666376,
+        0.001232200096576455,
+        -0.00978511416442997,
+        -0.002124597670549353,
+        0.016937560860448557,
+        0.01879764178112147,
+        -0.019714268446621015,
+        -0.007558845239031368,
+        0.015776260686177022,
+        -0.012123569141496477,
+        -0.00252481586025174,
+        0.004045031266585413
+      ]
+    },
+    "rare_mean": 0.0021916022623690882,
+    "common_mean": -0.00027150818115955806,
+    "screen_passed": false,
+    "source_objective_steps": [
+      [
+        0,
+        252,
+        504,
+        756
+      ]
+    ],
+    "source_objective_mean_over160_models": [
+      1.6094379124340956,
+      0.1980153371094902,
+      0.11644125377968921,
+      0.08709850665528356
+    ],
+    "source_objective_final_min_max": [
+      0.07672997086602837,
+      0.09374584473432027
+    ],
+    "source_objective_decreased_at_all_recorded_cycles_all_models": true,
+    "input_hashes": {
+      "protocol.json": {
+        "expected": "3c99ddfd56fba0913c69d94ad9bb5ebd6e31d256510456ca14354168abf5aa02",
+        "actual": "3c99ddfd56fba0913c69d94ad9bb5ebd6e31d256510456ca14354168abf5aa02",
+        "matches": true
+      },
+      "source-feature-bank.npz": {
+        "expected": "0ce87873d0d299982c6e802af30cf97e43e6b761d6da577d2ad58ebcefc877d5",
+        "actual": "0ce87873d0d299982c6e802af30cf97e43e6b761d6da577d2ad58ebcefc877d5",
+        "matches": true
+      },
+      "normalizer.npz": {
+        "expected": "7d3eb9b068b14536023bc63a69388ec84ec9b38629ab8e31c945e0b6011198eb",
+        "actual": "7d3eb9b068b14536023bc63a69388ec84ec9b38629ab8e31c945e0b6011198eb",
+        "matches": true
+      }
+    },
+    "forbidden_final_members_loaded": false,
+    "retraining_performed": false,
+    "intermediate_checkpoint_weights_available_for_recompute": false,
+    "review_wall_seconds": 0.5553373329457827,
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "numpy_version": "2.5.4"
+  },
+  "actions_and_non_actions": {
+    "successful_arithmetic_review_seconds": 0.5553373329457827,
+    "numpy_version": "2.5.4",
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "saved_heads_evaluated": 160,
+    "original_SGD_training_replayed": false,
+    "parameter_updates_performed": 0,
+    "encoder_execution": false,
+    "new_models_trained": false,
+    "new_images_read": false,
+    "final_role_or_other_evaluation_role_arrays_loaded": false,
+    "network_calls": false,
+    "GPU_MPS_A100": false,
+    "ARIS": false,
+    "automations": false,
+    "old_files_modified": false,
+    "audit_attempt_note_zh": "首次本地核验命令因条件表达式拼写错误在Python解析阶段退出，未执行任何读取/运算；修正后仅一次完整数值核验成功。此为审查命令，不是实验重训或重新取样。",
+    "original_execution_observability_zh": "原运行的单线程状态依据父线程运行说明与代码/记录范围；本次NumPy核验显式固定五种线程环境变量为1。未做历史OS线程或文件访问取证。"
+  },
+  "verification_procedure": {
+    "training_module_imported": false,
+    "program_sha256": "4584479e2f0b11206ee739c520a8d6f7b0943858e9e9636e8a1b3fa5811ed994",
+    "embedded_read_only_program": "from pathlib import Path\nimport hashlib,json,time,os\nimport numpy as np\nstart=time.perf_counter()\np=Path('/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021')\nprot=json.loads((p/'protocol.json').read_text());src=Path(prot['source']);old=json.loads((src/'protocol.json').read_text())\nsource=old['roles']['source_seen'];dev=old['roles']['development_seen']\ny=np.array([r['category'] for r in source]);yd=np.array([r['category'] for r in dev])\nobjs=np.array([(r['category'],r['instance']) for r in source]);dobj=np.array([(r['category'],r['instance']) for r in dev]);object_keys=sorted(set(map(tuple,dobj.tolist())))\ncache=np.load(src/'source-feature-bank.npz',allow_pickle=False);normal=np.load(src/'normalizer.npz',allow_pickle=False)\nallowed=set(prot['states'])|{'development_seen'}\nassert set(cache.files)==allowed\nbank=np.stack([cache[k]*float(normal['scale'])+normal['mean'] for k in prot['states']],1)*np.sqrt(512.)\ndevx=(cache['development_seen']*float(normal['scale'])+normal['mean'])*np.sqrt(512.)\ncache.close();normal.close()\nassert bank.shape==(540,21,512) and devx.shape==(360,512)\nassert set(map(tuple,objs.tolist())).isdisjoint(object_keys)\nschedules=np.load(p/'schedules.npz',allow_pickle=False);heads=np.load(p/'readouts.npz',allow_pickle=False);evals=np.load(p/'evaluation-arrays.npz',allow_pickle=False)\nrecords=json.loads((p/'results.json').read_text());training=json.loads((p/'source-training.json').read_text());necessary=json.loads((p/'necessary-checks.json').read_text())\nsource_lookup={(v['few_class'],v['seed'],v['arm']):v for v in training['models']};result_lookup={(v['few_class'],v['seed']):v for v in records['runs']}\nmax_source_ll=max_source_obj=max_dev_ll=max_table=max_object=max_clean_ll=0.;max_pred_diff=0;max_trace=0.\nall_counts=True;all_perms=True;all_regenerated=True;all_shared=True\nsupport=[];interaction=np.zeros((16,5));rare=np.zeros_like(interaction);common=np.zeros_like(interaction);trace_means=[]\nindependent_rare_same=0;independent_rare_updates=0\ndef ll(x,w,b,labels):\n z=x@w+b;m=z.max(-1);return m+np.log(np.exp(z-m[...,None]).sum(-1))-np.take_along_axis(z,labels[...,None],-1)[...,0]\ndef keyed_rng(tag):return np.random.default_rng(int(hashlib.sha256(tag.encode()).hexdigest()[:16],16))\nfor sc in prot['scenarios']:\n few=sc['few_class'];data=np.asarray(sc['batch_source_indices']);ids,occ=np.unique(data,return_counts=True)\n per_obj=[len(set(map(tuple,objs[ids[y[ids]==c]].tolist()))) for c in range(5)]\n per_photo=[int(np.sum(y[ids]==c)) for c in range(5)]\n assert per_obj==[1 if c==few else 3 for c in range(5)]\n assert per_photo==[12 if c==few else 36 for c in range(5)]\n assert all(len(set(row))==15 for row in data)\n assert all(np.array_equal(np.bincount(y[row],minlength=5),[3]*5) for row in data)\n assert len(ids)==156 and len(set(map(tuple,objs[ids].tolist())))==13\n assert np.array_equal(occ,np.where(y[ids]==few,3,1))\n support.append({'few_class':few,'objects_per_class':per_obj,'photos_per_class':per_photo,'rare_object':sorted(set(map(tuple,objs[ids[y[ids]==few]].tolist())))})\n traces=[]\n for row_i,row in enumerate(data):\n  d=bank[row]-bank[row].mean(1,keepdims=True);a=.2-np.eye(5)[y[row]]\n  g=np.einsum('isd,ic->sdc',d,a)/15\n  sh=float(np.mean(np.sum(g*g,(1,2))));ind=float(np.sum(np.mean(np.sum(d*d,2),1)*np.sum(a*a,1))/225)\n  cross=float(np.sum((d.reshape(15,-1)@d.reshape(15,-1).T/21)*(a@a.T))-np.sum(np.sum(d*d,(1,2))/21*np.sum(a*a,1)))/225\n  saved=necessary['gradient_covariance'][few]['batches'][row_i]\n  max_trace=max(max_trace,abs(sh-saved['shared']),abs(ind-saved['independent']),abs(sh-ind-saved['difference']),abs(sh-ind-cross))\n  traces.append(sh-ind)\n trace_means.append(float(np.mean(traces)))\n for seed in prot['sampler']['seeds']:\n  for arm in ['shared','independent']:\n   name=f'few{few}_seed{seed}_{arm}';plan=schedules[name];assert plan.shape==(756,15)\n   shaped=plan.reshape(3,21,12,15)\n   all_perms &= bool(np.array_equal(np.sort(shaped,axis=1),np.broadcast_to(np.arange(21)[None,:,None,None],shaped.shape)))\n   rng=keyed_rng(f'coupling-groups-v1:{seed}:{few}:{arm}');expected=np.empty_like(shaped)\n   for cycle in range(3):\n    for position in range(12):\n     if arm=='shared':expected[cycle,:,position,:]=rng.permutation(21)[:,None]\n     else:\n      for slot in range(15):expected[cycle,:,position,slot]=rng.permutation(21)\n   all_regenerated &= bool(np.array_equal(shaped,expected))\n   if arm=='shared':all_shared &= bool(np.all(plan==plan[:,:1]))\n   else:\n    slots=np.flatnonzero(y[data[0]]==few)\n    independent_rare_same+=int(np.sum(np.all(plan[:,slots]==plan[:,slots[:1]],axis=1)));independent_rare_updates+=756\n   counts=np.zeros((540,21),dtype=np.int32);rows=np.tile(data,(63,1));np.add.at(counts,(rows.ravel(),plan.ravel()),1)\n   target=np.zeros_like(counts);target[ids]=occ[:,None]*3\n   all_counts &= bool(np.array_equal(counts,target))\n   w=heads[name+'_w'];bias=heads[name+'_b'];assert w.shape==(512,5) and bias.shape==(5,) and np.isfinite(w).all() and np.isfinite(bias).all()\n   q=ll(bank[ids],w,bias,np.broadcast_to(y[ids,None],(len(ids),21)))\n   cls=np.array([q[y[ids]==c].mean() for c in range(5)]);obj=cls.mean()+.005*np.sum(w*w)\n   saved=source_lookup[(few,seed,arm)]['trajectory'][-1]\n   max_source_ll=max(max_source_ll,float(np.max(abs(cls-np.array(saved['class_bank_LL'])))))\n   max_source_obj=max(max_source_obj,abs(float(obj)-saved['objective']))\n   clean=ll(bank[ids,0],w,bias,y[ids])\n   clean_cls=np.array([clean[y[ids]==c].mean() for c in range(5)])\n   max_clean_ll=max(max_clean_ll,float(np.max(abs(clean_cls-source_lookup[(few,seed,arm)]['class_clean_LL']))))\n   dl=ll(devx,w,bias,yd);pred=(devx@w+bias).argmax(1)\n   max_dev_ll=max(max_dev_ll,float(np.max(abs(dl-evals[name+'_LL']))));max_pred_diff=max(max_pred_diff,int(np.sum(pred!=evals[name+'_pred'])))\n   stored=result_lookup[(few,seed)]['arms'][arm]\n   cl=np.array([dl[yd==c].mean() for c in range(5)]);acc=np.array([(pred[yd==c]==c).mean() for c in range(5)])\n   ol=np.array([dl[np.all(dobj==key,axis=1)].mean() for key in object_keys])\n   max_table=max(max_table,float(np.max(abs(cl-stored['class_LL']))),float(np.max(abs(acc-stored['class_accuracy']))))\n   max_object=max(max_object,float(np.max(abs(ol-stored['object_LL']))))\n  sh=evals[f'few{few}_seed{seed}_shared_LL'];ind=evals[f'few{few}_seed{seed}_independent_LL']\n  d=np.array([(sh[yd==c]-ind[yd==c]).mean() for c in range(5)])\n  rare[seed,few]=d[few];common[seed,few]=np.delete(d,few).mean();interaction[seed,few]=rare[seed,few]-common[seed,few]\nassert all_counts and all_perms and all_regenerated and all_shared\nassert len(schedules.files)==160 and len(heads.files)==320 and len(evals.files)==320\nseed_values=interaction.mean(1);rng=keyed_rng('coupling-groups-v1:bootstrap:paired-schedule-seeds')\nidx=rng.integers(0,16,(20000,16));ci=np.quantile(seed_values[idx].mean(1),[.025,.975])\nassert np.allclose(seed_values,records['primary_interaction']['per_schedule_seed'],rtol=0,atol=1e-14)\nassert np.allclose(ci,records['primary_interaction']['CI95_schedule_conditional'],rtol=0,atol=1e-14)\ntraj=np.array([[v['objective'] for v in m['trajectory']] for m in training['models']])\nsteps=sorted(set(tuple(v['step'] for v in m['trajectory']) for m in training['models']))\ninput_hashes={}\nfor name,expected in prot['inputs'].items():\n actual=hashlib.sha256((src/name).read_bytes()).hexdigest();input_hashes[name]={'expected':expected,'actual':actual,'matches':actual==expected}\nassert all(v['matches'] for v in input_hashes.values())\nprint(json.dumps({'source_array_shape':bank.shape,'development_array_shape':devx.shape,'archive_has_only_source_states_and_development_seen':True,'source_objects':len(set(map(tuple,objs.tolist()))),'development_objects':len(object_keys),'development_views_per_object':sorted({int(np.sum(np.all(dobj==key,axis=1))) for key in object_keys}),'development_objects_per_class':[sum(key[0]==c for key in object_keys) for c in range(5)],'support':support,'schedules_checked':len(schedules.files),'readouts_checked':len(heads.files)//2,'all_per_slot_permutations':all_perms,'all_recreated_RNG_schedules_match':all_regenerated,'all_shared_slots_equal':all_shared,'all_per_photo_state_counts_match':all_counts,'total_per_photo_per_state_counts':{'rare':9,'common':3},'independent_rare_all3_slots_same_state':independent_rare_same,'independent_rare_batches_checked':independent_rare_updates,'cache_inverse_squared_norm_max_error':float(np.max(abs(np.sum(bank*bank,2)-512))),'theta0_trace_mean_shared_minus_independent':trace_means,'theta0_trace_recompute_max_error':max_trace,'final_source_class_LL_recompute_max_error':max_source_ll,'final_source_clean_LL_recompute_max_error':max_clean_ll,'final_source_objective_recompute_max_error':max_source_obj,'development_LL_per_view_recompute_max_error':max_dev_ll,'development_prediction_mismatches_max_per_model':max_pred_diff,'development_class_LL_accuracy_summary_max_error':max_table,'development_object_LL_summary_max_error':max_object,'primary_interaction':{'mean':float(seed_values.mean()),'CI95_schedule_conditional':ci.tolist(),'per_seed':seed_values.tolist()},'rare_mean':float(rare.mean()),'common_mean':float(common.mean()),'screen_passed':bool(abs(seed_values.mean())>=.01 and (ci[0]>0 or ci[1]<0)),'source_objective_steps':steps,'source_objective_mean_over160_models':traj.mean(0).tolist(),'source_objective_final_min_max':[float(traj[:,-1].min()),float(traj[:,-1].max())],'source_objective_decreased_at_all_recorded_cycles_all_models':bool(np.all(np.diff(traj,axis=1)<0)),'input_hashes':input_hashes,'forbidden_final_members_loaded':False,'retraining_performed':False,'intermediate_checkpoint_weights_available_for_recompute':False,'review_wall_seconds':time.perf_counter()-start,'thread_environment':{key:os.environ.get(key) for key in ['OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS','VECLIB_MAXIMUM_THREADS','NUMEXPR_NUM_THREADS']},'numpy_version':np.__version__},ensure_ascii=False))\n",
+    "meaning_zh": "嵌入独立核验程序便于审阅，未另写脚本文件。它读取既存参数并做损失/排程/CI算术，没有SGD update调用、参数拟合或图像/模型权重加载。"
+  },
+  "hash_and_time_checks": {
+    "frozen_artifact_links": [
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/protocol.json",
+        "expected": "87d204d2c26f78266cb376cc585a24fb45609656149f9490f880fdb9af3358a3",
+        "current": "87d204d2c26f78266cb376cc585a24fb45609656149f9490f880fdb9af3358a3",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/experiment.py",
+        "expected": "20183a6f7a29269d92c4856dac0e817bcf2d2b6634002d629fae07cb7133ced2",
+        "current": "20183a6f7a29269d92c4856dac0e817bcf2d2b6634002d629fae07cb7133ced2",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/prior-group-review.json",
+        "expected": "59ce1dca8394ff4c1ced69d72da0f9111b2acc787cdcd1bf5ea39d0d04e1e641",
+        "current": "59ce1dca8394ff4c1ced69d72da0f9111b2acc787cdcd1bf5ea39d0d04e1e641",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/addendum-gate.json",
+        "expected": "f4b9b35db69d4a2bfd46c537f0f7de2f1484401d576126dab9aa674137b12a08",
+        "current": "f4b9b35db69d4a2bfd46c537f0f7de2f1484401d576126dab9aa674137b12a08",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/review-resolution.json",
+        "expected": "9618f86ff63ad388d1cd5c6533270d4d56e6b50075084f4af10f5832e946e94e",
+        "current": "9618f86ff63ad388d1cd5c6533270d4d56e6b50075084f4af10f5832e946e94e",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/readouts.npz",
+        "expected": "e97e3aa79b7e901081bf6d5fc09575a935a5a7e3fc4b37d3850d7f3ee5d68722",
+        "current": "e97e3aa79b7e901081bf6d5fc09575a935a5a7e3fc4b37d3850d7f3ee5d68722",
+        "matches": true
+      },
+      {
+        "path": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/source-training.json",
+        "expected": "2393e0b88b89d0ef45670d768abbbab703c76cb862268b5035c91d034d6c93db",
+        "current": "2393e0b88b89d0ef45670d768abbbab703c76cb862268b5035c91d034d6c93db",
+        "matches": true
+      }
+    ],
+    "upstream_code_hash_matches": true,
+    "upstream_standardization_lines": [
+      {
+        "line": 327,
+        "text": "    imgs = extract('training', ['source_seen', 'development_seen'])"
+      },
+      {
+        "line": 328,
+        "text": "    model, versions = get_encoder()"
+      },
+      {
+        "line": 329,
+        "text": "    f0, _ = encode(model, imgs['source_seen'], 'source-clean')"
+      },
+      {
+        "line": 330,
+        "text": "    fd, _ = encode(model, imgs['development_seen'], 'development-seen-clean')"
+      },
+      {
+        "line": 331,
+        "text": "    mu = f0.mean(0); scale = float(np.sqrt(np.mean((f0-mu)**2))); assert scale > 1e-8"
+      },
+      {
+        "line": 332,
+        "text": "    z0 = (f0-mu)/scale; zd = (fd-mu)/scale"
+      },
+      {
+        "line": 333,
+        "text": "    labels = np.array([r['category'] for r in p['roles']['source_seen']])"
+      },
+      {
+        "line": 334,
+        "text": "    dev_labels = np.array([r['category'] for r in p['roles']['development_seen']])"
+      },
+      {
+        "line": 335,
+        "text": "    cv, cl = source_geometry(z0, p['roles']['source_seen'])"
+      },
+      {
+        "line": 336,
+        "text": "    bank = {'clean': z0, 'development_seen': zd}"
+      }
+    ],
+    "upstream_code_sha256": "a763c32f9d44a0d3c41555ade0f9528b590c7d6a829925c9eb69033e95a97916",
+    "local_content_timeline": {
+      "protocol.json": "2026-10-21T21:35:53.582189+00:00",
+      "review-resolution.json": "2026-10-21T21:38:15.855956+00:00",
+      "protocol-lock.json": "2026-10-21T21:38:15.856236+00:00",
+      "necessary-checks.json": "2026-10-21T21:38:21.146627+00:00",
+      "training-start.json": "2026-10-21T21:38:21.168112+00:00",
+      "source-training.json": "2026-10-21T21:38:24.881108+00:00",
+      "training-freeze.json": "2026-10-21T21:38:24.884902+00:00",
+      "results.json": "2026-10-21T21:38:24.942748+00:00"
+    },
+    "external_preregistration_proven": false,
+    "mtime_used_to_prove_preregistration": false
+  },
+  "blockers": {
+    "execution_denied": [],
+    "pending_approvals": [],
+    "uncertain_actions": [],
+    "remaining_limits_zh": [
+      "实际Sol/max档位无回执",
+      "无外部锁定时间或历史OS访问日志",
+      "仅条件排程CI而非物体总体推断",
+      "252/504中间权重未保存，未重放验证",
+      "未验证收敛或新颖性"
+    ]
+  },
+  "output_only": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-coupling-groups-20261021/verification-review.json",
+  "audit_utc": "2026-10-21T21:45:39.440817+00:00"
+}

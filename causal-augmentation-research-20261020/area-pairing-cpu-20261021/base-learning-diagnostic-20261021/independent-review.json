@@ -1,0 +1,25 @@
+{
+  "reviewer": "/root/base_static_audit_astra",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_execution_model_receipt_available": false,
+  "capacity_error_in_this_review": false,
+  "scope": "Read-only static review of historical and current source, saved traces and metrics; no model execution or file edits.",
+  "outcome": "No blocking implementation error found in the64step diagnostic. Numerical claims independently checked against saved results.",
+  "confirmed": [
+    "Both64step loss traces exactly match their respective historical CPU/MPS traces.",
+    "MPS64 has18of512 active pooled feature channels, variance1.5930040717648808e-6, accuracy0.5.",
+    "Fixed first8images final residual ReLU positive fraction changes0.5681501116071429 to0.001061264349489796.",
+    "MPS64weights evaluated onCPU retain accuracy0.5 and differ in logits by at most1.862645149230957e-8.",
+    "All five tracked parameter tensors show nonzero updates each step; this does not mean every scalar parameter changes.",
+    "Current hooks returnNone and only read copies; same-state checks use isolated models and optimizer state."
+  ],
+  "required_caveats": [
+    "CPU also shrinks:64step298activechannels, variance0.0013652554480358958, accuracy0.734375; at48steps accuracy0.5. HistoricalCPU128accuracy1.0 shows shrinkage need not be irreversible.",
+    "MPS64 still has64unique feature and logit vectors, and no all-zero feature row; do not equate it with old2048step constant logits.",
+    "Same-state gradient differences are not evidence of a backend kernel bug or a unique BN/learning-rate cause.",
+    "The original2048step weights were not saved."
+  ],
+  "nonblocking_code_note": "The temporary optimizer named underscore retains about45MBof initial parameters untilmainends. This affects peak memory, not the training trajectory; executed source is preserved unchanged.",
+  "ARIS_used": false
+}

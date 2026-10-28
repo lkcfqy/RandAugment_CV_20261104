@@ -1,0 +1,146 @@
+{
+  "at_UTC": "2026-10-21T17:11:00.192426+00:00",
+  "question": "Does the installed 14-operation, 31-bin TrivialAugmentWide produce the same class-independent fill image through its maximal translation on 32x32 inputs?",
+  "claim_status": "Implementation/assumption diagnostic, not a novel method, natural-OOD performance claim or causal-effect estimate.",
+  "selection": "First four rows per class in the previously frozen 64-photo train_rows, without reading any held-out photo or choosing by current pixels/scores.",
+  "source_train_protocol": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+  "source_train_protocol_sha256": "dab505c8b9b83b83d9a586aa25d0b797ab69b11a9c1ae06f824a6cb6875419fb",
+  "photos": [
+    {
+      "source_id": "Birman_126",
+      "Y": 0,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/Birman_126.jpg",
+      "bytes": 74432,
+      "sha256": "8d5cabf27a9e865c9a6a320cb9757c4fcad69bb63cdc792f574557110c571a93",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "Birman_159",
+      "Y": 0,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/Birman_159.jpg",
+      "bytes": 82308,
+      "sha256": "c34e28a2158903f02b3c1f1f4b97ef4440504609c7cd4c6d274c9ae2c4f22c5a",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "Sphynx_252",
+      "Y": 0,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/Sphynx_252.jpg",
+      "bytes": 63390,
+      "sha256": "bf82aa18cfd8ef009920ea5aeec182c4ef747eb4e9ec783a1427ab7acfec2851",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "Abyssinian_197",
+      "Y": 0,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/Abyssinian_197.jpg",
+      "bytes": 10725,
+      "sha256": "9ec76f06c3fe979790f11253b8413e2ad18f12afd0f9baa353b66a8167ed9531",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "scottish_terrier_196",
+      "Y": 1,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/scottish_terrier_196.jpg",
+      "bytes": 118248,
+      "sha256": "7e575f3c8b398399aee8d35fac0ae2aab0f247a26274e7ae8d7459469d502c44",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_19",
+      "Y": 1,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/staffordshire_bull_terrier_19.jpg",
+      "bytes": 205045,
+      "sha256": "5d84108f8931b069fd511fee7c1b43d8af5cc9051d8294985ba87eb7ce3a471c",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "leonberger_199",
+      "Y": 1,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/leonberger_199.jpg",
+      "bytes": 105687,
+      "sha256": "54b9e722a9f71c210ab2fbcbd113f34f9df4f72d13619928026631cb5188134a",
+      "role": "previously used training/development photo; not independent validation"
+    },
+    {
+      "source_id": "beagle_195",
+      "Y": 1,
+      "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/photos/beagle_195.jpg",
+      "bytes": 74068,
+      "sha256": "00de3f77bf151bec0973ab8a1db723e620b84c1b6b728cde85dc49211f6b36c1",
+      "role": "previously used training/development photo; not independent validation"
+    }
+  ],
+  "resolutions": [
+    32,
+    96,
+    224
+  ],
+  "resize": "RGB, square bilinear resize solely for an operator mechanism check; not an evaluation of Pets at these sizes.",
+  "operators": [
+    "TranslateX",
+    "TranslateY"
+  ],
+  "bins": 31,
+  "levels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "signs": [
+    -1,
+    1
+  ],
+  "fill_default": 0,
+  "endpoint_fill_control": 128,
+  "interpolation": "NEAREST, matching installed default",
+  "forced_event": "op in {TranslateX,TranslateY}, level=30, either sign; magnitude=32. On32x32 every original pixel is outside output canvas.",
+  "event_mass_exact": "2/14 * 1/31 = 1/217, not the total constant-image atom mass.",
+  "augmented_risk_only": "For class-independent forced erasure and prior pi, augmented 0-1 Bayes risk >= q*(1-max(pi)); cross entropy >= q*H(pi). No clean/OOD-risk implication.",
+  "negative_control": "At96/224 the same maximal translation leaves original support in frame; do not claim all semantic information or all other paths remain safe.",
+  "additional_checks": [
+    "8bitLUT injectivity for Posterize and Solarize; Invert squared exact identity",
+    "source+fixed edit kernel does not identify an unspecified natural-target classifier-risk difference"
+  ],
+  "software_source": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py",
+  "software_source_sha256": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+  "no_training": true,
+  "no_weights": true,
+  "no_test_photos": true,
+  "GPU": false,
+  "MPS": false,
+  "A100": false,
+  "ARIS": false,
+  "CPU_threads": 1,
+  "priority": "ordinary; no OS priority change after denied os.nice attempt",
+  "downloads": false,
+  "dependency_changes": false
+}

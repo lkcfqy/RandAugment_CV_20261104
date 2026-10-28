@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-21",
+  "status": "passed_metadata_and_logic_only",
+  "logic_test_command": "python3 -B -m unittest -v test_audit_prepare.py",
+  "logic_test_exit_code": 0,
+  "logic_test_output": "test_bounds_match_exhaustive_missing_target_assignments (test_audit_prepare.AuditLogicTests) ... ok\ntest_fixed_gates_commute_but_unconditional_rates_do_not_multiply (test_audit_prepare.AuditLogicTests) ... ok\ntest_full_table_distinguishes_invalid_samples_rejected_by_different_gates (test_audit_prepare.AuditLogicTests) ... ok\ntest_label_correct_no_change_or_copy_does_not_enter_target_denominator (test_audit_prepare.AuditLogicTests) ... ok\ntest_missing_second_gate_is_not_imputed_as_failed (test_audit_prepare.AuditLogicTests) ... ok\ntest_partial_target_audits_remain_unknown_unless_known_failure (test_audit_prepare.AuditLogicTests) ... ok\ntest_reject_missing_pool_group_census_and_required_design_fields (test_audit_prepare.AuditLogicTests) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n",
+  "logic_test_data": "fabricated metadata, not empirical findings",
+  "raw_metadata": [
+    {
+      "file": "metadata/fg_bg_ratios_val.json",
+      "bytes": 3800360,
+      "sha256": "e32c61f46f06627f524c1579e5523f14f57d08dce37acecd7c81fb4fdef72e4e"
+    },
+    {
+      "file": "metadata/hf_val_indices.json",
+      "bytes": 2188890,
+      "sha256": "ce1abaf2263f63b4e71c7ba8b3c6ef566042bfa588fc9bdd01f1c8f7ecbbf715"
+    }
+  ],
+  "fornet_recompute_matches_saved_summary_and_1000_class_counts": true,
+  "sample_validation": {
+    "unique_actual_metadata_source_ids": 200,
+    "strata": [
+      {
+        "stratum": "eligible_far_lt_0.6",
+        "population": 41083,
+        "sample": 50,
+        "inclusion_probability": 0.0012170484141859163
+      },
+      {
+        "stratum": "eligible_near_0.6_to_lt_0.8",
+        "population": 4232,
+        "sample": 50,
+        "inclusion_probability": 0.011814744801512287
+      },
+      {
+        "stratum": "excluded_near_0.8_to_lt_0.9",
+        "population": 1541,
+        "sample": 50,
+        "inclusion_probability": 0.03244646333549643
+      },
+      {
+        "stratum": "excluded_far_ge_0.9",
+        "population": 2895,
+        "sample": 50,
+        "inclusion_probability": 0.017271157167530225
+      }
+    ],
+    "deterministic_regeneration_matches": true,
+    "annotation_fields_all_blank": true,
+    "all_source_indices_join": true,
+    "human_image_review": false
+  },
+  "syntax": "all saved Python files AST-parsed; JSON parsed",
+  "not_validated": [
+    "Image archive contents or visual validity",
+    "ALIA complete candidate pool and labels",
+    "Population inference, power, downstream performance or causal mechanisms",
+    "Actual model or reasoning effort",
+    "Post-fix independent review"
+  ],
+  "no_visual_model_gpu_or_training_executed": true
+}

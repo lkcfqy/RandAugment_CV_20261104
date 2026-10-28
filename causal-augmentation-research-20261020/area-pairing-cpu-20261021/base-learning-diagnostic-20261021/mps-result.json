@@ -1,0 +1,1035 @@
+{
+  "initial_state_sha256": "ec9897fa3d388d789d326977f28f7814ed3b474c083763c2468e46744999fe32",
+  "BN_running_stats_unchanged": true,
+  "BN_stats_sha256": "466c5e05e608c72e52dada1b3807495482d49ad58196c9e2723e7ff2743a5ad1",
+  "optimizer_parameter_coverage_correct": true,
+  "all_parameters_trainable": true,
+  "updates": 64,
+  "presentations": 512,
+  "guarded_instrumented_compute_seconds": 4.110932122974191,
+  "checkpoints": {
+    "0": {
+      "mean_LL_nats": 0.6210232377052307,
+      "accuracy": 0.59375,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 9.499465942382812,
+        "L2": 226.58454597443,
+        "zero_fraction": 0.006744384765625,
+        "mean": 0.9133077705191767,
+        "std": 0.8559546480386362,
+        "all_zero_rows": 0,
+        "active_channels": 512,
+        "mean_between_sample_variance": 0.6356511116027832,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -1.3709934949874878,
+        "maximum": 1.470224380493164,
+        "L2": 6.957725943094656,
+        "zero_fraction": 0.0,
+        "mean": -0.2736112215934554,
+        "std": 0.5507627766386669
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 1.5119657516479492,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 7.384615421295166,
+            "L2": 834.274246776563,
+            "zero_fraction": 0.21428010901626277,
+            "mean": 0.4784138468086022,
+            "std": 0.4523303900189255
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 6.1778974533081055,
+            "L2": 303.00298750722277,
+            "zero_fraction": 0.4842678770727041,
+            "mean": 0.18125657249832056,
+            "std": 0.28549433862369245
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 4.549025535583496,
+            "L2": 163.294648780571,
+            "zero_fraction": 0.5519122688137755,
+            "mean": 0.12728890402818901,
+            "std": 0.2241128299361899
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 19.103740692138672,
+            "L2": 772.3489895628745,
+            "zero_fraction": 0.43184988839285715,
+            "mean": 0.9413416469846828,
+            "std": 1.4443090853702394
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -3.3408138751983643,
+            "maximum": 2.0927507877349854,
+            "L2": 201.62934847952369,
+            "zero_fraction": 0.0,
+            "mean": -0.28423811623687867,
+            "std": 0.34895222677139337,
+            "positive_fraction": 0.18787866709183673
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -11.699017524719238,
+            "maximum": 19.103740692138672,
+            "L2": 894.6310956562985,
+            "zero_fraction": 0.0,
+            "mean": 0.45247836926525953,
+            "std": 1.9450065042991518,
+            "positive_fraction": 0.5681501116071429
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "8": {
+      "mean_LL_nats": 0.11965461075305939,
+      "accuracy": 0.953125,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 8.71763801574707,
+        "L2": 271.7863102758646,
+        "zero_fraction": 0.0125732421875,
+        "mean": 1.0662881415210301,
+        "std": 1.0570221896791272,
+        "all_zero_rows": 0,
+        "active_channels": 512,
+        "mean_between_sample_variance": 0.7981854677200317,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -12.022562980651855,
+        "maximum": 10.863615989685059,
+        "L2": 67.953302150834,
+        "zero_fraction": 0.0,
+        "mean": -0.23651417181827128,
+        "std": 6.001621582407872
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 11.98319149017334,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 7.478357315063477,
+            "L2": 852.0371812692846,
+            "zero_fraction": 0.2186347805723852,
+            "mean": 0.4847377500381254,
+            "std": 0.46601221720807523
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 6.192929744720459,
+            "L2": 295.7866666116983,
+            "zero_fraction": 0.4933558872767857,
+            "mean": 0.17555444079283195,
+            "std": 0.27956971201887804
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 3.983736038208008,
+            "L2": 156.135926833384,
+            "zero_fraction": 0.5466134207589286,
+            "mean": 0.12263628896658929,
+            "std": 0.2137583497383984
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 25.58428382873535,
+            "L2": 964.2463557787149,
+            "zero_fraction": 0.4403101084183674,
+            "mean": 1.1128198674221643,
+            "std": 1.8423301942794748
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -3.3166160583496094,
+            "maximum": 3.083738327026367,
+            "L2": 186.283658495115,
+            "zero_fraction": 0.0,
+            "mean": -0.2520486153428178,
+            "std": 0.33071271025332477,
+            "positive_fraction": 0.20232780612244897
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -17.55702781677246,
+            "maximum": 25.58428382873535,
+            "L2": 1135.9501335122006,
+            "zero_fraction": 0.0,
+            "mean": 0.48644856089312993,
+            "std": 2.4885036171353505,
+            "positive_fraction": 0.5596898915816326
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "16": {
+      "mean_LL_nats": 0.20925334095954895,
+      "accuracy": 0.890625,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 9.333868026733398,
+        "L2": 208.6762747627355,
+        "zero_fraction": 0.016021728515625,
+        "mean": 0.8007806402757549,
+        "std": 0.8292540881708538,
+        "all_zero_rows": 0,
+        "active_channels": 512,
+        "mean_between_sample_variance": 0.46121785044670105,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -9.89860725402832,
+        "maximum": 9.100244522094727,
+        "L2": 57.71546410327391,
+        "zero_fraction": 0.0,
+        "mean": -0.17830187767685857,
+        "std": 5.098257573847583
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 9.888357162475586,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 7.499968528747559,
+            "L2": 911.0346749841965,
+            "zero_fraction": 0.25162988779496176,
+            "mean": 0.5030070083236124,
+            "std": 0.5137163625246944
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 7.4750776290893555,
+            "L2": 338.31144080163403,
+            "zero_fraction": 0.5089671855070153,
+            "mean": 0.19620230070764605,
+            "std": 0.3226005455632785
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 3.5928232669830322,
+            "L2": 155.84522633424396,
+            "zero_fraction": 0.5306570870535714,
+            "mean": 0.1253263647996897,
+            "std": 0.21165929308142256
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 22.528709411621094,
+            "L2": 706.9703773856095,
+            "zero_fraction": 0.46968670280612246,
+            "mean": 0.8153266635949412,
+            "std": 1.3511151891526112
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -2.7450485229492188,
+            "maximum": 2.0553150177001953,
+            "L2": 181.03321211811672,
+            "zero_fraction": 0.0,
+            "mean": -0.25845534911144513,
+            "std": 0.31063027858989073,
+            "positive_fraction": 0.1879085618622449
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -14.900257110595703,
+            "maximum": 22.528709411621094,
+            "L2": 842.3150452033183,
+            "zero_fraction": 0.0,
+            "mean": 0.2983606666196335,
+            "std": 1.8563433907402853,
+            "positive_fraction": 0.5303132971938775
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "24": {
+      "mean_LL_nats": 0.6819792985916138,
+      "accuracy": 0.859375,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 8.480311393737793,
+        "L2": 214.5274795567275,
+        "zero_fraction": 0.01678466796875,
+        "mean": 0.7902768079867646,
+        "std": 0.8831442420196249,
+        "all_zero_rows": 0,
+        "active_channels": 512,
+        "mean_between_sample_variance": 0.4824420213699341,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -19.553173065185547,
+        "maximum": 17.484020233154297,
+        "L2": 106.38975079207204,
+        "zero_fraction": 0.0,
+        "mean": -0.3373860995925497,
+        "std": 9.397559903096942
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 19.515649795532227,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 7.593637943267822,
+            "L2": 946.5626853112798,
+            "zero_fraction": 0.2948390415736607,
+            "mean": 0.5064666886859287,
+            "std": 0.5491041091058108
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 6.8542609214782715,
+            "L2": 290.9781948009037,
+            "zero_fraction": 0.5431082589285714,
+            "mean": 0.1640755350489106,
+            "std": 0.2802559050048969
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 4.324890613555908,
+            "L2": 149.4258580826753,
+            "zero_fraction": 0.5254902742346939,
+            "mean": 0.12172776775357518,
+            "std": 0.2020068569621838
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 26.736526489257812,
+            "L2": 858.2179510808478,
+            "zero_fraction": 0.5028101084183674,
+            "mean": 0.8960794743845178,
+            "std": 1.6931669243218586
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -4.517054557800293,
+            "maximum": 2.3494279384613037,
+            "L2": 227.13029358017968,
+            "zero_fraction": 0.0,
+            "mean": -0.33083767148050025,
+            "std": 0.3841647035084624,
+            "positive_fraction": 0.15480010363520408
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -20.36688804626465,
+            "maximum": 26.736526489257812,
+            "L2": 1130.355483263539,
+            "zero_fraction": 0.0,
+            "mean": 0.1226925384026261,
+            "std": 2.5201300423687023,
+            "positive_fraction": 0.4971898915816326
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "32": {
+      "mean_LL_nats": 1.6301252841949463,
+      "accuracy": 0.5,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 4.732802867889404,
+        "L2": 88.15176985957982,
+        "zero_fraction": 0.38653564453125,
+        "mean": 0.19221518717198527,
+        "std": 0.44743415147853416,
+        "all_zero_rows": 0,
+        "active_channels": 431,
+        "mean_between_sample_variance": 0.011687718331813812,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -2.7671151161193848,
+        "maximum": 2.871685028076172,
+        "L2": 20.41909358176497,
+        "zero_fraction": 0.0,
+        "mean": 0.05455630645155907,
+        "std": 1.8039851819726658
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 2.904543399810791,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.858884811401367,
+            "L2": 958.4240922998937,
+            "zero_fraction": 0.31297208824936223,
+            "mean": 0.4971798366068423,
+            "std": 0.5700078005491103
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 6.384726524353027,
+            "L2": 466.54652907148744,
+            "zero_fraction": 0.591865383848852,
+            "mean": 0.2495227762754786,
+            "std": 0.45701870236972086
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 4.158071517944336,
+            "L2": 199.52673318521303,
+            "zero_fraction": 0.6415068957270408,
+            "mean": 0.13130748046301433,
+            "std": 0.2862455790032557
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.150420188903809,
+            "L2": 243.62299444536404,
+            "zero_fraction": 0.7620426100127551,
+            "mean": 0.18539790525080338,
+            "std": 0.5112215760828636
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -3.1199469566345215,
+            "maximum": 1.0564017295837402,
+            "L2": 373.7648970247966,
+            "zero_fraction": 0.0,
+            "mean": -0.7103462265299617,
+            "std": 0.4375604307455592,
+            "positive_fraction": 0.04084123883928571
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -6.724169731140137,
+            "maximum": 8.150420188903809,
+            "L2": 722.8673735437369,
+            "zero_fraction": 0.0,
+            "mean": -0.8794795778242271,
+            "std": 1.3527887766083215,
+            "positive_fraction": 0.2379573899872449
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "48": {
+      "mean_LL_nats": 0.7129734754562378,
+      "accuracy": 0.5,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 5.017144203186035,
+        "L2": 39.17203949237987,
+        "zero_fraction": 0.97100830078125,
+        "mean": 0.014916652296179542,
+        "std": 0.2158822616467505,
+        "all_zero_rows": 0,
+        "active_channels": 19,
+        "mean_between_sample_variance": 2.5865356292342767e-05,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -0.14485903084278107,
+        "maximum": 0.3018958270549774,
+        "L2": 2.4499852679954626,
+        "zero_fraction": 0.0,
+        "mean": 0.06903219188097864,
+        "std": 0.20525234170711576
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 0.3125479221343994,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.55915355682373,
+            "L2": 1087.0770132948887,
+            "zero_fraction": 0.37199183872767855,
+            "mean": 0.5437069288639131,
+            "std": 0.6636093317167764
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.09610366821289,
+            "L2": 898.838752623253,
+            "zero_fraction": 0.6225835060586735,
+            "mean": 0.4409031247187814,
+            "std": 0.9010832224699756
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.199725151062012,
+            "L2": 661.5802944310342,
+            "zero_fraction": 0.7663947903380102,
+            "mean": 0.3613853302256117,
+            "std": 0.979685515689647
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.278252601623535,
+            "L2": 117.67155279057471,
+            "zero_fraction": 0.9944744499362245,
+            "mean": 0.01502749492906982,
+            "std": 0.2622294812408176
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -21.26129913330078,
+            "maximum": 13.89146614074707,
+            "L2": 2454.095883905536,
+            "zero_fraction": 0.0,
+            "mean": -4.752878530031341,
+            "std": 2.7235001365940668,
+            "positive_fraction": 0.00899334343112245
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -88.07264709472656,
+            "maximum": 8.278252601623535,
+            "L2": 10801.80834358633,
+            "zero_fraction": 0.0,
+            "mean": -20.364110936989313,
+            "std": 12.909374687902739,
+            "positive_fraction": 0.00552555006377551
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    },
+    "64": {
+      "mean_LL_nats": 0.6930727362632751,
+      "accuracy": 0.5,
+      "features": {
+        "shape": [
+          64,
+          512
+        ],
+        "finite": true,
+        "minimum": 0.0,
+        "maximum": 0.3246477246284485,
+        "L2": 2.3158847011457353,
+        "zero_fraction": 0.975921630859375,
+        "mean": 0.0008355415684451611,
+        "std": 0.012766262839044225,
+        "all_zero_rows": 0,
+        "active_channels": 18,
+        "mean_between_sample_variance": 1.5930040717648808e-06,
+        "unique_rows": 64
+      },
+      "logits": {
+        "shape": [
+          64,
+          2
+        ],
+        "finite": true,
+        "minimum": -0.03836075961589813,
+        "maximum": -0.008434095419943333,
+        "L2": 0.3066577304230338,
+        "zero_fraction": 0.0,
+        "mean": -0.023377165671263356,
+        "std": 0.013718145957951676
+      },
+      "unique_logit_rows": 64,
+      "maxabs_logit_minus_head_bias": 0.003202587366104126,
+      "first8_deep": {
+        "stages": {
+          "layer1": {
+            "shape": [
+              8,
+              64,
+              56,
+              56
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.528205871582031,
+            "L2": 1112.261861304737,
+            "zero_fraction": 0.38306598274075254,
+            "mean": 0.5522656419075468,
+            "std": 0.6822716169943536
+          },
+          "layer2": {
+            "shape": [
+              8,
+              128,
+              28,
+              28
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 8.4035062789917,
+            "L2": 918.4970734773473,
+            "zero_fraction": 0.6254745794802296,
+            "mean": 0.44545768415879966,
+            "std": 0.9232629973509413
+          },
+          "layer3": {
+            "shape": [
+              8,
+              256,
+              14,
+              14
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 9.603306770324707,
+            "L2": 695.4149412316082,
+            "zero_fraction": 0.7919448541135204,
+            "mean": 0.3602224992350947,
+            "std": 1.0368239159557455
+          },
+          "layer4": {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": 0.0,
+            "maximum": 3.4892444610595703,
+            "L2": 16.420991817807217,
+            "zero_fraction": 0.9989387356505102,
+            "mean": 0.0008801393260928678,
+            "std": 0.03664343107507461
+          }
+        },
+        "last_block_relu_inputs": [
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -20.899547576904297,
+            "maximum": 11.839547157287598,
+            "L2": 2170.465092405124,
+            "zero_fraction": 0.0,
+            "mean": -4.217527394704977,
+            "std": 2.3842053014282456,
+            "positive_fraction": 0.00860969387755102
+          },
+          {
+            "shape": [
+              8,
+              512,
+              7,
+              7
+            ],
+            "finite": true,
+            "minimum": -98.17501831054688,
+            "maximum": 3.4892444610595703,
+            "L2": 9130.028317172757,
+            "zero_fraction": 0.0,
+            "mean": -17.229294296284042,
+            "std": 10.884693790735138,
+            "positive_fraction": 0.001061264349489796
+          }
+        ]
+      },
+      "model_train_after": true,
+      "all_BN_eval_after": true
+    }
+  },
+  "archived_first64_loss_maxabs": 0.0,
+  "archived_loss_differences": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "final_state_sha256": "1e39770483b7775819293c87afa137d5ba5ad37005609b94a6a7c0fadf45a967",
+  "checkpoint_file": "mps-step64-state.pt",
+  "checkpoint_bytes": 44786315,
+  "checkpoint_sha256": "05e11dbccb5d28100e512b338666f6ff050f831054be4a656a95ab89ed973614"
+}

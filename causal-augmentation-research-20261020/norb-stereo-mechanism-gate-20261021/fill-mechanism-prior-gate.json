@@ -1,0 +1,134 @@
+{
+  "task": "smallNORB X9/Y9 暗填充边界机制：有限先例与执行资格审查",
+  "date": "2026-10-21",
+  "output": "/Users/lkc/Documents/Codex/2026-10-21/task/norb-stereo-mechanism-gate-20261021/fill-mechanism-prior-gate.json",
+  "model_request": {
+    "requested": "GPT-6.1-Sol / max",
+    "actual_verified": false,
+    "note": "本环境无实际模型与推理档位执行回执。"
+  },
+  "scope": {
+    "original_works_read": 2,
+    "actions": "只读两项原始研究；未使用 ARIS 技能/流程。",
+    "no_experiment": true,
+    "no_new_pixels": true,
+    "no_models_or_training": true,
+    "no_gpu_or_external_models": true,
+    "no_scheduling": true,
+    "historical_blocked_sources_accessed": false,
+    "old_stereo_review_modified": false
+  },
+  "verdict": {
+    "allow_bounded_exploratory_diagnostic": true,
+    "allow_originality_claim": false,
+    "new_research_candidate_count": 0,
+    "recommendation": "值得最多两个新读出的单次探索性实现机制诊断；不扩展策略、填充值、强度、阈值或正则系数搜索。",
+    "reason": "已观察到近似能量匹配的 X9/Y9 损失方向相反；源侧裁切代理不支持大量明显内容被裁掉，而原填充明显暗于浅灰背景。仅替换新增画布像素的同一单值 fill 能检验旧差异的一个具体可控解释。",
+    "limit": "这增加当前实现/旧差异的机制归因信息，不增加普遍填充原则或 AA/RA/TA 算法新颖性；未检索到等价对照仅限本轮两篇，不能保证文献新颖性。",
+    "runtime": "约 75 秒为父线程提出的预算，本子线程未运行或核验耗时。"
+  },
+  "motivating_observations_parent_reported_not_recomputed": {
+    "old_comparison": "X9 在四个已检查层的 LL 均低于 base，Y9 均高于 base；本轮预测只使用已探索开发新角度，不重新使用 final 作为确认。",
+    "source_features_energy_ratio_X_over_Y": 1.04,
+    "source_pixel_mse_ratio_X_over_Y": 1.096,
+    "crop_proxy_audit": {
+      "rows": 540,
+      "cameras_per_row": 2,
+      "images": 1080,
+      "physical_source_objects": 15,
+      "input_size": [
+        224,
+        224
+      ],
+      "translations_px": [
+        -9,
+        9
+      ],
+      "support_definition": "四角 12×12 灰度中位数参考；|I-ref|>=16/32/64，仅为对比支撑代理。",
+      "lost_support_at_threshold_32_and_64": "X 与 Y 均为 0",
+      "mean_lost_proxy_fraction_threshold16": {
+        "X": 0,
+        "Y": 0.00001929
+      },
+      "objects_with_nonzero_Y_threshold16": "1/15",
+      "continuous_contrast_energy_loss": {
+        "X": 0.00002201,
+        "Y": 0.00002631
+      },
+      "visualization": "父线程称预定 10 图显示居中物体与浅灰背景，fill128 明显暗于约230背景；本子线程未读取该 contactsheet。",
+      "inference_limit": "相机为物体内重复测量，不能作1080独立物体；代理阴性不排除少量高语义部位。"
+    }
+  },
+  "direct_priors": [
+    {
+      "title": "Why do deep convolutional networks generalize so poorly to small image transformations?",
+      "authors": "Aharon Azulay; Yair Weiss",
+      "version": "Journal of Machine Learning Research 20(184):1–25",
+      "publication_date": "2019-11（原文 Published 11/19）",
+      "primary_landing_url": "https://jmlr.org/papers/v20/19-519.html",
+      "primary_fulltext_read": "https://jmlr.csail.mit.edu/papers/volume20/19-519/19-519.pdf",
+      "sections_read": [
+        "§2, pp.3–5, Figure 2",
+        "§5.2, p.17, Figure 10 discussion"
+      ],
+      "coverage": "直接比较裁切平移、黑色嵌入平移和 inpainting 嵌入平移。原文区分裁切的信息变化与嵌入的异常边缘外观；§5.2 进一步检验增强协议的特异性。",
+      "precise_difference": "它已经覆盖填补/嵌入方式是敏感性评估的实质因素；本轮阅读段落没有在同一训练与开发对象、相同 ±9px 位移和相同正则读出条件下，仅以同一源侧背景灰度替换 fill，检验横纵训练收益差是否收缩。",
+      "cannot_infer": "不能从该文推导背景灰度填补普遍更好，或预测当前 Y9 一定改善。"
+    },
+    {
+      "title": "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location",
+      "authors": "Osman Semih Kayhan; Jan C. van Gemert",
+      "version": "作者网站提供的 CVPR 2020 论文，12页",
+      "arxiv_metadata": "arXiv:2003.07064，首次提交 2020-03-16；本轮全文使用作者 PDF",
+      "primary_fulltext_read": "https://jvgemert.github.io/pub/kayhanCVPR20translationInvarianceCNN.pdf",
+      "sections_read": [
+        "§1",
+        "§3.1–3.2",
+        "§4.1–4.3, Figures 4–6 and Tables 1–2"
+      ],
+      "coverage": "解释有限支撑卷积如何编码绝对位置，比较 valid/same/full convolution 与 zero/circular padding，并在 ResNet18 等上检验位置可识别性及对角平移鲁棒性。",
+      "precise_difference": "改变卷积层边界处理/输出支撑不等于仅改变输入平移新露出画布的 fill 值。本文提供当前解释的已知背景，但本轮阅读实验未给出同模型下输入 fill×X/Y 训练收益差的同等因子对照。",
+      "cannot_infer": "本次输入 fill 干预若阳性，也不能据此识别 CNN 内部 padding 是唯一中介；模型内部 padding 并未被改变。"
+    }
+  ],
+  "bounded_intervention_to_preserve": {
+    "arms": "仅 X9 和 Y9 各增加一个同背景灰度 fill 读出，与各自已保存 fill128 结果比较。",
+    "fill": "由训练源15物体的预定角落像素池计算一个全局中位灰度；无标签、不使用开发图选择，同一值用于 X/Y 及正负方向。记录数值、取整方法与角落池定义。",
+    "unchanged": [
+      "原224预处理、物体实际位移与 ±9px 两方向及各视图权重",
+      "原物理对象切分、训练行、已探索开发10对象、类别标签",
+      "原冻结编码器、特征归一化/聚合、读出算法、lambda、求解器和随机种子",
+      "开发图像与评价协议；不改变或读取新的 final/test 像素",
+      "除平移新增画布位置外的全部像素"
+    ],
+    "pixel_check": "新增画布位置应由几何无效区掩码定义；不能通过全图搜索像素值128来替换，以免改到原图内容。根线程负责无模型像素核验，本子线程未执行。",
+    "sample_unit": "以物理对象作为汇总单位；角度、增强方向及两个相机均是对象内重复观测。",
+    "budget": "最多两个新读出；门槛失败后不增补 fill 值或位移来寻找阳性。"
+  },
+  "preregistered_falsifiable_prediction": {
+    "evaluation": "仅已探索开发对象的新角度 LL；按原有对象权重汇总。",
+    "notation": "D0=LL_Y(fill128)-LL_X(fill128)>0；D1=LL_Y(fill_source_gray)-LL_X(fill_source_gray)。",
+    "operational_pass": "D0-D1 >= 0.5*D0，并且 LL_Y(fill_source_gray) < LL_Y(fill128)。这里固定为有符号 Y-X 惩罚的减少；若 D1<0，应如实报告方向反转，不把它自动表述为绝对差值缩小。",
+    "if_original_registration_uses_absolute_gap": "若父线程在运行前已把“缩小”定义为绝对差，保留该原定义 |D1|<=0.5*|D0|；不得看结果后在有符号与绝对差之间择优。",
+    "threshold_status": "一半是本次解释的操作性强度门槛，不是已知机制的理论必要条件，也不是统计显著性。",
+    "reject": "上述两个预定条件任一不满足，关闭本次单值 fill 替换对旧 Y-X 差异的“主要解释”；不更换阈值、填充值、lambda、强度或新评价集救回。",
+    "positive_scope": "仅支持这次固定管线中，输入 fill 替换对已探索开发 LL 的效应与暗边主要解释相符。",
+    "negative_scope": "不能排除其他填充方式、内部 padding/aliasing、少量语义关键裁切或所有边界机制。"
+  },
+  "interpretation_guardrails": [
+    "两新臂是对既有观察的后续解释，开发对象已用于探索，阳性不是独立确认。",
+    "人工填充带方向与标签不相关并不意味着模型不能受其影响；无需先假定标签捷径。",
+    "全局灰度只降低与背景的典型对比，未保证每张图完全无填充接缝。",
+    "LL差被缩小但只因 X 恶化不满足 Y 自身改善条件；必须完整报告两个新臂。",
+    "不把阳性概括为平移增强更优、AA/RA/TA普遍受损，或训练策略的新算法收益。",
+    "不因已知一般边界原则而否定诊断价值，也不因本次因子对照有局部差异就宣称原创。",
+    "预定双条件仍可能主要由 X 恶化驱动；必须报告 ΔX、ΔY 对 D0-D1 的贡献，不能在仅有微小 Y 改善时称“Y 改善解释了过半差距”。"
+  ],
+  "blockers": {
+    "new_access_denials": [],
+    "experiments_not_executed_by_this_agent": true,
+    "implementation_feasibility": "父线程正在核验只改填充像素的实现；本审查没有确认该检查已通过。",
+    "independent_confirmation": "未执行且本轮明确不安排。"
+  },
+  "conclusion": "允许一次有预算上限的探索性实现诊断。最接近原文已覆盖异常填补与边界敏感性，但未直接回答当前固定 X9/Y9 读出差异；具体增量仅是解释既有结果。未满足预定双条件即关闭本次暗边主要解释。"
+}

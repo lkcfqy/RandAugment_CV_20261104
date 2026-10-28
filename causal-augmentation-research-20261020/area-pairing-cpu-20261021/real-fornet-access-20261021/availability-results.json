@@ -1,0 +1,79 @@
+{
+  "status": "metadata_gap_resolved_real_pixel_acquisition_not_started",
+  "checked_at_utc": "2026-10-21T04:04:58.287265+00:00",
+  "hf_revision": "dd6b027a1a01b00fea442276668a54a697eb838b",
+  "github_revision": "fca8765fe8e5c3f99ee8d5e426b87d06b1c817cb",
+  "fixed_revisions_match_current_heads": true,
+  "hf_file_count": 31,
+  "hf_public": true,
+  "hf_patch_repo_gated": false,
+  "hf_declared_license": "mit",
+  "val_patch_archive": {
+    "url": "https://huggingface.co/datasets/TNauen/ForNet/resolve/dd6b027a1a01b00fea442276668a54a697eb838b/val.zip",
+    "bytes": 31141202127,
+    "decimal_GB": 31.141202127,
+    "GiB": 29.002504541538656,
+    "sha256": "9cac52a7d2343f34631ad1d61b35434aa3e3d8ebb336e6e31667bd46a7bcfd24",
+    "contents": "patch data; not standalone reconstructed foreground/background images",
+    "downloaded": false
+  },
+  "all_21_patch_archives_bytes": 743834215870,
+  "github_examples_files": [
+    "examples/.gitkeep"
+  ],
+  "image_files_in_hf_file_list": [
+    "images/foraug.png"
+  ],
+  "native_image_decoders_verified": {
+    "public.jpeg": true,
+    "public.png": true,
+    "org.webmproject.webp": true
+  },
+  "project_local_image_scan": {
+    "root": "/Users/lkc/Downloads/RandAugment_CV_20261104",
+    "pattern": "ILSVRC2012_val_* with JPEG/JPG/WEBP/PNG suffix",
+    "matching_files": [],
+    "whole_Mac_search": false,
+    "8A_accessed": false
+  },
+  "official_reconstruction_fields": [
+    "original ImageNet RGB pixels",
+    "bg_diff",
+    "fg_mask",
+    "fg_off"
+  ],
+  "available_metadata_fields": [
+    "source_id",
+    "source_class",
+    "source_hf_validation_index",
+    "ratio_input"
+  ],
+  "missing_fields_or_materials": [
+    "original or reconstructed RGB/RGBA pixels for the 128 planned source IDs",
+    "exact archive entry paths, CRC and selected patch sizes",
+    "source mask/offset and actual image dimensions",
+    "per-image license/access confirmation for available originals"
+  ],
+  "original_data_terms": {
+    "official_terms_url": "https://www.image-net.org/download.php",
+    "official_HF_gate_url": "https://huggingface.co/datasets/ILSVRC/imagenet-1k",
+    "scope": "ImageNet access terms cover non-commercial research/education; ForNet MIT metadata does not replace those terms or photo rights",
+    "user_account_or_existing_rights_inspected": false,
+    "login_terms_acceptance_or_new_account_attempted": false
+  },
+  "small_sample_total_bytes": "unknown: no standalone matched image files or selected ZIP entry sizes obtained",
+  "CPU_model_experiment_run": false,
+  "new_image_or_archive_downloads": 0,
+  "new_dependency_installs": 0,
+  "ARIS_used": false,
+  "GPU_used": false,
+  "blocking_action": {
+    "action": "obtain actual source-disjoint ForNet foreground/background pixels",
+    "target": "128 planned validation source IDs in minimal-source-id-plan.csv",
+    "status": "not_started_pending_legally_available_materials",
+    "reason": "official public release is differential patches; matching original pixels or reconstructed files are absent in this augmentation project; no standalone raw paired sample list found",
+    "automatic_approval_denied": false
+  },
+  "metadata_web_error_resolution": "web tool retry failed; authorized read-only public repository-info API succeeded with status 200, complete byte counts retained; no account or package access attempted",
+  "metadata_quality_note": "pinned Croissant contentUrl repeats train_0.zip including val.zip; download URL and byte/hash facts use the actual HF siblings manifest instead"
+}

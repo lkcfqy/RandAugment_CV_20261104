@@ -1,0 +1,224 @@
+{
+  "audited_UTC": "2026-10-21T18:28:50.253169+00:00",
+  "audit_only_no_experiments_or_models_run": true,
+  "evidence_scope": "Stored aggregate results/protocols/source-ID manifests and existing artifact bytes. No new predictions, training, heldout images or test-driven hypothesis selection.",
+  "data_roles": {
+    "counts": {
+      "finetune_training64": 64,
+      "stage_development64": 64,
+      "filter_consumed_test64": 64,
+      "brightness_consumed_test48": 48,
+      "equalize_consumed_foreground16": 16
+    },
+    "same_ID_sets": [
+      [
+        "stage_development64",
+        "filter_consumed_test64"
+      ]
+    ],
+    "pairwise_ID_intersections": {
+      "finetune_training64__stage_development64": 0,
+      "finetune_training64__filter_consumed_test64": 0,
+      "finetune_training64__brightness_consumed_test48": 0,
+      "finetune_training64__equalize_consumed_foreground16": 16,
+      "stage_development64__filter_consumed_test64": 64,
+      "stage_development64__brightness_consumed_test48": 0,
+      "stage_development64__equalize_consumed_foreground16": 0,
+      "filter_consumed_test64__brightness_consumed_test48": 0,
+      "filter_consumed_test64__equalize_consumed_foreground16": 0,
+      "brightness_consumed_test48__equalize_consumed_foreground16": 0
+    },
+    "role_warning": "A historical heldout role is local to its experiment. All listed test sets are consumed; old equalize heldout foregrounds are now in the finetune training set. Different source IDs do not establish different animals, no near duplicates or pretraining independence.",
+    "set_sha256": {
+      "finetune_training64": "c5f3fb0e847762444840f4ebc9d0ae0e368403d324b17ac72279e225653b6527",
+      "stage_development64": "df68fd3e50ae549e3558f5e78a29f6978874d9ef367226c91d25fef998783192",
+      "filter_consumed_test64": "df68fd3e50ae549e3558f5e78a29f6978874d9ef367226c91d25fef998783192",
+      "brightness_consumed_test48": "3102d656d3cccfc8ee7e0919c027869b905f935b1e3c13a804c3518c424efed6",
+      "equalize_consumed_foreground16": "2357bc104e676ef7108f5657b6747f0a25ad7e1b5f3459a2aed0f9ac42a7859d"
+    }
+  },
+  "stored_facts": {
+    "filter_matched_source_benefit_LL": {
+      "value": -0.005891494899788944,
+      "fresh_photos_at_that_test": 64,
+      "screen_passed": false,
+      "training_scope": "Frozen-feature binary logistic readout only"
+    },
+    "brightness": {
+      "primary_A_mean": 0.0031108189701196023,
+      "relative_primary_reduction": 0.035321209613892256,
+      "passes_large_effect_pilot_screen": false,
+      "source_photos": 48,
+      "training_seed_count": 1,
+      "background_donors": 4,
+      "actual_world_causal_effect_identified": false,
+      "original_method_novelty_established": false
+    },
+    "clipping_development": {
+      "photo_count": 64,
+      "independent_validation": false,
+      "joint_only_error_counts": {
+        "base": 0,
+        "TA": 0
+      },
+      "AUROC": "undefined: no event",
+      "wall_seconds": 8.484606209036428
+    },
+    "intervention_design_original_candidates": 0,
+    "historical_MPS_benchmark": {
+      "status": "completed_measured_CPU_MPS_comparison",
+      "rows": [
+        {
+          "batch": 8,
+          "CPU_inference_images_sec": 81.89099533164982,
+          "MPS_inference_images_sec": 999.2817669193503,
+          "inference_speedup": 12.202584214202862,
+          "CPU_guarded_training_images_sec": 29.035811434435654,
+          "MPS_guarded_training_images_sec": 189.1655435055064,
+          "guarded_training_speedup": 6.5149046697954995,
+          "inference_max_abs_logit_error": 3.1888484954833984e-06,
+          "inference_relative_L2_error": 9.664993642015343e-07,
+          "inference_argmax_agreement": 1.0,
+          "max_short_training_loss_trajectory_abs_error": 0.00030146166682243347,
+          "short_training_argmax_agreement": 1.0,
+          "CPU_initial_final_loss": [
+            4.115756034851074,
+            0.003326602280139923
+          ],
+          "MPS_initial_final_loss": [
+            4.115755558013916,
+            0.0033402773551642895
+          ],
+          "numerical_gates": {
+            "inference_abs_error": true,
+            "inference_relative_error": true,
+            "inference_argmax": true,
+            "training_finite": true,
+            "training_loss_decline": true,
+            "training_loss_trajectory_error": true,
+            "training_argmax": true
+          },
+          "all_numerical_gates_passed": true,
+          "useful_measured_speedup": true,
+          "accepted_for_future_similar_local_development": true,
+          "MPS_max_sampled_tensor_allocated_bytes": 137797632,
+          "MPS_max_sampled_driver_allocated_bytes": 1204453376,
+          "MPS_inference_warmup_seconds": 0.99775654199766,
+          "MPS_training_warmup_seconds": 2.3251961250207387
+        },
+        {
+          "batch": 32,
+          "CPU_inference_images_sec": 30.252029392111584,
+          "MPS_inference_images_sec": 1393.930596466838,
+          "inference_speedup": 46.077259095560535,
+          "CPU_guarded_training_images_sec": 17.602564972912102,
+          "MPS_guarded_training_images_sec": 251.89303123132572,
+          "guarded_training_speedup": 14.310018546669422,
+          "inference_max_abs_logit_error": 7.957220077514648e-06,
+          "inference_relative_L2_error": 4.101250603192811e-06,
+          "inference_argmax_agreement": 1.0,
+          "max_short_training_loss_trajectory_abs_error": 0.00029009580612182617,
+          "short_training_argmax_agreement": 1.0,
+          "CPU_initial_final_loss": [
+            4.115756988525391,
+            0.0033440343104302883
+          ],
+          "MPS_initial_final_loss": [
+            4.115755558013916,
+            0.003357247682288289
+          ],
+          "numerical_gates": {
+            "inference_abs_error": true,
+            "inference_relative_error": true,
+            "inference_argmax": true,
+            "training_finite": true,
+            "training_loss_decline": true,
+            "training_loss_trajectory_error": true,
+            "training_argmax": true
+          },
+          "all_numerical_gates_passed": true,
+          "useful_measured_speedup": true,
+          "accepted_for_future_similar_local_development": true,
+          "MPS_max_sampled_tensor_allocated_bytes": 140353536,
+          "MPS_max_sampled_driver_allocated_bytes": 2372550656,
+          "MPS_inference_warmup_seconds": 0.15698937501292676,
+          "MPS_training_warmup_seconds": 0.7429142079781741
+        }
+      ],
+      "scope": "same8training photos and fixedFP32model only; not a whole-pilot or allworkload speed benchmark; oldCPUresults unchanged",
+      "rerun_this_audit": false
+    }
+  },
+  "existing_classroom_artifacts": {
+    "RandAugment_NeurIPS_2020.pdf": {
+      "bytes": 1283252,
+      "sha256": "00796fa0e1edf667567fbdd43cfca7644f8176cbd2bb55dc33d448ea83e73fa7",
+      "modified_this_audit": false
+    },
+    "randaugment-animation.html": {
+      "bytes": 18594,
+      "sha256": "2c8d58279b4b81cb14d219d8ad580404fa2537a25064e7f137acc07df17cd1af",
+      "modified_this_audit": false
+    },
+    "augmentation-comparison.html": {
+      "bytes": 207907,
+      "sha256": "8cada22ff8ff88c1c92ae12886737338dc6e9d784b0c773993a0dc0ef8a752bd",
+      "modified_this_audit": false
+    }
+  },
+  "provenance": {
+    "area-pairing-cpu-20261021/stage-validity-pilot-20261021/protocol.json": {
+      "bytes": 12002,
+      "sha256": "b19f6fbcbba45934cdd02df27df477482f3db30767168de06a578eec66b19f06"
+    },
+    "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json": {
+      "bytes": 1868,
+      "sha256": "80b019f6f65d035304eef2d1d5dd7ee821149ad3f91b5129d7a43f30cef528b7"
+    },
+    "area-pairing-cpu-20261021/brightness-coupling-training-20261021/heldout-fetch-receipt.json": {
+      "bytes": 41377,
+      "sha256": "aabbf3d25f8093af622b0df617cf37c6f455f4307066c5de8107cde8740dd37e"
+    },
+    "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-image-manifest.json": {
+      "bytes": 226919,
+      "sha256": "41f44cae61aa9f477035583db9c14a84e0b0f3b69e1cd9ce450e7930564d5f3f"
+    },
+    "research-status.md": {
+      "bytes": 2059,
+      "sha256": "971803fc7e5bb9bf41c178b54abfebed12c223f235a19a2552b88cccbd89abcb"
+    },
+    "area-pairing-cpu-20261021/conservative-finetune-repair-20261021/result-zh.md": {
+      "bytes": 9772,
+      "sha256": "536c077bd6f940bc0de8e0cfeb29262793d126192ca67050c9d364d8657804fc"
+    },
+    "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json": {
+      "bytes": 2551,
+      "sha256": "a3c34ec5e76d2409e7c67884d86c0e27ed567c729563faa82b4a8e7e9906f69b"
+    },
+    "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json": {
+      "bytes": 8060,
+      "sha256": "cd484aacde7e0ef82f1c8a507c460a9088b4b16b41d29819141840c2c05b0e2c"
+    },
+    "joint-clipping-photo-check-20261021/results.json": {
+      "bytes": 15673,
+      "sha256": "93f640048ebc9e4c8e6fac1ee1d0fdfff715cb47c97613055ab8bca930498581"
+    },
+    "intervention-preservation-design-audit-20261021/designs.json": {
+      "bytes": 4254,
+      "sha256": "0644b7fb352d7511d7ce46bcc999c0eaa39c0960bd8fcbe0ebc2129e0a1d18d5"
+    },
+    "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md": {
+      "bytes": 6885,
+      "sha256": "abfb64a811b7581cab12bd191c2a56ea92a80033883a84df6d928be58cc94eca"
+    },
+    "area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-result-zh.md": {
+      "bytes": 8690,
+      "sha256": "eb174dfaa8edfc856790ba03756ddcb5b504e06e596e30c59ad2f2e39754dbb2"
+    },
+    "area-pairing-cpu-20261021/mac-mps-check-20261021/comparison.json": {
+      "bytes": 3702,
+      "sha256": "3e4de6c137447685f5e91ebade377c3a0e6d9c1dd1a905b89593162a03c4a84b"
+    }
+  },
+  "legacy_status_notice": "research-status.md is the2026-10-20 literature snapshot; its retained-candidate and no-training statements are not current project status. Preserve it; use later closure records and this audit."
+}

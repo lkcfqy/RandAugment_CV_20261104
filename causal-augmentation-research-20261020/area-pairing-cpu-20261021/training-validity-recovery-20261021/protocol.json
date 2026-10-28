@@ -1,0 +1,94 @@
+{
+  "at_utc": "2026-10-21T07:56:47.399439+00:00",
+  "purpose": "training-side recovery: inspect sufficient-budget base and TA learning trajectories, not research contribution or held-out generalization",
+  "model": "officialResNet18ImageNetV1 + Linear512to2 seed0, rawlogits, BN runningstatisticsfixed and all affine/trainablebackbone updated",
+  "input": "same64oldtrainingphotos, officialspecieslabelschecked, resize256BILINEAR/center224 then RGBtensor and ImageNetnorm; no extra flip/crop",
+  "augmentation": "officialtorchvisionTrivialAugmentWide31bins NEAREST fill128 one op/image; sample metadata mirrored from pinned existing implementation then officialpolicy RGB; first16passesmatch old hashes",
+  "arms": [
+    "base",
+    "TA"
+  ],
+  "optimizer": {
+    "type": "SGD",
+    "head_LR": 0.01,
+    "body_LR": 0.001,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "constant_LR": true,
+    "clipping": false,
+    "warmup": false
+  },
+  "budget": {
+    "steps_per_arm": 2048,
+    "batch": 8,
+    "source_photos": 64,
+    "passes": 256,
+    "presentations_per_arm": 16384,
+    "matched_updates": true,
+    "main_wall_seconds": 600,
+    "guarded_train_compute_seconds": 480,
+    "estimate": "prior256steps11.035s ->4096steps176.56s compute, allow~120s preprocessing/evaluation; projected~300s wall, no extra benchmark"
+  },
+  "random": {
+    "head_seed": 0,
+    "sourceorder_numpy_seed": 2026102102,
+    "TA_seed_key": "stage-pilot-v1:pass:source_id",
+    "first16passes_exactly_match_prior": true
+  },
+  "evaluation": {
+    "steps": [
+      0,
+      128,
+      256,
+      512,
+      1024,
+      1536,
+      2048
+    ],
+    "clean_train_photos": 64,
+    "fixed_TA_probe_views": 256,
+    "probe": "first4trainingpasses; consumed/in-sample, no held-out claim",
+    "online_loss_blocks": 128,
+    "universal_training_accuracy_gate": false,
+    "no_best_checkpoint": true
+  },
+  "audits": [
+    "officialspecieslabels",
+    "finiteinput and inverseImageNetnormalization",
+    "cross_entropyrawlogitsint64labels",
+    "uniqueoptimizerparams",
+    "sameinitialmodel",
+    "BNstatsunchanged",
+    "allfinitegradientsandparams",
+    "sameupdatesandsourceorder"
+  ],
+  "risk": {
+    "all_TA_presentations": true,
+    "fields": [
+      "operation",
+      "magnitude_bin",
+      "signedmagnitude",
+      "RGB_SHA256",
+      "channelspatialstd",
+      "dynamicrange",
+      "exactconstant",
+      "sametransformFGmaskarearetention"
+    ],
+    "mask": "existingtrainingGT1FG,2BG,3unknown; samecropandselectedgeometry, no resampling, no newsegmentationmodel",
+    "examples": "sixlowestforegroundretention and sixlowestmaxchannelstd, each ranking uses distinctsourceIDs, selected frompixelrisk not modeloutcomes",
+    "exact_cross_label_RGB_collisions": "count and empiricalfixedlibrary entropy lowerbound; not a bound on changing online loss",
+    "caveat": "mask/pixelrisk proxies are not semantic readability annotations and cannot separate optimization from labeldamage"
+  },
+  "stop": "nonfinite loss/grad/params, mismatched controls, 2048stepsor600swallor480scompute; no tuning/seeds/budgetextension",
+  "final_weights_saved": false,
+  "development_test_use": false,
+  "new_data_or_software": false,
+  "device": "localAppleMPS",
+  "FP32": true,
+  "CPU_fallback": false,
+  "MPS_fast_math": false,
+  "A100": false,
+  "ARIS": false,
+  "requested_LLM": "GPT-6.1-Sol/ultra",
+  "actual_model_effort_receipt_available": false
+}

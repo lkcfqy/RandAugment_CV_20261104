@@ -1,0 +1,17 @@
+{
+  "status": "pre_pixel_QA_and_pre_task_fit_decisions",
+  "at_utc": "2026-10-22T14:37:43.081748+00:00",
+  "source": "Fixed candidate-data-plan.json; no resampling or replacement after QA.",
+  "integrity_checks": [
+    "JPEG and mask ZIP CRC/size/SHA",
+    "image-mask dimensions",
+    "trimap values 1/2/3",
+    "EXIF orientation",
+    "breed filename-prefix versus source metadata"
+  ],
+  "duplicate_rule": "Inspect exact RGB groups and all dHash64 Hamming<=4 pairs. Same capture, re-encode, crop or uncertain near-duplicate pairs form a conservative connected cluster. Remove all members of every confirmed/uncertain duplicate cluster from train and development, without replacement, before fitting. No reserved pixels are fetched or inspected.",
+  "semantic_audit": "One predetermined train photo per breed at epoch0/seed20261022, original/weak/RA; record subject visibility and uncertain breed cues without using model outputs. Trace geometry on every training trimap at that same epoch. This does not certify breed-label preservation for all augmentation draws or pretraining disjointness.",
+  "label_assumption": "Source breed identity remains the supervised target. Crops and photometric changes can remove evidence for that breed; this pilot measures practical recipe performance and does not identify a label-preserving causal intervention. Known visibility damage must be reported, not screened to improve model performance.",
+  "calibration": "After source integrity closes, one discarded model per layout, five updates each, batch16, artificial labels arange(16)%37 unrelated to actual breed labels. No task accuracy/loss values or configuration selection; record runtime/memory only. No scientific training before formal protocol lock.",
+  "resources": "Existing isolated environment, one MPS process, CPU threads1, nice10, memory fraction0.1, sleep twice active step time, 8A priority. No A100/Colab/ARiS/backup training."
+}

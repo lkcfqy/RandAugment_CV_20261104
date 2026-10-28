@@ -1,0 +1,126 @@
+{
+  "at_UTC": "2026-10-21T20:49:12.799397+00:00",
+  "metrics": [
+    {
+      "id": "rotate_05",
+      "family": "rotate",
+      "score": 0.018496748867817776,
+      "view_alignment": 0.07697366240554257,
+      "light_alignment": 0.058476913537724794,
+      "feature_energy": 343.6019173547312,
+      "pixel_MSE": 0.007939457142277173,
+      "label_kernel_alignment": 0.6410897137242676
+    },
+    {
+      "id": "rotate_15",
+      "family": "rotate",
+      "score": 0.021573623983100407,
+      "view_alignment": 0.09257637171699014,
+      "light_alignment": 0.07100274773388973,
+      "feature_energy": 571.5994113299134,
+      "pixel_MSE": 0.021863348887267486,
+      "label_kernel_alignment": 0.647843888741187
+    },
+    {
+      "id": "shearX_005",
+      "family": "shearX",
+      "score": 0.022532996831490307,
+      "view_alignment": 0.07896257548744191,
+      "light_alignment": 0.05642957865595161,
+      "feature_energy": 136.64056714506378,
+      "pixel_MSE": 0.0022256466235611935,
+      "label_kernel_alignment": 0.6436687207067454
+    },
+    {
+      "id": "shearX_015",
+      "family": "shearX",
+      "score": 0.02290192245630103,
+      "view_alignment": 0.09326665800693819,
+      "light_alignment": 0.07036473555063716,
+      "feature_energy": 217.3568593477167,
+      "pixel_MSE": 0.0075983924278127096,
+      "label_kernel_alignment": 0.647194604325649
+    },
+    {
+      "id": "shearY_005",
+      "family": "shearY",
+      "score": 0.016930825309679987,
+      "view_alignment": 0.10713491364240621,
+      "light_alignment": 0.09020408833272622,
+      "feature_energy": 78.75232482434589,
+      "pixel_MSE": 0.002453882338185967,
+      "label_kernel_alignment": 0.6412183649181511
+    },
+    {
+      "id": "shearY_015",
+      "family": "shearY",
+      "score": 0.017215950603404043,
+      "view_alignment": 0.09742543323461578,
+      "light_alignment": 0.08020948263121173,
+      "feature_energy": 212.28035500644432,
+      "pixel_MSE": 0.008518162340408673,
+      "label_kernel_alignment": 0.6441608255597359
+    },
+    {
+      "id": "translateX_09",
+      "family": "translateX",
+      "score": 0.04102592692402077,
+      "view_alignment": 0.28748205480596956,
+      "light_alignment": 0.2464561278819488,
+      "feature_energy": 61.902359360226825,
+      "pixel_MSE": 0.011389929905568284,
+      "label_kernel_alignment": 0.6443071750519052
+    },
+    {
+      "id": "translateX_18",
+      "family": "translateX",
+      "score": 0.03825665211494944,
+      "view_alignment": 0.2931751279278721,
+      "light_alignment": 0.25491847581292265,
+      "feature_energy": 68.05441038368136,
+      "pixel_MSE": 0.022181477032912275,
+      "label_kernel_alignment": 0.6447118581037925
+    },
+    {
+      "id": "translateY_09",
+      "family": "translateY",
+      "score": 0.06735473761328237,
+      "view_alignment": 0.3852322165599181,
+      "light_alignment": 0.3178774789466357,
+      "feature_energy": 64.39536039600077,
+      "pixel_MSE": 0.012484673367537284,
+      "label_kernel_alignment": 0.6463806122410644
+    },
+    {
+      "id": "translateY_18",
+      "family": "translateY",
+      "score": 0.04278311367324805,
+      "view_alignment": 0.3539477525964641,
+      "light_alignment": 0.31116463892321605,
+      "feature_energy": 80.28949748387583,
+      "pixel_MSE": 0.02453226956400882,
+      "label_kernel_alignment": 0.6460423644095726
+    }
+  ],
+  "clean_label_kernel_alignment": 0.644345462450345,
+  "high": "translateY_09",
+  "low": "shearY_005",
+  "score_gap": 0.05042391230360238,
+  "matched_secondary": {
+    "high": "translateY_09",
+    "low": "translateX_09",
+    "score_gap": 0.0263288106892616,
+    "CKA_abs_difference": 0.0020734371891591996,
+    "feature_energy_ratio": 1.0402731182064724,
+    "pixel_MSE_ratio": 1.0961150306494691
+  },
+  "uses_final_pixels_or_predictions": false,
+  "uses_development_outcomes": false,
+  "definition": {
+    "definition": "UNCENTERED displacement second moments. Cv=.5 mean outer(Daz)+.5 mean outer(Delevation), source-only allowed views, objects equally weighted; Cl=mean outer(Dlighting). Ca=mean outer(plus-clean and minus-clean). s=cosF(Ca,Cv)-cosF(Ca,Cl).",
+    "steps": "azimuth20degrees,elevation20degrees; light0to3 categorical contrast, not matched physical dose",
+    "rank_choice": "highest and lowest s over ten prechosen policies; numerical tie broken by lexical ID; need score gap>1e-6",
+    "causal_limit": "Cl is specificity comparator, not a deconfounding adjustment; viewing change includes shading/occlusion; Cv includes elevation while novel test changes azimuth only."
+  },
+  "new_augmentation_predictor_originality_established": false
+}

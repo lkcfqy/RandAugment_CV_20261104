@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "audit_utc": "2026-10-21T18:29:09.668704+00:00",
+  "reviewer_role": "Independent static review of existing experimental evidence",
+  "model_request": {
+    "requested_model": "GPT-6.1-Sol",
+    "requested_reasoning_effort": "max",
+    "actual_execution_tier_receipt_available": false,
+    "actual_model_or_effort_verified": false,
+    "no_reviewer_requested_model_switch": true
+  },
+  "source_root": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021",
+  "decision": {
+    "credible_unexplained_hypotheses_retained": 0,
+    "retained_hypothesis": null,
+    "new_experiment_recommended": false,
+    "new_model_computation_performed": false,
+    "summary_zh": "未发现同时具备新增观测证据、可区分已知解释、且不依赖已消费测试集筛选的异常。训练修复的内部机制尚有未隔离成分，但不能据此重新包装为增强贡献。"
+  },
+  "selection_rule_zh": "先读既有结果、协议、轨迹摘要和核验回执；只保留此前未解释且具备可区分旧解释的新增信号。已关闭方向没有真正新增证据就不重开；不按历史测试上的子组、图像或指标选择新命题。",
+  "observations_not_promoted_to_hypotheses": [
+    {
+      "id": "O1_old_chance_level_base_and_backend_sensitive_optimization",
+      "status": "Already diagnosed and operationally repaired; not a new augmentation hypothesis",
+      "evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/recovery-results.json",
+          "field_json_pointer": "/final_metrics/base/train_clean/mean_LL_nats",
+          "value": 0.6931506991386414
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/recovery-results.json",
+          "field_json_pointer": "/final_metrics/base/train_clean/accuracy",
+          "value": 0.5
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/recovery-results.json",
+          "field_json_pointer": "/final_metrics/TA/train_clean/mean_LL_nats",
+          "value": 3.983816441177623e-06
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/verification.json",
+          "field_json_pointer": "/probe_array_checks/mps_64/mean_between_sample_variance_float64",
+          "value": 1.5930040989522892e-06
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/verification.json",
+          "field_json_pointer": "/probe_array_checks/cpu_64/mean_between_sample_variance_float64",
+          "value": 0.0013652554732766923
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/verification.json",
+          "field_json_pointer": "/probe_array_checks/mps_state64_on_cpu/same_state_cross_device_logit_maxabs",
+          "value": 1.862645149230957e-08
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/repair-results.json",
+          "field_json_pointer": "/final_metrics/base/clean/mean_LL_nats",
+          "value": 4.672845170716755e-05
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/repair-results.json",
+          "field_json_pointer": "/final_metrics/base/clean/accuracy",
+          "value": 1.0
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/repair-results.json",
+          "field_json_pointer": "/final_metrics/TA/clean/mean_LL_nats",
+          "value": 1.0430790098325815e-07
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/repair-results.json",
+          "field_json_pointer": "/final_metrics/TA/clean/accuracy",
+          "value": 1.0
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json",
+          "field_json_pointer": "/criteria_recomputed",
+          "value": {
+            "base": {
+              "completed_all_finite": true,
+              "clean_learning": true,
+              "own_distribution_learning": true,
+              "online_learning": true,
+              "no_old_collapse": true
+            },
+            "TA": {
+              "completed_all_finite": true,
+              "clean_learning": true,
+              "own_distribution_learning": true,
+              "online_learning": true,
+              "no_old_collapse": true
+            }
+          }
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json",
+          "field_json_pointer": "/full_RGB_order_chains_match_previous",
+          "value": true
+        }
+      ],
+      "nearest_existing_explanation_zh": "既有64步诊断显示优化轨迹对后端数值扰动敏感、末层激活稀疏与表征收缩；同一MPS状态移至CPU仍失效，不能仅解释为MPS推理显示错误。降低骨干目标LR并加入固定warmup的唯一联合修复已恢复两臂学习。",
+      "existing_discriminating_control": {
+        "files": [
+          "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/result-zh.md",
+          "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/protocol.json",
+          "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json"
+        ],
+        "description_zh": "相同状态跨设备前向及已完成的相同RGB/顺序链保守修复，足以阻止把旧base/TA差异当增强优势。"
+      },
+      "remaining_uncertainty_zh": "LR降低、warmup、固定BN下漂移及具体数值运算的相对贡献未被独立识别；这是尚未唯一归因的工程细节，不是已发现的新增强机制，也没有证实后端内核错误。",
+      "closure_zh": "不重开已修复失稳，不追加后端、LR或warmup实验来制造本轮研究候选。"
+    },
+    {
+      "id": "O2_transient_TA_training_probe_nonmonotonicity",
+      "status": "Reported single-trajectory fluctuation; insufficient to distinguish a new mechanism",
+      "evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/checkpoints/128/fixed_TA/mean_LL_nats",
+          "value": 0.018656233325600624
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/checkpoints/512/fixed_TA/mean_LL_nats",
+          "value": 0.12462212145328522
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/checkpoints/2048/fixed_TA/mean_LL_nats",
+          "value": 0.002713448368012905
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/checkpoints/2048/fixed_TA/accuracy",
+          "value": 1.0
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/first256_online_LL",
+          "value": 0.15384320347492947
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+          "field_json_pointer": "/last256_online_LL",
+          "value": 0.004360948789360726
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/base-result.json",
+          "field_json_pointer": "/checkpoints/128/fixed_TA/mean_LL_nats",
+          "value": 0.06807053089141846
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/base-result.json",
+          "field_json_pointer": "/checkpoints/2048/fixed_TA/mean_LL_nats",
+          "value": 0.07509658485651016
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/protocol.json",
+          "field_json_pointer": "/evaluation/probe",
+          "value": "first4trainingpasses; consumed/in-sample, no held-out claim"
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json",
+          "field_json_pointer": "/verified_saved_predictions",
+          "value": 4480
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json",
+          "field_json_pointer": "/maximum_mean_LL_reconstruction_error",
+          "value": 1.4027132608229742e-08
+        }
+      ],
+      "nearest_existing_explanation_zh": "随机优化和不同增强视图之间的训练目标变化可以产生非单调固定探针损失；本报告仅说与该普通解释相容，未声称已证明某个波动的唯一来源。原报告已明示512步探针波动，终点与末段预定标准均通过。",
+      "why_not_new_evidence_zh": "只有一个固定种子和训练内视图；未得到排除普通SGD波动、困难视图或置信度变化的预定对照。不能从128/512/2048事后挑点宣称遗忘、double descent或新的增强机制。base在增强探针上的轻微LL上升也不是独立泛化异常。",
+      "minimal_new_control": null,
+      "closure_zh": "不将已有单轨迹波动升级为候选，不新增训练、算模型、换探针或挑检查点。"
+    },
+    {
+      "id": "O3_frozen_versus_short_finetune_proxy_difference",
+      "status": "Exploratory consumed-development contrast with inadequate old training state",
+      "evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "field_json_pointer": "/effects_by_fixed_checkpoint/128/D",
+          "value": 0.6988593339920044
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "field_json_pointer": "/final_metrics/finetune_base/mean_LL_nats",
+          "value": 1.4395155906677246
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "field_json_pointer": "/final_metrics/finetune_TA/mean_LL_nats",
+          "value": 0.6928556561470032
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "field_json_pointer": "/final_metrics/finetune_TA/accuracy",
+          "value": 0.5
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/protocol.json",
+          "field_json_pointer": "/development_status",
+          "value": "all64previously used for the prior filter training-value test; explicitly consumed data; no independent confirmation claim"
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/verification.json",
+          "field_json_pointer": "/used_development_set_not_independent_test",
+          "value": true
+        }
+      ],
+      "nearest_existing_explanation_zh": "128步微调TA组欠学习，旧base/TA训练状态不可比；后续训练恢复与保守修复已说明不能把此短程大正差视为增强训练优势。冻结特征代理与端到端学习本来不是相同estimand。",
+      "closure_zh": "未发现修复后在未用评价集上的新代理冲突；不据已消费开发集再挑新命题。"
+    }
+  ],
+  "closed_directions_checked_for_genuinely_new_evidence": [
+    {
+      "direction": "背景配对／面积尺度",
+      "new_evidence_found": false,
+      "historical_evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-results.json",
+          "field_json_pointer": "/layouts/protected/overall/effects/coupled_trained_delta_LL_independent_minus_coupled",
+          "value": -0.004957701702773987
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-results.json",
+          "field_json_pointer": "/layouts/protected/overall/effects/difference_in_differences_LL",
+          "value": 6.801872235290274e-05
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-results.json",
+          "field_json_pointer": "/layouts/protected/cautious_pilot_screen",
+          "value": false
+        }
+      ],
+      "decision": "Keep closed; do not mine class/crop/test strata."
+    },
+    {
+      "direction": "Equalize配对",
+      "new_evidence_found": false,
+      "historical_evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "field_json_pointer": "/primary_delta_LL_global_minus_cross",
+          "value": -0.0016544127707039946
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "field_json_pointer": "/screen_passed",
+          "value": false
+        }
+      ],
+      "decision": "Keep closed; ordinary augmentation failure is not evidence of the rejected pairing mechanism."
+    },
+    {
+      "direction": "过滤与源权重分解",
+      "new_evidence_found": false,
+      "historical_evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "field_json_pointer": "/primary_benefit_LL_matched_source_control_minus_filtered",
+          "value": -0.005891494899788944
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "field_json_pointer": "/primary_paired_species_bootstrap95_CI",
+          "value": [
+            -0.013308939503308621,
+            7.219524208376255e-05
+          ]
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "field_json_pointer": "/screen_passed",
+          "value": false
+        }
+      ],
+      "decision": "Keep closed; no new subgroup or operation selected from consumed test outcomes."
+    },
+    {
+      "direction": "亮度耦合",
+      "new_evidence_found": false,
+      "historical_evidence": [
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "field_json_pointer": "/relative_primary_reduction",
+          "value": 0.035321209613892256
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "field_json_pointer": "/passes_large_effect_pilot_screen",
+          "value": false
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "field_json_pointer": "/training_seed_count",
+          "value": 1
+        },
+        {
+          "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "field_json_pointer": "/source_photos",
+          "value": 48
+        }
+      ],
+      "decision": "Keep closed; the 3.532% observation was already reported and does not reopen YOCO-covered regional augmentation."
+    },
+    {
+      "direction": "饱和与干预目标解码",
+      "new_evidence_found": false,
+      "decision": "Not reopened or reanalysed; no new result in the requested source root was found that supplies an independent unexplained signal for these closed directions."
+    }
+  ],
+  "test_and_unit_scope": {
+    "currently_fresh_confirmatory_test_used_by_this_audit": false,
+    "raw_test_pixels_or_prediction_arrays_loaded": false,
+    "aggregate_historical_test_results_read_for_evidence_audit_only": true,
+    "train_filter_test64_zh": "当时训练冻结后首次评价的64张照片如今已消费，且stage-validity协议明确将同64张作为development。不能因旧文件字段名仍含fresh/test而恢复未触碰状态。",
+    "brightness_test48_zh": "48张照片在其唯一既有评价后已消费。当前仅读汇总和核验，不以其图像、种类、背景供体、类别分层或指标来提出新方向。",
+    "original_mechanism_heldout_zh": "旧32张源照片的holdout及后续16前景/16背景的冻结读出检查已被历史模型多次使用；source-disjoint不等于对当前新假设未曝光。",
+    "independent_unit_zh": "原始来源照片／物体或完整序列是独立性单位；增强图、检查点和同源不同背景不增加独立样本。动物身份及ImageNet预训练重合仍未知。"
+  },
+  "nearest_explanation_search_scope_zh": "本轮只审读项目已有解释及其对照，不新增网络检索。没有因0项结果而声称已穷尽文献或证明所有增强机制无效。",
+  "minimal_experiment_and_stop": {
+    "new_experiment": null,
+    "distinguishable_new_explanation": null,
+    "reason_zh": "没有合格的新信号，故不为满足模板强造最小训练对照。既有修复足以排除将旧失效当增强优势；残余工程归因与单轨迹波动不足升级研究假设。",
+    "stop_condition_zh": "本轮以0项收口；不调强度、换指标、改划分、挑测试子群或扩充模型来追逐阳性。只有独立新增证据且明确区别已关闭解释时，才可能另行提出最多1个预先固定的命题。"
+  },
+  "actions_performed": {
+    "text_and_json_read": true,
+    "standard_library_log_parsing": true,
+    "new_training": false,
+    "new_model_inference": false,
+    "torch_or_model_import": false,
+    "image_decode": false,
+    "GPU_or_MPS": false,
+    "A100": false,
+    "ARIS": false,
+    "automation": false,
+    "network_or_download": false,
+    "eight_A_access": false,
+    "historical_records_modified": false,
+    "new_output_only": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/experiment-review.json"
+  },
+  "audit_limits_zh": [
+    "核对的是已有记录及历史verification回执，未独立重跑模型或训练。",
+    "0项是当前证据和任务约束下的取舍，不等于证明不存在任何未解释机制。",
+    "联合修复的LR与warmup贡献未分离；这项工程不确定性未被伪装成已唯一识别。"
+  ],
+  "read_coverage": {
+    "result_reports": 12,
+    "protocol_documents": 17,
+    "verification_receipts": 20,
+    "training_trace_files": 8,
+    "files": [
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/cpu-steps.jsonl",
+        "bytes": 214727,
+        "sha256": "564860645c971f73879cd916bb8fc44ed4e740b9e17062a364756f98c00c3ad0"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/mps-steps.jsonl",
+        "bytes": 213454,
+        "sha256": "3d32325b5763b2eff995027c0111ad87aceadba57c926d5aafb400c600775fc7"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/protocol.json",
+        "bytes": 2365,
+        "sha256": "5fbab1698aec9e2338e87ab98913a4e06cafad1e1c4d1e61136a4e642087c507"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/result-zh.md",
+        "bytes": 7914,
+        "sha256": "353015d1546f542c496f7a21171d44a5ff7875158f535e2aef973f4c4b3b2fdd"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/base-learning-diagnostic-20261021/verification.json",
+        "bytes": 7995,
+        "sha256": "11f6890045c9481044ed1d7e3c491b3d3e95e79fae571d384bf0153620f7f3e2"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/input-verification.json",
+        "bytes": 10257,
+        "sha256": "be0b2887362321eadae21b263be81125c386fc079f0a7b4814dcf41e017ef555"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/protocol.json",
+        "bytes": 2441,
+        "sha256": "c226355a4a76153c78e9eb99a6a8f26a2293fc7e95daa70d9152bd6a8863121d"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/result-zh.md",
+        "bytes": 4833,
+        "sha256": "ee1c2b56beab09abdb1e2cf58c0ff4590c69ae72eb6b1259ae566a3cb37d43b6"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/bn-affine-training-diagnostic-20261021/verification.json",
+        "bytes": 536,
+        "sha256": "c6bff46cc7170b9bed529c6efa24d35ccaaf5a3e3c7dc2ece5a29276c5d4d663"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/development-v0-wide-trimap-guard/protocol.json",
+        "bytes": 45607,
+        "sha256": "b0a009e979309d2faf03891fd33184a6760ad66e1a833a03ee6777d040a6ff73"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+        "bytes": 8060,
+        "sha256": "cd484aacde7e0ef82f1c8a507c460a9088b4b16b41d29819141840c2c05b0e2c"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol-lock.json",
+        "bytes": 695,
+        "sha256": "f2efea32663149d0842dd77d2ffa253e6e1f4b9e534832e41a2c2927e470a496"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/protocol.json",
+        "bytes": 45770,
+        "sha256": "dab505c8b9b83b83d9a586aa25d0b797ab69b11a9c1ae06f824a6cb6875419fb"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+        "bytes": 9219,
+        "sha256": "a8ed253c4dcce06db8ab54d55522553659350e540015d012c53c3e898d4b5183"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/verification.json",
+        "bytes": 1871,
+        "sha256": "cdb63e402b07a72e93111d43a05abe9e88eab1b9b24a48df170f401e8554fb45"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-result.json",
+        "bytes": 260353,
+        "sha256": "e3dfbf0b442fda0806ce6ac7fd21221f8462a8df00d64b45f41a17dd23e19805"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/TA-steps.jsonl",
+        "bytes": 306572,
+        "sha256": "814c533d9703dea1f1997fa5e030c676ef4ac6270bea19147cb6f96973697a27"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/base-result.json",
+        "bytes": 275414,
+        "sha256": "8a3a8a64f0dea2901e2189ba9d5eb6a90972c41a6203c42875a1e1c8cc5be01b"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/base-steps.jsonl",
+        "bytes": 308056,
+        "sha256": "aaa3c1a30eca8161f6b3275738dc0315d4e43a5e43b11a3f5604c8fc2da9ca06"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/protocol.json",
+        "bytes": 3893,
+        "sha256": "7daae46e9d0d9dfc8dd080c58e9f825e1afc5d6741527964e1cbe79215bd7178"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/repair-results.json",
+        "bytes": 76487,
+        "sha256": "512f998a7a620c2edec41010296ec5eae3d85fdde3bb8d06c87bbf2214818151"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/result-zh.md",
+        "bytes": 9772,
+        "sha256": "536c077bd6f940bc0de8e0cfeb29262793d126192ca67050c9d364d8657804fc"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/conservative-finetune-repair-20261021/verification.json",
+        "bytes": 2538,
+        "sha256": "fc1dcc9d84ee5b6230f986d712a3740fc7de49a8f284ab6395aca471bb0b965b"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/readiness-verification.json",
+        "bytes": 1906,
+        "sha256": "8b63af3f166dcf6541416c75e423433d17911f42dad6cd96464ce612d6f85f65"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/installation-verification.json",
+        "bytes": 4779,
+        "sha256": "b7b1e07a5f4d4997288083b11a8c9503123e9d85caed2c19593c2af59679b601"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round-protocol.json",
+        "bytes": 836,
+        "sha256": "94dd95d1f0385552ba728236bac2bf1f9f336740cd161e367e87024a5ab5d02e"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-result-zh.md",
+        "bytes": 8690,
+        "sha256": "eb174dfaa8edfc856790ba03756ddcb5b504e06e596e30c59ad2f2e39754dbb2"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-results.json",
+        "bytes": 24601,
+        "sha256": "ad4750f0d597bc35c036470d9e70798a73e748d2faca05c921e59c9681026e38"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-resnet18-round2-20261021/round2-verification.json",
+        "bytes": 942,
+        "sha256": "20f33e48d9fe20becefe4708c13dbf7016e956eeacc1150b38c2e46cd10883d9"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+        "bytes": 17411,
+        "sha256": "07fc8ea71847591a038dc106af9850b5eec281e0a03838a151e04c18b892c604"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/protocol.json",
+        "bytes": 11845,
+        "sha256": "c958c50552b56f1916d53d6b86cb937f197b4a72ec725d390c82d130b0a3ac88"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+        "bytes": 6885,
+        "sha256": "abfb64a811b7581cab12bd191c2a56ea92a80033883a84df6d928be58cc94eca"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/verification.json",
+        "bytes": 420,
+        "sha256": "013e4cb143e54020d0f05a03e36e92198e3134365d142912bb13bffe433475e1"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/experiment.md",
+        "bytes": 3028,
+        "sha256": "d22611e909f27cbfa3c67904fb1b2609ac869c263827a5f1e0fb567a3948c5dd"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mac-mps-check-20261021/protocol.json",
+        "bytes": 2166,
+        "sha256": "38f4631b321b2532156c1f845890da07e386803a446046b5c119eb77dbf91d10"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mac-mps-check-20261021/result-zh.md",
+        "bytes": 2807,
+        "sha256": "ec0cafcff945a693799ce9adda473be68e58579a7353ab406ebef5dd8c1e5e7c"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mac-mps-check-20261021/verification.json",
+        "bytes": 647,
+        "sha256": "f8c8c0748420f60dc44bbce5568ce63a2bfc5d346498b79d528ee13fa146c3d7"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/measurement-scope-decision-20261021/decision-zh.md",
+        "bytes": 6949,
+        "sha256": "f5fc32dc92b588a3bfb4ba81a1746d0b8dbf4f43cd6efdf00d6596e508b0dd47"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/measurement-scope-decision-20261021/verification.json",
+        "bytes": 1458,
+        "sha256": "d087dd52812356e833aa2fc10ff8f6d026421c5cfdfb6a2a1723ca4265c8013a"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/pilot-protocol.json",
+        "bytes": 3316,
+        "sha256": "102f6ed633c86d394f8b4471049c035524cb815a3312be9a153bfd1b9c998a17"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/pilot-verification.json",
+        "bytes": 2227,
+        "sha256": "95ab22f59ea5713d5306ffcdfdfdb21af89db5c2d289b81b06a4f1ad09be911e"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/mechanism-transfer-pets-20261021/transfer-result-zh.md",
+        "bytes": 8700,
+        "sha256": "d92de6234624f88bff2e38f0e66bcea0d636954cc516440003e7564067b811e4"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/pixel-substance-check-20261021/mechanism-substance.md",
+        "bytes": 10028,
+        "sha256": "041a789dc64aaa87a205998872f97b1f199abd82ada30edb264faa6a282c8f2e"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/pixel-substance-check-20261021/pixel-verification.json",
+        "bytes": 6251,
+        "sha256": "675d262a1e4beca4cbeca94723008fb11a721369304adeb5762ce79fcea0a81b"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/pixel-substance-check-20261021/protocol.md",
+        "bytes": 1902,
+        "sha256": "18a96aee3a527f5cbfbcf58b719ea2ab08778665c29ae9dc54adfb0c81ffe3e5"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/real-fornet-access-20261021/verification.json",
+        "bytes": 858,
+        "sha256": "1d441a9fd39cfcea1fa826d063dc805e1efa87f2e52ab1d664033d6ae13dac8e"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/scale-followup-protocol.md",
+        "bytes": 1906,
+        "sha256": "9883db5e0969c9ec037f7a01437094a4a4f23dc77e64763476b2dde83f671d58"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/scale-verification.json",
+        "bytes": 569,
+        "sha256": "5b77d39d101ee010b6f810e061e40c217940757829837f008df0ce30b8dd68ae"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+        "bytes": 29732,
+        "sha256": "5b66b0e0688f30968288e68700663f21e66e1df13a447da3dd33ababfd610b44"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/protocol.json",
+        "bytes": 12002,
+        "sha256": "b19f6fbcbba45934cdd02df27df477482f3db30767168de06a578eec66b19f06"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+        "bytes": 4136,
+        "sha256": "76dc81927d125f8a32610b1e309c0177cc859745f3a0982390c16ccb62c5b9b0"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/verification.json",
+        "bytes": 765,
+        "sha256": "ef0187233d1c076eb8b4f1c2b92871b08604c9b848d9a845b9d96f37441495f9"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/protocol.json",
+        "bytes": 34457,
+        "sha256": "2a179d79aec4d5cf69f272a036dc1f35662396efaff65e35d4784203ebbce5f9"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+        "bytes": 8323,
+        "sha256": "26551d531f828ca7f1f922bb2ea6f69f6fe8a4014d02262b43e816fc3bd54d23"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+        "bytes": 2551,
+        "sha256": "a3c34ec5e76d2409e7c67884d86c0e27ed567c729563faa82b4a8e7e9906f69b"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/verification.json",
+        "bytes": 856,
+        "sha256": "e10bcb681ce4b161919ff25c39514c550d461b2f75cd702ecf8db2991fb1a909"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/original_high_LR-trace.jsonl",
+        "bytes": 7443,
+        "sha256": "86cd6f65256982038af2803ea0ea8297c34b5d5525cbb33200fe29fa5cfae01d"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/repair-protocol.json",
+        "bytes": 2979,
+        "sha256": "cf5abeb6c97c171166940fa3dbc09ff4a60a4fef06c561b5f597c572f65ab3d1"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/repair-result-zh.md",
+        "bytes": 4321,
+        "sha256": "7e6560404ca5ac500d60280e553dde3c15cc2b41e6d625713d560431950ba3f7"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/repaired_lower_LR-trace.jsonl",
+        "bytes": 35099,
+        "sha256": "127251788c4cc0f607f8e56e72ee1eae84cdca0484707e5436025be3d94759d1"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-numerics-repair-20261021/verification.json",
+        "bytes": 2634,
+        "sha256": "38cefb524133ae71dc1e1ee76d8f18730417cc9ffb72cb4f7010467c8a82137c"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/TA-steps.jsonl",
+        "bytes": 226382,
+        "sha256": "e6bdd2ee249a97ffc899ff85d2fa7769ffd8f117ee3fb881674adce60e17dcfd"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/base-steps.jsonl",
+        "bytes": 223541,
+        "sha256": "643f18f0d7fcc9d06f49531b76538f277fb369c05b3683779ed6ade94e25114d"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/protocol.json",
+        "bytes": 3420,
+        "sha256": "22390c39c95aa83dfeb050e6ec9ede5d477279e59c539bb1fdd252fa65019b74"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/recovery-results.json",
+        "bytes": 76117,
+        "sha256": "2a474d4fca1c0baa208fc97a82567a6526aaaa65c8e224f7234444cf93ca01da"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/result-zh.md",
+        "bytes": 8378,
+        "sha256": "647eb3f03c06ec31f9f5d192482ee770af72aec97d1ac47dac6c8745a09e6a10"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/trajectory.csv",
+        "bytes": 1225,
+        "sha256": "31f5a5ecd6525796a257658a86cd020446045fdc908bb5eda39b4ac706438850"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/training-validity-recovery-20261021/verification.json",
+        "bytes": 552,
+        "sha256": "ac387003fbf070d77243e0fe0ba4d9319fb975076cceb15d4de07e90ff17c777"
+      },
+      {
+        "file": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/verification.json",
+        "bytes": 732,
+        "sha256": "16d12f44d89f1484641a474119a34d0cf1815ac59766262248c0bf7267263da3"
+      }
+    ]
+  }
+}

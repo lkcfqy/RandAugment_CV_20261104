@@ -1,0 +1,113 @@
+{
+  "status": "concrete_proposal_not_executed_pending_expanded_data_and_A100_approval",
+  "at_utc": "2026-10-21T06:21:16.027388+00:00",
+  "single_question": "Does the training gain of a fixed TrivialAugmentWide policy materially change when backbone representation weights learn, compared with a frozen-backbone control?",
+  "scientific_role": "Calibrate whether frozen-feature pilot conclusions transfer to feature-learning training. This is not proposed as a new augmentation algorithm or a proven original causal contribution.",
+  "cells": [
+    {
+      "backbone": "frozen",
+      "policy": "base RRC+horizontalflip"
+    },
+    {
+      "backbone": "frozen",
+      "policy": "same base+TrivialAugmentWide"
+    },
+    {
+      "backbone": "finetuned",
+      "policy": "base RRC+horizontalflip"
+    },
+    {
+      "backbone": "finetuned",
+      "policy": "same base+TrivialAugmentWide"
+    }
+  ],
+  "dataset": "37-class Oxford-IIIT Pet; all3680 officialtrainval for training;3541officialtest IDs not previously read by photo/mask, subject to prespecified CRC/decode duplicate checks before final freeze",
+  "forbidden_test_reuse": "All192 previously touched photo/mask IDs excluded from fresh test; no new model or threshold tested on past64test photos.",
+  "same_inputs": "Within each seed and policy, original-photo order/crop/flip/TA random draws matched exactly across backbone stages; initial37class heads identical.",
+  "representation": "official ImageNetV1 ResNet18 init; all BNrunningmean/var fixed to pretrained values in everycell to avoid changing BNstatistics alone; convolution and BNaffine parameters trainable only in finetuning cells",
+  "fixed_initial_recipe": {
+    "epochs": 50,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "batch_A100_target": 128,
+    "optimizer": "SGD momentum0.9,weight_decay1e-4",
+    "head_LR": 0.01,
+    "backbone_LR": 0.001,
+    "warmup_epochs": 5,
+    "schedule": "cosine to1e-6",
+    "precision": "FP32",
+    "TA": "official torchvision TrivialAugmentWide31bins,NEAREST,fill128; no search",
+    "base_training": "RRC224 scale(.08,1),ratio(3/4,4/3),Hflip0.5",
+    "test": "official V1 resize256/center224; no training augment or TTA"
+  },
+  "training_stability_status": "NOT validated. Earlier timing run with10x higherLRs encountered nonfinite loss; LR0 recovered timing proves throughput only. First trainingepoch must pass finite loss/grad and log convergence diagnostics; iffails stop before any final-test decoding, no silent tuning.",
+  "primary": "D = (LL_finetune_base - LL_finetune_TA) - (LL_frozen_base - LL_frozen_TA), averaged over fixed3seeds on paired untouched sourcephotos",
+  "reporting": [
+    "report four cells and bothaugmentation gains G separately; a positiveD alone is not useful if finetuning gains are negative",
+    "paired source-photo bootstrap CI on mean-seed D plus all3seed effects; do not treat3x3541 as independent observations",
+    "0.05nat prespecified practical interaction margin; CIs crossing meaningful positive/negative effects mean inconclusive, not no effect",
+    "accuracy/breedmacroaccuracy and trainconvergence as secondary outcomes; no outcome-driven checkpoints or test-selected hyperparameters"
+  ],
+  "novelty_boundary": "TA already evaluates trained networks; ForAug already reports representation-pretraining/fine-tuning gains. This matched4cell proxy-validity question provides local measurement information; no exhaustive novelty claim or new causal method.",
+  "resources_to_approve": {
+    "A100_target": "user-confirmed available independent A100 host/time; no host/credential lookup or connection attempted",
+    "A100_max_minutes": 120,
+    "first_epoch_throughput_gate": "Based on all4cells firstepoch full dataloader, measured12run ETA must fit120A100minutes; otherwise stop and report",
+    "GPU_memory_budget_GB": 8,
+    "GPU_memory_measured": false,
+    "new_public_JPEG_bytes_on_Mac_if_approved": 774182572,
+    "new_HTTP_range_bytes_on_Mac_if_approved": 773418733,
+    "A100_environment_download_budget": "public data+officialweight approx0.85GB if no caches; currentserver software availability unknown. Reuse an existing independent usable environment; report missing dependencies before installing CUDA packages.",
+    "disk_reserve_GB": 10,
+    "no_fees_or_external_uploads": true,
+    "dataset_download": "pinned publicCCBYSA4.0 image source; train acquisitionfirst, finaltest pixels decoded only after recipe/models frozen; no hidden fullarchive fetch",
+    "8A_priority": "no8A files/environment changes or sharedGPU occupation without an available time confirmed by user"
+  },
+  "authorized_actions_completed_this_round": [
+    "read existing predictions and metadata only",
+    "26second CPU timing calibration using8old training photos; discardweights",
+    "save scope/cost judgement and concrete plan"
+  ],
+  "not_executed": [
+    "newlargeimage acquisition",
+    "A100connection or GPUcompute",
+    "formal50epochtraining",
+    "newtestpixeldecoding"
+  ],
+  "pending_reason": "Current authorization is CPU/smallpublicdata and explicitA100approval boundary; next workload increases data to~0.8GB and practicalGPUtraining. User must approve expanded resources before execution.",
+  "ARIS": false,
+  "8A_accessed": false,
+  "CPU_projection": {
+    "8": {
+      "steps_per_backbone_mode_over2policies_3seeds": 138000,
+      "frozen_compute_hours": 3.753591745335143,
+      "finetune_compute_hours": 9.399979409435117,
+      "total_compute_hours": 13.153571154770258,
+      "excludes": "photo decode, augmentation, validation/test inference and full-dataset memory/cache effects; extrapolation from repeated8photos with LR0, not measured full training"
+    },
+    "32": {
+      "steps_per_backbone_mode_over2policies_3seeds": 34500,
+      "frozen_compute_hours": 10.173073496730971,
+      "finetune_compute_hours": 17.31575025019184,
+      "total_compute_hours": 27.488823746922815,
+      "excludes": "photo decode, augmentation, validation/test inference and full-dataset memory/cache effects; extrapolation from repeated8photos with LR0, not measured full training"
+    }
+  },
+  "power_planning": {
+    "caution": "Illustrative normal-approximation planning only, not observed power or significance. Paired accuracy q is the future discordance rate; cannot transport old binary q to37class task. Stage-interaction LLsigma is unknown.",
+    "paired_accuracy_MDE_pp_alpha05_power80": {
+      "0.2": 2.1043116802311364,
+      "0.5": 3.327208908213154,
+      "1.0": 4.705383962843621
+    },
+    "interaction_LL_MDE_nats_alpha05_power80": {
+      "0.3": 0.014116151888530862,
+      "0.5": 0.023526919814218103,
+      "1.0": 0.047053839628436206
+    },
+    "meaningful_interaction_margin_nats": 0.05
+  }
+}

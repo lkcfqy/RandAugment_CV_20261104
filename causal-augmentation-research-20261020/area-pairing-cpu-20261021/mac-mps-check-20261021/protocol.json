@@ -1,0 +1,53 @@
+{
+  "recorded_before_compute": "2026-10-21T06:56:28.217258+00:00",
+  "purpose": "minimum localAppleGPU availability,speed and numerical/training sanity comparison; not a new research experiment",
+  "devices": [
+    "cpu",
+    "mps"
+  ],
+  "models": "identical existing official pretrainedResNet18 with37class head(seed0); BNrunningstatsfixed; same8training photos from repairedfixture, repeat4forbatch32",
+  "batch_sizes": [
+    8,
+    32
+  ],
+  "inference": {
+    "warmup": 3,
+    "timed_forwards": 8,
+    "include_CPU_to_device_input_transfer": true,
+    "synchronize_MPS_at_timer_boundaries": true
+  },
+  "short_training": {
+    "head_LR": 0.01,
+    "body_LR": 0.001,
+    "SGD_momentum": 0.9,
+    "weight_decay": 0.0001,
+    "warmup_updates": 2,
+    "timed_updates": 8,
+    "include_input_transfer": true,
+    "global_finite_loss_gradient_parameter_guards_each_update": true,
+    "weights_reset_per_case": true,
+    "no_gradient_clipping": true
+  },
+  "precision": "FP32 on both; no float64GPU,AMP or automatic CPUfallback",
+  "CPU_threads": 1,
+  "numerical_acceptance": {
+    "inference_max_abs_logit_error": 0.005,
+    "inference_relative_L2_error": 0.001,
+    "inference_argmax_agreement": 1.0,
+    "all_short_training_loss_grad_params_finite": true,
+    "final_training_loss_below_fraction_initial": 0.7,
+    "max_absolute_per_step_training_loss_difference": 0.02,
+    "final_training_argmax_agreement": 1.0
+  },
+  "speed_acceptance": "same-batch measured guardedtraining speedup>=1.2 and numerical gates pass; no claim of allworkloads faster",
+  "memory": "separate sequentialCPU/MPSworker processes; processpeakRSS and availableMPS current/driver memory snapshots; unified-memory values must not simply beadded",
+  "CPU_fallback_disabled": true,
+  "estimated_probe_budget_seconds": 180,
+  "no_new_test_or_validation_data": true,
+  "no_A100_remote_or_paidGPU": true,
+  "no_installation_or_security_changes": true,
+  "old_CPU_result_overwrite": false,
+  "previous_short_stage_pilot_status": "CPUresult saved separately, inconclusive becausefinetuneTA did notlearn; do not rerun it just to obtain apositive conclusion",
+  "ARIS": false,
+  "8A_access": false
+}

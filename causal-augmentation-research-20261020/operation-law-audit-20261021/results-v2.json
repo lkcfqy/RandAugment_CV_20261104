@@ -1,0 +1,1269 @@
+{
+  "status": "planned_operator_and_logical_checks_passed",
+  "at_UTC": "2026-10-21T17:11:58.937886+00:00",
+  "code_sha256": "1745842f17b6f0b97ea57a42cb828d2b9933ab9a3b3707885b4a6dac3eda63b1",
+  "protocol_sha256": "266c5a67edf29960bebcb5ef84bd8b00aac6dfbb1e0835f2d174c03a6857330a",
+  "versions": {
+    "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:04:32) [Clang 20.1.8 ]",
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4"
+  },
+  "TA_op_names": [
+    "Identity",
+    "ShearX",
+    "ShearY",
+    "TranslateX",
+    "TranslateY",
+    "Rotate",
+    "Brightness",
+    "Color",
+    "Contrast",
+    "Sharpness",
+    "Posterize",
+    "Solarize",
+    "AutoContrast",
+    "Equalize"
+  ],
+  "TA_bins": 31,
+  "signed_translations": true,
+  "enumerated_photo_translation_states": 2976,
+  "apply_op_calls_photo_plus_support_plus_endpoint_fill_control": 6048,
+  "source_photo_count": 8,
+  "source_classes": [
+    0,
+    1
+  ],
+  "photos_previously_used_training_only": true,
+  "forced_32px_erasure_probability_exact": "1/217",
+  "probability_decimal": 0.004608294930875576,
+  "all_32px_endpoint_RGB_outputs_cross_label_identical": true,
+  "all_32px_endpoint_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293",
+  "augmented_01_risk_lower_bound_balanced_binary": "1/434",
+  "augmented_01_risk_lower_bound_balanced_binary_decimal": 0.002304147465437788,
+  "augmented_CE_risk_lower_bound_balanced_binary_nats": 0.0031942266385250936,
+  "bound_is_NOT_clean_or_OOD_risk": true,
+  "bound_q_is_NOT_total_atom_probability": true,
+  "constant_fill_positive_control_128_passed": true,
+  "larger_resolution_control": "The specified full-canvas-erasure translation event is absent at96/224; no global semantic-safety claim.",
+  "per_photo_translation_checks": [
+    {
+      "source_id": "Birman_126",
+      "Y": 0,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "Birman_126",
+      "Y": 0,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "5d685bb537413495c5fd9e81b5b60eae35765cdd8e88ae3b110332cec13727f7"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "825f139f5a3d73a32f0090828254f96ae4a44fd98d8f26f5449f18e86b9a10a0"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "362d64c2ffcb7280e120608c193fed915d3df76112f114e441a18f0b872ecee0"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "0368816ee401122fa0843a073eb24a047773f527a5a4c4c30f54a4709faee179"
+        }
+      ]
+    },
+    {
+      "source_id": "Birman_126",
+      "Y": 0,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "ddd496904979026dd3c3ff63505d3523beb1746bbdcc206d56d038d65730bc7e"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "efcb6cbc67b2ff336ea28002c1eb1f945ad0effacdf76bdf29afa900aa1002d9"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "5b9f1ec7dd0be4d5bb1ea9c910094b532e240ed180cece682991d357cc1bb182"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "302110a786f1083a58d24b36aaa84abad7a18822e548a97274a8f9cd64e24d80"
+        }
+      ]
+    },
+    {
+      "source_id": "Birman_159",
+      "Y": 0,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "Birman_159",
+      "Y": 0,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "fa71b160787925ddc41aed221c3a999a4cbce0cb8f0e851c26fa34f3d2521129"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "ea2eb9a748656f80ed37faca07a438cc8193c8be87db2f91f67d574a66e8815a"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "1c2eadcbd11bfce9ca876831f0a8ee409b8fea70f59ec5469f5b3e9872511a9d"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "f40c2ba63ec489bc3ea2fe6220c45af60743ef64b36fc1110f3c56adfa3fa8e3"
+        }
+      ]
+    },
+    {
+      "source_id": "Birman_159",
+      "Y": 0,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "328a79d728f09bb00baef4942403f0a820d11067f13cf4edff60c3182c72fc34"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "f6b7f8ff7ecc4a9a5726157d14549769c453baf446d062ff790d59c747b41298"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "f58e795730494b323f4b87c374c22ffe63e32418c06a9be3e1c107293255cab0"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "37d7cdf5f8de2589d18051b4b37af689f5d22102ba4ed13a075c908cae809bc0"
+        }
+      ]
+    },
+    {
+      "source_id": "Sphynx_252",
+      "Y": 0,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "Sphynx_252",
+      "Y": 0,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "66bb394d0fbe54c5e5f387dee91fd870da4cd0a1b7f92e618d5f7361f1e3d79f"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "b962d092ce57c0b777ccaeb28c157890fba3d65ac885cc87dbd062c436852954"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "ed3b90440c340fb86ad4fa3f0681da32a29509b731dfc2e435e05400a67fa214"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "afbef8cc30d7af94bf68bb10cc3aa1c8afb8ed783b028a140ac6755d02070222"
+        }
+      ]
+    },
+    {
+      "source_id": "Sphynx_252",
+      "Y": 0,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "bf68246ada91c79526bea5fc283ddc4a0b01520a96c5c709a2b99a42bb5d8c07"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "0f3b11cb03301d4cce821d7a0fc582fb1e1c2842dcafdcc19a5098fb1a4d37e5"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "6b6ba52f96135d632d8c9785fa1e405b68b04585477fed61ed8401b04755f91f"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "c6b04cbfaa9ae886ade2c4d24fd82ddb8b972845f642789599922366c727e6ca"
+        }
+      ]
+    },
+    {
+      "source_id": "Abyssinian_197",
+      "Y": 0,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "Abyssinian_197",
+      "Y": 0,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "b59387121bf8abdae0e89525a7faffac17deb7450ee3177f8a4ea9162604fd9a"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "4420b3feb2907c395f7473f2b042aa3ef425195a50b16ff915e9f957583cf7fc"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "ed29929317d4c585dcefec64629240a8e86d22fd72aea4efbdeb15b4dd8fe55f"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "c79c600fd12899e004b6e3df58b3125a4d76356c799a821f2fc20cde1de01a13"
+        }
+      ]
+    },
+    {
+      "source_id": "Abyssinian_197",
+      "Y": 0,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "045b020f5e47e0243b46fb835a0e2ab754fe2490c2c701547501e3cd23eab33f"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "45b529129f76dac1946d06914a620d430f66c1860705db29b571f915d894a05f"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "3e1847e3ee1e7f426a3f17f5fbbddc2cc526dd9e877530005fb1130319ceb09d"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "5c29a6977fb06253d3dffe7685f529a42f0971b170dcee5b6c84def2e4f82eb3"
+        }
+      ]
+    },
+    {
+      "source_id": "scottish_terrier_196",
+      "Y": 1,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "scottish_terrier_196",
+      "Y": 1,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "a90f3fdda851b719a414f45cc8342331564d1759e41b2310a7959b19f4c896f8"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "319fca9ae36c0ec96e70d6819e46910546c774921d6b404856da58043b15bd85"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "a0f63107888add894c8503efa5a4df6f5641fac59171a49e245b37ea9707ffda"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "46099638fe2791551910f154036cf3937e0d9ba609fe13c5f963b0c8b8c04401"
+        }
+      ]
+    },
+    {
+      "source_id": "scottish_terrier_196",
+      "Y": 1,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "cb03754f1fdd1aae71ef2ff072c5bfa3fe5d40544819fa6cd9c8121d4a5ea9e0"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "ce5d345ddf1ecb1404733efa614a273a1d65ac6cd61e1ea5792b83815ac1b2cf"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "42cbc503ae9e1ee90256cf744956f950e6cceaa2dd5d3576a350555dca0a620d"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "c1a63994a36797d34840a084f316072ea9ac15c14a55dafc6c71122269471d0e"
+        }
+      ]
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_19",
+      "Y": 1,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_19",
+      "Y": 1,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "30e69610c7f66a463f427a2e00a62e3ef75b4170a25cd9c098c012d4fcfce37f"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "0974e83ae27dfada438027b9babfe4d94e2bde53cae785d66bbdc5036f85f9d7"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "d0d720deeba902fee87a26776d0b351aa69a37dc6a83da502db3565573939a75"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "97b0c991e274724e29e8c02f4487c62e87a8f01135fde689a07f2a74fd2f5b31"
+        }
+      ]
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_19",
+      "Y": 1,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "8b4c0cbbc8de48bf4b83626c7ba93ec057918e2668e80becc8cb7366e06e62f2"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "63ad8bbba1c59e8068496cd10507dc276ddf7e5868ccedde1c1e8259ef5c682b"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "13fd2b16d02641ea6cd8d23623a096ac226e66ab6445cf2b4fd50cd07606f242"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "6fe818502754321b92d8b0cf3f2e3436fbeb65fbea8a6e515d505b091c5304cb"
+        }
+      ]
+    },
+    {
+      "source_id": "leonberger_199",
+      "Y": 1,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "leonberger_199",
+      "Y": 1,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "a28f65352dbbdab374aef002854079ede8c6e09994e260ffc53d1256ee12f081"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "57caaec5f00f0a988ba923296dda6466229f52b28e9d59b2fa320620f482c8cf"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "bb27f28293eeff60fc06b20ba21f0cd98f61585758d2028a29b7b3b8a36e7ef6"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "140752fccdeb38813b53337910a623f1658ec8283ceab6ba50e2e47e675ae517"
+        }
+      ]
+    },
+    {
+      "source_id": "leonberger_199",
+      "Y": 1,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "8fd8ba17fe10dc2d09b8b06da582e7deba4e2f2ce52251fbc21568315ef729b4"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "8a722b6bd879153fc01a96f66fb7d5d627eb2a6cce2e8ea47811ae01500ac91d"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "fde8d35d5cbe0e119f6a5cbad1c2a0eef20673825778c67d103894401a77dbe6"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "2f7d0f5a6d182ddd72c737027705bc360ea957da60854d9c771fef8a4fd0a87b"
+        }
+      ]
+    },
+    {
+      "source_id": "beagle_195",
+      "Y": 1,
+      "size": 32,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 4,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": true,
+          "visible_input_pixels": 0,
+          "visible_input_fraction": 0.0,
+          "raw_RGB_sha256": "e80232b4d18d0bb7e794be263ba937626f383f9917d4b8a737ba893a8f752293"
+        }
+      ]
+    },
+    {
+      "source_id": "beagle_195",
+      "Y": 1,
+      "size": 96,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "4831e0d5cfda127967b1673762dd38c3b071a09cb98084947f1dc2394c70cda4"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "e3dd048a318cf82c11224fe64f76cda477b1921419f588f6a7981f9e4545ebb6"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "581fad1c6923e55df9a40ebba54cde7e85b32ccb882a9fcdd9c58099f6f4bbeb"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 6144,
+          "visible_input_fraction": 0.6666666666666666,
+          "raw_RGB_sha256": "5f851981de78338d75caafb4852f0715c556593f2bcea7b28cf21bcf3d841f2b"
+        }
+      ]
+    },
+    {
+      "source_id": "beagle_195",
+      "Y": 1,
+      "size": 224,
+      "tested_translate_states": 124,
+      "constant_default_fill_count_in_translate_states": 0,
+      "constant_count_not_a_full_policy_probability": true,
+      "endpoints": [
+        {
+          "op": "TranslateX",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "3b3bf5e9dd0bbb0f9c9ea6807c24c6733d9351dc4f94b9f3fc02eeb8d180794a"
+        },
+        {
+          "op": "TranslateX",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "8c7e97043b6b57c2717f003a09a2126c349cb5ae37936348459d2cb26059bba9"
+        },
+        {
+          "op": "TranslateY",
+          "sign": -1,
+          "magnitude": -32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "192db1727a836b5cca6495c26a158f1ba7e6aac4f94feccb95b62fcb7ca5a8c9"
+        },
+        {
+          "op": "TranslateY",
+          "sign": 1,
+          "magnitude": 32.0,
+          "all_default_fill": false,
+          "visible_input_pixels": 43008,
+          "visible_input_fraction": 0.8571428571428571,
+          "raw_RGB_sha256": "fdf8524c6706b0b49b373f54158d96c22e12056ef6dd17739375652f1bad4ac5"
+        }
+      ]
+    }
+  ],
+  "LUT_injectivity": [
+    {
+      "op": "Posterize",
+      "parameter": 0,
+      "supported": false,
+      "error_type": "ValueError",
+      "error": "bits must be between or equal to 1 and 8",
+      "not_observed_as_constant_black_on_this_Pillow": true
+    },
+    {
+      "op": "Posterize",
+      "parameter": 2,
+      "supported": true,
+      "distinct_outputs": 4,
+      "injective": false
+    },
+    {
+      "op": "Posterize",
+      "parameter": 4,
+      "supported": true,
+      "distinct_outputs": 16,
+      "injective": false
+    },
+    {
+      "op": "Posterize",
+      "parameter": 8,
+      "supported": true,
+      "distinct_outputs": 256,
+      "injective": true
+    },
+    {
+      "op": "Solarize",
+      "parameter": 0,
+      "distinct_outputs": 256,
+      "injective": true
+    },
+    {
+      "op": "Solarize",
+      "parameter": 128,
+      "distinct_outputs": 128,
+      "injective": false
+    },
+    {
+      "op": "Solarize",
+      "parameter": 255,
+      "distinct_outputs": 255,
+      "injective": false
+    },
+    {
+      "op": "Solarize",
+      "parameter": 256,
+      "distinct_outputs": 256,
+      "injective": true
+    }
+  ],
+  "invert_twice_exact_identity": true,
+  "RandAugment_default_M9_posterize_bits": 7,
+  "source_target_nonidentifiability_check": {
+    "same_source_distribution_in_both_worlds": [
+      {
+        "Y": -1,
+        "U": -1,
+        "V": -1,
+        "probability": "9/20"
+      },
+      {
+        "Y": -1,
+        "U": 1,
+        "V": -1,
+        "probability": "1/20"
+      },
+      {
+        "Y": 1,
+        "U": 1,
+        "V": 1,
+        "probability": "9/20"
+      },
+      {
+        "Y": 1,
+        "U": -1,
+        "V": 1,
+        "probability": "1/20"
+      }
+    ],
+    "same_any_fixed_source_edit_kernel": true,
+    "targets": [
+      {
+        "V_mechanism": "Y",
+        "R_h0": "0",
+        "R_h1": "1/10",
+        "difference_h1_minus_h0": "1/10"
+      },
+      {
+        "V_mechanism": "-Y",
+        "R_h0": "1",
+        "R_h1": "1/10",
+        "difference_h1_minus_h0": "-9/10"
+      }
+    ],
+    "not_an_empirical_CV_result": true
+  },
+  "new_method_or_contribution_established": false,
+  "actual_model_training": false,
+  "wall_seconds_including_imports": 0.992081500007771,
+  "peak_RSS_bytes": 336232448,
+  "CPU_threads": 1,
+  "GPU": false,
+  "MPS": false,
+  "A100": false,
+  "ARIS": false,
+  "downloads": false,
+  "dependency_changes": false,
+  "heldout_photos_opened": 0
+}

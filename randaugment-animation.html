@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
+<title>RandAugment：猫还是猫</title>
+<style>
+:root { color-scheme: light dark; --background: light-dark(#faf9f6,#181b20); --foreground: light-dark(#202732,#eceff3); --muted-foreground: light-dark(#57616c,#aeb8c5); --card: light-dark(#ffffff,#22272e); --border: light-dark(#d7dce1,#46505e); --primary: light-dark(#283e48,#d8e8eb); --primary-foreground: light-dark(#ffffff,#18292e); --accent: light-dark(#e8f0ef,#283c40); --viz-series-1: light-dark(#24665b,#82d3bc); }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px 20px; background: var(--background); color: var(--foreground); font: 16px/1.6 system-ui,-apple-system,"PingFang SC",sans-serif; }
+h1,h2,h3,p,figure { margin: 0; }
+h1 { font-size: 28px; font-weight: 500; }
+h2 { font-size: 18px; font-weight: 500; }
+.btn { font: inherit; padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--foreground); cursor: pointer; }
+.btn-primary { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+.btn[aria-pressed="true"] { background: var(--primary); color: var(--primary-foreground); }
+.form-range { width: 100%; accent-color: var(--viz-series-1); }
+.text-small { font-size: 13px; }
+.text-muted { color: var(--muted-foreground); }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<main id="randaugment-demo">
+<style>
+#randaugment-demo { max-width: 1080px; margin: auto; }
+#randaugment-demo header { display: grid; gap: 8px; padding-bottom: 24px; }
+#randaugment-demo .image-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+#randaugment-demo figure { min-width: 0; }
+#randaugment-demo canvas { width: 100%; height: auto; display: block; aspect-ratio: 1; border-radius: 12px; }
+#randaugment-demo figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 10px 0; }
+#randaugment-demo .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 14px; }
+#randaugment-demo .control { display: grid; gap: 5px; min-width: 0; }
+#randaugment-demo .control-top { display: flex; justify-content: space-between; gap: 10px; }
+#randaugment-demo .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 10px 0 18px; }
+#randaugment-demo .step-list { list-style: none; padding: 0; margin: 14px 0 18px; display: grid; grid-template-columns: repeat(auto-fit,minmax(155px,1fr)); gap: 18px; }
+#randaugment-demo .step-item { display: grid; justify-items: start; align-content: start; gap: 7px; min-width: 0; }
+#randaugment-demo .step-item canvas { max-width: 140px; border-radius: 8px; }
+#randaugment-demo #status { min-height: 2em; margin: 10px 0 22px; }
+#randaugment-demo .notes { display: grid; gap: 9px; border-top: 1px solid var(--border); padding-top: 18px; }
+#randaugment-demo summary { cursor: pointer; }
+#randaugment-demo details p { margin-top: 8px; }
+#randaugment-demo a { color: var(--foreground); text-underline-offset: 3px; }
+@media (max-width: 620px) { #randaugment-demo .image-grid { grid-template-columns: 1fr; } #randaugment-demo .control-grid { grid-template-columns: 1fr; gap: 16px; } }
+@media (prefers-reduced-motion: reduce) { #randaugment-demo * { scroll-behavior: auto; } }
+</style>
+<header>
+<h1>RandAugment：猫还是猫</h1>
+<p class="text-muted">随机抽 N 个操作，用同一个强度等级 M，依次改变训练图片。</p>
+</header>
+<div class="control-grid">
+<label class="control" for="n-control"><span class="control-top"><span>N · 操作数</span><output id="n-value" class="tabular-nums">2</output></span><input class="form-range" id="n-control" type="range" min="1" max="4" step="1" value="2"><span class="text-small text-muted">每张图依次应用 N 次；这里演示 1–4 次。</span></label>
+<label class="control" for="m-control"><span class="control-top"><span>M · 统一强度等级</span><output id="m-value" class="tabular-nums">6 / 10</output></span><input class="form-range" id="m-control" type="range" min="0" max="10" step="1" value="6"><span class="text-small text-muted">拖动 M，保持本轮操作与方向固定。</span></label>
+</div>
+<div class="toolbar"><button id="play" type="button" class="btn btn-primary" aria-pressed="false">播放动画</button><button id="resample" type="button" class="btn">重抽操作</button><span id="sampling" class="text-small text-muted">7 种操作，各以 1/7 概率独立抽取，可重复。</span></div>
+<div class="image-grid">
+<figure><figcaption><span>原图</span><span>标签：猫</span></figcaption><canvas id="original" width="360" height="360" role="img" aria-label="自绘小猫原图，标签为猫"></canvas></figure>
+<figure><figcaption><span id="current-label">起点 · 原图</span><span>标签：猫</span></figcaption><canvas id="current" width="360" height="360" role="img" aria-label="当前处理图，标签仍为猫"></canvas></figure>
+<figure><figcaption><span>最终增强图</span><span>标签：猫</span></figcaption><canvas id="final" width="360" height="360" role="img" aria-label="最终增强图，标签仍为猫"></canvas></figure>
+</div>
+<ol id="steps" class="step-list" aria-label="抽中的操作与每一步输出，按从前到后的顺序"></ol>
+<p id="status" role="status" aria-live="polite"></p>
+<div class="notes text-small">
+<p><strong>看 M 怎么起作用：</strong>同一等级会映射为各操作的角度、像素或倍数，物理变化并不相同。保持不变、自动对比度没有强度参数，因此不受 M 影响。</p>
+<p>训练时会为图片重新抽样；这里用“重抽操作”手动示范。类别标签沿用原样本：猫。网络结构保持原样，N、M 仍需按任务在验证集上调节。</p>
+<details><summary>教学简化与论文来源</summary><p>本页只用 7 种操作：保持不变、自动对比度、旋转、水平平移、水平错切、亮度、色彩饱和度。原论文图 3 的操作池有 14 种；本页是过程示意，使用自绘图片与教学尺度，并非官方逐像素复现，也没有运行训练实验。</p><p>M 使用 0–10 的教学等级。令 t=M/10：旋转为 ±30°×t；平移为 ±30% 图宽×t；错切系数为 ±0.3×t；亮度倍数为 1±0.8×t；饱和度倍数为 1±0.9×t。方向在抽样时随机确定。几何变化露出的空白填灰，超出边界会裁切。M=0 也不会关闭自动对比度。</p><p>操作会累计作用于上一步输出；点击步骤按钮可看对应中间图。动画中的连续过渡仅用于展示，实际输出是每步应用所选 M 后的结果。<a href="RandAugment_NeurIPS_2020.pdf#page=5">论文第 4 节与图 3（PDF 第 5–6 页）</a></p></details>
+</div>
+<script>
+(() => {
+  'use strict';
+  const root = document.getElementById('randaugment-demo');
+  const SIZE = 360;
+  const original = root.querySelector('#original');
+  function drawCat(canvas) {
+    const c = canvas.getContext('2d');
+    c.fillStyle = '#e6dfcd'; c.fillRect(0,0,SIZE,SIZE);
+    c.fillStyle = '#bfcbc0'; c.fillRect(22,22,98,100);
+    c.fillStyle = '#d6e0d4'; c.fillRect(29,29,84,86);
+    c.strokeStyle = '#9dab9d'; c.lineWidth = 5;
+    c.beginPath(); c.moveTo(71,29); c.lineTo(71,115); c.moveTo(29,72); c.lineTo(113,72); c.stroke();
+    c.fillStyle = '#bdc7b6'; c.beginPath(); c.ellipse(274,311,20,11,0,0,Math.PI*2); c.fill();
+    c.fillStyle = '#b0bda7'; c.fillRect(261,285,26,24);
+    c.strokeStyle = '#6a8664'; c.lineWidth = 5;
+    c.beginPath(); c.moveTo(274,285); c.lineTo(274,242); c.stroke();
+    c.fillStyle = '#829b77'; c.beginPath(); c.ellipse(262,253,16,8,.5,0,Math.PI*2); c.ellipse(285,264,16,8,-.5,0,Math.PI*2); c.fill();
+    c.fillStyle = '#c7bba5'; c.beginPath(); c.ellipse(174,308,104,14,0,0,Math.PI*2); c.fill();
+    c.strokeStyle = '#a86f46'; c.lineWidth = 25; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(215,284); c.bezierCurveTo(287,281,245,212,267,210); c.stroke();
+    c.fillStyle = '#c18a56'; c.beginPath(); c.ellipse(177,247,65,63,0,0,Math.PI*2); c.fill();
+    c.fillStyle = '#dfb985'; c.beginPath(); c.ellipse(175,255,36,42,0,0,Math.PI*2); c.fill();
+    c.fillStyle = '#a86f46';
+    c.beginPath(); c.moveTo(112,168); c.lineTo(104,90); c.lineTo(153,120); c.fill();
+    c.beginPath(); c.moveTo(200,120); c.lineTo(246,90); c.lineTo(238,169); c.fill();
+    c.fillStyle = '#cf9a83';
+    c.beginPath(); c.moveTo(120,142); c.lineTo(116,109); c.lineTo(145,128); c.fill();
+    c.beginPath(); c.moveTo(211,128); c.lineTo(235,109); c.lineTo(230,145); c.fill();
+    c.fillStyle = '#d7a36b'; c.beginPath(); c.ellipse(176,169,72,62,0,0,Math.PI*2); c.fill();
+    c.fillStyle = '#e6cba4'; c.beginPath(); c.ellipse(160,194,22,17,0,0,Math.PI*2); c.ellipse(192,194,22,17,0,0,Math.PI*2); c.fill();
+    c.strokeStyle = '#5d5144'; c.lineWidth = 5;
+    c.beginPath(); c.moveTo(141,166); c.quadraticCurveTo(150,158,159,166); c.moveTo(192,166); c.quadraticCurveTo(201,158,210,166); c.stroke();
+    c.fillStyle = '#a66e68'; c.beginPath(); c.moveTo(169,185); c.lineTo(183,185); c.lineTo(176,194); c.fill();
+    c.strokeStyle = '#7a5a46'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(176,194); c.lineTo(176,201); c.quadraticCurveTo(165,208,161,200); c.moveTo(176,201); c.quadraticCurveTo(186,208,191,200);
+    c.moveTo(140,189); c.lineTo(103,182); c.moveTo(140,198); c.lineTo(101,201); c.moveTo(213,189); c.lineTo(248,182); c.moveTo(213,198); c.lineTo(251,201); c.stroke();
+    c.strokeStyle = '#a86f46'; c.lineWidth = 6;
+    c.beginPath(); c.moveTo(160,117); c.lineTo(165,135); c.moveTo(176,112); c.lineTo(176,134); c.moveTo(191,117); c.lineTo(186,135); c.stroke();
+    c.fillStyle = '#c18a56'; c.beginPath(); c.ellipse(143,300,23,12,0,0,Math.PI*2); c.ellipse(206,300,23,12,0,0,Math.PI*2); c.fill();
+  }
+  const pool = [
+    { id: 'Identity', name: '保持不变', magnitude: false },
+    { id: 'AutoContrast', name: '自动对比度', magnitude: false },
+    { id: 'Rotate', name: '旋转', magnitude: true },
+    { id: 'TranslateX', name: '水平平移', magnitude: true },
+    { id: 'ShearX', name: '水平错切', magnitude: true },
+    { id: 'Brightness', name: '亮度', magnitude: true },
+    { id: 'Color', name: '色彩饱和度', magnitude: true }
+  ];
+  function newCanvas() {
+    const canvas = document.createElement('canvas');
+    canvas.width = SIZE; canvas.height = SIZE;
+    return canvas;
+  }
+  function applyOperation(before, op, magnitude) {
+    const after = newCanvas();
+    const c = after.getContext('2d', { willReadFrequently: true });
+    const t = magnitude / 10;
+    const signed = op.sign * t;
+    c.fillStyle = '#d9d5ce'; c.fillRect(0,0,SIZE,SIZE);
+    c.save();
+    if (op.id === 'Rotate') {
+      c.translate(SIZE/2,SIZE/2); c.rotate(signed * Math.PI/6);
+      c.drawImage(before,-SIZE/2,-SIZE/2);
+    } else if (op.id === 'TranslateX') {
+      c.drawImage(before,signed * .3 * SIZE,0);
+    } else if (op.id === 'ShearX') {
+      c.transform(1,0,signed * .3,1,-signed * .3 * SIZE/2,0);
+      c.drawImage(before,0,0);
+    } else {
+      c.drawImage(before,0,0);
+    }
+    c.restore();
+    if (op.id === 'Brightness' || op.id === 'Color' || op.id === 'AutoContrast') {
+      const pixels = c.getImageData(0,0,SIZE,SIZE);
+      const d = pixels.data;
+      if (op.id === 'AutoContrast') {
+        const low = [255,255,255], high = [0,0,0];
+        for (let i=0; i<d.length; i+=4) {
+          for (let channel=0; channel<3; channel++) {
+            low[channel] = Math.min(low[channel],d[i+channel]);
+            high[channel] = Math.max(high[channel],d[i+channel]);
+          }
+        }
+        for (let i=0; i<d.length; i+=4) {
+          for (let channel=0; channel<3; channel++) {
+            const spread = high[channel]-low[channel];
+            if (spread > 0) d[i+channel] = (d[i+channel]-low[channel])*255/spread;
+          }
+        }
+      } else {
+        const factor = 1 + signed * (op.id === 'Brightness' ? .8 : .9);
+        for (let i=0; i<d.length; i+=4) {
+          if (op.id === 'Brightness') {
+            d[i] *= factor; d[i+1] *= factor; d[i+2] *= factor;
+          } else {
+            const gray = .299*d[i] + .587*d[i+1] + .114*d[i+2];
+            d[i] = gray + (d[i]-gray)*factor;
+            d[i+1] = gray + (d[i+1]-gray)*factor;
+            d[i+2] = gray + (d[i+2]-gray)*factor;
+          }
+        }
+      }
+      c.putImageData(pixels,0,0);
+    }
+    return after;
+  }
+  function sampleOperation() {
+    return { ...pool[Math.floor(Math.random()*pool.length)], sign: Math.random()<.5 ? -1 : 1 };
+  }
+  function paint(target, source) {
+    const c = target.getContext('2d');
+    c.clearRect(0,0,SIZE,SIZE); c.drawImage(source,0,0);
+  }
+  const nInput = root.querySelector('#n-control'), mInput = root.querySelector('#m-control');
+  const current = root.querySelector('#current'), final = root.querySelector('#final');
+  const status = root.querySelector('#status'), steps = root.querySelector('#steps');
+  const playButton = root.querySelector('#play');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let operations = [], images = [], stepButtons = [], selectedStep = 0;
+  let playing = false, position = 0, frame = 0, lastTime = 0, announcedStep = -1;
+  const N = () => Number(nInput.value);
+  const M = () => Number(mInput.value);
+  function describe(op, magnitude) {
+    const t=magnitude/10, sign=op.sign<0 ? '−' : '+';
+    if(op.id==='Rotate') return `${sign}${(30*t).toFixed(0)}°`;
+    if(op.id==='TranslateX') return `${sign}${(SIZE*.3*t).toFixed(1)} 像素`;
+    if(op.id==='ShearX') return `错切系数 ${sign}${(.3*t).toFixed(2)}`;
+    if(op.id==='Brightness') return `亮度 ×${(1+op.sign*.8*t).toFixed(2)}`;
+    if(op.id==='Color') return `饱和度 ×${(1+op.sign*.9*t).toFixed(2)}`;
+    return op.id==='Identity' ? '原样通过 · 不使用 M' : '拉伸色阶 · 不使用 M';
+  }
+  function setSelection(index) {
+    selectedStep=index;
+    stepButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i+1===index)));
+    root.querySelector('#current-label').textContent=index===0 ? '起点 · 原图' : `第 ${index} / ${N()} 步 · ${operations[index-1].name}`;
+    root.dataset.step=String(index);
+  }
+  function showStep(index) {
+    pause(); position=index; root.dataset.position=String(position);
+    setSelection(index);
+    paint(current,images[index]);
+    updatePlayButton();
+    status.textContent=index===0 ? '本轮操作已固定。点“播放动画”逐步看，或拖动 M 比较右侧最终图。' : `第 ${index} 步已完成：${operations[index-1].name}，${describe(operations[index-1],M())}。标签仍为猫。`;
+  }
+  function updatePlayButton() {
+    root.dataset.playing=String(playing);
+    playButton.setAttribute('aria-pressed',String(playing));
+    playButton.textContent=playing ? '暂停' : position>=N() ? '重播动画' : position>0 ? '继续播放' : '播放动画';
+  }
+  function pause() {
+    if(frame) cancelAnimationFrame(frame);
+    frame=0; playing=false; updatePlayButton();
+  }
+  function animate(now) {
+    if(!playing) return;
+    position=Math.min(N(),position+Math.min(now-lastTime,2000)/1250);
+    lastTime=now;
+    root.dataset.position=position.toFixed(4);
+    if(position>=N()) {
+      paint(current,images[N()]); setSelection(N()); pause();
+      status.textContent=`${N()} 次操作全部完成，得到右侧最终增强图；标签仍为猫。`;
+      return;
+    }
+    const index=Math.floor(position), fraction=position-index;
+    const eased=fraction*fraction*(3-2*fraction);
+    const op=operations[index];
+    if(reducedMotion.matches) {
+      paint(current,images[index]);
+    } else if(op.magnitude) {
+      paint(current,applyOperation(images[index],op,M()*eased));
+    } else {
+      const c=current.getContext('2d');
+      paint(current,images[index]);
+      c.save(); c.globalAlpha=eased; c.drawImage(images[index+1],0,0); c.restore();
+    }
+    if(announcedStep!==index) {
+      announcedStep=index; setSelection(index+1);
+      status.textContent=`正在第 ${index+1} 步：${op.name}。目标参数：${describe(op,M())}；作用于上一步输出。`;
+    }
+    frame=requestAnimationFrame(animate);
+  }
+  playButton.addEventListener('click',()=>{
+    if(playing) {
+      pause(); status.textContent=`已暂停在第 ${Math.min(Math.floor(position)+1,N())} 步；再次点击继续播放。`;
+    } else {
+      if(position>=N()) position=0;
+      announcedStep=-1; lastTime=performance.now(); playing=true;
+      updatePlayButton(); frame=requestAnimationFrame(animate);
+    }
+  });
+  function renderSteps() {
+    steps.replaceChildren(); stepButtons=[];
+    operations.forEach((op,index)=>{
+      const item=document.createElement('li'); item.className='step-item';
+      const thumbnail=newCanvas(); thumbnail.setAttribute('role','img'); thumbnail.setAttribute('aria-label',`第 ${index+1} 步输出：${op.name}，标签仍为猫`);
+      paint(thumbnail,images[index+1]);
+      const button=document.createElement('button'); button.type='button'; button.className='btn'; button.textContent=`${index+1} · ${op.name}`;
+      button.addEventListener('click',()=>showStep(index+1));
+      const parameter=document.createElement('span'); parameter.className='text-small text-muted'; parameter.textContent=describe(op,M());
+      item.append(thumbnail,button,parameter); steps.append(item); stepButtons.push(button);
+    });
+  }
+  function recompute() {
+    pause();
+    while(operations.length<N()) operations.push(sampleOperation());
+    operations=operations.slice(0,N());
+    images=[original];
+    operations.forEach(op=>images.push(applyOperation(images[images.length-1],op,M())));
+    root.querySelector('#n-value').textContent=String(N());
+    root.querySelector('#m-value').textContent=`${M()} / 10`;
+    root.dataset.operations=JSON.stringify(operations);
+    root.dataset.outputs=String(images.length);
+    root.dataset.magnitude=String(M());
+    paint(final,images[images.length-1]);
+    renderSteps();
+    showStep(Math.min(selectedStep,N()));
+  }
+  nInput.addEventListener('input',recompute);
+  mInput.addEventListener('input',recompute);
+  root.querySelector('#resample').addEventListener('click',()=>{operations=[];selectedStep=0;recompute();});
+  drawCat(original);
+  recompute();
+})();
+</script>
+</main>
+</body>
+</html>

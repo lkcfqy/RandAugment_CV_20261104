@@ -1,0 +1,1062 @@
+{
+  "status": "frozen_before_any_new_task_gradient_or_probe_forward",
+  "at_utc": "2026-10-22T16:28:51.867245+00:00",
+  "question": "At the original initialization and first warmup AdamW step, how much does front versus back Q/V-LoRA change clean training-only CLS features, relative to gradient-batch variation?",
+  "scope": "Optimization/parameterization diagnostic only, not a new augmentation effect, contribution, convergence test, or correction of the original scientific outcome.",
+  "model_seed": 20261022,
+  "layouts": [
+    "front",
+    "back"
+  ],
+  "rank": 4,
+  "blocks": {
+    "front": [
+      0,
+      1,
+      2
+    ],
+    "back": [
+      9,
+      10,
+      11
+    ]
+  },
+  "initialization": "Exactly original shared-by-slot A~N(0,.01^2), B0 and common 37-class random head; compare saved original initial trainable checkpoints.",
+  "training_only_selection": "Sort the591 retained training rows by SHA256(opt-diagnostic-v1|20261022|source_id); first64 form4 gradient batches16; next32 form2 disjoint probe batches16. No replacement or class/performance selection.",
+  "selected_rows": [
+    {
+      "source_id": "shiba_inu_131",
+      "class_id": 31,
+      "candidate_partition": "train",
+      "image_sha256": "d9dd28d747e394054b5bed52983bc8a8da2ec14cafbf9a1de26a314ad79ea5b0",
+      "decoded_RGB_sha256": "40352cc09590443e2fa8f82b042859eed680d21544a22dbaf44ea80bd9b1a0da",
+      "duplicate_cluster_id": "unique-source:shiba_inu_131",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "english_cocker_spaniel_103",
+      "class_id": 12,
+      "candidate_partition": "train",
+      "image_sha256": "f3aa83c9848d31484ddc2ce2a27aa54d924eadd529da35bc95e26153931e3eef",
+      "decoded_RGB_sha256": "cf3d9bc406d9a1a466b948e7828f72a1ad95711fd6abb64ccc967ba074bfe3fd",
+      "duplicate_cluster_id": "unique-source:english_cocker_spaniel_103",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Russian_Blue_199",
+      "class_id": 27,
+      "candidate_partition": "train",
+      "image_sha256": "eff22fb9c21142e8ef4f5f5dbe6ec98baa313ce430c87a92b3e4886e5da930ee",
+      "decoded_RGB_sha256": "a16d8ca96464e08b0846c1b0c398a0379708e206d0feee4739415f056fa48278",
+      "duplicate_cluster_id": "unique-source:Russian_Blue_199",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Persian_141",
+      "class_id": 23,
+      "candidate_partition": "train",
+      "image_sha256": "cc19a55e95fdeea98040d845320476563e6358e0846cac43f9ce448b90ab5626",
+      "decoded_RGB_sha256": "171e9a0236ff67a0ecd25d93c5f29f6801ff381a735287b79b771f883a7db042",
+      "duplicate_cluster_id": "unique-source:Persian_141",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "havanese_165",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "bb292bc2b93b1add464f67acee943b76a1b7562b0ebcdf8ea9b56715094ad0eb",
+      "decoded_RGB_sha256": "65377ddadeba45047e73d8ea032214edc1578986c70d71de1c1d01a712894902",
+      "duplicate_cluster_id": "unique-source:havanese_165",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "chihuahua_121",
+      "class_id": 10,
+      "candidate_partition": "train",
+      "image_sha256": "b9903ef6d5637413fcfb311769b8a47d29047a53a7e18ed25f03c3be517b97c6",
+      "decoded_RGB_sha256": "86bbd6f92a0cecd93e0341e4730f8e8a044917932db900833440230e7918bda9",
+      "duplicate_cluster_id": "unique-source:chihuahua_121",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "miniature_pinscher_150",
+      "class_id": 21,
+      "candidate_partition": "train",
+      "image_sha256": "57655e83d0499bc64165ad2b15e3fa77faf8a099cff91681f44e7a63891dabee",
+      "decoded_RGB_sha256": "aa4cc2fa79b845b14f8e06afadd42a9feb12243da4fc214a50c68bbed429aafc",
+      "duplicate_cluster_id": "unique-source:miniature_pinscher_150",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Siamese_136",
+      "class_id": 32,
+      "candidate_partition": "train",
+      "image_sha256": "196f2db86eac1305efbc6e3c788bc1047e2c61642c0d3ae83d4f410d4d0e5da1",
+      "decoded_RGB_sha256": "c9b4274fba533b1ee9c9a1ef601debf70dc7af5e36eba90718e173251aef1355",
+      "duplicate_cluster_id": "unique-source:Siamese_136",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "german_shorthaired_159",
+      "class_id": 14,
+      "candidate_partition": "train",
+      "image_sha256": "b78e4a36c9cbc1c8f547659a135538806e0ccaf754381c13c1c9673557ce3214",
+      "decoded_RGB_sha256": "9597cb52237ce6ee565e04b4f53c7a9f6a74b1f7faa802541fbb435262f0c4c9",
+      "duplicate_cluster_id": "unique-source:german_shorthaired_159",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Birman_13",
+      "class_id": 6,
+      "candidate_partition": "train",
+      "image_sha256": "0912884954f4b0e26ca7fbf323bf2fb75fc685ae910da04cb8696a76b993a7b7",
+      "decoded_RGB_sha256": "a72ca3b5e2e73529aae70cc98039cfe6a5f78a5605253217d974417b5f54612c",
+      "duplicate_cluster_id": "unique-source:Birman_13",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "havanese_139",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "96b8acbf4c5f01195a4fd8e24b22c16cda32cf1747b42065d9fc0e76950252ed",
+      "decoded_RGB_sha256": "e23a2a99ed867685b218ee448565858d81002fd36f0b469198c66a67d6fbc8d9",
+      "duplicate_cluster_id": "unique-source:havanese_139",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "British_Shorthair_201",
+      "class_id": 9,
+      "candidate_partition": "train",
+      "image_sha256": "2d4bb1d1c1ea190b9294735148ae6fe64dac6f77568d59cf4542763685c1dc98",
+      "decoded_RGB_sha256": "c9d8c15d5c27d9762c917f90f8d1e2b767508e64dfa03406b7d7d87202e4e5ba",
+      "duplicate_cluster_id": "unique-source:British_Shorthair_201",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "miniature_pinscher_126",
+      "class_id": 21,
+      "candidate_partition": "train",
+      "image_sha256": "dab2c0e82708dfb0eb23f5efdfd29e9ff7ff6a935ba52529c4db359f379725f9",
+      "decoded_RGB_sha256": "f3c26fd25b6846fcaff350afdcc34ab9bf1a5e11befef7756c5d4cd6d0cd7e0c",
+      "duplicate_cluster_id": "unique-source:miniature_pinscher_126",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "havanese_142",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "9e3789ceeab765a024694a312aa867d9b2a4f4f02462aa434dddef202ec0ba3b",
+      "decoded_RGB_sha256": "bcbeef33646c9bda29e68556d880f74bf62f4c566d46daef5d514d94e23449aa",
+      "duplicate_cluster_id": "unique-source:havanese_142",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Bombay_178",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "73f713d2e88a46ffd0ddbfe2b61598f2d691652089771758d11b648516996190",
+      "decoded_RGB_sha256": "9a45dad2487f6ae6e14ec8d16374be38f460674f41c71eb327ba85c2208068ea",
+      "duplicate_cluster_id": "unique-source:Bombay_178",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "British_Shorthair_16",
+      "class_id": 9,
+      "candidate_partition": "train",
+      "image_sha256": "ab13bb9c2fcb88ff0eb6e2100bc5fbf8b7a31f4d0fd34aab3f1b1e2c335df754",
+      "decoded_RGB_sha256": "e2ee5f0576f1e3bc4a9deffe2cfcd38befdb1a72534cad58f4a8738eb7afcc59",
+      "duplicate_cluster_id": "unique-source:British_Shorthair_16",
+      "role": "gradient",
+      "batch": 0
+    },
+    {
+      "source_id": "Russian_Blue_173",
+      "class_id": 27,
+      "candidate_partition": "train",
+      "image_sha256": "1cf7b4ad11c3eb5f2b10917dac3f37efac6b456130f563f1e2b906863850122b",
+      "decoded_RGB_sha256": "8592058164cd91ec8b13f46115794e3f394a4578fde3cfd0c40155bf178d2a0b",
+      "duplicate_cluster_id": "unique-source:Russian_Blue_173",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "shiba_inu_127",
+      "class_id": 31,
+      "candidate_partition": "train",
+      "image_sha256": "dd6a7335a88e996c029f0b6a242b94066d1c742ee71af296bfc2baa200418e5f",
+      "decoded_RGB_sha256": "c00132ed63f049000b66e73dc7aa089e71d39314365f923b767a83e9365f6fa3",
+      "duplicate_cluster_id": "unique-source:shiba_inu_127",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "beagle_170",
+      "class_id": 4,
+      "candidate_partition": "train",
+      "image_sha256": "3fdc26ff1d328e28949ba028d5eff7627ad413c2eab3a246fd5eed6cecf8bd62",
+      "decoded_RGB_sha256": "ca25b42cc80d08c4679fa5a3404177736cb7bba5794fa557530c9dc23cde17f6",
+      "duplicate_cluster_id": "unique-source:beagle_170",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "shiba_inu_158",
+      "class_id": 31,
+      "candidate_partition": "train",
+      "image_sha256": "1d7e01f4b15e05af6bcc76bd5422da86fbf196c93dee30bb64e37d9bbed52c38",
+      "decoded_RGB_sha256": "a608db8e90a7f2fb75a7541a7898ca84576374ba94b6cd511ce0b5395eb41907",
+      "duplicate_cluster_id": "unique-source:shiba_inu_158",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "saint_bernard_184",
+      "class_id": 28,
+      "candidate_partition": "train",
+      "image_sha256": "b2edba528e2f5123629257fbed2d907337920579e311b068483c9804a7c2c5b8",
+      "decoded_RGB_sha256": "0a3e86f6442976a2bb72cadc4b382e5ba7b68e3a03801536d0d2af1b1a838421",
+      "duplicate_cluster_id": "unique-source:saint_bernard_184",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "chihuahua_147",
+      "class_id": 10,
+      "candidate_partition": "train",
+      "image_sha256": "8da3104434a73aa8a3e087a0fa99aa74cc1ea6ff402e3b94c14f8ded2bd1a995",
+      "decoded_RGB_sha256": "a11246bfbad03354b75229b36b9545eb91d73bca705c4479beb6133404b8fa53",
+      "duplicate_cluster_id": "unique-source:chihuahua_147",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "Bombay_139",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "7810866d127c32f87eb98d1021ec8c5f8d489363850733d5b17256d10afb0ba5",
+      "decoded_RGB_sha256": "4aacb38d91c8b1343c5c1f371a492c6ba966c20ce0cb1b349d04ecff332734a7",
+      "duplicate_cluster_id": "unique-source:Bombay_139",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "samoyed_172",
+      "class_id": 29,
+      "candidate_partition": "train",
+      "image_sha256": "5539afdd7fca2585710dbe428467bbde68e4aa2cdb545977b88fa4be54ffa75d",
+      "decoded_RGB_sha256": "91c0aa1b664eeb15c13e85c178416921bb3ed174d09e2b039086a46d28121747",
+      "duplicate_cluster_id": "unique-source:samoyed_172",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "Bengal_164",
+      "class_id": 5,
+      "candidate_partition": "train",
+      "image_sha256": "7f6daed758be81acc5ad462497598c600f23f97280be2e6d51749024677c3983",
+      "decoded_RGB_sha256": "096606d5fad91cbdb75a8b7bab24e5e7854d69230d23a7b8f30a1106f6ae6e19",
+      "duplicate_cluster_id": "unique-source:Bengal_164",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "english_setter_132",
+      "class_id": 13,
+      "candidate_partition": "train",
+      "image_sha256": "cb8bdda2dc9927101840d9aeea7a82d0bd2eae8b68057afeb117989c091eb582",
+      "decoded_RGB_sha256": "f2bef3e60fd72dbf61e86ba51bfeeabf1f83689fb5ab8fb5ffd163f2220a2f4c",
+      "duplicate_cluster_id": "unique-source:english_setter_132",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "great_pyrenees_174",
+      "class_id": 15,
+      "candidate_partition": "train",
+      "image_sha256": "ac0145e33642d943dd17c4a07c38b903ed6b96ad50453cb044a56ad986101f26",
+      "decoded_RGB_sha256": "ce4545a7bc2787c9e75f2d99283ea44239d552c4d0b0ef684275518ef1ab9afa",
+      "duplicate_cluster_id": "unique-source:great_pyrenees_174",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "japanese_chin_119",
+      "class_id": 17,
+      "candidate_partition": "train",
+      "image_sha256": "f77524fe3dc9dd98e63161e14767a240e117472610cc65e5e42917cd5942bffa",
+      "decoded_RGB_sha256": "fb18305597e320593c8dc8767da8fd1c7a303a1440d9454551f4a7c087872434",
+      "duplicate_cluster_id": "unique-source:japanese_chin_119",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "saint_bernard_169",
+      "class_id": 28,
+      "candidate_partition": "train",
+      "image_sha256": "f30610b697efd5e49e7c4421d479257cbcb15665d1d3368581a4fc83da553ca6",
+      "decoded_RGB_sha256": "599a8ec196d31218b24a436898b46ce22c321ef05158b6616888309e00445b2b",
+      "duplicate_cluster_id": "unique-source:saint_bernard_169",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "pug_177",
+      "class_id": 25,
+      "candidate_partition": "train",
+      "image_sha256": "97ea7121cc4e5f76fd9b7be59b896ca423a7931583b8dae6b3a79b5aefd33a7c",
+      "decoded_RGB_sha256": "0ea99a7ac678b3c53095d97f1d823f78b8c47fa471d2440b3eeb480d62a0c721",
+      "duplicate_cluster_id": "unique-source:pug_177",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "havanese_167",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "1215ba9e4dc94d39dd2b52040df5efa85239e422460d29ce0bd3fc4eaaddb592",
+      "decoded_RGB_sha256": "dc419c14fe33273c6d6415ec770e5caeedd3732343f99dcb4f007f7adaaf17f2",
+      "duplicate_cluster_id": "unique-source:havanese_167",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "Maine_Coon_159",
+      "class_id": 20,
+      "candidate_partition": "train",
+      "image_sha256": "c7b773b82ec4369897fceebc547378af117d6f304ef22ab84ba8efd191ec2b7d",
+      "decoded_RGB_sha256": "8f6766f29f41ff1eb7f21ef3335bf146c3db5aadf39f703024e8b66b6ccc5c3f",
+      "duplicate_cluster_id": "unique-source:Maine_Coon_159",
+      "role": "gradient",
+      "batch": 1
+    },
+    {
+      "source_id": "english_cocker_spaniel_148",
+      "class_id": 12,
+      "candidate_partition": "train",
+      "image_sha256": "562452d072eb58de25f3fc66322fb09d40660def8a6626f8887a4f0d18af1393",
+      "decoded_RGB_sha256": "8f1a503d7fd04e082d56fa7f7ac940c1dad3d2e967e4e0bbc1744531f51b6ceb",
+      "duplicate_cluster_id": "unique-source:english_cocker_spaniel_148",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "english_cocker_spaniel_110",
+      "class_id": 12,
+      "candidate_partition": "train",
+      "image_sha256": "a8622e3723050bd0d79a16d2b4e6ff23528a112950930f23bc9020fd8e319d5b",
+      "decoded_RGB_sha256": "2ce8b918a01e305e3a88ed90cc1fa197631308aac379d5fe2524622c486fcbf6",
+      "duplicate_cluster_id": "unique-source:english_cocker_spaniel_110",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "leonberger_156",
+      "class_id": 19,
+      "candidate_partition": "train",
+      "image_sha256": "b9688bed4ca79192ee15b91175f9b5b84b60785faaa181eb515ce4245ed2196c",
+      "decoded_RGB_sha256": "d999b2867feffa6a4b9521ff8773fc7d1db6721c376896f6afe402b001e720b5",
+      "duplicate_cluster_id": "unique-source:leonberger_156",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "shiba_inu_136",
+      "class_id": 31,
+      "candidate_partition": "train",
+      "image_sha256": "b7fbdc6dea2137702199a405696756dfff175c062f10ab60fed7b2ac26fcfed1",
+      "decoded_RGB_sha256": "54eb3e2bfee8ff16161dc6c581ca36ae95af815a9728b6153648d321ca802037",
+      "duplicate_cluster_id": "unique-source:shiba_inu_136",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "japanese_chin_130",
+      "class_id": 17,
+      "candidate_partition": "train",
+      "image_sha256": "54d070a361794322938b0532a042d822c1ac9851e90597a36df2435bd867d918",
+      "decoded_RGB_sha256": "7592ee1666561ba6e81441b9d9cf1eeace126947ea90e709e0f9791fe272fec5",
+      "duplicate_cluster_id": "unique-source:japanese_chin_130",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "Maine_Coon_123",
+      "class_id": 20,
+      "candidate_partition": "train",
+      "image_sha256": "954c8c8d88314bb2ba543f78d1f7afc5fd6750359dcce23ae03a8b90644454ba",
+      "decoded_RGB_sha256": "b5ad634945d5991717a9d6d918c05c1eadf066d5cd8e105302579c6d609eb3de",
+      "duplicate_cluster_id": "unique-source:Maine_Coon_123",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "scottish_terrier_132",
+      "class_id": 30,
+      "candidate_partition": "train",
+      "image_sha256": "1a3018024aae1c0985227ce9cba25877b20d3d3aaabfb5c191fca2b6b7d3d4e2",
+      "decoded_RGB_sha256": "add5255f74b5754d090c67babd9879aabd72f77ff94581f2513189847f018dca",
+      "duplicate_cluster_id": "unique-source:scottish_terrier_132",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "english_setter_155",
+      "class_id": 13,
+      "candidate_partition": "train",
+      "image_sha256": "3320b85717bc8bfb0a2232ccc8ce4a871c22da5fb969ff54862d283d73188f17",
+      "decoded_RGB_sha256": "d32b616ae3a2c8f7248e9076a84a0180d985428978d248b314e1f40521f4f369",
+      "duplicate_cluster_id": "unique-source:english_setter_155",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "samoyed_167",
+      "class_id": 29,
+      "candidate_partition": "train",
+      "image_sha256": "97e6f7c1078825e9c65e6bd2b6479bf581d5b5e33f38c5e6cfc66e7bad2c0d71",
+      "decoded_RGB_sha256": "bc831ac89b4fd868cec28fd0f660e62479c943fd4cb1325cd1355136b79cb82c",
+      "duplicate_cluster_id": "unique-source:samoyed_167",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "Ragdoll_140",
+      "class_id": 26,
+      "candidate_partition": "train",
+      "image_sha256": "62287d0fb46d1206d9299b3cca1e29a80b1b33d5f423b41f4a4919cace1cefd5",
+      "decoded_RGB_sha256": "9e0f7cc995c318247bc5169a8d00b875a6749318f483faf1de1594a968dcf25d",
+      "duplicate_cluster_id": "unique-source:Ragdoll_140",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "newfoundland_173",
+      "class_id": 22,
+      "candidate_partition": "train",
+      "image_sha256": "ecf72ca7ad2c48253f5d9ef2978d545a22299806f2638f932f49dd669b7e15ee",
+      "decoded_RGB_sha256": "9ed7b3362a5ead51e68a55792d6bfd62e907f73ac1e342542813ed03c1c3662c",
+      "duplicate_cluster_id": "unique-source:newfoundland_173",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "Abyssinian_137",
+      "class_id": 0,
+      "candidate_partition": "train",
+      "image_sha256": "1a67cdd6db07950879c74455aea53463ff167c002c19d946dff8f2187fbb8469",
+      "decoded_RGB_sha256": "735c3ca24f229690524314bc5d3463ede186bfc9f370c05e23010eece7ab0505",
+      "duplicate_cluster_id": "unique-source:Abyssinian_137",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "japanese_chin_181",
+      "class_id": 17,
+      "candidate_partition": "train",
+      "image_sha256": "564b96608dc50ba78f0242dfec49c28c9cceb5872bb3e1cf40be5a210836822c",
+      "decoded_RGB_sha256": "37034a5fc65a2bedd1c86c64a9bc81abcfac06763092a25b3d9def2c83accf27",
+      "duplicate_cluster_id": "unique-source:japanese_chin_181",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "Ragdoll_106",
+      "class_id": 26,
+      "candidate_partition": "train",
+      "image_sha256": "f41ded8a98dcaab8f62297673e5409ce736825201c45d6102c4a4e2214bed34c",
+      "decoded_RGB_sha256": "d87366ecf2520357151f0708c2ab1b95df6279f686cdf5b837bcd484896220c1",
+      "duplicate_cluster_id": "unique-source:Ragdoll_106",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "german_shorthaired_12",
+      "class_id": 14,
+      "candidate_partition": "train",
+      "image_sha256": "cf879d8574a5776da89ad98aafe2dd447b59fa86ee96b3bb8a1881ec49af2c5a",
+      "decoded_RGB_sha256": "3aeca2f0eaac87fb1d52d9769363f539454929a978c273a24e2bef92bfe530ae",
+      "duplicate_cluster_id": "unique-source:german_shorthaired_12",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "scottish_terrier_122",
+      "class_id": 30,
+      "candidate_partition": "train",
+      "image_sha256": "8cc8396c8e0be341c7e403316762b3116f41f2381cb92f748afb54da5c1ad2a0",
+      "decoded_RGB_sha256": "836541106ad3bbdfbf340b4dfdb743b48276564033d3c73655180f2d1e465d95",
+      "duplicate_cluster_id": "unique-source:scottish_terrier_122",
+      "role": "gradient",
+      "batch": 2
+    },
+    {
+      "source_id": "newfoundland_124",
+      "class_id": 22,
+      "candidate_partition": "train",
+      "image_sha256": "51272fa3f5c471039b671490f78e07a1c80d967ebca8e3540e2c0d75616e3080",
+      "decoded_RGB_sha256": "ef734e9ea3568b6776790f4d46c776303c987ecac5df951a1d173abb851f6797",
+      "duplicate_cluster_id": "unique-source:newfoundland_124",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "pug_129",
+      "class_id": 25,
+      "candidate_partition": "train",
+      "image_sha256": "be45a746aa5c05d7d0ef206421c6af6142664bb86e525cc0bc293fa30c7b1cb8",
+      "decoded_RGB_sha256": "bbae7fea6a39c54acbace75d4e4ec7f2bb78d109bedc08cb3a3b9e24fcf604b7",
+      "duplicate_cluster_id": "unique-source:pug_129",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "samoyed_188",
+      "class_id": 29,
+      "candidate_partition": "train",
+      "image_sha256": "276794b7c6ef88a3ad73d10a68ae5b2c271dba7908de563562dc34277ac624b9",
+      "decoded_RGB_sha256": "27fe70c19954381dc8b413e93126d7de61afb1665caecf41f6fd21fd7f603056",
+      "duplicate_cluster_id": "unique-source:samoyed_188",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "Bombay_112",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "628e07524fea89c7f5ba80a2bac3e7ea7c115b7530572665a899daf88e5ab362",
+      "decoded_RGB_sha256": "c022f6c6f7441fd6430494a89451710fdfa68a2745378dc94a4b6dabca3aa35b",
+      "duplicate_cluster_id": "unique-source:Bombay_112",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "american_pit_bull_terrier_160",
+      "class_id": 2,
+      "candidate_partition": "train",
+      "image_sha256": "fb439a494c64dc9bd6722dde6144b23459e4b177f37dc3d238499c207d2d6481",
+      "decoded_RGB_sha256": "051e7cd9a95937ba06da8e05b2437d9d68281ac25914395d02b2f4a00eb5ef24",
+      "duplicate_cluster_id": "unique-source:american_pit_bull_terrier_160",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "english_setter_107",
+      "class_id": 13,
+      "candidate_partition": "train",
+      "image_sha256": "7e8b0cb95528557600ab620a3968e3194aa93ba7e2770d753c186d7b97219e3c",
+      "decoded_RGB_sha256": "28ca99798c8c64208f2e84b9c13aace202033d23a3b5a522c2074153a71abc65",
+      "duplicate_cluster_id": "unique-source:english_setter_107",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "beagle_148",
+      "class_id": 4,
+      "candidate_partition": "train",
+      "image_sha256": "6b21b01ce5d4a0397e77b2f11157e6ea2a952dafc85823676b1013198323ed12",
+      "decoded_RGB_sha256": "a56d4db959bb5eb9f09c86ed4f888d34da7b1b24d18936052a74a1ca2a29fe42",
+      "duplicate_cluster_id": "unique-source:beagle_148",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_155",
+      "class_id": 34,
+      "candidate_partition": "train",
+      "image_sha256": "be73031ccd50ea08548b6405785ee34b69893a2b5145217dd2b4066b074e82a0",
+      "decoded_RGB_sha256": "596404b1a857e4dcfa469c328edae2906a31afa6c3c985e81ff31ef98c9882ac",
+      "duplicate_cluster_id": "unique-source:staffordshire_bull_terrier_155",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "havanese_171",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "06368a9129ef26d18fa933651f2698872e9d1514ad52f8dba44d99a0218f4dfb",
+      "decoded_RGB_sha256": "1e2c189b2e50af8cedf25c2f413dff06f4f5bcedd0b6d30ecfdc4d69cdcca5e9",
+      "duplicate_cluster_id": "unique-source:havanese_171",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "english_setter_130",
+      "class_id": 13,
+      "candidate_partition": "train",
+      "image_sha256": "8d7a0c8e501b89a3fdf46757a81992f87fc29ac1815c6c50e1e8e0018ccb5ce9",
+      "decoded_RGB_sha256": "5cd0433c45154a59a8ab28cdc1164aaa6783128dd7f444bd13130d17ed22f229",
+      "duplicate_cluster_id": "unique-source:english_setter_130",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "miniature_pinscher_160",
+      "class_id": 21,
+      "candidate_partition": "train",
+      "image_sha256": "7e6f638c5094f602ca00ef7110563d150bb56c46ff9b5c579bfd453bb765220a",
+      "decoded_RGB_sha256": "3749fb11b5dd0204106014fe2027d22e75325cb80b087fdf2eb19a8fe0e7a099",
+      "duplicate_cluster_id": "unique-source:miniature_pinscher_160",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "Maine_Coon_195",
+      "class_id": 20,
+      "candidate_partition": "train",
+      "image_sha256": "2af0ab66291bb77ef7c326ad435198af4d8beab9f6785d622044fff58b2fe6c8",
+      "decoded_RGB_sha256": "72349b998224ceced7dc13dd71137ee4c9646b73ea2c9e2b95ee33d10a004131",
+      "duplicate_cluster_id": "unique-source:Maine_Coon_195",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "leonberger_130",
+      "class_id": 19,
+      "candidate_partition": "train",
+      "image_sha256": "9b7070170d38753270998894e132a7639234aca196758c74c286badca42c0e14",
+      "decoded_RGB_sha256": "4d7e26f7ee63562bd4b3ae61d8fd586dbbab2e5156e1bad6a07ee8136b605ef1",
+      "duplicate_cluster_id": "unique-source:leonberger_130",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "Bombay_182",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "75b69391c5041c6bc2f95203661d0602267b35b4e2419df66cc15b7ae7968496",
+      "decoded_RGB_sha256": "63a2c801fd933b904785c7813c14caf26262064f4e13b299b3395e38a5aa2748",
+      "duplicate_cluster_id": "unique-source:Bombay_182",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "english_setter_10",
+      "class_id": 13,
+      "candidate_partition": "train",
+      "image_sha256": "9fe56960ed7f7afae69b2bbf9db1428bf60577ce3419821b854b9e2019d4aa7c",
+      "decoded_RGB_sha256": "af21960807844189d8dc68f220ffaa1d21cb05967e9585a92177e58c5f479f7e",
+      "duplicate_cluster_id": "unique-source:english_setter_10",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "pug_112",
+      "class_id": 25,
+      "candidate_partition": "train",
+      "image_sha256": "d6bbd60d490cb085f710b74a6104c245f6363b3e4fd732f0dddacb439c69906a",
+      "decoded_RGB_sha256": "06ab7e54eafacb529d41b5465bcd18231eb9cad38384ac1a6c76f110f3d82565",
+      "duplicate_cluster_id": "unique-source:pug_112",
+      "role": "gradient",
+      "batch": 3
+    },
+    {
+      "source_id": "Sphynx_146",
+      "class_id": 33,
+      "candidate_partition": "train",
+      "image_sha256": "4d5f9690d11c11ccc5568b7f83c8c89fa57107427b2874596f9e17091fd9e76d",
+      "decoded_RGB_sha256": "468a5923f8d0db1fd0aa4445babb6f728dac974f07134504bf9832ef6d54d315",
+      "duplicate_cluster_id": "unique-source:Sphynx_146",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "Ragdoll_155",
+      "class_id": 26,
+      "candidate_partition": "train",
+      "image_sha256": "c542cf5f68e37836732ac21605fc2947e86fd04f961e2a4d3ead79fbf9d30f82",
+      "decoded_RGB_sha256": "b132e9dab6637de12d4106682712d578f7e0f36bfd9f6d5ccccd5352b497b30a",
+      "duplicate_cluster_id": "unique-source:Ragdoll_155",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "german_shorthaired_128",
+      "class_id": 14,
+      "candidate_partition": "train",
+      "image_sha256": "40ad3922cf7a9f38ca4103f9dbf94bec5d41a33d2ad27b25414efaa809b90655",
+      "decoded_RGB_sha256": "e73762eb015af0f44ccfaff923e962cf49f126c17397f533325647baf79e8d18",
+      "duplicate_cluster_id": "unique-source:german_shorthaired_128",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "american_pit_bull_terrier_158",
+      "class_id": 2,
+      "candidate_partition": "train",
+      "image_sha256": "d676194ecce33b0bd45dd65be00589ef5fac7147d471805b51eba3c96c664126",
+      "decoded_RGB_sha256": "bedc345870c3f57268702f626869c2b4bcd0831b2010fb24865debe416b9493b",
+      "duplicate_cluster_id": "unique-source:american_pit_bull_terrier_158",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "keeshond_165",
+      "class_id": 18,
+      "candidate_partition": "train",
+      "image_sha256": "9ea6ba0d3ffa0c3c860136abd140f439d17998104632f7364030af9bc10c9ffc",
+      "decoded_RGB_sha256": "dfabd66ff66f0ddd29d508304920054b3c0ed4a5d23ca41dd13b548bb5be390a",
+      "duplicate_cluster_id": "unique-source:keeshond_165",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "german_shorthaired_130",
+      "class_id": 14,
+      "candidate_partition": "train",
+      "image_sha256": "0484fbaa887f4327627dc76fa2012d11d8d3d682fcb2f91502064243c7de210d",
+      "decoded_RGB_sha256": "3445cb75a528b73c0e54f14c794ba6eddaf5873262bea6560731ee2a297de012",
+      "duplicate_cluster_id": "unique-source:german_shorthaired_130",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "Bombay_154",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "264e5c77fd8ebdab25916dfa60f5d1d48bdb39893dd033d1b0b94a27a0ba558b",
+      "decoded_RGB_sha256": "70d594fb87b800ac0b98d9516ceca850c46156a3e78edec232e169ac6961d44a",
+      "duplicate_cluster_id": "unique-source:Bombay_154",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "shiba_inu_135",
+      "class_id": 31,
+      "candidate_partition": "train",
+      "image_sha256": "a68641699fc6ec8ca2578e1404ce803606d5a29ce909e3e4a2a62f7649fad577",
+      "decoded_RGB_sha256": "907d1447ae354fa972f2add259290c65074232e43ac6048c4dfc2a9cd1a424dc",
+      "duplicate_cluster_id": "unique-source:shiba_inu_135",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "keeshond_148",
+      "class_id": 18,
+      "candidate_partition": "train",
+      "image_sha256": "d32e30e1623232b2e069f9c1a00b67fe73e8dc1e08821e9ca18fae9a0769f9f4",
+      "decoded_RGB_sha256": "67aa75f3b6fe0fa832c8cd230b00f92b634e86b671e15fc71023236a06fc07e1",
+      "duplicate_cluster_id": "unique-source:keeshond_148",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_124",
+      "class_id": 34,
+      "candidate_partition": "train",
+      "image_sha256": "e37fe138bf9cccd577919545e39b6ac975883ca3564a44b0df83a9c2de1d142a",
+      "decoded_RGB_sha256": "5de5e53fb5de967bd55b62694c603de7177625db750e7ad505852d53bc63cd68",
+      "duplicate_cluster_id": "unique-source:staffordshire_bull_terrier_124",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "chihuahua_129",
+      "class_id": 10,
+      "candidate_partition": "train",
+      "image_sha256": "0b54b8fe0b249c758185ceaad97d1ffb7468f44706c1f028069be254a6f2fc4f",
+      "decoded_RGB_sha256": "7401bd34633c65b3086531f9473f951a7c30adb38c5f95481dae9af07810d4da",
+      "duplicate_cluster_id": "unique-source:chihuahua_129",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "havanese_121",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "8e3ccba63c5e470b0d1d25e5db1372e872cb3da6a3f9d637034b56ac28240798",
+      "decoded_RGB_sha256": "18c75b4ec986d0fa50bb4ecfadfa2c071497cc4010fda5b5b18cd93bdb130983",
+      "duplicate_cluster_id": "unique-source:havanese_121",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "havanese_131",
+      "class_id": 16,
+      "candidate_partition": "train",
+      "image_sha256": "d753ee7e3dab6b46b8350dada95466bcf0115a377aaceaa9a30336bacff9307d",
+      "decoded_RGB_sha256": "202a7efc7884c0d7ce664f4b64680d1ea1d694f0638c02d62af86a19f0dead46",
+      "duplicate_cluster_id": "unique-source:havanese_131",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "samoyed_131",
+      "class_id": 29,
+      "candidate_partition": "train",
+      "image_sha256": "fd5d1e24fbe82fe926ef7e06114c8b966855a531358536730fafa49c6b950190",
+      "decoded_RGB_sha256": "24c60021da73e412bd550e5355ba80954c6b020880919247ad45be9d3b7a06e7",
+      "duplicate_cluster_id": "unique-source:samoyed_131",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "scottish_terrier_155",
+      "class_id": 30,
+      "candidate_partition": "train",
+      "image_sha256": "78819448de5fffd784a5e3720ffdd3341f15dc6f77846fb0a0e64b77a2f61702",
+      "decoded_RGB_sha256": "e3da5fadec32c8292ba7bb1358f4c07aab24a0a1614b83cc623b7d180f1b6060",
+      "duplicate_cluster_id": "unique-source:scottish_terrier_155",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "scottish_terrier_164",
+      "class_id": 30,
+      "candidate_partition": "train",
+      "image_sha256": "b0c075bded3824fa7c084a9d15921905f91d55200e1d2f678032bf793a56f4b2",
+      "decoded_RGB_sha256": "c1d656db6df6f887fcf17b3caf429aa3bf3eb2aa649978c3216cb7e1b74e3bdd",
+      "duplicate_cluster_id": "unique-source:scottish_terrier_164",
+      "role": "probe",
+      "batch": 0
+    },
+    {
+      "source_id": "Ragdoll_160",
+      "class_id": 26,
+      "candidate_partition": "train",
+      "image_sha256": "1f6cdf1e36385665fc3f5a6cbf18a64f68f8b27e7f04ad254942b176559c1ecc",
+      "decoded_RGB_sha256": "97ae810aedc4ee4b2cd2cc7c442af49f744d8b859f6049bf14daf4b305441d93",
+      "duplicate_cluster_id": "unique-source:Ragdoll_160",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "Persian_191",
+      "class_id": 23,
+      "candidate_partition": "train",
+      "image_sha256": "6d384eada930ea1a2cfe64e2afe3d8b22e12545436ab62875473b9f8acb41bb5",
+      "decoded_RGB_sha256": "548cb993603c52a569c4cabba33e8287d933e2bc76b4ee9a3c8f988c35752545",
+      "duplicate_cluster_id": "unique-source:Persian_191",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "basset_hound_18",
+      "class_id": 3,
+      "candidate_partition": "train",
+      "image_sha256": "411f46b93bbc47cd5cc63f6a358e653f50931cadb9af07f2189439797e75b21d",
+      "decoded_RGB_sha256": "b5b01c63e9b25d7b3c4c611fac85c418f4e36fd77922eeaafc5daf5c24884c12",
+      "duplicate_cluster_id": "unique-source:basset_hound_18",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "leonberger_154",
+      "class_id": 19,
+      "candidate_partition": "train",
+      "image_sha256": "f18e38027068313ef408d30f971f67c0cdbf6917307fc294ffc68ce0e35304ae",
+      "decoded_RGB_sha256": "b44f6ff25a275505124b9c25099f846cfef25621eaf6f76d7bc254c5c8f8f0a8",
+      "duplicate_cluster_id": "unique-source:leonberger_154",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_11",
+      "class_id": 34,
+      "candidate_partition": "train",
+      "image_sha256": "5fa8be5e024b8f08afb6df6d5cc164ddc7d7d730fb4f98d00c03e9ae227e0201",
+      "decoded_RGB_sha256": "46596ceb04a9e921a5a9c13b62c8bdfe02041f4e5b3fd15c1975722595359d0d",
+      "duplicate_cluster_id": "unique-source:staffordshire_bull_terrier_11",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "newfoundland_108",
+      "class_id": 22,
+      "candidate_partition": "train",
+      "image_sha256": "19085ef6e61e0f5f8dda1dd6037ba29887cecede43c7b9daecac92621517a66e",
+      "decoded_RGB_sha256": "c56612dba3c8de7911b98e1fa998aea2c283e88f2c130dc45c2ac6d76754c48c",
+      "duplicate_cluster_id": "unique-source:newfoundland_108",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "pomeranian_13",
+      "class_id": 24,
+      "candidate_partition": "train",
+      "image_sha256": "682d5fd9eeaaee1ba0778c87eda027d1df1db685b5a5c3dc665baaa03324f312",
+      "decoded_RGB_sha256": "8e95cafe831d429cf17ac596e1d5cc58a4f4cd7e2ff9136fc87a7450f6b7b001",
+      "duplicate_cluster_id": "unique-source:pomeranian_13",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "american_bulldog_16",
+      "class_id": 1,
+      "candidate_partition": "train",
+      "image_sha256": "7e60365cb007082c117e347c0b90fc6b765ef2696e9e38332ba2e7c25d2c97d1",
+      "decoded_RGB_sha256": "1b4fe366cc4fb2a99102cf18010e1b07c2de0f874307d9692de0d4e72df073e7",
+      "duplicate_cluster_id": "unique-source:american_bulldog_16",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "american_pit_bull_terrier_124",
+      "class_id": 2,
+      "candidate_partition": "train",
+      "image_sha256": "ab499f3686da009f217ae3f75bb6af6bbd52125486473ce68e63a17a01589800",
+      "decoded_RGB_sha256": "823ebf6b97ee14fce6c70ae0b249bbc62183e05de653f70c972c0cfcc9496ed7",
+      "duplicate_cluster_id": "unique-source:american_pit_bull_terrier_124",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "scottish_terrier_157",
+      "class_id": 30,
+      "candidate_partition": "train",
+      "image_sha256": "aea388f6dbaa39df8db6a12cd82d07c18e22b5b16aedcf258d32e6acf9653998",
+      "decoded_RGB_sha256": "7d053542bc19ce81dfb961cc5f36a14547f919668076b6d7df3382c7efd7cf9f",
+      "duplicate_cluster_id": "unique-source:scottish_terrier_157",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "american_bulldog_202",
+      "class_id": 1,
+      "candidate_partition": "train",
+      "image_sha256": "b39adb11778e1289b888243d4b5d4efb0150f58760368ec9b759ea7027e26187",
+      "decoded_RGB_sha256": "74337c585ac7839667bbe22fb7be08738ec39ad7064b3de8e40a6200a2feeb3f",
+      "duplicate_cluster_id": "unique-source:american_bulldog_202",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "Ragdoll_138",
+      "class_id": 26,
+      "candidate_partition": "train",
+      "image_sha256": "59b479a61e5ecbb5bbbf76bcffecd13aacb80e708ee91dfdd8909239529b90aa",
+      "decoded_RGB_sha256": "36d6966496f8c1cc9485264d2ef84fe1203506dcf76bf2afcbc3e5aa37c96ff7",
+      "duplicate_cluster_id": "unique-source:Ragdoll_138",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "Maine_Coon_16",
+      "class_id": 20,
+      "candidate_partition": "train",
+      "image_sha256": "1be79cc7403880e10392f22ca67aa7b70271f4f934ff281ff47fd3f02632eca5",
+      "decoded_RGB_sha256": "d531d0c21d6a6eca7157cb7b03bb0fb0b4f3448aab576f46daa455c01df0a98f",
+      "duplicate_cluster_id": "unique-source:Maine_Coon_16",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "pug_153",
+      "class_id": 25,
+      "candidate_partition": "train",
+      "image_sha256": "33769efdd1ed4f28fefa920cfe26b19f6be6fc7a2f5f2f80b494c6b06d724e17",
+      "decoded_RGB_sha256": "92765b8c8bee642b589bcf65d9c81f48828b00fc54fccb47a155a813ccd84395",
+      "duplicate_cluster_id": "unique-source:pug_153",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "Bombay_180",
+      "class_id": 7,
+      "candidate_partition": "train",
+      "image_sha256": "0c960f583dbffbbf83ab40c34d36e7fdd56539b73de7c88aa1a493794394658f",
+      "decoded_RGB_sha256": "5604b73b6097a43e6e2be63648c572f73013b82d9f6a130520ed0e58c363d2f9",
+      "duplicate_cluster_id": "unique-source:Bombay_180",
+      "role": "probe",
+      "batch": 1
+    },
+    {
+      "source_id": "staffordshire_bull_terrier_192",
+      "class_id": 34,
+      "candidate_partition": "train",
+      "image_sha256": "a34eea8bc13b0ffb7ba4bfc1a827896fd4ed06b4c4df9cd71340271a07f24303",
+      "decoded_RGB_sha256": "e248a5a23829eb1a62de9b036001bab87ef10701b5b1c0a49eaae3d11806295c",
+      "duplicate_cluster_id": "unique-source:staffordshire_bull_terrier_192",
+      "role": "probe",
+      "batch": 1
+    }
+  ],
+  "gradient_transform": "Original weak_pil with epoch0, seed20261022; same pixels/tensors across layouts. No RA condition in this diagnostic.",
+  "probe_transform": "Original eval_tensor, but exclusively on32 retained training photos disjoint from gradient batches. No dev/test pixels, logits or accuracy.",
+  "optimizer": {
+    "name": "Original AdamW",
+    "adapter_base_lr": 0.0003,
+    "head_base_lr": 0.001,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "total_original_updates": 1110,
+    "logical_step": 0,
+    "warmup_updates": 111,
+    "adapter_actual_lr": 2.7027027027027026e-06,
+    "head_actual_lr": 9.00900900900901e-06
+  },
+  "resets": "Restore all trainable tensors to identical initialization and create fresh zero-state AdamW before EACH batch. Exactly8 independent one-step updates total; no sequential trajectory, no accumulation.",
+  "feature": "Final encoder CLS after encoder LayerNorm, before classifier. Joint original head update cannot directly change this feature; gradient starts from the common initial head.",
+  "metrics": {
+    "S": "CPU FP64 sqrt(mean((post_step_CLS_FP32 - initial_CLS_FP32)^2)) separately on each probe16 and pooled32.",
+    "relative_S": "S / CPU FP64 RMS(initial_CLS)",
+    "parameter_diagnostic": "A/B/head gradient and actual parameter-delta norms; CPU FP64 merged Q/V BA norms; first-step AdamW oracle on saved gradients.",
+    "batch_variation": "All4 pooled S values per layout; sample SD of log S and CV; paired log(front_S/back_S), geometric-mean ratio and its full range. Two probe batches are sensitivity views, not independent training repeats.",
+    "normalization": "Also report S / joint Frobenius norm of merged Q/V update; this does not equalize direction or prove a Jacobian mechanism."
+  },
+  "precision": {
+    "aggregation": "All norms/RMS reported by NEW code use CPU FP64 from saved FP32 tensors; no FP32-versus-FP64 norm equality predicate.",
+    "baseline_repeat": "Two identical no-grad initial probe forwards per layout; save both. Compare initial front/back features.",
+    "floor": "For each probe max(repeat-forward RMS, eps_float32 * RMS(initial_features)); call one-step S resolved only if S >10*floor. Never increase LR after seeing this check.",
+    "initial_front_back_allclose": {
+      "atol": 1e-05,
+      "rtol": 0
+    },
+    "manual_AdamW_parameter_oracle": {
+      "atol": 2e-10,
+      "rtol": 2e-06,
+      "scope": "First bias-corrected step from saved gradient, including decoupled decay. FP64 mathematical oracle vs FP32 state; fixed tolerance, no post-result relaxation."
+    },
+    "paired_head_gradient_allclose": {
+      "atol": 2e-08,
+      "rtol": 2e-05
+    }
+  },
+  "structural_predictions": [
+    "Initial B and merged corrections exact0, initial front/back features match.",
+    "Every A data-gradient exactly0 at B0; B gradients finite and nonzero. AdamW decay can still change A.",
+    "For first fresh AdamW step, B update follows -eta*g/(abs(g)+eps); parameter gradient norm need not predict AdamW feature-step norm."
+  ],
+  "decision": {
+    "structural_or_oracle_failure": "Mark diagnostic invalid/incomplete; retain artifacts, do not repair scientific criteria or continue a trajectory.",
+    "below_precision_floor": "Report unresolved at the original first warmup step. No larger LR, new seed, batch replacement or extra steps.",
+    "consistent_scale_difference": "Only describe if all4 paired pooled ratios and both probes have the same direction and all S are resolved. Report batch variability, no p-value or cross-seed claim.",
+    "finish": "Stop after these8 reset steps regardless of outcome. Original pilot engineering gate remains failed; any revised full experiment requires a separate reviewable protocol and is not launched."
+  },
+  "wall_cap_seconds": 600,
+  "CPU_threads": 1,
+  "serial_MPS_only": true,
+  "MPS_fallback": false,
+  "MPS_recommended_working_set_fraction": 0.1,
+  "paced_sleep_multiple": 2,
+  "8A_priority": "Use own small serial process; last parent coordination reported8A finished. No global-idleness assertion or8A content inspection; stop on resource request.",
+  "new_dependencies_A100_Colab_ARiS_paid_upload_publish": false,
+  "original_pilot_protocol_sha256": "9386fc378f876cf12c68ef5d7248f073d7313433d158350b4143942ac1b52a3f",
+  "fit_manifest_sha256": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+  "weight_sha256": "c867db91d3e12c6cbadabb610d73c24a546bf82d8c03a9fea34f43a712ddb0e9",
+  "protected_original_pilot_delivery_manifest_sha256": "86b3d30c1d9f57d03a6bfb9363b26d13f93ccf50e4a08f6d8224190606f7aa38",
+  "model_request": {
+    "model": "GPT-6.1-Sol",
+    "reasoning_effort": "max",
+    "Fast": "existing request retained",
+    "actual_backend_receipt_exposed": false
+  }
+}

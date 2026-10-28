@@ -1,0 +1,147 @@
+{
+  "configuration": {
+    "num_ops": 2,
+    "magnitude": 9,
+    "num_magnitude_bins": 31
+  },
+  "operation_names": [
+    "Identity",
+    "ShearX",
+    "ShearY",
+    "TranslateX",
+    "TranslateY",
+    "Rotate",
+    "Brightness",
+    "Color",
+    "Contrast",
+    "Sharpness",
+    "Posterize",
+    "Solarize",
+    "AutoContrast",
+    "Equalize"
+  ],
+  "target": "Posterize",
+  "scope": "Exact name-sequence distributions, not pixel distributions, semantic changes or trained accuracy.",
+  "B_sequences": 196,
+  "R_direct_sequences": 169,
+  "coupled_replacement_branches": 676,
+  "per_slot_non_identity_survivor_probability": {
+    "B": {
+      "fraction": "1/14",
+      "value": 0.07142857142857142
+    },
+    "Z": {
+      "fraction": "1/14",
+      "value": 0.07142857142857142
+    },
+    "R": {
+      "fraction": "1/13",
+      "value": 0.07692307692307693
+    }
+  },
+  "survivor_relative_exposure_increase": {
+    "fraction": "1/13",
+    "value": 0.07692307692307693
+  },
+  "two_surviving_names_relative_mass_increase": {
+    "fraction": "27/169",
+    "value": 0.15976331360946747
+  },
+  "original_sequence_contains_target": {
+    "fraction": "27/196",
+    "value": 0.1377551020408163
+  },
+  "summaries": {
+    "B": {
+      "unique_name_sequences": 196,
+      "expected_non_identity_name_count": {
+        "fraction": "13/7",
+        "value": 1.8571428571428572
+      },
+      "p_at_least_one_geometry_name": {
+        "fraction": "115/196",
+        "value": 0.5867346938775511
+      },
+      "p_at_least_one_rotate": {
+        "fraction": "27/196",
+        "value": 0.1377551020408163
+      },
+      "p_at_least_one_identity_name": {
+        "fraction": "27/196",
+        "value": 0.1377551020408163
+      }
+    },
+    "Z": {
+      "unique_name_sequences": 169,
+      "expected_non_identity_name_count": {
+        "fraction": "12/7",
+        "value": 1.7142857142857142
+      },
+      "p_at_least_one_geometry_name": {
+        "fraction": "115/196",
+        "value": 0.5867346938775511
+      },
+      "p_at_least_one_rotate": {
+        "fraction": "27/196",
+        "value": 0.1377551020408163
+      },
+      "p_at_least_one_identity_name": {
+        "fraction": "13/49",
+        "value": 0.2653061224489796
+      }
+    },
+    "R": {
+      "unique_name_sequences": 169,
+      "expected_non_identity_name_count": {
+        "fraction": "24/13",
+        "value": 1.8461538461538463
+      },
+      "p_at_least_one_geometry_name": {
+        "fraction": "105/169",
+        "value": 0.621301775147929
+      },
+      "p_at_least_one_rotate": {
+        "fraction": "25/169",
+        "value": 0.14792899408284024
+      },
+      "p_at_least_one_identity_name": {
+        "fraction": "25/169",
+        "value": 0.14792899408284024
+      }
+    }
+  },
+  "name_sequence_total_variation": {
+    "B_Z": {
+      "fraction": "27/196",
+      "value": 0.1377551020408163
+    },
+    "B_R": {
+      "fraction": "27/196",
+      "value": 0.1377551020408163
+    },
+    "Z_R": {
+      "fraction": "972/8281",
+      "value": 0.11737712836613935
+    }
+  },
+  "assertions_passed": true,
+  "images_read": 0,
+  "model_forwards": 0,
+  "training_runs": 0,
+  "gpu_calls": 0,
+  "random_seed": null,
+  "input_hashes": {
+    "augmentation-research-20261022/pilot-20261022/common.py": "d12fd21604331ba032686eda26c93306945596a76e11f03b223740c73e9b1853",
+    "causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+    "PROTOCOL_ZH.md": "5dccc2b2532807ee3e2f8bd123f9b19b1568cf5ecd58575caa69ea2680a67e5a",
+    "exact_law_check.py": "df2fd8244d2928fb7e2112766c582c3ba88fcd022b3fde7d418cd704f6d7354b"
+  },
+  "source_lines": {
+    "common_RandAugment_call": 45,
+    "torchvision_RandAugment_class": 286,
+    "augmentation_space": 320
+  },
+  "worker_wall_seconds": 0.006642875028774142,
+  "worker_cpu_seconds": 0.006644000000000001,
+  "worker_peak_rss_bytes": 20463616
+}

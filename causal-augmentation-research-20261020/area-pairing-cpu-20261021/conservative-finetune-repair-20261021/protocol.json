@@ -1,0 +1,37 @@
+{
+  "purpose": "One prespecified repair of the unstable training recipe; training-side development only, not a contribution or augmentation-benefit test.",
+  "recipe_count": 1,
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model_execution_receipt_available": false,
+  "basis": "The reproduced failure involved rapid backbone/last-block activation shrinkage after large updates, while identical final weights gave the same failure onCPU. Reduce pretrained-body target learning rate by10x and ramp both groups for a fixed128steps, avoiding an abrupt update to a pretrained representation under a random head. This is a conservative joint repair, not identification of the sole cause.",
+  "changes_from_failed_recipe": ["body targetLR0.001 to0.0001", "fixed linear128step warmup onboth groups, from0.1 to1.0 times targetLR"],
+  "unchanged": ["head targetLR0.01", "SGD momentum0.9", "weight_decay0.0001", "BN runningstats fixed with affine trainable", "official ResNet18 V1 initial backbone and seed0Linear512to2 head", "FP32 MPS", "same64trainingphotos", "batch8", "same source order", "same TA operation/magnitude/sign draws", "2048updates perarm"],
+  "warmup": {"steps":128,"factor":"0.1+0.9*(step-1)/127 for steps1..128;1 thereafter"},
+  "arms":["base","TA"],
+  "updates_per_arm":2048,
+  "presentations_per_arm":16384,
+  "order_seed":2026102102,
+  "TA":"Installed torchvision TrivialAugmentWide31bins, NEAREST,fill128; exact prior per-source/pass sampling.",
+  "probe_steps":[0,128,256,512,1024,1536,2048],
+  "weight_checkpoint_steps":[128,1024,2048],
+  "checkpoint_contents":"At128and1024 save model weights+metadata. At2048 also save momentum and optimizer paramgroups. Retain every key checkpoint; no best-checkpoint selection.",
+  "success_criteria":{
+    "completion":"Both arms2048updates and all loss/gradient/parameter checks finite.",
+    "clean_learning":"Each arm clean-training loss at both1536and2048 <=0.5 of its initial clean-training loss.",
+    "own_distribution_learning":"TA fixed256training-view probe loss at both1536and2048 <=0.5 of its initial value. Base own distribution is its clean-training probe.",
+    "online_learning":"For each arm mean online loss over final256updates <=0.5 of mean over first256updates.",
+    "no_old_collapse":"At2048 each arm mean feature variance across64trainingimages >1e-4 of its initial value and >1 unique logit vector.",
+    "note":"Operational training-recovery checks, not universal scientific thresholds; no accuracy gate or generalization inference. Failure means this single recipe was not established within the fixed budget, not proof of useless augmentation."
+  },
+  "stop_criteria":[
+    "Any nonfinite loss,gradient or parameter: stop both arms and preserve available state.",
+    "An arm simultaneously has clean loss>=0.95*initial and variance<=1e-4*initial at two consecutive recorded nonzero checkpoints: stop both as recurrent severe collapse.",
+    "Main elapsed540s or guarded training compute480s: save states and stop; hard process alarm600s.",
+    "Allowed memory_pressure-Q reports free<15percent: save states and yield resources; no8Afile access."
+  ],
+  "resource_limits":{"main_hard_wall_seconds":600,"CPU_threads":1,"interop_threads":1,"workers":0,"nice_increment":10,"MPS_only":true},
+  "monitoring_limit":"memory_pressure-Q was readable and reported95percentfree before run. sysctl hardware/load query returned Operation not permitted and was not retried or replaced; complete per-task GPU/thermal attribution is unavailable.",
+  "no_actions":["held-out evaluation","new recipe or seed","hyperparameter search","new data/download/install","PyTorch upgrade","A100","ARIS","8Afile changes"],
+  "next_step_if_stable":"Propose one falsifiable causal-augmentation question and check its nearest original-paper precedents; do not launch that experiment or claim novelty."
+}

@@ -1,0 +1,78 @@
+{
+  "status": "single_seed_development_only",
+  "seed": 20261022,
+  "endpoint_epoch": 30,
+  "metric": "source-photo micro classification error on fixed clean development pool",
+  "cells": {
+    "front-weak": {
+      "N": 589,
+      "errors": 42,
+      "error": 0.07130730050933787,
+      "accuracy": 0.9286926994906621,
+      "NLL": 0.23703269844302793,
+      "balanced_error": 0.07117117117117117
+    },
+    "front-ra": {
+      "N": 589,
+      "errors": 36,
+      "error": 0.06112054329371817,
+      "accuracy": 0.9388794567062818,
+      "NLL": 0.23412439404767776,
+      "balanced_error": 0.06103603603603604
+    },
+    "back-weak": {
+      "N": 589,
+      "errors": 40,
+      "error": 0.06791171477079797,
+      "accuracy": 0.9320882852292021,
+      "NLL": 0.2119451011961941,
+      "balanced_error": 0.0677927927927928
+    },
+    "back-ra": {
+      "N": 589,
+      "errors": 36,
+      "error": 0.06112054329371817,
+      "accuracy": 0.9388794567062818,
+      "NLL": 0.20997800717497284,
+      "balanced_error": 0.06103603603603604
+    }
+  },
+  "G_front": 0.010186757215619695,
+  "G_back": 0.006791171477079796,
+  "interaction_I": 0.003395585738539898,
+  "front_minus_back_weak_error": 0.003395585738539898,
+  "front_minus_back_RA_error": 0.0,
+  "I_NLL_secondary": 0.000941210374128894,
+  "paired_stratified_photo_bootstrap_95percent_interval": [
+    -0.008488964346349746,
+    0.01697792869269949
+  ],
+  "bootstrap": {
+    "algorithm": "Pair the four cell errors by source ID; independently resample with replacement inside each of37 observed breeds, preserving original breed counts; sum sampled d_i /total N.",
+    "replicates": 5000,
+    "seed": 73102,
+    "generator": "numpy.default_rng PCG64",
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "method": "numpy.quantile linear",
+    "unit": "source photograph after all confirmed/uncertain duplicate clusters removed",
+    "scope": "Fixed-model conditional photo-sampling sensitivity only; not training variability, animal-level independence, population coverage or confirmatory inference."
+  },
+  "bootstrap_array_sha256": "caf978a0da8ccdac5d6305638350f57fdd8169b19090fec61695087bb39663e5",
+  "uncertainty_scope": "Conditional sensitivity to source-photo sampling at fixed observed breed counts and four fixed trained models. No training-seed variability, animal-identity guarantee, population CI or confirmatory inference.",
+  "engineering_gate_I_min": 0.01,
+  "engineering_gate_passed": false,
+  "gate_is_significance_power_or_equivalence": false,
+  "RA_improves_front": true,
+  "RA_improves_back": true,
+  "input_npz_sha256": {
+    "front-weak": "1692f9f3e4a53a65e597211c3c8e0854804fcc948eadab03eab7ac4a7bd48c59",
+    "front-ra": "cd4b5c077b9b421a2edec79fb7d3a241edbeb3b1b319c394adbe6b78ac1d38cb",
+    "back-weak": "afed4e787d5e5e9ea45d59187accc442e90529f5643891a82bc8d4cd3bb5b6be",
+    "back-ra": "b798c9a13f5838bb83344c220bf911de8746bfdd3d2443e35c135aec6a30ee20"
+  },
+  "reserved_confirmation_read": false,
+  "extra_seeds": 0
+}

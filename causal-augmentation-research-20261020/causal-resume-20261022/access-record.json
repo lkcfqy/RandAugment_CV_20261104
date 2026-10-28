@@ -1,0 +1,40 @@
+{
+  "scope": "Mac RandAugment causal-augmentation restart; all new work in a new project subdirectory; no old result overwritten",
+  "repository": "No Git repository/branch at project path; no AGENTS.md found at project, descendants or checked parent chain",
+  "initial_hardware_read": {
+    "action": "sysctl -n hw.model hw.memsize hw.logicalcpu && vm_stat && uptime",
+    "initial_status": "sandbox operation not permitted; known read failure",
+    "resolution": "Same read retried once with host-access escalation and approved; succeeded. No alternative hardware access used to evade denial.",
+    "remaining_blocker": null
+  },
+  "historical_access_boundaries": [
+    {"target": "https://openreview.net/pdf?id=TMs-EYm4_ms", "action": "read paper", "status": "blocked and stopped in previous round", "reason": "browser verification page, no paper body", "this_round_retries": 0, "alternate_routes": 0, "pending": false, "precise_coverage": "unknown"},
+    {"target": "historical OntoAug/WACV/CER403 or verification pages and restricted author source directories", "status": "not retried", "alternate_routes": 0, "pending": false}
+  ],
+  "new_literature_access_boundary": {
+    "target": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10923583/",
+    "action": "read paper body",
+    "status": "browser verification page; stopped without retry or alternate route",
+    "body_obtained": false,
+    "auto_approval_denial": false,
+    "pending": false,
+    "precise_coverage": "unknown; search snippets are insufficient"
+  },
+  "model_inventory": {
+    "official_ResNet18_IMAGENET1K_V1_weight_bytes": 46830571,
+    "official_weight_sha256_checked_this_round": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+    "matches_previous_record": true,
+    "existing_Pets_base_TA_repair_checkpoints": 6,
+    "existing_Pets_brightness_checkpoints": 9,
+    "checkpoint_bodies_reloaded_this_round": false,
+    "scientific_run_uses": "Cached source ResNet18 features and new CPU convex readouts only; no checkpoint inference or old training rerun"
+  },
+  "NORB_image_inventory": {"training_gzip_bytes": 131896188, "testing_gzip_bytes": 130799817, "image_gzip_decoded_this_round": false},
+  "sealed_or_prior_final_arrays_decoded": false,
+  "classroom_assets": "Original paper PDF and two classroom HTML files hashed and preserved; no classroom/PPT edits",
+  "8A_paths_read_or_modified": false,
+  "A100_Colab_ARIS_external_models": false,
+  "installs_uploads_publications_purchases_schedulers": false,
+  "requested_settings": {"model": "GPT-6.1-Sol", "effort": "max", "service_tier": "Fast", "actual_backend_receipt_available": false, "independent_spawn_exposes_Fast": false},
+  "remaining_experiment_permission_blocker": null
+}

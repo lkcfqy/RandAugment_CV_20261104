@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "at_UTC": "2026-10-21T22:08:23.409790+00:00",
+  "verdict": "SAVED_RESULTS_RECOMPUTE_MATCH",
+  "actual_model_effort_receipt": null,
+  "recomputed": {
+    "readouts": 45,
+    "source_objectives_and_gradients": 45,
+    "development_predictions": 16200,
+    "development_objects": 10,
+    "views_per_object": 36,
+    "all9_metadata_joint_count_and_common_subset_checks": true,
+    "exact_paired_within_class_resamples": 1024,
+    "hash_checks_all_passed": 11,
+    "source_objective_max_abs_error": 6.245004513516506e-17,
+    "source_gradient_max_abs_error": 3.9898639947466563e-17,
+    "maximum_saved_head_gradient_infinity": 1.489677002941969e-06,
+    "development_loss_max_abs_error": 0.0,
+    "object_summary_max_abs_error": 4.440892098500626e-16,
+    "development_prediction_mismatches": 0,
+    "main_tables_configurations_intervals_max_abs_error": 3.7470027081099033e-16
+  },
+  "verified_result": {
+    "C": -0.0042937351832511746,
+    "C_conditional_stability_interval95": [
+      -0.009270724204146949,
+      0.0006832538376445934
+    ],
+    "delta_O": 0.002107771190872008,
+    "delta_V": 0.0064015063741231825,
+    "tier_A": false,
+    "tier_B": false,
+    "same_sign_configs": 7,
+    "risk_table": {
+      "S": {
+        "clean": 0.5260008275824353,
+        "weak": 0.5270194705576071,
+        "strong": 0.5349973055915105
+      },
+      "O": {
+        "clean": 0.12143866938810839,
+        "weak": 0.11133077931469677,
+        "strong": 0.11343855050556881
+      },
+      "V": {
+        "clean": 0.5224454931175141,
+        "weak": 0.5239847021083988,
+        "strong": 0.5303862084825219
+      }
+    }
+  },
+  "serialization_recovery": {
+    "raw_decode_complete_numeric_fields_match": [
+      "primary_C",
+      "delta_O",
+      "delta_V",
+      "acquisition_policy_risks",
+      "validity"
+    ],
+    "truncation_at": "effect_gates",
+    "locked_science_code_protocol_and_frozen_heads_unchanged": true,
+    "recovery_code_review": "仅从保存摘要重算；未调用拟合/encoder。"
+  },
+  "interpretation_zh": "弱池在O/V两种分配的平均损失均低于强池；C幅度未达门且区间跨0，锁定的强弱翻转及操作价值门均失败。关闭这一固定筛查，不证明一般采集结构或完整RA无效。",
+  "descriptive_choice_zh": "三选一点赢家是O=weak、V=clean（S=clean）。O的weak比clean低0.0101078901nat；V的weak比clean高0.0015392090nat。应保留这个开发点值差异，但不能改名为预设强弱翻转成功、新确认或原创贡献。",
+  "statistical_scope_zh": "10个已消费物理对象，每类2个；所有配置/策略配对携带。1024是4^5个经验重采样，不是1024独立对象；区间条件于固定源池/特征/λ，不包含新源对象总体不确定性。",
+  "not_recomputed": [
+    "未重训45heads、重放优化轨迹或重算编码器/原图。",
+    "未独立恢复原全阶段耗时或峰值内存；3.988161秒仅核对已存source阶段日志。",
+    "未读取旧final数组；无新数据/安装/GPU/文献扩展。"
+  ],
+  "verification_CPU_wall_seconds": 0.22883891698438674,
+  "blockers": []
+}

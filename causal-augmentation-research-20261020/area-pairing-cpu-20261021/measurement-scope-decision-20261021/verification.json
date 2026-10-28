@@ -1,0 +1,34 @@
+{
+  "status": "scope_and_cost_checked",
+  "at_utc": "2026-10-21T06:23:22.164123+00:00",
+  "benchmark_code_sha_matches": true,
+  "timing_case_count": 4,
+  "both_batchsizes_and_backbone_modes_measured": true,
+  "benchmark_only_no_weights_saved": true,
+  "benchmark_validation_test_evaluations": 0,
+  "new_image_payload_bytes_read": 0,
+  "A100_connection_attempts": 0,
+  "first_failed_benchmark_preserved": true,
+  "CPU_projection_recomputed": {
+    "8": {
+      "steps_per_backbone_mode_over2policies_3seeds": 138000,
+      "frozen_compute_hours": 3.753591745335143,
+      "finetune_compute_hours": 9.399979409435117,
+      "total_compute_hours": 13.153571154770258,
+      "excludes": "photo decode, augmentation, validation/test inference and full-dataset memory/cache effects; extrapolation from repeated8photos with LR0, not measured full training"
+    },
+    "32": {
+      "steps_per_backbone_mode_over2policies_3seeds": 34500,
+      "frozen_compute_hours": 10.173073496730971,
+      "finetune_compute_hours": 17.31575025019184,
+      "total_compute_hours": 27.488823746922815,
+      "excludes": "photo decode, augmentation, validation/test inference and full-dataset memory/cache effects; extrapolation from repeated8photos with LR0, not measured full training"
+    }
+  },
+  "source_metadata_test_IDs": 3541,
+  "formal_training_not_executed": true,
+  "pending": "expanded_data_and_A100_approval",
+  "ARIS": false,
+  "GPU": false,
+  "8A_accessed": false
+}

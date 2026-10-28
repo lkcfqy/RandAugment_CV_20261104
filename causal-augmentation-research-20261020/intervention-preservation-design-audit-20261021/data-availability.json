@@ -1,0 +1,35 @@
+{
+  "NPZ_or_image_archives_downloaded": false,
+  "sources_checked": [
+    {
+      "dataset": "CITRIS",
+      "official_page": "https://zenodo.org/records/6637749",
+      "loader": "https://raw.githubusercontent.com/phlippe/CITRIS/main/experiments/datasets.py",
+      "metadata_evidence": "Official page listing and loader source, not actual NPZ sample validation",
+      "loader_required_fields": {"Pong":["images","latents","targets","keys"],"TemporalCausal3DIdent":["imgs","interventions","raw_latents","shape_latents"]},
+      "displayed_file_sizes": {"Ball-in-Boxes":"8.8 MB","Pong":"52.4 MB","Teapot":"561.7 MB","7-shapes":"1.3 GB"},
+      "small_individual_sample_or_minimal_archive_member": "Not verified",
+      "data_license": "Not confirmed",
+      "ordinary_class_label": {"Pong":"No suitable nondegenerate object-class Y verified; do not substitute score/background", "Teapot":"Single shape", "7-shapes":"Seven shapes vary within the dataset and temporal sequences"},
+      "pair_warning": "7-shapes has5% non-intervened shape changes in the paper; I_shape=0 alone does not establish class equality. Train-only target supervision is not absence of public raw latent values.",
+      "ready_for_current_small_one_day_experiment": false
+    },
+    {
+      "dataset": "CausalTriplet",
+      "official_repository": "https://github.com/CausalTriplet/causaltriplet",
+      "loader": "https://raw.githubusercontent.com/CausalTriplet/causaltriplet/master/dataset.py",
+      "metadata_evidence": "Official README and loader source; no sample archive validation",
+      "fields": ["verb_class","noun_class","pre/post image paths","scene","optional boxes and instance masks"],
+      "additional_real_fields": ["participant_id","video_id","start_frame","stop_frame"],
+      "simulated_part": {"pairs":100000,"object_classes":24,"actions":7,"rooms":10000},
+      "real_part_pairs":2632,
+      "README_total_size":"approximately165 GB",
+      "rooms_0_to_2000_subset_size":"Unknown",
+      "small_individual_sample_or_minimal_archive_member":"Not verified",
+      "data_license":"Not confirmed; code Apache-2.0 is not a data license",
+      "causal_scope":"Action/intervention-centric task labels, not generic latent values or universal ATE truth",
+      "ready_for_current_small_one_day_experiment":false
+    }
+  ],
+  "existing_Pets_data":"Has no verified world intervention target/dose; cannot fill that gap by renaming previous software transforms."
+}

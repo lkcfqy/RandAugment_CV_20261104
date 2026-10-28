@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "requested_model": "GPT-6.1-Sol",
+  "requested_reasoning_effort": "max",
+  "actual_model_and_effort_verified": false,
+  "receipt_note_zh": "没有实际执行档位回执；不把请求值当作运行值核验。",
+  "scope": {
+    "data_source_count": 1,
+    "official_source": "NYU small NORB V1.0",
+    "official_url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/",
+    "permitted_actions_executed": [
+      "读取官方说明网页",
+      "对官方列出的6个文件各发起一次HEAD元数据请求",
+      "仅写本新JSON"
+    ],
+    "no_image_payload_request_or_read": true,
+    "no_metadata_array_payload_download": true,
+    "no_software_installation_or_model_execution": true,
+    "no_training_gpu_a100_aris_automation_or_external_model": true,
+    "no_8A_or_historical_blocked_resource_access": true,
+    "sole_written_file": "/Users/lkc/Documents/Codex/2026-10-21/task/official-intervention-data-gate-20261021/data-source-review.json"
+  },
+  "source_evidence": {
+    "official_page_read": "success_via_web_tool",
+    "page_version": "V1.0",
+    "page_date": "October 2005",
+    "live_http_headers_exposed_by_web_tool": false,
+    "sections_read": [
+      "介绍及train/test实例划分",
+      "TERMS / COPYRIGHT",
+      "CONTENT",
+      "FILE FORMAT",
+      "六个公开文件链接"
+    ],
+    "direct_documentation_boundary_zh": "下列格式、因子和值域来自官方文档；未取得/解压真实数组，未逐行核验缺失、重复、标签或配对。"
+  },
+  "documented_data": {
+    "physical_objects": 50,
+    "categories": 5,
+    "category_labels": {
+      "0": "four-legged animals",
+      "1": "human figures",
+      "2": "airplanes",
+      "3": "trucks",
+      "4": "cars"
+    },
+    "instances_per_category": 10,
+    "instance_ID_scope": "within_category",
+    "physical_unit_key": [
+      "category",
+      "instance"
+    ],
+    "train_instance_IDs_per_category": [
+      4,
+      6,
+      7,
+      8,
+      9
+    ],
+    "test_instance_IDs_per_category": [
+      0,
+      1,
+      2,
+      3,
+      5
+    ],
+    "physical_objects_per_split": 25,
+    "heldout_objects_per_category": 5,
+    "lighting_conditions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "elevation_codes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "elevation_degrees": [
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70
+    ],
+    "azimuth_codes": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34
+    ],
+    "azimuth_degree_rule": "code * 10",
+    "azimuth_degrees": [
+      0,
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140,
+      160,
+      180,
+      200,
+      220,
+      240,
+      260,
+      280,
+      300,
+      320,
+      340
+    ],
+    "cameras_per_record": 2,
+    "intended_factorial_grid_zh": "官方按 5类别×5实例×6光照×9仰角×18方位角给出每split24,300图对，支持理解为同实例的视角/光照完整交叉设计；这是文档规格，不是本轮逐行数组验证。",
+    "documented_stereo_pairs_per_split": 24300,
+    "individual_camera_images_per_split": 48600,
+    "intended_pairs_per_physical_object": 972,
+    "intended_individual_camera_images_per_object": 1944,
+    "documented_grayscale_resolution": [
+      96,
+      96
+    ],
+    "cat_field": "对应每个图对的类别",
+    "info_fields_in_order": [
+      "instance_within_category",
+      "elevation_code",
+      "azimuth_code",
+      "lighting_condition"
+    ],
+    "camera_label_location": "dat张量第二维的两幅图，不是info的独立字段",
+    "left_right_camera_index_mapping_verified": false,
+    "camera_calibration_baseline_and_intrinsics_available_in_this_page": false,
+    "repeated_trials_zh": "设计乘积对应每个物体×光照×仰角×方位角单元一个双相机图对；页面没有说明同一设置反复重拍的随机重复。972种条件不是972个独立物理对象，两个camera也不是独立重复试验。"
+  },
+  "official_files": [
+    {
+      "split": "training",
+      "kind": "dat",
+      "name": "smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat.gz",
+      "documented_payload_dtype": "uint8",
+      "documented_logical_shape": [
+        24300,
+        2,
+        96,
+        96
+      ],
+      "logical_uncompressed_array_payload_bytes": 447897600,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    },
+    {
+      "split": "training",
+      "kind": "cat",
+      "name": "smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat.gz",
+      "documented_payload_dtype": "int32",
+      "documented_logical_shape": [
+        24300,
+        1
+      ],
+      "logical_uncompressed_array_payload_bytes": 97200,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    },
+    {
+      "split": "training",
+      "kind": "info",
+      "name": "smallnorb-5x46789x9x18x6x2x96x96-training-info.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-info.mat.gz",
+      "documented_payload_dtype": "int32",
+      "documented_logical_shape": [
+        24300,
+        4
+      ],
+      "logical_uncompressed_array_payload_bytes": 388800,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    },
+    {
+      "split": "testing",
+      "kind": "dat",
+      "name": "smallnorb-5x01235x9x18x6x2x96x96-testing-dat.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-dat.mat.gz",
+      "documented_payload_dtype": "uint8",
+      "documented_logical_shape": [
+        24300,
+        2,
+        96,
+        96
+      ],
+      "logical_uncompressed_array_payload_bytes": 447897600,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    },
+    {
+      "split": "testing",
+      "kind": "cat",
+      "name": "smallnorb-5x01235x9x18x6x2x96x96-testing-cat.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-cat.mat.gz",
+      "documented_payload_dtype": "int32",
+      "documented_logical_shape": [
+        24300,
+        1
+      ],
+      "logical_uncompressed_array_payload_bytes": 97200,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    },
+    {
+      "split": "testing",
+      "kind": "info",
+      "name": "smallnorb-5x01235x9x18x6x2x96x96-testing-info.mat.gz",
+      "url": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-info.mat.gz",
+      "documented_payload_dtype": "int32",
+      "documented_logical_shape": [
+        24300,
+        4
+      ],
+      "logical_uncompressed_array_payload_bytes": 388800,
+      "logical_size_is_derived_not_measured": true,
+      "binary_header_bytes_not_included_in_payload_size": true,
+      "compressed_content_length_bytes": null,
+      "compressed_size_status": "unknown_HEAD_failed_before_HTTP"
+    }
+  ],
+  "file_format": {
+    "archive": "gzip",
+    "contained_format": "custom little-endian binary matrix; .mat后缀不等于MATLAB v5或HDF5文件",
+    "dat_magic": "0x1E3D4C55",
+    "cat_and_info_magic": "0x1E3D4C54",
+    "dimensions_and_elements_documented": true,
+    "parser_executed": false,
+    "dependency_inference_zh": "未来经许可读取时，格式可由Python标准库gzip/struct处理；本轮未实现、安装或运行解码器，也未证明端到端读取耗时。",
+    "documentation_caution_zh": "info示例的dim1注释与正文24300×4规格不一致；未来应以真实header及总元素数核验，不能仅抄示例注释。所有表按行对应，不应按想当然的类别或因子排序关联。",
+    "official_example_first_ten_category_labels": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "prefix_order_caution_zh": "官方示例显示类别交错；不能假设gzip前缀只有一个类别，也不能反过来假设短前缀已覆盖同一对象的全部目标交叉格点。真实顺序和覆盖需cat/info核验。"
+  },
+  "license": {
+    "type": "official_custom_terms",
+    "page_section": "TERMS / COPYRIGHT",
+    "research_use_stated": true,
+    "sale_prohibited": true,
+    "publication_citation_requested": true,
+    "attribution": {
+      "authors": [
+        "Y. LeCun",
+        "F. J. Huang",
+        "L. Bottou"
+      ],
+      "title": "Learning Methods for Generic Object Recognition with Invariance to Pose and Lighting",
+      "venue": "CVPR",
+      "year": 2004
+    },
+    "named_CC_or_OSI_license_stated": false,
+    "interpretation_zh": "官方明确科研使用、不得出售、发表相关结果应引用原论文。普通非转售科研读取与该用途相符；不把这段条款扩大成已验证的任意再分发、商业或衍生图授权。",
+    "account_required_for_landing_page": false,
+    "file_payload_authentication_requirement_verified": false
+  },
+  "control_and_identifiability_audit": {
+    "positive_support_zh": "与分别采集单因素的资源不同，这个文档规格提供同一物理实例在光照×视角上的真实拍摄交叉网格。类别在这些同实例记录之间固定，五类Y非退化；可预先按同实例/固定camera/固定其余因子匹配记录。",
+    "identifiable_finite_data_target": {
+      "target_zh": "在已记录玩具和支持网格上的配对预测损失差，或预先指定两项控制变量的差中之差。",
+      "example_formula": "Delta_f(l1,l0 | a,e,camera) = mean_i[loss(f(x_i(l1,a,e,camera)),Y_i)-loss(f(x_i(l0,a,e,camera)),Y_i)]",
+      "interpretation_zh": "这是固定模型、固定物体集合和已记录条件上的经验对照；所有所需格点实际存在且配对正确后，可由记录直接计算，不必从不相关照片猜同一对象的反事实。",
+      "computed_this_review": false
+    },
+    "conditional_lab_causal_interpretation_zh": "若信赖拍摄控制、格点标签和除指定设置外的稳定性，可把上述配对对照解释为这个固定实验装置/玩具集合内改变控制设置的总效应。页面未提供拍摄顺序、随机化、时间漂移或重复重拍信息，因而不能自动排除所有未记录变化并推广到自然总体。",
+    "variables_not_independent_interventions": [
+      {
+        "variable": "category / instance",
+        "boundary_zh": "物体固有属性与嵌套身份，不是随机处理；category和within-category实例号共同标识对象。把实例号8跨五类合并会混淆五个不同玩具。"
+      },
+      {
+        "variable": "camera axis",
+        "boundary_zh": "同一设置的两次视点测量，不是两个独立物理单位；相机内外参差异未知，不能把两幅图当纯传感器噪声重复。"
+      },
+      {
+        "variable": "lighting condition",
+        "boundary_zh": "0–5是六种照明条件的类别编码，不是已校准照度/曝光剂量，也不是独立通道增益；具体光源布置、光谱与剂量未由本页给出。"
+      },
+      {
+        "variable": "elevation and azimuth",
+        "boundary_zh": "有明确角度的控制坐标。全因子平衡不等于已证明拍摄顺序随机、物理效应可加或各潜在机制独立；2D软件变换也不等于这些3D视点变化。"
+      }
+    ],
+    "not_identified_by_this_resource_alone": [
+      "AA/RA/TA训练策略的收益或其因果机制；需要另有预注册且可比较的训练运行。",
+      "未拍摄角度、连续照明剂量或任意do(Z=z)的响应。",
+      "自然动物/真实部署环境总体的因果效应；固定玩具和实验装置不构成自然场景样本。",
+      "任意类别或instance的独立处理效应；两者并非可互换的随机化控制变量。",
+      "用从属视图数建立的高精度总体置信区间。"
+    ],
+    "independence_unit_zh": "跨对象泛化时以物理玩具(category,instance)为来源单位；官方test只有25个、每类5个，视图/相机/光照是同对象的重复测量。源ID区分也不自动建立总体i.i.d.或玩具模型来源独立性。"
+  },
+  "access_metadata": {
+    "method": "HEAD",
+    "unique_file_requests": 6,
+    "request_body_or_response_body_bytes_read": 0,
+    "image_package_GET_requests": 0,
+    "HTTP_responses_obtained": 0,
+    "redirect_followed": false,
+    "requests": [
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      },
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      },
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-info.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      },
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-dat.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      },
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-cat.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      },
+      {
+        "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x01235x9x18x6x2x96x96-testing-info.mat.gz",
+        "result": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "failure_stage": "local_DNS_resolution_before_HTTP",
+        "HTTP_status": null,
+        "HTTP_request_known_not_sent": true,
+        "file_body_known_not_read": true,
+        "retries": 0
+      }
+    ],
+    "classification": "transport_failure_not_HTTP_denial_or_dataset_license_denial",
+    "attempted_alternate_host_mirror_protocol_or_path": false,
+    "new_permission_request_needed": false,
+    "exact_unresolved_fields": [
+      "compressed Content-Length",
+      "Accept-Ranges",
+      "Last-Modified/ETag",
+      "文件载荷是否匿名可达",
+      "有界小量读取是否可行"
+    ],
+    "handling_zh": "已停止这些文件访问；没有关闭校验、换协议/主机/镜像或用其他工具获取其载荷。"
+  },
+  "small_read_gate": {
+    "minimal_verified_public_units": "官方仅列出split级dat/cat/info.gz三件套；本页未展示逐图或逐对象小文件入口。",
+    "smallest_confirmed_compressed_file": null,
+    "known_logical_metadata_payload_sizes_per_split": {
+      "cat_bytes": 97200,
+      "info_bytes": 388800
+    },
+    "known_logical_image_array_payload_bytes_per_split": 447897600,
+    "all_six_logical_array_payload_bytes": 896767200,
+    "gzip_random_access_boundary_zh": "gzip压缩偏移不能按未压缩行号直接映射。即便未来支持HTTP Range，也不能据此声称可直接取任意对象/格点；需要压缩索引或从流起点解压等方案。截取前缀在技术上可能，但其压缩字节需求、格点覆盖与服务器行为本轮均未验证。",
+    "legal_research_purpose_match": "supported_by_official_terms",
+    "bounded_image_payload_access_verified": false,
+    "current_decision": "INCOMPLETE_ACCESS_GATE_DO_NOT_START_IMAGE_ACQUISITION",
+    "no_claim_of_file_nonexistence_or_access_forbidden": true
+  },
+  "one_day_cpu_feasibility": {
+    "ready_verified": false,
+    "data_design": "promising_for_within_instance_factorial_measurements_only",
+    "blockers": [
+      "六个文件未获得HTTP元数据，压缩体积和最小可取路径未核实。",
+      "没有读取真实cat/info数组，尚未验证每个所需交叉格点完整且唯一。",
+      "没有像素读取/解码或CPU耗时测量，不能承诺一天内运行速度。",
+      "既有Cat/Dog二分类checkpoint不能未经另定任务与映射就评价smallNORB五类。冻结特征读出也需要另授权拟合，不在本轮执行。",
+      "类别测试只有每类5个物理玩具；大量视图不能补齐独立对象或自然环境支持。"
+    ],
+    "smallest_next_evidence_zh": "若未来网络元数据访问恢复并获准，只需先确认官方压缩大小、无需账号的载荷访问及有界提取方法，再核验小型cat/info表中的唯一键和目标格点；之后才决定是否值得取得最小图像子集。本轮不请求下载、训练或资源升级。",
+    "new_research_hypotheses_proposed": 0,
+    "timing_or_memory_estimate_claimed": false
+  },
+  "parent_reported_later_metadata_update": {
+    "source": "parent_thread_report_after_this_agent_DNS_probes",
+    "independently_executed_by_this_agent": false,
+    "target": "https://cs.nyu.edu/~yann/data/norb-v1.0-small/smallnorb-5x46789x9x18x6x2x96x96-training-info.mat.gz",
+    "method": "HEAD",
+    "status": 200,
+    "content_length_bytes": 71052,
+    "accept_ranges": "bytes",
+    "body_read_bytes": 0,
+    "interpretation_zh": "根线程报告后续有权限环境中一次官方HEAD成功，说明此前本智能体普通环境的DNS失败不是来源拒绝。此为待根线程合并的外部执行证据，不把本智能体六次失败记录改成成功，也不据此声称图像文件大小/Range或CPU实验已核实。"
+  }
+}

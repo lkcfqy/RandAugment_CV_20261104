@@ -1,0 +1,70 @@
+{
+  "at_utc": "2026-10-22T14:22:07.663972+00:00",
+  "status": "completed_primary_and_backup_proposals_with_actual_MPS_training_path_probe",
+  "scope": "General data augmentation within the original RandAugment project.",
+  "main": "Equal-parameter early/late QV-LoRA x fixed RandAugment clean-error interaction.",
+  "main_decision": "conditional_go_to_data_QA_implementation_and_protocol_lock",
+  "backup": "Identical post-CutMix augmented inputs with stale versus transported provenance-area targets, canonical-order reference.",
+  "backup_decision": "reserve_only_high_prior_overlap_risk_not_parallel_training",
+  "new_novelty_or_contribution_established": false,
+  "dataset_training_runs": 0,
+  "actual_synthetic_MPS_parameter_update_steps": 16,
+  "new_images_or_weights_downloaded": false,
+  "new_dependencies": false,
+  "candidate_data_plan": "candidate-data-plan.json",
+  "candidate_split_formally_locked": false,
+  "next_checkpoint": "Prepare only the primary data/label and duplicate QA plus full training implementation; freeze a completed development protocol before fitting. Do not start both questions or reuse old sealed/test data. No question/threshold tuning on old negatives.",
+  "teacher_praise_or_publication_guaranteed": false,
+  "old_results_classroom_and_prior_interpretations_unchanged": true,
+  "all_new_work_remains_on_Mac": true,
+  "A100_Colab_paid_ARIS_upload_publication": false,
+  "technical_boundaries": [
+    {
+      "action": "sysctl -n hw.memsize hw.logicalcpu",
+      "target": "Mac hardware sysctl read",
+      "reason": "Operation not permitted in sandbox; current memory/cpu values not obtained by that command.",
+      "status": "denied_stopped_not_retried",
+      "next": "Use already-recorded same-Mac hardware receipt; completed separately authorized MPS compatibility check. No system/security settings changed."
+    },
+    {
+      "action": "browser read binary archive",
+      "target": "https://thor.robots.ox.ac.uk/~vgg/data/pets/images.tar.gz",
+      "reason": "Browser unsupported application/octet-stream.",
+      "status": "technical_format_failure_not_access_denial",
+      "body_obtained": false
+    },
+    {
+      "action": "browser read binary archive",
+      "target": "https://thor.robots.ox.ac.uk/~vgg/data/pets/annotations.tar.gz",
+      "reason": "Browser unsupported application/octet-stream.",
+      "status": "technical_format_failure_not_access_denial",
+      "body_obtained": false
+    },
+    {
+      "action": "HEAD same official image/annotation download URLs",
+      "target": "Pets old official download URLs",
+      "reason": "HTTP308 permanent redirect; no binary read. Same image URL response Location inspected once.",
+      "status": "redirect_metadata_recorded",
+      "location_for_images": "https://thor.robots.ox.ac.uk/pets/images.tar.gz",
+      "redirected_binary_download_started": false
+    },
+    {
+      "action": "read README",
+      "target": "https://www.robots.ox.ac.uk/~vgg/data/flowers/102/README.txt",
+      "reason": "Tool500 after redirect reports destination inaccessible/nonretryable.",
+      "status": "stopped_no_alternate",
+      "body_obtained": false,
+      "impact": "Flowers not selected as this round's executable data route."
+    }
+  ],
+  "unresolved_execution_permission_blocker_for_proposal": null,
+  "sysctl_probe_remains_denied_stopped": true,
+  "pending_or_uncertain_actions": false,
+  "model_request": {
+    "model": "GPT-6.1-Sol",
+    "reasoning_effort": "max",
+    "service_tier": "existing Fast request retained",
+    "settings_changed": false,
+    "actual_backend_receipt_exposed": false
+  }
+}

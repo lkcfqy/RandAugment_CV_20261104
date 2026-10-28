@@ -1,0 +1,50 @@
+{
+  "purpose": "descriptive comparison of already-stored first128losses, not a rerun or causal diagnosis",
+  "same_first128_input_RGB_and_order_by_input_audit": true,
+  "initial_model_SHA256_same": true,
+  "max_abs_first128_loss_difference": 2.966616004705429,
+  "first_step_abs_delta_above_0_01": 11,
+  "first8": [
+    {
+      "step": 1,
+      "old_CPU_loss": 0.6495656967163086,
+      "new_MPS_loss": 0.6495655179023743
+    },
+    {
+      "step": 2,
+      "old_CPU_loss": 0.6002406477928162,
+      "new_MPS_loss": 0.6002386212348938
+    },
+    {
+      "step": 3,
+      "old_CPU_loss": 0.5183733701705933,
+      "new_MPS_loss": 0.5183098316192627
+    },
+    {
+      "step": 4,
+      "old_CPU_loss": 0.3148491680622101,
+      "new_MPS_loss": 0.31494268774986267
+    },
+    {
+      "step": 5,
+      "old_CPU_loss": 0.4042503237724304,
+      "new_MPS_loss": 0.40477949380874634
+    },
+    {
+      "step": 6,
+      "old_CPU_loss": 0.024931583553552628,
+      "new_MPS_loss": 0.02486386150121689
+    },
+    {
+      "step": 7,
+      "old_CPU_loss": 0.030732303857803345,
+      "new_MPS_loss": 0.030703440308570862
+    },
+    {
+      "step": 8,
+      "old_CPU_loss": 0.1617589145898819,
+      "new_MPS_loss": 0.16074052453041077
+    }
+  ],
+  "caveat": "backend and implementation finite-check paths differ; trajectory divergence does not identify a faulty kernel or prove augmentation effect"
+}

@@ -1,0 +1,100 @@
+{
+  "status": "passed",
+  "at_utc": "2026-10-23T11:09:58.286770+00:00",
+  "checks": [
+    {
+      "file": "code-lock.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "diagnose.py",
+      "check": "python_syntax",
+      "passed": true
+    },
+    {
+      "file": "evidence-addendum.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "evidence-ledger.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "group-mapping.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "mis_score.py",
+      "check": "python_syntax",
+      "passed": true
+    },
+    {
+      "file": "protocol-lock.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "protocol.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "replay.py",
+      "check": "python_syntax",
+      "passed": true
+    },
+    {
+      "file": "result.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "verification.json",
+      "check": "json_parse",
+      "passed": true
+    },
+    {
+      "file": "verify_results.py",
+      "check": "python_syntax",
+      "passed": true
+    },
+    {
+      "file": "augmentation-research-20261022/sra-shape-audit-20261023/REPORT_ZH.md",
+      "check": "relative_file_links_exist",
+      "passed": true
+    },
+    {
+      "file": "CURRENT_CHECKPOINT_20261023_SRA_SHAPE_AUDIT.md",
+      "check": "relative_file_links_exist",
+      "passed": true
+    }
+  ],
+  "payload_count": 15,
+  "payload_hashes_match": true,
+  "frozen_input_hashes_unchanged": true,
+  "scientific_reexecution": false,
+  "task_background_jobs_started": 0,
+  "blockers": [
+    {
+      "action": "Read local process table",
+      "target": "ps -axo pid,ppid,%cpu,%mem,etime,command",
+      "status": "denied_stopped",
+      "reason": "OS/sandbox operation not permitted",
+      "bypassed": false
+    },
+    {
+      "action": "Read recent normalization manuscript landing page",
+      "target": "https://openreview.net/forum?id=Ff9byKDIY7",
+      "status": "verification_blocked_stopped",
+      "reason": "OpenReview browser verification challenge",
+      "bypassed": false
+    }
+  ],
+  "pending_or_uncertain_writes": false,
+  "auto_approval_denials": 0,
+  "project_writes_succeeded": true
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "existing-local-MPS",
+  "python": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/bin/python",
+  "installation": "none; reuse existing audited environment",
+  "device": "mps",
+  "threads": 1,
+  "memory_fraction": 0.1,
+  "seeded_witness_command": "PYTHONDONTWRITEBYTECODE=1 PYTORCH_ENABLE_MPS_FALLBACK=0 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 '/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/bin/python' -B '/Users/lkc/Documents/Codex/2026-10-24/task-9/bzr_mps_prepared/kernel_witness.py'",
+  "expect": "BZR_MPS_KERNEL_WITNESS",
+  "no_cloud": true,
+  "execution_context": "exec_command sandbox_permissions=require_escalated; default sandbox reported MPS unavailable; exact outside-sandbox witness passed without install or code change"
+}

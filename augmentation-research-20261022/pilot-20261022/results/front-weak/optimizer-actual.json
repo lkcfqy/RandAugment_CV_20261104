@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "lr": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.01,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": null,
+    "capturable": false,
+    "differentiable": false,
+    "fused": null,
+    "decoupled_weight_decay": true
+  },
+  "groups": [
+    {
+      "initial_lr": 0.0003,
+      "weight_decay": 0.01,
+      "parameters": 36864
+    },
+    {
+      "initial_lr": 0.001,
+      "weight_decay": 0.01,
+      "parameters": 28453
+    }
+  ]
+}

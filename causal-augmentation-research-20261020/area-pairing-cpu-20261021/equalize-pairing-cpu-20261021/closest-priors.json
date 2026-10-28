@@ -1,0 +1,51 @@
+{
+  "checked_at_utc": "2026-10-21T05:40:51.299152+00:00",
+  "sources": [
+    {
+      "title": "The Impact of Background Removal on Performance of Neural Networks for Fashion Image Classification and Segmentation",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2308.09764v2",
+      "coverage": "Section III-D/Figure7 already discusses and illustrates pixel augmentations including Equalize with removed backgrounds. General incompatibility is not new.",
+      "difference_to_test": "This pilot uses identical processed foreground and background marginals with exhaustive cross-pairings, then tests fixed-model source-heldout loss; not simply removed versus original background."
+    },
+    {
+      "title": "Local Patch AutoAugment with Multi-Agent Collaboration",
+      "year": 2021,
+      "url": "https://arxiv.org/html/2103.11099v2",
+      "coverage": "Searches regional augmentation policies with image context and includes Equalize. Local augmentation is not new.",
+      "difference_to_test": "No local policy learning is proposed here; a fixed-operator paired pixel attribution audit."
+    },
+    {
+      "title": "ForAug: Mitigating Biases in Image Classification via Controlled Image Compositions",
+      "year": 2026,
+      "version": "v4, July1",
+      "url": "https://arxiv.org/html/2503.09399v4",
+      "coverage": "Combines foreground-background composition with strong augmentations including RandAugment and controlled swap diagnostics.",
+      "difference_to_test": "Read sections do not separately report background-dependent Equalize LUT cross-pairing with exact processed-part marginal preservation. This is a bounded coverage observation, not a novelty proof."
+    },
+    {
+      "title": "torchvision autoaugment implementation",
+      "url": "https://docs.pytorch.org/vision/stable/_modules/torchvision/transforms/autoaugment.html",
+      "coverage": "RandAugment and TrivialAugmentWide include Equalize with no magnitude argument; implementation dispatches to F.equalize."
+    }
+  ],
+  "search_boundary": "10 focused web queries + relevant sections of3 papers and official implementation; no claim of exhaustive coverage or no equivalent prior",
+  "obvious_non_novel_claims": [
+    "global histogram depends on background",
+    "strong augmentation can hurt",
+    "operation order may not commute",
+    "local augmentation or background randomization"
+  ],
+  "search_queries": [
+    "data augmentation histogram equalization foreground background spurious correlations RandAugment",
+    "Equalize background causal augmentation",
+    "AutoContrast foreground augmentation shortcut",
+    "histogram equalization background augmentation spurious",
+    "RandAugment Equalize foreground",
+    "background photometric augmentation causal",
+    "histogram background ForAug",
+    "histogram equalization counterfactual background",
+    "Equalize foreground spurious",
+    "histogram foreground-background augmentation"
+  ]
+}

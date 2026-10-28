@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-10-21T05:55:35.182088+00:00",
+  "bounded_prior_difference": "Compare within-source view selection with an exact source-weight-matched unfiltered training arm on new original photos. This is a targeted ablation, not a new filter or a claim no prior study exists.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/2305.16289v2",
+      "title": "ALIA / Diversify Your Vision Datasets with Automatic Diffusion-Based Augmentation",
+      "covered": "Generation and semantic/confidence filters, their training gains; confidence rule is high-confidence removal. We do not reproduce this rule or restart blocked original candidate-pool audit."
+    },
+    {
+      "url": "https://arxiv.org/html/2310.08139v2",
+      "title": "DualAug",
+      "covered": "Heavy augmentation rejection and replace-with-basic branch already preserves one selected branch per source. Therefore source-balanced fallback is an established strong baseline, not our contribution."
+    },
+    {
+      "url": "https://arxiv.org/html/2508.08004v1",
+      "title": "Sample-aware RandAugment,2025",
+      "covered": "Difficulty-aware magnitude and asymmetric batch policies already prioritize samples. Sample awareness and adaptive augmentation are not new."
+    },
+    {
+      "url": "https://arxiv.org/html/2609.01051v1",
+      "title": "SAGE,2026",
+      "covered": "Subpopulation targeted generation and balancing already exists; no minority-group fairness claims here."
+    }
+  ],
+  "claimed_difference": "Read sections do not establish the exact seven-arm source-photo-weight matching decomposition for this constructed fixed-feature setting. Absence in read sections is not novelty proof.",
+  "restrictions": "CVF TeachAugment page returned403 and was not retried via other routes; abstract search only, not a fully inspected primary comparator."
+}

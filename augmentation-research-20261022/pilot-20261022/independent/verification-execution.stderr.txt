@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/lkc/Documents/Codex/2026-10-22/task-2/lora-ra-pilot-20261022/independent/verify_saved_pilot.py", line 383, in <module>
+    main()
+    ~~~~^^
+  File "/Users/lkc/Documents/Codex/2026-10-22/task-2/lora-ra-pilot-20261022/independent/verify_saved_pilot.py", line 281, in main
+    close(cell + ':' + prefix + ':' + key, val, summary['effective_Q_V_updates'][prefix][key], atol=2e-7, rtol=2e-5)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lkc/Documents/Codex/2026-10-22/task-2/lora-ra-pilot-20261022/independent/verify_saved_pilot.py", line 51, in close
+    check(name, a.shape == b.shape and np.isfinite(a).all() and np.isfinite(b).all()
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          and np.allclose(a, b, atol=atol, rtol=rtol))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lkc/Documents/Codex/2026-10-22/task-2/lora-ra-pilot-20261022/independent/verify_saved_pilot.py", line 45, in check
+    raise AssertionError(name)
+AssertionError: front-weak:encoder.layers.encoder_layer_0.self_attention.parametrizations.in_proj_weight.0:Q_delta_frobenius

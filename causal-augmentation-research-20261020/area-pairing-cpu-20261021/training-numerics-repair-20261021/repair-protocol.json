@@ -1,0 +1,87 @@
+{
+  "at_utc": "2026-10-21T06:28:41.367582+00:00",
+  "scope": "Repair an observed training numerical failure; engineering fixture, no new research hypothesis or performance claim",
+  "photos": [
+    {
+      "source_id": "Abyssinian_197",
+      "class37_target": 0,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "Birman_159",
+      "class37_target": 6,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "Birman_113",
+      "class37_target": 6,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "Persian_169",
+      "class37_target": 23,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "american_bulldog_167",
+      "class37_target": 1,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "german_shorthaired_155",
+      "class37_target": 14,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "american_pit_bull_terrier_13",
+      "class37_target": 2,
+      "source": "existing training-side photo only"
+    },
+    {
+      "source_id": "miniature_pinscher_179",
+      "class37_target": 21,
+      "source": "existing training-side photo only"
+    }
+  ],
+  "old_failed_code_sha256": "f6c98a2bfa9e3108e9533d65d698d8768e3a9d6b5accd0f653bce88f4ed7b865",
+  "original_failed_log_sha256": "d9ffe8630c6fda8a6191c5c757e49d8995aedd2af7c7c7ef187903b1a5026c0d",
+  "checks": [
+    "raw RGB range, official V1 normalization and tensor shape",
+    "label map and range, mean cross entropy on logits",
+    "finite exact official pretrained state and deterministic37class head initialization",
+    "no stale gradient accumulation",
+    "fixed BN running statistics and identical init across original/repaired arms",
+    "per-step loss/logits/gradient/parameter/momentum magnitudes"
+  ],
+  "original_reproduction": {
+    "head_LR": 0.1,
+    "body_LR": 0.01,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "max_steps": 12,
+    "purpose": "record original unsafe trajectory until first nonfinite loss; allow original update behavior only in disposable diagnostic model"
+  },
+  "first_repair": {
+    "head_LR": 0.01,
+    "body_LR": 0.001,
+    "same_other_settings": true,
+    "gradient_clipping": false,
+    "warmup": false,
+    "detailed_steps": 30,
+    "lean_timing_steps": 20,
+    "guard": "refuse optimizer step on nonfinite loss/gradient; assert updated parameters finite"
+  },
+  "success": "actual nonzero backbone and head parameter updates; all repaired loss/grad/params finite; final repeated-training-batch loss below70%initial; lean training timed separately",
+  "weights_not_to_save": "discard overfit fixture models; retain hashes and logs only",
+  "budget": {
+    "threads": 1,
+    "CPU_seconds_cap": 120,
+    "new_data": false,
+    "test_evaluations": 0,
+    "GPU": false,
+    "A100": false,
+    "ARIS": false,
+    "8A_access": false
+  },
+  "no_large_plan_autostart": true
+}

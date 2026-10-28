@@ -1,0 +1,149 @@
+{
+  "task": "TA 批内增强抽样粒度：等曝光、仅改变状态耦合的独立先例资格审查",
+  "date": "2026-10-21",
+  "output": "/Users/lkc/Documents/Codex/2026-10-21/task/augmentation-sampling-granularity-20261021/independent-prior-gate.json",
+  "model_request": {
+    "requested": "GPT-6.1-Sol / max",
+    "actual_verified": false,
+    "note": "沿用明确请求；没有实际模型/推理档位执行回执。"
+  },
+  "scope": {
+    "original_research_works_read": 3,
+    "existing_TA_summary_read": "/Users/lkc/Documents/Codex/2026-10-21/task/operation-law-audit-20261021/finding-zh.md",
+    "existing_summary_status": "仅复用已读 TA 原文摘要，没有重新取 TA 全文；该摘要不冒充本轮新的独立全文核验。",
+    "interface_source_audit": "父线程负责本机 torchvision、AA/RA 官方接口；本子线程不重复，也不把批量共享抽样推广到所有版本/后端。",
+    "prohibited_actions_not_performed": [
+      "ARIS 技能/流程",
+      "训练、模型/特征运行",
+      "像素读取、新数据下载",
+      "GPU/MPS/A100、外部模型",
+      "自动化/调度",
+      "8A/PPT访问或修改",
+      "历史受阻目标重试或替代路径获取"
+    ],
+    "files_changed": "仅本文件；旧记录不改。"
+  },
+  "decision": {
+    "candidate_count": 0,
+    "allow_fixed_theta_CPU_check": false,
+    "allow_readout_training": false,
+    "conclusion": "按本轮门槛否决为研究候选；不建议为验证已知协方差原则安排固定θ或读出CPU。",
+    "reason": "FreeAugment 已直接说明逐图抽策略相对全批只抽一次能降低增强抽样估计方差；Fort/Hoffer 已研究增强噪声、批构成和训练收敛。当前新控制能更干净地隔离抽样耦合，但尚未给出超出这些已知原则的 TA 特有、可预先区分的机制预测。",
+    "not_claimed": "不声称三篇已经完整执行了固定 TA featurebank、每图同曝光、每步同原图集合、相同B和更新数的共享/独立/Latin三臂实验；精确实现组合未见不等于新颖性成立。",
+    "research_project_scope": "只关闭本次待审命题，不宣布整个增强项目结束。"
+  },
+  "original_sources": [
+    {
+      "id": "Fort-2022-v2",
+      "title": "Drawing Multiple Augmentation Samples Per Image During Training Efficiently Decreases Test Error",
+      "authors": "Stanislav Fort; Andrew Brock; Razvan Pascanu; Soham De; Samuel L. Smith",
+      "version": "arXiv:2105.13343v2",
+      "version_date": "2022-02-24",
+      "primary_url_read": "https://arxiv.org/html/2105.13343v2",
+      "title_note": "父任务简称包含 for SGD；本轮所给编号v2页面的实际标题如上。",
+      "read_sections": [
+        "§1–3",
+        "§6–7",
+        "Appendix A, Figure 9",
+        "Appendix C, Figure 11"
+      ],
+      "direct_evidence": [
+        "分离数据集子采样噪声与增强抽样噪声，比较保持unique image数但增大batch、或固定batch但减少unique image数的multiplicity方案。",
+        "Appendix A 在固定初始化测量 minibatch 梯度方差。",
+        "Appendix C 明确比较同一batch内多副本与相邻batch重用同一组原图、重新增强，并报告训练loss与test表现不同。"
+      ],
+      "exact_difference": "Appendix C 比主文更近，但within方案每步unique image数不同；它没有固定每步原图集合与每图有限bank曝光，仅重排不同原图间共同增强状态。本题不能把该文误概括为只研究增大batch。",
+      "coverage_limit": "该文的优化/泛化结果不构成共享TA参数必然更慢或更差的定理；其泛化结论不能移作当前源侧训练目标的证据。"
+    },
+    {
+      "id": "Hoffer-2019-v1",
+      "title": "Augment your batch: better training with larger batches",
+      "authors": "Elad Hoffer; Tal Ben-Nun; Itay Hubara; Niv Giladi; Torsten Hoefler; Daniel Soudry",
+      "version": "arXiv:1901.09335v1",
+      "version_date": "2019-01-27",
+      "primary_url_read": "https://arxiv.org/html/1901.09335",
+      "later_title_context": "后发表于CVPR2020，题名 Augment Your Batch: Improving Generalization Through Instance Repetition；本轮全文证据限于所读2019v1，不冒充逐行核验2020定稿。",
+      "read_sections": [
+        "§1.2",
+        "§2, update rules",
+        "§2.2",
+        "§3.1–3.2"
+      ],
+      "direct_evidence": [
+        "通过同一原图在一个batch中出现多个不同增强副本，把有效batch从B增到MB。",
+        "讨论同图增强梯度相关性与方差缩减，并在不同训练阶段测量同图增强、同类及异类图像梯度相关。",
+        "相关梯度的平均不能按独立样本数直接解释；方差和优化步长/收敛相关的原则已有覆盖。"
+      ],
+      "exact_difference": "它改变副本数/有效batch，而本题拟保持unique image数、batchsize及总曝光，仅改变跨图增强状态耦合。论文T_i记号本身不能证明其实现对全批共享同一随机参数，不能从记号擅自判定精确覆盖。",
+      "coverage_limit": "未核验其官方代码抽样粒度；不声称2019v1给出了本题的等曝光Latin对照。"
+    },
+    {
+      "id": "FreeAugment-2024",
+      "title": "FreeAugment: Data Augmentation Search Across All Degrees of Freedom",
+      "authors": "Tom Bekor; Niv Nayman; Lihi Zelnik-Manor",
+      "version": "ECCV 2024 官方 ECVA 论文，18页",
+      "publication_year": 2024,
+      "exact_publication_day_verified": false,
+      "primary_url_read": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03848.pdf",
+      "read_sections": [
+        "§3.4, p.8, Eq.8–10后段",
+        "§4.1",
+        "§4.2, ImageNet-100段与Table 2",
+        "§4.3"
+      ],
+      "direct_evidence": [
+        "§3.4 p.8 明确把batch期望估计的增强抽样方差，与逐图分别抽augmentation policy而非整批只抽一次联系起来，并称逐图抽样可显著降低该方差。",
+        "这是双层augmentation policy搜索，同时讨论模型参数和policy参数更新，直接覆盖共享抽样与逐图抽样的方差动机。",
+        "主文§4.3的消融针对自由度、policy depth及类型/次序抽样，没有看到隔离逐图/整批耦合的同曝光消融；Table 2也不是该因子的单独对照。"
+      ],
+      "exact_difference": "该文不是TA、固定有限featurebank或Latin重排，不提供当前同曝光条件下读出收敛的直接因果量；本轮未读其补充和代码，不能排除其中更精确覆盖。",
+      "coverage_limit": "把§3.4作为直接设计理由/机制声明，不能夸成等曝光实验已证明，也不能把整个方法的准确率提升归因于抽样粒度。"
+    }
+  ],
+  "proposed_claim_audit": {
+    "population_objective": "在编码器固定且eval、读出loss按图可加、状态边际和权重相同的条件下，批内状态耦合不改变有限bank平均训练目标。若存在训练态BN或跨图loss，已超出本题且不能称仅改变噪声。",
+    "fixed_theta_variance": {
+      "definitions": "固定同一批B张原图与θ。g_i(s)为图i在状态s下的读出梯度，z_i(s)=g_i(s)-E_s g_i(s)。",
+      "known_identity": "tr(C_shared-C_independent)=B^(-2) Σ_{i≠j} E_s <z_i(s), z_j(s)>。",
+      "sign_limit": "对固定原图集合，右侧可以正、零或负；共同抽样并非无条件增加梯度方差。IID原图理想化下的大B公共状态项也要求 E_X g(X,s) 随s变化，才有非零floor。",
+      "counterexample_without_execution": "若两图梯度状态偏差相反，共享状态可抵消而独立状态不能；若偏差同向则相反。这只是标准协方差边界，不作为新构造或实验。",
+      "implication": "量出正的交叉项只核验该bank/θ的已知必要条件，尚不产生本轮所需增量。"
+    },
+    "balanced_exposure_boundary": "每图完整bank曝光若严格相同，固定θ下整轮梯度和也相同。单步方差差异会伴随步间相关；不能把它称为整轮不可消除的信息/噪声下界。",
+    "convergence_boundary": "固定θ的方差或其trace本身不决定有限预算收敛。学习率、曲率加权噪声、优化器状态及有限bank重排的时间相关仍会影响结果；全bank确定性读出优化则不应因bank排列改变目标。",
+    "Latin_boundary": "Latin重排属于已知分层/负相关抽样控制。即使固定曝光的Latin降低方差并加速该读出，也不能仅凭此包装为新的TA机制。",
+    "API_boundary": "torchvision批量接口共享一次随机抽样是需记录的实现语义，不等于TA作者算法假设，也不直接证明torchvision常规Dataset逐样本调用有该问题。"
+  },
+  "falsifiable_predictions_of_rejected_proposal_not_authorized_to_run": [
+    {
+      "prediction": "在预先固定θ、原图批次和共同有限bank下，shared的批平均梯度变动大于independent/Latin。",
+      "falsifier": "共享状态交叉项不为正或变动未更大，则当前bank/θ不支持共同噪声解释。",
+      "why_not_a_candidate": "正结果仍主要确认标准协方差恒等式及FreeAugment已直接提出的机制动机。"
+    },
+    {
+      "prediction": "相同每图曝光、原图批次、B、更新数和预定学习率下，shared对同一完整source-bank目标收敛更慢。",
+      "falsifier": "训练目标差未出现、方向反转或主要由边际/曝光/BN变化解释，则关闭该优化后果。",
+      "why_not_a_candidate": "当前没有独立于一般相关噪声/随机重排原则的TA特有机制或异常结果；仅把已知原则换成TA固定读出不足以过本轮门槛。"
+    }
+  ],
+  "minimal_data_conditions_if_a_material_new_prediction_later_emerges": {
+    "currently_required_new_data": "没有需要为本次否决去读取的新数据；不建bank、不计算梯度。",
+    "minimum_existing_bank_needed": [
+      "仅source的原图ID、物理对象ID与标签；所有图共同定义的、预先锁定至少两个增强状态及其权重。",
+      "已存在的对应featurebank z[i,state]，编码器固定eval，无训练态BN/跨图依赖；只有旧几何臂bank不能自动称完整TA抽样分布。",
+      "每个(image,state)精确曝光计数、每步原图集合、batchsize、更新数、学习率/优化器与θ选择规则。",
+      "shared、逐图重排和Latin只重排bank索引，不能增加副本、独特原图数或可用计算。",
+      "以完整source-bank目标评价优化；旧test已消费，不能改称盲测，也不从梯度噪声推断泛化/AA-RA-TA排名。"
+    ],
+    "reopen_condition": "需要可先验区分、超出‘相关抽样改变噪声/分层降低方差’的具体机制预测或异常原始结果，以及能与上述直接先例区别的对照；不是再增加普通SGD曲线。"
+  },
+  "access_and_execution": {
+    "new_access_failures": [],
+    "historical_denied_targets_retried": false,
+    "aris_used": false,
+    "any_experiment_executed": false,
+    "any_image_or_model_read": false,
+    "note": "1901.09335v1 HTML包含源TeX页边距排版警告，但正文可读；这不是HTTP拒绝或安全审批拒绝。"
+  },
+  "strongest_supported_conclusion": "固定曝光与每步原图集合是比常见multiplicity比较更严格的控制；然而逐图独立政策抽样降低全批共享增强方差已有直接原文先例，当前预测仍停留在已知噪声原则。此次给0候选，不安排CPU检查。"
+}

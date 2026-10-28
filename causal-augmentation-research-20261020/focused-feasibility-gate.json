@@ -1,0 +1,116 @@
+{
+  "checked_at_utc": "2026-10-20T19:43:55.382687+00:00",
+  "scope": "focused_metadata_and_pairing_gate_no_images_or_models",
+  "records": [
+    {
+      "name": "in9_release_index",
+      "url": "https://api.github.com/repos/MadryLab/backgrounds_challenge/releases?per_page=5",
+      "purpose": "public small metadata only",
+      "http_status": 200,
+      "bytes": 3344,
+      "sha256": "b66c1be31a872436b438f5defc974b0ea99df9b7bceeeec6fa35cda51ac6f237",
+      "releases": [
+        {
+          "tag": "data",
+          "published_at": "2020-06-18T08:33:43Z",
+          "assets": [
+            {
+              "name": "backgrounds_challenge_data.tar.gz",
+              "bytes": 279581133,
+              "url": "https://github.com/MadryLab/backgrounds_challenge/releases/download/data/backgrounds_challenge_data.tar.gz"
+            }
+          ]
+        }
+      ],
+      "standalone_manifest_assets": [],
+      "status": "retrieved"
+    },
+    {
+      "name": "in9_classes",
+      "url": "https://raw.githubusercontent.com/MadryLab/backgrounds_challenge/master/in9_classes.txt",
+      "purpose": "public small metadata only",
+      "http_status": 200,
+      "bytes": 198,
+      "sha256": "3fba913f1b7d60204437d1e12b8c2a30c68d7c8f4a697f154ecc4a3db9c00c16",
+      "classes": [
+        "Dog         n02084071",
+        "Bird        n01503061",
+        "Vehicle     n04576211",
+        "Reptile     n01661091",
+        "Carnivore   n02075296",
+        "Insect      n02159955",
+        "Instrument  n03800933",
+        "Primate     n02469914",
+        "Fish        n02512053"
+      ],
+      "class_count": 9,
+      "status": "retrieved"
+    },
+    {
+      "name": "in9_mapping",
+      "url": "https://raw.githubusercontent.com/MadryLab/backgrounds_challenge/master/in_to_in9.json",
+      "purpose": "public small metadata only",
+      "http_status": 200,
+      "bytes": 10520,
+      "sha256": "5b72ab44c804129744f5dff9372d8048c3b85da38d48385d73686ee0b0e7b638",
+      "type": "dict",
+      "mapping_count": 1000,
+      "sample": [
+        [
+          "151",
+          0
+        ],
+        [
+          "152",
+          0
+        ],
+        [
+          "153",
+          0
+        ]
+      ],
+      "status": "retrieved"
+    }
+  ],
+  "codalab_attempts": [
+    {
+      "dataset": "waterbirds",
+      "base_from_official_loader": "https://worksheets.codalab.org/rest/bundles/0x505056d5cdea4e4eaa0e242cbfe2daa4/contents/blob/",
+      "derived_path": "metadata.csv",
+      "request_cap_bytes": 262144,
+      "result": "TLS_CERTIFICATE_VERIFY_FAILED_certificate_has_expired",
+      "http_response_obtained": false,
+      "csv_obtained": false,
+      "standalone_path_validated": false,
+      "certificate_checks_disabled": false
+    },
+    {
+      "dataset": "iwildcam",
+      "base_from_official_loader": "https://worksheets.codalab.org/rest/bundles/0x6313da2b204647e79a14b468131fcd64/contents/blob/",
+      "derived_path": "metadata.csv",
+      "request_cap_bytes": 262144,
+      "result": "TLS_CERTIFICATE_VERIFY_FAILED_certificate_has_expired",
+      "http_response_obtained": false,
+      "csv_obtained": false,
+      "standalone_path_validated": false,
+      "certificate_checks_disabled": false
+    }
+  ],
+  "license_checks": {
+    "cub_official": "read; non-commercial research/education; source does not own all image copyrights",
+    "places_official_full_terms": "502 Bad Gateway; full terms unverified",
+    "iwildcam_official_loader": "CDLA-Permissive-1.0; terms read",
+    "in9_images": "no image license chain or paired image provenance validated"
+  },
+  "not_done": [
+    "image_download",
+    "full_dataset_download",
+    "training",
+    "model_inference",
+    "GPU/A100",
+    "security_bypass",
+    "CUA_or_OntoAug_retry",
+    "model_settings_audit_retry",
+    "8A_access"
+  ]
+}

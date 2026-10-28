@@ -1,0 +1,670 @@
+{
+  "schema_version": 1,
+  "at_UTC": "2026-10-21T18:49:33.309586+00:00",
+  "purpose": "append_only_current_status_and_scope_corrections",
+  "priority_rule": "Read current scientific assessment and current data role here before aggregating old positive/retained/fresh/heldout/pending/completed strings. Raw files and numeric values remain unchanged.",
+  "scope_limit": "Targeted independent text/metadata/statistical audit across the project, not exhaustive binary execution replay or proof against unrecorded decisions.",
+  "current_status": {
+    "stable_training_capability": true,
+    "established_new_algorithm_general_benefit": false,
+    "identified_real_world_causal_effect": false,
+    "validated_novel_research_candidate_established_by_current_records": false,
+    "next_training_plan_frozen": false,
+    "training_or_A100_approval_pending": false,
+    "whole_project_declared_finished": false
+  },
+  "data_roles": [
+    {
+      "cohort": "既有训练/开发64",
+      "count": 64,
+      "original_and_later_roles_zh": "由早期机制迁移/冻结读出等探索材料成为后续过滤读出拟合、stage/训练修复、亮度三臂训练及 clipping 开发检查的训练来源。",
+      "current_role_zh": "训练/开发材料；不能再成为新命题的独立测试。",
+      "official_split_boundary_zh": "含官方 trainval 和 test 来源，是自定义源照片互斥小样本划分；不能称官方 trainval-only 或完整 Pet benchmark。",
+      "identity_and_pretraining_independence": "unknown",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 15,
+          "quote": "旧64张照片已全部参加探索，故本轮把它们明确用作训练/发展材料。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/joint-clipping-photo-check-20261021/result-zh.md",
+          "line": 19,
+          "quote": "全部64张既有训练照片；已经参与模型拟合和多次开发，不是新测试集。"
+        }
+      ]
+    },
+    {
+      "cohort": "filter 首次测试64 / 后来 stage 开发64",
+      "count": 64,
+      "first_test_at_utc": "2026-10-21T06:01:20.655728+00:00",
+      "first_test_status_zh": "现有协议与冻结/消费记录支持：当时先冻结问题、超参及七个读出，再取得并一次评价这64张新照片；不因后来开发使用而反推当时泄漏。",
+      "later_role_zh": "stage protocol 明确说明全部64张来自 prior filter test，属于已消费开发集；账本核验为完全相同的ID集合。",
+      "current_role_zh": "已消费的历史测试/开发数据，不是新确认集。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 19,
+          "quote": "全部拟合并冻结→下载新64张JPEG→一次读取测试像素和评价。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json",
+          "json_pointer": "/future_use",
+          "quote": "Do not claim these64photos are untouched confirmation for a new hypothesis or hyperparameter choice."
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/stage-validity-pilot-20261021/protocol.json",
+          "json_pointer": "/development_status",
+          "quote": "all64previously used for the prior filter training-value test; explicitly consumed data; no independent confirmation claim"
+        }
+      ]
+    },
+    {
+      "cohort": "Equalize 局部 heldout 前景16",
+      "count": 16,
+      "historical_role_zh": "Equalize 实验内与拟合侧源照片互斥；原报告已说明此前被历史实验使用，故当时也只是探索性、局部 heldout。",
+      "later_role_zh": "全部16个前景源ID进入后续微调训练64；账本交集16。",
+      "current_role_zh": "后续模型的训练来源，不能用旧 heldout 文件名建立对这些模型的独立测试主张。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 20,
+          "quote": "源照片互斥，但留出照片在历史实验中已使用，所以仍属探索性检查。"
+        },
+        {
+          "path": "/Users/lkc/Documents/Codex/2026-10-21/task/evidence-cross-audit-20261021/fact-ledger.json",
+          "json_pointer": "/data_roles/pairwise_ID_intersections/finetune_training64__equalize_consumed_foreground16",
+          "value": 16
+        }
+      ]
+    },
+    {
+      "cohort": "brightness 首次留出48",
+      "count": 48,
+      "first_test_status_zh": "按现有协议和结果记录，48张在三臂最终模型冻结后取得，且与已用来源ID及已知CRC重复排除；没有证据表明当时先用其选强度或模型。",
+      "current_role_zh": "已消费的锁定问题测试集；不恢复为未来新命题的未触碰测试。没有证据表明它们后来被用于训练，不擅自将其改称训练集。",
+      "scope_zh": "48个来源照片、4个固定训练背景供体、1个训练seed；192个合成视图不是192个独立照片或自然环境样本。",
+      "evidence": [
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 9,
+          "quote": "该48张在协议、代码、训练结果与最终模型冻结后才下载和解码。"
+        },
+        {
+          "path": "/Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 35,
+          "quote": "192张合成图不是192个独立样本；区间不包含训练随机性或背景总体的不确定性。"
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "D01",
+      "priority": "P1",
+      "type": "superseded_overview_snapshot",
+      "evidence": [
+        {
+          "path": "research-status.md",
+          "line": 7,
+          "quote": "当前阶段：文献可行性探索完成……保留两项候选：锁定的配对处理及跨编辑器迁移审计优先，具体过滤规则误拒审计次之。"
+        },
+        {
+          "path": "research-status.md",
+          "line": 9,
+          "quote": "未训练、未生成推理、未使用GPU/A100、未安装软件……"
+        },
+        {
+          "path": "feasibility-report-zh.md",
+          "line": 7,
+          "quote": "最优先的两个候选是：①配对处理控制与跨编辑器、自然OOD迁移的联合审计；②对具体样本过滤规则的分群体误拒审计。"
+        },
+        {
+          "path": "review-disposition.md",
+          "line": 13,
+          "quote": "候选一PROCEED WITH CAUTION；候选二仅作为测量问题PROCEED。"
+        }
+      ],
+      "historical_assessment": "这些文件明确截止2026-10-20，当时的未训练与候选状态可作为历史记录保留；不是伪造或当时数据泄漏。",
+      "current_risk": "脱离截止日期读取“当前”“保留”会遗漏后续已完成训练与关闭决定，使已关闭方向看起来仍是当前主线。",
+      "current_interpretation": "历史快照，截至2026-10-20。其候选和资源/未训练状态已被2026-10-21各分支关闭记录及 evidence-cross-audit/morning-facts-zh.md 取代；本文件不代表当前待执行方案、实证收益或新颖性状态。",
+      "allowed_claim": "早期文献可行性与条件设计，不是当前原创候选通过或算法实证结果。",
+      "minimum_supplement_not_execution_authorization": "仅需追加时间/继承映射；不需新实验，也不应为恢复旧优先级追加训练。"
+    },
+    {
+      "id": "D02",
+      "priority": "P1",
+      "type": "machine_readable_verdict_needs_scientific_override",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/final_judgements/frozen",
+          "quote": "positive"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/final_judgements/finetune",
+          "quote": "positive"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+          "json_pointer": "/effects_by_fixed_checkpoint/128/D",
+          "quote": 0.6988593339920044
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 18,
+          "quote": "该自动符号规则不是有效训练/科学结论的充分条件。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 22,
+          "quote": "尚不能可靠判断冻结表征的增强判断与短微调是否一致。"
+        }
+      ],
+      "historical_assessment": "原始正号是预设G>0.02的算术标签；文件也标 development-only 和 no_independent_test_claim。不能说原实验隐藏了开发集身份。",
+      "current_risk": "只提取 final_judgements 或大正D，会将未学成的TA臂与失稳/过拟合基础臂之差误报为TA训练收益或冻结代理有效。",
+      "current_interpretation": "保留 raw positive 字段为符号记录；当前科学判定为 inconclusive_for_proxy_validity_due_to_training_state，不能覆盖训练有效性门槛。不得从这些字段生成“有效/通过”的项目摘要。",
+      "allowed_claim": "短预算下训练状态不适合承担该代理判断；开发损失差的数值本身可保留。",
+      "minimum_supplement_not_execution_authorization": "更正摘要只需引用已存训练侧指标与 result-zh/delivery 解释。若未来重提代理命题，需另锁定稳定训练与新评价设计；后来的不同修复配方不能追溯性使本轮D有效。"
+    },
+    {
+      "id": "D03",
+      "priority": "P2",
+      "type": "historical_fresh_label_not_current_freshness",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+          "json_pointer": "/status",
+          "quote": "completed_once_on64_fresh_original_photos"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md",
+          "line": 63,
+          "quote": "保留……真正未触碰的新测试记录和阴性结论。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json",
+          "json_pointer": "/status",
+          "quote": "consumed_for_this_fixed_question"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 7,
+          "quote": "64张已在此前实验中使用过的开发照片；后者明确不是未触碰测试集。"
+        }
+      ],
+      "historical_assessment": "第一次测试的 freshness 与冻结顺序有记录支持；后来的开发使用不使当时的测试追溯性失效。",
+      "current_risk": "fresh/test 文件名和结果状态若脱离消费记录，会被误当作当前仍可确认新命题的数据。",
+      "current_interpretation": "fresh 仅指2026-10-21T06:01该次锁定测试前；同一64张随后成为stage开发集，现已消费。保留历史结果，禁止恢复未触碰身份。",
+      "allowed_claim": "特定冻结ResNet特征、固定视图库和逻辑读出下，过滤相对源权重匹配对照的LL收益为-0.00589149 nat，区间含零；未支持额外过滤收益，不证明过滤普遍无效或两组等价。",
+      "minimum_supplement_not_execution_authorization": "角色更正无需新实验；任何新确认性训练收益主张须有未参与选择的新来源单位及冻结协议，不能靠重新划分这64张恢复独立性。"
+    },
+    {
+      "id": "D04",
+      "priority": "P2",
+      "type": "former_local_holdout_now_training",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+          "json_pointer": "/split",
+          "quote": "heldout"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/verification.json",
+          "json_pointer": "/fit_and_heldout_sources_disjoint",
+          "quote": true
+        },
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 20,
+          "quote": "留出照片在历史实验中已使用，所以仍属探索性检查。"
+        }
+      ],
+      "historical_assessment": "fit/heldout源互斥只针对该次局部划分。原报告没有声称其对整个项目全新。",
+      "current_risk": "这16张前景后来全部进入微调训练64；其旧heldout标签不能支持后续模型的独立测试。",
+      "current_interpretation": "该heldout是历史局部角色；前景16/16现属后续训练来源。保留旧数组与结果，不对后续模型复用为独立评估。",
+      "allowed_claim": "固定模型和指定有限交叉配对图像上的损失差-0.00165441 nat；预定配对损害筛查未通过。不能推出Equalize或完整RA/TA的训练优劣。",
+      "minimum_supplement_not_execution_authorization": "当前标签衔接只需已有ID清单交集。若升级为泛化研究，需要先有新命题和真正未参与选择的来源单位，不在这些图上继续筛模型。"
+    },
+    {
+      "id": "D05",
+      "priority": "P2",
+      "type": "consumed_brightness_test_and_conditional_effect",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 9,
+          "quote": "48张新照片……在协议、代码、训练结果与最终模型冻结后才下载和解码。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 31,
+          "quote": "A=0.00311082；95%区间[0.00151742,0.00468280]；相对共享改善3.532%。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md",
+          "line": 35,
+          "quote": "区间固定了一个训练seed、训练样本与四个供体，不包含训练随机性或背景总体的不确定性。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/passes_large_effect_pilot_screen",
+          "quote": false
+        },
+        {
+          "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+          "json_pointer": "/actual_world_causal_effect_identified",
+          "quote": false
+        }
+      ],
+      "historical_assessment": "该次锁定问题上的新照片测试可保留；未发现当时用其调强度或选最终模型的证据。",
+      "current_risk": "48张现在已消费；3.532%是特定归一化背景敏感性的相对下降，不是准确率提升、训练种子总体效应或真实背景do效应。未过20%筛查亦不等于效应为零。",
+      "current_interpretation": "48张为已消费的历史测试集。保留条件性小幅观测与未过投入筛查两者，不写“无效”，也不写“稳健泛化/因果机制已显著”。",
+      "allowed_claim": "单训练seed、48来源照片和4固定纹理供体下，语义独立臂的预定敏感性点估计较低；未达到预设大效应投入标准，亦未建立新算法或语义机制。",
+      "minimum_supplement_not_execution_authorization": "更正只需已有报告。若将来提出更强总体主张，需预先定义效应目标、训练随机性与新场景/供体来源；当前不因小效应而追加调参或训练。"
+    },
+    {
+      "id": "D06",
+      "priority": "P2",
+      "type": "superseded_retained_candidate_entries",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/candidate-check.json",
+          "json_pointer": "/status",
+          "quote": "retained_as_exploratory_metadata_program_mechanism_candidate"
+        },
+        {
+          "path": "joint-clipping-mechanism-20261021/finding-zh.md",
+          "line": 3,
+          "quote": "结论：保留一个具体候选——单因素验证均保留判别线索，但联合新增饱和……"
+        },
+        {
+          "path": "joint-clipping-mechanism-20261021/review-record.json",
+          "json_pointer": "/decision",
+          "quote": "Retain a specific controlled-mechanism candidate, not a validated real-CV or novelty claim."
+        },
+        {
+          "path": "symmetry-causal-risk-20261021/theory-note-zh.md",
+          "line": 5,
+          "quote": "当前保留一个窄的理论边界问题……"
+        }
+      ],
+      "historical_assessment": "都是有明确范围的探索状态，不应删除原数值或把曾经保留候选说成伪造结果。",
+      "current_risk": "只聚合 retained/current 字符串会复活已被后续结果/先例限制关闭的方向。",
+      "current_interpretation": "状态继承：面积/尺度→encoder-resnet18-round2的阴性探索；联合clipping→joint-clipping-photo-check的课堂机制降级与零错误事件；CER反射→operation-law-audit限定为指定SCM数学边界，关闭向Pet/RA/TA自然识别的直接外推。旧数学结果保留，原创或真实CV收益状态不保留。",
+      "allowed_claim": "有限元数据/渲染机制、指定SCM精确边界和已知成像示例；不支持当前新候选、世界因果效果或AA/RA/TA性能结论。",
+      "minimum_supplement_not_execution_authorization": "仅需追加上述关闭映射；缺少新命题时不以更多模拟或训练替代增量。"
+    },
+    {
+      "id": "D07",
+      "priority": "P3",
+      "type": "terminology_needs_narrow_scope",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 3,
+          "quote": "出现了真实增强失败，但未验证新的配对损害机制。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 32,
+          "quote": "未对全部变体做盲法人工标签有效性审查。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+          "line": 43,
+          "quote": "Equalize相对无操作损失增加0.058343 nat，准确率下降10.9375个百分点，确有增强失败。"
+        }
+      ],
+      "historical_assessment": "报告已清楚给出固定读出、合成视图和缺少全量盲审的限制，没有声称完整RA/TA训练失败。",
+      "current_risk": "截取“真实增强失败”可能被理解成所有视图已独立确认语义标签保持，或整个增强算法失败。",
+      "current_interpretation": "将该术语解释为：固定分类器在指定处理图像、沿用源标签的评价中损失上升/准确率下降；未独立认证全部变体的语义可识别性，也未测试增强训练效果。",
+      "allowed_claim": "所报告有限处理分布上的固定模型响应，不归因于未通过筛查的配对机制。",
+      "minimum_supplement_not_execution_authorization": "当前表述收窄不需补实验；若要声称语义保持下的普遍失效，需独立标签/可识别性证据和新来源数据，不能由一次查看的示例外推。"
+    },
+    {
+      "id": "D08",
+      "priority": "P2",
+      "type": "obsolete_future_plan_and_resource_scope",
+      "evidence": [
+        {
+          "path": "area-pairing-cpu-20261021/measurement-scope-decision-20261021/next-experiment-and-cost.json",
+          "json_pointer": "/status",
+          "quote": "concrete_proposal_not_executed_pending_expanded_data_and_A100_approval"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/measurement-scope-decision-20261021/decision-zh.md",
+          "line": 23,
+          "quote": "训练采用官方trainval3,680张……排除历史曝光后的3,541个未读ID……当前没有下载或查看这些新像素。"
+        },
+        {
+          "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md",
+          "line": 28,
+          "quote": "不再推进全37类三种子方案；也不为此次开发结果追加训练。"
+        },
+        {
+          "path": "focused-feasibility-appendix.md",
+          "line": 43,
+          "quote": "NO-GO：暂不启动原定最小实证验证。"
+        }
+      ],
+      "historical_assessment": "这些是未执行提案和特定跨编辑器/自然OOD数据门，不是已经取得独立测试证据。",
+      "current_risk": "pending_A100 被读成当前等待批准的任务；或把10/20特定资源门的NO-GO泛化成后来所有Pet实证不可用。3,541只是当时元数据候选池，不是已评价样本。",
+      "current_interpretation": "37类三种子/A100提案已暂停、不是当前待执行事项；旧NO-GO仍仅针对原跨编辑器→自然OOD设计。后来的Pet数据与本机测量不自动解除那个原设计的数据/识别缺口。",
+      "allowed_claim": "成本和资源边界的历史规划，以及后续已完成的本地训练能力诊断；无新泛化结果。",
+      "minimum_supplement_not_execution_authorization": "当前只需计划状态与数据源范围更正；不需要请求算力或下载提案中的数据。"
+    }
+  ],
+  "additional_statistical_clarifications": [
+    {
+      "id": "S01",
+      "type": "zero_event_status_clarification",
+      "path": "joint-clipping-photo-check-20261021/results.json",
+      "pointer": "/weak_diagnostic_screen_supported",
+      "raw_value": false,
+      "current_assessment": "not_evaluable_no_events",
+      "interpretation_zh": "raw false 仍表示未取得支持；但不能被汇总为诊断无用。两模型均0新增错误，AUROC未定义。"
+    },
+    {
+      "id": "S02",
+      "type": "population_claim_wording_correction",
+      "path": "evidence-cross-audit-20261021/morning-facts-zh.md",
+      "line": 35,
+      "raw_phrase": "条件效应不是零",
+      "current_assessment": "positive_reported_conditional_difference_and_interval_excludes_zero",
+      "interpretation_zh": "应读为所报条件差值为正且该条件区间不含零，不宣称总体真值或真实世界因果效应非零。"
+    },
+    {
+      "id": "S03",
+      "type": "fixed_input_prediction_not_world_causal_effect",
+      "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md",
+      "line": 3,
+      "raw_phrase": "真实增强失败",
+      "current_assessment": "fixed_classifier_response_under_source_label_not_certified_label_preservation",
+      "interpretation_zh": "只限指定处理图、沿用源标签的损失/准确率；没有全部变体的盲法语义可识别性认证，不是训练增强效用。"
+    }
+  ],
+  "statistical_finding_crosswalk": {
+    "STAT-001": "D02 / stage scientific override",
+    "STAT-002": "S01 / diagnostic scientific override",
+    "STAT-003": "S02 / conditional CI wording"
+  },
+  "machine_readable_interpretation_overrides": [
+    {
+      "record": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+      "raw_pointers": [
+        "/final_judgements/frozen",
+        "/final_judgements/finetune"
+      ],
+      "raw_value": "positive",
+      "aggregation_rule": "treat_as_arithmetic_sign_only",
+      "scientific_assessment": "inconclusive_for_proxy_validity_due_to_training_state",
+      "independent_confirmation": false
+    },
+    {
+      "record": "joint-clipping-photo-check-20261021/results.json",
+      "raw_pointers": [
+        "/weak_diagnostic_screen_supported"
+      ],
+      "raw_value": false,
+      "aggregation_rule": "do_not_map_false_to_diagnostic_ineffective",
+      "scientific_assessment": "not_evaluable_no_events",
+      "independent_confirmation": false
+    },
+    {
+      "record": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+      "aggregation_rule": "fresh_at_original_fixed_question_only",
+      "historical_evaluation": "retained_as_conditional_fixed_question_result",
+      "current_data_role": "consumed_test_and_later_stage_development",
+      "untouched_for_new_hypothesis": false
+    },
+    {
+      "record": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+      "aggregation_rule": "not_accuracy_gain_not_zero_effect_not_world_do",
+      "scientific_assessment": "small_positive_reported_conditional_contrast_failed_large_effect_screen",
+      "historical_evaluation": "retained_as_conditional_fixed_question_result",
+      "current_data_role": "consumed_test_not_established_later_training",
+      "untouched_for_new_hypothesis": false
+    },
+    {
+      "record": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+      "aggregation_rule": "heldout_in_local_historical_split_only",
+      "scientific_assessment": "exploratory_fixed_model_screen_not_met",
+      "current_data_role": "all16foregrounds_in_later_training64",
+      "untouched_for_new_hypothesis": false
+    },
+    {
+      "record": "area-pairing-cpu-20261021/measurement-scope-decision-20261021/next-experiment-and-cost.json",
+      "aggregation_rule": "superseded_proposal_not_pending_approval",
+      "scientific_assessment": "not_executed_not_current_plan",
+      "automatic_execution_authorized": false
+    },
+    {
+      "record": "research-status.md",
+      "aggregation_rule": "dated_20261020_snapshot_not_current_candidate_or_execution_status",
+      "scientific_assessment": "superseded_by_current_index_and_branch_dispositions"
+    }
+  ],
+  "source_snapshot": {
+    "research-status.md": {
+      "bytes": 2059,
+      "sha256": "971803fc7e5bb9bf41c178b54abfebed12c223f235a19a2552b88cccbd89abcb"
+    },
+    "feasibility-report-zh.md": {
+      "bytes": 28335,
+      "sha256": "75b949bccfd4dcf911e0620b060acc80be412fce643aa3321d415f9e84f5d7de"
+    },
+    "review-disposition.md": {
+      "bytes": 1940,
+      "sha256": "4603ccbbc5f6e3ff386e02886b3b6ee034eba5dc1bef20808c848bde64dd494c"
+    },
+    "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json": {
+      "bytes": 29732,
+      "sha256": "5b66b0e0688f30968288e68700663f21e66e1df13a447da3dd33ababfd610b44"
+    },
+    "area-pairing-cpu-20261021/stage-validity-pilot-20261021/result-zh.md": {
+      "bytes": 4136,
+      "sha256": "76dc81927d125f8a32610b1e309c0177cc859745f3a0982390c16ccb62c5b9b0"
+    },
+    "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json": {
+      "bytes": 2551,
+      "sha256": "a3c34ec5e76d2409e7c67884d86c0e27ed567c729563faa82b4a8e7e9906f69b"
+    },
+    "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/result-zh.md": {
+      "bytes": 8323,
+      "sha256": "26551d531f828ca7f1f922bb2ea6f69f6fe8a4014d02262b43e816fc3bd54d23"
+    },
+    "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json": {
+      "bytes": 1868,
+      "sha256": "80b019f6f65d035304eef2d1d5dd7ee821149ad3f91b5129d7a43f30cef528b7"
+    },
+    "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json": {
+      "bytes": 17411,
+      "sha256": "07fc8ea71847591a038dc106af9850b5eec281e0a03838a151e04c18b892c604"
+    },
+    "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/verification.json": {
+      "bytes": 420,
+      "sha256": "013e4cb143e54020d0f05a03e36e92198e3134365d142912bb13bffe433475e1"
+    },
+    "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/result-zh.md": {
+      "bytes": 6885,
+      "sha256": "abfb64a811b7581cab12bd191c2a56ea92a80033883a84df6d928be58cc94eca"
+    },
+    "area-pairing-cpu-20261021/brightness-coupling-training-20261021/result-zh.md": {
+      "bytes": 9219,
+      "sha256": "a8ed253c4dcce06db8ab54d55522553659350e540015d012c53c3e898d4b5183"
+    },
+    "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json": {
+      "bytes": 8060,
+      "sha256": "cd484aacde7e0ef82f1c8a507c460a9088b4b16b41d29819141840c2c05b0e2c"
+    },
+    "area-pairing-cpu-20261021/candidate-check.json": {
+      "bytes": 8017,
+      "sha256": "d2001c6e9dd9b9d20bda619837a3b7f4f80dd400d5be1b89f76c06f5503ed54e"
+    },
+    "joint-clipping-mechanism-20261021/finding-zh.md": {
+      "bytes": 9039,
+      "sha256": "b6ef260192f4b222dfb1a3573f21db7e741e95e170c071cad72bd82c92715dda"
+    },
+    "joint-clipping-mechanism-20261021/review-record.json": {
+      "bytes": 2615,
+      "sha256": "da1ef30a8de51bc93a039784ca44cedbb77e60557c94c63b8c33c1c467e603e4"
+    },
+    "symmetry-causal-risk-20261021/theory-note-zh.md": {
+      "bytes": 9074,
+      "sha256": "4850fd81967d3cc73bcf72d16cd9b39345f18086d46359ce6a9420e2cd4a877f"
+    },
+    "area-pairing-cpu-20261021/measurement-scope-decision-20261021/next-experiment-and-cost.json": {
+      "bytes": 6734,
+      "sha256": "de4211dd6050c0861c38fdfe3687504b4fa2a3279e58c6abb950047a87ca3ccd"
+    },
+    "area-pairing-cpu-20261021/measurement-scope-decision-20261021/decision-zh.md": {
+      "bytes": 6949,
+      "sha256": "f5fc32dc92b588a3bfb4ba81a1746d0b8dbf4f43cd6efdf00d6596e508b0dd47"
+    },
+    "focused-feasibility-appendix.md": {
+      "bytes": 7626,
+      "sha256": "8343e48a6769bbea42c1db322b25af9624308b67cff29b5bdc340303032d6fb0"
+    },
+    "joint-clipping-photo-check-20261021/results.json": {
+      "bytes": 15673,
+      "sha256": "93f640048ebc9e4c8e6fac1ee1d0fdfff715cb47c97613055ab8bca930498581"
+    },
+    "evidence-cross-audit-20261021/morning-facts-zh.md": {
+      "bytes": 9307,
+      "sha256": "d5af6446a8c1c7a2eb1e1682588dfca14d13d357c966a6cb4ff86e2ddb1f71a3"
+    }
+  },
+  "root_JSON_pointer_checks": [
+    {
+      "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+      "pointer": "/final_judgements/frozen",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "positive",
+      "reviewer_value_or_excerpt": "positive"
+    },
+    {
+      "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+      "pointer": "/final_judgements/finetune",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "positive",
+      "reviewer_value_or_excerpt": "positive"
+    },
+    {
+      "path": "area-pairing-cpu-20261021/stage-validity-pilot-20261021/pilot-results.json",
+      "pointer": "/effects_by_fixed_checkpoint/128/D",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": 0.6988593339920044,
+      "reviewer_value_or_excerpt": 0.6988593339920044
+    },
+    {
+      "path": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-results.json",
+      "pointer": "/status",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "completed_once_on64_fresh_original_photos",
+      "reviewer_value_or_excerpt": "completed_once_on64_fresh_original_photos"
+    },
+    {
+      "path": "area-pairing-cpu-20261021/train-filter-sourceweight-20261021/test-consumption.json",
+      "pointer": "/status",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "consumed_for_this_fixed_question",
+      "reviewer_value_or_excerpt": "consumed_for_this_fixed_question"
+    },
+    {
+      "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/heldout-results.json",
+      "pointer": "/split",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "heldout",
+      "reviewer_value_or_excerpt": "heldout"
+    },
+    {
+      "path": "area-pairing-cpu-20261021/equalize-pairing-cpu-20261021/verification.json",
+      "pointer": "/fit_and_heldout_sources_disjoint",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": true,
+      "reviewer_value_or_excerpt": true
+    },
+    {
+      "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+      "pointer": "/passes_large_effect_pilot_screen",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": false,
+      "reviewer_value_or_excerpt": false
+    },
+    {
+      "path": "area-pairing-cpu-20261021/brightness-coupling-training-20261021/final-results.json",
+      "pointer": "/actual_world_causal_effect_identified",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": false,
+      "reviewer_value_or_excerpt": false
+    },
+    {
+      "path": "area-pairing-cpu-20261021/candidate-check.json",
+      "pointer": "/status",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "retained_as_exploratory_metadata_program_mechanism_candidate",
+      "reviewer_value_or_excerpt": "retained_as_exploratory_metadata_program_mechanism_candidate"
+    },
+    {
+      "path": "joint-clipping-mechanism-20261021/review-record.json",
+      "pointer": "/decision",
+      "matches": true,
+      "match_kind": "quoted_excerpt",
+      "actual_full_field": "Retain a specific controlled-mechanism candidate, not a validated real-CV or novelty claim. A new selection algorithm is not a prerequisite for investigating the mechanism.",
+      "reviewer_value_or_excerpt": "Retain a specific controlled-mechanism candidate, not a validated real-CV or novelty claim."
+    },
+    {
+      "path": "area-pairing-cpu-20261021/measurement-scope-decision-20261021/next-experiment-and-cost.json",
+      "pointer": "/status",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": "concrete_proposal_not_executed_pending_expanded_data_and_A100_approval",
+      "reviewer_value_or_excerpt": "concrete_proposal_not_executed_pending_expanded_data_and_A100_approval"
+    },
+    {
+      "path": "joint-clipping-photo-check-20261021/results.json",
+      "pointer": "/weak_diagnostic_screen_supported",
+      "matches": true,
+      "match_kind": "exact",
+      "actual_full_field": false,
+      "reviewer_value_or_excerpt": false
+    }
+  ],
+  "all_root_JSON_pointer_checks_match": true,
+  "check_method_note": "One review quote is an excerpt of a longer string; retained as a valid excerpt and full original field recorded, not misreported as exact full-field equality. An initial strict-equality assembly guard stopped before writing output and was corrected accordingly.",
+  "general_inference_rules": [
+    "A conditional source-photo bootstrap does not estimate variation over training runs, augmentation banks, animal identity, or donor populations not resampled by that design.",
+    "Source photographs, not augmented views/checkpoints/arms/background pairings, form the reported test resampling units. Source ID disjointness alone does not establish animal or pretraining independence.",
+    "Fixed-question historical test validity is not retroactively lost through later development reuse; future untouched status is lost after consumption.",
+    "A failed practical screen is not a no-effect/equivalence proof; a positive conditional interval is not a general algorithm or world-causal proof.",
+    "Zero failure events make ROC discrimination unevaluable, not established ineffective.",
+    "Internal hash/timestamp consistency is not public preregistration or proof of no unlogged analyst exposure.",
+    "Delivery completed/hash verification passed and scientific claim supported are separate statuses."
+  ],
+  "minimal_supplement_is_plan_only": true,
+  "no_historical_file_modified": true,
+  "sources_for_methodology": [
+    {
+      "title": "Accounting for Variance in Machine Learning Benchmarks",
+      "year": 2021,
+      "url": "https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html"
+    },
+    {
+      "title": "On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation",
+      "year": 2010,
+      "url": "https://www.jmlr.org/papers/v11/cawley10a.html"
+    }
+  ]
+}

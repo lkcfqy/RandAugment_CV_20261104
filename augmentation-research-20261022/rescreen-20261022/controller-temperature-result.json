@@ -1,0 +1,110 @@
+{
+  "status": "completed_necessary_condition_only",
+  "at_utc": "2026-10-22T18:36:33.873356+00:00",
+  "source_kind": "previously_consumed_development_logits_from_one_non_SRA_trained_model",
+  "photographs": 589,
+  "classes": 37,
+  "existing_errors": 42,
+  "epsilon": 2.0,
+  "gamma": 0.5538757868177148,
+  "temperature_mean_MIS": {
+    "0.5": 0.9526468206243918,
+    "1.0": 0.9585233309479908,
+    "2.0": 0.9464757488125012
+  },
+  "formula_and_prediction_checks": {
+    "0.5": {
+      "formula_max_abs_gap": 2.220446049250313e-16,
+      "argmax_identical": true,
+      "exact_log_score_ties": 0
+    },
+    "1.0": {
+      "formula_max_abs_gap": 2.220446049250313e-16,
+      "argmax_identical": true,
+      "exact_log_score_ties": 0
+    },
+    "2.0": {
+      "formula_max_abs_gap": 2.220446049250313e-16,
+      "argmax_identical": true,
+      "exact_log_score_ties": 0
+    }
+  },
+  "contrasts": {
+    "1_vs_2": {
+      "raw_MIS_absolute_change_quantiles": {
+        "0": 0.0002350782005434704,
+        "0.5": 0.006057999116659496,
+        "0.9": 0.074685436053302,
+        "0.95": 0.11986768910321573,
+        "1": 0.23698018777487403
+      },
+      "raw_MIS_mean_absolute_change": 0.026917563890443582,
+      "normalized_rank_displacement_quantiles": {
+        "0": 0.0,
+        "0.5": 0.03231292517006803,
+        "0.9": 0.07993197278911565,
+        "0.95": 0.10374149659863946,
+        "1": 0.20578231292517007
+      },
+      "fraction_moving_at_least_one_decile": 0.05602716468590832,
+      "pairwise_inversion_fraction": 0.051609438342399776,
+      "matched_MIS_absolute_change_quantiles": {
+        "0": 0.0,
+        "0.5": 1.666605237082841e-05,
+        "0.9": 0.021551804443534453,
+        "0.95": 0.0492529666321065,
+        "1": 0.2300091076304266
+      },
+      "matched_MIS_mean_absolute_change": 0.006996646203809808,
+      "sorted_magnitude_multiset_identical": true
+    },
+    "0.5_vs_2": {
+      "raw_MIS_absolute_change_quantiles": {
+        "0": 0.00011426144106418956,
+        "0.5": 0.006317416543272225,
+        "0.9": 0.1102149804519139,
+        "0.95": 0.19849280818885845,
+        "1": 0.4421109436630189
+      },
+      "raw_MIS_mean_absolute_change": 0.041481529328296345,
+      "normalized_rank_displacement_quantiles": {
+        "0": 0.0,
+        "0.5": 0.04251700680272109,
+        "0.9": 0.11224489795918367,
+        "0.95": 0.14217687074829935,
+        "1": 0.23979591836734693
+      },
+      "fraction_moving_at_least_one_decile": 0.13412563667232597,
+      "pairwise_inversion_fraction": 0.0695113359435455,
+      "matched_MIS_absolute_change_quantiles": {
+        "0": 0.0,
+        "0.5": 2.7009024542334892e-05,
+        "0.9": 0.0242319151206508,
+        "0.95": 0.05650293964870088,
+        "1": 0.26888508144701406
+      },
+      "matched_MIS_mean_absolute_change": 0.008150508567421937,
+      "sorted_magnitude_multiset_identical": true
+    }
+  },
+  "preregistered_engineering_gate_passed": false,
+  "decision": "do_not_advance_this_candidate_to_images_or_training",
+  "input_hashes_before_and_after_equal": {
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022/results/front-weak/development-epoch030.npz": "1692f9f3e4a53a65e597211c3c8e0854804fcc948eadab03eab7ac4a7bd48c59",
+    "/Users/lkc/Downloads/RandAugment_CV_20261104/augmentation-research-20261022/pilot-20261022/fit-manifest.json": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+    "/Users/lkc/Documents/Codex/2026-10-23/task-4/rescreen-20261022/cpu-feasibility-plan.json": "b4b52f3b3818bc9c29fb60a77ed8c11eb292dbacd73dc1bab69ffae2c29cdfc6",
+    "/Users/lkc/Documents/Codex/2026-10-23/task-4/rescreen-20261022/check_controller_temperature.py": "50299f6389203bcf6f079660427d8a70c9c5e52eedaaf67ee0191f11d62e0a4a"
+  },
+  "wall_seconds": 0.016441332991234958,
+  "CPU_threads_env": 1,
+  "training_runs": 0,
+  "images_decoded": 0,
+  "GPU_calls": 0,
+  "limitations": [
+    "MIS sensitivity is implied by the published formula; it is not a new theorem.",
+    "No temperature was fitted or shown to improve calibration.",
+    "No SRA model was trained; no augmentation harm or training benefit was measured.",
+    "Existing development data are exploratory and not new confirmation.",
+    "No conditional photo bootstrap is used as training-seed evidence."
+  ]
+}

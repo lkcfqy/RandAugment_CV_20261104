@@ -1,0 +1,21 @@
+{
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "max",
+  "actual_per_run_model_effort_receipt_available": false,
+  "model_evidence_limit": "Request parameters and statements are not execution receipts. No capacity fallback was reported in this round.",
+  "reviewers": [
+    {
+      "agent": "/root/next_question_audit_sol",
+      "role": "Independent math, identifiability and counterexample review",
+      "pre_execution_conclusion": "Counterexample valid. Color readout risks 0,0,0,.5; blue readout .1 throughout; selection regret .4. Preserve N per physical unit. Nondecreasing gains commute even with intermediate clipping. Existing single clipping does not invalidate predicted clipped joint under assumptions. Pure-power gamma preserves multiplicative identity; arbitrary fixed monotone response need not. These are two fixed readouts, not trained policies.",
+      "post_execution_static_review": "静态核对无实质数学错误，无需重跑。风险、2/5 后悔值、交换律、阈值和未知单调响应反例均成立。四个支持状态是精确加权总体风险，16行记录不是16个独立样本。网格仅枚举x∈[0,1]。未知响应反例仅对一个像素/通道的三元观测成立，没有验证同时拟合主反例整幅RGB。纯幂枚举指数为2、3，一般正指数结论属代数推广。351个达到白点与350个严格超阈值已正确区分。实际Sol/max档位无回执。",
+      "required_correction_applied": "Report now explicitly limits unknown-response counterexample to scalar observations, not a verified fit to the whole main RGB construction. No code rerun was needed."
+    },
+    {
+      "agent": "/root/distinct_design_sol",
+      "role": "Focused nearest-prior review",
+      "final_conclusion_verbatim": "最终先例边界：Unprocessing与UltraLED已覆盖增益乘法、线性RAW缩放及饱和处理，Afifi–Brown已覆盖WB误差的识别后果，RAW-Adapter已覆盖亮度/通道增益增强及组合变化下的收益差异，但四篇已读原文未见‘单因素均未饱和、联合新增截断合并判别线索，导致单因素验证漏判排序’的等价检验；Rawgment与Neural Auto-Exposure原文均403，仍不能排除直接覆盖，且不换路径获取，因此当前可保留两个固定读出的机制候选，不能称AA/RA/TA实证或已证新颖，Sol/max请求保持而实际档位未核验。"
+    }
+  ],
+  "decision": "Retain a specific controlled-mechanism candidate, not a validated real-CV or novelty claim. A new selection algorithm is not a prerequisite for investigating the mechanism."
+}

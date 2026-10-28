@@ -1,0 +1,52 @@
+{
+  "purpose": "Resource-only calibration with dummy targets, discarded model; no task accuracy or configuration selection.",
+  "actual_process_nice": 10,
+  "training_source_count": 591,
+  "fit_manifest_sha256": "859287015ad6ab950cffdf6bd300f654697130ae5662f47b23ac31819eac6652",
+  "input_images_decode_seconds": 0.45210824999958277,
+  "32_images_RA_tensor_seconds": 0.034742541029118,
+  "batch": 16,
+  "cases": [
+    {
+      "layout": "front",
+      "device": "mps:0",
+      "step_seconds": [
+        0.8067237499635667,
+        0.2961532500339672,
+        0.2715688330354169,
+        0.27397416695021093,
+        0.26906545902602375
+      ],
+      "steady_mean_seconds": 0.2776904272614047,
+      "allocated_MPS_bytes": 358658560,
+      "driver_MPS_bytes": 3748085760,
+      "max_observed_driver_MPS_bytes": 3748102144,
+      "trainable_parameters": 65317
+    },
+    {
+      "layout": "back",
+      "device": "mps:0",
+      "step_seconds": [
+        0.22132187499664724,
+        0.16271824995055795,
+        0.16287695802748203,
+        0.1622650409117341,
+        0.16250233398750424
+      ],
+      "steady_mean_seconds": 0.16259064571931958,
+      "allocated_MPS_bytes": 358658560,
+      "driver_MPS_bytes": 1567047680,
+      "max_observed_driver_MPS_bytes": 1567047680,
+      "trainable_parameters": 65317
+    }
+  ],
+  "MPS_fallback": false,
+  "CPU_threads": 1,
+  "MPS_memory_fraction": 0.1,
+  "augmentation_restores_CPU_and_preserves_MPS_RNG": true,
+  "peak_RSS_bytes": 1746485248,
+  "wall_seconds": 9.75466958398465,
+  "status": "completed_resource_only_calibration",
+  "estimated_30ep_four_cell_seconds_compute_plus_pacing": 2932.2719460516237,
+  "estimate_excludes": "Evaluation, CPU loading/augmentation and checkpoint I/O; measure actual completed times separately."
+}

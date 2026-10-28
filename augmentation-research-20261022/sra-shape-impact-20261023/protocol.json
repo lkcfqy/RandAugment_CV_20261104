@@ -1,0 +1,71 @@
+{
+  "status": "frozen_before_impact_numeric_execution",
+  "request_settings": {
+    "model": "gpt-6-astra",
+    "reasoning": "max",
+    "service_tier": "Standard",
+    "backend_verified": false
+  },
+  "question": "Verify SRA hard-label input contract, actual batch-trigger exposure, and score-to-augmentation decisions without changing logits or launching training.",
+  "repository": "https://github.com/ainieli/Sample-awareRandAugment",
+  "commit": "785c3b12944251af81201083a9698a87f1d490f2",
+  "original_method": "models/cifar/preact_resnet.py:66-103 (exact forward method, scoring lines83-85)",
+  "input": "augmentation-research-20261022/pilot-20261022/results/front-weak/development-epoch030.npz",
+  "manifest": "augmentation-research-20261022/pilot-20261022/fit-manifest.json",
+  "prior_group_mapping": "augmentation-research-20261022/sra-shape-audit-20261023/group-mapping.json",
+  "prior_adapter": "augmentation-research-20261022/sra-shape-audit-20261023/mis_score.py",
+  "prior_audit_dir": "augmentation-research-20261022/sra-shape-audit-20261023",
+  "datasets": "Only the existing 589 development logits and train/dev manifest counts; no sealed data, no images or training/checkpoint forward.",
+  "comparisons": [
+    "Exact original forward AST executed with a fixed-logit encoder stub, original hard-label tensor (B,), training=True and use_basic_aug=False; compare to the same method changing only the shape-test condition, the prior adapter and independent NumPy formula.",
+    "Existing forced groups (15x37 +34) are explicitly artificial collision probes, never described as actual training exposure.",
+    "Shadow schedule for current local total batch16 and for official total batch256 on the same 589 cache rows: score only second-half rows, retain natural final batch. This is compatibility replay, not a training run.",
+    "Official default loader arithmetic: CIFAR10/100 N50000 total batch256; ImageNet N1281167, world4, per-rank batch512, DistributedSampler padding and final batch retained. Actual old Pets N591/train and589/dev batch16 plain RA does not call SRA.",
+    "Declared hypothetical supported-input demonstrations: CIFAR10 total batch20 and a batch20 tail after totalbatch64; these show contract reachability but are not actual observed configurations.",
+    "On fixed forced groups and matched torch/NumPy RNG, run exact SRA forward/_apply_op AST with logging no-op pixel operators; execute each operator's original magnitude-to-argument AST. Use actual script settings depth2 and p_min_t=p_max_t=1, 14 operations in original order. Record selected operation, application decision and argument for original/corrected/oracle scores."
+  ],
+  "metrics": [
+    "Triggering batch/sample counts under each real versus hypothetical schedule",
+    "Per-group rank Spearman and pairwise ordering inversion fraction; ties broken by source ID for rankings, explicit pair ties recorded",
+    "Per-group top-quartile membership overlap, ceil(B/4); descriptive only, SRA itself does not select by rank",
+    "Per-operation counts and differences in selected operator/application gates",
+    "Applied magnitude differences and operator-argument deltas with units; geometric sign/direction, degree/fraction/shear, photometric factor, Solarize threshold, Posterize continuous parameter. Ignore-magnitude operations are negative controls.",
+    "Number of source records with at least one magnitude-sensitive operator argument changed; count all rows and collision rows separately."
+  ],
+  "seeds": {
+    "reuse_prior_row_order": 20261023,
+    "operation_trace_torch": 2026102311,
+    "operation_trace_numpy": 2026102312,
+    "contract_probe": 2026102313
+  },
+  "float_primary": "float64 fixed logits; tensor images are synthetic placeholders only, no raster transforms/model encoder executed",
+  "tolerances": {
+    "score_atol": 1e-12,
+    "parameter_atol": 1e-10,
+    "rtol": 0
+  },
+  "resources": {
+    "device": "cpu",
+    "threads": 1,
+    "max_wall_seconds_per_invocation": 60,
+    "max_numeric_invocations": 2,
+    "purpose_of_second": "only independently verify saved outputs or a documented technical repair",
+    "training_runs": 0,
+    "gpu_calls": 0,
+    "downloads": "public source text only, no datasets/weights/dependencies"
+  },
+  "stop_conditions": [
+    "If the original official forward does not accept standard hard-label shape, invalidate the misuse claim and stop before impact interpretation.",
+    "If repaired path disagrees with independent formula or noncollision controls fail, stop as invalid measurement; retain failure.",
+    "If operation selection or gating differs with identical RNG, diagnose instrumentation/RNG mismatch before claiming selection effects.",
+    "If all actual recorded/default configurations have zero triggers, archive as implementation case; do not propose or launch downstream training solely on artificial B=C.",
+    "Only an actual intended/recorded supported configuration with trigger and nonzero decision impact warrants proposing a separate fair downstream budget. No full18-21run matrix.",
+    "Never alter source snapshots or old results; no ps retry, OpenReview retry/bypass, remote writes, issues, messages, PRs, fees or GPU contention."
+  ],
+  "limitations": [
+    "Original requested PyTorch1.13.1 is not installed or executed; native score semantics are checked on existing local PyTorch2.14.1.",
+    "Instrumented exact methods isolate input routing and parameter decisions; they do not execute trained model layers or actual image transformations.",
+    "Rank changes need not imply operation-selection changes; SRA chooses operation names independently of score."
+  ],
+  "created_utc": "2026-10-23T11:14:57.444648+00:00"
+}

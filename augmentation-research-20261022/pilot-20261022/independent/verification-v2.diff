@@ -1,0 +1,97 @@
+--- verify_saved_pilot.py frozen
++++ verify_saved_pilot_v2.py
+@@ -1,4 +1,4 @@
+-"""Independent CPU-only audit. Do not execute until all four cells completed.
++"""CPU-only audit v2: definition-matched Q/V norm reproduction; preserve original strict failure.
+ 
+ No import of common/train/analyze, forward pass, optimization or image decoding.
+ Torch is imported lazily only for CPU weights_only loading of small checkpoints.
+@@ -26,6 +26,7 @@
+ CELLS = ['front-weak', 'front-ra', 'back-weak', 'back-ra']
+ SIGNS = np.array([1, -1, -1, 1], dtype=np.int64)
+ CHECKS = []
++NORM_ORACLES = []
+ 
+ 
+ def sha(p):
+@@ -89,6 +90,13 @@
+         check(str(path.name) + ':' + name + ':CPU_tensor', t.device.type == 'cpu')
+         state[name] = t.detach().numpy().copy()
+     return value, state
++
++
++def same_definition_norm(a, b):
++    import torch
++    # Both tensors are explicitly CPU FP32; no forward, gradient or GPU.
++    product = torch.from_numpy(np.ascontiguousarray(b)) @ torch.from_numpy(np.ascontiguousarray(a))
++    return float(product.norm()), float(product.to(torch.float64).norm())
+ 
+ 
+ def zero_K_structure():
+@@ -273,7 +281,23 @@
+                   and np.count_nonzero(g['bq'][0]) == 0 and np.count_nonzero(g['bv'][0]) == 0)
+             q = g['bq'][1].astype(np.float64) @ g['aq'][1].astype(np.float64)
+             v = g['bv'][1].astype(np.float64) @ g['av'][1].astype(np.float64)
+-            norms = {'Q_delta_frobenius': float(np.linalg.norm(q)), 'V_delta_frobenius': float(np.linalg.norm(v)),
++            nq32, nq32_64 = same_definition_norm(g['aq'][1], g['bq'][1])
++            nv32, nv32_64 = same_definition_norm(g['av'][1], g['bv'][1])
++            for projection, product64, n32, n32_64 in [('q', q, nq32, nq32_64), ('v', v, nv32, nv32_64)]:
++                aa = g['a'+projection][1].astype(np.float64)
++                bb = g['b'+projection][1].astype(np.float64)
++                oracle = float(np.linalg.norm(product64))
++                trace_oracle = float(np.sqrt(np.trace((aa @ aa.T) @ (bb.T @ bb))))
++                reported = summary['effective_Q_V_updates'][prefix][projection.upper()+'_delta_frobenius']
++                check(cell + ':' + prefix + ':' + projection + ':CPU_FP32_norm_definition_exact', n32 == reported)
++                close(cell + ':' + prefix + ':' + projection + ':FP64_trace_identity', oracle, trace_oracle, atol=1e-12, rtol=1e-12)
++                NORM_ORACLES.append({'cell':cell,'prefix':prefix,'projection':projection,
++                    'reported':reported,'CPU_FP32_product_FP32_norm':n32,
++                    'CPU_FP32_product_FP64_norm':n32_64,'CPU_FP64_product_FP64_norm':oracle,
++                    'CPU_FP64_trace_norm':trace_oracle,'FP64_minus_reported':oracle-reported,
++                    'relative_FP64_minus_reported':(oracle-reported)/reported,
++                    'original_FP64_tolerance_passed':bool(np.isclose(oracle,reported,atol=2e-7,rtol=2e-5))})
++            norms = {'Q_delta_frobenius': nq32, 'V_delta_frobenius': nv32,
+                      'Bq_frobenius': float(np.linalg.norm(g['bq'][1].astype(np.float64))),
+                      'Bv_frobenius': float(np.linalg.norm(g['bv'][1].astype(np.float64)))}
+             check(cell + ':' + prefix + ':effective_QV_and_B_nonzero', all(math.isfinite(t) and t > 0 for t in norms.values()))
+@@ -344,12 +368,17 @@
+     for cell in CELLS:
+         for key in ['N', 'errors', 'error', 'accuracy', 'NLL', 'balanced_error']:
+             close('analysis:' + cell + ':' + key, per_cell[cell][key], analysis['cells'][cell][key])
+-    save_arrays_path = OUT / 'independently-recomputed-arrays.npz'
++    save_arrays_path = OUT / 'independently-recomputed-arrays-v2.npz'
+     if save_arrays_path.exists():
+         raise FileExistsError(save_arrays_path)
+     np.savez_compressed(save_arrays_path, source_ids=ids, labels=labels, errors=errors, NLL=nll,
+                         interaction_contributions=contribution, bootstrap_interactions=bootstrap)
+-    result = {'status': 'passed_independent_saved_run_verification',
++    result = {'status': 'passed_definition_matched_saved_run_audit_v2_original_failure_preserved',
++              'original_frozen_verifier_passed': False,
++              'original_frozen_verifier_SHA256': 'c3dfbbf4bfd3323e100fa440db3acb33c1146c0d7fe187dc846b24b860a13720',
++              'verifier_implementation_revision': 'Only Q/V reported-norm reproduction now uses CPU FP32 product/norm and additionally requires exact equality; CPU FP64 oracles retained. B norms and every other original check/tolerance unchanged.',
++              'Q_V_norm_oracles': NORM_ORACLES,
++              'norm_tolerances_relaxed': False,
+               'at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+               'script_sha256': sha(__file__), 'protocol_sha256': PROTOCOL_SHA,
+               'protocol_lock_sha256': sha(ROOT / 'protocol-lock.json'),
+@@ -372,10 +401,10 @@
+               'verification_boundary': 'Recomputed metrics/5000 bootstrap and CPU arithmetic on saved trainable states; checked frozen-base/gradient/hash receipts and locked code. No independent ViT forward, gradients replay, base-state reconstruction, optimizer replay or retraining.',
+               'CPU_threads': 1, 'new_GPU_or_forward_or_training_used': False,
+               'reserved_confirmation_pixels_or_old_test_arrays_read': False}
+-    save(OUT / 'result-verification.json', result)
++    save(OUT / 'result-verification-v2.json', result)
+     print(json.dumps({'status': result['status'], 'I': I, 'interval': ci.tolist(),
+                       'gate_passed': result['engineering_gate_passed'], 'checks': len(CHECKS),
+-                      'output_sha256': sha(OUT / 'result-verification.json')}))
++                      'output_sha256': sha(OUT / 'result-verification-v2.json')}))
+ 
+ 
+ if __name__ == '__main__':
+@@ -385,7 +414,7 @@
+         failure = {'status': 'independent_verification_failed_not_retrained', 'error': repr(exc),
+                    'traceback': traceback.format_exc(), 'checks_passed': CHECKS,
+                    'script_sha256': sha(__file__), 'protocol_sha256_expected': PROTOCOL_SHA}
+-        path = OUT / 'result-verification-failed.json'
++        path = OUT / 'result-verification-v2-failed.json'
+         if not path.exists():
+             save(path, failure)
+         raise

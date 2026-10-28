@@ -1,0 +1,96 @@
+{
+  "status": "frozen_before_numeric_execution",
+  "created_utc": "2026-10-23T11:00:18.541163+00:00",
+  "request_settings": {
+    "model": "gpt-6-astra",
+    "reasoning": "max",
+    "service_tier": "Standard",
+    "backend_verified": false
+  },
+  "question": "Does the pinned SRA score implementation confuse integer target batch length B with class count C when B=C, violating batch partition, batch permutation, and class renaming invariance at fixed logits?",
+  "source_commit": "785c3b12944251af81201083a9698a87f1d490f2",
+  "source_target": "models/cifar/preact_resnet.py:83-85",
+  "primary_input": "augmentation-research-20261022/pilot-20261022/results/front-weak/development-epoch030.npz",
+  "manifest": "augmentation-research-20261022/pilot-20261022/fit-manifest.json",
+  "input_boundary": "Only already-consumed development logits and manifest; no images, sealed confirmation/test data, checkpoints or training forward passes.",
+  "selection": "All 589 development records, class count 37. Sort source IDs, then one fixed NumPy default_rng(20261023) permutation; take consecutive groups of 37, retaining the last group (34) as a negative control. No score-based selection.",
+  "seeds": {
+    "row_order": 20261023,
+    "within_batch_and_class_permutations": 20261024,
+    "synthetic_controls": 20261025
+  },
+  "primary_endpoint": "Absolute difference between source-equivalent score on each hard-label batch and the published one-hot formula evaluated by an independent stable NumPy expression.",
+  "secondary_endpoints": [
+    "Same rows evaluated in chunks of at most 18 (never C)",
+    "Same rows and labels permuted together, undo permutation afterward",
+    "Simultaneous random renaming of class indices and logit columns",
+    "Explicit one-hot input to the source formula",
+    "All rows evaluated together B=589 as a noncollision control"
+  ],
+  "fairness": "Logits, labels, sample identities, temperature=1 and score exponent 2/log(C) are fixed. Only batching / reversible index changes / equivalent label encoding vary. Fixed logits isolate this issue from BatchNorm and dropout.",
+  "controls": {
+    "classes": [
+      2,
+      10,
+      37,
+      100
+    ],
+    "batch_sizes": "C-1, C, C+1",
+    "dtypes": [
+      "float32",
+      "float64"
+    ],
+    "target_encodings": [
+      "integer (B,)",
+      "one-hot (B,C)",
+      "soft distribution (B,C)"
+    ],
+    "invalid_inputs": [
+      "floating 1-D labels",
+      "(B,1) labels",
+      "out-of-range classes",
+      "negative/unnormalized soft targets",
+      "nonfinite values"
+    ]
+  },
+  "tolerances": {
+    "float64_atol": 1e-12,
+    "float32_atol": 2e-06,
+    "rtol": 0
+  },
+  "stop_conditions": [
+    "If fixed-score oracle mismatch does not exceed the preset numerical tolerance, do not claim the defect reproduced.",
+    "If noncollision, explicit one-hot or repaired-score controls fail, mark implementation verification invalid and diagnose rather than report success.",
+    "Stop at CPU wall cap 60 seconds per diagnostic invocation; at most one justified technical repair, no new scientific seeds.",
+    "Do not train to amplify an implementation edge case; do not claim original paper results invalid without an actual triggering batch in its protocol."
+  ],
+  "resources": {
+    "device": "cpu",
+    "threads": 1,
+    "wall_cap_seconds_per_invocation": 60,
+    "training_runs": 0,
+    "model_forward_passes": 0,
+    "image_decodes": 0,
+    "gpu_calls": 0,
+    "network_during_run": false
+  },
+  "hypothesis_origin": "Static source inspection before numeric execution. This is a reproducibility audit, not a preregistered generalization study or novel augmentation method.",
+  "screened_alternative": "BatchNorm state touched by scoring is plausible, but Split BatchNorm prior work directly studies augmentation/normalization interplay; no new training is justified here.",
+  "access_events": [
+    {
+      "action": "List current processes to check competing training",
+      "target": "local process table (ps)",
+      "status": "denied_stopped",
+      "reason": "OS/sandbox: operation not permitted",
+      "retried": false
+    },
+    {
+      "action": "Read recent normalization-state manuscript landing page",
+      "target": "https://openreview.net/forum?id=Ff9byKDIY7",
+      "status": "verification_blocked_stopped",
+      "reason": "Redirect to browser verification challenge",
+      "retried_through_other_route": false
+    }
+  ],
+  "preservation": "All pre-existing inputs/results read only. New outputs only in this newly created directory. No ARiS, PPT edits, other-project actions, uploads, sharing, remote writes, credentials, paid compute or Codex app operations."
+}

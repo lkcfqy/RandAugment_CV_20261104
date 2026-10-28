@@ -1,0 +1,18 @@
+{
+  "type": "pre_training_clock_domain_conversion_bug",
+  "attempt001_exit_utc": "2026-10-24T12:49:04.869028+00:00",
+  "formal_training_updates": 0,
+  "benchmark_updates": 0,
+  "image_reads": 0,
+  "model_created": false,
+  "actual_phase_elapsed_at_exit_seconds": 308.1859791278839,
+  "incorrect_worker_elapsed_seconds": 34428.566849227005,
+  "cause": "system Python3.9.6 monotonic near process zero versus training Python3.14.7 system monotonic ~34289; absolute monotonic serialized by wrong interpreter",
+  "correction": "convert immutable UTC start into runtime monotonic origin inside selected worker interpreter; no budget file changes",
+  "same_immutable_start_utc": "2026-10-24T12:43:56.683066+00:00",
+  "same_immutable_deadline_utc": "2026-10-24T14:13:56.683066+00:00",
+  "scientific_data_seen": false,
+  "scientific_protocol_unchanged": true,
+  "no_automatic_retry": "Supervisor still has no retry; one explicitly inspected preparation correction before any model training",
+  "status": "attempt001 preserved; preparation resumes within same first15minutes"
+}

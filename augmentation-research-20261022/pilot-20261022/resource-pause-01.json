@@ -1,0 +1,68 @@
+{
+  "at_utc": "2026-10-22T15:21:55.141568+00:00",
+  "status": "temporarily_SIGSTOP_suspended_for_8A_MPS_calibration",
+  "PID": 49366,
+  "process_before": "49366 SN   29:18   5.9 2364144 /Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/bin/python -Bu train.py",
+  "process_after": "49366 TN   29:18 /Users/lkc/Downloads/RandAugment_CV_20261104/causal-augmentation-research-20261020/area-pairing-cpu-20261021/encoder-readiness-20261021/runtime/.venv/bin/python -Bu train.py",
+  "cells": [
+    {
+      "cell": "back-ra",
+      "complete": true,
+      "completed_updates": 1110,
+      "last_completed_epoch": 30,
+      "last_step": {
+        "step": 1110,
+        "epoch": 30,
+        "examples": 15,
+        "mean_CE": 0.012147308327257633,
+        "adapter_lr": 7.417023831113311e-10,
+        "head_lr": 2.4723412770377708e-09,
+        "all_gradients_finite": true
+      },
+      "last_step_mtime_utc": "2026-10-22T15:20:19.234595+00:00"
+    },
+    {
+      "cell": "back-weak",
+      "complete": false,
+      "completed_updates": 133,
+      "last_completed_epoch": 3,
+      "last_step": {
+        "step": 133,
+        "epoch": 4,
+        "examples": 16,
+        "mean_CE": 0.22868861258029938,
+        "adapter_lr": 0.0002996730278383546,
+        "head_lr": 0.0009989100927945153,
+        "all_gradients_finite": true
+      },
+      "last_step_mtime_utc": "2026-10-22T15:21:54.915319+00:00"
+    },
+    {
+      "cell": "front-weak",
+      "complete": true,
+      "completed_updates": 1110,
+      "last_completed_epoch": 30,
+      "last_step": {
+        "step": 1110,
+        "epoch": 30,
+        "examples": 15,
+        "mean_CE": 0.012188480235636234,
+        "adapter_lr": 7.417023831113311e-10,
+        "head_lr": 2.4723412770377708e-09,
+        "all_gradients_finite": true
+      },
+      "last_step_mtime_utc": "2026-10-22T15:09:18.715859+00:00"
+    }
+  ],
+  "elapsed_wall_seconds_approximately": 1756.00048,
+  "remaining_7200second_cap_approximately": 5443.99952,
+  "training_was_progressing_until_pause": true,
+  "pause_reason": "8A priority: parent reports concurrent CPU/MPS step measurement; avoid GPU timing contention.",
+  "paused_process_only_this_pilot": true,
+  "queued_GPU_work_may_finish_after_signal": true,
+  "no_restart_or_new_fit": true,
+  "protocol_or_model_state_edited": false,
+  "wall_cap_continues_during_pause": true,
+  "resume_requires_8A_calibration_finished_or_parent_coordination": true,
+  "8A_files_environment_or_processes_read": false
+}

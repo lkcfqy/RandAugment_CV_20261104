@@ -1,0 +1,56 @@
+{
+  "status": "completed_before_task_fit",
+  "at_utc": "2026-10-22T14:49:19.610271+00:00",
+  "reviewer": "main",
+  "pages": [
+    "qa/visibility-0.png",
+    "qa/visibility-1.png",
+    "qa/missing-mask-visibility.png",
+    "qa/near-duplicates-0.png"
+  ],
+  "breed_classes_preselected_reviewed": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "subject_visibility": "All20 preselected class examples retain a visible pet in weak/RA. No complete pet removal observed in these fixed draws.",
+  "breed_semantics": "Not expert breed certification. Abyssinian_131, basset_hound_187, chihuahua_163 and leonberger_167 show substantial solarization/contrast/color changes, so original breed color/texture cues are not guaranteed. Keep fixed RA and these source labels; do not discard to create a win.",
+  "empty_source_masks": {
+    "IDs": [
+      "miniature_pinscher_14",
+      "saint_bernard_15",
+      "saint_bernard_108"
+    ],
+    "visual_observation": "Clear visible dogs in originals and both displayed transformations; saint_bernard_15 contains three dogs consistent with the source breed annotation. Original trimaps all background; mask proxy unavailable, not classification-label falsification.",
+    "decision": "Retain all3 images and source labels; no mask-based supervision is used."
+  },
+  "duplicate_decisions": "Two visually identical captures, remove all4 before fitting with no replacement.",
+  "limits": [
+    "Only fixed epoch0 one-photo-per-class visual sampling; one sample keeshond_103 is later duplicate-excluded.",
+    "Unknown real-world animal identity and ImageNet overlap remain.",
+    "No model task logits/losses or performance-based screening."
+  ],
+  "image_sha256": {
+    "qa/visibility-0.png": "7ecef39b8c61ab925752e563d2513059d2d4db6a342e4eb16108576f6f9b7100",
+    "qa/visibility-1.png": "729c09a967b33e21c6e7d7d3170ae6ffbdb60d126c30bc5748e349c2f1a83085",
+    "qa/missing-mask-visibility.png": "c70312f984b10e30f8c37bb63e43cd70c9d2fb7f5ae69338d118016b5086d254",
+    "qa/near-duplicates-0.png": "4fcdfc25fcc3d23253376e1eb630176fa760c82efaf15ce6b7e6c702f8fa02e3"
+  }
+}

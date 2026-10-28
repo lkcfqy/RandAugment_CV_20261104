@@ -1,0 +1,53 @@
+{
+  "at_utc": "2026-10-23T12:08:52.355805+00:00",
+  "not_exhaustive": true,
+  "search_query": "RandAugment augmentation invariance confidence margin fine grained classification 2025 2026",
+  "primary_sources": [
+    {
+      "title": "Ctrl-A: Control-Driven Online Data Augmentation",
+      "year": 2026,
+      "url": "https://arxiv.org/html/2603.21819v1",
+      "read_scope": "Abstract, sections3.2-3.5, especially Eq2 and validation-role paragraph",
+      "factual_summary": "Uses augmented/clean validation accuracy ratios per operation, together with training/validation loss feedback, to adapt augmentation-strength distributions. Deliberately measures responses on validation rather than training images.",
+      "difference": "This is a frozen training-image audit with no controller or strength optimization. Our all-correct training probe does not establish a defect in Ctrl-A; continuous margin logging alone does not establish novelty."
+    },
+    {
+      "title": "Impact of Data Augmentation on Confidence Calibration in Melanoma Classification",
+      "date": "2026-10-05",
+      "url": "https://arxiv.org/html/2610.06146v1",
+      "read_scope": "Sections1-4 and Table1",
+      "factual_summary": "Partial augmentation of two pretrained EfficientNets is compared using AUC and ECE; RandAugment can move those metrics differently.",
+      "difference": "Current 37-class fixed-image probability responses are not calibration assessment or independent training evidence."
+    },
+    {
+      "title": "Understanding the Detrimental Class-level Effects of Data Augmentation",
+      "venue": "NeurIPS2023",
+      "url": "https://arxiv.org/html/2401.01764v1",
+      "read_scope": "Rechecked sections6-7; previous phase read sections1,5-6",
+      "factual_summary": "Fine-grained class confusions and class-conditional interventions are existing prior work.",
+      "difference": "We have no operator-causal or class-conditional intervention, no new semantic-loss mechanism."
+    },
+    {
+      "title": "Affinity and Diversity: Quantifying Mechanisms of Data Augmentation",
+      "year": 2020,
+      "url": "https://arxiv.org/html/2002.08973v2",
+      "read_scope": "Abstract, introduction and section3.1 Definition1",
+      "factual_summary": "Defines model-relative augmentation shift via clean versus augmented validation accuracy and studies its joint role with diversity.",
+      "difference": "Our paired training-view scores are an implementation-grounded observation, not a new sensitivity principle."
+    }
+  ],
+  "historical_access_limits": [
+    {
+      "action": "Open IEEE paper page",
+      "target": "https://ieeexplore.ieee.org/document/11673098/",
+      "status": "verification_blocked_in_prior_phase_not_retried",
+      "reason": "JavaScript / robot-verification page; no alternate mirror, PDF or GUI used"
+    },
+    {
+      "action": "Open ExploreAugment OpenReview PDF",
+      "status": "historical_verification_block_not_retried",
+      "target": "Original blocked PDF as recorded in project audit; exact URL not re-resolved here"
+    }
+  ],
+  "novelty_status": "Not established; no new algorithm or downstream training proposed from these results."
+}

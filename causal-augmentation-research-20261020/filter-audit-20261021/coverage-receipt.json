@@ -1,0 +1,216 @@
+{
+  "cutoff_date": "2026-10-21",
+  "source_policy": "Primary author papers and author-owned repositories/data; no broad replacement search",
+  "shards": [
+    {
+      "shard_id": "filter_rules",
+      "assigned_unit_ids": [
+        "2305.16289v2",
+        "2503.17226v2",
+        "2503.09399v4",
+        "2303.05470v3"
+      ],
+      "covered_unit_ids": [
+        "2305.16289v2",
+        "2503.17226v2",
+        "2503.09399v4",
+        "2303.05470v3"
+      ],
+      "added_units": [
+        "2210.07574v2",
+        "2409.00547v1"
+      ],
+      "status": "completed_with_limited_neighbor_citation_coverage"
+    },
+    {
+      "shard_id": "filter_data",
+      "assigned_unit_ids": [
+        "ALIA_2305.16289v2",
+        "DDB_2503.17226v2",
+        "ForAug_2503.09399v4",
+        "Spawrious_2303.05470v3",
+        "ALT_Hong2024"
+      ],
+      "covered_unit_ids": [
+        "ALIA_2305.16289v2",
+        "DDB_2503.17226v2",
+        "ForAug_2503.09399v4",
+        "Spawrious_2303.05470v3",
+        "ALT_Hong2024"
+      ],
+      "status": "completed_with_missing_raw_pools_and_validity_labels"
+    }
+  ],
+  "coordinator_added_papers": [
+    {
+      "id": "2405.08209v2",
+      "url": "https://arxiv.org/html/2405.08209v2",
+      "coverage": "identity/version, sections2-4, approach and imputed-attribute limitations; exclusion amplification",
+      "status": "read_relevant_sections"
+    },
+    {
+      "id": "2509.21479v2",
+      "url": "https://arxiv.org/html/2509.21479v2",
+      "coverage": "identity/version, sections2-3.2, lemma assumptions, section4.3 and diversity appendix portions",
+      "status": "read_relevant_sections"
+    },
+    {
+      "id": "2606.23611v1",
+      "url": "https://arxiv.org/html/2606.23611v1",
+      "coverage": "identity/version, abstract/introduction, method outline, related work, random-mix diversity mechanism",
+      "status": "partial_read_no_full_experiment_audit"
+    },
+    {
+      "id": "2010.14134",
+      "url": "https://arxiv.org/abs/2010.14134",
+      "coverage": "primary abstract and paper entry; no full proof audit",
+      "status": "abstract_only"
+    },
+    {
+      "id": "2610.00873v1",
+      "url": "https://arxiv.org/abs/2610.00873v1",
+      "coverage": "primary abstract: tabular setting, not direct visual false-rejection evidence",
+      "status": "excluded_as_direct_vision_neighbor"
+    },
+    {
+      "id": "2406.18375v2",
+      "url": "https://arxiv.org/abs/2406.18375v2",
+      "coverage": "primary abstract: skin lesion minority augmentation; not recommended first project",
+      "status": "abstract_only_no_clinical_or_license_claim"
+    },
+    {
+      "id": "2403.15309v2",
+      "url": "https://arxiv.org/html/2403.15309v2",
+      "version_date": "2025-05-19",
+      "coverage": "arXiv identity/version; targeted Appendix B.2-B.3, ALIA filter incompatibility with model-adversarial generations",
+      "status": "read_relevant_sections_no_full_experiment_reaudit"
+    },
+    {
+      "id": "2409.18055v2",
+      "url": "https://arxiv.org/html/2409.18055v2",
+      "version_date": "2024-11-11",
+      "coverage": "identity/version; sections4.2-4.3, COCO-GB 260 filtered additions and quantity analysis",
+      "status": "read_relevant_sections_no_causal_identification_claim"
+    },
+    {
+      "id": "2608.30297v1",
+      "url": "https://arxiv.org/html/2608.30297v1",
+      "version_date": "2026-08-31",
+      "coverage": "identity/version, abstract, method, data and filtering appendix; NLP text classification/NER, not CV",
+      "status": "cross_modal_conceptual_neighbor_not_visual_evidence"
+    }
+  ],
+  "code_and_data_pins": {
+    "ALIA": "ce01c941311a6e919a371e31661e83c6d54e9a05",
+    "DDB": "42bcda35b075fc6175d757510bbb12233fa6afdf",
+    "ForAug": "fca8765fe8e5c3f99ee8d5e426b87d06b1c817cb",
+    "ForNet": "dd6b027a1a01b00fea442276668a54a697eb838b",
+    "Spawrious": "651e90415bfb414a5b6579cb1f53b83e6bb8c165",
+    "Hong": "23a28a23f54e0036101791a0d73db74718ce0e61"
+  },
+  "actual_small_tables_reported_by_data_worker": [
+    {
+      "name": "ALIA captions/Waterbirds.csv",
+      "rows": 4795,
+      "columns": 5,
+      "bytes": 574108,
+      "sha256": "6235f50b7085fc1d13e808061e7c07f16161086c0b556a1f5f13705e8da088e8",
+      "label_counts": {
+        "0": 3682,
+        "1": 1113
+      },
+      "not_an_augmented_candidate_pool": true
+    },
+    {
+      "name": "ALIA data/iwildcam_v2.0/train_subset.csv",
+      "rows": 6052,
+      "columns": 12,
+      "bytes": 1069827,
+      "sha256": "375dd4fd51131fa1c0caad5e2f96818acc1fe1692c7774b4e5b1c0d004eac6dd",
+      "labels": 7,
+      "locations": 15,
+      "nonempty_label_location_combinations": 95,
+      "not_an_augmented_candidate_pool": true
+    },
+    {
+      "name": "ALIA captions/iWildCamMini.csv",
+      "rows": 127,
+      "columns": 4,
+      "bytes": 8507,
+      "sha256": "854bb3e74a2dcfa26edc9844c20ac387c9ad6d4bd83dfefb587c6ecc27a4d1c6",
+      "labels": 1,
+      "not_complete_class_support": true
+    }
+  ],
+  "coordinator_fornet_downloads": [
+    {
+      "file": "metadata/fg_bg_ratios_val.json",
+      "url": "https://huggingface.co/datasets/TNauen/ForNet/resolve/dd6b027a1a01b00fea442276668a54a697eb838b/fg_bg_ratios_val.json",
+      "http_status": 200,
+      "bytes": 3800360,
+      "rows": 49751,
+      "sha256": "e32c61f46f06627f524c1579e5523f14f57d08dce37acecd7c81fb4fdef72e4e"
+    },
+    {
+      "file": "metadata/hf_val_indices.json",
+      "url": "https://huggingface.co/datasets/TNauen/ForNet/resolve/dd6b027a1a01b00fea442276668a54a697eb838b/hf_val_indices.json",
+      "http_status": 200,
+      "bytes": 2188890,
+      "rows": 50000,
+      "sha256": "ce1abaf2263f63b4e71c7ba8b3c6ef566042bfa588fc9bdd01f1c8f7ecbbf715"
+    }
+  ],
+  "uncovered_or_unavailable": [
+    "DDB and Spawrious complete rejected candidate pools",
+    "Human independent actual-group and validity labels",
+    "ForAug all mask versions before winner selection",
+    "OntoAug full text remains403 and was not retried",
+    "CodaLab expired certificate was not retried",
+    "Complete newest-six-month citation coverage beyond focused queries",
+    "ALIA original-filter-run aligned full-pool C/N decisions/scores, exact candidate ordering and run mapping still unavailable; public dataset manifests now read"
+  ],
+  "DDB_text_discrepancies_not_resolved": [
+    "Table2 NotBlond120000 vs Table4 group sum12000",
+    "Waterbird1112 vs1113",
+    "Eq3 full-class mean vs Algorithm2 selected-subset mean; code must pin exact threshold rule"
+  ],
+  "model_execution_identity": "Requested gpt-6.1-sol/max, resolved runtime metadata unavailable",
+  "no_scientific_results_from_logic_tests": true,
+  "fresh_review": {
+    "task_name": "/root/filter_review_20261021",
+    "verdict": "PROCEED WITH CAUTION",
+    "context": "fresh, same-family provisional",
+    "actual_runtime_model": null,
+    "actual_runtime_effort": null,
+    "fixes_implemented": 4,
+    "post_fix_independent_rereview": false,
+    "new_neighbor_scope_correction": "AIA2 is NLP, not vision"
+  },
+  "analysis_preparation": {
+    "actual_metadata_sample_rows": 200,
+    "stratified_without_replacement": true,
+    "seed": 20261021,
+    "human_labels_collected": 0,
+    "images_downloaded_or_reviewed": 0,
+    "logic_tests_use_fabricated_rows": true,
+    "actual_group_census_branch_only": true
+  },
+  "delivery_scope": "Finite research checkpoint and next-step costs. Originality is not prerequisite to November 4 classroom presentation; no edits to slides/animations or 8A.",
+  "ALIA_public_release_followup": {
+    "checked_at_utc": "2026-10-21T02:53:42.301288+00:00",
+    "dataset_collections": 21,
+    "latest_plus_historical_manifests_read": 23,
+    "prompt_output_tables_read": 5,
+    "filter_projects_anonymous_null": 2,
+    "image_HEAD_statuses": [
+      405,
+      405,
+      405
+    ],
+    "binary_GET_not_attempted": true,
+    "summary_file": "alia-public-availability.json",
+    "verdict": "MATERIAL_BLOCKED_FOR_ORIGINAL_RUN_TWO_GATE_AUDIT",
+    "raw_evidence_saved_in_workspace": "/Users/lkc/Documents/Codex/2026-10-21/task/filter-audit-20261021/alia-release-evidence",
+    "no_visual_model_inference_or_training_execution": true
+  }
+}

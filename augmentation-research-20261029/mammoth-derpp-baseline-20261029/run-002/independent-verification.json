@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-10-29T19:38:26.554984+00:00",
+  "all_passed": true,
+  "optimizer_steps": 6300,
+  "epochs": 100,
+  "current_observations": 200000,
+  "replay_observations": 403136,
+  "every_fit_row_seen_50_times": true,
+  "independent_uniform_sampling_and_reservoir_PRNG_replay_exact": true,
+  "final_buffer_rows_arrivals_and_rng_exact": true,
+  "loss_reconstruction_max_abs_error": 3.5762786865234375e-07,
+  "sum_synchronized_step_seconds": 502.0393045029814,
+  "checkpoint_checks": {
+    "1": {
+      "steps": 3150,
+      "BN_updates_per_layer": 9448,
+      "buffer_seen": 100000,
+      "source_image_label_match": true,
+      "historical_targets_finite": true,
+      "last_lr": 0.0012000000000000001
+    },
+    "2": {
+      "steps": 6300,
+      "BN_updates_per_layer": 18898,
+      "buffer_seen": 200000,
+      "source_image_label_match": true,
+      "historical_targets_finite": true,
+      "last_lr": 0.0012000000000000001
+    }
+  },
+  "independent_metrics": {
+    "initial-old-dev.npz": {
+      "n": 500,
+      "nll": 2.3071305819149885,
+      "accuracy": 0.19999999999999996,
+      "max_saved_NLL_error": 4.440892098500626e-16
+    },
+    "task1-old-dev.npz": {
+      "n": 500,
+      "nll": 0.37313975421892287,
+      "accuracy": 0.848,
+      "max_saved_NLL_error": 8.27463098040937e-16
+    },
+    "task2-old-dev.npz": {
+      "n": 500,
+      "nll": 1.0259967642386376,
+      "accuracy": 0.708,
+      "max_saved_NLL_error": 8.881784197001252e-16
+    },
+    "task2-new-dev.npz": {
+      "n": 500,
+      "nll": 0.5630862313472692,
+      "accuracy": 0.8260000000000001,
+      "max_saved_NLL_error": 1.204887109172942e-15
+    }
+  },
+  "new_model_forwards": 0,
+  "new_optimizer_steps": 0
+}

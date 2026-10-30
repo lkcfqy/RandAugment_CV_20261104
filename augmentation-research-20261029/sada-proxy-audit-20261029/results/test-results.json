@@ -1,0 +1,91 @@
+{
+  "passed": 17,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "finite_CE_independent_loss_expression",
+      "passed": true,
+      "detail": "Log-partition increment agrees with direct CE(z_new)-CE(z_old)."
+    },
+    {
+      "name": "both_KL_directions_independent_probability_definition",
+      "passed": true,
+      "detail": "Natural-parameter KL agrees with direct sum of two probability-log-ratio terms."
+    },
+    {
+      "name": "KL_nonnegative",
+      "passed": true,
+      "detail": "Decimal reference, without clipping or substituting negative values."
+    },
+    {
+      "name": "global_CE_Taylor_remainder_bound",
+      "passed": true,
+      "detail": "Logistic CE second derivative is <=1/4, so absolute first-order remainder <=delta^2/8."
+    },
+    {
+      "name": "global_KL_quadratic_bound",
+      "passed": true,
+      "detail": "Both Bernoulli KL directions are bounded by delta-logit squared /8."
+    },
+    {
+      "name": "CE_gradient_central_finite_difference",
+      "passed": true,
+      "detail": "Independent central differences at p=.1,.5,.9 and both labels; h=1e-20."
+    },
+    {
+      "name": "coherent_shared_trajectory",
+      "passed": true,
+      "detail": "No restarting probabilities between the two/five/ten updates."
+    },
+    {
+      "name": "actual_GD_step_vs_objective_finite_difference",
+      "passed": true,
+      "detail": "Actual-GD steps checked against an independently finite-differenced full two-sample SUM loss."
+    },
+    {
+      "name": "90_vs_60_digit_precision",
+      "passed": true,
+      "detail": "All nonzero reference step metrics agree to at least 35 relative decimal digits."
+    },
+    {
+      "name": "identical_constant_eta_normalization",
+      "passed": true,
+      "detail": "All metrics divided by same eta. Window SSD scales by 1/eta^2 and rankings remain unchanged; not a claim for changing trajectories/schedules."
+    },
+    {
+      "name": "analytic_small_step_reversal",
+      "passed": true,
+      "detail": "Predicted by (1-p) coefficient vs p(1-p) coefficient; checks exact finite trajectories at every declared epsilon, not supplied reviewer numbers."
+    },
+    {
+      "name": "concordant_controls",
+      "passed": true,
+      "detail": "Includes same movement with p=.5,.9 and equal initial p with different movement magnitudes."
+    },
+    {
+      "name": "label_blindness_control",
+      "passed": true,
+      "detail": "Identical probability trajectories, different fixed true labels: KL identical, supervised loss response different."
+    },
+    {
+      "name": "stationary_controls",
+      "passed": true,
+      "detail": "Zero parameter movement gives exactly zero scores in every definition."
+    },
+    {
+      "name": "out_and_back_absolute_CE_variance_exactly_zero",
+      "passed": true,
+      "detail": "Exact path reversal gives equal absolute CE differences; residual numerical ordering is not scientific evidence."
+    },
+    {
+      "name": "analytic_SSD_leading_coefficients",
+      "passed": true,
+      "detail": "Two increments epsilon,2epsilon: gradient SSD coefficient=(1-p)^2/2; KL SSD coefficient=9[p(1-p)]^2/8."
+    },
+    {
+      "name": "pinned_source_hashes",
+      "passed": true,
+      "detail": "All saved arXiv-v1 source bytes agree with retrieval manifest."
+    }
+  ]
+}

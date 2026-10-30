@@ -1,0 +1,200 @@
+{
+  "created_utc": "2026-10-29T20:08:05Z",
+  "as_of_date": "2026-10-29",
+  "scope": "Primary-source literature screening only; not exhaustive novelty certification",
+  "qualified_candidates": [],
+  "training_runs": 0,
+  "model_forwards": 0,
+  "new_dataset_downloads": 0,
+  "new_weight_downloads": 0,
+  "source_records": [
+    {
+      "id": "S01",
+      "title": "Exploring the Equivalence of Closed-Set Generative and Real Data Augmentation in Image Classification",
+      "url": "https://arxiv.org/html/2508.09550v1",
+      "version": "arXiv:2508.09550v1 (2025)",
+      "read_sections": [
+        "main equivalence experiments",
+        "Appendix H Table 8",
+        "Appendix I"
+      ],
+      "use": "existing quantity/data-scale question; generation cost",
+      "limits": "matched author synthetic banks/generator checkpoints not obtained or fully verified"
+    },
+    {
+      "id": "S02",
+      "title": "Do We Need All the Synthetic Data? Targeted Image Augmentation via Diffusion Models",
+      "url": "https://arxiv.org/html/2505.21574v3",
+      "version": "first 2025; v3 2026-03-04",
+      "read_sections": [
+        "Sections 3–5",
+        "supplementary targeted traditional augmentation"
+      ],
+      "use": "slow-learnable selection and generation lineage already part of method",
+      "code_url": "https://github.com/BigML-CS-UCLA/TADA",
+      "limits": "root README read; generation directory restricted; no alternate access attempted; implementation commit not pinned"
+    },
+    {
+      "id": "S03",
+      "title": "Augmented Conditioning Is Enough for Effective Training Image Generation",
+      "url": "https://arxiv.org/html/2502.04475v1",
+      "version": "arXiv:2502.04475v1 (2025)",
+      "read_sections": [
+        "Section 3",
+        "Sections 4.1.2, 4.2.1"
+      ],
+      "use": "guidance preference already differs between scratch and few-shot settings",
+      "limits": "no full code/material readiness verification"
+    },
+    {
+      "id": "S04",
+      "title": "Decoupling Augmentation Bias in Prompt Learning for Vision-Language Models",
+      "url": "https://arxiv.org/html/2511.03367v1",
+      "version": "2025 v1; author repository identifies earlier CVPRw2024 AAPL",
+      "read_sections": [
+        "Sections 4.5.1–4.5.4"
+      ],
+      "use": "attribute/class overlap and vulnerable datasets already discussed",
+      "code_url": "https://github.com/Gahyeonkim09/AAPL",
+      "limits": "README read, full code and exact journal configuration not verified"
+    },
+    {
+      "id": "S05",
+      "title": "MoireMix: A Formula-Based Data Augmentation for Improving Image Classification Robustness",
+      "url": "https://arxiv.org/html/2603.25109v1",
+      "version": "2026-03-26 v1",
+      "read_sections": [
+        "Algorithm 1",
+        "Sections 3.1, 4.1, 4.4–4.7"
+      ],
+      "use": "texture/frequency/count controls and full mixing pipeline",
+      "limits": "official code not located in focused search/read source, not evidence of nonexistence; main vs ablation wave-count wording differs"
+    },
+    {
+      "id": "S06",
+      "title": "Fourier-basis Functions to Bridge Augmentation Gap: Rethinking Frequency Augmentation in Image Classification",
+      "url": "https://arxiv.org/html/2403.01944v2",
+      "version": "2024-03-05 v2; CVPR2024",
+      "read_sections": [
+        "Sections 2–5",
+        "Appendix E"
+      ],
+      "use": "closest procedural Fourier augmentation prior; amplitude/phase and distribution handling",
+      "code_url": "https://github.com/nis-research/afa-augment/blob/7dcf705b5f1e0c650a956a083dd27a1ccf4cf5ec/README.md",
+      "commit": "7dcf705b5f1e0c650a956a083dd27a1ccf4cf5ec",
+      "readme_git_blob": "af25616206f5e9bdd7e6a8d8567615457f67298c",
+      "limits": "README and commit verified; no checkpoint download or implementation execution"
+    },
+    {
+      "id": "S07",
+      "title": "Learning to See by Looking at Noise",
+      "url": "https://proceedings.neurips.cc/paper/2021/file/14f2ebeab937ca128186e7ba876faef9-Paper.pdf",
+      "version": "official NeurIPS2021, 14 PDF pages",
+      "read_sections": [
+        "Section 3.3",
+        "Section 5.1–5.2, Figures 6–7"
+      ],
+      "use": "structural/color/spectrum/diversity precedents",
+      "project_url": "https://mbaradad.github.io/learning_with_noise/",
+      "limits": "arXiv PDF exceeded tool content length; official proceedings version read; no data download"
+    },
+    {
+      "id": "S08",
+      "title": "PixMix: Dreamlike Pictures Comprehensively Improve Safety Measures",
+      "url": "https://openaccess.thecvf.com/content/CVPR2022/html/Hendrycks_PixMix_Dreamlike_Pictures_Comprehensively_Improve_Safety_Measures_CVPR_2022_paper.html",
+      "version": "CVPR2022, arXiv first2021",
+      "read_sections": [
+        "official abstract/landing page",
+        "supplementary search excerpt"
+      ],
+      "use": "structural-complexity augmentation prior",
+      "limits": "not a full code/appendix audit this turn; do not claim exact phase-control experiment covered"
+    },
+    {
+      "id": "S09",
+      "title": "To Augment or Not to Augment? Diagnosing Distributional Symmetry Breaking",
+      "url": "https://arxiv.org/html/2510.01349v2",
+      "version": "first2025; v2 2026-03-30",
+      "read_sections": [
+        "Abstract and Sections 2,4,5",
+        "Appendices C,D; D.3 training details"
+      ],
+      "use": "label invariance versus distribution symmetry, task-dependent canonicalization",
+      "code_url": "https://github.com/hannahlawrence/dist-symm-breaking/blob/7bd348c3ca7371ba27029c68fc7d6dc4fb2de821/README.md",
+      "commit": "7bd348c3ca7371ba27029c68fc7d6dc4fb2de821",
+      "readme_git_blob": "965e36255738a1329c83c1a7efaa5a13664e49a4",
+      "limits": "README and commit verified; no install or execution; all code not traced"
+    },
+    {
+      "id": "S10",
+      "title": "LieAugmenter: Equivariant Learning by Discovering Symmetries with Learnable Augmentations",
+      "url": "https://arxiv.org/html/2506.03914v3",
+      "version": "first2025; v3 2026-02-12",
+      "read_sections": [
+        "Section 6.4",
+        "Section 7 limitations",
+        "Appendix A.2,C.2.2 headings and relevant text"
+      ],
+      "use": "absence-of-symmetry tests and explicitly bounded reachable transformations",
+      "limits": "author implementation not located in read paper; no nonexistence claim; not every proof checked"
+    },
+    {
+      "id": "S11",
+      "title": "Benchmarking Semantic Segmentation Models via Appearance and Geometry Attribute Editing",
+      "url": "https://arxiv.org/html/2603.01535v2",
+      "version": "2026-03-16 v2; extends CVPR2024 work",
+      "read_sections": [
+        "Sections III-D,V-C,VI,VII"
+      ],
+      "use": "attribute entanglement and editing fidelity already acknowledged",
+      "code_url": "https://github.com/PRIS-CV/Pascal-EA/blob/49d7cdbc0b1d18ce2e67d15c141c1ac33dbd9075/README.md",
+      "commit": "49d7cdbc0b1d18ce2e67d15c141c1ac33dbd9075",
+      "readme_git_blob": "883cc7ac63b4c1a71754e6a9e8ea50cda0619eb3",
+      "limits": "README includes conference basis and journal geometry extension; exact 2026 experimental material not fully verified"
+    },
+    {
+      "id": "S12",
+      "title": "A Theory of Contrastive Learning with Natural Images",
+      "url": "https://arxiv.org/html/2607.07470v1",
+      "version": "2026-07-08 v1",
+      "read_sections": [
+        "Sections 3–5",
+        "Appendices J–M targeted sections"
+      ],
+      "use": "partial-whitening theory, stronger-augmentation exception and assumption boundaries",
+      "limits": "no rederivation or reproduction; no full author code package readiness verification"
+    }
+  ],
+  "access_events": [
+    {
+      "url": "https://openaccess.thecvf.com/CVPR2025?day=all",
+      "outcome": "HTTP403",
+      "action": "read conference index",
+      "retry": false
+    },
+    {
+      "url": "https://openaccess.thecvf.com/ICCV2025?day=all",
+      "outcome": "HTTP403",
+      "action": "read conference index",
+      "retry": false
+    },
+    {
+      "url": "https://github.com/BigML-CS-UCLA/TADA/tree/main/generation",
+      "outcome": "restricted URL",
+      "action": "read author generation directory",
+      "alternate_path_attempted": false
+    },
+    {
+      "url": "https://arxiv.org/pdf/2106.05963",
+      "outcome": "tool content-length limit 13050066 bytes",
+      "action": "read PDF",
+      "alternative": "official NeurIPS proceedings PDF (S07), technical size limitation only"
+    },
+    {
+      "url": "https://arxiv.org/html/2506.19465v2",
+      "outcome": "404",
+      "used_as_evidence": false
+    }
+  ],
+  "inferences": "Screening decisions and proposed matching/cost concerns are our assessment, not claims that source authors made. No lack-of-search-result inference of novelty or code nonexistence."
+}

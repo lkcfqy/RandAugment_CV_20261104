@@ -1,0 +1,423 @@
+{
+  "started_utc": "2026-10-29T17:03:17.758264+00:00",
+  "protocol": {
+    "purpose": "hardware and environment acceptance, not research training",
+    "seed": 20261029,
+    "dtype": "float32; CPU float64 reference also checked",
+    "cpu_threads": 4,
+    "cpu_interop_threads": 1,
+    "optimizer_steps": 0,
+    "external_data_or_weights": false,
+    "model_input_shape": [
+      8,
+      3,
+      32,
+      32
+    ],
+    "model": "Conv2d(3,8,3,pad=1), ReLU, AvgPool2d(2), Conv2d(8,16,3,pad=1), ReLU, AdaptiveAvgPool2d(1), Flatten, Linear(16,10)",
+    "model_mode": "eval; autograd enabled; no BatchNorm or Dropout",
+    "model_repeats_per_device": 4,
+    "timing": "first compute plus 3 subsequent computes; synchronized MPS; setup separately; not a throughput benchmark",
+    "thresholds": {
+      "exact_tensor": {
+        "atol": 0.0,
+        "rtol": 0.0
+      },
+      "matmul": {
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "model_logits": {
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "model_loss": {
+        "atol": 1e-05,
+        "rtol": 1e-05
+      },
+      "model_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002
+      }
+    },
+    "memory": "Darwin process peak RSS in bytes; MPS allocator/driver snapshots are not peak GPU memory; unified memory values must not be summed"
+  },
+  "script_sha256": "c5aba7827ab69cc0e4b0b0278bedfc655f7822e04550dd27d9e0c627c0a8a2e2",
+  "python": {
+    "version": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "executable": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/bin/python",
+    "prefix": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv",
+    "base_prefix": "/Users/lkc/miniforge3"
+  },
+  "platform": {
+    "system": "Darwin",
+    "macos": "27.2",
+    "architecture": "arm64"
+  },
+  "hardware": {
+    "hw.memsize": "68719476736",
+    "hw.logicalcpu": "18",
+    "machdep.cpu.brand_string": "Apple M5 Pro"
+  },
+  "checks": {
+    "isolated_environment": true,
+    "version_pair": true,
+    "mps_built_and_available": true,
+    "torchvision_cpu_extension": true,
+    "cpu_tensor": true,
+    "mps_tensor": true,
+    "cpu_float64_reference_finite_and_no_update": true,
+    "cpu_finite_and_no_update": true,
+    "mps_finite_and_no_update": true,
+    "cpu_vs_cpu_float64_reference": true,
+    "mps_vs_cpu_float64_reference": true,
+    "mps_vs_cpu": true
+  },
+  "memory_snapshots": [
+    {
+      "label": "after_import",
+      "process_peak_rss_bytes": 321830912,
+      "process_current_rss_bytes": 321830912,
+      "mps_current_allocated_memory_bytes": 0,
+      "mps_driver_allocated_memory_bytes": 458752,
+      "mps_recommended_max_memory_bytes": 55662788608
+    },
+    {
+      "label": "after_tensor_checks",
+      "process_peak_rss_bytes": 415809536,
+      "process_current_rss_bytes": 415744000,
+      "mps_current_allocated_memory_bytes": 51200,
+      "mps_driver_allocated_memory_bytes": 8863744,
+      "mps_recommended_max_memory_bytes": 55662788608
+    },
+    {
+      "label": "after_model_cpu_float64_reference",
+      "process_peak_rss_bytes": 422313984,
+      "process_current_rss_bytes": 422313984,
+      "mps_current_allocated_memory_bytes": 51200,
+      "mps_driver_allocated_memory_bytes": 8863744,
+      "mps_recommended_max_memory_bytes": 55662788608
+    },
+    {
+      "label": "after_model_cpu",
+      "process_peak_rss_bytes": 424706048,
+      "process_current_rss_bytes": 424706048,
+      "mps_current_allocated_memory_bytes": 51200,
+      "mps_driver_allocated_memory_bytes": 8863744,
+      "mps_recommended_max_memory_bytes": 55662788608
+    },
+    {
+      "label": "after_model_mps",
+      "process_peak_rss_bytes": 459128832,
+      "process_current_rss_bytes": 459128832,
+      "mps_current_allocated_memory_bytes": 658432,
+      "mps_driver_allocated_memory_bytes": 11419648,
+      "mps_recommended_max_memory_bytes": 55662788608
+    },
+    {
+      "label": "completed",
+      "process_peak_rss_bytes": 459145216,
+      "process_current_rss_bytes": 459145216,
+      "mps_current_allocated_memory_bytes": 51200,
+      "mps_driver_allocated_memory_bytes": 11419648,
+      "mps_recommended_max_memory_bytes": 55662788608
+    }
+  ],
+  "warnings": [],
+  "versions": {
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0"
+  },
+  "module_locations": {
+    "torch": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/lib/python3.14/site-packages/torch/__init__.py",
+    "torchvision": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/lib/python3.14/site-packages/torchvision/__init__.py"
+  },
+  "mps": {
+    "built": true,
+    "available": true,
+    "cpu_fallback": "0",
+    "fast_math": "0"
+  },
+  "torchvision_extension": {
+    "operation": "CPU nms",
+    "expected_indices": [
+      0,
+      2
+    ],
+    "actual_indices": [
+      0,
+      2
+    ]
+  },
+  "tensor_checks": {
+    "cpu": {
+      "setup_seconds": 1.6041998605942354e-05,
+      "compute_seconds": 5.18749984621536e-05,
+      "exact_arithmetic": {
+        "atol": 0.0,
+        "rtol": 0.0,
+        "shape": [
+          16,
+          16
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 0.0,
+        "rmse": 0.0,
+        "relative_l2_error": 0.0
+      },
+      "matmul_vs_cpu_float64": {
+        "atol": 2e-05,
+        "rtol": 0.0002,
+        "shape": [
+          64,
+          64
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.1634771610036232e-07,
+        "rmse": 1.9201464957690695e-08,
+        "relative_l2_error": 1.5255183444145841e-07
+      }
+    },
+    "mps": {
+      "setup_seconds": 0.006391833001544001,
+      "compute_seconds": 0.1608370419999119,
+      "exact_arithmetic": {
+        "atol": 0.0,
+        "rtol": 0.0,
+        "shape": [
+          16,
+          16
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 0.0,
+        "rmse": 0.0,
+        "relative_l2_error": 0.0
+      },
+      "matmul_vs_cpu_float64": {
+        "atol": 2e-05,
+        "rtol": 0.0002,
+        "shape": [
+          64,
+          64
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.1634771610036232e-07,
+        "rmse": 1.9201464957690695e-08,
+        "relative_l2_error": 1.5255183444145841e-07
+      }
+    }
+  },
+  "model_parameter_count": 1562,
+  "model_runs": {
+    "cpu_float64_reference": {
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "setup_seconds": 0.00035941600071964785,
+      "forward_backward_seconds": [
+        0.0033322920025966596
+      ],
+      "loss": 2.282722155022633,
+      "finite": true,
+      "parameters_unchanged": true,
+      "optimizer_steps": 0
+    },
+    "cpu": {
+      "device": "cpu",
+      "dtype": "torch.float32",
+      "setup_seconds": 0.0003473329998087138,
+      "forward_backward_seconds": [
+        0.0013677499991899822,
+        0.0008920410000428092,
+        0.0007724579991190694,
+        0.0006546250006067567
+      ],
+      "loss": 2.282721996307373,
+      "finite": true,
+      "parameters_unchanged": true,
+      "optimizer_steps": 0
+    },
+    "mps": {
+      "device": "mps",
+      "dtype": "torch.float32",
+      "setup_seconds": 0.002149416999600362,
+      "forward_backward_seconds": [
+        1.6548593340012303,
+        0.002277083000080893,
+        0.0021494580032594968,
+        0.0015310829985537566
+      ],
+      "loss": 2.282721996307373,
+      "finite": true,
+      "parameters_unchanged": true,
+      "optimizer_steps": 0
+    }
+  },
+  "model_comparisons": {
+    "cpu_vs_cpu_float64_reference": {
+      "logits": {
+        "atol": 2e-05,
+        "rtol": 0.0002,
+        "shape": [
+          8,
+          10
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 2.3805800219989237e-08,
+        "rmse": 7.479990724760002e-09,
+        "relative_l2_error": 4.498459118574652e-08
+      },
+      "loss": {
+        "atol": 1e-05,
+        "rtol": 1e-05,
+        "shape": [],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.5871526004573866e-07,
+        "rmse": 1.5871526004573866e-07,
+        "relative_l2_error": 6.952894363272389e-08
+      },
+      "parameter_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          1562
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.3534452515326367e-08,
+        "rmse": 1.881890606428825e-09,
+        "relative_l2_error": 4.013016056423512e-07
+      },
+      "input_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          8,
+          3,
+          32,
+          32
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 4.865257217825762e-12,
+        "rmse": 7.690152035922133e-13,
+        "relative_l2_error": 1.316312396560392e-07
+      }
+    },
+    "mps_vs_cpu_float64_reference": {
+      "logits": {
+        "atol": 2e-05,
+        "rtol": 0.0002,
+        "shape": [
+          8,
+          10
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.746521308132465e-08,
+        "rmse": 6.673649023012909e-09,
+        "relative_l2_error": 4.0135260064379916e-08
+      },
+      "loss": {
+        "atol": 1e-05,
+        "rtol": 1e-05,
+        "shape": [],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.5871526004573866e-07,
+        "rmse": 1.5871526004573866e-07,
+        "relative_l2_error": 6.952894363272389e-08
+      },
+      "parameter_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          1562
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.5769367714413285e-08,
+        "rmse": 1.140192874988317e-09,
+        "relative_l2_error": 2.4313912291802795e-07
+      },
+      "input_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          8,
+          3,
+          32,
+          32
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 8.036928263334799e-12,
+        "rmse": 9.327016950612697e-13,
+        "relative_l2_error": 1.5964922380820296e-07
+      }
+    },
+    "mps_vs_cpu": {
+      "logits": {
+        "atol": 2e-05,
+        "rtol": 0.0002,
+        "shape": [
+          8,
+          10
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 2.9802322387695312e-08,
+        "rmse": 1.0337261055046028e-08,
+        "relative_l2_error": 6.216818775191337e-08
+      },
+      "loss": {
+        "atol": 1e-05,
+        "rtol": 1e-05,
+        "shape": [],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 0.0,
+        "rmse": 0.0,
+        "relative_l2_error": 0.0
+      },
+      "parameter_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          1562
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 1.4901161193847656e-08,
+        "rmse": 2.110828396007051e-09,
+        "relative_l2_error": 4.501212009698427e-07
+      },
+      "input_gradient": {
+        "atol": 2e-05,
+        "rtol": 0.002,
+        "shape": [
+          8,
+          3,
+          32,
+          32
+        ],
+        "finite": true,
+        "pass": true,
+        "max_abs_error": 9.094947017729282e-12,
+        "rmse": 1.2136872473372376e-12,
+        "relative_l2_error": 2.0774511884203012e-07
+      }
+    }
+  },
+  "all_passed": true,
+  "total_wall_seconds": 14.717161583001143,
+  "process_peak_rss_bytes": 459145216,
+  "completed_utc": "2026-10-29T17:03:32.475536+00:00"
+}

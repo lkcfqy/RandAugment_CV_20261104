@@ -1,0 +1,374 @@
+{
+  "audit_start_utc": "2026-10-29T21:27:03Z",
+  "scope": {
+    "primary_works": 3,
+    "official_transform_chains": 2,
+    "training": false,
+    "model_runs": false,
+    "model_or_dataset_downloads": false,
+    "tests_run": false,
+    "primary_source_budget_minutes": 45,
+    "interpretation": "Three primary works, using extended v2 papers that discuss their preceding versions; no separate fourth work."
+  },
+  "papers": [
+    {
+      "title": "Metric3D v2: A Versatile Monocular Geometric Foundation Model for Zero-shot Metric Depth and Surface Normal Estimation",
+      "version": "arXiv:2404.15506v4",
+      "url": "https://arxiv.org/html/2404.15506v4",
+      "sections": [
+        "III-B",
+        "III-D"
+      ],
+      "claims": [
+        "canonical label/image distinction",
+        "depth-normal consistency uses recovered real-world depth"
+      ]
+    },
+    {
+      "title": "UniDepthV2: Universal Monocular Metric Depth Estimation Made Simpler",
+      "version": "arXiv:2502.20110v2",
+      "url": "https://arxiv.org/html/2502.20110v2",
+      "sections": [
+        "III-B",
+        "III-C Eq.2",
+        "IV-C Tables X-XII",
+        "IV-D"
+      ],
+      "claims": [
+        "camera-conditioned depth consistency",
+        "feature-versus-output consistency ablation",
+        "context-dependent ambiguity"
+      ],
+      "caveat": "Paper v2 postdates inspected 2025-05 code commit. Earlier v1 revision was viewed during discovery, not an additional independent work."
+    },
+    {
+      "title": "Depth Any Camera: Zero-Shot Metric Depth Estimation from Any Camera",
+      "version": "arXiv:2501.02464v2",
+      "url": "https://arxiv.org/html/2501.02464v2",
+      "sections": [
+        "4.1-4.3",
+        "5.3 Table 3",
+        "Supplement 9"
+      ],
+      "claims": [
+        "ERP/pitch/FoV/multi-resolution methods and ablations",
+        "Z to Euclidean-range conversion"
+      ],
+      "caveat": "No DAC transform code chain inspected."
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "tree": "3ecab8640c7924ebd18d1e903ce2c3d894ccafce",
+      "commit_date": "2025-03-13",
+      "selected_chain": "vit.raft5.giant2.nyu.py -> NYU_dataset -> LabelScaleCononical/RandomResize/RandomCrop/RandomHorizontalFlip -> DeNoConsistencyLoss -> Depth2Normal"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "tree": "91927bb540718eddf9f3749cdd0b3b16ba570a01",
+      "commit_date": "2025-05-18",
+      "selected_chain": "config_v2_vits14.json ETH3D branch -> ImageDataset copies -> ContextCrop/camera -> output SelfDistill"
+    }
+  ],
+  "source_files": [
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/configs/RAFTDecoder/vit.raft5.giant2.nyu.py",
+      "git_blob_sha": "c59676811aec1a05917adeca2c1f43a46e9bec88",
+      "line_count": 137,
+      "inspected_line_ranges": [
+        [
+          19,
+          50
+        ],
+        [
+          89,
+          137
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/configs/RAFTDecoder/vit.raft5.giant2.nyu.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/datasets/nyu_dataset.py",
+      "git_blob_sha": "3ad8a1a0b84a1abd1dd055f385db2322fa8d0cb9",
+      "line_count": 195,
+      "inspected_line_ranges": [
+        [
+          21,
+          88
+        ],
+        [
+          178,
+          184
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/datasets/nyu_dataset.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/datasets/__base_dataset__.py",
+      "git_blob_sha": "a138759c4a022fe403a4b15fc80e436a71ed49b1",
+      "line_count": 587,
+      "inspected_line_ranges": [
+        [
+          130,
+          145
+        ],
+        [
+          181,
+          194
+        ],
+        [
+          410,
+          419
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/datasets/__base_dataset__.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/utils/transform.py",
+      "git_blob_sha": "40f1956fb5505159367f8927e5f7d044c10f42d1",
+      "line_count": 1492,
+      "inspected_line_ranges": [
+        [
+          19,
+          27
+        ],
+        [
+          228,
+          277
+        ],
+        [
+          699,
+          763
+        ],
+        [
+          779,
+          854
+        ],
+        [
+          999,
+          1047
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/utils/transform.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/model/__base_model__.py",
+      "git_blob_sha": "f0b483c8cc179d2aeac9fafda68ec945123b6229",
+      "line_count": 288,
+      "inspected_line_ranges": [
+        [
+          25,
+          39
+        ],
+        [
+          147,
+          174
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/model/__base_model__.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/model/losses/NormalBranchLoss.py",
+      "git_blob_sha": "f4ecd2ec2ebb0ab10fc4305b80bb2e527b220c6d",
+      "line_count": 732,
+      "inspected_line_ranges": [
+        [
+          365,
+          394
+        ],
+        [
+          402,
+          424
+        ],
+        [
+          453,
+          492
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/model/losses/NormalBranchLoss.py"
+    },
+    {
+      "repository": "YvanYin/Metric3D",
+      "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+      "path": "training/mono/model/losses/depth_to_normal.py",
+      "git_blob_sha": "c0b1892ad35a964673bd550e73c255ca530fc2dd",
+      "line_count": 302,
+      "inspected_line_ranges": [
+        [
+          211,
+          234
+        ],
+        [
+          260,
+          288
+        ]
+      ],
+      "url": "https://github.com/YvanYin/Metric3D/blob/eb5b6fac0dc155e4e52f576e304fbf11655ff339/training/mono/model/losses/depth_to_normal.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "configs/config_v2_vits14.json",
+      "git_blob_sha": "fa9b47c6ea5d49e444d21139b00c1500f5edf33e",
+      "line_count": 133,
+      "inspected_line_ranges": [
+        [
+          26,
+          39
+        ],
+        [
+          67,
+          108
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/configs/config_v2_vits14.json"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/datasets/eth3d.py",
+      "git_blob_sha": "207e5386e1617eb399cea6dc370e71cc9a6d94dc",
+      "line_count": 123,
+      "inspected_line_ranges": [
+        [
+          13,
+          18
+        ],
+        [
+          48,
+          70
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/datasets/eth3d.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/datasets/image_dataset.py",
+      "git_blob_sha": "9c6fffbcede8e7c6dd0eb73ffe800b875210da9b",
+      "line_count": 193,
+      "inspected_line_ranges": [
+        [
+          95,
+          159
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/datasets/image_dataset.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/datasets/base_dataset.py",
+      "git_blob_sha": "3753a04bcc73f832d40e3c0304956f8357c2bd20",
+      "line_count": 344,
+      "inspected_line_ranges": [
+        [
+          78,
+          94
+        ],
+        [
+          136,
+          154
+        ],
+        [
+          273,
+          277
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/datasets/base_dataset.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/datasets/pipelines/transforms.py",
+      "git_blob_sha": "c08f49e61cfbabd0b40b01e0e60cf3c9977a0d55",
+      "line_count": 1465,
+      "inspected_line_ranges": [
+        [
+          137,
+          174
+        ],
+        [
+          1156,
+          1179
+        ],
+        [
+          1246,
+          1335
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/datasets/pipelines/transforms.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/utils/camera.py",
+      "git_blob_sha": "89263b242d387257c0fda2d760f9fb9c714788ae",
+      "line_count": 1309,
+      "inspected_line_ranges": [
+        [
+          69,
+          120
+        ],
+        [
+          255,
+          273
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/utils/camera.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/models/unidepthv2/unidepthv2.py",
+      "git_blob_sha": "c2a94533e12e177e98532d687e87ee9b9349c39e",
+      "line_count": 468,
+      "inspected_line_ranges": [
+        [
+          168,
+          207
+        ],
+        [
+          341,
+          377
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/models/unidepthv2/unidepthv2.py"
+    },
+    {
+      "repository": "lpiccinelli-eth/UniDepth",
+      "commit": "8d8cfe4c7ee15297099983607febf0d4f32eb3d6",
+      "path": "unidepth/ops/losses/distill.py",
+      "git_blob_sha": "6871a34f81f2e017ca4953ded4f9fc24c411d53b",
+      "line_count": 222,
+      "inspected_line_ranges": [
+        [
+          27,
+          130
+        ]
+      ],
+      "url": "https://github.com/lpiccinelli-eth/UniDepth/blob/8d8cfe4c7ee15297099983607febf0d4f32eb3d6/unidepth/ops/losses/distill.py"
+    }
+  ],
+  "verdict": {
+    "retained_candidates": 0,
+    "action": "No training. Bounded family audit closed; does not establish absence of future research.",
+    "implementation_note": "Metric3D horizontal flip updates cy as H-cy, despite horizontal-only image/map/normal reflection. Static ordinary synchronization issue, not a retained scientific candidate."
+  }
+}
+

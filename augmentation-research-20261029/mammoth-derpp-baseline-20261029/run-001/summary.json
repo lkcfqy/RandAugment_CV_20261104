@@ -1,0 +1,93 @@
+{
+  "status": "incomplete_execution",
+  "started_utc": "2026-10-29T19:25:36.306433+00:00",
+  "seed": 20261029,
+  "scope": "Independent official-preset DER++ two-task TRAIN/dev adaptation; no candidate gates",
+  "optimizer_hook_steps": 2,
+  "versions": {
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "numpy": "2.5.4"
+  },
+  "script_sha256": "4084fda0ce9df69b10f60b450bac9e5d7925a6335dc8044f926663a5dfbdb7d0",
+  "initial_resources": {
+    "free_percent": 95,
+    "other_heavy_python": [],
+    "process_query_exit_code": 0
+  },
+  "preflight": {
+    "passed": true,
+    "parameters": 11173962,
+    "batchnorm_layers": 20,
+    "cpu_mps_logit_max_abs": 1.8328428268432617e-06,
+    "cpu_mps_gradient_max_abs": 2.2351741790771484e-06,
+    "cpu_mps_BN_running_state_max_abs": 2.384185791015625e-07,
+    "raw_float_PIL_byte_roundtrip_exact": true,
+    "optimizer_steps": 0,
+    "wall_seconds": 2.2379233749998093
+  },
+  "data": {
+    "train_sha256": "f31298fc616915fa142368359df1c4ca2ae984d6915ca468b998a5ec6aeebf29",
+    "fit_per_task": 2000,
+    "dev_per_task": 500,
+    "head_classes": 10,
+    "buffer_size": 500,
+    "test_read": false,
+    "class_names": [
+      "apple",
+      "aquarium_fish",
+      "baby",
+      "bear",
+      "beaver",
+      "bed",
+      "bee",
+      "beetle",
+      "bicycle",
+      "bottle"
+    ]
+  },
+  "initial_old_dev": {
+    "n": 500,
+    "nll": 2.3071305819149885,
+    "accuracy": 0.19999999999999996,
+    "error_rate": 0.8,
+    "per_class": {
+      "0": {
+        "n": 100,
+        "accuracy": 1.0,
+        "nll": 2.2515517702381804
+      },
+      "1": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.3563405575079015
+      },
+      "2": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.364579152625727
+      },
+      "3": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.2937086932529827
+      },
+      "4": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.26947273595015
+      }
+    }
+  },
+  "error": "AssertionError: ",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/augmentation-research-20261029/mammoth-derpp-baseline-20261029/baseline.py\", line 224, in main\n    assert abs(objective-(ce+.5*rep+.3*mse))<1e-4*max(1,abs(objective))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "finished_utc": "2026-10-29T19:25:39.838342+00:00",
+  "run_perf_seconds": 3.531893167000817,
+  "run_wall_seconds": 3.5319161415100098,
+  "memory": {
+    "process_peak_RSS_bytes": 882180096,
+    "mps_allocated_bytes": 100987136,
+    "mps_driver_bytes": 1211252736
+  }
+}

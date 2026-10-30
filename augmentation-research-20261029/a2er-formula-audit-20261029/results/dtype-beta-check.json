@@ -1,0 +1,33 @@
+{
+  "dtypes": [
+    {
+      "current_output_dtype": "torch.float16",
+      "stored_target_dtype": "torch.float32",
+      "actual_residual_dtype": "torch.float32",
+      "quantile_dtype": "torch.float32",
+      "direct_quantile_error": "quantile() input tensor must be either float or double dtype"
+    },
+    {
+      "current_output_dtype": "torch.float32",
+      "stored_target_dtype": "torch.float32",
+      "actual_residual_dtype": "torch.float32",
+      "quantile_dtype": "torch.float32",
+      "direct_quantile_same_input_dtype": 1.0
+    },
+    {
+      "current_output_dtype": "torch.float64",
+      "stored_target_dtype": "torch.float32",
+      "actual_residual_dtype": "torch.float64",
+      "quantile_dtype": "torch.float64",
+      "direct_quantile_same_input_dtype": 1.0
+    }
+  ],
+  "beta_test": {
+    "fifo_loss": 1.0,
+    "replay_loss": 3.0,
+    "beta_real_gradient": -2.0,
+    "expected": -2.0,
+    "parameter_updated": false
+  },
+  "purpose": "post-run clarification of actual precision and detached mirror-space gradient; no changes to frozen main audit or official code"
+}

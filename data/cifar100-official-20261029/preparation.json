@@ -1,0 +1,142 @@
+{
+  "status": "ready_train_only",
+  "started_utc": "2026-10-29T18:17:24.082654+00:00",
+  "source_url": "https://cave.cs.toronto.edu/kriz/cifar-100-binary.tar.gz",
+  "official_page": "https://cave.cs.toronto.edu/kriz/cifar.html",
+  "official_archive_md5": "03b5dce01913d631647c71ecec9e9cb8",
+  "preserved_prefix_bytes": 27262976,
+  "preserved_prefix_sha256": "4fe5ad6a33e4c0ad41d06e758a8be7565aec22791c66186007021284f88d8312",
+  "range_evidence": {
+    "status": 206,
+    "content_range": "bytes 0-0/168513733",
+    "etag": "\"a0b50c5-47ffe904ab8f2\""
+  },
+  "test_policy": "Archive retained opaque; only train.bin and label-name metadata extracted. Test payload not parsed or evaluated.",
+  "training": false,
+  "parts": [
+    {
+      "index": 0,
+      "lo": 27262976,
+      "hi": 62575665,
+      "bytes": 35312690,
+      "seconds": 381.9222105839981,
+      "sha256": "e8b7f89aa56f77f2d4d68603be6020f611d7404d3e173b317ceae4a6267095ef",
+      "file": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/data/cifar100-official-20261029/download-parts/00-27262976-62575665.part"
+    },
+    {
+      "index": 1,
+      "lo": 62575666,
+      "hi": 97888355,
+      "bytes": 35312690,
+      "seconds": 404.3434482079974,
+      "sha256": "81b82b7f6f4c1e318336df33cf50ef8c5e539f2b980a451cd140dcda3d596f16",
+      "file": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/data/cifar100-official-20261029/download-parts/01-62575666-97888355.part"
+    },
+    {
+      "index": 2,
+      "lo": 97888356,
+      "hi": 133201045,
+      "bytes": 35312690,
+      "seconds": 398.42266504200234,
+      "sha256": "ba99ebbad816efaef0a0c0335cf0921f106298a63d32ecbe91172f0e7121d9c8",
+      "file": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/data/cifar100-official-20261029/download-parts/02-97888356-133201045.part"
+    },
+    {
+      "index": 3,
+      "lo": 133201046,
+      "hi": 168513732,
+      "bytes": 35312687,
+      "seconds": 403.4278410830011,
+      "sha256": "2a79b0146620ca776f74d8bf8001737dbcc88a9ea9bb0116bba8c38cd5fc2837",
+      "file": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/data/cifar100-official-20261029/download-parts/03-133201046-168513732.part"
+    }
+  ],
+  "archive_sha256": "58a81ae192c23a4be8b1804d68e518ed807d710a4eb253b1f2a199162a40d8ec",
+  "archive_bytes": 168513733,
+  "timings_seconds": {
+    "range_download_seconds": 404.37090970899953,
+    "assemble_and_verify_seconds": 0.26307620800071163
+  },
+  "total_resume_wall_seconds": 405.16621616700286,
+  "finished_utc": "2026-10-29T18:32:02.220472+00:00",
+  "finalization_started_utc": "2026-10-29T18:32:00.910670+00:00",
+  "member_stop_reason": "Official archive also contains regular fine_label_names.txt~; earlier allowlist stopped before any extraction. Recognized here, not extracted.",
+  "verified_archive_md5": "03b5dce01913d631647c71ecec9e9cb8",
+  "official_page_sha256": "c95fa60b177f91997e0cb891bafdae1bad862e3a4c1d88621693c8103e0cae93",
+  "archive_members": [
+    {
+      "name": "cifar-100-binary",
+      "size": 0,
+      "extracted": false
+    },
+    {
+      "name": "cifar-100-binary/fine_label_names.txt",
+      "size": 725,
+      "extracted": true
+    },
+    {
+      "name": "cifar-100-binary/train.bin",
+      "size": 153700000,
+      "extracted": true
+    },
+    {
+      "name": "cifar-100-binary/coarse_label_names.txt",
+      "size": 328,
+      "extracted": true
+    },
+    {
+      "name": "cifar-100-binary/fine_label_names.txt~",
+      "size": 724,
+      "extracted": false
+    },
+    {
+      "name": "cifar-100-binary/test.bin",
+      "size": 30740000,
+      "extracted": false
+    }
+  ],
+  "split": {
+    "seed_string": "rand-cifar100-train-development-v1-20261029",
+    "method": "Per fine class, SHA256(seed|class|official TRAIN row index), first 100 development, remaining 400 fit; final arrays sorted.",
+    "fit": 40000,
+    "development": 10000,
+    "fit_per_class": 400,
+    "development_per_class": 100,
+    "official_test_used": false
+  },
+  "train_format": "uint8 [50000,3074]: coarse label, fine label, then RGB planar image reshape(3,32,32)",
+  "files": [
+    {
+      "path": "train-only/coarse_label_names.txt",
+      "bytes": 328,
+      "sha256": "14e28b5b70e3d8a29704b0d9f8c5985cca5f3c3d08ea043dcc87a036df37a2b3"
+    },
+    {
+      "path": "train-only/fine_label_names.txt",
+      "bytes": 725,
+      "sha256": "4a53f81a8af29bb6aa646bfe2c455db1b061edfde82a39c0cfc313ef536c681b"
+    },
+    {
+      "path": "train-only/train.bin",
+      "bytes": 153700000,
+      "sha256": "f31298fc616915fa142368359df1c4ca2ae984d6915ca468b998a5ec6aeebf29"
+    },
+    {
+      "path": "splits/development_indices.npy",
+      "bytes": 80128,
+      "sha256": "1e0b882cbed00155ddc0762a09de30df22e8ccf2d6c0425053f9164b8b2165e1"
+    },
+    {
+      "path": "splits/fit_indices.npy",
+      "bytes": 320128,
+      "sha256": "cc43cbf7e0f5010f7de0b288b88fd642a777f30fff270b06f515ce7146ecb1fa"
+    }
+  ],
+  "finalization_timings_seconds": {
+    "reverify_archive_seconds": 0.2319589159997122,
+    "safe_train_extraction_seconds": 0.9805686669969873,
+    "train_labels_and_split_seconds": 0.046667665999848396,
+    "train_and_split_hash_seconds": 0.05038616700039711
+  },
+  "finalization_wall_seconds": 1.3101196249990608
+}

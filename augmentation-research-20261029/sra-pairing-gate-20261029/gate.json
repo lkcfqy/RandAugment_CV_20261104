@@ -1,0 +1,34 @@
+{
+  "date_utc": "2026-10-29",
+  "candidate": "SRA matched instance-full-action pairing",
+  "decision": "FROZEN_NO_GO",
+  "gates": {
+    "scientific_substance": "FAIL",
+    "mapping_only_identifiability": "UNVERIFIED",
+    "evidence_and_cost_readiness": "FAIL"
+  },
+  "early_stop_reason": "Current proposal remains a stricter shuffle ablation without a new falsifiable prediction distinguishing existing instance-adaptive explanations.",
+  "official_repository": "https://github.com/ainieli/Sample-awareRandAugment",
+  "public_head_api": "https://api.github.com/repos/ainieli/Sample-awareRandAugment/commits/main",
+  "verified_head": "785c3b12944251af81201083a9698a87f1d490f2",
+  "commit_date": "2024-11-14T09:17:42Z",
+  "prior_source_files_rechecked": 10,
+  "sha256_and_git_blob_checks": "all_pass",
+  "source_manifest": "../../augmentation-research-20261022/sra-shape-impact-20261023/source-manifest.json",
+  "nearest_priors": [
+    {"name":"PBA","url":"https://proceedings.mlr.press/v97/ho19b/ho19b.pdf","location":"section 4.2 and Table 3, PDF page 8","boundary":"temporal schedule controls, not matched instance-action tuple permutation"},
+    {"name":"MADAug","url":"https://arxiv.org/html/2309.04747v2#S5","location":"section 5, Tables 6 and 7","boundary":"model/data adaptation ablation, no exact action-marginal equality established here"},
+    {"name":"InstaAug","url":"https://arxiv.org/html/2206.00051v3#S5.SS2","location":"section 5.2 Table 1 and appendix E.3","boundary":"input-free/shared/class-specific controls, not identical empirical action marginals"}
+  ],
+  "current_model_weight_file_count": 0,
+  "pilot_images_present": false,
+  "pilot_masks_present": false,
+  "complete_SRA_donor_trajectory_verified": false,
+  "model_runs": 0,
+  "training_runs": 0,
+  "installs": 0,
+  "data_or_model_downloads": 0,
+  "SADA_remains_frozen": true,
+  "queued_followup": false,
+  "scope_limit": "No claim that pairing is ineffective, that all variants are impossible, or that exact matched-action experiments already exist. No broad novelty search."
+}

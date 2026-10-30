@@ -1,0 +1,473 @@
+{
+  "case_count": 66,
+  "windows": 486,
+  "tests": {
+    "passed": 17,
+    "failed": 0,
+    "checks": [
+      {
+        "name": "finite_CE_independent_loss_expression",
+        "passed": true,
+        "detail": "Log-partition increment agrees with direct CE(z_new)-CE(z_old)."
+      },
+      {
+        "name": "both_KL_directions_independent_probability_definition",
+        "passed": true,
+        "detail": "Natural-parameter KL agrees with direct sum of two probability-log-ratio terms."
+      },
+      {
+        "name": "KL_nonnegative",
+        "passed": true,
+        "detail": "Decimal reference, without clipping or substituting negative values."
+      },
+      {
+        "name": "global_CE_Taylor_remainder_bound",
+        "passed": true,
+        "detail": "Logistic CE second derivative is <=1/4, so absolute first-order remainder <=delta^2/8."
+      },
+      {
+        "name": "global_KL_quadratic_bound",
+        "passed": true,
+        "detail": "Both Bernoulli KL directions are bounded by delta-logit squared /8."
+      },
+      {
+        "name": "CE_gradient_central_finite_difference",
+        "passed": true,
+        "detail": "Independent central differences at p=.1,.5,.9 and both labels; h=1e-20."
+      },
+      {
+        "name": "coherent_shared_trajectory",
+        "passed": true,
+        "detail": "No restarting probabilities between the two/five/ten updates."
+      },
+      {
+        "name": "actual_GD_step_vs_objective_finite_difference",
+        "passed": true,
+        "detail": "Actual-GD steps checked against an independently finite-differenced full two-sample SUM loss."
+      },
+      {
+        "name": "90_vs_60_digit_precision",
+        "passed": true,
+        "detail": "All nonzero reference step metrics agree to at least 35 relative decimal digits."
+      },
+      {
+        "name": "identical_constant_eta_normalization",
+        "passed": true,
+        "detail": "All metrics divided by same eta. Window SSD scales by 1/eta^2 and rankings remain unchanged; not a claim for changing trajectories/schedules."
+      },
+      {
+        "name": "analytic_small_step_reversal",
+        "passed": true,
+        "detail": "Predicted by (1-p) coefficient vs p(1-p) coefficient; checks exact finite trajectories at every declared epsilon, not supplied reviewer numbers."
+      },
+      {
+        "name": "concordant_controls",
+        "passed": true,
+        "detail": "Includes same movement with p=.5,.9 and equal initial p with different movement magnitudes."
+      },
+      {
+        "name": "label_blindness_control",
+        "passed": true,
+        "detail": "Identical probability trajectories, different fixed true labels: KL identical, supervised loss response different."
+      },
+      {
+        "name": "stationary_controls",
+        "passed": true,
+        "detail": "Zero parameter movement gives exactly zero scores in every definition."
+      },
+      {
+        "name": "out_and_back_absolute_CE_variance_exactly_zero",
+        "passed": true,
+        "detail": "Exact path reversal gives equal absolute CE differences; residual numerical ordering is not scientific evidence."
+      },
+      {
+        "name": "analytic_SSD_leading_coefficients",
+        "passed": true,
+        "detail": "Two increments epsilon,2epsilon: gradient SSD coefficient=(1-p)^2/2; KL SSD coefficient=9[p(1-p)]^2/8."
+      },
+      {
+        "name": "pinned_source_hashes",
+        "passed": true,
+        "detail": "All saved arXiv-v1 source bytes agree with retrieval manifest."
+      }
+    ]
+  },
+  "cpu_seconds": 0.710467,
+  "primary_epsilon_0.01": [
+    {
+      "case_id": "primary_positive_two_eps_0.01",
+      "kind": "prescribed",
+      "window_length": 2,
+      "end_step": 2,
+      "common_eta_divisor": "1",
+      "ssd": {
+        "grad_previous_abs_dot": [
+          "0.0000403375140595269129958501517454371337100184424073032106531306565278131604091931081477696164",
+          "0.0000122512520624794620125227135213991940193892201700919136072106531888318576205085327110549915"
+        ],
+        "grad_current_abs_dot": [
+          "0.0000400904995180721109717980628135396228123921849986792772542773578675106079893578846551044927",
+          "0.0000118828663232606161753598189281481991851428669014842397681979716506878948954677296527620171"
+        ],
+        "ce_abs_difference": [
+          "0.0000402142934095582592699274779527739014622893267962712142140713834809396476626141760099656964",
+          "0.0000120663483366591086570983938039938789165017293166289189079127135962293758095373321124727438"
+        ],
+        "kl_new_old": [
+          "9.54173226469829380962095199442594491775657462358614903268671957465030924431168936308736432E-11",
+          "7.02865286783662436087331260866336699976987354388458922587177469111251692457177011383896288E-10"
+        ],
+        "kl_old_new": [
+          "9.42457899954237529275455648324234501626375965914956960871428792303817948413158239956423252E-11",
+          "7.02986344270625181236254865554459904322198778338716062330232759930992989766800235818360790E-10"
+        ]
+      },
+      "population_variance": {
+        "grad_previous_abs_dot": [
+          "0.0000201687570297634564979250758727185668550092212036516053265653282639065802045965540738848082",
+          "0.00000612562603123973100626135676069959700969461008504595680360532659441592881025426635552749575"
+        ],
+        "grad_current_abs_dot": [
+          "0.0000200452497590360554858990314067698114061960924993396386271386789337553039946789423275522464",
+          "0.00000594143316163030808767990946407409959257143345074211988409898582534394744773386482638100855"
+        ],
+        "ce_abs_difference": [
+          "0.0000201071467047791296349637389763869507311446633981356071070356917404698238313070880049828482",
+          "0.0000060331741683295543285491969019969394582508646583144594539563567981146879047686660562363719"
+        ],
+        "kl_new_old": [
+          "4.77086613234914690481047599721297245887828731179307451634335978732515462215584468154368216E-11",
+          "3.51432643391831218043665630433168349988493677194229461293588734555625846228588505691948144E-10"
+        ],
+        "kl_old_new": [
+          "4.71228949977118764637727824162117250813187982957478480435714396151908974206579119978211626E-11",
+          "3.51493172135312590618127432777229952161099389169358031165116379965496494883400117909180395E-10"
+        ]
+      },
+      "binary64_ssd": {
+        "grad_previous_abs_dot": [
+          4.033751405952689e-05,
+          1.2251252062479472e-05
+        ],
+        "grad_current_abs_dot": [
+          4.0090499518072106e-05,
+          1.1882866323260615e-05
+        ],
+        "ce_abs_difference": [
+          4.021429340955825e-05,
+          1.2066348336659114e-05
+        ],
+        "kl_new_old": [
+          9.541732264698108e-11,
+          7.028652867837049e-10
+        ],
+        "kl_old_new": [
+          9.424578999542003e-11,
+          7.029863442706442e-10
+        ]
+      },
+      "relations": {
+        "grad_previous_abs_dot": "A>B",
+        "grad_current_abs_dot": "A>B",
+        "ce_abs_difference": "A>B",
+        "kl_new_old": "A<B",
+        "kl_old_new": "A<B"
+      },
+      "binary64_relations": {
+        "grad_previous_abs_dot": "A>B",
+        "grad_current_abs_dot": "A>B",
+        "ce_abs_difference": "A>B",
+        "kl_new_old": "A<B",
+        "kl_old_new": "A<B"
+      },
+      "binary64_rank_resolution": {
+        "grad_previous_abs_dot": {
+          "reference_ssd_gap": "0.0000280862619970474509833274382240379396906292222372112970459200033389813027886845754367146249",
+          "binary64_guard": "7.50833689163984900930431442224880788812723112271076093886383275307853026210769974776978157E-18",
+          "status": "resolved"
+        },
+        "grad_current_abs_dot": {
+          "reference_ssd_gap": "0.0000282076331948114947964382438853914236272493180971950374860793862168227130938901550023424756",
+          "binary64_guard": "7.45567243017378923295586197585344453044486962249298563653825293489590626676753886958099003E-18",
+          "status": "resolved"
+        },
+        "ce_abs_difference": {
+          "reference_ssd_gap": "0.0000281479450728991506128290841487800225457875974796422953061586698847102718530768438974929526",
+          "binary64_guard": "7.48198772751784960166400443691782864449159969066612444443322661748535375047333185498792740E-18",
+          "status": "resolved"
+        },
+        "kl_new_old": {
+          "reference_ssd_gap": "6.07447964136679497991121740922077250799421608152597432260310273364748600014060117753022645E-10",
+          "binary64_guard": "4.28073542100009848501927847706819970405146533362942865261904346138130781105942164815711815E-23",
+          "status": "resolved"
+        },
+        "kl_old_new": {
+          "reference_ssd_gap": "6.08740554275201428308709300722036454159561181747220366243089880700611194925484411822718465E-10",
+          "binary64_guard": "4.27601051903542352136513600904918906691486572795703663804065464551322940533114583954969688E-23",
+          "status": "resolved"
+        }
+      },
+      "comparisons": {
+        "grad_previous_abs_dot_vs_kl_new_old": "reversal",
+        "grad_previous_abs_dot_vs_kl_old_new": "reversal",
+        "grad_current_abs_dot_vs_kl_new_old": "reversal",
+        "grad_current_abs_dot_vs_kl_old_new": "reversal",
+        "ce_abs_difference_vs_kl_new_old": "reversal",
+        "ce_abs_difference_vs_kl_old_new": "reversal"
+      }
+    }
+  ],
+  "actual_GD_controls": [
+    {
+      "case_id": "GD_00_eta_0.001",
+      "label_pair": [
+        0,
+        0
+      ],
+      "eta": "0.001",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_00_eta_0.01",
+      "label_pair": [
+        0,
+        0
+      ],
+      "eta": "0.01",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_00_eta_0.1",
+      "label_pair": [
+        0,
+        0
+      ],
+      "eta": "0.1",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_01_eta_0.001",
+      "label_pair": [
+        0,
+        1
+      ],
+      "eta": "0.001",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_01_eta_0.01",
+      "label_pair": [
+        0,
+        1
+      ],
+      "eta": "0.01",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_01_eta_0.1",
+      "label_pair": [
+        0,
+        1
+      ],
+      "eta": "0.1",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_10_eta_0.001",
+      "label_pair": [
+        1,
+        0
+      ],
+      "eta": "0.001",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "reversal": 9
+        },
+        "5": {
+          "reversal": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_10_eta_0.01",
+      "label_pair": [
+        1,
+        0
+      ],
+      "eta": "0.01",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "reversal": 9
+        },
+        "5": {
+          "reversal": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_10_eta_0.1",
+      "label_pair": [
+        1,
+        0
+      ],
+      "eta": "0.1",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "reversal": 9
+        },
+        "5": {
+          "reversal": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_11_eta_0.001",
+      "label_pair": [
+        1,
+        1
+      ],
+      "eta": "0.001",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_11_eta_0.01",
+      "label_pair": [
+        1,
+        1
+      ],
+      "eta": "0.01",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 9
+        },
+        "5": {
+          "concordant": 6
+        }
+      },
+      "objective_monotone": true
+    },
+    {
+      "case_id": "GD_11_eta_0.1",
+      "label_pair": [
+        1,
+        1
+      ],
+      "eta": "0.1",
+      "all_windows_CE_vs_source_KL": {
+        "2": {
+          "concordant": 2,
+          "reversal": 7
+        },
+        "5": {
+          "concordant": 1,
+          "reversal": 5
+        }
+      },
+      "objective_monotone": true
+    }
+  ],
+  "precision": {
+    "decimal_60_vs_90_max_relative_error": {
+      "grad_previous_abs_dot": "1.44479447740881940578775602499401351902225598625846603120073864465250854735630065375839666E-56",
+      "grad_current_abs_dot": "1.44474442835337945204990508064492864277337092273520099420341466981363853458004748229508143E-56",
+      "ce_abs_difference": "3.28400035647915744528691818861621380829854663708563268061213222669068800946216209951003022E-51",
+      "kl_new_old": "9.43562603715527215346063049033673518822706930262967805217319232813072342166329658572663527E-43",
+      "kl_old_new": "9.43562606392868760091649223907027941218818449600931711708944638433829569093831342934621211E-43"
+    },
+    "binary64_vs_decimal90_max_relative_error": {
+      "grad_previous_abs_dot": 1.1859528576438598e-15,
+      "grad_current_abs_dot": 1.1859528576438598e-15,
+      "ce_abs_difference": 1.451374057465634e-15,
+      "kl_new_old": 3.383625305616463e-07,
+      "kl_old_new": 2.0509121580394772e-07
+    },
+    "binary64_worst_cases": {
+      "grad_previous_abs_dot": {
+        "case_id": "concordant_confident_eps_0.0001",
+        "sample": "B",
+        "step": 2
+      },
+      "grad_current_abs_dot": {
+        "case_id": "concordant_confident_eps_0.0001",
+        "sample": "B",
+        "step": 1
+      },
+      "ce_abs_difference": {
+        "case_id": "concordant_confident_eps_0.1",
+        "sample": "B",
+        "step": 1
+      },
+      "kl_new_old": {
+        "case_id": "concordant_confident_eps_0.00000001",
+        "sample": "B",
+        "step": 1
+      },
+      "kl_old_new": {
+        "case_id": "concordant_confident_eps_0.00000001",
+        "sample": "B",
+        "step": 2
+      }
+    },
+    "zero_reference_handling": "excluded from relative error; zero controls checked separately"
+  },
+  "binary64_rank_mismatches": 25
+}

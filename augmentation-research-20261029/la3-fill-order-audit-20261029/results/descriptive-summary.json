@@ -1,0 +1,160 @@
+{
+  "groups": {
+    "strict_primary": {
+      "n": 1152,
+      "status": {
+        "strict_fill_only": 1032,
+        "no_delta": 120
+      },
+      "source_max_abs": 0,
+      "tolerance_one_pass": 1032,
+      "severity_l2_matches_all": 120,
+      "severity_l2_matches_nonzero_strict": 0,
+      "severity_by_canvas": {
+        "bounded_ramp": {
+          "strict_nonzero_n": 258,
+          "strict_nonzero_l2_match": 0
+        },
+        "constant": {
+          "strict_nonzero_n": 258,
+          "strict_nonzero_l2_match": 0
+        },
+        "full_range": {
+          "strict_nonzero_n": 258,
+          "strict_nonzero_l2_match": 0
+        },
+        "noise": {
+          "strict_nonzero_n": 258,
+          "strict_nonzero_l2_match": 0
+        }
+      }
+    },
+    "other_chain_controls": {
+      "n": 2432,
+      "status": {
+        "strict_fill_only": 1578,
+        "nonfill_changed": 466,
+        "support_changed": 112,
+        "no_delta": 276
+      },
+      "source_max_abs": 255,
+      "tolerance_one_pass": 1622,
+      "severity_l2_matches_all": 276,
+      "severity_l2_matches_nonzero_strict": 0,
+      "severity_by_canvas": {
+        "bounded_ramp": {
+          "strict_nonzero_n": 390,
+          "strict_nonzero_l2_match": 0
+        },
+        "constant": {
+          "strict_nonzero_n": 408,
+          "strict_nonzero_l2_match": 0
+        },
+        "full_range": {
+          "strict_nonzero_n": 394,
+          "strict_nonzero_l2_match": 0
+        },
+        "noise": {
+          "strict_nonzero_n": 386,
+          "strict_nonzero_l2_match": 0
+        }
+      }
+    }
+  },
+  "failure_archive_entries": 974,
+  "sampler_replay_checks": 168,
+  "sampler_replay_max_abs": 0,
+  "failures_by_included_operation_overlapping_groups": {
+    "AutoContrast": {
+      "n": 48,
+      "status": {
+        "strict_fill_only": 24,
+        "nonfill_changed": 24
+      },
+      "first_nonfill_failure": "p014-c00-constant"
+    },
+    "Equalize": {
+      "n": 192,
+      "status": {
+        "strict_fill_only": 30,
+        "nonfill_changed": 162
+      },
+      "first_nonfill_failure": "p021-c00-bounded_ramp"
+    },
+    "Contrast": {
+      "n": 160,
+      "status": {
+        "strict_fill_only": 88,
+        "nonfill_changed": 72
+      },
+      "first_nonfill_failure": "p017-c00-constant"
+    },
+    "Sharpness": {
+      "n": 64,
+      "status": {
+        "nonfill_changed": 52,
+        "strict_fill_only": 12
+      },
+      "first_nonfill_failure": "p044-c00-constant"
+    },
+    "Cutout": {
+      "n": 144,
+      "status": {
+        "strict_fill_only": 96,
+        "support_changed": 48
+      },
+      "first_nonfill_failure": null
+    },
+    "ShearX": {
+      "n": 560,
+      "status": {
+        "strict_fill_only": 416,
+        "nonfill_changed": 64,
+        "support_changed": 32,
+        "no_delta": 48
+      },
+      "first_nonfill_failure": "p016-c00-constant"
+    },
+    "ShearY": {
+      "n": 416,
+      "status": {
+        "strict_fill_only": 324,
+        "nonfill_changed": 28,
+        "support_changed": 24,
+        "no_delta": 40
+      },
+      "first_nonfill_failure": "p014-c00-constant"
+    },
+    "TranslateX": {
+      "n": 544,
+      "status": {
+        "strict_fill_only": 409,
+        "nonfill_changed": 63,
+        "no_delta": 60,
+        "support_changed": 12
+      },
+      "first_nonfill_failure": "p023-c00-bounded_ramp"
+    },
+    "TranslateY": {
+      "n": 704,
+      "status": {
+        "strict_fill_only": 447,
+        "support_changed": 32,
+        "nonfill_changed": 137,
+        "no_delta": 88
+      },
+      "first_nonfill_failure": "p024-c00-bounded_ramp"
+    },
+    "Rotate": {
+      "n": 816,
+      "status": {
+        "strict_fill_only": 502,
+        "nonfill_changed": 174,
+        "no_delta": 64,
+        "support_changed": 76
+      },
+      "first_nonfill_failure": "p015-c00-constant"
+    }
+  },
+  "interpretation": "descriptive fixed synthetic cases, no confidence intervals or empirical native effect estimate"
+}

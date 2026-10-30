@@ -1,0 +1,239 @@
+{
+  "status": "completed_basic_learning_checks_passed",
+  "started_utc": "2026-10-29T19:27:49.873166+00:00",
+  "seed": 20261029,
+  "scope": "Independent official-preset DER++ two-task TRAIN/dev adaptation; no candidate gates",
+  "optimizer_hook_steps": 6300,
+  "versions": {
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "numpy": "2.5.4"
+  },
+  "script_sha256": "5489e4365a77271ef7ddfee7e77dfa046fd0f50b2be505f7f1fc95a62bd03302",
+  "initial_resources": {
+    "free_percent": 95,
+    "other_heavy_python": [],
+    "process_query_exit_code": 0
+  },
+  "preflight": {
+    "passed": true,
+    "parameters": 11173962,
+    "batchnorm_layers": 20,
+    "cpu_mps_logit_max_abs": 1.8328428268432617e-06,
+    "cpu_mps_gradient_max_abs": 2.2351741790771484e-06,
+    "cpu_mps_BN_running_state_max_abs": 2.384185791015625e-07,
+    "raw_float_PIL_byte_roundtrip_exact": true,
+    "optimizer_steps": 0,
+    "wall_seconds": 0.3029257919988595
+  },
+  "data": {
+    "train_sha256": "f31298fc616915fa142368359df1c4ca2ae984d6915ca468b998a5ec6aeebf29",
+    "fit_per_task": 2000,
+    "dev_per_task": 500,
+    "head_classes": 10,
+    "buffer_size": 500,
+    "test_read": false,
+    "class_names": [
+      "apple",
+      "aquarium_fish",
+      "baby",
+      "bear",
+      "beaver",
+      "bed",
+      "bee",
+      "beetle",
+      "bicycle",
+      "bottle"
+    ]
+  },
+  "initial_old_dev": {
+    "n": 500,
+    "nll": 2.3071305819149885,
+    "accuracy": 0.19999999999999996,
+    "error_rate": 0.8,
+    "per_class": {
+      "0": {
+        "n": 100,
+        "accuracy": 1.0,
+        "nll": 2.2515517702381804
+      },
+      "1": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.3563405575079015
+      },
+      "2": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.364579152625727
+      },
+      "3": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.2937086932529827
+      },
+      "4": {
+        "n": 100,
+        "accuracy": 0.0,
+        "nll": 2.26947273595015
+      }
+    }
+  },
+  "throughput": {
+    "first32_seconds": 2.592608791008388,
+    "warm_median_step_seconds": 0.0785520829995221,
+    "estimated_remaining_seconds": 612.3644562410045,
+    "model": "Full BN ResNet18 NF64, real replay from step2"
+  },
+  "task_evaluations": [
+    {
+      "task": 1,
+      "steps_completed": 3150,
+      "task_wall_seconds": 252.90452483400077,
+      "old_dev": {
+        "n": 500,
+        "nll": 0.3731397542189228,
+        "accuracy": 0.848,
+        "error_rate": 0.152,
+        "per_class": {
+          "0": {
+            "n": 100,
+            "accuracy": 0.949999988079071,
+            "nll": 0.12035781718861611
+          },
+          "1": {
+            "n": 100,
+            "accuracy": 0.8799999952316284,
+            "nll": 0.3289030534069455
+          },
+          "2": {
+            "n": 100,
+            "accuracy": 0.8199999928474426,
+            "nll": 0.3884987862737635
+          },
+          "3": {
+            "n": 100,
+            "accuracy": 0.7900000214576721,
+            "nll": 0.4589724342479143
+          },
+          "4": {
+            "n": 100,
+            "accuracy": 0.800000011920929,
+            "nll": 0.5689666799773749
+          }
+        }
+      }
+    },
+    {
+      "task": 2,
+      "steps_completed": 6300,
+      "task_wall_seconds": 253.58425991699914,
+      "old_dev": {
+        "n": 500,
+        "nll": 1.0259967642386376,
+        "accuracy": 0.708,
+        "error_rate": 0.292,
+        "per_class": {
+          "0": {
+            "n": 100,
+            "accuracy": 0.8399999737739563,
+            "nll": 0.5361024659864723
+          },
+          "1": {
+            "n": 100,
+            "accuracy": 0.8299999833106995,
+            "nll": 0.6720625984910485
+          },
+          "2": {
+            "n": 100,
+            "accuracy": 0.7200000286102295,
+            "nll": 1.082034385343463
+          },
+          "3": {
+            "n": 100,
+            "accuracy": 0.5299999713897705,
+            "nll": 1.547430549004809
+          },
+          "4": {
+            "n": 100,
+            "accuracy": 0.6200000047683716,
+            "nll": 1.2923538223673956
+          }
+        }
+      },
+      "new_dev": {
+        "n": 500,
+        "nll": 0.5630862313472692,
+        "accuracy": 0.8260000000000001,
+        "error_rate": 0.174,
+        "per_class": {
+          "5": {
+            "n": 100,
+            "accuracy": 0.8899999856948853,
+            "nll": 0.3744797110339864
+          },
+          "6": {
+            "n": 100,
+            "accuracy": 0.9100000262260437,
+            "nll": 0.3316389899836994
+          },
+          "7": {
+            "n": 100,
+            "accuracy": 0.6700000166893005,
+            "nll": 0.9879922282132657
+          },
+          "8": {
+            "n": 100,
+            "accuracy": 0.8999999761581421,
+            "nll": 0.35417889181322143
+          },
+          "9": {
+            "n": 100,
+            "accuracy": 0.7599999904632568,
+            "nll": 0.7671413356921728
+          }
+        }
+      },
+      "combined_dev": {
+        "n": 1000,
+        "accuracy": 0.767,
+        "nll": 0.7945414977929535
+      }
+    }
+  ],
+  "exposure": {
+    "current_total": 200000,
+    "current_unique": 4000,
+    "each_fit_row_presentations": 50,
+    "replay_distillation_total": 201568,
+    "replay_supervised_total": 201568,
+    "buffer_seen_observations": 200000,
+    "final_buffer_unique_sources": 472,
+    "final_buffer_classes": [
+      33,
+      58,
+      43,
+      60,
+      50,
+      44,
+      46,
+      48,
+      57,
+      61
+    ]
+  },
+  "inherited_basic_learning_checks": {
+    "task1": true,
+    "task2_old_and_new": true,
+    "interpretation": "Same weak operational thresholds as prior pilot; not scientific sufficiency or contribution."
+  },
+  "finished_utc": "2026-10-29T19:36:17.426545+00:00",
+  "run_perf_seconds": 507.5501367500001,
+  "run_wall_seconds": 507.5533859729767,
+  "memory": {
+    "process_peak_RSS_bytes": 944013312,
+    "mps_allocated_bytes": 96318208,
+    "mps_driver_bytes": 1224867840
+  }
+}

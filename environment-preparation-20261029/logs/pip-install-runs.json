@@ -1,0 +1,58 @@
+[
+  {
+    "stage": "download",
+    "command": [
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/bin/python",
+      "-m",
+      "pip",
+      "--isolated",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "download",
+      "--only-binary=:all:",
+      "--require-hashes",
+      "--index-url",
+      "https://pypi.org/simple",
+      "--dest",
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/wheelhouse",
+      "-r",
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/requirements-macos-arm64-py314.lock"
+    ],
+    "exit_code": 0,
+    "seconds": 109.2252440839984
+  },
+  {
+    "stage": "install",
+    "command": [
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/bin/python",
+      "-m",
+      "pip",
+      "--isolated",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "install",
+      "--no-index",
+      "--find-links",
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/wheelhouse",
+      "--require-hashes",
+      "-r",
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/requirements-macos-arm64-py314.lock"
+    ],
+    "exit_code": 0,
+    "seconds": 10.427055415999348
+  },
+  {
+    "stage": "check",
+    "command": [
+      "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/environment-preparation-20261029/venv/bin/python",
+      "-m",
+      "pip",
+      "--isolated",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.13722233299995423
+  }
+]

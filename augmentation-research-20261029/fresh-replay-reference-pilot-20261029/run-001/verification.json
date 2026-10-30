@@ -1,0 +1,105 @@
+{
+  "checks": {
+    "frozen_protocol_and_script_unchanged": true,
+    "fit_dev_disjoint": true,
+    "buffer_dev_disjoint": true,
+    "gate_A_not_run": true,
+    "branches_not_run": true
+  },
+  "all_passed": true,
+  "phase_statistics": {
+    "task1": {
+      "count": 600,
+      "last32_means": {
+        "ce": 1.0990508068352938,
+        "seconds": 0.006687990937507493
+      }
+    },
+    "task2_prefix": {
+      "count": 160,
+      "last32_means": {
+        "ce_new": 3.080429345369339,
+        "ce_old": 1.226589236408472,
+        "mse": 2.535428963601589,
+        "objective": 4.961438477039337,
+        "q": 9.623156135756041
+      }
+    }
+  },
+  "independent_metrics": {
+    "old": {
+      "nll": 1.3102405746335073,
+      "accuracy": 0.5,
+      "saved_nll_max_abs_error": 7.216449660063518e-16,
+      "predicted_class_counts": [
+        110,
+        133,
+        73,
+        16,
+        145,
+        7,
+        0,
+        0,
+        3,
+        13
+      ],
+      "true_class_counts": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "per_class_accuracy": {
+        "0": 0.72,
+        "1": 0.74,
+        "2": 0.37,
+        "3": 0.09,
+        "4": 0.58
+      }
+    },
+    "new": {
+      "nll": 3.15459741899507,
+      "accuracy": 0.1,
+      "saved_nll_max_abs_error": 8.881784197001252e-16,
+      "predicted_class_counts": [
+        58,
+        63,
+        96,
+        35,
+        128,
+        37,
+        0,
+        3,
+        8,
+        72
+      ],
+      "true_class_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "per_class_accuracy": {
+        "5": 0.14,
+        "6": 0.0,
+        "7": 0.01,
+        "8": 0.05,
+        "9": 0.3
+      }
+    }
+  },
+  "new_optimizer_steps": 0,
+  "new_model_forwards": 0
+}

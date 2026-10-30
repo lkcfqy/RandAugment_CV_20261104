@@ -1,0 +1,275 @@
+{
+  "stage": "bounded_formula_audit_not_SADA_reproduction",
+  "frozen_before_first_numeric_execution_utc": "2026-10-29T14:29:00.044803+00:00",
+  "primary_source": "https://arxiv.org/html/2510.00434v1#S3",
+  "precision_digits": [
+    90,
+    60
+  ],
+  "epsilons": [
+    "0.1",
+    "0.01",
+    "0.001",
+    "0.0001",
+    "0.000001",
+    "0.00000001"
+  ],
+  "common_eta_normalizations": [
+    "1",
+    "0.1",
+    "0.01"
+  ],
+  "ema_new_weights": [
+    "0.1",
+    "0.5",
+    "0.9",
+    "1"
+  ],
+  "prescribed_cases": [
+    {
+      "id": "primary_positive_two",
+      "p0": [
+        "0.1",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        2
+      ],
+      "role": "candidate_reversal"
+    },
+    {
+      "id": "negative_two",
+      "p0": [
+        "0.1",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        -1,
+        -2
+      ],
+      "role": "direction_sensitivity"
+    },
+    {
+      "id": "positive_five",
+      "p0": [
+        "0.1",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "role": "longer_window"
+    },
+    {
+      "id": "concordant_confident",
+      "p0": [
+        "0.5",
+        "0.9"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        2
+      ],
+      "role": "concordant_control"
+    },
+    {
+      "id": "identical",
+      "p0": [
+        "0.5",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        2
+      ],
+      "role": "tie_control"
+    },
+    {
+      "id": "different_movement",
+      "p0": [
+        "0.5",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "2",
+        "1"
+      ],
+      "increments": [
+        1,
+        2
+      ],
+      "role": "concordant_motion_control"
+    },
+    {
+      "id": "same_prediction_different_label",
+      "p0": [
+        "0.1",
+        "0.1"
+      ],
+      "y": [
+        1,
+        0
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        2
+      ],
+      "role": "label_blindness_control"
+    },
+    {
+      "id": "stationary",
+      "p0": [
+        "0.1",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        0,
+        0
+      ],
+      "role": "zero_control"
+    },
+    {
+      "id": "mixed_direction_five",
+      "p0": [
+        "0.1",
+        "0.5"
+      ],
+      "y": [
+        1,
+        1
+      ],
+      "slopes": [
+        "1",
+        "1"
+      ],
+      "increments": [
+        1,
+        -1,
+        2,
+        -2,
+        1
+      ],
+      "role": "mixed_direction_control"
+    }
+  ],
+  "actual_GD": {
+    "model": "p_i(w)=sigmoid(logit(p0_i)+a_i*w); only shared scalar w trainable",
+    "p0": [
+      "0.1",
+      "0.5"
+    ],
+    "slopes": [
+      "1",
+      "1"
+    ],
+    "w0": "0",
+    "labels": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "learning_rates": [
+      "0.001",
+      "0.01",
+      "0.1"
+    ],
+    "steps": 10,
+    "objective": "SUM of the two standard binary cross-entropy losses; fixed eta; full-batch gradient descent; no momentum, decay, stochasticity or augmentation",
+    "windows": [
+      2,
+      5
+    ],
+    "role": "all fixed label/rate combinations logged; no adaptive search or cherry-picking"
+  },
+  "metrics": [
+    "grad_previous_abs_dot",
+    "grad_current_abs_dot",
+    "ce_abs_difference",
+    "kl_new_old",
+    "kl_old_new"
+  ],
+  "window_statistic": "sum of squared deviations from the mean (Eq6); population variance also recorded",
+  "EMA": "Eq7 with explicitly assumed zero initialization; beta is NEW statistic weight; sensitivity only, not recovered author defaults",
+  "action_mapping": "NOT IMPLEMENTED: exact inversion, normalization population, ties, epsilon, warm-up and augmentation map not recovered",
+  "asymptotics": "prescribed trajectories only; constant eta; leading CE/gradient O(epsilon), KL O(epsilon^2); window sums normally O(epsilon^2) and O(epsilon^4)",
+  "precision_checks": "decimal 90 vs 60 digits; separate binary64 stable formulas; retain errors and ordering mismatches",
+  "compute_budget_cpu_seconds": 600,
+  "no_external_training_data": true,
+  "no_training_or_installs": true,
+  "go_gate": "Parent review plus recover full official controller and identify a specific unanswered empirical question beyond conventional prediction drift; only then consider a separately approved independent-data pilot.",
+  "no_go_gate": "No full-controller reproduction, implementation-bug, new-contribution or generalization-effect claim from this constructed formula audit. No automatic training."
+}

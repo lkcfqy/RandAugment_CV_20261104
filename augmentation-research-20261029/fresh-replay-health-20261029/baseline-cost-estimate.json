@@ -1,0 +1,19 @@
+{
+  "reference": "CIFAR ResNet18 NF64 4 stages x2 blocks, head10; analytical Conv/Linear MACs excludes normalization/activation and is NOT measured speed",
+  "parameters_head10": 11173962,
+  "forward_MACs_head10": 555422720,
+  "MAC_ratio_to_measured_small_network": 20.8355861154993,
+  "two_5_class_tasks_fit_per_task": 2000,
+  "epochs_per_task": 50,
+  "batch_size": 32,
+  "steps_per_task_ceiling": 3150,
+  "total_optimizer_steps": 6300,
+  "measured_small_task1_warm_step_seconds": 0.007016353500148398,
+  "measured_small_task2_phase_seconds_per_step": 0.016229615106249186,
+  "pure_MAC_scaled_training_seconds": 1525.6816493208887,
+  "planning_interval_minutes": [
+    30,
+    90
+  ],
+  "interval_status": "Planning allowance, not calibrated or guaranteed; real NF64 throughput not benchmarked. No training authorization implied."
+}

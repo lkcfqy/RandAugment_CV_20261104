@@ -1,0 +1,243 @@
+{
+  "status": "FROZEN_CANDIDATE_PROTOCOL_NO_FORMAL_EXECUTION",
+  "utc": "2026-11-02T05:54:20.779001+00:00",
+  "dataset": "CIFAR-100, all100 official fine labels",
+  "dataset_choice_basis": "existing assets and explicit parent instruction, no cross-dataset utility comparison",
+  "data_revision_from_previous_proposal": "The unverified CIFAR-10 proposal is replaced by explicitly authorized existing CIFAR-100, all100 classes; no other utility was compared.",
+  "data_and_identity_sha256": {
+    "archive": "85cd44d02ba6437773c5bbd22e183051d648de2e7d6b014e1ef29b855ba677a7",
+    "npy": "826e4c8a99d0344fec81a3317f3d4f41562ed3399ca995aa3b84dfc3e5da0dce",
+    "historical_eligibility_metadata": "83132a55182896ab577aa0a344f762f96ae065d034904635a5aa4d9a660f7ea5",
+    "identities": "a79508bafe2ddeedccf07096cc977f8a15aa8940304f7b6f7ef2fbf7010339ae"
+  },
+  "classes": 100,
+  "candidate_train_originals_per_class": 100,
+  "episodes": 12,
+  "per_class_label_budgets": [
+    8,
+    16
+  ],
+  "total_label_budgets": [
+    800,
+    1600
+  ],
+  "nested": true,
+  "fold_rule": "class-rank modulo4, all views of original kept together",
+  "folds": 4,
+  "support_union_originals": 8751,
+  "query_originals": 9990,
+  "query_rule": "all eligible official test; no evaluation in preflight",
+  "prior_data_used": true,
+  "fresh_confirmation": false,
+  "policies": [
+    "clean",
+    "weak",
+    "ra"
+  ],
+  "views_per_original": 4,
+  "sampling_and_view_salt": "augmentation-selection-cifar100-20261102-v1",
+  "clean": {
+    "dinov2_resize": 256,
+    "deit_resize": 248,
+    "center_crop": 224,
+    "interpolation": "bicubic"
+  },
+  "weak": {
+    "RRC_output": 224,
+    "scale": [
+      0.5,
+      1.0
+    ],
+    "ratio": [
+      0.75,
+      1.3333333333333333
+    ],
+    "interpolation": "bicubic",
+    "horizontal_flip_probability": 0.5
+  },
+  "ra": {
+    "after_same_weak_view": true,
+    "num_ops": 2,
+    "magnitude": 9,
+    "magnitude_bins": 31,
+    "interpolation": "bilinear",
+    "fill": [
+      124,
+      116,
+      104
+    ]
+  },
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "features": "final normalized CLS; per-view unit L2; native FP32 cache",
+  "ridge": {
+    "dtype": "float64",
+    "lambda": 0.001,
+    "intercept_unpenalized": true,
+    "weights": "equal total per original,1/4 perview",
+    "classes": 100
+  },
+  "tie_order": [
+    "clean",
+    "weak",
+    "ra"
+  ],
+  "model_sources": {
+    "deit_tiny": {
+      "bytes": 22917895,
+      "path": "research-view-route-20261030/assets/deit_tiny_patch16_224-a1311bcf.pth",
+      "sha256": "a1311bcf4f24e3c95adaa75535db67bc4412d95535b98f7c1dfd1164dda41c97"
+    },
+    "dinov2_small": {
+      "bytes": 88249960,
+      "path": "research-shared-theta-ad-20261030/models/dinov2-small/model.safetensors",
+      "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
+    }
+  },
+  "source_code_and_environment": {
+    "dinov2_small": {
+      "code": {
+        "analyze.py": "19b0ba67c456b5bb0c97342ee558794ad23fc89bcbb6f6925a3d3d7759560ea0",
+        "common.py": "2284440f6a1207bd96e048a9c85f7b45d569f3b61b95358511e9ff1c6ba3e468",
+        "pilot.py": "4844d46248ee471a0659aec3d21c523b25e7526d7326597f9b17e398dc77f204",
+        "prepare.py": "1df1fcfaf1a95b3bfa64f1d456ec34b14cabac61796afa5b1cc5c44154a92729",
+        "test_pilot.py": "afea8005964375752ee20f5bbde563ef09c4846bb71735bc761a4db24cafea06"
+      },
+      "environment": {
+        "deterministic": true,
+        "device": "cpu",
+        "interop": 1,
+        "mps_used": false,
+        "packages": {
+          "Pillow": "13.0.0",
+          "numpy": "2.5.4",
+          "safetensors": "0.8.0",
+          "torch": "2.13.0",
+          "torchvision": "0.28.0",
+          "transformers": "4.57.1"
+        },
+        "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+        "sources": {
+          "dinov2": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/.asset-venv/lib/python3.14/site-packages/transformers/models/dinov2/modeling_dinov2.py",
+            "sha256": "def22737f3b5bb0d1500e9e41ea39fd8af59b462713ce7ef507e12a57c3dc4a5"
+          },
+          "randaugment": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py",
+            "sha256": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5"
+          },
+          "transforms": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/transforms.py",
+            "sha256": "673f3baacde591b3cb7224c5fbfc7ad35200dbd1f9a2147f3fa0b4226e735023"
+          }
+        },
+        "threads": 4
+      },
+      "protocol_sha256": "7dbce6e83bc21abaa90626be2f1d3aa6821f0c9f02194bb90e1a83f8acd466fd",
+      "query_utility_observed": false,
+      "utc": "2026-11-02T04:37:19.361173+00:00"
+    },
+    "deit_tiny": {
+      "code": {
+        "analyze.py": "f7abaeff3587a8f6e1ecf8a9d9421ad848f420733e76a445da926e5eb06b3975",
+        "common.py": "7d237737181defbd5cd89922b03f5749e418a95affd92649323f00a2f8d3937b",
+        "compare_encoders.py": "0187d21e51bf80b136b9c3eaa8edea85bc9db5d4c0ee7ff613ed3b68d5cc1978",
+        "pilot.py": "aa649cb29f4e2c602c27fc0f85c9ca0df12c51e547ca59ecadc39684720ed19c",
+        "plot_results.py": "cc20e3e28bb35dcc6757d4ff3c7fb8b2c75a17f35b56a265d4fdaaa75bb3caf4",
+        "reference_view_hashes.py": "294af6b1d20b91ce4e341282be172afebe131859aef053e99d824850a9e2b821",
+        "test_pilot.py": "afea8005964375752ee20f5bbde563ef09c4846bb71735bc761a4db24cafea06",
+        "test_second_encoder_contract.py": "98a04e28c4fc14222f93ace3d569add9640c05d13b15f47dd491ad28d0dd1285",
+        "verify_run.py": "749caf38118b87768c564e19b6757b69a3995aa3538dbc633ddc7d386291d32c"
+      },
+      "environment": {
+        "deterministic": true,
+        "device": "cpu",
+        "interop": 1,
+        "mps_used": false,
+        "packages": {
+          "Pillow": "13.0.0",
+          "numpy": "2.5.4",
+          "safetensors": "0.8.0",
+          "timm": "1.0.22",
+          "torch": "2.13.0",
+          "torchvision": "0.28.0",
+          "transformers": "4.57.1"
+        },
+        "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+        "sources": {
+          "deit": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-view-route-20261030/deps/timm/models/deit.py",
+            "sha256": "bc67eb53a47749f2eafd534800fef87dafb16ff394d9294120743999e391831c"
+          },
+          "randaugment": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py",
+            "sha256": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5"
+          },
+          "transforms": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/transforms.py",
+            "sha256": "673f3baacde591b3cb7224c5fbfc7ad35200dbd1f9a2147f3fa0b4226e735023"
+          },
+          "vision_transformer": {
+            "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-view-route-20261030/deps/timm/models/vision_transformer.py",
+            "sha256": "fbbfd91ae654ec3d32ccea05002177efee21281c6db73493c4ea79acc3d7b212"
+          }
+        },
+        "threads": 4
+      },
+      "protocol_sha256": "fe61a80aabb691b34c03a74c1b800f7f9490e315c3e70a3303d4497e009e1e9e",
+      "query_utility_observed": false,
+      "utc": "2026-11-02T05:06:32.977909+00:00"
+    }
+  },
+  "execution_order": [
+    "both encoders support feature extraction and all360 heads each",
+    "verify both720 heads and48 selections sealed",
+    "reload each encoder and evaluate all9990 queries",
+    "joint complete metrics and diagnostics"
+  ],
+  "query_gate_meaning": "No queries may be run before both encoders seal all fits; formal gate implementation remains required",
+  "head_fit_count": 720,
+  "cv_choice_count": 48,
+  "formal_encoder_image_forwards": 177498,
+  "formal_query_predictions": 7192800,
+  "persistence": {
+    "features": "lossless original FP32",
+    "heads": "FP64 W,b",
+    "query_prediction": "uint8 fine-label argmax for every head/image",
+    "CV_prediction": "complete compact head/original/label/argmax records",
+    "score_reconstruction": "same frozen code and256-query blocks; no full score cube",
+    "CV_tie_bounds": "Save all per-episode tied candidates and exact sum-of-min/max bounds + product cardinality; equivalent to complete assignment enumeration without exponential repeated output."
+  },
+  "primary_outputs": [
+    "CV minus fixed weak paired distribution",
+    "CV minus fixed RA paired distribution",
+    "all fixed-policy accuracies and selection frequencies"
+  ],
+  "falsification": {
+    "opportunity": "H=mean episode oracle minus largest constant-policy mean; diagnostic only",
+    "selection_cost": "C=mean oracle minus actually selected; C_min=most favorable complete CV-tie assignment",
+    "cost_claim_fails_if": "C<=H in a new model/budget; tie-robustness fails if C_min<=H; do not pool away exceptions",
+    "stage_claim_fails_if": "Among wrong full-query choices, same-pair fold inferiority occurs in <=half; zero wrong cases means not applicable, no invented decomposition.",
+    "budget_subclaim_fails_if": "H atB16 is not below H atB8; regret need not be monotone",
+    "no_effect_size_success_threshold": true
+  },
+  "limits": {
+    "cumulative_active_local_seconds_including_preflight": 5400,
+    "artifact_bytes_including_preflight": 524288000,
+    "global_deadline_utc": "2026-11-02T10:00:00Z",
+    "new_CU": 0,
+    "new_install_download_upload": false
+  },
+  "formal_integration_remaining": "class100 compact storage and both-encoder query gate must be implemented/tested before actual run; current task ends at preflight",
+  "query_evaluation_allowed_before_both_encoders_sealed": false
+}

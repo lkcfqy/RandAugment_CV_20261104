@@ -1,0 +1,9 @@
+Conditional authorized single fixedM run: seed20261031, support5, dev64, U200, batch1, original SwinT, frozen Mosaic/HSV/MixUp strategy. One candidate only; historicalA is the reference. Main comparison is CPU original-input AP@100. Not exposure-matched causal attribution or ETS reproduction.
+
+GPU sequence: original official runtime and full original weight initialization;15-update preflight and5 support forwards, historical fullstate/trainable/optimizer/firstRNG controls; discard all state; full whole25% timing gate; independently initialize formalU200; full checkpoint return and local weights_only readability receipt; immediately release and reconcile owned sessions/rate0. No GPU dev evaluation exists in this package.
+
+Whole cost formula:1.25*(elapsed+remaining setup/init+1.5*remainingU*t_bound+2*fullremainingcheckpoint/B_bound+120receipt+180release). CumulativeCU<=2.5, cumulativeGPU<=9000seconds, archive<=8GiB. Carry1.8088330815795528CU and5443.899788473129GPU seconds forward. Early real bandwidth/rate gate occurs before environment preparation. Formal running p90 is evaluated after at least10 completed formal updates; before that retain preflight/reference bound, while actual elapsed always counts. Lower observed return bandwidth and actual cost are checked continuously. If fullU200 cannot fit, stop/release, no shorter alternative result.
+
+After verified GPU release, host-only frozen CPU entry evaluates all64 original-color dev images with the existing CPU environment and unchanged computation. CPU scripts and private runtime receipts are not included in the upload package. No test/weights/private files in this archive. Public original weights downloaded directly from pinned officialURLs, weights_only/safetensors only; no arbitrary allowlist/OAuth/purchase.
+
+Example context stays unauthorized; the host must supply a freshly verified actual context under the explicit parent GO. Prior scientific results and archives stay unchanged.

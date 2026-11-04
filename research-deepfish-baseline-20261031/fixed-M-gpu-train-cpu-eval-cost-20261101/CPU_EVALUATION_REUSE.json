@@ -1,0 +1,124 @@
+{
+  "CPU_cost_reference": {
+    "CU": 0,
+    "old512_forward_seconds": 1134.963401375746,
+    "old512_wall_seconds": 1187.371711542015,
+    "old_four_load_seconds": 6.456134372972883,
+    "one64_condition_average_wall_seconds": 148.42146394275187,
+    "planning_only_seconds": 356.84292788550374
+  },
+  "GT": 187,
+  "candidate_CPU_model_run_performed": false,
+  "checkpoint_load": "unchanged weights_only=True, tensor-only908-state, strict=True, dtype/shape/full-byte equality and finite check; pin new M file hash and safe-state receipt after local return, no arbitrary missing/unexpected allowances",
+  "dev_annotation_sha256": "35f7c48c6040722f860037b0a1216502ff7616f5199d609a2bac1a147b49b730",
+  "dev_images": 64,
+  "environment_lock_sha256": "e89e8db6180273b82ef869db5303e4309c8488983be41618e0ac147331e6e162",
+  "full_top300_per_image": true,
+  "inference": "unchanged c100 path: BGR/uint8/cv2 -> Color1 identity -> original FixScaleResize(800,1333,keep_ratio) -> original LoadAnnotations -> Pack; same CPU FP32/inference_mode/test_step and official xyxy2xywh",
+  "input_factor": 1.0,
+  "metric_mapping": [
+    {
+      "area": "all",
+      "maxDets": 100,
+      "name": "AP",
+      "stats_index": 0
+    },
+    {
+      "area": "all",
+      "maxDets": 1000,
+      "name": "AP50",
+      "stats_index": 1
+    },
+    {
+      "area": "all",
+      "maxDets": 1000,
+      "name": "AP75",
+      "stats_index": 2
+    },
+    {
+      "area": "small",
+      "maxDets": 1000,
+      "name": "AP_small",
+      "stats_index": 3
+    },
+    {
+      "area": "medium",
+      "maxDets": 1000,
+      "name": "AP_medium",
+      "stats_index": 4
+    },
+    {
+      "area": "large",
+      "maxDets": 1000,
+      "name": "AP_large",
+      "stats_index": 5
+    },
+    {
+      "area": "all",
+      "maxDets": 100,
+      "name": "AR100",
+      "stats_index": 6
+    },
+    {
+      "area": "all",
+      "maxDets": 300,
+      "name": "AR300",
+      "stats_index": 7
+    },
+    {
+      "area": "all",
+      "maxDets": 1000,
+      "name": "AR1000",
+      "stats_index": 8
+    },
+    {
+      "area": "small",
+      "maxDets": 1000,
+      "name": "AR_small1000",
+      "stats_index": 9
+    },
+    {
+      "area": "medium",
+      "maxDets": 1000,
+      "name": "AR_medium1000",
+      "stats_index": 10
+    },
+    {
+      "area": "large",
+      "maxDets": 1000,
+      "name": "AR_large1000",
+      "stats_index": 11
+    }
+  ],
+  "metrics": "unchanged evaluate_condition computation; all64 M predictions complete then aggregate; independently reread/recompute; compare with existing CPU A_c100 only, no GPU-score substitution",
+  "minimum_future_orchestration_change": "Original outer scheduler is hardcoded512/8conditions and four prior preflight references. A new64-identity input list/output directory and new M checkpoint receipt are necessary; preserve model/inference/metric computation, do not overwrite old A records or rerun the512 matrix.",
+  "raw_predictions_expected": 19200,
+  "reference_AP_maxDets100": 26.761401389378953,
+  "reference_arm": "A",
+  "reference_checkpoint_sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+  "reference_input": "c100",
+  "reference_seed": 20261031,
+  "runtime": {
+    "HF_offline": true,
+    "OMP_MKL_OPENBLAS_VECLIB_NUMEXPR_threads": 4,
+    "batch_size": 1,
+    "checkpoint_weights_only": true,
+    "cv2_setNumThreads": 0,
+    "device": "cpu",
+    "dtype": "float32",
+    "inference_mode": true,
+    "interop_threads": 1,
+    "model_eval": true,
+    "required_cv2_getNumThreads": 1,
+    "torch_threads": 4
+  },
+  "source_sha256": {
+    "ACTUAL_COSTS.json": "69e34fc020a7dfbcb0eb8232b38539c66585cecb701388fa58d4db9bbf3ee2a1",
+    "METRIC_RECOMPUTE_VERIFIED.json": "1a444c86106e61402bb71e1a02f0f9c59eb936cd62a9350259321d31157b0b0b",
+    "RUN_PROTOCOL.json": "4d463e9feb55995f10ebbd9400279d3a5464194480e3f885cec1ff4828a45c1c",
+    "diagnostic_contracts.py": "810fbc647ee9120fdf04cdb3e3a036a636c9567957b8bb799f726400a9df9a06",
+    "formal_cpu.py": "c5ababc42fc1689b74bda41e51fd203ba7b1a3fe5d1d15997304fab5f4be13b2",
+    "metrics/20261031_A_c100.json": "551146f2c801b42ec9d170ac0a2c9e9cc7acb0b0d67ab0ebb2d4abcf29a8f967"
+  },
+  "status": "READ_ONLY_EXISTING_CPU_PATH_REVIEW"
+}

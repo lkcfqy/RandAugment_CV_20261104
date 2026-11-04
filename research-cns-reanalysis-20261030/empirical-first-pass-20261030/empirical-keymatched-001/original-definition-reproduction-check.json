@@ -1,0 +1,70 @@
+{
+  "checked_utc": "2026-10-30T11:22:55.615773+00:00",
+  "method": "Read released CSV row order; reproduce first False within (gt_class,seed) and compare to minimum sorted scale, without importing project or official training/evaluation modules",
+  "rows": [
+    {
+      "model": "resnet18.a1_in1k",
+      "shift": "cartoon_style",
+      "trajectories": 2155,
+      "groups_not_in_scale_order": 0,
+      "original_row_first_error_differs_from_explicit_min_scale": 0,
+      "original_first_failure_counts": {
+        "0.0": 198,
+        "0.5": 48,
+        "1.0": 178,
+        "1.5": 423,
+        "2.0": 303,
+        "2.5": 178
+      },
+      "always_correct_in_denominator": 827
+    },
+    {
+      "model": "resnet18.a1_in1k",
+      "shift": "heavy_snow",
+      "trajectories": 2883,
+      "groups_not_in_scale_order": 0,
+      "original_row_first_error_differs_from_explicit_min_scale": 0,
+      "original_first_failure_counts": {
+        "0.0": 274,
+        "0.5": 58,
+        "1.0": 49,
+        "1.5": 79,
+        "2.0": 118,
+        "2.5": 265
+      },
+      "always_correct_in_denominator": 2040
+    },
+    {
+      "model": "vit_base_patch16_224.augreg_in1k",
+      "shift": "cartoon_style",
+      "trajectories": 2155,
+      "groups_not_in_scale_order": 0,
+      "original_row_first_error_differs_from_explicit_min_scale": 0,
+      "original_first_failure_counts": {
+        "0.0": 261,
+        "0.5": 43,
+        "1.0": 152,
+        "1.5": 366,
+        "2.0": 289,
+        "2.5": 209
+      },
+      "always_correct_in_denominator": 835
+    },
+    {
+      "model": "vit_base_patch16_224.augreg_in1k",
+      "shift": "heavy_snow",
+      "trajectories": 2883,
+      "groups_not_in_scale_order": 0,
+      "original_row_first_error_differs_from_explicit_min_scale": 0,
+      "original_first_failure_counts": {
+        "0.0": 373,
+        "0.5": 54,
+        "1.0": 70,
+        "1.5": 100,
+        "2.0": 162,
+        "2.5": 269
+      },
+      "always_correct_in_denominator": 1855
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "CPU_repeatability_does_not_establish_CUDA_equivalence": true,
+  "NA_policy": "all47 reported;6NA with reason; no zero-error imputation, replacement, label/count/box repair or post-effect deletion",
+  "aggregation": "pair means first; per-pair min(C,V), then mean across all41",
+  "arithmetic": "exact rational aggregation and threshold comparisons; floats only for presentation",
+  "authorization_policy": "Frozen before effects. This document grants no runtime permission; separate explicit GO must match FREEZE.json.",
+  "backend": "Mac CPU FP32 fixed runtime; no equivalence to CUDA paper results; no GPU",
+  "compute_budget_seconds": 7200,
+  "eligible_pairs": 41,
+  "engineering_status": "CPU_REPEATABILITY_AUTHORIZED_FORMAL_PENDING_GO",
+  "equal_count_images": "retain",
+  "formal_execution_authorized": false,
+  "formal_queries": 492,
+  "gate_G": {
+    "formula": "mean_41[min(pairmean_C,pairmean_V)-pairmean_F]",
+    "operator": ">=",
+    "oracle_not_deployable": true,
+    "threshold": 0.1
+  },
+  "gate_pair_condition": {
+    "C_operator": ">=",
+    "C_threshold": 0.3,
+    "F_operator": "<=",
+    "F_threshold": 0.1,
+    "V_operator": ">=",
+    "V_threshold": 0.3,
+    "minimum_pairs": 10
+  },
+  "generated_unix": 1793416033.367819,
+  "historical_protocol_sha256": "7f8975bd2150de7d27b6a6cca35b715efca051ee6e6b6e0eb94d632702ba5bc1",
+  "infrastructure_revision": 2,
+  "labels_sha256": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+  "metric_code_sha256": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+  "metric_definition_status": "COMPLETE_FROZEN_BY_PARENT_CLARIFICATION",
+  "native_path": {
+    "adaptive_crop": false,
+    "confidence": 0.23,
+    "max_long_edge": 1333,
+    "positive_score_must_exceed_negative": true,
+    "pseudo_exemplars": false,
+    "resize_short_edge": 800
+  },
+  "numeric_gate_does_not_establish_target_selection": "predicted box review remains mandatory; cancellation never permits deleting/recomputing",
+  "pair_aggregation": "arithmetic mean of the two fixed-image E values, equal image weights",
+  "parent_execution_clarification": "Final resource decision: cumulative 7200 seconds including historical 549.0680957610166, all new CPU repeatability/preparation/queries/persistence; original 2x admission factor retained. Earlier 5400-second draft superseded before effects. Six CPU repeats/180 seconds total authorized; 3.38328875 seconds already spent in zero-forward guard setup/probe, remaining176.61671125 seconds; formal492 still needs explicit GO.",
+  "per_image_mode_error_E": {
+    "A_B": "two separate target queries, combined before normalization",
+    "clip_error": false,
+    "denominator_requirement": "official n_A+n_B > 0",
+    "formula": "(abs(nhat_A-n_A)+abs(nhat_B-n_B))/(n_A+n_B)",
+    "prediction_counts": "nonnegative integers"
+  },
+  "point_policy": "random placeholders never localization ground truth",
+  "precheck_wall_seconds_charged": 549.0680957610166,
+  "protocol_role": "FIXED_MAC_CPU_APP_EXECUTION_CONTRACT",
+  "protocol_version": 4,
+  "queries_sha256": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+  "selection_sha256": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+  "status": "PRE_EFFECT_CPU_BACKEND_REVISION",
+  "supersedes_execution_contract_sha256": "4dc2ead8c37d15b373a93f07e33ef55d0f77ca1881c3c060e1556f2c6c12b553",
+  "supersedes_protocol_sha256": "7f8975bd2150de7d27b6a6cca35b715efca051ee6e6b6e0eb94d632702ba5bc1",
+  "trigger_case_box_review": "required to assess target-selection interpretation; cancellation cannot justify that interpretation; no deletion or recomputed gates"
+}

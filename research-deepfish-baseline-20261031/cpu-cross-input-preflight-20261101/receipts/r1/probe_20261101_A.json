@@ -1,0 +1,103 @@
+{
+  "status": "ENGINEERING_PASS",
+  "model": "20261101_A",
+  "protocol_sha256": "0b4101c0e9e41904c8dc23618439fa2499815eb136ea106bd3c48ef1ed02e305",
+  "forward_calls_started": 2,
+  "forward_calls_completed": 2,
+  "dev_test_images": 0,
+  "metrics_computed": false,
+  "predictions_saved": false,
+  "GPU_MPS_Colab_actions": 0,
+  "uploads": 0,
+  "conditions": [
+    {
+      "factor": 1.0,
+      "pipeline_seconds": 0.010428583977045491,
+      "forward_seconds": 2.2011892500158865,
+      "pipeline_plus_forward_seconds": 2.211617833992932,
+      "output_shapes": {
+        "boxes": [
+          300,
+          4
+        ],
+        "scores": [
+          300
+        ],
+        "labels": [
+          300
+        ]
+      },
+      "output_finite": true,
+      "output_device": "cpu",
+      "prediction_values_retained": false
+    },
+    {
+      "factor": 0.8,
+      "pipeline_seconds": 0.010110250004800037,
+      "forward_seconds": 2.2134616670082323,
+      "pipeline_plus_forward_seconds": 2.2235719170130324,
+      "output_shapes": {
+        "boxes": [
+          300,
+          4
+        ],
+        "scores": [
+          300
+        ],
+        "labels": [
+          300
+        ]
+      },
+      "output_finite": true,
+      "output_device": "cpu",
+      "prediction_values_retained": false
+    }
+  ],
+  "environment": {
+    "torch": "2.1.0",
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "cv2": "4.11.0",
+    "torch_threads": 4,
+    "interop_threads": 1,
+    "cv2_threads": 18,
+    "device": "cpu",
+    "dtype": "float32",
+    "autocast": false,
+    "deterministic_algorithms": true
+  },
+  "load": {
+    "seconds": 1.4265754169900902,
+    "checkpoint_sha256": "0bc4d99f77e0fbd8079b4827d0db8042868627964b06fa43411fc023cddc7de8",
+    "state_sha256": "198cc67f671eab96d9a55e6b363181a44e3f17c0f65f390f8b4ef238df70dbec",
+    "state_tensor_count": 908,
+    "state_tensor_bytes": 691880148,
+    "strict": true,
+    "all_tensors_byte_identical": true,
+    "all_checkpoint_values_finite": true,
+    "weights_only": true,
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "image_contract": {
+    "image_id": 1892,
+    "image_sha256": "117ea3546c7b67e1fbc9a213cc7cd920b934b0edaea65af28b1d72c076c22071",
+    "raw_shape": [
+      1080,
+      1920,
+      3
+    ],
+    "raw_dtype": "uint8",
+    "channel_order": "BGR",
+    "backend": "cv2",
+    "A_pixel_identity": true,
+    "B_exact_fixed_blend": true,
+    "equal_rng_consumption": true,
+    "one_numpy_draw": true,
+    "Color_preserves_geometry_and_instances": true,
+    "support_annotation_sha256": "9978bd0fd09becf9dced032315ecf06c63dab0ee2b7abb32925137d2f8b3c2d4",
+    "packed_geometry_labels_metadata_equal": true
+  },
+  "total_process_seconds": 7.142257375002373,
+  "peak_RSS_bytes": 3228483584
+}

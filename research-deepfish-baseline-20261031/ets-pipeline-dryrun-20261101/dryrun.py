@@ -1,0 +1,350 @@
+"""Official CPU data transforms only; passive return-frame observers, no models."""
+from portable_dev.paths import project_path as _portable_project_path
+import os
+os.environ['HF_HUB_OFFLINE'] = '1'
+os.environ['TRANSFORMERS_OFFLINE'] = '1'
+os.environ['TOKENIZERS_PARALLELISM'] = 'false'
+import argparse
+import collections
+import copy
+import gc
+import hashlib
+import inspect
+import json
+import random
+import resource
+import sys
+import time
+from pathlib import Path
+
+import cv2
+import numpy as np
+import torch
+from mmcv.transforms import Compose
+from mmengine.dataset import DefaultSampler
+from mmengine.registry import init_default_scope
+from mmdet.datasets import CocoDataset
+from mmdet.datasets.transforms import CachedMosaic, CachedMixUp, RandomCrop
+from mmdet.registry import TRANSFORMS
+from mmdet.structures.bbox import HorizontalBoxes
+
+ROOT = _portable_project_path(__file__, 'research-deepfish-baseline-20261031')
+HERE = Path(__file__).resolve().parent
+DATA = ROOT / 'repeat-seed20261101-budget25-20261101/payload/data'
+PROTO = json.loads((HERE / 'PROTOCOL.json').read_text())
+
+
+def plain(x):
+    if hasattr(x, 'tensor'):
+        x = x.tensor
+    if isinstance(x, torch.Tensor):
+        return x.detach().cpu().numpy().tolist()
+    if isinstance(x, np.ndarray):
+        return x.tolist()
+    if isinstance(x, np.generic):
+        return x.item()
+    if isinstance(x, (tuple, list)):
+        return [plain(y) for y in x]
+    if isinstance(x, dict):
+        return {str(k): plain(v) for k, v in x.items()}
+    return x
+
+
+def canonical(x):
+    return json.dumps(plain(x), sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+
+
+def digest(x):
+    return hashlib.sha256(canonical(x)).hexdigest()
+
+
+def atomic(path, x):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + '.tmp')
+    with tmp.open('wb') as f:
+        f.write(canonical(x) + b'\n')
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+
+
+def rng():
+    n = np.random.get_state()
+    return {'python': digest(random.getstate()), 'numpy': digest([n[0], n[1], n[2], n[3], n[4]]), 'torch_CPU': hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest()}
+
+
+def seed():
+    random.seed(PROTO['seed'])
+    np.random.seed(PROTO['seed'])
+    torch.manual_seed(PROTO['seed'])
+
+
+def tuples(x, key=None):
+    if isinstance(x, dict):
+        return {k: tuples(v, k) for k, v in x.items()}
+    if isinstance(x, list):
+        if key == 'scales':
+            return [tuple(v) for v in x]
+        out = [tuples(v) for v in x]
+        return tuple(out) if key in ('img_scale', 'ratio_range', 'pad_val', 'center_ratio_range', 'crop_size', 'scale', 'meta_keys') else out
+    return x
+
+
+def signature(result):
+    image = result['inputs'].numpy()
+    s = result['data_samples']
+    gt = {k: {'boxes': plain(getattr(s, k).bboxes), 'labels': plain(getattr(s, k).labels)} for k in ('gt_instances', 'ignored_instances')}
+    meta = {k: plain(v) for k, v in s.metainfo.items() if k != 'img_path'}
+    return {'pixel_sha256': hashlib.sha256(image.tobytes()).hexdigest(), 'shape_CHW': list(image.shape), 'dtype': str(image.dtype), 'gt_sha256': digest(gt), 'gt': gt, 'metadata_sha256': digest(meta), 'RNG_after': rng()}
+
+
+def keep_rect(rect, w, h):
+    x1, y1, x2, y2 = rect
+    return [max(0., min(w, x1)), max(0., min(h, y1)), max(0., min(w, x2)), max(0., min(h, y2))]
+
+
+def map_regions(items, sx=1., sy=1., dx=0., dy=0., flip_w=None, clip=None):
+    out = copy.deepcopy(items)
+    for x in out:
+        a, b, c, d = x['region_xyxy']
+        a, c, b, d = a*sx, c*sx, b*sy, d*sy
+        if flip_w is not None:
+            a, c = flip_w-c, flip_w-a
+        rect = [a+dx, b+dy, c+dx, d+dy]
+        x['region_xyxy'] = keep_rect(rect, *clip) if clip else rect
+    return out
+
+
+def nonempty(x):
+    a, b, c, d = x['region_xyxy']
+    return c > a and d > b
+
+
+class Observer:
+    def __init__(self):
+        self.cache_maps = {}
+        self.clips = []
+        self.events = []
+
+    def begin(self, iteration, image_id, ann_id, shape):
+        self.iteration = iteration
+        self.events = []
+        origin = {'origin_iteration': iteration, 'image_id': image_id, 'annotation_id': ann_id, 'path': 'anchor'}
+        self.boxes = [copy.deepcopy(origin)]
+        self.sources = [dict(origin, region_xyxy=[0., 0., float(shape[1]), float(shape[0])])]
+
+    def capture(self, op, results):
+        captures, pastes, clips = {}, [], []
+        name = op.__class__.__name__
+        targets = {}
+        if name == 'CachedMosaic':
+            targets[inspect.unwrap(op._mosaic_combine).__code__] = 'paste'
+        elif name == 'RandomCrop':
+            targets[inspect.unwrap(RandomCrop._crop_data).__code__] = 'crop'
+        clip_code = inspect.unwrap(HorizontalBoxes.clip_).__code__
+        clip_before = {}
+
+        def tracer(frame, event, arg):
+            code = frame.f_code
+            if event == 'call':
+                # autocast_box_type exposes its wrapper without __wrapped__.
+                # Observe only the executing official method body, so wrapper
+                # returns cannot overwrite the captured operation state.
+                if frame.f_locals.get('self') is op and code.co_name == 'transform' and code.co_filename.endswith('/mmdet/datasets/transforms/transforms.py'):
+                    if name in ('CachedMosaic', 'CachedMixUp'):
+                        targets[code] = 'mosaic' if name == 'CachedMosaic' else 'mixup'
+                if code == clip_code:
+                    clip_before[id(frame)] = plain(frame.f_locals['self'].tensor)
+                    return tracer
+                return tracer if code in targets else None
+            if event == 'return':
+                if code == clip_code:
+                    before, after = clip_before.pop(id(frame)), plain(frame.f_locals['self'].tensor)
+                    clips.append({'before': before, 'after': after, 'changed_rows': [i for i, (a,b) in enumerate(zip(before, after)) if a != b]})
+                elif code in targets:
+                    kind = targets[code]
+                    v = frame.f_locals
+                    if kind == 'paste':
+                        pastes.append(plain(arg))
+                    else:
+                        keys = ('indices', 'inside_inds', 'center_x', 'center_y') if kind == 'mosaic' else ('index', 'inside_inds', 'scale_ratio', 'jit_factor', 'is_flip', 'origin_w', 'origin_h', 'target_w', 'target_h', 'x_offset', 'y_offset') if kind == 'mixup' else ('valid_inds', 'offset_w', 'offset_h', 'crop_size')
+                        captures.update({k: plain(v[k]) for k in keys if k in v})
+                        if kind == 'mixup':
+                            captures['selected'] = 'retrieve_results' in v
+                            captures['applied'] = 'mixup_img' in v
+            return tracer
+
+        assert sys.gettrace() is None
+        sys.settrace(tracer)
+        try:
+            output = op(results)
+        finally:
+            sys.settrace(None)
+        return output, captures, pastes, clips
+
+    def cache_state(self, op, before_state):
+        key = id(op)
+        old = self.cache_maps.get(key, {})
+        new = {}
+        for entry in op.results_cache:
+            new[id(entry)] = old[id(entry)] if id(entry) in old else copy.deepcopy(before_state)
+        removed = [v['anchor_iteration'] for k,v in old.items() if k not in new]
+        self.cache_maps[key] = new
+        return [new[id(x)] for x in op.results_cache], removed
+
+    def stage(self, op, label, results):
+        name = op.__class__.__name__
+        if name == 'RandomChoice':
+            return op(results)  # Individual branch leaves are observed below.
+        before_shape = list(results['img'].shape[:2]) if 'img' in results else None
+        before_boxes = copy.deepcopy(self.boxes)
+        before_sources = copy.deepcopy(self.sources)
+        before_state = {'boxes': before_boxes, 'sources': before_sources, 'anchor_iteration': self.iteration}
+        start = time.perf_counter()
+        out, cap, pastes, clips = self.capture(op, results)
+        elapsed = time.perf_counter()-start
+        assert out is not None, 'No pipeline resampling is allowed.'
+        event = {'stage': label, 'type': name, 'input_shape_HW': before_shape, 'observer_included_seconds': elapsed, 'parameters': cap, 'clip_events': clips, 'input_GT_count': len(before_boxes)}
+        candidates = copy.deepcopy(before_boxes)
+        if name in ('CachedMosaic', 'CachedMixUp'):
+            cache, removed = self.cache_state(op, before_state)
+            event.update(cache_size=len(cache), evicted_anchor_iterations=removed, cache_anchor_iterations=[x['anchor_iteration'] for x in cache])
+        if name == 'CachedMosaic':
+            applied = 'indices' in cap
+            event['applied'] = applied
+            if applied:
+                groups = [before_state] + [cache[i] for i in cap['indices']]
+                assert len(pastes) == 4
+                self.sources, candidates = [], []
+                for slot, (g, paste) in enumerate(zip(groups, pastes)):
+                    assert len(g['sources']) == len(g['boxes']) == 1
+                    path = f'Mosaic@{self.iteration}/slot{slot}/'
+                    source = copy.deepcopy(g['sources'][0]);source['path'] = path+source['path'];source['region_xyxy'] = paste[0]
+                    box = copy.deepcopy(g['boxes'][0]);box['path'] = path+box['path']
+                    self.sources.append(source);candidates.append(box)
+                self.boxes = [x for x, keep in zip(candidates, cap['inside_inds']) if keep]
+                assert len(candidates) == len(cap['inside_inds'])
+                event['selected_cache_indices'] = cap['indices']
+            event['paste_coordinates'] = pastes
+        elif name == 'CachedMixUp':
+            applied = cap.get('applied', False)
+            event['applied'] = applied
+            if applied:
+                incoming = copy.deepcopy(cache[cap['index']])
+                path = f'MixUp@{self.iteration}/'
+                for x in incoming['sources'] + incoming['boxes']:
+                    x['path'] = path+x['path']
+                assert cap['jit_factor'] == 1.0
+                incoming_regions = map_regions(incoming['sources'], sx=cap['scale_ratio'], sy=cap['scale_ratio'], flip_w=cap['origin_w'] if cap['is_flip'] else None, dx=-cap['x_offset'], dy=-cap['y_offset'], clip=(cap['target_w'],cap['target_h']))
+                self.sources = before_sources + incoming_regions
+                candidates = before_boxes + incoming['boxes']
+                assert len(candidates) == len(cap['inside_inds'])
+                self.boxes = [x for x, keep in zip(candidates, cap['inside_inds']) if keep]
+                event['selected_cache_index'] = cap['index']
+        elif name == 'RandomFlip' and out.get('flip'):
+            assert out['flip_direction'] == 'horizontal'
+            self.sources = map_regions(before_sources, flip_w=before_shape[1])
+        elif name in ('RandomChoiceResize', 'Resize'):
+            after = out['img'].shape
+            self.sources = map_regions(before_sources, sx=after[1]/before_shape[1], sy=after[0]/before_shape[0])
+        elif name == 'RandomCrop':
+            self.sources = map_regions(before_sources, dx=-cap['offset_w'], dy=-cap['offset_h'], clip=(out['img'].shape[1],out['img'].shape[0]))
+            assert len(before_boxes) == len(cap['valid_inds'])
+            self.boxes = [x for x, keep in zip(before_boxes, cap['valid_inds']) if keep]
+        event['candidate_GT_lineage'] = candidates
+        event['retained_GT_lineage'] = copy.deepcopy(self.boxes)
+        event['discarded_GT_count'] = len(candidates)-len(self.boxes)
+        assert event['discarded_GT_count'] >= 0
+        event['source_regions'] = copy.deepcopy(self.sources)
+        if 'gt_bboxes' in out:
+            event['output_GT_xyxy'] = plain(out['gt_bboxes'])
+            if len(out['gt_bboxes']) != len(self.boxes):
+                atomic(HERE/'OBSERVER_FAILURE.json', {'iteration': self.iteration, 'stage': label, 'type': name, 'actual_GT': plain(out['gt_bboxes']), 'lineage': self.boxes, 'parameters': cap, 'paste_coordinates': pastes})
+                raise AssertionError(f'Observer lineage mismatch at {name}, iteration {self.iteration}')
+            assert np.all(out['gt_bboxes_labels'] == 0)
+        event['output_shape_HW'] = list(out['img'].shape[:2]) if 'img' in out else list(out['inputs'].shape[1:])
+        self.events.append(event)
+        return out
+
+
+def make_pipeline(arm, observer=None):
+    ops = [TRANSFORMS.build(tuples(copy.deepcopy(c))) for c in PROTO['arms'][arm]]
+    if observer:
+        def wrap(op, label):
+            if op.__class__.__name__ == 'RandomChoice':
+                for b, branch in enumerate(op.transforms):
+                    branch.transforms = [wrap(leaf, f'{label}.branch{b}.{j}') for j,leaf in enumerate(branch.transforms)]
+            return lambda x: observer.stage(op, label, x)
+        ops = [wrap(op, str(i)) for i,op in enumerate(ops)]
+    return Compose(ops)
+
+
+def visualize(output, row, arm, iteration):
+    # Draw only on an independent copy; never mutate the official output.
+    image = output['inputs'].numpy().transpose(1,2,0).copy()
+    h,w = image.shape[:2]
+    for box, origin in zip(row['signature']['gt']['gt_instances']['boxes'], row['final_GT_lineage']):
+        x1,y1,x2,y2 = [int(round(v)) for v in box]
+        cv2.rectangle(image,(x1,y1),(x2,y2),(30,240,60),2)
+        cv2.putText(image,str(origin['image_id']), (max(0,x1),max(12,y1-3)),cv2.FONT_HERSHEY_SIMPLEX,.45,(20,245,80),1,cv2.LINE_AA)
+    scale = min(1., 960/w)
+    image = cv2.resize(image,(round(w*scale),round(h*scale)))
+    title = f'{arm} iteration {iteration} | selected {len(row["final_source_regions"])} | regions {row["final_nonempty_source_occurrences"]} | GT {len(row["final_GT_lineage"])}'
+    canvas = np.full((image.shape[0]+32,image.shape[1],3),30,dtype=np.uint8);canvas[32:] = image
+    cv2.putText(canvas,title,(8,21),cv2.FONT_HERSHEY_SIMPLEX,.45,(240,240,240),1,cv2.LINE_AA)
+    target=HERE/'visuals'/f'{arm}_{iteration:03d}.jpg';target.parent.mkdir(exist_ok=True)
+    assert cv2.imwrite(str(target),canvas,[cv2.IMWRITE_JPEG_QUALITY,90])
+
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--arm',choices=['A','M'],required=True);parser.add_argument('--tracked',action='store_true');args=parser.parse_args()
+    torch.set_num_threads(4);torch.set_num_interop_threads(1);cv2.setNumThreads(0)
+    import mmcv,mmdet,mmengine
+    mmcv.use_backend('cv2');assert mmcv.adjust_color.__globals__['imread_backend']=='cv2'
+    assert torch.__version__.split('+')[0]=='2.1.0' and mmcv.__version__=='2.1.0' and mmdet.__version__=='3.3.0'
+    init_default_scope('mmdet')
+    support=json.loads((DATA/'annotations/support5.json').read_text());ann={x['image_id']:x['id'] for x in support['annotations']}
+    assert len(support['images'])==len(support['annotations'])==5
+    for item in PROTO['support_images']:
+        assert hashlib.sha256((DATA/'images'/item['file_name']).read_bytes()).hexdigest()==item['sha256']
+    dataset=CocoDataset(ann_file='annotations/support5.json',data_root=str(DATA)+'/',data_prefix={'img':'images/'},metainfo={'classes':('fish',)},filter_cfg={'filter_empty_gt':False,'min_size':0},return_classes=True,pipeline=[])
+    sampler=DefaultSampler(dataset,shuffle=True,seed=PROTO['seed'],round_up=False)
+    order=[]
+    for epoch in range(40):
+        sampler.set_epoch(epoch);order.extend(list(sampler))
+    old=json.loads((ROOT/'recovery-v5-20261031/gpu-run/artifacts/formal_A_trace.json').read_text())
+    assert [dataset.get_data_info(i)['img_id'] for i in order]==[x['image_id'] for x in old]
+    observer=Observer() if args.tracked else None
+    pipeline=make_pipeline(args.arm,observer)
+    seed()
+    folder=HERE/('tracked_'+args.arm if args.tracked else 'reference_'+args.arm);folder.mkdir(exist_ok=True)
+    assert not list(folder.glob('*.json')), 'Refuse to overwrite prior pipeline records.'
+    selected={x['iteration'] for x in PROTO['visual_selection']['selected']}
+    wall=time.perf_counter();times=[];comparisons=[];geometry_matches=[]
+    for iteration,index in enumerate(order,1):
+        info=dataset.get_data_info(index)
+        if observer:observer.begin(iteration,info['img_id'],ann[info['img_id']],(info['height'],info['width']))
+        before=rng();start=time.perf_counter();output=pipeline(info);seconds=time.perf_counter()-start;times.append(seconds)
+        sig=signature(output)
+        row={'iteration':iteration,'epoch':(iteration-1)//5,'anchor_image_id':info['img_id'],'RNG_before':before,'seconds':seconds,'signature':sig}
+        if observer:
+            ref=json.loads((HERE/('reference_'+args.arm)/f'{iteration:03d}.json').read_text())
+            assert ref['RNG_before']==before and ref['signature']==sig, f'Observer changed output/RNG at {args.arm}/{iteration}'
+            row.update(events=observer.events,final_GT_lineage=copy.deepcopy(observer.boxes),final_source_regions=copy.deepcopy(observer.sources))
+            visible=[x for x in observer.sources if nonempty(x)]
+            ids=[x['image_id'] for x in visible]
+            row.update(final_nonempty_source_occurrences=len(visible),final_unique_source_count=len(set(ids)),final_duplicate_source_occurrences=len(ids)-len(set(ids)),selected_source_occurrences=len(observer.sources),selected_unique_source_count=len({x['image_id'] for x in observer.sources}))
+            row['removed_GT_total']=sum(x['discarded_GT_count'] for x in observer.events)
+            if iteration in selected:visualize(output,row,args.arm,iteration)
+            assert signature(output)==sig
+            comparisons.append({'iteration':iteration,'pixel_GT_metadata_RNG_identical':True})
+            if args.arm=='A':geometry_matches.append(sig['gt']['gt_instances']['boxes']==old[iteration-1]['packed_gt'] and sig['gt']['gt_instances']['labels']==old[iteration-1]['packed_labels'] and sig['shape_CHW']==old[iteration-1]['input_shape'])
+        atomic(folder/f'{iteration:03d}.json',row)
+        if iteration%25==0:print(json.dumps({'arm':args.arm,'tracked':args.tracked,'persisted':iteration}),flush=True)
+        assert time.perf_counter()-wall<900
+    summary={'arm':args.arm,'tracked':args.tracked,'iterations':len(order),'formal_optimizer_updates':0,'model_calls':0,'pipeline_seconds':sum(times),'pipeline_mean_seconds':float(np.mean(times)),'pipeline_median_seconds':float(np.median(times)),'pipeline_p90_seconds':float(np.percentile(times,90)),'pipeline_max_seconds':max(times),'process_wall_seconds':time.perf_counter()-wall,'peak_process_RSS_bytes':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,'threads':{'torch':torch.get_num_threads(),'interop':torch.get_num_interop_threads(),'cv2_reported':cv2.getNumThreads()},'versions':{'python':sys.version.split()[0],'torch':torch.__version__,'mmcv':mmcv.__version__,'mmdet':mmdet.__version__,'mmengine':mmengine.__version__,'numpy':np.__version__,'cv2':cv2.__version__},'anchor_order_matches_prior_A':True,'comparison_count':len(comparisons),'all_reference_comparisons_pass':all(x['pixel_GT_metadata_RNG_identical'] for x in comparisons) if comparisons else None,'historical_A_geometry_matches':sum(geometry_matches) if geometry_matches else None,'PID':os.getpid()}
+    atomic(HERE/(folder.name+'_summary.json'),summary)
+    print(json.dumps(summary),flush=True)
+
+
+if __name__=='__main__':main()

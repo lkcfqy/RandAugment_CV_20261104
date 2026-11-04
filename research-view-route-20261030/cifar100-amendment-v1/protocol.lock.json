@@ -1,0 +1,276 @@
+{
+  "protocol_id": "cifar100_view_route_pilot_v1",
+  "locked_utc": "2026-10-30T19:57:53.180618+00:00",
+  "implementation_hashes": {
+    "core.py": "aae97ec7a52ce47b2addce0a589e3cfaac3aee0c50fb6b8fb225b67bc7cdf71d",
+    "pilot.py": "55df6be1ce4dfc8fe567be1d066615942d21fe12813a17ff2075a3c5fa8e9655",
+    "oracle.py": "f7036cc5d718f092c5f4dda4b81afe05a2c0905bc1e62a1f36e3d4513f00cc29",
+    "supervise.py": "3f7d1d765fe0f948557f197bcd83cbaaa07ae13ca86a0f09f82086addebb80b5",
+    "manifest.py": "792204cf59032f35cb974ad21671322e73664f071b2ef313e0b78918908451df",
+    "PROTOCOL_ZH.md": "9812c236c35c2eac0bdbcd4b565f14822da21100c5a5eff6357fc5f64ab4df08",
+    "dependency-lock.json": "3347f2d4fa5c1e52ac226fe8145e3bf4f8ab9c70feb8c45fd24038c0a2fc79f5",
+    "AMENDMENT.json": "042fe604fdedc5413d00092362a49be9d85bafc8f93166151a52b11df8e47ee0",
+    "splits.json": "ef6ebcff145961a6c6b920ef5a592dddb3f09aa118bed20a726324ddd31f176b",
+    "data-manifest.json": "83132a55182896ab577aa0a344f762f96ae065d034904635a5aa4d9a660f7ea5",
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-view-route-20261030/deps/timm/models/vision_transformer.py": "fbbfd91ae654ec3d32ccea05002177efee21281c6db73493c4ea79acc3d7b212",
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/autoaugment.py": "11b61381b9aff782f45bdc408f8453e21a2cd8e013a1bcb46039bf5b70c0d7e5",
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torchvision/transforms/transforms.py": "673f3baacde591b3cb7224c5fbfc7ad35200dbd1f9a2147f3fa0b4226e735023"
+  },
+  "recipes": {
+    "B1": {
+      "N": 1564,
+      "kind": "weak",
+      "cr": 0.11507082500029356,
+      "conservative_step_seconds": 0.11509307500018622,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1564,
+          "warmup": 79,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.00556930029123
+    },
+    "B2": {
+      "N": 759,
+      "kind": "dual",
+      "cr": 0.2370314415995381,
+      "conservative_step_seconds": 0.23708754159961246,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 759,
+          "warmup": 38,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 179.94944407410586
+    },
+    "B3": {
+      "N": 759,
+      "kind": "dual",
+      "cr": 0.2370314415995381,
+      "conservative_step_seconds": 0.23708754159961246,
+      "low_backbone_lr": true,
+      "stage_schedules": [
+        {
+          "N": 759,
+          "warmup": 38,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 179.94944407410586
+    },
+    "B4": {
+      "N": 1236,
+      "kind": "ent",
+      "cr": 0.14562953329950687,
+      "conservative_step_seconds": 0.14672197499967296,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1236,
+          "warmup": 62,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.3483610995958
+    },
+    "B6": {
+      "N": 1028,
+      "kind": "random",
+      "cr": 0.17492757910004003,
+      "conservative_step_seconds": 0.17510938749983324,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1028,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.01245034982855
+    },
+    "C1": {
+      "N": 1039,
+      "kind": "candidate",
+      "cr": 0.1730826958999387,
+      "conservative_step_seconds": 0.17459585830001742,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1039,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.4050967737181
+    },
+    "C2": {
+      "N": 1039,
+      "kind": "candidate",
+      "cr": 0.1730826958999387,
+      "conservative_step_seconds": 0.17459585830001742,
+      "low_backbone_lr": true,
+      "stage_schedules": [
+        {
+          "N": 1039,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.4050967737181
+    },
+    "B5": {
+      "N": 1639,
+      "N_FT": 1251,
+      "N_head": 388,
+      "kind": "weak_then_head",
+      "cr_FT": 0.11507082500029356,
+      "cr_head": 0.09270771669980604,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1251,
+          "warmup": 63,
+          "final_base_lr_fraction": 0.1
+        },
+        {
+          "N": 388,
+          "warmup": 20,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.3082407844551
+    }
+  },
+  "run_order": [
+    {
+      "seed": 22,
+      "recipe": "B4"
+    },
+    {
+      "seed": 22,
+      "recipe": "B5"
+    },
+    {
+      "seed": 11,
+      "recipe": "B4"
+    },
+    {
+      "seed": 33,
+      "recipe": "B4"
+    },
+    {
+      "seed": 33,
+      "recipe": "C1"
+    },
+    {
+      "seed": 22,
+      "recipe": "C2"
+    },
+    {
+      "seed": 11,
+      "recipe": "B1"
+    },
+    {
+      "seed": 22,
+      "recipe": "C1"
+    },
+    {
+      "seed": 22,
+      "recipe": "B2"
+    },
+    {
+      "seed": 33,
+      "recipe": "B5"
+    },
+    {
+      "seed": 11,
+      "recipe": "B3"
+    },
+    {
+      "seed": 11,
+      "recipe": "C1"
+    },
+    {
+      "seed": 11,
+      "recipe": "B5"
+    },
+    {
+      "seed": 11,
+      "recipe": "B6"
+    },
+    {
+      "seed": 33,
+      "recipe": "B3"
+    },
+    {
+      "seed": 33,
+      "recipe": "B6"
+    },
+    {
+      "seed": 22,
+      "recipe": "B1"
+    },
+    {
+      "seed": 33,
+      "recipe": "B1"
+    },
+    {
+      "seed": 11,
+      "recipe": "B2"
+    },
+    {
+      "seed": 22,
+      "recipe": "B6"
+    },
+    {
+      "seed": 22,
+      "recipe": "B3"
+    },
+    {
+      "seed": 33,
+      "recipe": "C2"
+    },
+    {
+      "seed": 11,
+      "recipe": "C2"
+    },
+    {
+      "seed": 33,
+      "recipe": "B2"
+    }
+  ],
+  "J": 512,
+  "projection": {
+    "mps_already_used": 56.94450285250059,
+    "training_seconds": 4333.151109689456,
+    "evaluation_seconds": 111.7202751116667,
+    "overhead_and_reserve_seconds": 157.4133506285143,
+    "remaining_full_plan_seconds": 4602.284735429636,
+    "total_projected_mps_seconds": 4659.229238282137,
+    "disk_bytes_current": 353675209,
+    "disk_bytes_peak_projected": 1896935835,
+    "state_file_bytes": 22221003,
+    "run_count": 24,
+    "test_model_count": 6
+  },
+  "versions": {
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "timm": "1.0.22",
+    "numpy": "2.5.4"
+  },
+  "schedule": "for t=1..ceil(.05N): t/w; then .1+.9*(1+cos(pi*(t-w)/(N-w)))/2",
+  "rng_key": "SHA256 UTF8 pets-route-v1|rng-v1|domain|seed|position... first8 big-endian & (2^63-1)",
+  "checkpoint_policy": "quarters/J/stage/final, two alternating active slots, safe readback; completed slots removed only after permanent final/J outputs",
+  "resume_limit": 1,
+  "test_selection": "global recipe by summed final-val integer correct over 3 seeds; tie ID; only 6 selected models",
+  "usefulness_gate": {
+    "mean_paired_test_pp_at_least": 1.0,
+    "all_three_seed_delta_strictly_positive": true,
+    "significance_claim": false
+  }
+}

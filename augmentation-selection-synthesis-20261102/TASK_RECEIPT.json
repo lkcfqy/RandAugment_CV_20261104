@@ -1,0 +1,56 @@
+{
+  "status": "COMPLETE_SAVED_PREDICTION_ANALYSIS_AND_VERIFIED",
+  "task_start_utc": "2026-11-02T05:18:36+00:00",
+  "archival_preparation_utc": "2026-11-02T05:34:41.877987+00:00",
+  "wall_seconds_before_archive": 965.877987,
+  "task_deadline_utc": "2026-11-02T05:48:36Z",
+  "user_research_deadline_utc": "2026-11-02T10:00:00Z",
+  "all_settings": 48,
+  "fold_records": 576,
+  "pairwise_rank_records": 144,
+  "wrong_full_query_settings": 19,
+  "cv_tied_settings": 4,
+  "complete_tie_assignments_by_model_budget": {
+    "dinov2_small:B8": 4,
+    "dinov2_small:B16": 1,
+    "deit_tiny:B8": 1,
+    "deit_tiny:B16": 4
+  },
+  "synthetic_tests_passed": 5,
+  "recomputed_matches_original_summaries": true,
+  "source_archive_verification": {
+    "augmentation-selection-pilot-20261102": {
+      "manifest_sha256": "68c2a6c48374b6064fe2b2784d00970c3dbceb8cc4a29f29a827e6d022b101bc",
+      "files_verified_unchanged": 116
+    },
+    "augmentation-selection-deit-20261102": {
+      "manifest_sha256": "eb1088df3f80b7f9fdabb600e166ba163475161586a038f75ca6402923ed7276",
+      "files_verified_unchanged": 126
+    }
+  },
+  "source_prediction_or_protocol_mutations": 0,
+  "new_model_forwards": 0,
+  "new_feature_extraction": 0,
+  "new_head_fits": 0,
+  "new_training": 0,
+  "new_data_or_weight_download_bytes": 0,
+  "new_installations": 0,
+  "uploads": 0,
+  "new_GPU_MPS_Colab_allocations": 0,
+  "new_CU": 0,
+  "known_task_processes_exited": true,
+  "permission_denials": 0,
+  "presentation_changes": 0,
+  "third_round_started": false,
+  "followup_plan_only": true,
+  "analysis_seconds_latest": 0.043422000017017126,
+  "peak_RSS": "not separately measured; this task only read existing correctness arrays, no model state",
+  "analysis_refinement": "Retained v1 outputs; added same-pair fold/full comparison to avoid mistaking inferiority to a third candidate for the same final-choice error. Existing counts and main results unchanged.",
+  "code_sha256": {
+    "analyze_saved.py": "c6284bbd7127734b1553ccf9751e50c95ac4d04abe6f47575f544235010fd7f8",
+    "test_analysis.py": "76dee44b113f94ddb63df05b5a6ea52069d82cf5656037500ba17534513c838e",
+    "render_saved.py": "bf7ceb20970311404207d30872f69f7ad38c9e7f171ed56a263b7254cf5a5324"
+  },
+  "remaining_blockers": [],
+  "scientific_decision": "A narrow opportunity-versus-selection-cost pattern survives complete tie sensitivity and has same-pair fold evidence in most wrong cases per setting. Worth considering one bounded cross-dataset falsification; no reliable contribution and no execution of third run."
+}

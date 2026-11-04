@@ -1,0 +1,46 @@
+--- analyze.before-guard-fix.py
++++ analyze.py
+@@ -8,6 +8,7 @@
+ import time
+ import numpy as np
+ from conformal_core import arms, softmax, scores_sorted, quantile, coverage_metrics
++from decision_guards import tuning_eligibility, assess_control
+ 
+ ROOT=Path(__file__).resolve().parent
+ DATA=ROOT/'results';OUT=ROOT/'analysis';OUT.mkdir(exist_ok=True)
+@@ -241,7 +242,8 @@
+     comparators.append({'Tp':tp,'gain_pass':g[0]>.25,'D_pass':d[1]<=.001,
+               'coverage_pass':pc[0]>=.89 and qc[0]>=.89 and c[0]>=-.01})
+ restored=bounds(f'B|{tqstar:g}:restored_gain');attenuation=bounds(f'aps|{tqstar:g}:Rq')
+-selection_ok=all(selection['aps']['sources'][s]['feasible'] for s in ('p','q'))
++tuning_guard=tuning_eligibility(param_feasible,selection)
++selection_ok=tuning_guard['all_feasible']
+ gateBraw=selection_ok and invalid_D==0 and all(all(x[k] for k in ('gain_pass','D_pass','coverage_pass')) for x in comparators) and restored[1]<=.25 and attenuation[0]>.25
+ # Counterevidence uses only tuning-selected original output points. No new test selection.
+ # If a needed point is outside the preregistered simultaneous family, uncertainty
+@@ -250,22 +252,15 @@
+ for m in ('saps','rankonly'):
+     tp=selection[m]['sources']['p']['T'];k=key(m,tp,'00');r=point[k+'|0.1']
+     q=point[key('aps',tqstar,'11')+'|0.1']
+-    available=all(f'{k}:{metric}' in intervals for metric in ('M','coverage','Dhat'))
+-    comparable_point=r['coverage']>=.89 and abs(r['coverage']-q['coverage'])<=.01 and r['Dhat']<=q['Dhat']+.001
++    control_tuning=bool(param_feasible[m]) and all(selection[m]['sources'][source]['feasible'] for source in ('p','q')) and selection['aps']['sources']['q']['feasible']
+     control={'method':m,'Tp_tuning':tp,'point_M':r['M'],'point_coverage':r['coverage'],'point_Dhat':r['Dhat'],
+-             'point_no_larger_and_comparable':comparable_point and r['M']<=q['M'],
+-             'in_primary_simultaneous_family':available,'mechanism_beyond_control_established':False}
+-    # Stronger endpoint separation suffices for a conservative claim of superiority.
+-    if available:
+-        km,kq=intervals[f'{k}:M'],intervals[f'aps|{tqstar:g}|11:M']
+-        if km['estimable'] and kq['estimable']:
+-            control['mechanism_beyond_control_established']=km['simultaneous95'][0]-kq['simultaneous95'][1]>.25
++             **assess_control(r,q,intervals,k,key('aps',tqstar,'11'),control_tuning)}
+     controls.append(control)
+ gateB=gateBraw and all(c['mechanism_beyond_control_established'] for c in controls)
+ decision={'A_pass':bool(gateA),'A_opposite_rank_effects':bool(opposite),'A_coverage_pass':bool(coverA),
+           'A_numeric_saturation':bool(saturated),'A_concentration':concentration,
+           'B_primary_frontier_and_restore_pass':bool(gateBraw),'B_pass_after_controls':bool(gateB),
+-          'B_tuning_selection_feasible':selection_ok,'B_Tp_star':tpstar,'B_Tq_star':tqstar,
++          'B_tuning_selection_feasible':selection_ok,'B_tuning_guard_details':tuning_guard,'B_Tp_star':tpstar,'B_Tq_star':tqstar,
+           'B_all_7_comparators':comparators,'B_restored_gain_pass':restored[1]<=.25,
+           'B_attenuation_pass':attenuation[0]>.25,'negative_controls':controls,
+           'candidate_status':'REVIEW_SIGNAL' if gateA or gateB else 'CLOSE_THIS_CANDIDATE',

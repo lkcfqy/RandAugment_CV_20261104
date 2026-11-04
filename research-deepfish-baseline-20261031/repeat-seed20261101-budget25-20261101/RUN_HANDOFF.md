@@ -1,0 +1,3 @@
+REAL TERMINAL COMPLETE — DO NOT RELAUNCH
+
+Only authorized new seed20261101 completed both formal arms200 and both64dev evaluations. Preflight states discarded; full pair safely persisted before dev. CPU analysis69checks PASS. All70 remote artifacts rehashed. GPU released with independent active_assignments0/assignments[]/rate0 snapshot. Cumulative1.8088330815795528CU/5443.899788473129GPU seconds. Both-seed primary AP deltas -1.6045839418438401 and -1.6873008558065894points; no demonstrated contribution. No thirdseed, threshold tuning, new labels, model call or GPU allocation is authorized by this completion. Read RESULT_ZH.md and reports/RESULT.json. Final archive manifest and external receipt record project persistence.

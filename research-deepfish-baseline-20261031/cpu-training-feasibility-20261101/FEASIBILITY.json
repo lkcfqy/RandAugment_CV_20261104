@@ -1,0 +1,63 @@
+{
+  "CPU_two_arm_plan": {
+    "A_updates": 200,
+    "M_updates": 200,
+    "checkpoint_bytes_for_two_complete_states": 1384351924,
+    "linear_reference_training_seconds": 1589.7586831939407,
+    "load_save_hash_log_allowance_seconds": 120,
+    "memory_claim": "Measured3.97GiB is not a maximum;6\u20138GiB is an unverified planning allowance, host capacity not queried",
+    "peak_RSS_planning_only_GiB": [
+      6,
+      8
+    ],
+    "planning_total_minutes_2x": 59.72097027886363,
+    "planning_total_minutes_3x": 86.21694833209598,
+    "planning_training_seconds_2x": 3179.5173663878813,
+    "planning_training_seconds_3x": 4769.276049581822,
+    "seed": 20261031,
+    "total_updates": 400,
+    "two64dev_forward_reference_seconds": 283.7408503439365
+  },
+  "actual_scope": {
+    "GPU_MPS_Colab_upload_newCU": 0,
+    "completed_full_forward_backward_step": 1,
+    "completed_training_steps": 1,
+    "dev_test_images": 0,
+    "failed_partial_forward_attempts": 1,
+    "formalA_M_updates": 0,
+    "installs": 0,
+    "model_instances_total": 3,
+    "same_image_id": 2244,
+    "sample_fetches_total": 2,
+    "setup_only_failed_attempts": 1,
+    "unique_support_images": 1,
+    "weights_saved": 0
+  },
+  "controls": [
+    "bothAandM trained and evaluated in the same pinned official CPU runtime; CUDAtrainedA not a causal control",
+    "same original pretrained assets and same full CPU initialstate/seed, trainable set, AdamW/LR, U200,batch1,anchor order",
+    "preserve frozen A/M augmentation recipes and fresh caches per arm, persistent caches across40epochs; M exposure differences declared",
+    "FP32,CPU4threads,interop1,OpenCVsequential,deterministic algorithms; no MPS or modified operator",
+    "discard probe model/optimizer; finalcheckpoint only; no dev/loss selection; all64dev original input, mainAP100 and existingmetric mapping; no test"
+  ],
+  "elapsed_task_seconds_at_record": 568.9420659542084,
+  "limitations": [
+    "fixed sample2244 has0GT after unchanged random crop",
+    "Mosaic/MixUp caches fresh; no full-cache case measured",
+    "positive-GT branch, maximage and longrun memory not empirically validated",
+    "one cold step is not an average orp90"
+  ],
+  "measured": {
+    "all896_gradient_tensors_finite": true,
+    "backward_seconds": 2.6276460840017535,
+    "forward_loss_seconds": 1.0294858749839477,
+    "frozen_parameters": 0,
+    "full_step_seconds": 3.9743967079848517,
+    "optimizer_seconds": 0.22203000000445172,
+    "peak_RSS_GiB": 3.97125244140625,
+    "peak_RSS_bytes": 4264099840,
+    "trainable_parameters": 172912413,
+    "trainable_tensors": 896
+  },
+  "status": "CPU_TRAINING_CONDITIONALLY_FEASIBLE_ONE_COMPLETE_STEP"
+}

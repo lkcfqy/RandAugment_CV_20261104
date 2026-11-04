@@ -1,0 +1,23 @@
+{
+  "utc": "2026-11-01T06:16:09.190150+00:00",
+  "kind": "CPU entry configuration-container correction only",
+  "parent_protocol_sha256": "0b4101c0e9e41904c8dc23618439fa2499815eb136ea106bd3c48ef1ed02e305",
+  "reason": "Plain dict delivered by the new CPU entry to official code; grounding_dino_layers.py expects self_attn_cfg.num_heads attribute. The successful official Runner used Config(cfg).",
+  "change": "Wrap the same normalized JSON with mmengine.config.Config before MODELS.build; no numerical/config values or installed official implementation files changed.",
+  "first_attempt_forward_calls_started": 1,
+  "first_attempt_completed_predictions": 0,
+  "first_attempt_load_exact_tensors": 908,
+  "first_attempt_model_process_seconds": 28.983047459012596,
+  "first_attempt_peak_RSS_bytes": 2378596352,
+  "first_attempt_evidence_preserved": "receipts/probe_20261031_A.json and logs/probe_20261031_A.log",
+  "bounded_retry_count": 1,
+  "new_successful_forward_target": 8,
+  "total_maximum_started_including_aborted_call": 9,
+  "same_fixed_support_image_id": 1892,
+  "no_dev_test_effects_observed": true,
+  "no_wheel_model_operator_or_scientific_config_changes": true,
+  "remaining_total_engineering_seconds": 871.0169525409874,
+  "script_sha256": "5d489639b9fc751d248bf3cd885dd2aa07e6d2436a18a1941b0de4b7755cd5ae",
+  "new_records": "receipts/r1 and logs/r1",
+  "full_512_authorized": false
+}

@@ -1,0 +1,208 @@
+{
+  "protocol": {
+    "version": "stheta-v1",
+    "status": "implementation/preflight only; formal scoring awaits parent confirmation",
+    "theta_order": [
+      "a=1,b=1",
+      "a=0.8,b=0.8",
+      "a=0.8,b=1",
+      "a=0.8,b=1.2",
+      "a=1,b=0.8",
+      "a=1,b=1.2",
+      "a=1.2,b=0.8",
+      "a=1.2,b=1",
+      "a=1.2,b=1.2"
+    ],
+    "theta_parameters": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        0.8,
+        0.8
+      ],
+      [
+        0.8,
+        1.0
+      ],
+      [
+        0.8,
+        1.2
+      ],
+      [
+        1.0,
+        0.8
+      ],
+      [
+        1.0,
+        1.2
+      ],
+      [
+        1.2,
+        0.8
+      ],
+      [
+        1.2,
+        1.0
+      ],
+      [
+        1.2,
+        1.2
+      ]
+    ],
+    "reference_seeds": [
+      11,
+      22,
+      33
+    ],
+    "shuffle_seeds": [
+      9001,
+      9002,
+      9003,
+      9004,
+      9005
+    ],
+    "primary_shuffle": 9001,
+    "cal_clusters": 64,
+    "refs_per_seed": 64,
+    "image_geometry": "EXIF transpose -> RGB -> Pillow BICUBIC direct 224 square; no crop",
+    "numeric": "FP32 eager, eval, no AMP; ImageNet mean/std; post-final-LN patch L2 eps=1e-8",
+    "photometric": "sRGB -> linear L; per-image per-channel spatial mean mu; clip(a*(b*L+(1-b)*mu),0,1) -> sRGB; no uint8; identity exact shortcut",
+    "identity_meaning": "theta index 0; preserve original floating array and reuse original feature",
+    "near_duplicate": {
+      "phash": "ImageHash.phash(hash_size=8,highfreq_factor=4)",
+      "hamming_max": 4,
+      "ssim_gray": "EXIF transpose -> RGB -> L -> Pillow LANCZOS 256 square",
+      "ssim_min": 0.995,
+      "ssim_parameters": {
+        "data_range": 255,
+        "win_size": 7,
+        "gaussian_weights": false,
+        "use_sample_covariance": true,
+        "K1": 0.01,
+        "K2": 0.03
+      },
+      "train_clustering": "connected components on exactRGB-unique nodes",
+      "cluster_members": "all original paths including exact aliases; sorted (pixelhash,path)",
+      "cluster_id": "SHA256(newline-joined pixelhash + TAB + relative path), no terminal newline",
+      "canonical": "minimum (pixelhash,relative path)",
+      "cross_split": "same-label exact duplicates remove all train members; conflict stops; near duplicates reported only"
+    },
+    "distance": "FP32 exhaustive squared L2 on unit patches; no approximate retrieval",
+    "ties": "theta order, then canonical ref (pixelhash,path), then row-major patch index; strict less update",
+    "primary": {
+      "theta_selection": "mean lowest 204 of 256 distances",
+      "score": "mean largest 13 squared distances"
+    },
+    "mechanism_controls": [
+      "all256_mean_theta_selection",
+      "minimum_top13_mean_over_theta"
+    ],
+    "reference_selection": {
+      "selectors": [
+        "spatial_bow_KL",
+        "trimmed_chamfer"
+      ],
+      "K": [
+        1,
+        4,
+        10
+      ],
+      "bank_modes": [
+        "selected_view",
+        "pool9"
+      ],
+      "kmeans": {
+        "n_clusters": 12,
+        "init": "k-means++",
+        "random_state": 0,
+        "n_init": 10,
+        "algorithm": "lloyd",
+        "max_iter": 300,
+        "tol": 0.0001
+      },
+      "bow": "5x5 grid by floor(5*(patch_index+.5)/16); 12 counts +1e-6 then normalize; KL(h_ref||h_query), lowest20/25 mean",
+      "chamfer": "lowest204/256 mean of A[:,r,theta]; choose theta per ref, then K distinct refs"
+    },
+    "robust_color": {
+      "statistics": "per-channel median and IQR in linear RGB, numpy quantile method=linear",
+      "floor": 0.0001,
+      "target": "cross-reference medians of per-image median and floored IQR",
+      "transform": "S(clip(mbar+sbar*(L-m)/max(IQR,1e-4),0,1))",
+      "feature_reuse": false
+    },
+    "projection": {
+      "fit": "CPU float64 E(delta), S0=E(delta delta^T), Sc=S0-mu mu^T",
+      "delta": "unit augmented patch minus unit identity at same position; all64x8x256",
+      "ranks": [
+        8,
+        16,
+        32
+      ],
+      "matrices": [
+        "S0",
+        "Sc"
+      ],
+      "top32": "single eigh per matrix; nested first8/16/32",
+      "inference_centering": false,
+      "pre": "Qz on query and entire bank, L2 eps1e-8, new exhaustive NN",
+      "post": "Q(original-space winning residual), no renormalization; squared and sqrt top13 means",
+      "banks": [
+        "identity",
+        "pool9"
+      ],
+      "configuration_count": 36
+    },
+    "calibration": {
+      "n": 64,
+      "threshold_ascending_order": 62,
+      "positive": "score > threshold",
+      "ties": "normal",
+      "alpha": 0.05,
+      "target_FPR_guarantee": false
+    },
+    "evaluation": {
+      "test_counts": {
+        "same": {
+          "normal": 230,
+          "anomaly": 459
+        },
+        "illumination": {
+          "normal": 75,
+          "anomaly": 198
+        }
+      },
+      "equal_domain_AUROC": "(same + illumination)/2",
+      "baseline_oracle": "investment gate only; never deployment selection or significance",
+      "gates": {
+        "eq_delta": 0.02,
+        "illumination_delta": 0.03,
+        "same_delta_min": -0.01,
+        "all_seed_eq_delta_strictly_positive": true,
+        "primary_minus_shuffle9001_eq": 0.01
+      },
+      "CI": "none; no physical entity IDs; only official image-split acquisition-condition generalization",
+      "masks_used": false
+    },
+    "budgets": {
+      "preflight_MPS_window_seconds": 300,
+      "future_total_from_first_GPU_wall_seconds": 7200,
+      "stage_wall_seconds": 14400,
+      "disk_bytes": 8589934592,
+      "forecast_margin": 1.2
+    },
+    "method_count": 59,
+    "baseline_count": 51
+  },
+  "data_code_sha256": "4847eb3991625b60ddd61bf735999c75052afcab303603e6703aee708d4bbf4a",
+  "protocol_code_sha256": "9e7fa819a1557e1cde6ee5ef7a05a4ed4f08640441879e1327ffe66d71a7f4b4",
+  "versions": {
+    "ImageHash": "4.3.2",
+    "scikit-image": "0.26.0",
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "purpose": "Fixed before any near-duplicate result; no image model computations"
+}

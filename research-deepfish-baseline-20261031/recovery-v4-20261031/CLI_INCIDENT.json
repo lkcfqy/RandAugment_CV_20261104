@@ -1,0 +1,22 @@
+{
+  "action": "official Colab CLI exec remote_launch.py",
+  "target": "owned DeepFish r4 T4 allocation",
+  "observed_error_type": "RuntimeError",
+  "exact_original_message": "UNAVAILABLE: previous CLI guard retained error type only, not message",
+  "authorization_denied": false,
+  "safe_indicators": [],
+  "execution_evidence": [
+    "marker execution succeeded",
+    "package parts uploaded",
+    "no DEEPFISH_LAUNCH or run_started evidence",
+    "remote payload/MANIFEST.json reported File or directory not found before release",
+    "driver requires manifest before any environment/model work; driver never deletes manifest",
+    "official sessions=0 and rate=0 after requested watchdog release"
+  ],
+  "model_execution_state": "No model job could have passed driver manifest gate; no preflight or efficacy outputs",
+  "release": "CONFIRMED",
+  "controller_error_note": "Single owned T4 attribution changed was a consequence of intentional watchdog release, not the original CLI fault",
+  "cumulative_CU_upper": 0.5530576239191956,
+  "cumulative_GPU_seconds_upper": 1512.7766166667939,
+  "next_revision": "Same package; fail-fast CLI_FAILED callback, failed-child hard exit, credential-free known-error/stack diagnostics, first-line remote entry marker. No automatic launch replay."
+}

@@ -1,0 +1,164 @@
+"""Post-completion verification only. Independent NumPy cache readouts and sklearn AUC."""
+import collections,hashlib,json,math,os,pathlib,time
+import numpy as np
+from sklearn.metrics import roc_auc_score
+from threadpoolctl import threadpool_limits
+
+ROOT=pathlib.Path('/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/implementation-v1')
+EXPECTED_FREEZE='db58e313f00018241490e099a81af2aec6bf49e9501416a8f95c5190c418037d'
+
+def sha(p):
+    h=hashlib.sha256()
+    with open(p,'rb') as f:
+        for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+    return h.hexdigest()
+def read(p):return json.loads(pathlib.Path(p).read_text())
+def save(p,x):
+    p=pathlib.Path(p);p.parent.mkdir(parents=True,exist_ok=True);t=p.with_suffix(p.suffix+'.tmp')
+    t.write_text(json.dumps(x,indent=2,allow_nan=False)+'\n');t.replace(p)
+def top13(x,axis=0):return np.sort(x,axis=axis).take(range(x.shape[axis]-13,x.shape[axis]),axis=axis).mean(axis=axis)
+def trimmed(x,k,axis=0):return np.sort(x,axis=axis).take(range(k),axis=axis).mean(axis=axis)
+
+def choices(A,maps):
+    d=A.min(1)
+    out={'primary':int(trimmed(d,204).argmin()),'selector/all256':int(d.mean(0).argmin()),'selector/min_top13':int(top13(d).argmin())}
+    for seed,perm in maps.items():
+        ds=np.take_along_axis(A,np.asarray(perm)[None,:,:],axis=2).min(1)
+        out['shuffle/'+seed]=int(trimmed(ds,204).argmin())
+    return out
+
+def sample_scores(cache,bank,query,fitted,maps):
+    A=cache['A'];P,R,T=A.shape;d=A.min(1);c=choices(A,maps)
+    out={'identity':float(top13(A[:,:,0].min(1))),'pool9':float(top13(A.min((1,2)))),
+         'primary':float(top13(d[:,c['primary']])),'selector/all256':float(top13(d[:,c['selector/all256']])),'selector/min_top13':float(top13(d).min()),
+         'robust_color':float(top13(cache['color_A'][:,:,0].min(1)))}
+    for seed,perm in maps.items():
+        ds=np.take_along_axis(A,np.asarray(perm)[None,:,:],axis=2).min(1)
+        out['shuffle/'+seed]=float(top13(ds[:,c['shuffle/'+seed]]))
+    centers=fitted['centers'];labels=np.square(query[:,None,:]-centers[None,:,:]).sum(-1).argmin(1)
+    yy,xx=np.meshgrid(np.arange(16),np.arange(16),indexing='ij')
+    cell=(np.floor(5*(yy+.5)/16).astype(int)*5+np.floor(5*(xx+.5)/16).astype(int)).ravel()
+    hist=np.bincount(cell*12+labels,minlength=300).reshape(25,12).astype(np.float32)+np.float32(1e-6)
+    hist/=hist.sum(-1,keepdims=True)
+    rh=fitted['ref_hist'];kl=(rh*(np.log(rh)-np.log(hist))).sum(-1)
+    for name,cost in [('trimmed_chamfer',trimmed(A,204)),('spatial_bow_KL',trimmed(kl,20,axis=-1))]:
+        th=cost.argmin(1);order=np.argsort(cost[np.arange(R),th],kind='stable')
+        for K in (1,4,10):
+            refs=order[:K]
+            out[f'refselect/{name}/K{K}/selected_view']=float(top13(A[:,refs,th[refs]].min(1)))
+            out[f'refselect/{name}/K{K}/pool9']=float(top13(A[:,refs,:].min((1,2))))
+    row=np.arange(P);r0=A[:,:,0].argmin(1);slot=A.transpose(0,2,1).reshape(P,-1).argmin(1)
+    wins={'identity':(np.zeros(P,int),r0),'pool9':(slot//R,slot%R)}
+    for matrix in ('S0','Sc'):
+        basis=fitted[matrix+'_basis']
+        for rank in (8,16,32):
+            U=basis[:,:rank]
+            for mode,(theta,ref) in wins.items():
+                key=f'{matrix}_r{rank}_{mode}'
+                out[f'projection/{matrix}/r{rank}/{mode}/pre_sq']=float(top13(cache[key+'_distance']))
+                qidx=cache['argmin_q'][row,ref,theta].astype(int)
+                residual=query-bank[ref,theta,qidx]
+                projected=residual-(residual@U)@U.T
+                ds=np.square(projected).sum(-1)
+                out[f'projection/{matrix}/r{rank}/{mode}/post_sq']=float(top13(ds))
+                out[f'projection/{matrix}/r{rank}/{mode}/post_sqrt']=float(top13(np.sqrt(ds)))
+    return out
+
+def main():
+    started=time.monotonic();lock=read(ROOT/'reports/formal-validation-lock.json')
+    launch=read(ROOT/'reports/formal-launch.json');assert launch['status']=='complete'
+    assert sha(ROOT/'frozen-manifest.json')==EXPECTED_FREEZE
+    frozen=read(ROOT/'frozen-manifest.json');split=read(ROOT/'split-manifest.json');complete=read(ROOT/'formal/completion.json')
+    assert complete['frozen_manifest_sha256']==EXPECTED_FREEZE and complete['all_methods']==59 and complete['all_queries_per_seed']==1026 and complete['seeds']==[11,22,33]
+    for f in frozen['code_files']:assert sha(ROOT/f['path'])==f['sha256']
+    assert sha(ROOT/'split-manifest.json')==frozen['split_manifest_sha256']
+    assert sha(ROOT/'shuffle-mappings.json')==frozen['shuffle_mappings_sha256']
+    maps=read(ROOT/'shuffle-mappings.json');rows=read(ROOT/'formal/query-manifest.json')
+    expected=[{'query_id':'cal/'+c['cluster_id'],'path':c['canonical']['path'],'kind':'calibration','domain':'calibration','label':0,'pixelhash':c['canonical']['pixelhash']} for c in split['calibration']]
+    expected += [{'query_id':'test/'+r['path'],'path':r['path'],'kind':'test','domain':r['domain'],'label':r['label'],'pixelhash':r['pixelhash']} for r in split['tests']]
+    assert rows==expected and len(rows)==1026 and len({r['query_id'] for r in rows})==1026
+    ledger=read(ROOT/'formal/cache-ledger.json');assert len(ledger)==4113 and len({r['path'] for r in ledger})==4113
+    hash_bytes=0
+    for i,r in enumerate(ledger):
+        path=ROOT/r['path'];assert path.resolve().is_relative_to((ROOT/'formal').resolve())
+        assert path.stat().st_size==r['bytes'] and sha(path)==r['sha256'];hash_bytes+=r['bytes']
+        if (i+1)%512==0:print(json.dumps({'ledger_files_verified':i+1,'of':len(ledger)}),flush=True)
+    assert sum('/distance-cache/' in r['path'] for r in ledger)==3078
+    assert sum('/identity-query-features/' in r['path'] for r in ledger)==1026
+    results=read(ROOT/'formal/results.json');methods=set(frozen['method_names']);baselines=list(frozen['external_baseline_names'])
+    assert len(methods)==59 and len(baselines)==51 and not any(n.startswith(('selector/','shuffle/')) for n in baselines)
+    counts=collections.Counter((r['domain'],r['label']) for r in rows[64:]);assert dict(counts)=={('same',0):230,('same',1):459,('illumination',0):75,('illumination',1):198}
+    checked=0;max_score_abs=0.;identity_checked=0;metric_max_error=0.;independent={};cal_rates={}
+    for seed in ('11','22','33'):
+        scores=read(ROOT/f'formal/seed{seed}/scores.json');assert set(scores)==methods
+        arrays={name:np.asarray(v,dtype=np.float64) for name,v in scores.items()}
+        assert all(a.shape==(1026,) and np.isfinite(a).all() for a in arrays.values())
+        bank=np.load(ROOT/f'formal/seed{seed}/reference-state/bank.npy',mmap_mode='r',allow_pickle=False)
+        fitted=np.load(ROOT/f'formal/seed{seed}/reference-state/fitted-state.npz',allow_pickle=False)
+        assert bank.shape==(64,9,256,384)
+        identity=collections.defaultdict(lambda:[0,0])
+        for index in range(1026):
+            cache=np.load(ROOT/f'formal/seed{seed}/distance-cache/{index:04d}.npz',allow_pickle=False)
+            A=cache['A'];arg=cache['argmin_q'];cA=cache['color_A'];cq=cache['color_argmin_q']
+            assert A.shape==(256,64,9) and A.dtype==np.float32 and np.isfinite(A).all() and (A>=0).all()
+            assert arg.shape==A.shape and arg.dtype==np.uint16 and arg.max()<256
+            assert cA.shape==(256,64,1) and cA.dtype==np.float32 and np.isfinite(cA).all() and (cA>=0).all()
+            assert cq.shape==cA.shape and cq.max()<256
+            for m in ('S0','Sc'):
+                for rank in (8,16,32):
+                    for b in ('identity','pool9'):
+                        key=f'{m}_r{rank}_{b}';d=cache[key+'_distance'];ix=cache[key+'_winner']
+                        assert d.shape==(256,) and np.isfinite(d).all() and (d>=0).all()
+                        assert ix.shape==(256,) and (ix>=0).all() and ix.max()<(16384 if b=='identity' else 147456)
+            if index>=64:
+                c=choices(A,maps[seed]);row=rows[index];group=f'{row["domain"]}/{"N" if row["label"]==0 else "A"}'
+                for name,theta in c.items():identity[(name,group)][0]+=int(theta==0);identity[(name,group)][1]+=1
+            if index in lock['sample_query_indices']:
+                query=np.load(ROOT/f'formal/identity-query-features/{index:04d}.npy',allow_pickle=False)
+                got=sample_scores(cache,bank,query,fitted,maps[seed]);assert set(got)==methods
+                for name,value in got.items():
+                    actual=arrays[name][index];diff=abs(value-actual);max_score_abs=max(max_score_abs,diff)
+                    assert np.isclose(value,actual,atol=lock['cache_score_atol'],rtol=lock['cache_score_rtol']),(seed,index,name,value,actual)
+                checked+=len(got)
+            cache.close()
+        for (name,group),(count,total) in identity.items():
+            recorded=results['identity_selection_by_domain_and_NA'][seed][name][group]
+            assert recorded['identity_count']==count and recorded['n']==total and abs(recorded['identity_rate']-count/total)<1e-12
+            identity_checked+=1
+        independent[seed]={};cal_rates[seed]={}
+        for name,a in arrays.items():
+            tau=float(np.sort(a[:64])[61]);assert tau==results['thresholds'][seed][name]
+            cal_rates[seed][name]=float((a[:64]>tau).mean())
+            metric={}
+            for domain in ('same','illumination'):
+                ids=[64+i for i,r in enumerate(rows[64:]) if r['domain']==domain]
+                y=np.array([rows[i]['label'] for i in ids]);v=a[ids]
+                values={'AUROC':float(roc_auc_score(y,v)),'TPR':float((v[y==1]>tau).mean()),'FPR':float((v[y==0]>tau).mean())}
+                for stat,value in values.items():
+                    err=abs(value-results['methods'][seed][name][domain][stat]);metric_max_error=max(metric_max_error,err)
+                    assert err<=lock['metric_atol']
+                metric[domain]=values
+            metric['eqAUROC']=(metric['same']['AUROC']+metric['illumination']['AUROC'])/2
+            assert abs(metric['eqAUROC']-results['methods'][seed][name]['eqAUROC'])<=lock['metric_atol']
+            independent[seed][name]=metric
+        print(json.dumps({'seed_verified':seed,'cache_query_files':1026,'methods':59}),flush=True)
+    mean=lambda name,domain:float(np.mean([independent[s][name]['eqAUROC'] if domain=='eq' else independent[s][name][domain]['AUROC'] for s in ('11','22','33')]))
+    eq=max(sorted(baselines),key=lambda n:mean(n,'eq'));illum=max(sorted(baselines),key=lambda n:mean(n,'illumination'));same=max(('identity','pool9'),key=lambda n:mean(n,'same'))
+    delta={'eq':mean('primary','eq')-mean(eq,'eq'),'illumination':mean('primary','illumination')-mean(illum,'illumination'),'same':mean('primary','same')-mean(same,'same'),
+       'per_seed_eq':[independent[s]['primary']['eqAUROC']-independent[s][eq]['eqAUROC'] for s in ('11','22','33')],'shuffle9001_eq':mean('primary','eq')-mean('shuffle/9001','eq')}
+    gates={'eq_ge_02':delta['eq']>=.02,'illumination_ge_03':delta['illumination']>=.03,'same_drop_le_01':delta['same']>=-.01,'each_seed_eq_strictly_positive':all(x>0 for x in delta['per_seed_eq']),'primary_shuffle9001_ge_01':delta['shuffle9001_eq']>=.01}
+    assert gates==results['gates'] and all(gates.values())==results['continue']
+    assert {'eq':eq,'illumination':illum,'same_identity_or_pool':same}==results['investment_baseline_envelope']
+    for k in delta:np.testing.assert_allclose(delta[k],results['deltas'][k],atol=lock['metric_atol'],rtol=0)
+    report={'status':'passed','completed_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'seconds':time.monotonic()-started,
+      'freeze_sha256':EXPECTED_FREEZE,'ledger_files_verified':len(ledger),'ledger_payload_bytes_hashed':hash_bytes,'query_cache_count':3078,'query_feature_count':1026,
+      'sample_scores_independently_recomputed':checked,'sample_indices_per_seed':lock['sample_query_indices'],'maximum_sample_score_abs_difference':max_score_abs,
+      'all_metric_values_checked_against_sklearn':True,'maximum_metric_abs_difference':metric_max_error,'identity_rate_cells_checked':identity_checked,
+      'all_seeds_methods_labels_ids_counts_finite_passed':True,'independent_deltas':delta,'independent_gates':gates,'independent_continue':all(gates.values()),
+      'model_or_NN_rerun':False,'data_or_method_changes':False,'metrics_read_only_after_full_completion':True,'validation_lock_sha256':sha(ROOT/'reports/formal-validation-lock.json')}
+    save(ROOT/'reports/formal-independent-verification.json',report)
+    save(ROOT/'reports/independent-method-metrics.json',{'methods':independent,'calibration_empirical_fpr':cal_rates})
+    print(json.dumps(report,indent=2),flush=True)
+
+if __name__=='__main__':
+    with threadpool_limits(limits=4):main()

@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "device": "mps",
+  "dtype": "float32",
+  "actual_model": "deit_tiny_patch16_224.fb_in1k",
+  "oracle": "separate native autograd.grad(meanCE(model(w))) and strong; then independent weighted sums, compared to production paths",
+  "tolerances": {
+    "max_abs": 5e-05,
+    "relative_l2": 0.0002
+  },
+  "cases": [
+    {
+      "case": "weak",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "dual",
+      "parts": {
+        "backbone": {
+          "max_abs": 1.6298145055770874e-07,
+          "relative_l2": 6.419825723924791e-07,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 5.960464477539063e-08,
+          "relative_l2": 3.725091175294691e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "ent_single",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "head_refit",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 9.611248970031738e-07,
+          "relative_l2": 8.641293620427285e-07,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "random_weak",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 7.152557373046875e-07,
+          "relative_l2": 5.996511124363167e-07,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "random_strong",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 7.003545761108398e-07,
+          "relative_l2": 6.372238530011175e-07,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "candidate",
+      "parts": {
+        "backbone": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "passed": true
+        },
+        "head": {
+          "max_abs": 7.152557373046875e-07,
+          "relative_l2": 5.996511124363167e-07,
+          "passed": true
+        }
+      }
+    }
+  ],
+  "seconds": 1.0315535830013687,
+  "head_classes": 100,
+  "output_shape_checked": [
+    2,
+    100
+  ],
+  "real_dataset_images_used": 0,
+  "scientific_accuracy_measured": false,
+  "core_sha256": "aae97ec7a52ce47b2addce0a589e3cfaac3aee0c50fb6b8fb225b67bc7cdf71d"
+}

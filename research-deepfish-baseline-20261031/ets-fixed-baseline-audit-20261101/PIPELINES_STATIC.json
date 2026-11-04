@@ -1,0 +1,1550 @@
+{
+  "method": "stdlib AST and JSON only; no eval, exec, upstream imports, model or transform calls",
+  "format_note": "Static JSON evidence, not an executable MMEngine config. Tuple constructor requirements must be preserved in a future Python config.",
+  "A_pipeline": [
+    {
+      "backend_args": null,
+      "color_type": "color",
+      "imdecode_backend": "cv2",
+      "type": "LoadImageFromFile"
+    },
+    {
+      "type": "LoadAnnotations",
+      "with_bbox": true
+    },
+    {
+      "level": 0,
+      "max_mag": 1.0,
+      "min_mag": 1.0,
+      "prob": 1.0,
+      "type": "Color"
+    },
+    {
+      "prob": 0.5,
+      "type": "RandomFlip"
+    },
+    {
+      "transforms": [
+        [
+          {
+            "keep_ratio": true,
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "type": "RandomChoiceResize"
+          }
+        ],
+        [
+          {
+            "keep_ratio": true,
+            "scales": [
+              [
+                400,
+                4200
+              ],
+              [
+                500,
+                4200
+              ],
+              [
+                600,
+                4200
+              ]
+            ],
+            "type": "RandomChoiceResize"
+          },
+          {
+            "allow_negative_crop": true,
+            "crop_size": [
+              384,
+              600
+            ],
+            "crop_type": "absolute_range",
+            "type": "RandomCrop"
+          },
+          {
+            "keep_ratio": true,
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "type": "RandomChoiceResize"
+          }
+        ]
+      ],
+      "type": "RandomChoice"
+    },
+    {
+      "meta_keys": [
+        "img_id",
+        "img_path",
+        "ori_shape",
+        "img_shape",
+        "scale_factor",
+        "flip",
+        "flip_direction",
+        "text",
+        "custom_entities"
+      ],
+      "type": "PackDetInputs"
+    }
+  ],
+  "official_MMDetection_pipeline": [
+    {
+      "type": "LoadImageFromFile",
+      "backend_args": null
+    },
+    {
+      "type": "LoadAnnotations",
+      "with_bbox": true
+    },
+    {
+      "type": "RandomFlip",
+      "prob": 0.5
+    },
+    {
+      "type": "RandomChoice",
+      "transforms": [
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ],
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                400,
+                4200
+              ],
+              [
+                500,
+                4200
+              ],
+              [
+                600,
+                4200
+              ]
+            ],
+            "keep_ratio": true
+          },
+          {
+            "type": "RandomCrop",
+            "crop_type": "absolute_range",
+            "crop_size": [
+              384,
+              600
+            ],
+            "allow_negative_crop": true
+          },
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ]
+      ]
+    },
+    {
+      "type": "PackDetInputs",
+      "meta_keys": [
+        "img_id",
+        "img_path",
+        "ori_shape",
+        "img_shape",
+        "scale_factor",
+        "flip",
+        "flip_direction",
+        "text",
+        "custom_entities"
+      ]
+    }
+  ],
+  "ETS_active_fixed_template_pipeline": [
+    {
+      "type": "LoadImageFromFile",
+      "backend_args": null
+    },
+    {
+      "type": "LoadAnnotations",
+      "with_bbox": true
+    },
+    {
+      "type": "CachedMosaic",
+      "img_scale": [
+        640,
+        640
+      ],
+      "pad_val": 114.0,
+      "prob": 0.6
+    },
+    {
+      "type": "YOLOXHSVRandomAug"
+    },
+    {
+      "type": "RandomFlip",
+      "prob": 0.5
+    },
+    {
+      "type": "CachedMixUp",
+      "img_scale": [
+        640,
+        640
+      ],
+      "ratio_range": [
+        1.0,
+        1.0
+      ],
+      "max_cached_images": 10,
+      "pad_val": [
+        114,
+        114,
+        114
+      ],
+      "prob": 0.3
+    },
+    {
+      "type": "RandomChoice",
+      "transforms": [
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ],
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                400,
+                4200
+              ],
+              [
+                500,
+                4200
+              ],
+              [
+                600,
+                4200
+              ]
+            ],
+            "keep_ratio": true
+          },
+          {
+            "type": "RandomCrop",
+            "crop_type": "absolute_range",
+            "crop_size": [
+              384,
+              600
+            ],
+            "allow_negative_crop": true
+          },
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ]
+      ]
+    },
+    {
+      "type": "PackDetInputs",
+      "meta_keys": [
+        "img_id",
+        "img_path",
+        "ori_shape",
+        "img_shape",
+        "scale_factor",
+        "flip",
+        "flip_direction",
+        "text",
+        "custom_entities"
+      ]
+    }
+  ],
+  "ETS_fixed_template_with_explicit_defaults": [
+    {
+      "type": "LoadImageFromFile",
+      "backend_args": null,
+      "color_type": "color",
+      "imdecode_backend": "cv2"
+    },
+    {
+      "type": "LoadAnnotations",
+      "with_bbox": true
+    },
+    {
+      "type": "CachedMosaic",
+      "img_scale": [
+        640,
+        640
+      ],
+      "pad_val": 114.0,
+      "prob": 0.6,
+      "center_ratio_range": [
+        0.5,
+        1.5
+      ],
+      "bbox_clip_border": true,
+      "max_cached_images": 40,
+      "random_pop": true
+    },
+    {
+      "type": "YOLOXHSVRandomAug",
+      "hue_delta": 5,
+      "saturation_delta": 30,
+      "value_delta": 30
+    },
+    {
+      "type": "RandomFlip",
+      "prob": 0.5,
+      "direction": "horizontal"
+    },
+    {
+      "type": "CachedMixUp",
+      "img_scale": [
+        640,
+        640
+      ],
+      "ratio_range": [
+        1.0,
+        1.0
+      ],
+      "max_cached_images": 10,
+      "pad_val": [
+        114,
+        114,
+        114
+      ],
+      "prob": 0.3,
+      "flip_ratio": 0.5,
+      "max_iters": 15,
+      "bbox_clip_border": true,
+      "random_pop": true
+    },
+    {
+      "type": "RandomChoice",
+      "transforms": [
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ],
+        [
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                400,
+                4200
+              ],
+              [
+                500,
+                4200
+              ],
+              [
+                600,
+                4200
+              ]
+            ],
+            "keep_ratio": true
+          },
+          {
+            "type": "RandomCrop",
+            "crop_type": "absolute_range",
+            "crop_size": [
+              384,
+              600
+            ],
+            "allow_negative_crop": true
+          },
+          {
+            "type": "RandomChoiceResize",
+            "scales": [
+              [
+                480,
+                1333
+              ],
+              [
+                512,
+                1333
+              ],
+              [
+                544,
+                1333
+              ],
+              [
+                576,
+                1333
+              ],
+              [
+                608,
+                1333
+              ],
+              [
+                640,
+                1333
+              ],
+              [
+                672,
+                1333
+              ],
+              [
+                704,
+                1333
+              ],
+              [
+                736,
+                1333
+              ],
+              [
+                768,
+                1333
+              ],
+              [
+                800,
+                1333
+              ]
+            ],
+            "keep_ratio": true
+          }
+        ]
+      ],
+      "prob": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "type": "PackDetInputs",
+      "meta_keys": [
+        "img_id",
+        "img_path",
+        "ori_shape",
+        "img_shape",
+        "scale_factor",
+        "flip",
+        "flip_direction",
+        "text",
+        "custom_entities"
+      ]
+    }
+  ],
+  "ETS_training_template": {
+    "train_cfg": {
+      "max_epochs": 15,
+      "type": "EpochBasedTrainLoop",
+      "val_interval": 5
+    },
+    "param_scheduler": [
+      {
+        "type": "MultiStepLR",
+        "begin": 0,
+        "end": 15,
+        "by_epoch": true,
+        "milestones": [
+          5
+        ],
+        "gamma": 0.1
+      }
+    ],
+    "optim_wrapper": {
+      "_delete_": true,
+      "type": "OptimWrapper",
+      "optimizer": {
+        "type": "AdamW",
+        "lr": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "clip_grad": {
+        "max_norm": 0.1,
+        "norm_type": 2
+      },
+      "paramwise_cfg": {
+        "custom_keys": {
+          "absolute_pos_embed": {
+            "decay_mult": 0.0
+          },
+          "backbone": {
+            "lr_mult": 0.1
+          }
+        }
+      }
+    },
+    "default_hooks": {
+      "checkpoint": {
+        "by_epoch": true,
+        "interval": 1
+      }
+    }
+  },
+  "ETS_SwinB_overrides": {
+    "_base_": [
+      "../CDFSOD/GroudingDINO-few-shot.py"
+    ],
+    "load_from": "https://download.openmmlab.com/mmdetection/v3.0/grounding_dino/groundingdino_swinb_cogcoor_mmdet-55949c9c.pth",
+    "model": {
+      "type": "GroundingDINO",
+      "backbone": {
+        "pretrain_img_size": 384,
+        "embed_dims": 128,
+        "depths": [
+          2,
+          2,
+          18,
+          2
+        ],
+        "num_heads": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "window_size": 12,
+        "drop_path_rate": 0.3,
+        "patch_norm": true
+      },
+      "neck": {
+        "in_channels": [
+          256,
+          512,
+          1024
+        ]
+      }
+    }
+  },
+  "ETS_data_root_and_metainfo_unresolved": true,
+  "selected_submission_configs": {
+    "configs/5-shot-dataset1.py": {
+      "train_cfg": {
+        "max_epochs": 30,
+        "type": "EpochBasedTrainLoop",
+        "val_interval": 1
+      },
+      "train_dataloader": {
+        "batch_sampler": {
+          "type": "AspectRatioBatchSampler"
+        },
+        "batch_size": 2,
+        "dataset": {
+          "ann_file": "annotations/5_shot.json",
+          "data_prefix": {
+            "img": "train/"
+          },
+          "data_root": "../data/dataset1/",
+          "filter_cfg": {
+            "filter_empty_gt": false
+          },
+          "metainfo": {
+            "classes": [
+              "apple",
+              "avocado",
+              "capsicum",
+              "mango",
+              "orange",
+              "rockmelon",
+              "strawberry"
+            ]
+          },
+          "pipeline": [
+            {
+              "backend_args": null,
+              "type": "LoadImageFromFile"
+            },
+            {
+              "type": "LoadAnnotations",
+              "with_bbox": true
+            },
+            {
+              "prob": 0.5,
+              "type": "RandomFlip"
+            },
+            {
+              "transforms": [
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ],
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        400,
+                        4200
+                      ],
+                      [
+                        500,
+                        4200
+                      ],
+                      [
+                        600,
+                        4200
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  },
+                  {
+                    "allow_negative_crop": true,
+                    "crop_size": [
+                      384,
+                      600
+                    ],
+                    "crop_type": "absolute_range",
+                    "type": "RandomCrop"
+                  },
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ]
+              ],
+              "type": "RandomChoice"
+            },
+            {
+              "meta_keys": [
+                "img_id",
+                "img_path",
+                "ori_shape",
+                "img_shape",
+                "scale_factor",
+                "flip",
+                "flip_direction",
+                "text",
+                "custom_entities"
+              ],
+              "type": "PackDetInputs"
+            }
+          ],
+          "return_classes": true,
+          "type": "CocoDataset"
+        },
+        "num_workers": 4,
+        "persistent_workers": true,
+        "sampler": {
+          "shuffle": true,
+          "type": "DefaultSampler"
+        }
+      },
+      "load_from": null,
+      "model_backbone": {
+        "attn_drop_rate": 0.0,
+        "convert_weights": false,
+        "depths": [
+          2,
+          2,
+          18,
+          2
+        ],
+        "drop_path_rate": 0.3,
+        "drop_rate": 0.0,
+        "embed_dims": 128,
+        "frozen_stages": -1,
+        "mlp_ratio": 4,
+        "num_heads": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "out_indices": [
+          1,
+          2,
+          3
+        ],
+        "patch_norm": true,
+        "pretrain_img_size": 384,
+        "qk_scale": null,
+        "qkv_bias": true,
+        "type": "SwinTransformer",
+        "window_size": 12,
+        "with_cp": true
+      }
+    },
+    "configs/5-shot-dataset2.py": {
+      "train_cfg": {
+        "max_epochs": 7,
+        "type": "EpochBasedTrainLoop",
+        "val_interval": 1
+      },
+      "train_dataloader": {
+        "batch_sampler": {
+          "type": "AspectRatioBatchSampler"
+        },
+        "batch_size": 2,
+        "dataset": {
+          "ann_file": "annotations/1_shot.json",
+          "data_prefix": {
+            "img": "train/"
+          },
+          "data_root": "../data/dataset2/",
+          "filter_cfg": {
+            "filter_empty_gt": false
+          },
+          "metainfo": {
+            "classes": "car"
+          },
+          "pipeline": [
+            {
+              "backend_args": null,
+              "type": "LoadImageFromFile"
+            },
+            {
+              "type": "LoadAnnotations",
+              "with_bbox": true
+            },
+            {
+              "type": "YOLOXHSVRandomAug"
+            },
+            {
+              "prob": 0.5,
+              "type": "RandomFlip"
+            },
+            {
+              "transforms": [
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ],
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        400,
+                        4200
+                      ],
+                      [
+                        500,
+                        4200
+                      ],
+                      [
+                        600,
+                        4200
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  },
+                  {
+                    "allow_negative_crop": true,
+                    "crop_size": [
+                      384,
+                      600
+                    ],
+                    "crop_type": "absolute_range",
+                    "type": "RandomCrop"
+                  },
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ]
+              ],
+              "type": "RandomChoice"
+            },
+            {
+              "meta_keys": [
+                "img_id",
+                "img_path",
+                "ori_shape",
+                "img_shape",
+                "scale_factor",
+                "flip",
+                "flip_direction",
+                "text",
+                "custom_entities"
+              ],
+              "type": "PackDetInputs"
+            }
+          ],
+          "return_classes": true,
+          "type": "CocoDataset"
+        },
+        "num_workers": 4,
+        "persistent_workers": true,
+        "sampler": {
+          "shuffle": true,
+          "type": "DefaultSampler"
+        }
+      },
+      "load_from": null,
+      "model_backbone": {
+        "attn_drop_rate": 0.0,
+        "convert_weights": false,
+        "depths": [
+          2,
+          2,
+          18,
+          2
+        ],
+        "drop_path_rate": 0.3,
+        "drop_rate": 0.0,
+        "embed_dims": 128,
+        "frozen_stages": -1,
+        "mlp_ratio": 4,
+        "num_heads": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "out_indices": [
+          1,
+          2,
+          3
+        ],
+        "patch_norm": true,
+        "pretrain_img_size": 384,
+        "qk_scale": null,
+        "qkv_bias": true,
+        "type": "SwinTransformer",
+        "window_size": 12,
+        "with_cp": true
+      }
+    },
+    "configs/5-shot-dataset3.py": {
+      "train_cfg": {
+        "max_epochs": 20,
+        "type": "EpochBasedTrainLoop",
+        "val_interval": 1
+      },
+      "train_dataloader": {
+        "batch_sampler": {
+          "type": "AspectRatioBatchSampler"
+        },
+        "batch_size": 2,
+        "dataset": {
+          "ann_file": "annotations/10_shot.json",
+          "data_prefix": {
+            "img": "train/"
+          },
+          "data_root": "../data/dataset3/",
+          "filter_cfg": {
+            "filter_empty_gt": false
+          },
+          "metainfo": {
+            "classes": [
+              "dent",
+              "scratch",
+              "crack",
+              "glass shatter",
+              "lamp broken",
+              "tire flat"
+            ]
+          },
+          "pipeline": [
+            {
+              "backend_args": null,
+              "type": "LoadImageFromFile"
+            },
+            {
+              "type": "LoadAnnotations",
+              "with_bbox": true
+            },
+            {
+              "prob": 0.5,
+              "type": "RandomFlip"
+            },
+            {
+              "transforms": [
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ],
+                [
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        400,
+                        4200
+                      ],
+                      [
+                        500,
+                        4200
+                      ],
+                      [
+                        600,
+                        4200
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  },
+                  {
+                    "allow_negative_crop": true,
+                    "crop_size": [
+                      384,
+                      600
+                    ],
+                    "crop_type": "absolute_range",
+                    "type": "RandomCrop"
+                  },
+                  {
+                    "keep_ratio": true,
+                    "scales": [
+                      [
+                        480,
+                        1333
+                      ],
+                      [
+                        512,
+                        1333
+                      ],
+                      [
+                        544,
+                        1333
+                      ],
+                      [
+                        576,
+                        1333
+                      ],
+                      [
+                        608,
+                        1333
+                      ],
+                      [
+                        640,
+                        1333
+                      ],
+                      [
+                        672,
+                        1333
+                      ],
+                      [
+                        704,
+                        1333
+                      ],
+                      [
+                        736,
+                        1333
+                      ],
+                      [
+                        768,
+                        1333
+                      ],
+                      [
+                        800,
+                        1333
+                      ]
+                    ],
+                    "type": "RandomChoiceResize"
+                  }
+                ]
+              ],
+              "type": "RandomChoice"
+            },
+            {
+              "meta_keys": [
+                "img_id",
+                "img_path",
+                "ori_shape",
+                "img_shape",
+                "scale_factor",
+                "flip",
+                "flip_direction",
+                "text",
+                "custom_entities"
+              ],
+              "type": "PackDetInputs"
+            }
+          ],
+          "return_classes": true,
+          "type": "CocoDataset"
+        },
+        "num_workers": 4,
+        "persistent_workers": true,
+        "sampler": {
+          "shuffle": true,
+          "type": "DefaultSampler"
+        }
+      },
+      "load_from": null,
+      "model_backbone": {
+        "attn_drop_rate": 0.0,
+        "convert_weights": false,
+        "depths": [
+          2,
+          2,
+          18,
+          2
+        ],
+        "drop_path_rate": 0.3,
+        "drop_rate": 0.0,
+        "embed_dims": 128,
+        "frozen_stages": -1,
+        "mlp_ratio": 4,
+        "num_heads": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "out_indices": [
+          1,
+          2,
+          3
+        ],
+        "patch_norm": true,
+        "pretrain_img_size": 384,
+        "qk_scale": null,
+        "qkv_bias": true,
+        "type": "SwinTransformer",
+        "window_size": 12,
+        "with_cp": true
+      }
+    }
+  }
+}

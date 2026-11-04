@@ -1,0 +1,7 @@
+{
+  "phase": "bootstrap_assets",
+  "reason": "Budget.event() got multiple values for argument 'name'",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/bootstrap.py\", line 107, in main\n    B.phase('bootstrap_dependencies');dependencies();B.phase('bootstrap_assets');assets();B.phase('assets_ready');return 0\n                                                                                 ~~~~~~^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/bootstrap.py\", line 95, in assets\n    B.event('asset_ready',name=name,bytes=path.stat().st_size)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: Budget.event() got multiple values for argument 'name'\n",
+  "elapsed_seconds": 239.37823009490967,
+  "resource_stop": true
+}

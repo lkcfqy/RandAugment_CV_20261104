@@ -1,0 +1,56 @@
+{
+  "frozen_formula_seconds": 2885.534010337302,
+  "frozen_formula": "1.5*sum(4 measured model_build_safe_load_full_verify seconds)+512*2*max(8 measured [pipeline+forward] seconds)+600 fixed seconds for8 COCO evaluations, persistence and checking",
+  "sequential_OpenCV_proposed_runtime_component_estimate_seconds": 2887.5877703294245,
+  "component_formula": "1.5*sum(4 measured load seconds)+512*2*max(original8 combined timing maximum, maximum measured torch forward + maximum measured sequential pipeline)+600",
+  "measured_4_load_seconds": 5.73091154397116,
+  "load_reserve_seconds": 8.59636731595674,
+  "measured_forward_max_seconds": 2.2134616670082323,
+  "measured_sequential_pipeline_max_seconds": 0.012115874997107312,
+  "forward_reserve_seconds": 2278.991403013468,
+  "persistence_8_evaluations_checks_reserve_seconds": 600,
+  "measured_full_512_seconds": null,
+  "full_512_forward_calls": 0,
+  "actual_successful_probe_supervisor_seconds": 33.66609229100868,
+  "actual_prior_aborted_probe_seconds": 28.983047459012596,
+  "peak_process_RSS_bytes": 3229581312,
+  "RSS_measurement": "macOS resource.getrusage(RUSAGE_SELF).ru_maxrss; no physical RAM query",
+  "single_support_image_timing_limit": true,
+  "not_a_guaranteed_wall_time_upper_bound": true,
+  "prior_prediction_sizes_stat_only": [
+    {
+      "path": "recovery-v5-20261031/gpu-run/artifacts/evaluate_A_predictions.bbox.json",
+      "bytes": 2919642
+    },
+    {
+      "path": "recovery-v5-20261031/gpu-run/artifacts/evaluate_B_predictions.bbox.json",
+      "bytes": 2938465
+    },
+    {
+      "path": "repeat-seed20261101-budget25-20261101/gpu-run/artifacts/evaluate_A_predictions.bbox.json",
+      "bytes": 2931453
+    },
+    {
+      "path": "repeat-seed20261101-budget25-20261101/gpu-run/artifacts/evaluate_B_predictions.bbox.json",
+      "bytes": 2887611
+    }
+  ],
+  "prior_prediction_contents_opened": false,
+  "8_output_prediction_JSON_size_extrapolation_bytes": 23507720,
+  "proposed_total_new_formal_output_cap_bytes": 104857600,
+  "research_bytes_before_report": 6150689909,
+  "research_cap_bytes": 6442450944,
+  "cap_margin_bytes_before_report": 291761035,
+  "filesystem_free_bytes": 892953833472,
+  "future_output_checkpoint_copies": 0,
+  "upload_bytes": 0,
+  "new_CU": 0,
+  "new_GPU_seconds": 0,
+  "unknowns": [
+    "64-image sustained CPU throughput and thermal/background load",
+    "full8-condition evaluation/persistence timings",
+    "full-run peak RSS beyond one image",
+    "reproducibility on any different CPU/environment"
+  ],
+  "same_CPU_original_and_transformed_required": true
+}

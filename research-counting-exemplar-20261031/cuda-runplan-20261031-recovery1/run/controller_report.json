@@ -1,0 +1,156 @@
+{
+  "aborted_by_guard": null,
+  "after_release": {
+    "active_assignments": 0,
+    "assignments": [],
+    "balance": null,
+    "rate_per_hour": 0.0
+  },
+  "all_indexed_artifacts_persisted_before_release": true,
+  "allocation_attempts": 1,
+  "allocation_wall_seconds": 383.69047899999714,
+  "artifact_files": 9,
+  "before_allocation": {
+    "active_assignments": 0,
+    "assignments": [],
+    "balance": null,
+    "rate_per_hour": 0.0
+  },
+  "compute_used_seconds_including_local_validation": 545.6848070110136,
+  "credit_ledger": {
+    "prior_upper_bound_CU": 0.14396,
+    "remaining_CU": 1.85604,
+    "total_cap_CU": 2.0
+  },
+  "errors": [],
+  "freeze_sha256": "dc6ce7deb6a8ba9a0f3ead691833ad734865a2e2be31d6b3f10602684277185e",
+  "independent_release_watchdog_pid": 23202,
+  "latest_usage": {
+    "credit_gate": {
+      "allowed": true,
+      "cap_CU": 2.0,
+      "projected_with_rounding_buffer": 1.0564599996939688,
+      "rounding_buffer_CU": 0.05
+    },
+    "elapsed_allocation_seconds": 367.00173583300784,
+    "snapshot": {
+      "active_assignments": 1,
+      "assignments": [
+        {
+          "accelerator": "T4",
+          "endpoint": "gpu-t4-s-use1c0-am16sfohvzuy",
+          "name": "counting-fixed-dc6ce7deb6a8"
+        }
+      ],
+      "balance": null,
+      "rate_per_hour": 1.15
+    },
+    "spent_upper_estimate_CU": 0.1172366634171386
+  },
+  "local_collection_validation_wall_seconds": 0.6136772919999203,
+  "local_finalization_deadline_monotonic": 90891.23476436398,
+  "local_finalization_remaining_seconds": 1254.928895405974,
+  "local_prelaunch_compute_seconds": 0.10814029100583866,
+  "new_authentication": false,
+  "release": "CONFIRMED",
+  "remote_supervisor": {
+    "allocation_stage_wall_seconds": 305.434888231,
+    "charged_compute_seconds_this_allocation": 282.9695436180058,
+    "compute_remaining_seconds": 1257.3421192069836,
+    "compute_used_seconds": 542.6578807930163,
+    "native_runtime_expiry_guard": {
+      "credentials_uploaded": false,
+      "deadline_monotonic": 2832.6811542859896,
+      "runtime_source_sha256": "9c1a5ec7033997e04cfb971fa8f532f8780b43903f7ba7af448dc1311c7b0b6f",
+      "status": "ARMED"
+    },
+    "peak_tree_rss_bytes": 4366069760,
+    "pid": 1054,
+    "preparation": {
+      "allocation_count": 1,
+      "download_wall_seconds": 13.500651049999988,
+      "forecast_transfer_bytes": 5337088980,
+      "gpu_torch_reinstalled": false,
+      "installation_wall_seconds": 10.663640345999994,
+      "native_environment": {
+        "native_torch_file": "/usr/local/lib/python3.13/dist-packages/torch/__init__.py",
+        "native_torchvision_file": "/usr/local/lib/python3.13/dist-packages/torchvision/__init__.py",
+        "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+        "torch": "2.11.0+cu130",
+        "torch_cuda_build": "13.0",
+        "torchvision": "0.26.0+cu130"
+      },
+      "new_authentication": false,
+      "owned_disk_bytes": 1972325691,
+      "resolved_versions": {
+        "Pillow": "11.3.0",
+        "PyYAML": "6.0.3",
+        "addict": "2.4.0",
+        "filelock": "4.2.4",
+        "fsspec": "2025.12.0",
+        "hf-xet": "1.8.0",
+        "huggingface-hub": "0.36.2",
+        "huggingface_hub": "0.36.2",
+        "importlib-metadata": "10.1.0",
+        "matplotlib": "3.10.0",
+        "numpy": "2.1.3",
+        "opencv-python-headless": "5.0.0.93",
+        "packaging": "26.3",
+        "platformdirs": "4.14.0",
+        "pycocotools": "2.0.11",
+        "pyyaml": "6.0.3",
+        "regex": "2025.11.3",
+        "requests": "2.32.4",
+        "safetensors": "0.8.0",
+        "scipy": "1.16.3",
+        "termcolor": "3.3.0",
+        "timm": "1.0.30",
+        "tokenizers": "0.21.4",
+        "tomli": "2.5.0",
+        "torch": "2.11.0+cu130",
+        "torchvision": "0.26.0+cu130",
+        "tqdm": "4.67.3",
+        "transformers": "4.49.0",
+        "typing-extensions": "4.16.0",
+        "typing_extensions": "4.16.0",
+        "yapf": "0.40.1",
+        "zipp": "4.1.2"
+      },
+      "retries": 0,
+      "setup_compute_seconds": 21.348461864005827,
+      "status": "READY",
+      "transfers": [
+        {
+          "bytes": 937560192,
+          "download_wall_seconds": 10.528801620999985,
+          "path": "models/model.safetensors",
+          "sha256": "94eabe4e2595dac1e04cc1703641458b13c1c624ce10072ba57dd96b625a41f5"
+        },
+        {
+          "bytes": 440449768,
+          "download_wall_seconds": 2.9718494290000024,
+          "path": "models/bert-base-uncased/model.safetensors",
+          "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3"
+        }
+      ]
+    },
+    "preparation_process": {
+      "pid": 853,
+      "returncode": 0,
+      "terminated_by_watchdog": false,
+      "wall_seconds": 43.714022551
+    },
+    "remaining_compute_at_worker_start": 1518.9650648539837,
+    "returncode": 2,
+    "scientific_conclusion_complete": false,
+    "setup_compute_seconds": 21.348461864005827,
+    "status": "BLOCKED_OR_INCOMPLETE",
+    "stop_reason": null,
+    "terminated_by_watchdog": false,
+    "wall_seconds": 261.611514824,
+    "worker_started": true
+  },
+  "retrieval_after_release": false,
+  "session": "counting-fixed-dc6ce7deb6a8",
+  "status": "ENGINEERING_BLOCKED_OR_FORMAL_INCOMPLETE"
+}

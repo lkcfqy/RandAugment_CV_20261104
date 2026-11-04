@@ -1,0 +1,135 @@
+{
+  "utc": "2026-11-01T05:32:27.703040+00:00",
+  "status": "ACTUAL_COMPLETE_RELEASED",
+  "prior_CU_upper": 1.2577442410187722,
+  "prior_GPU_seconds_upper": 3718.752113674164,
+  "attempt_CU_upper": 0.5510888405607806,
+  "attempt_GPU_seconds_upper": 1725.1476747989655,
+  "cumulative_CU_upper": 1.8088330815795528,
+  "cumulative_GPU_seconds_upper": 5443.899788473129,
+  "cap_CU": 2.5,
+  "cap_GPU_seconds": 7200,
+  "live_T4_CU_per_hour": 1.15,
+  "stages": [
+    {
+      "phase": "preflight_A",
+      "elapsed_seconds": 372.81322598457336,
+      "increment_seconds": 372.81322598457336,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "preflight_B",
+      "elapsed_seconds": 427.15697383880615,
+      "increment_seconds": 54.34374785423279,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "formal_A",
+      "elapsed_seconds": 1005.3429791927338,
+      "increment_seconds": 578.1860053539276,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "formal_B",
+      "elapsed_seconds": 1565.2719061374664,
+      "increment_seconds": 559.9289269447327,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "evaluate_A",
+      "elapsed_seconds": 1633.271194934845,
+      "increment_seconds": 67.99928879737854,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "evaluate_B",
+      "elapsed_seconds": 1702.7224247455597,
+      "increment_seconds": 69.45122981071472,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "final",
+      "elapsed_seconds": 1713.0663650035858,
+      "increment_seconds": 10.343940258026123,
+      "includes_local_hash_and_transfer": true
+    },
+    {
+      "phase": "final_ack_to_release_observed",
+      "elapsed_seconds": 1725.1476747989655,
+      "increment_seconds": 12.081309795379639,
+      "includes_release_reconciliation": true
+    }
+  ],
+  "early_gate": {
+    "elapsed_seconds": 16.751216888427734,
+    "formal_U": 200,
+    "live_rate": 1.15,
+    "margin_seconds": 852.8365675224927,
+    "max_cu": 2.5,
+    "max_gpu_seconds": 7200,
+    "paired_seed_count": 1,
+    "preparation_allowance_seconds": 554.525631070137,
+    "preparation_remaining_seconds": 537.7744141817093,
+    "prior_cu": 1.2577442410187722,
+    "prior_gpu_seconds": 3718.752113674164,
+    "reference_rule_timings": {
+      "checkpoint_bytes": 692175962,
+      "init_seconds": 40.488969219999944,
+      "p90_predict_seconds": 0.4143788810000615,
+      "p90_update_a": 1.624973811000018,
+      "p90_update_b": 1.6807091929999842,
+      "write_bps": 4453855.0958829
+    },
+    "release_reserve_seconds": 180,
+    "remaining_fixed_U_work_seconds": 1893.8856877332064,
+    "remaining_seconds": 3464.4966694374084,
+    "required_seconds": 2611.6601019149157,
+    "seed": 20261101,
+    "status": "FITS"
+  },
+  "post_preflight_gate": {
+    "dev_metrics_seen": false,
+    "estimated_seconds": 1892.037894033243,
+    "estimates_seconds": {
+      "100": 1396.310874183232,
+      "200": 1892.037894033243,
+      "25": 1024.5156092957236,
+      "50": 1148.4473642582263
+    },
+    "initialization_count_remaining": 4,
+    "new_seed_dev_metrics_seen": false,
+    "post_result_exploratory_repeat": true,
+    "preflight_state_reused": false,
+    "previous_seed_dev_metrics_seen": true,
+    "raw_timings": {
+      "checkpoint_bytes": 692175962,
+      "init_seconds": 20.26334303200008,
+      "p90_predict_seconds": 0.40566864200013697,
+      "p90_update_a": 1.6368245429999888,
+      "p90_update_b": 1.6680222560000857,
+      "write_bps": 4453855.0958829
+    },
+    "remaining_seconds": 2874.098520024927,
+    "rule": "previously fixed U200 or no run; no smaller-U fallback",
+    "rule_timings": {
+      "checkpoint_bytes": 692175962,
+      "init_seconds": 40.52668606400016,
+      "p90_predict_seconds": 0.40566864200013697,
+      "p90_update_a": 1.6368245429999888,
+      "p90_update_b": 1.6680222560000857,
+      "write_bps": 4453855.0958829
+    },
+    "seed": 20261101,
+    "status": "FROZEN",
+    "updates": 200
+  },
+  "final_release_snapshot": {
+    "active_assignments": 0,
+    "assignments": [],
+    "balance": null,
+    "observed_epoch": 1793510672.024811,
+    "rate_per_hour": 0.0
+  },
+  "rate_clock_is_conservative_bound_not_invoice": true,
+  "scope": "All preparation, preflight, formal training, evaluation, full return, release; prior failed attempts carry forward."
+}

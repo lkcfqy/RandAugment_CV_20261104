@@ -1,0 +1,280 @@
+{
+  "utc": "2026-11-01T05:52:17.933164+00:00",
+  "status": "STATIC_FEASIBILITY_COMPLETE_NO_EXECUTION_GO",
+  "conclusion": "Official unchanged CPU path exists and a matching cp311 ARM64-containing MMCV2.1 CPU wheel exists. Existing local environments cannot directly run the pinned detector. End-to-end Mac compatibility and cost are unverified.",
+  "evidence_strength": {
+    "official_CPU_code_branch": "verified from versioned source",
+    "official_CPU_MSDA_unit_test": "read, not run",
+    "official_macOS_build_instructions": "verified from versioned documentation",
+    "official_cp311_universal2_wheel_ARM64": "Mach-O header verified without loading",
+    "same_attention_and_color_Python_source": "byte-identical to officialv2.1.0",
+    "current_Mac_dependency_import_or_ABI": "NOT_TESTED",
+    "GroundingDINO_Mac_inference": "NOT_RUN",
+    "CPU_CPU_comparison": "NOT_RUN",
+    "CPU_CUDA_equivalence": "NOT_CLAIMED"
+  },
+  "preferred_candidate": {
+    "python": "CPython3.11.9 arm64",
+    "python_source": "https://www.python.org/downloads/release/python-3119/",
+    "note": "Concrete official macOS universal2 binary candidate; not a claim that3.11.9 is latest. Interpreter patch and artifact hash must be recorded before any future installation.",
+    "torch": "2.1.0 native macOS",
+    "torchvision": "0.16.0 native macOS",
+    "mmcv": "2.1.0 official CPU torch2.1.0 cp311 universal2 wheel",
+    "mmengine": "0.10.7",
+    "mmdet": "3.3.0",
+    "requirements": "requirements_mac_cpu_candidate.txt",
+    "requires_new_isolated_environment": true,
+    "native_source_compilation_required_if_binary_loads": false
+  },
+  "build_fallback": {
+    "official_source_only": "MMCVv2.1.0 MMCV_WITH_OPS=1",
+    "existing_Apple_Clang": "21.0.0",
+    "optional_tools": "ninja1.11.1.1,psutil5.9.8",
+    "MPS_build_autodetection": "MMCVsetup auto-detects torch.backends.mps.is_available;FORCE_MPS=0 alone does not disable automatic branch. Runtime CPU and build targets are different.",
+    "stop_rule": "If official wheel cannot load and resolution needs model/operator source patches, forks, Rosetta/translation, PyTorch rebuilding, or prolonged cross-backend consistency engineering, do not pursue for this bounded diagnostic."
+  },
+  "cost_unknowns": [
+    "New interpreter/environment resolution and full distribution transfer size.",
+    "Dynamic-loader/ABI compatibility on macOS27.2 and any ordinary build duration.",
+    "Peak RAM and activation cost; physical RAM read was denied.",
+    "Seconds per CPU inference and total512 forward passes; GPU timings cannot substitute.",
+    "Disk peak including environment/build caches within any future agreed storage scope."
+  ],
+  "known_six_core_distribution_download_bytes": 114373068,
+  "known_six_core_distributions": [
+    {
+      "package": "torch",
+      "filename": "torch-2.1.0-cp311-none-macosx_11_0_arm64.whl",
+      "bytes": 59554546,
+      "sha256": "3cd1dedff13884d890f18eea620184fb4cd8fd3c68ce3300498f427ae93aa962",
+      "url": "https://files.pythonhosted.org/packages/7b/7c/4d8728e6f8dbe2b8af054bd92c290d94c633270443514e3ee4b768125cf9/torch-2.1.0-cp311-none-macosx_11_0_arm64.whl"
+    },
+    {
+      "package": "torchvision",
+      "filename": "torchvision-0.16.0-cp311-cp311-macosx_11_0_arm64.whl",
+      "bytes": 1617096,
+      "sha256": "2294a6514a31a6fda562288b28cf6db57877237f4b56ff693262f237a7ed4035",
+      "url": "https://files.pythonhosted.org/packages/dd/48/85ef87f1548620d7c3743cbe135b90d8cf673fc7b8594361917558d765b6/torchvision-0.16.0-cp311-cp311-macosx_11_0_arm64.whl"
+    },
+    {
+      "package": "numpy",
+      "filename": "numpy-1.24.3-cp311-cp311-macosx_11_0_arm64.whl",
+      "bytes": 13839692,
+      "sha256": "d6cc757de514c00b24ae8cf5c876af2a7c3df189028d68c0cb4eaa9cd5afc2bf",
+      "url": "https://files.pythonhosted.org/packages/ee/6c/7217a8844dfe22e349bccbecd35571fa72c5d7fe8b33d8c5540e8cc2535c/numpy-1.24.3-cp311-cp311-macosx_11_0_arm64.whl"
+    },
+    {
+      "package": "opencv-python",
+      "filename": "opencv_python-4.11.0.86-cp37-abi3-macosx_13_0_arm64.whl",
+      "bytes": 37326322,
+      "sha256": "432f67c223f1dc2824f5e73cdfcd9db0efc8710647d4e813012195dc9122a52a",
+      "url": "https://files.pythonhosted.org/packages/05/4d/53b30a2a3ac1f75f65a59eb29cf2ee7207ce64867db47036ad61743d5a23/opencv_python-4.11.0.86-cp37-abi3-macosx_13_0_arm64.whl"
+    },
+    {
+      "package": "pycocotools",
+      "filename": "pycocotools-2.0.8-cp311-cp311-macosx_10_9_universal2.whl",
+      "bytes": 162868,
+      "sha256": "92bf788e6936fc52b57ccaaa78ecdaeac81872eebbfc45b6fe16ae18b85709bd",
+      "url": "https://files.pythonhosted.org/packages/6b/56/9eedccfd1cfdaf6553d527bed0b2b5572550567a5786a8beb098027a3e5e/pycocotools-2.0.8-cp311-cp311-macosx_10_9_universal2.whl"
+    },
+    {
+      "package": "mmcv",
+      "filename": "mmcv-2.1.0-cp311-cp311-macosx_10_9_universal2.whl",
+      "bytes": 1872544,
+      "sha256": "6bc8018e724dc53dbea36fe4db5777da25cd0b67a912b2e802d2cba7b4ce3894",
+      "url": "https://download.openmmlab.com/mmcv/dist/cpu/torch2.1.0/mmcv-2.1.0-cp311-cp311-macosx_10_9_universal2.whl"
+    }
+  ],
+  "existing_BERT_asset_hashes_all_match": true,
+  "existing_BERT_assets_bytes": 441169829,
+  "checkpoint_files": [
+    {
+      "seed": 20261031,
+      "arm": "A",
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/recovery-v5-20261031/gpu-run/artifacts/final_A_U200.pth",
+      "bytes": 692175962,
+      "previously_verified_sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+      "weight_loaded_in_this_check": false
+    },
+    {
+      "seed": 20261031,
+      "arm": "B",
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/recovery-v5-20261031/gpu-run/artifacts/final_B_U200.pth",
+      "bytes": 692175962,
+      "previously_verified_sha256": "d14239f71925ac4f813eb80c8241ce7ca1670d1017bcf047ecae994327870778",
+      "weight_loaded_in_this_check": false
+    },
+    {
+      "seed": 20261101,
+      "arm": "A",
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/repeat-seed20261101-budget25-20261101/gpu-run/artifacts/final_A_U200.pth",
+      "bytes": 692175962,
+      "previously_verified_sha256": "0bc4d99f77e0fbd8079b4827d0db8042868627964b06fa43411fc023cddc7de8",
+      "weight_loaded_in_this_check": false
+    },
+    {
+      "seed": 20261101,
+      "arm": "B",
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/repeat-seed20261101-budget25-20261101/gpu-run/artifacts/final_B_U200.pth",
+      "bytes": 692175962,
+      "previously_verified_sha256": "2747c3bdc75058f286c5dcd17501335054c13dfc188d062e83dd0169d0bb0d24",
+      "weight_loaded_in_this_check": false
+    }
+  ],
+  "four_checkpoint_bytes": 2768703848,
+  "previous_upload_cap_bytes": 13631488,
+  "checkpoint_upload_authorized": false,
+  "future_diagnostic_scope": {
+    "models": 4,
+    "inputs_per_model": 2,
+    "dev_images": 64,
+    "planned_forward_passes": 512,
+    "conditions": [
+      "sameCPUruntime original input",
+      "sameCPUruntime fixedColor0.8 input"
+    ],
+    "all_original_input_CPU_evaluations_required": true,
+    "may_compare_old_GPU_original_AP_to_new_CPU_transformed_AP": false,
+    "same64dev187GT": true,
+    "official_test_used": false,
+    "no_new_training_or_tuning": true,
+    "inference_only_CPU_driver_needed_because_current_worker_requires_CUDA": true
+  },
+  "no_model_facts": {
+    "A": {
+      "color_config": {
+        "level": 0,
+        "max_mag": 1.0,
+        "min_mag": 1.0,
+        "prob": 1.0,
+        "type": "Color"
+      },
+      "distinct_color_parameter_choices_per_source": 1,
+      "factor": 1.0,
+      "stage_order": [
+        "LoadImageFromFile",
+        "LoadAnnotations",
+        "Color",
+        "RandomFlip",
+        "RandomChoice",
+        "PackDetInputs"
+      ],
+      "test_pipeline": [
+        {
+          "backend_args": null,
+          "color_type": "color",
+          "imdecode_backend": "cv2",
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            800,
+            1333
+          ],
+          "type": "FixScaleResize"
+        },
+        {
+          "type": "LoadAnnotations",
+          "with_bbox": true
+        },
+        {
+          "meta_keys": [
+            "img_id",
+            "img_path",
+            "ori_shape",
+            "img_shape",
+            "scale_factor",
+            "text",
+            "custom_entities"
+          ],
+          "type": "PackDetInputs"
+        }
+      ],
+      "config_sha256": "aba5d97e9b30df4ec4d4af256f919a454de90c080c8f0f0ed07cf80a1fdaa628"
+    },
+    "B": {
+      "color_config": {
+        "level": 0,
+        "max_mag": 0.8,
+        "min_mag": 0.8,
+        "prob": 1.0,
+        "type": "Color"
+      },
+      "distinct_color_parameter_choices_per_source": 1,
+      "factor": 0.8,
+      "stage_order": [
+        "LoadImageFromFile",
+        "LoadAnnotations",
+        "Color",
+        "RandomFlip",
+        "RandomChoice",
+        "PackDetInputs"
+      ],
+      "test_pipeline": [
+        {
+          "backend_args": null,
+          "color_type": "color",
+          "imdecode_backend": "cv2",
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            800,
+            1333
+          ],
+          "type": "FixScaleResize"
+        },
+        {
+          "type": "LoadAnnotations",
+          "with_bbox": true
+        },
+        {
+          "meta_keys": [
+            "img_id",
+            "img_path",
+            "ori_shape",
+            "img_shape",
+            "scale_factor",
+            "text",
+            "custom_entities"
+          ],
+          "type": "PackDetInputs"
+        }
+      ],
+      "config_sha256": "38be13f1dc93ddbe10f0275b53689f93afd3f4c30346c8aa9bcbe8f6480f3593"
+    }
+  },
+  "scope_of_color_diversity_statement": "One deterministic color mapping per decoded source, no sampled color factors or alternate color versions across exposures; standard random geometry remains. Unique pixel histogram counts were not measured.",
+  "completed_actions": {
+    "metadata_sources": 25,
+    "metadata_bytes": 444344,
+    "official_MMCV_wheel_static_inspection_bytes": 1872544,
+    "dependency_installations": 0,
+    "framework_imports_for_execution": 0,
+    "models_instantiated": 0,
+    "inference_calls": 0,
+    "GPU_allocations": 0,
+    "Colab_calls": 0,
+    "uploads": 0
+  },
+  "blocked_optional_read": {
+    "action": "/usr/sbin/sysctl -n hw.memsize",
+    "status": "DENIED_BY_OS",
+    "error": "sysctl: sysctl fmt -1 1024 1: Operation not permitted",
+    "exit_code": 1,
+    "RAM_value_obtained": false,
+    "retry_performed": false,
+    "blocks_static_feasibility": false
+  },
+  "remaining_blockers_to_actual_run": [
+    "No compatible preparedCPython3.11 environment",
+    "ABI/import and full official inference still untested",
+    "No authorization to execute this future diagnostic in this task"
+  ],
+  "prior_budget_unchanged": {
+    "CU_upper": 1.8088330815795528,
+    "GPU_seconds_upper": 5443.899788473129
+  }
+}

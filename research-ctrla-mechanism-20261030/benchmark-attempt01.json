@@ -1,0 +1,14 @@
+{
+  "status": "failed",
+  "synthetic_only": true,
+  "real_training_images": 0,
+  "fallback": false,
+  "dtype": "float32",
+  "batch": 125,
+  "cpu_mps_logits_max_abs": 4.470348358154297e-08,
+  "model_parameters": 1972792,
+  "trainable_parameters": 1971352,
+  "error": "view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/benchmark_ctrla.py\", line 27, in main\n    opt.zero_grad(set_to_none=True);z=mps(x);loss=torch.nn.functional.cross_entropy(z,y);loss.backward();opt.step();torch.mps.synchronize()\n                                                                                         ~~~~~~~~~~~~~^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torch/_tensor.py\", line 623, in backward\n    torch.autograd.backward(\n    ~~~~~~~~~~~~~~~~~~~~~~~^\n        self, gradient, retain_graph, create_graph, inputs=inputs\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torch/autograd/__init__.py\", line 395, in backward\n    _engine_run_backward(\n    ~~~~~~~~~~~~~~~~~~~~^\n        tensors,\n        ^^^^^^^^\n    ...<5 lines>...\n        accumulate_grad=True,\n        ^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/.venv/lib/python3.14/site-packages/torch/autograd/graph.py\", line 979, in _engine_run_backward\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        t_outputs, *args, **kwargs\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )  # Calls into the C++ engine to run the backward pass\n    ^\nRuntimeError: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.\n",
+  "elapsed_seconds": 2.2493744580024213
+}

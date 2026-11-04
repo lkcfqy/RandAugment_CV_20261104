@@ -1,0 +1,352 @@
+{
+  "CPU_CUDA_F_input_hashes_equal": true,
+  "CPU_FCV_completed": true,
+  "CPU_resources": {
+    "affinity_cpu_ids": [
+      0,
+      1
+    ],
+    "cgroup_cpu_limits": {
+      "/sys/fs/cgroup/cpu.max": "max 100000"
+    },
+    "os_cpu_count": 2,
+    "policy": "fixed 2 intra-op / 1 inter-op; no resource-driven tuning",
+    "thread_environment": {
+      "MKL_DYNAMIC": null,
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null,
+      "OMP_DYNAMIC": null,
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null
+    },
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 2
+  },
+  "CUDA_FCV_timed_queries_started": false,
+  "CUDA_F_warmup_returned_but_comparison_failed": true,
+  "CUDA_F_warmup_seconds_before_failed_comparison": 6.056716936999976,
+  "GPU_allocations_after_worker_cleanup_before_VM_release": {
+    "allocated_bytes": 9568256,
+    "reserved_bytes": 16777216
+  },
+  "all_indexed_artifacts_persisted_before_release": true,
+  "allocation_attempts_this_recovery": 1,
+  "attempt4_record_note": "STARTED remains because comparison failed before COMPLETE write; final counters confirm forward entered and returned, not successful precheck completion.",
+  "attempt_records": [
+    {
+      "complete_query_seconds": 73.05784625900003,
+      "compute_used_seconds": 385.13188092201653,
+      "index": 1,
+      "label": "cpu_F",
+      "phase": "precheck",
+      "status": "COMPLETE"
+    },
+    {
+      "complete_query_seconds": 70.01837803000001,
+      "compute_used_seconds": 455.53116880701646,
+      "index": 2,
+      "label": "cpu_C",
+      "phase": "precheck",
+      "status": "COMPLETE"
+    },
+    {
+      "complete_query_seconds": 70.17096985299997,
+      "compute_used_seconds": 526.0497237220166,
+      "index": 3,
+      "label": "cpu_V",
+      "phase": "precheck",
+      "status": "COMPLETE"
+    },
+    {
+      "compute_used_seconds": 531.0650383220163,
+      "index": 4,
+      "label": "cuda_F_warmup",
+      "phase": "precheck",
+      "status": "STARTED"
+    }
+  ],
+  "compute_credit_budget": {
+    "CPU_complete_query_seconds": {
+      "C": 70.24000159399998,
+      "F": 73.31144156100004,
+      "V": 70.417908173
+    },
+    "CUDA_comparison_FCV_complete": false,
+    "CUDA_full_throughput_available": false,
+    "CUDA_phase_terminated_by_numerical_failure": true,
+    "after_balance_snapshot_CU": 40.646107910965334,
+    "allocation_released_confirmed": true,
+    "allocation_wall_cap_seconds": 2700,
+    "allocation_wall_seconds": 383.69047899999714,
+    "balance_delta_is_final_invoice": false,
+    "before_balance_CU": 40.773594015108486,
+    "compute_cap_seconds": 1800,
+    "compute_remaining_seconds": 1254.3151929889864,
+    "cumulative_compute_used_seconds": 545.6848070110136,
+    "cumulative_conservative_CU": 0.3214461041431521,
+    "cumulative_conservative_CU_rounded_up_5dp": 0.32145,
+    "duration_times_rate_CU": 0.12256779190277685,
+    "install_wall_separate_seconds": 10.663640345999994,
+    "load_snapshot_CPU_FCV_seconds": 245.39217224700002,
+    "observed_balance_delta_CU": 0.1274861041431521,
+    "official_weight_download_wall_separate_seconds": 13.500651049999988,
+    "preparation_compute_seconds": 21.348461864005827,
+    "prior_compute_wall_seconds": 259.6864732820104,
+    "prior_credit_upper_bound_CU": 0.14396,
+    "rate_CU_per_hour": 1.15,
+    "remaining_credit_lower_bound_CU": 1.67855,
+    "this_run_conservative_CU_with_buffer": 0.17748610414315208,
+    "this_run_conservative_formula": "max(observed postflight balance delta, rate * allocation wall / 3600) + 0.05",
+    "this_run_increment_seconds": 285.9983337290032,
+    "total_credit_cap_CU": 2
+  },
+  "cuda_native_validity": {
+    "active_logits_finite": true,
+    "coordinate_shape": [
+      1,
+      900,
+      4
+    ],
+    "coordinates_finite": true,
+    "full_logits_finite": false,
+    "logit_shape": [
+      1,
+      900,
+      256
+    ],
+    "padding_exactly_negative_infinity": true,
+    "sigmoid_scores_finite": true,
+    "valid_token_length": 14
+  },
+  "cumulative_root_forward_attempts_all_engineering": 12,
+  "formal_queries_completed": 0,
+  "formal_query_attempts": 0,
+  "freeze_sha256": "dc6ce7deb6a8ba9a0f3ead691833ad734865a2e2be31d6b3f10602684277185e",
+  "further_allocation_attempts": 0,
+  "indexed_artifacts_verified": [
+    "attempts/0001.json",
+    "attempts/0002.json",
+    "attempts/0003.json",
+    "attempts/0004.json",
+    "completion.json",
+    "engineering/preparation.json",
+    "engineering/status.json",
+    "install.log",
+    "supervisor.json"
+  ],
+  "load_snapshot_CPU_FCV_seconds": 245.39217224700002,
+  "memory": {
+    "cuda_allocated_bytes": 953395712,
+    "cuda_reserved_bytes": 2896166912,
+    "peak_cuda_allocated_bytes": 2479433216,
+    "peak_cuda_reserved_bytes": 2896166912,
+    "peak_rss_bytes": 4360749056
+  },
+  "no_parameter_fixture_tolerance_or_algorithm_change": true,
+  "numerical_failure": {
+    "absolute_tolerance": 0.0001,
+    "active_logits": {
+      "max_absolute_error": 2.9415736198425293,
+      "max_error_divided_by_tolerance": 6844.578125,
+      "within_tolerance": false
+    },
+    "coordinates": {
+      "max_absolute_error": 0.8791480660438538,
+      "max_error_divided_by_tolerance": 4794.62109375,
+      "within_tolerance": false
+    },
+    "native_mask_equal": false,
+    "relative_tolerance_against_cpu": 0.001,
+    "tolerance_passed": false
+  },
+  "parameter_buffer_shared_alias_migration_exact_equal": true,
+  "postflight": {
+    "controller_release_confirmed": true,
+    "controller_release_errors": [],
+    "freeze_unchanged": true,
+    "independent_official_sessions_output": "[colab] No active sessions found on server.",
+    "independent_watchdog_alive": false,
+    "independent_watchdog_pid": 23202,
+    "indexed_files_hash_verified": 9,
+    "official_sessions_exit": 0,
+    "official_snapshot_exit": 0,
+    "recorded_utc": "2026-10-31T07:19:59.837091+00:00",
+    "retrieval_after_release": false,
+    "snapshot": {
+      "active_assignments": 0,
+      "assignments": [],
+      "balance": null,
+      "rate_per_hour": 0.0
+    }
+  },
+  "preprocessed_shape": [
+    1,
+    3,
+    800,
+    1333
+  ],
+  "receipt": {
+    "accelerator": "T4",
+    "endpoint": "gpu-t4-s-use1c0-am16sfohvzuy",
+    "session_name": "counting-fixed-dc6ce7deb6a8"
+  },
+  "recorded_utc": "2026-10-31T07:19:59.837091+00:00",
+  "remaining_blocker": "Frozen strict CPU/CUDA equivalence gate failed; no further allocation or forward is authorized by this completed GO. Scientific observation remains unrun.",
+  "remote_owned_disk_bytes": 1972325691,
+  "root_forward_attempts_this_recovery": 4,
+  "root_forward_entered": 4,
+  "root_forward_returned": 4,
+  "runtime": {
+    "AMP": false,
+    "cuda": "13.0",
+    "cuda_total_bytes": 15637086208,
+    "cudnn_TF32": false,
+    "device": "Tesla T4",
+    "dtype": "FP32",
+    "float32_matmul_precision": "highest",
+    "matmul_TF32": false,
+    "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130"
+  },
+  "science_reads_during_precheck": 0,
+  "scientific_metric_evaluation": "NOT_PERFORMED",
+  "status": "ENGINEERING_BLOCKED_BY_FROZEN_CPU_CUDA_NUMERICAL_GATE_NOT_SCIENTIFIC_NEGATIVE",
+  "strict_loading": {
+    "actual_aliases": 66,
+    "all_values_equal": true,
+    "custom_attention_extension": false,
+    "logical_keys": 1108,
+    "missing_keys": [],
+    "physical_keys": 1042,
+    "strict": true,
+    "unexpected_keys": []
+  },
+  "supervisor_peak_tree_RSS_bytes": 4366069760,
+  "throughput_budget_gate": "NOT_REACHED; failed warmup is not complete three-mode throughput",
+  "tool_denial": false,
+  "topk_note": "Recorded encoder scores are within the original tolerance and the selected 900-element set is identical, but 10 rank positions differ. This is a localization clue, not proof that rank ordering alone caused final differences. No post-hoc output permutation or retry occurred.",
+  "topk_recorded_diagnostics": {
+    "cpu": {
+      "best_excluded_score": -1.0116184949874878,
+      "candidate_size": 22223,
+      "cutoff_gap_to_best_excluded": 0.011859893798828125,
+      "cutoff_score": -0.9997586011886597,
+      "minimum_adjacent_selected_gap": 6.556510925292969e-07,
+      "score_tensor_sha256": "36cff3328e8a0ee81c8d9679ed3165b00abdae2fabd9b55d1d83f0eb9997ca92",
+      "selected_size": 900,
+      "ties_at_cutoff": 1,
+      "zero_adjacent_selected_gaps": 0
+    },
+    "cuda": {
+      "best_excluded_score": -1.0116479396820068,
+      "candidate_size": 22223,
+      "cutoff_gap_to_best_excluded": 0.011893093585968018,
+      "cutoff_score": -0.9997548460960388,
+      "minimum_adjacent_selected_gap": 2.652406692504883e-06,
+      "score_tensor_sha256": "a0fd378fb6f52477b2ec7f289a5148021e895b5a10dcfeb19c4a71cc2bbdae6c",
+      "selected_size": 900,
+      "ties_at_cutoff": 1,
+      "zero_adjacent_selected_gaps": 0
+    },
+    "different_positions": 10,
+    "different_zero_based_ranks": [
+      {
+        "cpu": 15767,
+        "cuda": 1234,
+        "rank": 243
+      },
+      {
+        "cpu": 1234,
+        "cuda": 15767,
+        "rank": 244
+      },
+      {
+        "cpu": 8514,
+        "cuda": 7145,
+        "rank": 439
+      },
+      {
+        "cpu": 7145,
+        "cuda": 8514,
+        "rank": 440
+      },
+      {
+        "cpu": 19691,
+        "cuda": 11643,
+        "rank": 704
+      },
+      {
+        "cpu": 11643,
+        "cuda": 19691,
+        "rank": 705
+      },
+      {
+        "cpu": 4399,
+        "cuda": 1662,
+        "rank": 812
+      },
+      {
+        "cpu": 1662,
+        "cuda": 4399,
+        "rank": 813
+      },
+      {
+        "cpu": 13983,
+        "cuda": 11724,
+        "rank": 848
+      },
+      {
+        "cpu": 11724,
+        "cuda": 13983,
+        "rank": 849
+      }
+    ],
+    "encoder_score_comparison": {
+      "exact": false,
+      "max_absolute_error": 0.0005865097045898438,
+      "max_error_divided_by_tolerance": 0.8834284543991089,
+      "nonfinite_pattern_compatible": true,
+      "same_shape_dtype": true,
+      "within_tolerance": true
+    },
+    "intersection_size": 900,
+    "max_absolute_score_delta": 0.0005865097045898438,
+    "order_equal": false,
+    "posthoc_reordered_outputs": false,
+    "sets_equal": true,
+    "symmetric_difference_size": 0
+  },
+  "training_steps": 0,
+  "transfer_budget": {
+    "components": {
+      "prior_known_payload_bytes": 3120917268,
+      "this_bundle_encoded_JSON_body_bytes_reconstructed": 134496900,
+      "this_merged_stdout_bytes": 583844,
+      "this_official_weight_bytes": 1378009960,
+      "this_supplemental_base64_upper": 3684
+    },
+    "cumulative_conservative_bytes": 4636108808,
+    "download_cap_bytes": 5368709120,
+    "frozen_preexecution_transfer_forecast_bytes": 5337088980,
+    "known_or_reconstructed_application_payload_sum_bytes": 4634011656,
+    "new_private_file_paths_or_credentials_uploaded": false,
+    "scope": "Application payload accounting, with conservative base64/JSON reconstruction and explicit unmeasured control allowance; not a packet capture and excludes unmeasured TLS/TCP headers. Unused previous reserves are not carried as actual downloads.",
+    "successful_supplemental_downloads": 1,
+    "successful_uploads": 13,
+    "unmeasured_control_envelope_allowance_both_runs_bytes": 2097152,
+    "weight_downloads_this_run": [
+      {
+        "bytes": 937560192,
+        "download_wall_seconds": 10.528801620999985,
+        "path": "models/model.safetensors",
+        "sha256": "94eabe4e2595dac1e04cc1703641458b13c1c624ce10072ba57dd96b625a41f5"
+      },
+      {
+        "bytes": 440449768,
+        "download_wall_seconds": 2.9718494290000024,
+        "path": "models/bert-base-uncased/model.safetensors",
+        "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3"
+      }
+    ]
+  }
+}

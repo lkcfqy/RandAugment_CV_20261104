@@ -1,0 +1,40 @@
+{
+  "status": "geometry requirement fixed; complete scientific preprocessing protocol pending independent review",
+  "image_input": "decoded RGB",
+  "geometry": {
+    "resize": "whole image directly to 224x224 square",
+    "center_crop": false,
+    "short_edge_resize": false,
+    "patch_grid": [
+      16,
+      16
+    ]
+  },
+  "official_default_not_used": {
+    "shortest_edge": 256,
+    "center_crop": [
+      224,
+      224
+    ]
+  },
+  "normalization_reference": {
+    "rescale": 0.00392156862745098,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "still_to_predeclare": [
+    "interpolation and antialias implementation",
+    "brightness/contrast definition, order, levels and clipping",
+    "feature L2 normalization and nearest-neighbor distance",
+    "shared transformation selection and all evaluation decisions"
+  ],
+  "test_data_used_for_model_check": false
+}

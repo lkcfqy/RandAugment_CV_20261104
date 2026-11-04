@@ -1,0 +1,52 @@
+{
+  "input_hashes_equal": 31,
+  "registered_tensor_hashes_equal": 1110,
+  "actual_shared_alias_groups_equal": 66,
+  "cpu_raw_clones_unchanged": true,
+  "cpu_stage_clones_unchanged": true,
+  "first_nonzero_observed_stage": "bert.last_hidden_state",
+  "first_outside_tolerance_observed_stage": "backbone.query.level1",
+  "topk_changed_ranks": [
+    {
+      "rank_1based": 743,
+      "CPU_proposal_index": 17465,
+      "MPS_proposal_index": 21628
+    },
+    {
+      "rank_1based": 744,
+      "CPU_proposal_index": 21628,
+      "MPS_proposal_index": 17465
+    }
+  ],
+  "topk_membership_equal": true,
+  "topk_order_equal": false,
+  "topk_candidates": 22223,
+  "topk_selected": 900,
+  "CPU_cutoff_gap": 0.0003228187561035156,
+  "max_encoder_score_difference": 0.00011873245239257812,
+  "CPU_cutoff_gap_exceeds_twice_max_score_difference": true,
+  "rank_swap_score_gap_upper_bound_from_observed_reversal": 0.00023746490478515625,
+  "exact_swapped_pair_score_gap_not_persisted": true,
+  "embed_init_tgt": true,
+  "interpretation": "Observed near-rank reversal after within-tolerance encoder/proposal scores; earlier small Swin deviations also exist. Root cause at a single operator not established. Original ordered final tolerance still fails.",
+  "native_final_comparison": {
+    "absolute_tolerance": 0.0001,
+    "active_logits": {
+      "max_absolute_error": 1.5562586784362793,
+      "max_error_divided_by_tolerance": 281.9673156738281,
+      "within_tolerance": false
+    },
+    "coordinates": {
+      "max_absolute_error": 0.32948189973831177,
+      "max_error_divided_by_tolerance": 1739.817138671875,
+      "within_tolerance": false
+    },
+    "native_mask_equal": true,
+    "relative_tolerance_against_cpu": 0.001,
+    "tolerance_passed": false
+  },
+  "worker_exited": true,
+  "new_model_attempts": 2,
+  "formal_queries": 0,
+  "checked_unix": 1793416683.673227
+}

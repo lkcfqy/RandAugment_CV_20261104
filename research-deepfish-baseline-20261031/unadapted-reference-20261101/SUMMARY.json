@@ -1,0 +1,320 @@
+{
+  "absolute_gain_A0_AP_pp": 3.6644092206154752,
+  "absolute_gain_A1_AP_pp": 3.5603204153834156,
+  "all12_metrics_and_full_arrays_recomputed_exact": true,
+  "baseline_label": "unadapted pretrained inference with exact A0/A1 initialization; includes seeded random training-only DN state and fixed exp(0)=1 contrastive scales, not raw-checkpoint strict identity",
+  "comparison_scope": "Same seen64dev, sameCPU implementation/prompt/input/postprocessing/metric mapping; descriptive absolute adaptation gain only, no new contribution/mechanism/population inference",
+  "frozen_initial_state_unchanged_after64": true,
+  "load_receipt": {
+    "900_source_tensors_exact": true,
+    "actual_caption_values": [
+      [
+        "fish. "
+      ]
+    ],
+    "all_finite": true,
+    "direct_raw_strict_load": false,
+    "initial": {
+      "state_sha256": "abee57f5419e64fd71a272d3f9f6e42613bf88db353b1ad9b4748920de510b37",
+      "tensor_bytes": 691880148,
+      "tensor_count": 908
+    },
+    "missing_fixed_scale_keys": [
+      "bbox_head.cls_branches.0.log_scale",
+      "bbox_head.cls_branches.1.log_scale",
+      "bbox_head.cls_branches.2.log_scale",
+      "bbox_head.cls_branches.3.log_scale",
+      "bbox_head.cls_branches.4.log_scale",
+      "bbox_head.cls_branches.5.log_scale",
+      "bbox_head.cls_branches.6.log_scale"
+    ],
+    "no_large_checkpoint_copy": true,
+    "passive_forward_counts": {
+      "dn_label_embedding": 0,
+      "dn_query_generator": 0,
+      "language_model": 64
+    },
+    "random_training_only_key": "dn_query_generator.label_embedding.weight",
+    "raw_checkpoint_keys": 903,
+    "raw_checkpoint_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+    "same_initial_state_as_A0_A1": true,
+    "seconds": 1.6730673749989364,
+    "strict_completed_in_RAM_state_load": true,
+    "unused_source_keys": [
+      "language_model.language_backbone.body.model.embeddings.position_ids",
+      "language_model.language_backbone.body.model.pooler.dense.bias",
+      "language_model.language_backbone.body.model.pooler.dense.weight"
+    ],
+    "weights_only": true
+  },
+  "metrics_A0": {
+    "AP": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 27.906767116416418,
+      "stats_index": 0,
+      "value": 0.2790676711641642
+    },
+    "AP50": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 46.88965322441015,
+      "stats_index": 1,
+      "value": 0.4688965322441015
+    },
+    "AP75": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 27.674651870701165,
+      "stats_index": 2,
+      "value": 0.27674651870701167
+    },
+    "AP_large": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 43.350131004089846,
+      "stats_index": 5,
+      "value": 0.4335013100408984
+    },
+    "AP_medium": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 18.526104888353945,
+      "stats_index": 4,
+      "value": 0.18526104888353945
+    },
+    "AP_small": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 0.008290684140877856,
+      "stats_index": 3,
+      "value": 8.290684140877856e-05
+    },
+    "AR100": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 49.09090909090909,
+      "stats_index": 6,
+      "value": 0.4909090909090909
+    },
+    "AR1000": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 55.240641711229955,
+      "stats_index": 8,
+      "value": 0.5524064171122995
+    },
+    "AR300": {
+      "area": "all",
+      "maxDets": 300,
+      "percent": 55.240641711229955,
+      "stats_index": 7,
+      "value": 0.5524064171122995
+    },
+    "AR_large1000": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 67.67441860465117,
+      "stats_index": 11,
+      "value": 0.6767441860465117
+    },
+    "AR_medium1000": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 48.064516129032256,
+      "stats_index": 10,
+      "value": 0.48064516129032253
+    },
+    "AR_small1000": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 5.0,
+      "stats_index": 9,
+      "value": 0.05
+    }
+  },
+  "metrics_A1": {
+    "AP": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 27.80267831118436,
+      "stats_index": 0,
+      "value": 0.2780267831118436
+    },
+    "AP50": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 49.493660701515054,
+      "stats_index": 1,
+      "value": 0.4949366070151505
+    },
+    "AP75": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 26.529891979987745,
+      "stats_index": 2,
+      "value": 0.26529891979987746
+    },
+    "AP_large": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 41.13803581854904,
+      "stats_index": 5,
+      "value": 0.4113803581854904
+    },
+    "AP_medium": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 20.540879155454544,
+      "stats_index": 4,
+      "value": 0.20540879155454544
+    },
+    "AP_small": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 0.38934908744277735,
+      "stats_index": 3,
+      "value": 0.0038934908744277736
+    },
+    "AR100": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 51.60427807486631,
+      "stats_index": 6,
+      "value": 0.516042780748663
+    },
+    "AR1000": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 55.240641711229955,
+      "stats_index": 8,
+      "value": 0.5524064171122995
+    },
+    "AR300": {
+      "area": "all",
+      "maxDets": 300,
+      "percent": 55.240641711229955,
+      "stats_index": 7,
+      "value": 0.5524064171122995
+    },
+    "AR_large1000": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 69.76744186046511,
+      "stats_index": 11,
+      "value": 0.6976744186046512
+    },
+    "AR_medium1000": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 44.40860215053763,
+      "stats_index": 10,
+      "value": 0.4440860215053763
+    },
+    "AR_small1000": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 25.0,
+      "stats_index": 9,
+      "value": 0.25
+    }
+  },
+  "metrics_P0": {
+    "AP": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 24.242357895800943,
+      "stats_index": 0,
+      "value": 0.24242357895800942
+    },
+    "AP50": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 46.74878056919138,
+      "stats_index": 1,
+      "value": 0.46748780569191384
+    },
+    "AP75": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 19.843764898159797,
+      "stats_index": 2,
+      "value": 0.19843764898159796
+    },
+    "AP_large": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 37.720996234316836,
+      "stats_index": 5,
+      "value": 0.37720996234316834
+    },
+    "AP_medium": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 15.790522035940766,
+      "stats_index": 4,
+      "value": 0.15790522035940766
+    },
+    "AP_small": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 0.21986739874477468,
+      "stats_index": 3,
+      "value": 0.0021986739874477468
+    },
+    "AR100": {
+      "area": "all",
+      "maxDets": 100,
+      "percent": 47.00534759358288,
+      "stats_index": 6,
+      "value": 0.47005347593582886
+    },
+    "AR1000": {
+      "area": "all",
+      "maxDets": 1000,
+      "percent": 49.67914438502674,
+      "stats_index": 8,
+      "value": 0.49679144385026736
+    },
+    "AR300": {
+      "area": "all",
+      "maxDets": 300,
+      "percent": 49.67914438502674,
+      "stats_index": 7,
+      "value": 0.49679144385026736
+    },
+    "AR_large1000": {
+      "area": "large",
+      "maxDets": 1000,
+      "percent": 65.34883720930232,
+      "stats_index": 11,
+      "value": 0.6534883720930232
+    },
+    "AR_medium1000": {
+      "area": "medium",
+      "maxDets": 1000,
+      "percent": 37.8494623655914,
+      "stats_index": 10,
+      "value": 0.37849462365591396
+    },
+    "AR_small1000": {
+      "area": "small",
+      "maxDets": 1000,
+      "percent": 18.75,
+      "stats_index": 9,
+      "value": 0.1875
+    }
+  },
+  "new_training_install_download_upload_GPU_MPS_Colab_CU": 0,
+  "no_grad": true,
+  "prediction_manifest_sha256": "edd9118b26624200a798f21ae75c0178ff7f7e614a8850d09da769873c0bb069",
+  "status": "COMPLETE",
+  "test_or_future_confirmation_pool_access": false,
+  "timing": {
+    "complete_lifecycle_seconds": 157.95155549998162,
+    "forward_seconds": 141.23497454199241,
+    "inference_process_seconds": 156.54602966699167,
+    "model_load_seconds": 1.6730673749989364,
+    "peak_RSS_GiB": 3.0075836181640625
+  }
+}

@@ -1,0 +1,578 @@
+{
+  "UTC": "2026-11-02T03:02:59.568428+00:00",
+  "alphas": [
+    0.99,
+    1.0,
+    1.01
+  ],
+  "budget_start_UTC": "2026-11-02T02:45:00+00:00",
+  "deadline_epoch": 1793594700.0,
+  "decision_gate": {
+    "matched_gate_both_models": "Median absolute log token-variance ratio and first-LN sensitivity ratio matched/pixel each >=log1.10, with per-channel multiset identity verified.",
+    "ordinary_gate_both_models": "Across pixel/rand vs none, median absolute log error of scalar-proxy relative first-LN sensitivity >=log1.10 AND pixel-vs-rand sensitivity ordering disagreement >=25% of32 images (proxy or actual relative difference<1% counts as no mismatch).",
+    "outcome": "Only if every gate holds for both models consider a future training proposal; otherwise close this probe. No new training is authorized. Covariance differences alone are insufficient.",
+    "output_gate_both_models": "Median absolute log full-output PE-sensitivity ratio matched/pixel >=log1.10 AND (median cosine distance of matched vs pixel CLS >=.01 OR median clean-neighbour top5 Jaccard distance >=.20).",
+    "scope": "heuristic engineering relevance thresholds, not statistical significance or training benefit"
+  },
+  "device": "cpu",
+  "erasing": {
+    "actual_area_fraction": 0.1992984693877551,
+    "actual_rectangle_hw": [
+      100,
+      100
+    ],
+    "implementation": "installed official timm1.0.22 RandomErasing",
+    "interpretation": "conditional on one erasure; not a training frequency recommendation",
+    "max_area": 0.2,
+    "max_aspect": 1.0,
+    "max_count": 1,
+    "min_area": 0.2,
+    "min_aspect": 1.0,
+    "min_count": 1,
+    "probability": 1.0
+  },
+  "expected_core_forwards": 768,
+  "expected_unique_model_image_mode_identities": 256,
+  "extra_identity_forwards": 2,
+  "extra_output_fd_test_forwards": 16,
+  "host_RSS_stop_bytes": 12884901888,
+  "image_pool": "94 already-local public PairTally images; reuse pixels only, not counting experiments/labels; correlated pairs possible",
+  "images": [
+    {
+      "bytes": 126129,
+      "filename": "OFF_INTRA_HST1_HST2_054_080_ff5eb0.jpg",
+      "id": "OFF_INTRA_HST1_HST2_054_080_ff5eb0",
+      "noise_seed": 8317839233457398947,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_HST1_HST2_054_080_ff5eb0.jpg",
+      "rectangle_seed": 8644917722128524493,
+      "rectangle_tlhw": [
+        30,
+        23,
+        100,
+        100
+      ],
+      "sha256": "354bc75d848077ccb0306d979b3206c2b82cfefa904001c9c3207cb87a2dfb43"
+    },
+    {
+      "bytes": 92529,
+      "filename": "FOO_INTRA_PAS1_PAS2_185_189_5dfd76.jpg",
+      "id": "FOO_INTRA_PAS1_PAS2_185_189_5dfd76",
+      "noise_seed": 6891589172335527214,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FOO_INTRA_PAS1_PAS2_185_189_5dfd76.jpg",
+      "rectangle_seed": 423297762449555730,
+      "rectangle_tlhw": [
+        113,
+        28,
+        100,
+        100
+      ],
+      "sha256": "d0796bcf747da6bf40b68f7824a588aa6e7cfc53ea47ad62f2668b9a366248f4"
+    },
+    {
+      "bytes": 94055,
+      "filename": "OFF_INTRA_SFP1_SFP2_048_047_e436b4.jpg",
+      "id": "OFF_INTRA_SFP1_SFP2_048_047_e436b4",
+      "noise_seed": 427722578370897214,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_SFP1_SFP2_048_047_e436b4.jpg",
+      "rectangle_seed": 2540834944243683916,
+      "rectangle_tlhw": [
+        31,
+        106,
+        100,
+        100
+      ],
+      "sha256": "b51f18c3cc1a58e0966b814d1ba1e0de0779cb7c458932b4c8d200ca49a14755"
+    },
+    {
+      "bytes": 105417,
+      "filename": "HOU_INTRA_HCP1_HCP2_018_013_2d8fe0.jpg",
+      "id": "HOU_INTRA_HCP1_HCP2_018_013_2d8fe0",
+      "noise_seed": 893047023870362365,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_HCP1_HCP2_018_013_2d8fe0.jpg",
+      "rectangle_seed": 1469957749845561488,
+      "rectangle_tlhw": [
+        81,
+        7,
+        100,
+        100
+      ],
+      "sha256": "37fbf02e5f6c85d1bbdf7747dae7e0bd89fc7500abc4d267f5d9ee9ac62bead3"
+    },
+    {
+      "bytes": 73041,
+      "filename": "HOU_INTRA_BAT1_BAT2_020_017_74542d.jpg",
+      "id": "HOU_INTRA_BAT1_BAT2_020_017_74542d",
+      "noise_seed": 7298045894134271110,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_BAT1_BAT2_020_017_74542d.jpg",
+      "rectangle_seed": 1483255487253769763,
+      "rectangle_tlhw": [
+        89,
+        56,
+        100,
+        100
+      ],
+      "sha256": "9073b7133ed086ef656923eef0676d3e4036ddac4a0c237fe4396308bd7e2460"
+    },
+    {
+      "bytes": 238854,
+      "filename": "FUN_INTRA_MAH1_MAH2_028_027_5da45c.jpg",
+      "id": "FUN_INTRA_MAH1_MAH2_028_027_5da45c",
+      "noise_seed": 5664024930514608985,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_MAH1_MAH2_028_027_5da45c.jpg",
+      "rectangle_seed": 434416497474760028,
+      "rectangle_tlhw": [
+        5,
+        9,
+        100,
+        100
+      ],
+      "sha256": "ecf37f98e49190c01fcbc831230d28f2a543c9acbdaabfa7ed41f070f017af3e"
+    },
+    {
+      "bytes": 163427,
+      "filename": "OFF_INTRA_RHS1_RHS2_120_112_6681fb.jpg",
+      "id": "OFF_INTRA_RHS1_RHS2_120_112_6681fb",
+      "noise_seed": 6424831726298463260,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_RHS1_RHS2_120_112_6681fb.jpg",
+      "rectangle_seed": 9122370152060500478,
+      "rectangle_tlhw": [
+        27,
+        25,
+        100,
+        100
+      ],
+      "sha256": "054b9965fafe1b4744ff600137e4031cf239a602d7d6fcb7d90a69560c774757"
+    },
+    {
+      "bytes": 257538,
+      "filename": "FUN_INTRA_PKC1_PKC2_026_054_e28993.jpg",
+      "id": "FUN_INTRA_PKC1_PKC2_026_054_e28993",
+      "noise_seed": 5733832186503236628,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_PKC1_PKC2_026_054_e28993.jpg",
+      "rectangle_seed": 862705530524651702,
+      "rectangle_tlhw": [
+        77,
+        87,
+        100,
+        100
+      ],
+      "sha256": "b53d2c9379a9dddd94fb16eb8a72c6a5ed8543ac65cd910a6e042d390bb8a40d"
+    },
+    {
+      "bytes": 470373,
+      "filename": "OTR_INTRA_IKE1_IKE2_120_120_42a42c.jpg",
+      "id": "OTR_INTRA_IKE1_IKE2_120_120_42a42c",
+      "noise_seed": 5072031552730932814,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_IKE1_IKE2_120_120_42a42c.jpg",
+      "rectangle_seed": 6231018830535810031,
+      "rectangle_tlhw": [
+        57,
+        62,
+        100,
+        100
+      ],
+      "sha256": "71033b287d93c8230c3d4c6e3f09547ee8bc1c172806705c3c02f7a739dd12ee"
+    },
+    {
+      "bytes": 259343,
+      "filename": "OTR_INTRA_BEA1_BEA2_155_130_563274.jpg",
+      "id": "OTR_INTRA_BEA1_BEA2_155_130_563274",
+      "noise_seed": 9026524994876682427,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_BEA1_BEA2_155_130_563274.jpg",
+      "rectangle_seed": 5397911940680937770,
+      "rectangle_tlhw": [
+        61,
+        91,
+        100,
+        100
+      ],
+      "sha256": "1e1e91a475ca943f2e1467f15afe148368a4aba979e479f72153f322dd812783"
+    },
+    {
+      "bytes": 132733,
+      "filename": "OFF_INTRA_PPN1_PPN2_037_052_f8d127.jpg",
+      "id": "OFF_INTRA_PPN1_PPN2_037_052_f8d127",
+      "noise_seed": 2070633825833035148,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_PPN1_PPN2_037_052_f8d127.jpg",
+      "rectangle_seed": 8234268369867909059,
+      "rectangle_tlhw": [
+        62,
+        46,
+        100,
+        100
+      ],
+      "sha256": "b618623ff540cdae751264854140339ed9d336f69576182e507d1095d3e3671d"
+    },
+    {
+      "bytes": 195800,
+      "filename": "OTR_INTRA_STO1_STO2_012_012_df90b7.jpg",
+      "id": "OTR_INTRA_STO1_STO2_012_012_df90b7",
+      "noise_seed": 3108536979986458384,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_STO1_STO2_012_012_df90b7.jpg",
+      "rectangle_seed": 5992052516498795581,
+      "rectangle_tlhw": [
+        105,
+        67,
+        100,
+        100
+      ],
+      "sha256": "443a88b26231692c702c12c7bdc4727dfb0d0c4c40a36259b4e39093f35b2b3a"
+    },
+    {
+      "bytes": 174782,
+      "filename": "OFF_INTRA_PEN1_PEN2_025_025_d6e6a9.jpg",
+      "id": "OFF_INTRA_PEN1_PEN2_025_025_d6e6a9",
+      "noise_seed": 1624989805512149620,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_PEN1_PEN2_025_025_d6e6a9.jpg",
+      "rectangle_seed": 4406160249036546006,
+      "rectangle_tlhw": [
+        93,
+        114,
+        100,
+        100
+      ],
+      "sha256": "120787a99a0a006bad649bff19d36864dc212892afc3ec392103323272c6f678"
+    },
+    {
+      "bytes": 109956,
+      "filename": "FOO_INTRA_CFC1_CFC2_094_096_6da5f8.jpg",
+      "id": "FOO_INTRA_CFC1_CFC2_094_096_6da5f8",
+      "noise_seed": 6723502292562771296,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FOO_INTRA_CFC1_CFC2_094_096_6da5f8.jpg",
+      "rectangle_seed": 4268891305216811361,
+      "rectangle_tlhw": [
+        112,
+        67,
+        100,
+        100
+      ],
+      "sha256": "3069d6c0f318151cd9c50d52f59cebfa55adac88a56574c39eb726db94e215f1"
+    },
+    {
+      "bytes": 111320,
+      "filename": "FOO_INTRA_PNT1_PNT2_183_165_0ba15b.jpg",
+      "id": "FOO_INTRA_PNT1_PNT2_183_165_0ba15b",
+      "noise_seed": 7693170926900057565,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FOO_INTRA_PNT1_PNT2_183_165_0ba15b.jpg",
+      "rectangle_seed": 8114760551368207460,
+      "rectangle_tlhw": [
+        107,
+        3,
+        100,
+        100
+      ],
+      "sha256": "55590f95a0898e8cae930232f417f0a9f5c07dafb89f5bc51f17bad7cad65c8c"
+    },
+    {
+      "bytes": 242688,
+      "filename": "FUN_INTRA_CHK1_CHK2_050_055_8f7efa.jpg",
+      "id": "FUN_INTRA_CHK1_CHK2_050_055_8f7efa",
+      "noise_seed": 4020578527265869523,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_CHK1_CHK2_050_055_8f7efa.jpg",
+      "rectangle_seed": 8272009489611503768,
+      "rectangle_tlhw": [
+        12,
+        95,
+        100,
+        100
+      ],
+      "sha256": "01f9090576ff2d53bb68a70ea46370151fba8e74cb5eb2f69f1cd7de3058bbc9"
+    },
+    {
+      "bytes": 123514,
+      "filename": "OFF_INTRA_STN1_STN2_032_028_d0abcd.jpg",
+      "id": "OFF_INTRA_STN1_STN2_032_028_d0abcd",
+      "noise_seed": 4625024770981940815,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_STN1_STN2_032_028_d0abcd.jpg",
+      "rectangle_seed": 6352381622663922522,
+      "rectangle_tlhw": [
+        32,
+        66,
+        100,
+        100
+      ],
+      "sha256": "62afa9478b5e1b1a6e0452f96739b7d5ab2c101227603ca75c74bd6064e1d3bd"
+    },
+    {
+      "bytes": 380768,
+      "filename": "OTR_INTRA_NAI1_NAI2_200_030_496cdc.jpg",
+      "id": "OTR_INTRA_NAI1_NAI2_200_030_496cdc",
+      "noise_seed": 8794071590298098378,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_NAI1_NAI2_200_030_496cdc.jpg",
+      "rectangle_seed": 7945580282389433265,
+      "rectangle_tlhw": [
+        40,
+        5,
+        100,
+        100
+      ],
+      "sha256": "9ae1e4ade202a46a5ad33f3913d8a261a5e533b9b91f60f07d5cfe9f91a53c5e"
+    },
+    {
+      "bytes": 395318,
+      "filename": "HOU_INTRA_COI1_COI2_060_020_f6ab29.jpg",
+      "id": "HOU_INTRA_COI1_COI2_060_020_f6ab29",
+      "noise_seed": 5383903155008123873,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_COI1_COI2_060_020_f6ab29.jpg",
+      "rectangle_seed": 8072011869054635869,
+      "rectangle_tlhw": [
+        8,
+        65,
+        100,
+        100
+      ],
+      "sha256": "f5843a05e910e3c5a541849614b1105510026278013b467275f96e7d1be46974"
+    },
+    {
+      "bytes": 68741,
+      "filename": "FOO_INTRA_LIM1_LIM2_037_094_eda672.jpg",
+      "id": "FOO_INTRA_LIM1_LIM2_037_094_eda672",
+      "noise_seed": 6975456155901260378,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FOO_INTRA_LIM1_LIM2_037_094_eda672.jpg",
+      "rectangle_seed": 7170867660940174162,
+      "rectangle_tlhw": [
+        118,
+        87,
+        100,
+        100
+      ],
+      "sha256": "02e81e73da332f92d0a1fc08e2309d99f47273be3f34550a5c0525cee8c951f5"
+    },
+    {
+      "bytes": 131578,
+      "filename": "HOU_INTRA_PIL1_PIL2_186_149_81bb2a.jpg",
+      "id": "HOU_INTRA_PIL1_PIL2_186_149_81bb2a",
+      "noise_seed": 7758713245827172606,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_PIL1_PIL2_186_149_81bb2a.jpg",
+      "rectangle_seed": 3219021500681090308,
+      "rectangle_tlhw": [
+        75,
+        111,
+        100,
+        100
+      ],
+      "sha256": "262417947a20acb1cb103521d8141daaafcea2f08bc05ef135ef373a6e92858a"
+    },
+    {
+      "bytes": 257291,
+      "filename": "OTR_INTRA_SCR1_SCR2_020_015_59e049.jpg",
+      "id": "OTR_INTRA_SCR1_SCR2_020_015_59e049",
+      "noise_seed": 918508992044273969,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_SCR1_SCR2_020_015_59e049.jpg",
+      "rectangle_seed": 1195742669870243627,
+      "rectangle_tlhw": [
+        43,
+        12,
+        100,
+        100
+      ],
+      "sha256": "854925f808c977420518de5b7a31bf334a7195098002e5ffd33d9add2d7b26e7"
+    },
+    {
+      "bytes": 291313,
+      "filename": "FUN_INTRA_PUZ1_PUZ2_031_061_4c3ef0.jpg",
+      "id": "FUN_INTRA_PUZ1_PUZ2_031_061_4c3ef0",
+      "noise_seed": 7354241010194796755,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_PUZ1_PUZ2_031_061_4c3ef0.jpg",
+      "rectangle_seed": 1509752749554003334,
+      "rectangle_tlhw": [
+        79,
+        18,
+        100,
+        100
+      ],
+      "sha256": "014aead39298d08acf799c00ffeb322d5b0baef80284f4ebcffa845901925619"
+    },
+    {
+      "bytes": 260890,
+      "filename": "OTR_INTRA_NUT1_NUT2_040_065_c72fc2.jpg",
+      "id": "OTR_INTRA_NUT1_NUT2_040_065_c72fc2",
+      "noise_seed": 2846678159785088681,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_NUT1_NUT2_040_065_c72fc2.jpg",
+      "rectangle_seed": 5638829389261770213,
+      "rectangle_tlhw": [
+        110,
+        2,
+        100,
+        100
+      ],
+      "sha256": "72a31b44c4c624d01baf98932cbd1c9f0d3e9d4f7d7ffa8563c9545988e62a8c"
+    },
+    {
+      "bytes": 90516,
+      "filename": "HOU_INTRA_ULT1_ULT2_034_027_fa97b4.jpg",
+      "id": "HOU_INTRA_ULT1_ULT2_034_027_fa97b4",
+      "noise_seed": 8614226538910219008,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_ULT1_ULT2_034_027_fa97b4.jpg",
+      "rectangle_seed": 6449778742982922270,
+      "rectangle_tlhw": [
+        72,
+        100,
+        100,
+        100
+      ],
+      "sha256": "6f9ca2f2ea238f3b655ff34f2346725b52cdf295b586a00cc0756da8ac029344"
+    },
+    {
+      "bytes": 288877,
+      "filename": "FUN_INTRA_MAH1_MAH2_034_035_39e603.jpg",
+      "id": "FUN_INTRA_MAH1_MAH2_034_035_39e603",
+      "noise_seed": 3008722011930555730,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_MAH1_MAH2_034_035_39e603.jpg",
+      "rectangle_seed": 973714212511790074,
+      "rectangle_tlhw": [
+        14,
+        53,
+        100,
+        100
+      ],
+      "sha256": "6624c4a4771c09c3173996e0c9e72532ff713684e86c1ec9299ddbe2bb690086"
+    },
+    {
+      "bytes": 103016,
+      "filename": "HOU_INTRA_TPK1_TPK2_118_123_0fbb03.jpg",
+      "id": "HOU_INTRA_TPK1_TPK2_118_123_0fbb03",
+      "noise_seed": 7185509192743840147,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/HOU_INTRA_TPK1_TPK2_118_123_0fbb03.jpg",
+      "rectangle_seed": 7130383703142382324,
+      "rectangle_tlhw": [
+        8,
+        31,
+        100,
+        100
+      ],
+      "sha256": "cfa4329a5b839162e7c2deae05c5d39f0dbc1344aeb71db7bb2e35a433a465a9"
+    },
+    {
+      "bytes": 85645,
+      "filename": "FOO_INTRA_CHI1_CHI2_080_038_69ee9c.jpg",
+      "id": "FOO_INTRA_CHI1_CHI2_080_038_69ee9c",
+      "noise_seed": 5897433196528667204,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FOO_INTRA_CHI1_CHI2_080_038_69ee9c.jpg",
+      "rectangle_seed": 2834182575118045387,
+      "rectangle_tlhw": [
+        53,
+        33,
+        100,
+        100
+      ],
+      "sha256": "6e0cbc2da2478383b977e33e3c76b1217f8e7dca03c9a907b0b265e9335f4a94"
+    },
+    {
+      "bytes": 265951,
+      "filename": "OTR_INTRA_NAI1_NAI2_200_030_2944b0.jpg",
+      "id": "OTR_INTRA_NAI1_NAI2_200_030_2944b0",
+      "noise_seed": 4318155341890044104,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_NAI1_NAI2_200_030_2944b0.jpg",
+      "rectangle_seed": 7089023441911083233,
+      "rectangle_tlhw": [
+        1,
+        48,
+        100,
+        100
+      ],
+      "sha256": "773ed7082ee71129613eb27877c0140d918998ad3173348dd64165eb92a2de11"
+    },
+    {
+      "bytes": 389223,
+      "filename": "OTR_INTRA_PEG1_PEG2_155_145_604097.jpg",
+      "id": "OTR_INTRA_PEG1_PEG2_155_145_604097",
+      "noise_seed": 5695412973722258960,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OTR_INTRA_PEG1_PEG2_155_145_604097.jpg",
+      "rectangle_seed": 8621229198721964652,
+      "rectangle_tlhw": [
+        54,
+        2,
+        100,
+        100
+      ],
+      "sha256": "15d4983b396f1145c4703659eccc3380404233c6fa068fe5c61666aaf44f1ca3"
+    },
+    {
+      "bytes": 114359,
+      "filename": "FUN_INTRA_DIC1_DIC2_022_020_ad33f0.jpg",
+      "id": "FUN_INTRA_DIC1_DIC2_022_020_ad33f0",
+      "noise_seed": 3246845766992155982,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/FUN_INTRA_DIC1_DIC2_022_020_ad33f0.jpg",
+      "rectangle_seed": 3712360792047389738,
+      "rectangle_tlhw": [
+        118,
+        32,
+        100,
+        100
+      ],
+      "sha256": "d7f6e8f69db638f48119f14406a40a51a46d91dbad148e49733036c14bc63a06"
+    },
+    {
+      "bytes": 120296,
+      "filename": "OFF_INTRA_PPN1_PPN2_075_094_6a7f4f.jpg",
+      "id": "OFF_INTRA_PPN1_PPN2_075_094_6a7f4f",
+      "noise_seed": 6187514219572359019,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/data/images/OFF_INTRA_PPN1_PPN2_075_094_6a7f4f.jpg",
+      "rectangle_seed": 4720201910642927629,
+      "rectangle_tlhw": [
+        25,
+        30,
+        100,
+        100
+      ],
+      "sha256": "1a90d68708a06a22f2e67c9091b5cdcc17ac22d9bdf1f0ef3aa36ebceb68feb9"
+    }
+  ],
+  "interop_threads": 1,
+  "limits": [
+    "frozen perturbation diagnosis only, not train/test accuracy or augmentation efficacy",
+    "PairTally is not ImageNet; dataset normalization does not imply per-image variance1",
+    "DINOv2 uses its official fixed224 positional interpolation; no resolution change across conditions",
+    "paper final AAAI PDF inaccessible; preprint definitions verified, exact final page not independently verified",
+    "linear covariance identity W Sigma W^T is established algebra, not novelty"
+  ],
+  "matched_correlated": "For each pixel-mode erased channel, reflect-pad then smooth with fixed cross kernel [[0,1,0],[1,4,1],[0,1,0]]/8; assign original sorted pixel values in smoothed rank order. Exact per-channel multiset (thus all scalar moments) retained. Artificial diagnostic control, not proposed augmentation.",
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "models": {
+    "deit_tiny": {
+      "bytes": 22917895,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-view-route-20261030/assets/deit_tiny_patch16_224-a1311bcf.pth",
+      "sha256": "a1311bcf4f24e3c95adaa75535db67bc4412d95535b98f7c1dfd1164dda41c97"
+    },
+    "dinov2_small": {
+      "bytes": 88249960,
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/models/dinov2-small/model.safetensors",
+      "sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1"
+    }
+  },
+  "modes": [
+    "none",
+    "pixel",
+    "rand",
+    "matched_correlated"
+  ],
+  "new_artifact_limit_bytes": 209715200,
+  "new_weights_download_install_upload_GPU_MPS_Colab_CU": 0,
+  "output_fd_halfstep": 0.01,
+  "preprocessing": "PIL RGB -> torchvision Resize(shorter=256,bicubic) -> CenterCrop224 -> ToTensor -> Normalize ImageNet mean/std; no input clipping after erasing",
+  "salt": "pe-erasing-diagnostic-20261102-v1",
+  "secondary_fd_halfstep_first_image_only": 0.005,
+  "selection_rule": "32 smallest SHA256-derived keys of fixed salt|image|filename; no image content/label/effect selection",
+  "statistics": {
+    "LN_axis": "per-token feature-dimension D variance; report all patch tokens, fully erased patch subset and unaffected subset separately; CLS excluded from primary",
+    "output": "final normalized CLS representation, cosine change and RMS relative change; symmetric PE finite-difference response norm / representation norm; DeiT1000 logits top1/top5 also descriptive",
+    "paper_input": "population variance ddof0 of all C,H,W entries of one normalized image, flattened; also spatial per-channel variance reported separately",
+    "paper_tokens": "population variance ddof0 of all N,D patch projection entries, excluding CLS, real projection bias retained",
+    "ranking": "top5 cosine neighbours among all32 clean final CLS representations excluding same image; no class labels or accuracy",
+    "scalar_proxy_prediction": "relative LN sensitivity approx sqrt(VI_none/VI_mode), evaluated descriptively, not claimed an exact theorem",
+    "sensitivity": "absolute RMS over patch tokens/features of d LN(X+alpha P)/dalpha at alpha1, including learned gamma; compare analytic to central finite difference h1e-4 in float64 for every model/image/mode"
+  },
+  "status": "FROZEN_BEFORE_DIAGNOSTIC_MODEL_OUTPUTS",
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "torch_threads": 4,
+  "wall_limit_seconds": 7200
+}

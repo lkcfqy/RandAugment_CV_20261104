@@ -1,0 +1,303 @@
+--- before/payload/scripts/controller.py
++++ after/payload/scripts/controller.py
+@@ -5,9 +5,9 @@
+ """
+ import argparse,hashlib,json,os,subprocess,sys,time,traceback
+ from pathlib import Path
+-from contracts import canonical,validate_go,credit_gate,complete_result_set,make_packet,validate_artifact_path,bound_metric_inputs
++from contracts import canonical,validate_go,credit_gate,complete_result_set,make_packet,validate_artifact_path,bound_metric_inputs,decode_packet,PREFIX
+ from evidence import atomic_bytes,owned_size
+-from transport import Collector,bounded_stream
++from transport import Collector,bounded_stream,compute_deadline,remaining_timeout,ComputeBudgetExpired
+ from release_guard import release_owned
+ 
+ BASE=Path(__file__).resolve().parents[2]
+@@ -35,22 +35,44 @@
+     run=BASE/'run';run.mkdir(exist_ok=True);collector=Collector(run);allocation_start=None;new_attempted=False
+     name='counting-fixed-'+freeze_sha[:12];remote_name='cue_'+freeze_sha[:12];receipt=run/'allocation_receipt.json'
+     guard=BASE/'payload/scripts/colab_guard.py';command_index=0;last_poll=0.;initial_balance=None;max_rate=0.;report={'status':'STARTING','freeze_sha256':freeze_sha,'allocation_attempts':0,'local_prelaunch_compute_seconds':local_prelaunch_compute,'session':name,'retrieval_after_release':False,'new_authentication':False}
+-    abort=None;allocated=False
++    abort=None;allocated=False;execution_started=None;collection_deadline=None
++    runtime_ledger={'completed_install_download_seconds':0.,'received_compute_deadline':None}
+     def elapsed():return 0. if allocation_start is None else time.monotonic()-allocation_start
++    def active_compute_deadline():
++        if collection_deadline is not None:return collection_deadline
++        if execution_started is None or runtime_ledger['received_compute_deadline'] is None:return None
++        origin=execution_started+1800-freeze['prior_compute_wall_seconds']-local_prelaunch_compute+runtime_ledger['completed_install_download_seconds']
++        return min(origin,runtime_ledger['received_compute_deadline'])
+     def command(arguments,timeout=30,*,poll_credit=False,capture=True,cleanup=False):
+         nonlocal command_index
+         command_index+=1;start=time.monotonic();lines=[]
++        boundary=active_compute_deadline()
++        if boundary is not None and not cleanup:timeout=remaining_timeout(boundary,timeout)
+         environment=os.environ.copy();environment.update(PYTHONUNBUFFERED='1',CUE_ALLOCATION_RECEIPT=str(receipt))
++        atomic_bytes(run/('command-%03d.json'%command_index),canonical({'arguments':arguments,'status':'STARTED','timeout_seconds':timeout,'elapsed_allocation_seconds':elapsed()}))
+         def stop():
++            boundary=active_compute_deadline()
++            if boundary is not None and not cleanup and time.monotonic()>=boundary:return True
+             if time.monotonic()-start>=timeout:return True
+             if allocation_start is not None and elapsed()>=(2700 if cleanup else 2610):return True
+             if poll_credit:watch_credit()
+             return abort is not None and not cleanup
+         def line(value):
++            received=time.monotonic()
+             collector.line(value)
++            if execution_started is not None and value.startswith(PREFIX):
++                path,data=decode_packet(value.rstrip('\r\n'))
++                if path in ('engineering/preparation.json','engineering/status.json','supervisor.json','artifact_index.json'):
++                    ledger=json.loads(data)
++                    if path=='engineering/preparation.json':
++                        runtime_ledger['completed_install_download_seconds']=ledger.get('installation_wall_seconds',0.)+ledger.get('download_wall_seconds',0.)
++                    used=ledger.get('compute_used_seconds_after_artifact_hashing',ledger.get('compute_used_seconds'))
++                    if used is not None:
++                        bound=received+1800-used;old=runtime_ledger['received_compute_deadline']
++                        runtime_ledger['received_compute_deadline']=bound if old is None else min(old,bound)
+             if capture:lines.append(value)
+         result=bounded_stream([str(CLI_PYTHON),str(guard),*arguments],line,stop,env=environment)
+-        atomic_bytes(run/('command-%03d.json'%command_index),canonical({'arguments':arguments,'elapsed_allocation_seconds':elapsed(),**result}))
++        atomic_bytes(run/('command-%03d.json'%command_index),canonical({'arguments':arguments,'timeout_seconds':timeout,'elapsed_allocation_seconds':elapsed(),**result}))
+         if result['terminated_by_watchdog'] or result['returncode']!=0:raise RuntimeError('CLI operation failed/uncertain: '+arguments[0])
+         return ''.join(lines)
+     def snapshot(cleanup=False):return json.loads(command(['--snapshot'],timeout=15,cleanup=cleanup))
+@@ -96,47 +118,58 @@
+         template=(BASE/'payload/scripts/launch_template.py').read_text()
+         script=template.replace('__CUE_LAUNCH_CONFIG__',repr(launch));launch_file=run/'remote_launch.py';atomic_bytes(launch_file,script.encode())
+         execute_timeout=max(1.,2610-elapsed())
++        execution_started=time.monotonic()
+         command(['exec','--session',name,'--file',str(launch_file),'--timeout',str(execute_timeout)],timeout=execute_timeout,poll_credit=True,capture=False)
+-        # Always collect while allocation still exists. Streamed files normally suffice.
+-        collection_start=time.monotonic();artifact_root=collector.artifacts
+-        remote_output='content/'+remote_name+'/payload/output/'
+-        index_path=artifact_root/'artifact_index.json'
+-        if not index_path.exists():
+-            index_download=run/'artifact_index.download.json';command(['download','--session',name,remote_output+'artifact_index.json',str(index_download)],timeout=30,poll_credit=True)
+-            collector.line(make_packet('artifact_index.json',index_download.read_bytes()))
+-        index=json.loads(index_path.read_text());downloaded=0
+-        for rel in collector.missing(index):
+-            item=index['files'][rel]
+-            if item['bytes']>8*1024**2:raise RuntimeError('unexpected oversized evidence file')
+-            downloaded+=item['bytes']
+-            if downloaded>256*1024**2:raise RuntimeError('evidence transfer reserve exceeded')
+-            temp=run/'retrieval.tmp';command(['download','--session',name,remote_output+rel,str(temp)],timeout=30,poll_credit=True)
+-            collector.line(make_packet(rel,temp.read_bytes()));temp.unlink()
+-        if collector.missing(index):raise RuntimeError('evidence incomplete before release')
+-        report['all_indexed_artifacts_persisted_before_release']=True;report['artifact_files']=len(index['files'])
+-        supervisor=json.loads((artifact_root/'supervisor.json').read_text());report['remote_supervisor']=supervisor
+-        completion=json.loads((artifact_root/'completion.json').read_text()) if (artifact_root/'completion.json').exists() else {'complete':False}
+-        if supervisor['status']=='WORKER_COMPLETE' and completion['complete']:
+-            from metrics import summarize
+-            queries=json.loads((BASE/'payload/science/queries_frozen.json').read_text())['queries']
+-            labels=json.loads((BASE/'payload/science/labels_frozen.json').read_text())['pairs']
+-            rows=[json.loads((artifact_root/rel).read_text()) for rel in sorted(index['files']) if rel.startswith('results/')]
+-            complete_result_set(rows,{q['query_id']:q['query_sha256'] for q in queries})
+-            grouped={}
+-            for row in rows:
+-                pred=row['prediction']
+-                if pred['count']!=len(pred['boxes']) or pred['count']!=len(pred['scores']):raise RuntimeError('saved boxes/count/scores disagree')
+-                grouped.setdefault(row['filename'],{}).setdefault(row['mode'],{})[row['target']]=pred['count']
+-            pairs,policy=bound_metric_inputs(grouped,labels);recomputed=summarize(pairs,policy)
+-            remote_summary=json.loads((artifact_root/'science/summary.json').read_text())
+-            if any(remote_summary[k]!=v for k,v in recomputed.items()):raise RuntimeError('local label-bound exact summary differs')
+-            report['status']='COMPLETE_492_PENDING_PREDICTED_BOX_REVIEW'
+-        else:report['status']='ENGINEERING_BLOCKED_OR_FORMAL_INCOMPLETE'
+-        report['local_collection_validation_wall_seconds']=time.monotonic()-collection_start
+-        report['compute_used_seconds_including_local_validation']=index.get('compute_used_seconds_after_artifact_hashing',supervisor['compute_used_seconds'])+report['local_collection_validation_wall_seconds']
+-        if report['compute_used_seconds_including_local_validation']>1800:raise RuntimeError('total compute including local validation exceeds cap')
++        # Start from local exec submission, allowing only measured completed transfer/install
++        # exclusions. This conservatively includes remote-to-local transit and never resets
++        # the budget at handoff. Streamed ledger timestamps can only tighten the bound.
++        collection_deadline=execution_started+1800-freeze['prior_compute_wall_seconds']-local_prelaunch_compute+runtime_ledger['completed_install_download_seconds']
++        if runtime_ledger['received_compute_deadline'] is not None:collection_deadline=min(collection_deadline,runtime_ledger['received_compute_deadline'])
++        report['local_finalization_deadline_monotonic']=collection_deadline
++        report['local_finalization_remaining_seconds']=max(0.,collection_deadline-time.monotonic())
++        with compute_deadline(collection_deadline):
++            # Always collect while allocation still exists. Streamed files normally suffice.
++            collection_start=time.monotonic();artifact_root=collector.artifacts
++            remote_output='content/'+remote_name+'/payload/output/'
++            index_path=artifact_root/'artifact_index.json'
++            if not index_path.exists():
++                index_download=run/'artifact_index.download.json';command(['download','--session',name,remote_output+'artifact_index.json',str(index_download)],timeout=30,poll_credit=True)
++                collector.line(make_packet('artifact_index.json',index_download.read_bytes()))
++            index=json.loads(index_path.read_text());downloaded=0
++            for rel in collector.missing(index):
++                item=index['files'][rel]
++                if item['bytes']>8*1024**2:raise RuntimeError('unexpected oversized evidence file')
++                downloaded+=item['bytes']
++                if downloaded>256*1024**2:raise RuntimeError('evidence transfer reserve exceeded')
++                temp=run/'retrieval.tmp';command(['download','--session',name,remote_output+rel,str(temp)],timeout=30,poll_credit=True)
++                collector.line(make_packet(rel,temp.read_bytes()));temp.unlink()
++            if collector.missing(index):raise RuntimeError('evidence incomplete before release')
++            report['all_indexed_artifacts_persisted_before_release']=True;report['artifact_files']=len(index['files'])
++            supervisor=json.loads((artifact_root/'supervisor.json').read_text());report['remote_supervisor']=supervisor
++            completion=json.loads((artifact_root/'completion.json').read_text()) if (artifact_root/'completion.json').exists() else {'complete':False}
++            if supervisor['status']=='WORKER_COMPLETE' and completion['complete']:
++                from metrics import summarize
++                queries=json.loads((BASE/'payload/science/queries_frozen.json').read_text())['queries']
++                labels=json.loads((BASE/'payload/science/labels_frozen.json').read_text())['pairs']
++                rows=[json.loads((artifact_root/rel).read_text()) for rel in sorted(index['files']) if rel.startswith('results/')]
++                complete_result_set(rows,{q['query_id']:q['query_sha256'] for q in queries})
++                grouped={}
++                for row in rows:
++                    pred=row['prediction']
++                    if pred['count']!=len(pred['boxes']) or pred['count']!=len(pred['scores']):raise RuntimeError('saved boxes/count/scores disagree')
++                    grouped.setdefault(row['filename'],{}).setdefault(row['mode'],{})[row['target']]=pred['count']
++                pairs,policy=bound_metric_inputs(grouped,labels);recomputed=summarize(pairs,policy)
++                remote_summary=json.loads((artifact_root/'science/summary.json').read_text())
++                if any(remote_summary[k]!=v for k,v in recomputed.items()):raise RuntimeError('local label-bound exact summary differs')
++                report['status']='COMPLETE_492_PENDING_PREDICTED_BOX_REVIEW'
++            else:report['status']='ENGINEERING_BLOCKED_OR_FORMAL_INCOMPLETE'
++            report['local_collection_validation_wall_seconds']=time.monotonic()-collection_start
++            report['compute_used_seconds_including_local_validation']=max(index.get('compute_used_seconds_after_artifact_hashing',supervisor['compute_used_seconds'])+report['local_collection_validation_wall_seconds'],1800+time.monotonic()-collection_deadline)
++            if report['compute_used_seconds_including_local_validation']>1800:raise RuntimeError('total compute including local validation exceeds cap')
+     except BaseException as error:
+         report.update(status='BLOCKED_OR_INCOMPLETE',error_type=type(error).__name__,error=str(error),traceback=traceback.format_exc())
++        boundary=active_compute_deadline()
++        report['compute_deadline_exhausted']=isinstance(error,ComputeBudgetExpired) or boundary is not None and time.monotonic()>=boundary
+     finally:
+         # Even failed allocation/setup/precheck is released. No second assign call exists.
+         if new_attempted:
+--- before/payload/scripts/remote_runner.py
++++ after/payload/scripts/remote_runner.py
+@@ -9,7 +9,7 @@
+ from pathlib import Path
+ from contracts import canonical
+ from evidence import Evidence,atomic_bytes,owned_size
+-from transport import bounded_stream
++from transport import bounded_stream,compute_deadline,ComputeBudgetExpired
+ 
+ ROOT=Path(__file__).resolve().parents[1]
+ LIMIT=6*1024**3
+@@ -112,16 +112,27 @@
+         report['compute_used_seconds']=plan['previous_compute_wall_seconds']+charged()
+         report['compute_remaining_seconds']=max(0.,1800-report['compute_used_seconds'])
+         report['scientific_conclusion_complete']=report.get('status')=='WORKER_COMPLETE'
+-        # Includes preparation logs and partial evidence even after a killed worker.
++        finalization_deadline=start+excluded+1800-plan['previous_compute_wall_seconds']-args.assembly_compute_seconds
+         index={}
+-        for path in sorted((ROOT/'output').rglob('*')):
+-            if path.is_file() and path.name!='artifact_index.json':
+-                index[str(path.relative_to(ROOT/'output'))]={'sha256':sha(path),'bytes':path.stat().st_size}
+-        report['compute_used_seconds']=plan['previous_compute_wall_seconds']+charged()
+-        report['compute_remaining_seconds']=max(0.,1800-report['compute_used_seconds'])
+-        evidence.write('supervisor.json',report)
+-        index['supervisor.json']={'sha256':sha(ROOT/'output/supervisor.json'),'bytes':(ROOT/'output/supervisor.json').stat().st_size}
+-        evidence.write('artifact_index.json',{'files':index,'complete_worker':report.get('status')=='WORKER_COMPLETE','compute_used_seconds_after_artifact_hashing':plan['previous_compute_wall_seconds']+charged()})
++        try:
++            with compute_deadline(finalization_deadline):
++                # Includes preparation logs and partial evidence even after a killed worker.
++                index={}
++                for path in sorted((ROOT/'output').rglob('*')):
++                    if path.is_file() and path.name!='artifact_index.json':
++                        index[str(path.relative_to(ROOT/'output'))]={'sha256':sha(path),'bytes':path.stat().st_size}
++                report['compute_used_seconds']=plan['previous_compute_wall_seconds']+charged()
++                report['compute_remaining_seconds']=max(0.,1800-report['compute_used_seconds'])
++                evidence.write('supervisor.json',report)
++                index['supervisor.json']={'sha256':sha(ROOT/'output/supervisor.json'),'bytes':(ROOT/'output/supervisor.json').stat().st_size}
++                evidence.write('artifact_index.json',{'files':index,'complete_worker':report.get('status')=='WORKER_COMPLETE','compute_used_seconds_after_artifact_hashing':plan['previous_compute_wall_seconds']+charged()})
++        except ComputeBudgetExpired as error:
++            # Administrative failure marker only; no further hashing, recovery downloads,
++            # or scientific validation after exhaustion. Already saved evidence is retained.
++            report.update(status='BLOCKED_OR_INCOMPLETE',scientific_conclusion_complete=False,compute_deadline_exhausted=True,error=str(error),compute_used_seconds=plan['previous_compute_wall_seconds']+charged())
++            evidence.write('supervisor.json',report,emit=False)
++            index.pop('supervisor.json',None)
++            evidence.write('artifact_index.json',{'files':index,'complete_worker':False,'index_complete':False,'compute_deadline_exhausted':True,'compute_used_seconds_after_artifact_hashing':plan['previous_compute_wall_seconds']+charged()},emit=False)
+     return 0 if report.get('status')=='WORKER_COMPLETE' else 2
+ 
+ if __name__=='__main__':raise SystemExit(main())
+--- before/payload/scripts/transport.py
++++ after/payload/scripts/transport.py
+@@ -1,8 +1,29 @@
+ """Small streaming/persistence helpers. No service calls on import."""
+-import hashlib,os,queue,signal,subprocess,threading,time
++import contextlib,hashlib,os,queue,signal,subprocess,threading,time
+ from pathlib import Path
+ from contracts import PREFIX,decode_packet,validate_artifact_path
+ from evidence import atomic_bytes
++
++class ComputeBudgetExpired(TimeoutError):
++    pass
++
++def remaining_timeout(deadline,original_timeout):
++    remaining=deadline-time.monotonic()
++    if remaining<=0:raise ComputeBudgetExpired('1800 s cumulative computation deadline exhausted')
++    return min(original_timeout,remaining)
++
++@contextlib.contextmanager
++def compute_deadline(deadline):
++    """OS wall timer interrupts blocking validation and waits, not an after-the-fact check."""
++    remaining=remaining_timeout(deadline,float('inf'))
++    if signal.getitimer(signal.ITIMER_REAL)[0]:raise RuntimeError('unexpected existing wall timer')
++    def expired(*args):raise ComputeBudgetExpired('1800 s cumulative computation deadline exhausted during finalization')
++    previous=signal.signal(signal.SIGALRM,expired)
++    signal.setitimer(signal.ITIMER_REAL,remaining)
++    try:yield
++    finally:
++        signal.setitimer(signal.ITIMER_REAL,0)
++        signal.signal(signal.SIGALRM,previous)
+ 
+ class Collector:
+     def __init__(self,root,max_stdout_bytes=256*1024**2):
+--- before/tests/test_controller.py
++++ after/tests/test_controller.py
+@@ -1,8 +1,49 @@
+-import base64,hashlib,json,tempfile,unittest
++import base64,contextlib,hashlib,io,json,tempfile,time,unittest
+ from pathlib import Path
+ from unittest.mock import patch
+ 
+ class ControllerTests(unittest.TestCase):
++    def test_remote_nearly_exhausted_budget_interrupts_blocked_local_finish_and_releases(self):
++        import controller
++        from contracts import make_packet
++        for blocked_phase in ('download','validation'):
++            with self.subTest(blocked_phase=blocked_phase),tempfile.TemporaryDirectory() as temp:
++                base=Path(temp);(base/'payload/scripts').mkdir(parents=True)
++                (base/'payload/scripts/launch_template.py').write_text('__CUE_LAUNCH_CONFIG__')
++                auth=base/'go.json';auth.write_text(json.dumps({'allocation_allowed':True,'freeze_sha256':'abc','scope':'one_T4_precheck_then_conditional_492','max_allocations':1}))
++                frozen={'bundle':{'bytes':1,'parts':[],'sha256':'b'},'payload_bytes':1,'package_manifest_sha256':'c','prior_compute_wall_seconds':54.91578541700437}
++                calls=[];active=False
++                def fake(command,on_line,should_stop,**kwargs):
++                    nonlocal active
++                    args=command[2:];calls.append(args);op=args[0]
++                    if op=='--snapshot':on_line(json.dumps({'balance':40.,'rate_per_hour':1.15 if active else 0.,'active_assignments':int(active),'assignments':[{'name':'counting-fixed-abc','endpoint':'owned','accelerator':'T4'}] if active else []})+'\n')
++                    elif op=='new':
++                        active=True;Path(kwargs['env']['CUE_ALLOCATION_RECEIPT']).write_text(json.dumps({'endpoint':'owned'}))
++                    elif op=='--release-receipt':active=False
++                    elif op=='exec' and args[args.index('--file')+1].endswith('remote_launch.py'):
++                        data=json.dumps({'status':'BLOCKED_OR_INCOMPLETE','compute_used_seconds':1799.85}).encode()
++                        on_line(make_packet('supervisor.json',data)+'\n')
++                        index={'files':{'supervisor.json':{'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)},'missing-one.json':{'sha256':'unused','bytes':1},'missing-two.json':{'sha256':'unused','bytes':1}},'compute_used_seconds_after_artifact_hashing':1799.85}
++                        on_line(make_packet('artifact_index.json',json.dumps(index).encode())+'\n')
++                    elif op=='download':time.sleep(.8)
++                    return {'returncode':0,'terminated_by_watchdog':False,'wall_seconds':0.,'pid':1}
++                original_missing=controller.Collector.missing
++                def missing(collector,index):
++                    if blocked_phase=='validation':time.sleep(.8)
++                    return original_missing(collector,index)
++                begin=time.monotonic()
++                with patch.object(controller,'BASE',base),patch.object(controller,'verify_freeze',return_value=(frozen,'abc')),patch.object(controller,'owned_size',return_value=0),patch.object(controller,'bounded_stream',side_effect=fake),patch.object(controller.subprocess,'Popen') as popen,patch.object(controller.Collector,'missing',missing),contextlib.redirect_stdout(io.StringIO()):
++                    popen.return_value.pid=999999
++                    self.assertEqual(controller.main(['--run','--authorization',str(auth)]),2)
++                self.assertLess(time.monotonic()-begin,.5)
++                report=json.loads((base/'run/controller_report.json').read_text())
++                self.assertTrue(report['compute_deadline_exhausted']);self.assertEqual(report['release'],'CONFIRMED');self.assertFalse(active)
++                self.assertTrue((base/'run/artifacts/supervisor.json').exists())
++                self.assertLessEqual(sum(args[0]=='download' for args in calls),1)
++                if blocked_phase=='download':
++                    downloads=[json.loads(p.read_text()) for p in (base/'run').glob('command-*.json') if json.loads(p.read_text())['arguments'][0]=='download']
++                    self.assertEqual(len(downloads),1);self.assertGreater(downloads[0]['timeout_seconds'],0);self.assertLessEqual(downloads[0]['timeout_seconds'],.15)
++
+     def test_no_GO_rejected_before_any_service_call(self):
+         import controller
+         with patch.object(controller,'verify_freeze',return_value=({},'abc')),patch.object(controller,'bounded_stream',side_effect=AssertionError('must not contact CLI')):
+--- before/build_package.py
++++ after/build_package.py
+@@ -69,7 +69,7 @@
+         while data:=stream.read(8*1024**2):
+             path=bundle_dir/('part-%03d.bin'%index);path.write_bytes(data);parts.append({'path':str(path.relative_to(OUT)),'sha256':sha(path),'bytes':len(data)});index+=1
+     bundle={'path':str(archive.relative_to(OUT)),'bytes':archive.stat().st_size,'sha256':sha(archive),'parts':parts}
+-    frozen_files={str(path.relative_to(OUT)):{'sha256':sha(path),'bytes':path.stat().st_size} for path in sorted(OUT.rglob('*')) if path.is_file() and '__pycache__' not in path.parts and not set(path.relative_to(OUT).parts)&{'run','reports','sources'} and path.name not in ('FREEZE.json','authorization.template.json','README_ZH.md')}
++    frozen_files={str(path.relative_to(OUT)):{'sha256':sha(path),'bytes':path.stat().st_size} for path in sorted(OUT.rglob('*')) if path.is_file() and '__pycache__' not in path.parts and not set(path.relative_to(OUT).parts)&{'run','reports','sources'} and path.name not in ('FREEZE.json','authorization.template.json','README_ZH.md','delivery_manifest.json')}
+     freeze={'status':'PENDING_REVIEW_AND_EXPLICIT_GO','files':frozen_files,'bundle':bundle,'payload_bytes':sum(p.stat().st_size for p in all_files),'package_manifest_sha256':sha(PAYLOAD/'package_files.json'),'fixture_pixel_sha256':sha(fixture_dir/'texture.rgb'),'execution_contract_sha256':sha(PAYLOAD/'execution_contract.json'),'prior_compute_wall_seconds':previous,'new_model_forwards':0,'new_allocations':0,'formal_queries_executed':0}
+     write(OUT/'FREEZE.json',freeze)
+     write(OUT/'authorization.template.json',{'allocation_allowed':False,'freeze_sha256':sha(OUT/'FREEZE.json'),'scope':'one_T4_precheck_then_conditional_492','max_allocations':1,'note':'Template only; parent explicit GO required. Do not auto-enable.'})

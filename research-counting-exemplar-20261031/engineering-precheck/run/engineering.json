@@ -1,0 +1,377 @@
+{
+  "absolute_tolerance": 0.0001,
+  "attempt_limit": 7,
+  "calls": [
+    {
+      "device": "cpu",
+      "end_to_end_seconds": 6.159159625007305,
+      "input_shape": [
+        1,
+        3,
+        800,
+        1333
+      ],
+      "label": "CPU_F",
+      "mode": "F",
+      "native_group_assertions_passed": true,
+      "validity": {
+        "active_logits_finite": true,
+        "coordinate_shape": [
+          1,
+          900,
+          4
+        ],
+        "coordinates_finite": true,
+        "full_logits_finite": false,
+        "logit_shape": [
+          1,
+          900,
+          256
+        ],
+        "padding_exactly_negative_infinity": true,
+        "sigmoid_scores_finite": true,
+        "valid_token_length": 14
+      },
+      "warmup": false
+    },
+    {
+      "device": "cpu",
+      "end_to_end_seconds": 6.139379667001776,
+      "input_shape": [
+        1,
+        3,
+        800,
+        1333
+      ],
+      "label": "CPU_C",
+      "mode": "C",
+      "native_group_assertions_passed": true,
+      "validity": {
+        "active_logits_finite": true,
+        "coordinate_shape": [
+          1,
+          900,
+          4
+        ],
+        "coordinates_finite": true,
+        "full_logits_finite": false,
+        "logit_shape": [
+          1,
+          900,
+          256
+        ],
+        "padding_exactly_negative_infinity": true,
+        "sigmoid_scores_finite": true,
+        "valid_token_length": 11
+      },
+      "warmup": false
+    },
+    {
+      "device": "cpu",
+      "end_to_end_seconds": 6.1373153750027996,
+      "input_shape": [
+        1,
+        3,
+        800,
+        1333
+      ],
+      "label": "CPU_V",
+      "mode": "V",
+      "native_group_assertions_passed": true,
+      "validity": {
+        "active_logits_finite": true,
+        "coordinate_shape": [
+          1,
+          900,
+          4
+        ],
+        "coordinates_finite": true,
+        "full_logits_finite": false,
+        "logit_shape": [
+          1,
+          900,
+          256
+        ],
+        "padding_exactly_negative_infinity": true,
+        "sigmoid_scores_finite": true,
+        "valid_token_length": 10
+      },
+      "warmup": false
+    }
+  ],
+  "confidence_threshold": 0.23,
+  "counters": {
+    "dataset_files_read": 0,
+    "dataset_read_attempts": 0,
+    "formal_queries": 0,
+    "forward_attempts_reserved": 4,
+    "socket_connect_attempts": 0,
+    "top_model_entered": 4,
+    "top_model_returned": 4,
+    "torch_load_attempts": 0,
+    "training_steps": 0
+  },
+  "cpu_interop_threads": 1,
+  "cpu_intraop_threads": 2,
+  "cpu_load_seconds": 0.5133852500002831,
+  "cpu_to_mps_model_transfer_seconds": 0.21282820799387991,
+  "elapsed_seconds": 33.745577207999304,
+  "events": [
+    {
+      "elapsed_seconds": 0.00012466699990909547,
+      "event": "worker_started"
+    },
+    {
+      "elapsed_seconds": 0.45534858299652115,
+      "event": "runtime_imported",
+      "torch_version": "2.13.0"
+    },
+    {
+      "elapsed_seconds": 10.040592707999167,
+      "event": "strict_cpu_load_complete",
+      "load_seconds": 0.5133852500002831
+    },
+    {
+      "elapsed_seconds": 10.043155249994015,
+      "event": "F_C_V_helper_contracts_passed"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 10.045933624991449,
+      "event": "attempt_started",
+      "label": "CPU_F"
+    },
+    {
+      "elapsed_seconds": 16.207934999998542,
+      "end_to_end_seconds": 6.159159625007305,
+      "event": "attempt_completed",
+      "label": "CPU_F"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 16.208614167000633,
+      "event": "attempt_started",
+      "label": "CPU_C"
+    },
+    {
+      "elapsed_seconds": 22.35068154199689,
+      "end_to_end_seconds": 6.139379667001776,
+      "event": "attempt_completed",
+      "label": "CPU_C"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 22.351411458002985,
+      "event": "attempt_started",
+      "label": "CPU_V"
+    },
+    {
+      "elapsed_seconds": 28.49156858299102,
+      "end_to_end_seconds": 6.1373153750027996,
+      "event": "attempt_completed",
+      "label": "CPU_V"
+    },
+    {
+      "elapsed_seconds": 28.70553083300183,
+      "event": "model_transferred_to_mps",
+      "seconds": 0.21282820799387991
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 28.706757332998677,
+      "event": "attempt_started",
+      "label": "MPS_F_warmup"
+    },
+    {
+      "elapsed_seconds": 33.62451433300157,
+      "event": "engineering_blocked",
+      "exception_type": "NumericalFailure",
+      "message": "CPU/MPS tolerance or native mask mismatch"
+    },
+    {
+      "attempts": 4,
+      "elapsed_seconds": 33.74557545800053,
+      "event": "worker_finished",
+      "status": "ENGINEERING_BLOCKED"
+    }
+  ],
+  "exception_message": "CPU/MPS tolerance or native mask mismatch",
+  "exception_type": "NumericalFailure",
+  "failed_call": {
+    "elapsed_seconds_until_error": 4.91663570899982,
+    "label": "MPS_F_warmup"
+  },
+  "fallback_enabled": false,
+  "input_expected_shape": [
+    1,
+    3,
+    800,
+    1333
+  ],
+  "input_original_size_wh": [
+    1333,
+    800
+  ],
+  "memory": {
+    "mps_current_bytes": 1367528960,
+    "mps_driver_bytes": 3473260544,
+    "peak_mps_current_bytes": 1803708416,
+    "peak_mps_driver_bytes": 3473260544,
+    "peak_rss_bytes": 3901505536
+  },
+  "mps_allocator": {
+    "allocator_limit_bytes": 8589934592.0,
+    "driver_guard_bytes": 8589934592,
+    "fraction": 0.15432095313251037,
+    "recommended_bytes": 55662788608
+  },
+  "mps_available": true,
+  "mps_cleanup": {
+    "cache_emptied": true,
+    "current_bytes": 0,
+    "driver_bytes": 24838144
+  },
+  "mps_limit_bytes": 8589934592,
+  "native_token_ids_expected": {
+    "C": [
+      101,
+      9121,
+      1008,
+      1008,
+      1008,
+      1012,
+      1008,
+      1008,
+      1008,
+      1012,
+      102
+    ],
+    "F": [
+      101,
+      2417,
+      9121,
+      1008,
+      1008,
+      1008,
+      1012,
+      2630,
+      9121,
+      1008,
+      1008,
+      1008,
+      1012,
+      102
+    ],
+    "V": [
+      101,
+      1008,
+      1008,
+      1008,
+      1012,
+      1008,
+      1008,
+      1008,
+      1012,
+      102
+    ]
+  },
+  "numerical_failure_diagnostics": {
+    "absolute_tolerance": 0.0001,
+    "active_logits": {
+      "max_absolute_error": 1.5562586784362793,
+      "max_error_divided_by_tolerance": 281.9673156738281,
+      "within_tolerance": false
+    },
+    "coordinates": {
+      "max_absolute_error": 0.32948189973831177,
+      "max_error_divided_by_tolerance": 1739.817138671875,
+      "within_tolerance": false
+    },
+    "native_mask_equal": true,
+    "relative_tolerance_against_cpu": 0.001,
+    "tolerance_passed": false
+  },
+  "padding_policy_fixed_before_forward": "native masked positions must be exactly -inf; active logits and all coordinates finite; sigmoid scores finite",
+  "peak_rss_bytes_macos": 3901505536,
+  "prediction_payloads_persisted": false,
+  "real_utility_measured": false,
+  "relative_tolerance_against_cpu": 0.001,
+  "retries": 0,
+  "rss_limit_bytes": 8589934592,
+  "seed": 42,
+  "source_modifications": 0,
+  "status": "ENGINEERING_BLOCKED",
+  "strict_loading": {
+    "actual_shared_aliases": 66,
+    "all_exactly_equal": true,
+    "logical_keys": 1108,
+    "missing_keys": [],
+    "physical_keys": 1042,
+    "strict": true,
+    "unexpected_keys": []
+  },
+  "synthetic_input": {
+    "negative_xyxy": [
+      [
+        64.0,
+        192.0,
+        96.0,
+        224.0
+      ],
+      [
+        160.0,
+        192.0,
+        192.0,
+        224.0
+      ],
+      [
+        256.0,
+        192.0,
+        288.0,
+        224.0
+      ]
+    ],
+    "pixel_sha256": "bdce2caf25f2741ae28a8d199862c5f74dee574cffe3e24eb210dfebfc2afb0d",
+    "positive_xyxy": [
+      [
+        64.0,
+        64.0,
+        96.0,
+        96.0
+      ],
+      [
+        160.0,
+        64.0,
+        192.0,
+        96.0
+      ],
+      [
+        256.0,
+        64.0,
+        288.0,
+        96.0
+      ]
+    ],
+    "rgb": [
+      100,
+      110,
+      120
+    ],
+    "text_modes": {
+      "C": [
+        "toy",
+        ""
+      ],
+      "F": [
+        "red toy",
+        "blue toy"
+      ],
+      "V": [
+        "",
+        ""
+      ]
+    }
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/engineering-precheck/scripts/worker.py\", line 263, in main\n    run_one('mps','F',warmup=True)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/engineering-precheck/scripts/worker.py\", line 242, in run_one\n    else: record['numerical_comparison'] = compare(references[mode],captured)\n                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/engineering-precheck/scripts/numerics.py\", line 67, in compare\n    raise NumericalFailure('CPU/MPS tolerance or native mask mismatch', report)\nnumerics.NumericalFailure: CPU/MPS tolerance or native mask mismatch\n",
+  "wall_limit_seconds": 180
+}

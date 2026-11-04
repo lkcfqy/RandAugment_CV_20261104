@@ -1,0 +1,69 @@
+{
+  "updated_utc": "2026-10-30T11:28:49.952806+00:00",
+  "status": "completed_first_pass",
+  "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+  "formal_resource_gate": {
+    "decision": "undetermined_source_identity_not_verified"
+  },
+  "recommendation": "Do not escalate research investment; preserve unresolved identity rather than claim a negative primary result.",
+  "prediction_download_complete": true,
+  "prediction_sha256": "074a436da05b5af8f35bdf8c7a11e670fe1a13776b320f5ac3ada524a41e80ac",
+  "synthetic_tests_passed": 32,
+  "bootstrap_replicates_each": 4000,
+  "strict_source_identity_verified": false,
+  "primary_changes": [
+    {
+      "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+      "model": "resnet18.a1_in1k",
+      "metric": "D_C",
+      "estimate_pp": 0.7584897012323705,
+      "source_joint95_low_pp": -0.62333898202979,
+      "source_joint95_high_pp": 2.1403183844945306,
+      "cluster_joint95_low_pp": -1.591674456379867,
+      "cluster_joint95_high_pp": 3.108653858844608,
+      "strict_source_identity_verified": false
+    },
+    {
+      "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+      "model": "resnet18.a1_in1k",
+      "metric": "D_E",
+      "estimate_pp": 0.33806626098715764,
+      "source_joint95_low_pp": -1.0437624222750028,
+      "source_joint95_high_pp": 1.7198949442493179,
+      "cluster_joint95_low_pp": -2.0120978966250798,
+      "cluster_joint95_high_pp": 2.688230418599395,
+      "strict_source_identity_verified": false
+    },
+    {
+      "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+      "model": "vit_base_patch16_224.augreg_in1k",
+      "metric": "D_C",
+      "estimate_pp": 2.479287104723174,
+      "source_joint95_low_pp": 1.0974584214610137,
+      "source_joint95_high_pp": 3.861115787985334,
+      "cluster_joint95_low_pp": 0.12912294711093647,
+      "cluster_joint95_high_pp": 4.829451262335412,
+      "strict_source_identity_verified": false
+    },
+    {
+      "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+      "model": "vit_base_patch16_224.augreg_in1k",
+      "metric": "D_E",
+      "estimate_pp": -0.5563282336578573,
+      "source_joint95_low_pp": -1.9381569169200177,
+      "source_joint95_high_pp": 0.8255004496043031,
+      "cluster_joint95_low_pp": -2.906492391270095,
+      "cluster_joint95_high_pp": 1.7938359239543802,
+      "strict_source_identity_verified": false
+    }
+  ],
+  "remaining_limits": [
+    "No verified baseline byte/source identity",
+    "PNG prediction names versus JPG annotation names",
+    "Fixed class support insufficient in eligible common cohorts",
+    "Full publisher MD5 not independently read"
+  ],
+  "training": false,
+  "inference": false,
+  "GPU": false
+}

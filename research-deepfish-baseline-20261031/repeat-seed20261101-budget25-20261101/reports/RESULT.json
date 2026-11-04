@@ -1,0 +1,415 @@
+{
+  "status": "COMPLETE_RELEASED_CPU_VERIFIED",
+  "utc": "2026-11-01T05:32:27.703040+00:00",
+  "scientific_status": "post-result exploratory paired seed repeat; no demonstrated augmentation benefit or reliable new contribution",
+  "completed_seeds": [
+    20261031,
+    20261101
+  ],
+  "additional_seed_count": 1,
+  "third_seed_run": false,
+  "previous_failed_repeat": {
+    "seed": 20261101,
+    "preflight_updates_per_arm": 15,
+    "planned_formal_updates_per_arm": 200,
+    "actual_formal_updates_per_arm": 0,
+    "dev_evaluations": 0,
+    "counts_as_scientific_seed": false
+  },
+  "current_repeat": {
+    "seed": 20261101,
+    "support_images": 5,
+    "support_boxes": 5,
+    "dev_images": 64,
+    "dev_boxes": 187,
+    "dev_prefix_groups": 8,
+    "planned_formal_updates_per_arm": 200,
+    "actual_formal_updates_per_arm": 200,
+    "formal_exposures_per_source_per_arm": 40,
+    "preflight_updates_per_arm": 15,
+    "preflight_state_reused": false,
+    "Color_factors": {
+      "A": 1.0,
+      "B": 0.8
+    },
+    "pair_verified_before_dev": true,
+    "fixed_final_checkpoint": true,
+    "official_test_used_for_training_selection_or_current_model_evaluation": false
+  },
+  "primary_metric": "COCO bbox AP IoU0.50:0.05:0.95 maxDets100",
+  "reported_metric_caveat": "Original AP50/AP75 and scale AP are maxDets1000; saved predictions300/image. Uniform100/300 recomputation is labeled post-hoc diagnosis, not replacement.",
+  "two_seed_full_metrics": {
+    "20261031": {
+      "A": {
+        "original_12_stats": [
+          0.267624328516414,
+          0.4567657495148212,
+          0.2665014820549935,
+          4.7349921994038764e-05,
+          0.19082236650897585,
+          0.3929397741129988,
+          0.5053475935828877,
+          0.5465240641711231,
+          0.5465240641711231,
+          0.075,
+          0.4537634408602151,
+          0.6906976744186046
+        ],
+        "original_log_12_stats": [
+          0.268,
+          0.457,
+          0.267,
+          0.0,
+          0.191,
+          0.393,
+          0.505,
+          0.547,
+          0.547,
+          0.075,
+          0.454,
+          0.691
+        ],
+        "uniform100": {
+          "AP": 0.267624328516414,
+          "AP50": 0.4561355345226636,
+          "AP75": 0.26586430766299224,
+          "AR": 0.5053475935828877
+        },
+        "uniform300": {
+          "AP": 0.26802630913577674,
+          "AP50": 0.4567657495148212,
+          "AP75": 0.2665014820549935,
+          "AR": 0.5465240641711231
+        }
+      },
+      "B": {
+        "original_12_stats": [
+          0.2515784890979756,
+          0.4807339380605466,
+          0.2317520908508624,
+          0.000358159666365165,
+          0.18057324796683444,
+          0.3700184936078547,
+          0.47219251336898393,
+          0.5347593582887701,
+          0.5347593582887701,
+          0.1125,
+          0.4440860215053763,
+          0.672093023255814
+        ],
+        "original_log_12_stats": [
+          0.252,
+          0.481,
+          0.232,
+          0.0,
+          0.181,
+          0.37,
+          0.472,
+          0.535,
+          0.535,
+          0.113,
+          0.444,
+          0.672
+        ],
+        "uniform100": {
+          "AP": 0.2515784890979756,
+          "AP50": 0.47909297387269906,
+          "AP75": 0.2309034674563059,
+          "AR": 0.47219251336898393
+        },
+        "uniform300": {
+          "AP": 0.2526128348925595,
+          "AP50": 0.4807339380605466,
+          "AP75": 0.2317520908508624,
+          "AR": 0.5347593582887701
+        }
+      }
+    },
+    "20261101": {
+      "A": {
+        "original_12_stats": [
+          0.2996506626915451,
+          0.5387286009196712,
+          0.26749770833750464,
+          0.005691642028085388,
+          0.22586423179327084,
+          0.42612966693209015,
+          0.495187165775401,
+          0.5310160427807487,
+          0.5310160427807487,
+          0.1625,
+          0.4602150537634409,
+          0.641860465116279
+        ],
+        "original_log_12_stats": [
+          0.3,
+          0.539,
+          0.267,
+          0.006,
+          0.226,
+          0.426,
+          0.495,
+          0.531,
+          0.531,
+          0.163,
+          0.46,
+          0.642
+        ],
+        "uniform100": {
+          "AP": 0.2996506626915451,
+          "AP50": 0.5381087912032048,
+          "AP75": 0.2669411926033628,
+          "AR": 0.495187165775401
+        },
+        "uniform300": {
+          "AP": 0.3001170680673051,
+          "AP50": 0.5387286009196712,
+          "AP75": 0.26749770833750464,
+          "AR": 0.5310160427807487
+        }
+      },
+      "B": {
+        "original_12_stats": [
+          0.2827776541334792,
+          0.5119214928267727,
+          0.2680007962752358,
+          0.0011420430694681907,
+          0.21182099269628135,
+          0.41029272225074603,
+          0.4652406417112299,
+          0.47700534759358293,
+          0.47700534759358293,
+          0.0875,
+          0.3946236559139785,
+          0.6023255813953489
+        ],
+        "original_log_12_stats": [
+          0.283,
+          0.512,
+          0.268,
+          0.001,
+          0.212,
+          0.41,
+          0.465,
+          0.477,
+          0.477,
+          0.087,
+          0.395,
+          0.602
+        ],
+        "uniform100": {
+          "AP": 0.2827776541334792,
+          "AP50": 0.511631134701734,
+          "AP75": 0.2680204447399512,
+          "AR": 0.4652406417112299
+        },
+        "uniform300": {
+          "AP": 0.2829491223700061,
+          "AP50": 0.5119214928267727,
+          "AP75": 0.2680007962752358,
+          "AR": 0.47700534759358293
+        }
+      }
+    }
+  },
+  "descriptive_two_seed_primary_mean_points": {
+    "A_points": 28.363749560397956,
+    "B_points": 26.71780716157274,
+    "delta_points": -1.6459423988252149
+  },
+  "conclusions": [
+    "B-A primary AP is -1.6045839418438401 and -1.6873008558065894 points for the two fixed seeds.",
+    "The first seed AP50-up/AP75-down pattern did not replicate: the second seed has AP50 -2.6807108092898546 points and AP75 +0.050308793773118365 points at the original caps.",
+    "Second-seed geometry coverage at IoU0.75 loses19 GT and gains2; AP75 itself barely changes, so matching counts are not an AP mechanism decomposition.",
+    "Four of eight prefix-group AP delta signs flip; two seeds on one correlated dev set do not establish cross-episode or cross-scene reliability.",
+    "No new training, tuning, threshold selection, relabeling, test evaluation, or third seed is implied."
+  ],
+  "assets": {
+    "package_bytes": 11680399,
+    "package_sha256": "5fa891662011ddb919ff0d390cd9de7e874d1afcdbc97756761b8abeb28c7350",
+    "uploaded_total_bytes_including_bootstrap": 11684923,
+    "final_transport_files": 70,
+    "final_transport_bytes": 1400239201,
+    "final_index_sha256": "7d66167b62b09a051bf9b4c71a3f02df108b9d41efcd651e90b7c956dee19284",
+    "checkpoints": [
+      {
+        "all_floating_finite": true,
+        "arm": "A",
+        "bytes": 692175962,
+        "map_location": "cpu",
+        "sha256": "0bc4d99f77e0fbd8079b4827d0db8042868627964b06fa43411fc023cddc7de8",
+        "tensor_keys": 908,
+        "weights_only": true
+      },
+      {
+        "all_floating_finite": true,
+        "arm": "B",
+        "bytes": 692175962,
+        "map_location": "cpu",
+        "sha256": "2747c3bdc75058f286c5dcd17501335054c13dfc188d062e83dd0169d0bb0d24",
+        "tensor_keys": 908,
+        "weights_only": true
+      }
+    ],
+    "initial_state_sha256": "380e266ce6a7ddcd4de0d37acc0ed132fdb8fba0caef9330f5bf6a79dc10ff21",
+    "paired_trace_sha256": "c5a9f9f8a1e5ef606b92dc81b7472228ae0005c5a899612eb89e248fe21863d4"
+  },
+  "checks": {
+    "pre_run_non_model_tests": 58,
+    "independent_review": "PASS",
+    "independent_non_model_tests": 24,
+    "final_CPU_analysis_checks": 69,
+    "all_frozen_runtime_pins_unchanged": true,
+    "all_70_returned_artifacts_rehashed": true
+  },
+  "cost": {
+    "utc": "2026-11-01T05:32:27.703040+00:00",
+    "status": "ACTUAL_COMPLETE_RELEASED",
+    "prior_CU_upper": 1.2577442410187722,
+    "prior_GPU_seconds_upper": 3718.752113674164,
+    "attempt_CU_upper": 0.5510888405607806,
+    "attempt_GPU_seconds_upper": 1725.1476747989655,
+    "cumulative_CU_upper": 1.8088330815795528,
+    "cumulative_GPU_seconds_upper": 5443.899788473129,
+    "cap_CU": 2.5,
+    "cap_GPU_seconds": 7200,
+    "live_T4_CU_per_hour": 1.15,
+    "stages": [
+      {
+        "phase": "preflight_A",
+        "elapsed_seconds": 372.81322598457336,
+        "increment_seconds": 372.81322598457336,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "preflight_B",
+        "elapsed_seconds": 427.15697383880615,
+        "increment_seconds": 54.34374785423279,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "formal_A",
+        "elapsed_seconds": 1005.3429791927338,
+        "increment_seconds": 578.1860053539276,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "formal_B",
+        "elapsed_seconds": 1565.2719061374664,
+        "increment_seconds": 559.9289269447327,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "evaluate_A",
+        "elapsed_seconds": 1633.271194934845,
+        "increment_seconds": 67.99928879737854,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "evaluate_B",
+        "elapsed_seconds": 1702.7224247455597,
+        "increment_seconds": 69.45122981071472,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "final",
+        "elapsed_seconds": 1713.0663650035858,
+        "increment_seconds": 10.343940258026123,
+        "includes_local_hash_and_transfer": true
+      },
+      {
+        "phase": "final_ack_to_release_observed",
+        "elapsed_seconds": 1725.1476747989655,
+        "increment_seconds": 12.081309795379639,
+        "includes_release_reconciliation": true
+      }
+    ],
+    "early_gate": {
+      "elapsed_seconds": 16.751216888427734,
+      "formal_U": 200,
+      "live_rate": 1.15,
+      "margin_seconds": 852.8365675224927,
+      "max_cu": 2.5,
+      "max_gpu_seconds": 7200,
+      "paired_seed_count": 1,
+      "preparation_allowance_seconds": 554.525631070137,
+      "preparation_remaining_seconds": 537.7744141817093,
+      "prior_cu": 1.2577442410187722,
+      "prior_gpu_seconds": 3718.752113674164,
+      "reference_rule_timings": {
+        "checkpoint_bytes": 692175962,
+        "init_seconds": 40.488969219999944,
+        "p90_predict_seconds": 0.4143788810000615,
+        "p90_update_a": 1.624973811000018,
+        "p90_update_b": 1.6807091929999842,
+        "write_bps": 4453855.0958829
+      },
+      "release_reserve_seconds": 180,
+      "remaining_fixed_U_work_seconds": 1893.8856877332064,
+      "remaining_seconds": 3464.4966694374084,
+      "required_seconds": 2611.6601019149157,
+      "seed": 20261101,
+      "status": "FITS"
+    },
+    "post_preflight_gate": {
+      "dev_metrics_seen": false,
+      "estimated_seconds": 1892.037894033243,
+      "estimates_seconds": {
+        "100": 1396.310874183232,
+        "200": 1892.037894033243,
+        "25": 1024.5156092957236,
+        "50": 1148.4473642582263
+      },
+      "initialization_count_remaining": 4,
+      "new_seed_dev_metrics_seen": false,
+      "post_result_exploratory_repeat": true,
+      "preflight_state_reused": false,
+      "previous_seed_dev_metrics_seen": true,
+      "raw_timings": {
+        "checkpoint_bytes": 692175962,
+        "init_seconds": 20.26334303200008,
+        "p90_predict_seconds": 0.40566864200013697,
+        "p90_update_a": 1.6368245429999888,
+        "p90_update_b": 1.6680222560000857,
+        "write_bps": 4453855.0958829
+      },
+      "remaining_seconds": 2874.098520024927,
+      "rule": "previously fixed U200 or no run; no smaller-U fallback",
+      "rule_timings": {
+        "checkpoint_bytes": 692175962,
+        "init_seconds": 40.52668606400016,
+        "p90_predict_seconds": 0.40566864200013697,
+        "p90_update_a": 1.6368245429999888,
+        "p90_update_b": 1.6680222560000857,
+        "write_bps": 4453855.0958829
+      },
+      "seed": 20261101,
+      "status": "FROZEN",
+      "updates": 200
+    },
+    "final_release_snapshot": {
+      "active_assignments": 0,
+      "assignments": [],
+      "balance": null,
+      "observed_epoch": 1793510672.024811,
+      "rate_per_hour": 0.0
+    },
+    "rate_clock_is_conservative_bound_not_invoice": true,
+    "scope": "All preparation, preflight, formal training, evaluation, full return, release; prior failed attempts carry forward."
+  },
+  "remaining_execution_blockers": [],
+  "limits": [
+    "Same official5-shot episode, same64dev/187GT; only training randomness was repeated.",
+    "Dev added187 labels and is prefix-isolated from support, not proven scene/video isolated.",
+    "Original dataset detection-label derivation and prefix semantics remain bounded documented uncertainties.",
+    "Historic QA viewed3 test images; test was not used for training selection or this model evaluation.",
+    "N=2, correlated frames, one fixed factor/short training length; no significance or novelty claim."
+  ],
+  "input_sha256": {
+    "reports/FINAL_TRANSPORT_VERIFICATION.json": "9c9f97adc1186e006dbc1dfcd9907870f849b6018a0b48cdb38f2d73fa93244a",
+    "reports/FINAL_RELEASE_SNAPSHOT.json": "d03ecd8a1cfe2dbe6bd308e0bbce1389408c28a37a8c442e7199804c6f79282f",
+    "error-analysis/reports/OVERALL.json": "ab6eb9e21c2bbd9d9444fba8ab3c527332165316aed164d54111856135f54bdf",
+    "error-analysis/reports/VERIFICATION.json": "974d134e366a77c8b436b67306abd37873ff04f4648f4c225c6b1a0475613747",
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/error-analysis-20261031/reports/OVERALL.json": "de7c4b19046d9f8818427cf5c8decd438365b7a2c75fb756cdd87b7010d8ab3f"
+  }
+}

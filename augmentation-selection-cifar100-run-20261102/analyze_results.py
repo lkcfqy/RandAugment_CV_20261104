@@ -1,0 +1,84 @@
+"""Joint saved prediction analysis after both encoders complete. No model import."""
+import csv,sys,importlib.util,time,os
+for variable in ['VECLIB_MAXIMUM_THREADS','OMP_NUM_THREADS','OPENBLAS_NUM_THREADS']:os.environ[variable]='4'
+from contracts import *
+from exact_accounting import accounting
+spec=importlib.util.spec_from_file_location('tie_bounds',PREFLIGHT/'compact_tie_bounds.py');tb=importlib.util.module_from_spec(spec);spec.loader.exec_module(tb)
+ids=read(PREFLIGHT/'IDENTITIES.json');limits=read(ROOT/'LIMITS.json');guard=Guard();guard.check(reserve=120)
+gate=read(ROOT/'JOINT_QUERY_GATE.json');assert gate['head_count']==720 and gate['choice_count']==48
+fix=read(ROOT/'PREQUERY_NUMERIC_FIX.json')
+assert fix['utc_epoch']<gate['utc_epoch'] and sha(ROOT/'analyze_results.py')==fix['new_analysis_sha256']
+assert validate_joint_gate(ROOT,limits['protocol_sha256'],limits['identity_sha256'])==gate['fit_seal_sha256']
+for model in MODELS:
+    q=read(ROOT/model/'QUERY_SEAL.json');assert q['utc_epoch']>gate['utc_epoch']
+    for f,h in q['files'].items():assert sha(ROOT/model/f)==h
+rows=[];fold_rows=[];metrics=[];summaries={};checks={};y=np.array([r['label'] for r in ids['query']],dtype=np.uint8)
+winner=lambda a:np.flatnonzero(a==np.max(a)).tolist()
+for model,D in MODELS.items():
+    out=ROOT/model;seal=read(out/'FIT_SEAL.json');heads=read(out/'HEAD_IDENTITIES.json')
+    pred=np.load(out/'QUERY_PREDICTIONS.npy',mmap_mode='r',allow_pickle=False);assert pred.shape==(360,len(y)) and pred.dtype==np.uint8
+    correct=(pred==y[None,:]).sum(1);W=np.load(out/'W.npy',mmap_mode='r',allow_pickle=False);b=np.load(out/'b.npy',mmap_mode='r',allow_pickle=False)
+    qfeatures=np.load(out/'query_features.npy',mmap_mode='r',allow_pickle=False);support=np.load(out/'support_features.npy',mmap_mode='r',allow_pickle=False)
+    # Reproject every persisted query and OOF decision, without additional fits.
+    for h in range(360):
+        guard.check(reserve=120)
+        for first in range(0,len(y),256):
+            re=(qfeatures[first:first+256,0].astype(np.float64)@W[h]+b[h]).argmax(1)
+            assert np.array_equal(re,pred[h,first:first+256])
+    with np.load(out/'CV_PREDICTIONS.npz',allow_pickle=False) as cv:
+        cvh=cv['head_index'];cvid=cv['support_union_index'];cvp=cv['prediction'];cvy=cv['label']
+        assert len(cvh)==86400
+    cvcorrect={};cvn={}
+    for h in heads:
+        metrics.append({'encoder':model,**h,'correct':int(correct[h['index']]),'query_n':len(y),'accuracy':float(correct[h['index']]*100/len(y))})
+        if h['fold']>=0:
+            m=cvh==h['index'];re=(support[cvid[m],0].astype(np.float64)@W[h['index']]+b[h['index']]).argmax(1)
+            assert np.array_equal(re,cvp[m]);assert int(m.sum())==h['B']*100//4
+            cvcorrect[h['index']]=int((cvp[m]==cvy[m]).sum());cvn[h['index']]=int(m.sum())
+            fold_rows.append({'encoder':model,**h,'validation_correct':cvcorrect[h['index']],'validation_n':cvn[h['index']],'query_correct':int(correct[h['index']]),'query_n':len(y)})
+    model_rows=[]
+    for choice in seal['choices']:
+        e,B=choice['episode'],choice['B'];full=[];fold=[];cvtotal=[];valfold=[];qfold=[]
+        for policy in POLICIES:
+            hs=[h['index'] for h in heads if (h['episode'],h['B'],h['policy'])==(e,B,policy) and h['fold']>=0]
+            hi=next(h['index'] for h in heads if (h['episode'],h['B'],h['policy'],h['fold'])==(e,B,policy,-1))
+            full.append(int(correct[hi]));fold.append(int(correct[hs].sum()));cvtotal.append(sum(cvcorrect[h] for h in hs));valfold.append([cvcorrect[h] for h in hs]);qfold.append(correct[hs].tolist())
+        full=np.array(full);fold=np.array(fold);selected=choice['selected_index'];assert cvtotal==choice['cv_correct'] and selected==int(np.argmax(cvtotal))
+        oracle=winner(full);foldbest=winner(fold)
+        row={'encoder':model,'episode':e,'B':B,'selected':POLICIES[selected],'selected_index':selected,'cv_correct':cvtotal,'cv_fold_correct':valfold,'fold_query_correct':qfold,'full_query_correct':full.tolist(),
+             'full_accuracy':(full*100/len(y)).tolist(),'selected_accuracy':float(full[selected]*100/len(y)),
+             'selected_minus_weak_pp':float((full[selected]-full[1])*100/len(y)),'selected_minus_ra_pp':float((full[selected]-full[2])*100/len(y)),
+             'regret_pp':float((full.max()-full[selected])*100/len(y)),'query_best':[POLICIES[i] for i in oracle],'cv_best':[POLICIES[i] for i in winner(np.array(cvtotal))],
+             'fold_query_best':[POLICIES[i] for i in foldbest],'wrong_full':selected not in oracle,'wrong_fold':selected not in foldbest,
+             'same_pair_fold_inferior':any(fold[selected]<fold[i] for i in oracle),'fold_choice_wrong_full':foldbest[0] not in oracle}
+        rows.append(row);model_rows.append(row)
+    for B in [8,16]:
+        rr=[r for r in model_rows if r['B']==B];full=np.array([r['full_query_correct'] for r in rr]);cvtotal=[r['cv_correct'] for r in rr]
+        means=full.mean(0)*100/len(y);oracle=full.max(1).mean()*100/len(y)
+        exact=accounting(full.tolist(),[r['selected_index'] for r in rr],cvtotal,len(y))
+        H=exact['H_pp'];C=exact['C_pp'];tie=tb.bounds(cvtotal,full.tolist(),len(y))
+        wrong=sum(r['wrong_full'] for r in rr);same=sum(r['wrong_full'] and r['same_pair_fold_inferior'] for r in rr)
+        summaries[f'{model}:B{B}']={'fixed_mean':dict(zip(POLICIES,means.tolist())),'selected_mean':float(np.mean([r['selected_accuracy'] for r in rr])),
+          'selected_counts':{p:sum(r['selected']==p for r in rr) for p in POLICIES},'oracle_mean':float(oracle),'H_pp':H,'C_pp':C,
+          'tie_bounds':tie,'exact_accounting':exact,'C_gt_H':exact['C_gt_H'],'Cmin_gt_H':exact['Cmin_gt_H'],
+          'oracle_space_vs_each_constant':dict(zip(POLICIES,(oracle-means).tolist())),
+          'wrong_full_count':wrong,'same_pair_fold_inferior_wrong_count':same,'stage_majority_holds':None if wrong==0 else 2*same>wrong,
+          'wrong_fold_count':sum(r['wrong_fold'] for r in rr),'fold_choice_wrong_full_count':sum(r['fold_choice_wrong_full'] for r in rr),
+          'paired_distributions':{k:{'all12':[r[k] for r in rr],'mean':float(np.mean([r[k] for r in rr])),'median':float(np.median([r[k] for r in rr])),
+                                   'min':min(r[k] for r in rr),'max':max(r[k] for r in rr),'positive':sum(r[k]>0 for r in rr),'zero':sum(r[k]==0 for r in rr),'negative':sum(r[k]<0 for r in rr)} for k in ['selected_minus_weak_pp','selected_minus_ra_pp','regret_pp']}}
+    checks[model]={'query_predictions_reprojected':int(pred.size),'cv_predictions_reprojected':len(cvh),'all_argmax_matches':True,'new_forwards':0,'new_fits':0}
+for name,table in [('ALL_HEAD_METRICS.csv',metrics),('ALL_FOLD_COUNTS.csv',fold_rows)]:
+    with (ROOT/name).open('w',newline='') as f:w=csv.DictWriter(f,fieldnames=list(table[0]));w.writeheader();w.writerows(table)
+save(ROOT/'RESULTS.json',{'status':'COMPLETE_BOTH_ENCODERS','summaries':summaries,'all48_settings':rows,'checks':checks,
+ 'budget_space_decreases':{m:summaries[m+':B16']['exact_accounting']['H_correct_sum']<summaries[m+':B8']['exact_accounting']['H_correct_sum'] for m in MODELS},'independence_claim':False,'new_CU':0})
+md=['# CIFAR-100 全类复核结果','','全部720头、48选择在共同查询门前封存。全部两编码器结果完整保存；100类与EuroSAT类别数、总验证量不同，不是纯域效应。','',
+ '| 编码器 / B | C标准 | W弱 | R | CV | H | C regret | 并列regret下界/上界 | 同对折阶段已差/全标签错误 |','|:---|---:|---:|---:|---:|---:|---:|:---|:---|']
+for k,s in summaries.items():
+    m=s['fixed_mean'];lo,hi=s['tie_bounds']['mean_regret_bounds'];md.append(f"| {k} | {m['clean']:.4f} | {m['weak']:.4f} | {m['ra']:.4f} | {s['selected_mean']:.4f} | {s['H_pp']:.4f} | {s['C_pp']:.4f} | {lo:.4f}/{hi:.4f} | {s['same_pair_fold_inferior_wrong_count']}/{s['wrong_full_count']} |")
+md += ['','H/C与并列端点为事后查询诊断，原CV规则不变。没有新算法或可靠论文贡献声明。全部逐episode结果在ALL_EPISODES.md；完整分布、选择频率与反证布尔条件在RESULTS.json。']
+(ROOT/'RESULTS_TABLE_ZH.md').write_text('\n'.join(md)+'\n')
+md=['# All48 settings','','| Encoder | B | Episode | Clean | Weak | RA | CV choice | CV−W | CV−RA | Regret |','|:---|---:|---:|---:|---:|---:|:---|---:|---:|---:|']
+for r in rows:
+    a=r['full_accuracy'];md.append(f"| {r['encoder']} | {r['B']} | {r['episode']} | {a[0]:.4f} | {a[1]:.4f} | {a[2]:.4f} | {r['selected']} | {r['selected_minus_weak_pp']:+.4f} | {r['selected_minus_ra_pp']:+.4f} | {r['regret_pp']:.4f} |")
+(ROOT/'ALL_EPISODES.md').write_text('\n'.join(md)+'\n')
+print('COMPLETE_ALL_SAVED_PREDICTIONS_REPROJECTED',flush=True)

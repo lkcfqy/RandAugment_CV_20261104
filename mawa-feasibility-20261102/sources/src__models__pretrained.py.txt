@@ -1,0 +1,98 @@
+import torch
+from torch import nn
+import warnings
+import torchvision.models as models
+
+warnings.filterwarnings("ignore", category=UserWarning, module="torchvision.models._utils")
+
+class SwAVFeatures(nn.Module):
+    def __init__(self):
+        super(SwAVFeatures, self).__init__()
+        model = torch.hub.load('facebookresearch/swav:main', 'resnet50')
+
+        self.features = torch.nn.Sequential(*list(model.children())[:-1])
+    
+        self.features.eval()
+
+        for param in self.features.parameters():
+            param.requires_grad = False
+    
+    # 2048 dimensional features
+    def forward(self, x):
+        return self.features(x)
+
+
+class DINO_ResNet50_Features(nn.Module):
+    def __init__(self):
+        super(DINO_ResNet50_Features, self).__init__()
+        model = torch.hub.load('facebookresearch/dino:main', 'dino_resnet50')
+
+        self.features = torch.nn.Sequential(*list(model.children())[:-1])
+    
+        self.features.eval()
+
+        for param in self.features.parameters():
+            param.requires_grad = False
+    
+    # 2048 dimensional features
+    def forward(self, x):
+        return self.features(x)
+    
+
+class DINO_ViTs8_Features(nn.Module):
+    def __init__(self):
+        super(DINO_ViTs8_Features, self).__init__()
+        model = torch.hub.load('facebookresearch/dino:main', 'dino_vits8')
+
+        self.features = model
+    
+        self.features.eval()
+
+        for param in self.features.parameters():
+            param.requires_grad = False
+
+    # 384 dimensional features
+    def forward(self, x):
+        return self.features(x)
+
+
+class CLIP_ViTB16_Features(nn.Module):
+    """
+    CLIP ViT-B/16 image encoder.
+    Install: pip install git+https://github.com/openai/CLIP.git
+    Output: 512 dimensional features
+    Note: Auto-resizes input to 224x224 (CLIP's expected resolution)
+    """
+    def __init__(self):
+        super(CLIP_ViTB16_Features, self).__init__()
+        import clip
+        model, _ = clip.load('ViT-B/16', device='cpu')
+        self.visual = model.visual.float()
+
+        self.visual.eval()
+        for param in self.visual.parameters():
+            param.requires_grad = False
+
+    def forward(self, x):
+        if x.shape[-1] != 224 or x.shape[-2] != 224:
+            x = torch.nn.functional.interpolate(x, size=(224, 224), mode='bicubic', align_corners=False)
+        return self.visual(x)
+
+
+class ResNet50Features(nn.Module):
+    def __init__(self, pretrained=True):
+        super(ResNet50Features, self).__init__()
+
+        weights = models.ResNet50_Weights.IMAGENET1K_V1 if pretrained else None
+        model = models.resnet50(weights=weights)
+
+        self.features = nn.Sequential(*list(model.children())[:-1])
+
+        self.features.eval()
+
+        for param in self.features.parameters():
+            param.requires_grad = False
+
+    # 2048 dimensional features
+    def forward(self, x):
+        return self.features(x)

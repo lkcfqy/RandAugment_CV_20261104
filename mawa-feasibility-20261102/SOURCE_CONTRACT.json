@@ -1,0 +1,132 @@
+{
+  "UTC": "2026-11-02T03:38:44.605957+00:00",
+  "commit": "14eac6091c74a85fe298a065f9796f8056da636c",
+  "paper_loss": "(M_identity + sum_k M_aug_k)/(s+1), after dividing Eq21 by d",
+  "released_single_view_loss": "lambda*(0.5*M_identity+1.5*M_aug)",
+  "s1_same_objective_as_paper": false,
+  "s3_after_target_repeat": "released = (2/d)*Eq21 at lambda=1",
+  "s3_existing_default_branch_batch_gt1": "shape mismatch Nsxd vs Nxd; synthetic test reproduced without executing upstream",
+  "target_repeat_order": "view-major torch.cat([target]*s,0), not repeat_interleave(s,0)",
+  "released_template": "DINO, batch1024,s1; does not establish ResNet50 experiment run configuration",
+  "source_lines": {
+    "src/losses/loss_factory.py": [
+      {
+        "line": 72,
+        "text": "identity_loss = torch.mean(torch.square(X - flat_encoded))"
+      },
+      {
+        "line": 73,
+        "text": "invariance_loss = torch.mean(torch.square(X - flat_augmented_encoded))"
+      },
+      {
+        "line": 74,
+        "text": "total_loss += loss_config.markov_wasserstein * invariance_loss"
+      },
+      {
+        "line": 75,
+        "text": "total_loss += loss_config.markov_wasserstein * (identity_loss + invariance_loss) / 2.0"
+      },
+      {
+        "line": 93,
+        "text": "X = torch.cat([flat_features] * (num_aug_samples*num_augs + 1), dim=0)"
+      },
+      {
+        "line": 95,
+        "text": "X = torch.cat([flat_data] * (num_aug_samples*num_augs + 1), dim=0)"
+      },
+      {
+        "line": 103,
+        "text": "X = torch.cat([flat_features] * (num_aug_samples + 1), dim=0)"
+      },
+      {
+        "line": 105,
+        "text": "X = torch.cat([flat_data] * (num_aug_samples + 1), dim=0)"
+      },
+      {
+        "line": 136,
+        "text": "X = torch.cat([flat_features] * (num_aug_samples*num_augs + 1), dim=0)"
+      },
+      {
+        "line": 138,
+        "text": "X = torch.cat([flat_data] * (num_aug_samples*num_augs + 1), dim=0)"
+      }
+    ],
+    "src/train/trainer.py": [
+      {
+        "line": 137,
+        "text": "features = self.features(data)"
+      },
+      {
+        "line": 159,
+        "text": "total_loss, loss_terms = self.loss_fn("
+      },
+      {
+        "line": 232,
+        "text": "for _ in range(self.num_aug_samples):"
+      },
+      {
+        "line": 240,
+        "text": "augmented_encoded.append(torch.cat(collect_aug_encodings, dim=0))"
+      },
+      {
+        "line": 243,
+        "text": "augmented_encoded = torch.cat(augmented_encoded, dim=0)"
+      }
+    ],
+    "src/models/mlp.py": [
+      {
+        "line": 25,
+        "text": "self.activation = nn.ReLU"
+      },
+      {
+        "line": 58,
+        "text": "self.dense_layers.append(nn.Linear(dense_features[i], dense_features[i + 1]))"
+      }
+    ],
+    "src/models/pretrained.py": [
+      {
+        "line": 86,
+        "text": "weights = models.ResNet50_Weights.IMAGENET1K_V1 if pretrained else None"
+      }
+    ],
+    "main.py": [
+      {
+        "line": 13,
+        "text": "batch_size=1024,"
+      },
+      {
+        "line": 28,
+        "text": "num_aug_samples=1,"
+      },
+      {
+        "line": 90,
+        "text": "optimizer_class=optim.AdamW,"
+      },
+      {
+        "line": 92,
+        "text": "'lr': 0.001,"
+      },
+      {
+        "line": 93,
+        "text": "'weight_decay': 0.0001"
+      },
+      {
+        "line": 155,
+        "text": "optimizer_class=optim.AdamW,"
+      },
+      {
+        "line": 157,
+        "text": "'lr': 0.001,"
+      },
+      {
+        "line": 185,
+        "text": "optimizer_class=optim.AdamW,"
+      },
+      {
+        "line": 187,
+        "text": "'lr': 0.001,"
+      }
+    ]
+  },
+  "paper_experiment_code_identity": "unknown; no assertion this commit generated published tables"
+}

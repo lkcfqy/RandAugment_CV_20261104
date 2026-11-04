@@ -1,0 +1,54 @@
+{
+  "historical_CU": 1.8088330815795528,
+  "user_total_CU_hard_cap": 2.5,
+  "remaining_CU": 0.6911669184204472,
+  "historical_rate_not_live": 1.15,
+  "remaining_seconds_implied_by_CU_at_historical_rate": 2163.652962011835,
+  "parent_self_imposed_GPU_cap_seconds_unchanged": 7200,
+  "parent_self_imposed_disk_cap_bytes_unchanged": 6442450944,
+  "GPU_GO": false,
+  "original_estimate_has_global_25pct_margin": false,
+  "components_seconds": {
+    "prepare_and_preflight_allowance": 554.525631070137,
+    "two_formal_eval_model_loads": 40.488969219999944,
+    "train_200_at_historical_update_p90": 336.14183859999685,
+    "extra_50pct_train": 168.07091929999842,
+    "eval_64_at_historical_prediction_p90": 26.520248384003935,
+    "extra_50pct_eval": 13.260124192001967,
+    "checkpoint_return_once": 155.41052573529853,
+    "extra_100pct_checkpoint_return": 155.41052573529853,
+    "bookkeeping_validation_saving": 120.0,
+    "release_reserve": 180.0
+  },
+  "variants": [
+    {
+      "definition": "previous_estimate_no_uniform_25pct",
+      "seconds": 1749.8287822367352,
+      "minutes": 29.16381303727892,
+      "CU": 0.5589730832145126,
+      "cumulative_CU": 2.3678061647940654,
+      "CU_margin": 0.13219383520593464,
+      "cumulative_GPU_seconds": 7193.728570709864
+    },
+    {
+      "definition": "25pct_on_work_then_separate_180s_release",
+      "seconds": 2142.285977795919,
+      "minutes": 35.70476629659865,
+      "CU": 0.6843413540181407,
+      "cumulative_CU": 2.4931744355976937,
+      "CU_margin": 0.006825564402306528,
+      "cumulative_GPU_seconds": 7586.185766269047
+    },
+    {
+      "definition": "25pct_on_entire_previous_total_including_release",
+      "seconds": 2187.285977795919,
+      "minutes": 36.45476629659865,
+      "CU": 0.6987163540181407,
+      "cumulative_CU": 2.5075494355976935,
+      "CU_margin": -0.007549435597693499,
+      "cumulative_GPU_seconds": 7631.185766269047
+    }
+  ],
+  "preflight_definition": "one M model: 15 optimizer updates (5 warm +10 timed), plus5 support forwards without dev metrics; discard entire state; formal reinitialize from original assets",
+  "pending": "choose and freeze exact margin definition before allocation; current preparation/bandwidth/GPU t_M/rate unobserved; no scientific U reduction"
+}

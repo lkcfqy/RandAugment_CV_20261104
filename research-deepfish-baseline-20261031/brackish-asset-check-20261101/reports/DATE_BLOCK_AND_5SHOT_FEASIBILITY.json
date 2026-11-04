@@ -1,0 +1,78 @@
+{
+  "all_target_boxes_retained_per_image": true,
+  "blocks": {
+    "development_pool": {
+      "dates": [
+        "2019-03-19",
+        "2019-03-20"
+      ],
+      "fish_target_boxes": 6057,
+      "frames": 5293,
+      "no_animal_annotation_frames": 1270,
+      "one_target_frames": 1041,
+      "one_target_videos": 18,
+      "one_total_box_frames": 703,
+      "one_total_box_videos": 12,
+      "other_animal_boxes": 4293,
+      "videos": 36,
+      "zero_target_frames": 3603
+    },
+    "future_confirmation_pool": {
+      "dates": [
+        "2019-03-21",
+        "2019-03-25"
+      ],
+      "fish_target_boxes": 748,
+      "frames": 2380,
+      "no_animal_annotation_frames": 349,
+      "one_target_frames": 728,
+      "one_target_videos": 8,
+      "one_total_box_frames": 329,
+      "one_total_box_videos": 4,
+      "other_animal_boxes": 3956,
+      "videos": 15,
+      "zero_target_frames": 1642
+    },
+    "support_pool": {
+      "dates": [
+        "2019-02-20",
+        "2019-02-21",
+        "2019-02-22",
+        "2019-02-26",
+        "2019-03-06",
+        "2019-03-07"
+      ],
+      "fish_target_boxes": 6171,
+      "frames": 6845,
+      "no_animal_annotation_frames": 611,
+      "one_target_frames": 2643,
+      "one_target_videos": 27,
+      "one_total_box_frames": 742,
+      "one_total_box_videos": 7,
+      "other_animal_boxes": 13040,
+      "videos": 38,
+      "zero_target_frames": 3538
+    }
+  },
+  "cross_midnight_status": "must keep intersecting dates together if found; none expected; see original split audit",
+  "date_timezone_clock_verification": "not provided/independently verified",
+  "dates_do_not_prove_independent_sites_or_camera_sessions": true,
+  "five_distinct_videos_exactly_one_total_box_each_feasible": true,
+  "five_distinct_videos_one_target_each_feasible": true,
+  "no_effect_or_pixel_selection": true,
+  "other_animals_definition": "non-target background for binary fish task, not ignored to hide false positives; original labels untouched",
+  "partial_tail_exclusion_required": {
+    "2019-03-19_17-07-53to2019-03-19_17-08-34_1": 200,
+    "2019-03-19_18-01-56to2019-03-19_18-02-13_1": 100
+  },
+  "rule": "all distinct encoded acquisition dates sorted chronologically, first floor(.6D) support pool, next to floor(.8D) dev, rest future confirmation; whole dates and clips retained, not original frame-random split",
+  "single_class_map": {
+    "crab": "non-target",
+    "fish": 1,
+    "jellyfish": "non-target",
+    "shrimp": "non-target",
+    "small_fish": 1,
+    "starfish": "non-target"
+  },
+  "status": "metadata feasibility proposal only; no experiment/episode selected or authorized"
+}

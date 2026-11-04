@@ -1,0 +1,44 @@
+{
+  "color_gate": {
+    "b_matches_cv2_bgr_blend": true,
+    "cv2_version": "4.11.0",
+    "exactly_one_numpy_draw": true,
+    "identity_exact": true,
+    "numpy_version": "1.24.3",
+    "rng_equal": true
+  },
+  "ignored_checkpoint_tensors": [
+    "language_model.language_backbone.body.model.embeddings.position_ids",
+    "language_model.language_backbone.body.model.pooler.dense.bias",
+    "language_model.language_backbone.body.model.pooler.dense.weight"
+  ],
+  "init_seconds": 20.26334303200008,
+  "initial_state_sha256": "380e266ce6a7ddcd4de0d37acc0ed132fdb8fba0caef9330f5bf6a79dc10ff21",
+  "loss_and_gradients_finite": true,
+  "missing_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale",
+    "dn_query_generator.label_embedding.weight"
+  ],
+  "official_zero_log_scale_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale"
+  ],
+  "optimizer_initial_state_empty": true,
+  "phase": "preflight_A",
+  "preflight_state_reused": false,
+  "seed": 20261101,
+  "state_tensor_bytes": 691880148,
+  "status": "INITIALIZATION_VERIFIED",
+  "trainable_names_sha256": "62f7c4fa11c27bb72c9d472e1885d9a2ff1cd02f74523f7a53ea334770c4fe3a"
+}

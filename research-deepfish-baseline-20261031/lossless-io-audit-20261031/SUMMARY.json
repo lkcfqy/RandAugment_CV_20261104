@@ -1,0 +1,256 @@
+{
+  "status": "NO_MATERIAL_SAVINGS_FOR_WHOLE_TENSOR_REFERENCES",
+  "utc": "2026-10-31T16:43:48.653331+00:00",
+  "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+  "torch_version": "2.13.0",
+  "device": "cpu",
+  "source_file_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+  "source_content_state_sha256": "829a2bef9505258158577b47284cdaf22a35f57d63ff6ce60b6c89a93aa81877",
+  "source_tensor_count": 903,
+  "original_only_keys": [
+    "language_model.language_backbone.body.model.embeddings.position_ids",
+    "language_model.language_backbone.body.model.pooler.dense.bias",
+    "language_model.language_backbone.body.model.pooler.dense.weight"
+  ],
+  "arms": [
+    {
+      "status": "EXACT_STATE_RECONSTRUCTION_VERIFIED",
+      "arm": "A",
+      "source_path": "recovery-v5-20261031/gpu-run/artifacts/final_A_U200.pth",
+      "source_bytes": 692175962,
+      "source_sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+      "base_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+      "counts": {
+        "changed": 888,
+        "identical_to_original": 12,
+        "new_key": 8
+      },
+      "bytes_by_status": {
+        "changed": 691648600,
+        "identical_to_original": 230496,
+        "new_key": 1052
+      },
+      "total_tensor_bytes": 691880148,
+      "groups": {
+        "level_embed": {
+          "changed_keys": 1,
+          "changed_bytes": 4096
+        },
+        "backbone": {
+          "changed_keys": 175,
+          "changed_bytes": 110082024,
+          "identical_to_original_keys": 12,
+          "identical_to_original_bytes": 230496
+        },
+        "neck": {
+          "changed_keys": 16,
+          "changed_bytes": 8466432
+        },
+        "bbox_head": {
+          "new_key_keys": 7,
+          "new_key_bytes": 28,
+          "changed_keys": 42,
+          "changed_bytes": 3713136
+        },
+        "encoder": {
+          "changed_keys": 276,
+          "changed_bytes": 87622656
+        },
+        "decoder": {
+          "changed_keys": 174,
+          "changed_bytes": 44219392
+        },
+        "query_embedding": {
+          "changed_keys": 1,
+          "changed_bytes": 921600
+        },
+        "memory_trans_fc": {
+          "changed_keys": 2,
+          "changed_bytes": 263168
+        },
+        "memory_trans_norm": {
+          "changed_keys": 2,
+          "changed_bytes": 2048
+        },
+        "language_model": {
+          "changed_keys": 197,
+          "changed_bytes": 435566592
+        },
+        "text_feat_map": {
+          "changed_keys": 2,
+          "changed_bytes": 787456
+        },
+        "dn_query_generator": {
+          "new_key_keys": 1,
+          "new_key_bytes": 1024
+        }
+      },
+      "package_bytes": 692072511,
+      "package_sha256": "169f7cb91c366d4cfb2fc48db4abf42244835c017c3f5f2107e7c89125723fe5",
+      "package_savings_vs_source_bytes": 103451,
+      "package_savings_fraction": 0.00014945766059415444,
+      "reconstructed_file_bytes": 692176487,
+      "reconstructed_file_sha256": "cf737eaecdd7308ea7b1b9629b3de2342157ce245d8681505c9f169000e2c2db",
+      "original_content_state_sha256": "9d18b2e08d7a626745f532f6456519b606fb3eaa3835f74750571d5eaeb2642b",
+      "rebuilt_content_state_sha256": "9d18b2e08d7a626745f532f6456519b606fb3eaa3835f74750571d5eaeb2642b",
+      "original_complete_state_sha256": "0778b4983e626b8af7e673dfbba43d1787d7ed443c35e94d272b21cc9e5572f0",
+      "rebuilt_complete_state_sha256": "0778b4983e626b8af7e673dfbba43d1787d7ed443c35e94d272b21cc9e5572f0",
+      "tensors_verified_bitwise": 908,
+      "key_order_and_storage_metadata_verified": true,
+      "all_target_storages_unique": true,
+      "original_type": "dict",
+      "source_has_optimizer_or_non_tensor_state": false,
+      "safe_cpu_loads_only": true,
+      "model_instantiated": false,
+      "raw_requires_grad_flag_not_a_freezing_claim": true,
+      "complete_state_hash_includes_dtype_shape_stride_offset_layout_and_order": true,
+      "full_torch_zip_file_hash_need_not_match_across_serializer_versions": true,
+      "temporary_generated_files_removed_after_validation": true,
+      "original_checkpoint_preserved": true,
+      "timings": {
+        "compare_and_hash_seconds": 0.8773293749982258,
+        "package_write_seconds": 0.16107008299150039,
+        "package_reload_and_reconstruct_verify_seconds": 0.9160646669915877,
+        "full_checkpoint_write_seconds": 0.16424137500871439,
+        "full_reload_and_all_tensor_verification_seconds": 0.9126999590080231
+      }
+    },
+    {
+      "status": "EXACT_STATE_RECONSTRUCTION_VERIFIED",
+      "arm": "B",
+      "source_path": "recovery-v5-20261031/gpu-run/artifacts/final_B_U200.pth",
+      "source_bytes": 692175962,
+      "source_sha256": "d14239f71925ac4f813eb80c8241ce7ca1670d1017bcf047ecae994327870778",
+      "base_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+      "counts": {
+        "changed": 888,
+        "identical_to_original": 12,
+        "new_key": 8
+      },
+      "bytes_by_status": {
+        "changed": 691648600,
+        "identical_to_original": 230496,
+        "new_key": 1052
+      },
+      "total_tensor_bytes": 691880148,
+      "groups": {
+        "level_embed": {
+          "changed_keys": 1,
+          "changed_bytes": 4096
+        },
+        "backbone": {
+          "changed_keys": 175,
+          "changed_bytes": 110082024,
+          "identical_to_original_keys": 12,
+          "identical_to_original_bytes": 230496
+        },
+        "neck": {
+          "changed_keys": 16,
+          "changed_bytes": 8466432
+        },
+        "bbox_head": {
+          "new_key_keys": 7,
+          "new_key_bytes": 28,
+          "changed_keys": 42,
+          "changed_bytes": 3713136
+        },
+        "encoder": {
+          "changed_keys": 276,
+          "changed_bytes": 87622656
+        },
+        "decoder": {
+          "changed_keys": 174,
+          "changed_bytes": 44219392
+        },
+        "query_embedding": {
+          "changed_keys": 1,
+          "changed_bytes": 921600
+        },
+        "memory_trans_fc": {
+          "changed_keys": 2,
+          "changed_bytes": 263168
+        },
+        "memory_trans_norm": {
+          "changed_keys": 2,
+          "changed_bytes": 2048
+        },
+        "language_model": {
+          "changed_keys": 197,
+          "changed_bytes": 435566592
+        },
+        "text_feat_map": {
+          "changed_keys": 2,
+          "changed_bytes": 787456
+        },
+        "dn_query_generator": {
+          "new_key_keys": 1,
+          "new_key_bytes": 1024
+        }
+      },
+      "package_bytes": 692072511,
+      "package_sha256": "88bd720c203eaeed5e339cc135a0bb888f5f750472265295d17ce7e856b08db7",
+      "package_savings_vs_source_bytes": 103451,
+      "package_savings_fraction": 0.00014945766059415444,
+      "reconstructed_file_bytes": 692176487,
+      "reconstructed_file_sha256": "6d1344c171f5378ece9e2b6ac7cae1dd9cfe010ac9f08d8c19a46738f4181980",
+      "original_content_state_sha256": "d7ce643e33f05e8be4437492db6b74029bcddb48c1383a6e2eb3f3fa753af974",
+      "rebuilt_content_state_sha256": "d7ce643e33f05e8be4437492db6b74029bcddb48c1383a6e2eb3f3fa753af974",
+      "original_complete_state_sha256": "2ab509c8f70e740a4b803feff80c1a63c346365cd583a41ffd6fe894865adc39",
+      "rebuilt_complete_state_sha256": "2ab509c8f70e740a4b803feff80c1a63c346365cd583a41ffd6fe894865adc39",
+      "tensors_verified_bitwise": 908,
+      "key_order_and_storage_metadata_verified": true,
+      "all_target_storages_unique": true,
+      "original_type": "dict",
+      "source_has_optimizer_or_non_tensor_state": false,
+      "safe_cpu_loads_only": true,
+      "model_instantiated": false,
+      "raw_requires_grad_flag_not_a_freezing_claim": true,
+      "complete_state_hash_includes_dtype_shape_stride_offset_layout_and_order": true,
+      "full_torch_zip_file_hash_need_not_match_across_serializer_versions": true,
+      "temporary_generated_files_removed_after_validation": true,
+      "original_checkpoint_preserved": true,
+      "timings": {
+        "compare_and_hash_seconds": 0.8729770840000128,
+        "package_write_seconds": 0.15017258300213143,
+        "package_reload_and_reconstruct_verify_seconds": 0.915225416989415,
+        "full_checkpoint_write_seconds": 0.14797833398915827,
+        "full_reload_and_all_tensor_verification_seconds": 0.9127742919954471
+      }
+    }
+  ],
+  "local_generated_duplicates_removed": true,
+  "all_original_assets_unchanged": true,
+  "no_dependency_install": true,
+  "no_network": true,
+  "no_GPU_allocation": true,
+  "no_model_calls": true,
+  "no_cloud_runner_or_scientific_config_changes": true,
+  "no_execution_GO": true,
+  "synthetic_byte_comparison_checks": 3,
+  "saved_requires_grad_false_is_detach_not_freeze": true,
+  "cost": {
+    "formula_unchanged": "4*init + 1.5*200*(p90_A+p90_B) + 1.5*128*p90_predict + 4*transfer_bytes/bps + 120; measured cold preparation + 180 release reserve",
+    "remaining_CU": 0.7422557589812278,
+    "remaining_GPU_seconds": 3481.247886325836,
+    "last_saved_rate": 1.15,
+    "available_seconds": 2323.583245506452,
+    "measured_cold_prepare_seconds": 443.6205048561096,
+    "release_reserve_seconds": 180,
+    "saved_bandwidth_bytes_per_second": 2354867.827203123,
+    "original_tensor_bytes": 691880148,
+    "measured_max_package_bytes": 692072511,
+    "measured_package_IO_seconds": 1175.560688383899,
+    "estimated_full_seconds_with_package": 3068.414465248025,
+    "estimated_CU_with_package": 0.9801879541764524,
+    "shortfall_seconds": 744.831219741573,
+    "fits_remaining_CU_and_GPU_time": false,
+    "unmeasured_future_encoding_reconstruction_overhead_excluded_not_assumed_zero": true,
+    "ideal_changed_bytes_without_metadata": 691649652,
+    "ideal_savings_vs_original_tensor_IO_seconds": 0.39152261088684565,
+    "ideal_full_seconds_without_metadata": 3067.6961930883476,
+    "even_ideal_changed_only_cost_fits": false,
+    "freeze_sha256": "edb42075584d5282c7b4e3133a9efa468dd9b17d524fc6321f92afbed6fe189a",
+    "ledger_sha256": "612591e615cf300311e1b2a2afda992f444f0991ad7d4678f69f815e44368aa0"
+  },
+  "scope_limit": "No claim about every possible lossless compression method; this audit tests whole unchanged tensor references plus all complete changed/new tensors only."
+}

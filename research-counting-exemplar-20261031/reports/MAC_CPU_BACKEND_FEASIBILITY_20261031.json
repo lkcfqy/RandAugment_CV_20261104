@@ -1,0 +1,155 @@
+{
+  "actual_environment_metadata_only": {
+    "Pillow": "13.0.0",
+    "Python": "3.14.10 (existing environment record)",
+    "numpy": "2.5.4",
+    "safetensors": "0.8.0",
+    "timm": "1.0.30",
+    "tokenizers": "0.21.4",
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "transformers": "4.49.0"
+  },
+  "compute_carry_seconds": 545.6848070110136,
+  "cost": {
+    "allowances_are_planning_not_measured_upper_bounds": true,
+    "cumulative_forecasts_by_multiplier": {
+      "1": {
+        "fits_5400_seconds": true,
+        "minutes": 62.76069006970938,
+        "seconds": 3765.641404182563
+      },
+      "1.5": {
+        "fits_5400_seconds": true,
+        "minutes": 88.59366171280563,
+        "seconds": 5315.619702768337
+      },
+      "2": {
+        "fits_5400_seconds": false,
+        "minutes": 114.42663335590187,
+        "seconds": 6865.598001354112
+      }
+    },
+    "current_2x_admission_gate_would_fail_even_if_cap_changed_to_90min": true,
+    "engineering_gate_change_requires_explicit_freeze": "Do not silently remove the 2x multiplier. The scientific gates remain identical; resource admission and abandoning CPU/CUDA parity as a prerequisite are separate pre-effect backend revisions.",
+    "factor_1_5_query_timing_threshold": 6.415061237112448,
+    "factor_2_query_timing_threshold": 4.811295927834336,
+    "finalization_disk_recompute_allowance_seconds": 60,
+    "maximum_average_query_seconds_after_120_s_reserve": 9.622591855668672,
+    "maximum_prior_CPU_seconds": 6.300724790999084,
+    "nominal_full_queries_seconds": 3099.956597171549,
+    "query_count": 492,
+    "startup_hashes_plus_optional_three_CPU_fixture_queries_allowance_seconds": 60
+  },
+  "credit_already_used_upper_CU": 0.32145,
+  "current_compute_cap_still_seconds": 1800,
+  "evidence_sha256": {
+    "cpu-readiness/reports/cpu_verification.json": "3d309ac834fa2e1144f7891df05422a652be05954a194c51fba5d33487e45471",
+    "cpu-readiness/reports/environment_actual_versions.json": "1dfceaad630d9a1f4b329b2545de634b69762ba272fcb75179f942058ee8ff47",
+    "cuda-runplan-20261031-recovery1/reports/compute_credit_ledger_after_recovery1.json": "76d9c8202a79df878dde06d695168b6b24ef13f5f16826447df3e666a82213e6",
+    "engineering-diagnostic/run/engineering.json": "e0ced942b4cb562f2881a2edb2ef4e697233225351133b2069e538f5e66ef0c8",
+    "engineering-precheck/run/engineering.json": "5a48246e37df491aed5232120446696aa7ee5f280d1495b5612e9d17403e8a5e",
+    "engineering-precheck/scripts/controls.py": "213b76f134c883c01329210575a7f1febc7e933d9c3baf9c0bb790ad78277383",
+    "engineering-precheck/scripts/worker.py": "5a8c30f683a6c8d7c21d5a8ec7aa7c8ded44a27a01d57e522ceb95fb86d555ab"
+  },
+  "execution_budget_changed": false,
+  "first_runtime_import_seconds": 0.45534858299652115,
+  "first_strict_load_completion_from_worker_start_seconds": 10.040592707999167,
+  "fixed_threads": {
+    "inter_op": 1,
+    "intra_op": 2
+  },
+  "hardware_read_only_snapshot": {
+    "AC_idle_sleep_setting": 0,
+    "VM_page_bytes": 16384,
+    "app_idle_sleep_assertion_present": true,
+    "battery_percent": 100,
+    "caffeinate_path": "/usr/bin/caffeinate",
+    "cpu": "Apple M5 Pro",
+    "free_VM_pages": 646474,
+    "free_disk_bytes": 897024000000,
+    "model": "Mac17,8",
+    "physical_RAM_bytes": 68719476736,
+    "physical_logical_cores": 18,
+    "power_source": "AC Power",
+    "snapshot_swapins": 0,
+    "snapshot_swapouts": 0
+  },
+  "historical_mixed_CPU_MPS_diagnostic_peak_bytes": 4080467968,
+  "historical_mixed_CPU_MPS_precheck_peak_bytes": 3901505536,
+  "historical_pure_CPU_load_peak_bytes": 2744745984,
+  "inner_load_seconds_not_full_startup": 0.5133852500002831,
+  "minimal_reuse": {
+    "local_assets": "point a new entry directory at existing hashed official source/models/science assets without changing their bytes or redownloading; do not copy full weights/environment again",
+    "new_thin_files_if_approved": [
+      "cpu_worker.py derived from reviewed worker.py",
+      "launch_cpu.py using existing Mac RSS sampling and external deadline/atomic claim"
+    ],
+    "power": "if execution is later authorized, tie caffeinate to the run process; no permanent pmset change. AC power and current sleep settings permit a normal uninterrupted local run but cannot guarantee survival of forced sleep, shutdown or host/app termination.",
+    "supervisor_diff": "use Mac ps RSS probe from earlier audited controls instead of Linux /proc; one cumulative external cutoff includes imports/load/hash/warmup/queries/finalization; keep 8GiB RSS/6GiB owned disk and incomplete-on-missing-query behavior",
+    "unchanged_modules": [
+      "model_io.py",
+      "hooks.py",
+      "numerics.py (validate)",
+      "metrics.py",
+      "evidence.py",
+      "contracts.py (validate_query, complete_result_set, bound_metric_inputs; not old compute_gate)"
+    ],
+    "worker_diff": [
+      "fix all queries to CPU/FP32/eval/threads 2/1",
+      "remove T4 availability, CUDA allocation/transfer/sync/cleanup, cross-device comparisons and Colab allocation/credit paths",
+      "keep strict safe loading, natural _C=None, native negative visual groups, token/input assertions and finite output checks",
+      "retain original formal 492-query loop, original image/name/six-box hashes, frozen-label truth binding, full boxes and per-query atomic evidence",
+      "reuse exact Fraction metrics, all47 with6NA, numerical science gates, and final independent recomputation"
+    ]
+  },
+  "new_GPU_calls": 0,
+  "new_allocations": 0,
+  "new_model_forward_attempts": 0,
+  "no_new_CU_required": true,
+  "old_frozen_code_modified": false,
+  "proposed_compute_cap_seconds": 5400,
+  "proposed_remaining_if_approved_seconds": 4854.315192988986,
+  "pure_CPU_forward_peak_not_separately_recorded": true,
+  "recorded_utc": "2026-10-31T07:27:32.535824+00:00",
+  "remaining_uncertainty": [
+    "historical timing is short, synthetic and does not include the complete formal disk path",
+    "sustained thermal/background load and real JPEG/text overhead have not been measured",
+    "with original 2x gate the proposed 90min cap cannot admit this job; factor1.5 fits only narrowly and is not automatically adopted",
+    "CPU backend scope and resource admission revision require scientific review before code/execution changes"
+  ],
+  "reused_module_sha256": {
+    "contracts.py": "89129acdb3bcf0e9952978420d973c78a863aa95709d756b448509a611b7ea59",
+    "evidence.py": "b3f2fcfb4aa0230284acbbcc85c2283a2ca5a0c94eea020ea50d825ba31e03f1",
+    "hooks.py": "6eeab19d59f75699912026ba06c40be9c3062be51eae773f2ca441128cac68b7",
+    "metrics.py": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+    "model_io.py": "f829a026ec00acb472962f6a82f883c1f82cab052fd40bd5aa8b6c56d5017775",
+    "numerics.py": "7be5f07f4bbf8c0080a96d275b3c2c44321b4914e353e2ab5a5f149e8f0664d3"
+  },
+  "scientific_invariants": {
+    "NA_pairs": 6,
+    "all_pairs_reported": 47,
+    "all_prior_failures_retained": true,
+    "backend_label_required": "CountGD++ pinned HF/app basic path on this Mac CPU runtime; no demonstrated equality to CUDA paper results; no adaptive crop/pseudo-exemplars",
+    "eligible_images": 82,
+    "eligible_pairs": 41,
+    "formal_queries": 492,
+    "sample_mode_name_box_threshold_changes": false,
+    "scientific_gates_changed": false
+  },
+  "status": "READ_ONLY_FEASIBILITY_ONLY_PENDING_SCIENTIFIC_REVIEW",
+  "timing_fixture": "original constant RGB (100,110,120); three first-run modes and one diagnostic F; new textured fixture on this Mac remains unmeasured",
+  "timing_input_shape": [
+    1,
+    3,
+    800,
+    1333
+  ],
+  "timing_scope": "native preprocessing + CPU model + native filtering and read-only hooks; excludes JPEG decode/hash, final validity checks, per-query serialization/fsync and status writes",
+  "timings_seconds": {
+    "CPU_C": 6.139379667001776,
+    "CPU_F": 6.159159625007305,
+    "CPU_F_diagnostic": 6.300724790999084,
+    "CPU_V": 6.1373153750027996
+  }
+}

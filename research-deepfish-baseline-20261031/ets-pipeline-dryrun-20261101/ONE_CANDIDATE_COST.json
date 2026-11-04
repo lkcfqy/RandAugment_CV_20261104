@@ -1,0 +1,38 @@
+{
+  "scope": "one new candidate U200 plus one candidate preflight; prior A background only; not an execution GO",
+  "formula_seconds": "P + I + 1.5*200*t_M + 1.5*64*t_pred + 2*W/B + 120 + 180",
+  "P_prepare_and_preflight_allowance_seconds": 554.525631070137,
+  "I_two_model_loads_seconds": 40.488969219999944,
+  "t_pred_historical_p90_seconds": 0.4143788810000615,
+  "W_complete_checkpoint_bytes": 692175962,
+  "B_historical_return_bytes_per_second": 4453855.0958829,
+  "overhead_seconds": 120,
+  "release_reserve_seconds": 180,
+  "constant_seconds": 1245.6160243367399,
+  "rate_CU_per_hour_historical_not_live": 1.15,
+  "remaining_prior_GPU_seconds": 1756.1002115268711,
+  "remaining_prior_CU": 0.6911669184204472,
+  "candidate_GPU_update_p90_not_measured": true,
+  "scenarios": [
+    {
+      "assumed_t_M_seconds": 1.6807091929999842,
+      "total_seconds": 1749.8287822367352,
+      "CU_at_historical_rate": 0.5589730832145126,
+      "GPU_seconds_margin": 6.271429290135984
+    },
+    {
+      "assumed_t_M_seconds": 2.0,
+      "total_seconds": 1845.6160243367399,
+      "CU_at_historical_rate": 0.5895717855520141,
+      "GPU_seconds_margin": -89.51581280986875
+    }
+  ],
+  "largest_t_M_fitting_old_GPU_seconds_if_all_other_assumptions_hold": 1.7016139573004374,
+  "Mac_augmentation_seconds_not_substituted_for_GPU_update_seconds": true,
+  "notes": [
+    "P is the unchanged earlier conservative preparation/preflight allowance; it is not newly measured or reduced for one arm.",
+    "Transfer factor2 and fixed overhead/release allowances preserved from prior conservative accounting.",
+    "Includes complete checkpoint return; no lossless-delta saving assumed.",
+    "New runtime bandwidth, rate, GPU update time and available storage remain unverified."
+  ]
+}

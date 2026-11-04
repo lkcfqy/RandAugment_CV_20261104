@@ -1,0 +1,13 @@
+# Saved-prediction synthesis, 2026-11-02
+
+Authorized follow-up starts 05:18:36 UTC; finish by 05:48:36 UTC (30 minutes), also before 10:00 UTC / 19:00 KST. No models, feature extraction, fitting, training, installation, download, upload or CU. Read the immutable DINOv2 and DeiT pilot predictions; write a separate archive. This is explicitly post-result analysis, not a new preregistration.
+
+Analyze all 2 encoders x 2 budgets x 12 episodes x 3 policies. Preserve the CV tie rule clean > weak > RA and all original results. For every setting, report every fixed-policy accuracy, choice, CV correct counts in each of the four folds, fold-model query correct counts, full-model query correct counts, tied-best sets and regret. Compare selected-vs-weak, selected-vs-RA and RA-vs-weak distributions using every episode.
+
+Definitions fixed for this synthesis: query oracle = max query accuracy among the three existing full-label heads; oracle space versus each fixed policy = oracle minus that fixed policy. Ex-post strongest constant strategy is a diagnostic reference, chosen by mean query accuracy, not an available deployment selector. Mean selected-minus-fixed = mean oracle-space-of-fixed minus mean selected-regret; this is an algebraic accounting identity, not a causal mechanism. Attribute the additive regret total by the actually selected policy, without removing any settings.
+
+For every CV-best tie (including DINO ties), retain all eligible policies. Report all tied candidates and complete Cartesian-product assignments, the minimum/maximum mean query accuracy, paired deltas, regret, and selection-frequency bounds. These bounds use query labels, are descriptive, and do not choose an improved tie rule. No confidence intervals, bootstrap, significance test or arbitrary pp-success threshold.
+
+Ranking diagnostics compare pooled OOF CV, the mean of the four separately scored fold models, and full-label query scores. Record strict losses independently of policy-name changes caused by ties. For each wrong full-query selection, expose validation margins and all four fold-count differences against every tied full-query optimum. This can locate observed discrepancies, not identify pure validation noise or pure training-size causal effects. Overlapping support sets and a shared finite query set preclude independent-trial or cross-dataset generality claims.
+
+Tests use synthetic integer correctness arrays to check tie bounds, whole candidate enumeration, unit conversions, and accounting. Recompute actual aggregate summaries from saved predictions and compare them to archived summaries. Produce compact full-episode plots, exact tables and a scientific continue/close decision; any proposed cross-dataset protocol is a plan only.

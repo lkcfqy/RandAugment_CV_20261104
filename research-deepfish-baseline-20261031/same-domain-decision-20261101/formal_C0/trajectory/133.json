@@ -1,0 +1,448 @@
+{
+  "RNG_after_update": {
+    "numpy": "1e93b1c91b8dc91d201849fc2ccc4261463fde592dbaf5426c95c4088869e17b",
+    "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+    "torch_CPU": "fe5a7d8f6132907af049e6eb40e7315f45b71f26ff247e4a1f50235d6419eb05"
+  },
+  "RNG_before_update_sources": {
+    "numpy": "45164c49f8585aa4f934e03ef26785e8468eed0c7748bb39bea70ce7aff9f564",
+    "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+    "torch_CPU": "b0525dc3fb7aaa48cd30dc0f63e328578dfcb559974f452db0cccde9069936e1"
+  },
+  "all_loss_gradients_finite": true,
+  "k": 1,
+  "mean_update": {
+    "mean_loss": 0.8164815902709961,
+    "optimizer_zero_seconds": 0.1392034589953255,
+    "source_count": 1,
+    "sources": [
+      {
+        "backward_seconds": 4.691308709006989,
+        "forward_loss_seconds": 1.9416709169745445,
+        "source": 1,
+        "unweighted_loss": 0.8164815902709961
+      }
+    ],
+    "update_seconds": 6.883281874994282
+  },
+  "peak_RSS_bytes": 7944536064,
+  "source_image_ids": [
+    930
+  ],
+  "sources": [
+    {
+      "RNG_after_source": {
+        "numpy": "1e93b1c91b8dc91d201849fc2ccc4261463fde592dbaf5426c95c4088869e17b",
+        "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+        "torch_CPU": "fe5a7d8f6132907af049e6eb40e7315f45b71f26ff247e4a1f50235d6419eb05"
+      },
+      "RNG_before_pipeline": {
+        "numpy": "45164c49f8585aa4f934e03ef26785e8468eed0c7748bb39bea70ce7aff9f564",
+        "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+        "torch_CPU": "b0525dc3fb7aaa48cd30dc0f63e328578dfcb559974f452db0cccde9069936e1"
+      },
+      "RNG_before_source_forward": {
+        "numpy": "1e93b1c91b8dc91d201849fc2ccc4261463fde592dbaf5426c95c4088869e17b",
+        "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+        "torch_CPU": "b0525dc3fb7aaa48cd30dc0f63e328578dfcb559974f452db0cccde9069936e1"
+      },
+      "annotation_id": 2197,
+      "events": [
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": null,
+          "observer_included_seconds": 0.0026807909889612347,
+          "output_shape_HW": [
+            1080,
+            1920
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1920.0,
+                1080.0
+              ]
+            }
+          ],
+          "stage": "0",
+          "type": "LoadImageFromFile"
+        },
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": [
+            1080,
+            1920
+          ],
+          "observer_included_seconds": 5.1207985961809754e-05,
+          "output_GT_xyxy": [
+            [
+              76.5,
+              501.5,
+              361.5,
+              622.5
+            ]
+          ],
+          "output_shape_HW": [
+            1080,
+            1920
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1920.0,
+                1080.0
+              ]
+            }
+          ],
+          "stage": "1",
+          "type": "LoadAnnotations"
+        },
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": [
+            1080,
+            1920
+          ],
+          "observer_included_seconds": 0.007566249987576157,
+          "output_GT_xyxy": [
+            [
+              76.5,
+              501.5,
+              361.5,
+              622.5
+            ]
+          ],
+          "output_shape_HW": [
+            1080,
+            1920
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1920.0,
+                1080.0
+              ]
+            }
+          ],
+          "stage": "2",
+          "type": "Color"
+        },
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": [
+            1080,
+            1920
+          ],
+          "observer_included_seconds": 0.00011575000826269388,
+          "output_GT_xyxy": [
+            [
+              1558.5,
+              501.5,
+              1843.5,
+              622.5
+            ]
+          ],
+          "output_shape_HW": [
+            1080,
+            1920
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1920.0,
+                1080.0
+              ]
+            }
+          ],
+          "stage": "3",
+          "type": "RandomFlip"
+        },
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [
+            {
+              "after": [
+                [
+                  970.0038452148438,
+                  312.0444641113281,
+                  1147.38671875,
+                  387.3333435058594
+                ]
+              ],
+              "before": [
+                [
+                  970.0038452148438,
+                  312.0444641113281,
+                  1147.38671875,
+                  387.3333435058594
+                ]
+              ],
+              "changed_rows": []
+            }
+          ],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": [
+            1080,
+            1920
+          ],
+          "observer_included_seconds": 0.005633041990222409,
+          "output_GT_xyxy": [
+            [
+              970.0038452148438,
+              312.0444641113281,
+              1147.38671875,
+              387.3333435058594
+            ]
+          ],
+          "output_shape_HW": [
+            672,
+            1195
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1195.0,
+                672.0
+              ]
+            }
+          ],
+          "stage": "4.branch0.0",
+          "type": "RandomChoiceResize"
+        },
+        {
+          "candidate_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "clip_events": [],
+          "discarded_GT_count": 0,
+          "input_GT_count": 1,
+          "input_shape_HW": [
+            672,
+            1195
+          ],
+          "observer_included_seconds": 0.000578415987547487,
+          "output_shape_HW": [
+            672,
+            1195
+          ],
+          "parameters": {},
+          "retained_GT_lineage": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor"
+            }
+          ],
+          "source_regions": [
+            {
+              "annotation_id": 2197,
+              "image_id": 930,
+              "origin_iteration": 431,
+              "path": "anchor",
+              "region_xyxy": [
+                0.0,
+                0.0,
+                1195.0,
+                672.0
+              ]
+            }
+          ],
+          "stage": "5",
+          "type": "PackDetInputs"
+        }
+      ],
+      "final_GT_lineage": [
+        {
+          "annotation_id": 2197,
+          "image_id": 930,
+          "origin_iteration": 431,
+          "path": "anchor"
+        }
+      ],
+      "final_source_regions": [
+        {
+          "annotation_id": 2197,
+          "image_id": 930,
+          "origin_iteration": 431,
+          "path": "anchor",
+          "region_xyxy": [
+            0.0,
+            0.0,
+            1195.0,
+            672.0
+          ]
+        }
+      ],
+      "pipeline_seconds": 0.016793499991763383,
+      "reference_match": true,
+      "signature": {
+        "RNG_after": {
+          "numpy": "1e93b1c91b8dc91d201849fc2ccc4261463fde592dbaf5426c95c4088869e17b",
+          "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+          "torch_CPU": "b0525dc3fb7aaa48cd30dc0f63e328578dfcb559974f452db0cccde9069936e1"
+        },
+        "dtype": "uint8",
+        "gt": {
+          "gt_instances": {
+            "boxes": [
+              [
+                970.0038452148438,
+                312.0444641113281,
+                1147.38671875,
+                387.3333435058594
+              ]
+            ],
+            "labels": [
+              0
+            ]
+          },
+          "ignored_instances": {
+            "boxes": [],
+            "labels": []
+          }
+        },
+        "gt_sha256": "79d809cc528798cd232cced2df9328ebda7d4c4715bb43e49fa292e9814d55c8",
+        "metadata_sha256": "5cd76cb4fd4318662e3b548ad8e4e826fe6dc12f0f8cf46b89fc5decbf063418",
+        "pixel_sha256": "561cd8667de77d3e5c30b5c8cc9c6cb2aff7c40012cfae16f7ea297906cc6e37",
+        "shape_CHW": [
+          3,
+          672,
+          1195
+        ]
+      },
+      "source_image_id": 930
+    }
+  ],
+  "train_step_seconds": 6.883283291012049,
+  "update": 133,
+  "updated": true
+}

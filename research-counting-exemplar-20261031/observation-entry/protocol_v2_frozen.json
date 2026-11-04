@@ -1,0 +1,54 @@
+{
+  "NA_policy": "all47 reported;6NA with reason; no zero-error imputation, replacement, label/count/box repair or post-effect deletion",
+  "aggregation": "pair means first; per-pair min(C,V), then mean across all41",
+  "arithmetic": "exact rational aggregation and threshold comparisons; floats only for presentation",
+  "compute_budget_seconds": 1800,
+  "eligible_pairs": 41,
+  "engineering_status": "MPS_WARMUP_NUMERICAL_GATE_FAILED",
+  "equal_count_images": "retain",
+  "formal_execution_authorized": false,
+  "formal_queries": 492,
+  "gate_G": {
+    "formula": "mean_41[min(pairmean_C,pairmean_V)-pairmean_F]",
+    "operator": ">=",
+    "oracle_not_deployable": true,
+    "threshold": 0.1
+  },
+  "gate_pair_condition": {
+    "C_operator": ">",
+    "C_threshold": 0.3,
+    "F_operator": "<=",
+    "F_threshold": 0.1,
+    "V_operator": ">",
+    "V_threshold": 0.3,
+    "minimum_pairs": 10
+  },
+  "generated_unix": 1793416033.367819,
+  "labels_sha256": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+  "metric_code_sha256": "c472e7913fdfe4a045c43839537d45fc3a7d4ade42074222baf682681f274004",
+  "metric_definition_status": "COMPLETE_FROZEN_BY_PARENT_CLARIFICATION",
+  "native_path": {
+    "adaptive_crop": false,
+    "confidence": 0.23,
+    "max_long_edge": 1333,
+    "positive_score_must_exceed_negative": true,
+    "pseudo_exemplars": false,
+    "resize_short_edge": 800
+  },
+  "numeric_gate_does_not_establish_target_selection": "predicted box review remains mandatory; cancellation never permits deleting/recomputing",
+  "pair_aggregation": "arithmetic mean of the two fixed-image E values, equal image weights",
+  "per_image_mode_error_E": {
+    "A_B": "two separate target queries, combined before normalization",
+    "clip_error": false,
+    "denominator_requirement": "official n_A+n_B > 0",
+    "formula": "(abs(nhat_A-n_A)+abs(nhat_B-n_B))/(n_A+n_B)",
+    "prediction_counts": "nonnegative integers"
+  },
+  "point_policy": "random placeholders never localization ground truth",
+  "precheck_wall_seconds_charged": 34.21403079200536,
+  "queries_sha256": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+  "selection_sha256": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+  "status": "INPUTS_FROZEN_EXECUTION_BLOCKED",
+  "supersedes_protocol_sha256": "9de7ac4de5e4badea750ee1f678d09628808d9ced69dd20cbf90cf75f30d48ef",
+  "trigger_case_box_review": "required to assess target-selection interpretation; cancellation cannot justify that interpretation; no deletion or recomputed gates"
+}

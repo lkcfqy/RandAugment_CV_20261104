@@ -1,0 +1,5 @@
+Transport-only revision after a reconciled CLI startup failure. Original fault is RuntimeError with no retained exact message; not claimed fixed. Remote manifest absence plus the unchanged driver manifest gate excludes a model run, and official release is confirmed. The next attempt is not a replay on an uncertain live session.
+
+Same 11678781-byte archive SHA dd122a9217321602d79f352a0165980b0b893a1bd1f824ddc64cdc68d2a10cd4. No uploaded model/science code changed. Local CLI wrapper now exits failed processes even if websocket threads survive; known static errors and stack locations are recorded without credentials. Controller stops immediately on CLI_FAILED and releases its allocation. Launcher writes a first-line entry marker. No automatic exec retry.
+
+44 non-model tests PASS, including a real child-process regression that verifies a failure callback kills the hanging child within 3 seconds. Prior CPU actual environment/operator checks remain valid because payload is byte-identical. Budget starts at 0.5530576239191956 CU /1512.7766166667939 GPU seconds, never reset.

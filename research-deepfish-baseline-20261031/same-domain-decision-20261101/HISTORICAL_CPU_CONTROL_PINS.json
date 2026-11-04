@@ -1,0 +1,104 @@
+{
+  "all200_M0_source_records_unchanged": true,
+  "cost_and_exposure": {
+    "A": {
+      "source_exposure": {
+        "GT_presentations": 175,
+        "GT_removed": 25,
+        "MixUp_applied": 0,
+        "Mosaic_applied": 0,
+        "anchor_count": 200,
+        "anchor_counts": {
+          "1892": 40,
+          "1900": 40,
+          "2244": 40,
+          "2363": 40,
+          "930": 40
+        },
+        "empty_GT_inputs": 25,
+        "input_pixels_mean": 627256.78,
+        "input_pixels_total": 125451356,
+        "operator_calls": {
+          "Color": 200,
+          "LoadAnnotations": 200,
+          "LoadImageFromFile": 200,
+          "PackDetInputs": 200,
+          "RandomChoiceResize": 294,
+          "RandomCrop": 94,
+          "RandomFlip": 200
+        },
+        "same_image_repeated_inputs": 0,
+        "selected_occurrences": 200,
+        "selected_same_cached_origin_repeated_inputs": 0,
+        "visible_occurrences": 200,
+        "visible_same_cached_origin_repeated_inputs": 0,
+        "visible_unique_sources_per_input": {
+          "1": 200
+        }
+      },
+      "training_minutes": 18.65179937638313
+    },
+    "M": {
+      "source_exposure": {
+        "GT_presentations": 573,
+        "GT_removed": 81,
+        "MixUp_applied": 51,
+        "Mosaic_applied": 109,
+        "anchor_count": 200,
+        "anchor_counts": {
+          "1892": 40,
+          "1900": 40,
+          "2244": 40,
+          "2363": 40,
+          "930": 40
+        },
+        "empty_GT_inputs": 13,
+        "input_pixels_mean": 516940.75,
+        "input_pixels_total": 103388150,
+        "operator_calls": {
+          "CachedMixUp": 200,
+          "CachedMosaic": 200,
+          "Color": 200,
+          "LoadAnnotations": 200,
+          "LoadImageFromFile": 200,
+          "PackDetInputs": 200,
+          "RandomChoiceResize": 297,
+          "RandomCrop": 97,
+          "RandomFlip": 200,
+          "YOLOXHSVRandomAug": 200
+        },
+        "same_image_repeated_inputs": 110,
+        "selected_occurrences": 659,
+        "selected_same_cached_origin_repeated_inputs": 21,
+        "visible_occurrences": 649,
+        "visible_same_cached_origin_repeated_inputs": 20,
+        "visible_unique_sources_per_input": {
+          "1": 71,
+          "2": 34,
+          "3": 63,
+          "4": 30,
+          "5": 2
+        }
+      },
+      "training_minutes": 15.752052931933333
+    }
+  },
+  "original_manifest_sha256": "a6696eb9dde9f57b413149c7505cca61b86e7f7ed0881ba26a8e7711f8bbcb2e",
+  "referenced_files": [
+    {
+      "bytes": 2967,
+      "path": "evaluation/COMPARISON.json",
+      "sha256": "24e46c6ddc8915662be9dd946f6bf9ec105dde4e52ba7cd4e01b7bb1671cd261"
+    },
+    {
+      "bytes": 109223,
+      "path": "formal_A/RESULT.json",
+      "sha256": "c16db94ddfe8d2e62005ee0585ca367f6691c26129049c8b3ffa6be11fa7e6fc"
+    },
+    {
+      "bytes": 109199,
+      "path": "formal_M/RESULT.json",
+      "sha256": "746f42a99dbe3b900def183e30145669811bbb145e131aad4acc13bd81d26dc8"
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+[
+  {
+    "name": "source_hash/sources/commit.json",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/tree.json",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/A2C.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Dataset.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/AlexNet.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/ResNet.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/VGG.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/Wide_Resnet.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/__init__.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/pyramidnet.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/shake_pyramidnet.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/Network/shakedrop.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/README.md",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/__init__.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/adaaugment.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/autoaugment.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/cutout.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/ops.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/augmentation/trivialaugment.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/config.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/confs/resnet18.yaml",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/confs/resnet50.yaml",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/normalization.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/organize_transform.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/train.py",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_hash/sources/paper-2405.11467v3.html",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source_anchor/Dataset.py:52",
+    "passed": true,
+    "details": "        self.MAGNITUDE = torch.zeros(50000)"
+  },
+  {
+    "name": "source_anchor/Dataset.py:73",
+    "passed": true,
+    "details": "        self.MAGNITUDE[idx] = magnitude"
+  },
+  {
+    "name": "source_anchor/Dataset.py:84",
+    "passed": true,
+    "details": "                t = self.make_magnitude_transform(magnitude=self.MAGNITUDE[index].item(), cutout_length=16)"
+  },
+  {
+    "name": "source_anchor/Dataset.py:118",
+    "passed": true,
+    "details": "        self.MAGNITUDE[idx] = magnitude"
+  },
+  {
+    "name": "source_anchor/Dataset.py:123",
+    "passed": true,
+    "details": "                t = self.make_magnitude_transform(magnitude=self.MAGNITUDE[index].item(), cutout_length=8)"
+  },
+  {
+    "name": "source_anchor/train.py:72",
+    "passed": true,
+    "details": "train_loader=DataLoader(dataset=trainset, batch_size=cfg['batch'], shuffle=True, num_workers=8, pin_memory=True)"
+  },
+  {
+    "name": "source_anchor/train.py:131",
+    "passed": true,
+    "details": "        trainset.set_MAGNITUDE(idx, magnitude.detach().cpu())"
+  },
+  {
+    "name": "source_anchor/train.py:155",
+    "passed": true,
+    "details": "        ada_outputs, ada_feature = net(ada_aug_inputs, labels)"
+  },
+  {
+    "name": "source_anchor/train.py:163",
+    "passed": true,
+    "details": "        ada_loss = loss(ada_outputs, labels)"
+  },
+  {
+    "name": "source_anchor/train.py:167",
+    "passed": true,
+    "details": "        magnitude = agent.action(none_state)"
+  },
+  {
+    "name": "source_anchor/train.py:169",
+    "passed": true,
+    "details": "        trainset.set_MAGNITUDE(idx, magnitude.detach().cpu())"
+  },
+  {
+    "name": "source_anchor/train.py:171",
+    "passed": true,
+    "details": "        reward = (1 - balance_factor) * (ada_loss.detach() - none_loss.detach()) + \\"
+  },
+  {
+    "name": "source_anchor/train.py:181",
+    "passed": true,
+    "details": "        agent.update(none_state, magnitude, ada_state, reward)"
+  },
+  {
+    "name": "source_anchor/train.py:231",
+    "passed": true,
+    "details": "    train_first_epoch(model, agent)"
+  },
+  {
+    "name": "source_anchor/train.py:232",
+    "passed": true,
+    "details": "    trainset.is_magnitude = True"
+  },
+  {
+    "name": "source_anchor/A2C.py:68",
+    "passed": false,
+    "details": "        dist = self.actor.get_dist(state)"
+  },
+  {
+    "name": "source_anchor/A2C.py:75",
+    "passed": false,
+    "details": "        dist = self.actor.get_dist(state)"
+  },
+  {
+    "name": "source_anchor/A2C.py:82",
+    "passed": false,
+    "details": "            td_target = reward + 0.99 * next_value"
+  },
+  {
+    "name": "source_anchor/augmentation/adaaugment.py:366",
+    "passed": true,
+    "details": "    PARAMETER_MAX = num_strengths - 1"
+  },
+  {
+    "name": "source_anchor/augmentation/adaaugment.py:636",
+    "passed": true,
+    "details": "        self.op = random.choices(ALL_TRANSFORMS, k=1)[0]"
+  },
+  {
+    "name": "source_anchor/augmentation/adaaugment.py:637",
+    "passed": true,
+    "details": "        self.level = min(int(PARAMETER_MAX * M)+1, PARAMETER_MAX)"
+  },
+  {
+    "name": "worker0/16_records",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "worker0/fixed_input_reward_invariant",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "worker0/new_logprob_differs_from_reward_action",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "worker0/next_visit_cache",
+    "passed": true,
+    "details": {
+      "expected": 1,
+      "observed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  }
+]

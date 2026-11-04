@@ -1,0 +1,77 @@
+"""Build the Chinese audit report from fixed result files; no new experiments."""
+import csv
+import json
+import time
+from pathlib import Path
+
+P = Path(__file__).resolve().parent
+load = lambda name: json.loads((P/name).read_text())
+protocol, fixture, scan, trace = [load(n) for n in
+    ['protocol.json','fixture-results.json','scan-summary.json','trace-summary.json']]
+validation = load('validation.json')
+with (P/'per-seed.csv').open() as f: rows = list(csv.DictReader(f))
+budget = dict(start_utc=protocol['start_utc'], deadline_epoch=protocol['deadline_epoch'],
+              accounting_epoch=time.time(), session_elapsed_seconds=time.time()-protocol['start_epoch'],
+              scan_seconds=scan['elapsed_seconds'], trace_seconds=trace['elapsed_seconds'],
+              fixture_seconds=fixture['elapsed_seconds'],
+              peak_rss_bytes=max(x['peak_rss_bytes'] for x in [fixture,scan,trace]),
+              gpu_seconds=0, gpu_count=0, mps_used=False, colab_used=False,
+              cpu_opencv_threads=1, fixture_corrections=0, training_runs=0,
+              scope_completed='1024 coordinate cases plus 16 synthetic samples in A/B/C',
+              not_completed_scope=[], total_budget_seconds=3600, scan_budget_seconds=1800,
+              trace_budget_seconds=600, memory_budget_bytes=2**31)
+(P/'budget.json').write_text(json.dumps(budget,indent=2)+'\n')
+
+lines = ['# NSegment 名义剂量与采样索引：有限 CPU 审计', '',
+'本轮固定扫描和条件 trace 均完成。对公开实现、OpenCV 4.11.0、两种尺寸和预先固定的 seeds 0–127，(1,3)、(1,5)、(1,10) 的实际最近邻 donor 索引全部恒等；正控 (100,3) 每次都产生大量索引变化。合成管线得到 B=C≠A，首次差异在 A/B 的概率门之后。结论止于公开实现的有限审计，不是原 Table I 的训练复现，也不构成已确认的新贡献。', '',
+'## 证据与固定范围', '',
+'固定仓库提交 `5c66795b38ffd351f2d3363bc4eb3e5c3b580fac`，加入操作的提交 `0ef667c06284d6f563aaa3f7a86a576fd1c0ae8c`。两份 transforms.py 字节完全相同，SHA256：`4ca1b6c17ae66f469eafe2628bb6fa6b44930387305715c751e6d346d3b40224`。已读取 MIT 许可并保留版权声明。[固定 NoisySegment 源码](https://github.com/unique-chan/NSegment/blob/5c66795b38ffd351f2d3363bc4eb3e5c3b580fac/mmsegmentation/mmseg/datasets/transforms/transforms.py#L2541)。逐行对照见 `SOURCE_COMPARISON.md`，下载哈希见 `sources/manifest.json`。', '',
+'主尺度 H×W=512×512；大尺度 2064×2494 仅表示论文平均原图尺度的敏感性检查，不具有真实图像身份。四组参数均为 singleton、p=1；按尺寸→seed→固定参数列表执行，共 2×128×4=1024 行，无缺行、无追加 seed、无追加参数。论文平均尺寸与训练裁剪说明见 [v3](https://arxiv.org/html/2504.19634v3) 和 [v6](https://arxiv.org/html/2504.19634v6)。', '',
+'局部 RandomState(seed) 经 transform 已有随机状态参数注入，保留参数选择、先 dx 后 dy、两场生成后依次 blur 的原始顺序；每次仍实际消耗全局概率门。Stage A 每个 case 将 global RNG 重置为同名 seed，仅用于复现 gate，与局部状态是两个独立对象。原 __call__ 默认分支创建 RandomState(None)，不能仅靠设置 global seed 固定局部场。本审计未运行作者完整数据加载管线。', '',
+'用两张独立 float32 X/Y 坐标 ramp 经实际 cv2.remap 恢复 donor；最大坐标仅 2493，坐标精确可表示。没有把大图 flat ID 放入单张 float32，也没有给 OpenCV 传 CV_32S。恒等、±0.49/±0.51、半整数及相邻 float32、边角 clip、uint8 双字节坐标编码均通过。八个尺寸×参数组的 seed=0 另用四通道 uint8 编码交叉核对；标签 trace 使用单通道 uint8。', '',
+'## Stage A：实际 donor 索引', '',
+'下表的位移上限是在全部 128 个 seed 和全场像素中，float32 map 相对整数网格的最大分量绝对值；变化率区间是逐 seed 变化率的最小值与最大值，不是置信区间。', '',
+'| H×W | (α,σ) | 执行后全场恒等 | 索引变化率范围 | map32 最大分量/px | donor 最大分量/px |',
+'|---|---|---:|---:|---:|---:|']
+summary_rows=[]
+for h,w in protocol['stage_a']['shapes']:
+    for a,s in protocol['stage_a']['parameters']:
+        g=scan['groups'][f'{h}x{w}/a{a}_s{s}']
+        lines.append(f'| {h}×{w} | ({a},{s}) | {g["identity_seeds"]}/128 | {100*g["min_rate"]:.6f}%–{100*g["max_rate"]:.6f}% | {g["max_map32_linf"]:.9f} | {g["max_donor_linf"]} |')
+        summary_rows.append(dict(height=h,width=w,alpha=a,sigma=s,**g))
+with (P/'summary.csv').open('w',newline='') as f:
+    writer=csv.DictWriter(f,fieldnames=list(summary_rows[0]));writer.writeheader();writer.writerows(summary_rows)
+lines += ['',
+'全部 768 个 α=1 的变换都实际执行，skipped=False；恒等发生在最近邻采样索引层面，不是概率门跳过，也不是偶然抽中了相同类别值。六个 α=1 的尺寸×参数组，在内区、边带、左上/右上/左下/右下四角均为零变化；所有这些 map 的 half-tie 和 near-tie 数均为零。三个 σ 的浮点位移场彼此并不相同，只是在本次固定抽样中量化为相同索引。', '',
+'全场 preclip 位移的最大分量，512 尺寸的三个 α=1 设置依次为 0.350846835、0.222776816、0.109444430 px；大尺寸依次为 0.343788698、0.240828988、0.117153778 px。各分量 RMS、clip 比例、舍入邻域计数与各区域变化率均在 `per-seed.csv`。clip 比例非零主要来自原图边缘向外的小位移，不能把 clip 本身当成 donor 变化。', '',
+'α=1 不是任意 seed 恒等定理。这里只遍历固定 128 个场实现与两个尺寸；未测试 σ=1、其他尺寸、全部可能随机状态或作者环境。空间平滑使像素强相关，本报告不将数十亿次像素访问当独立 Bernoulli 样本构造极窄 CI。相同 seed 的不同参数/尺寸也不能视为全部独立实验。', '',
+'## OpenCV 路径与边界', '',
+'环境为 Python 3.9.6、NumPy 2.0.2、opencv-python-headless 4.11.0.86（cv2 4.11.0）、macOS arm64；完整构建见 `opencv-build.txt`。OpenCV 单线程，OpenCL 显式关闭，全部处理使用 CPU。', '',
+'实际输入 GaussianBlur 的噪声为 float64，自动核 σ=3/5/10 对应 25/41/81，半径 12/20/40；通过 impulse support 与同尺寸显式核逐元素相等验证。默认边界与 BORDER_REFLECT_101 逐元素相等。论文正文约 6σ+1 的表述不等于本次浮点路径的实际核；作者实际版本未知，不反推其运行环境。[OpenCV 4.11 自动核源码](https://github.com/opencv/opencv/blob/4.11.0/modules/imgproc/src/smooth.dispatch.cpp#L287)。', '',
+'区域划分使用上述实际半径：内区为去除四周边带后的区域；四角分别为 r×r；边带统计排除四角，六个区域互不重叠且覆盖全图。', '',
+'对独立 U[-α,α) 输入，单点平滑结果的理论方差为 α²/3 乘有效权重平方和。反射边界会把多个核位置映射到同一输入，应先合并这些权重；不能把重复输入当成独立项。本次 σ=3/5/10 的角点/内区方差比约为 3.2831/3.5614/3.7775，已在 fixture 中记录。这是单点方差计算，不是假定不同输出像素独立。', '',
+'半像素校准在本机观察到 ties-to-even；两侧相邻 float32 分别选择对应邻点。报告使用实际 remap donor 而非以自写 round 代替 OpenCV，且没有用 tie 规则推断作者机器。', '',
+'## Stage B：16 个合成样本的受控 trace', '',
+'Stage A 完成且目标 (1,10) 全部恒等、正控全部通过后，才运行本阶段。构造 16 个 512×512 的 uint8 图像/mask，一次全局随机排列后依次经过操作、256×256 随机 crop 和随机水平 flip。A 无操作；B 为原操作的独立最小实现；C 消耗相同 gate/参数/场/blur 后以 identity map 执行同样 remap。此顺序专为机制隔离构造，不是原 Table I 配置。', '',
+'B 的每个局部 RNG 完整 before/after 状态已保存，C 用 before 状态回放；B/C 未替换的 map 哈希与局部终态一致。B/C 的输出 dtype、C-contiguity、ownership 一致，且均不与输入 mask 共享内存。完整全局/局部状态、每样本参数与最终数组均已存档。', '',
+'| 比较项目 | A 对 B | B 对 C |',
+'|---|---:|---:|',
+'| 样本顺序 | 相同 | 相同 |',
+'| 操作后 mask 内容相等 | 16/16 | 16/16 |',
+'| crop/flip 全参数相等 | 0/16 | 16/16 |',
+'| 最终 image 相等 | 0/16 | 16/16 |',
+'| 最终 mask 相等 | 0/16 | 16/16 |',
+'| 全局 RNG 全阶段一致 | 否 | 是 |',
+'| 首个状态差异 | 第0个样本，操作后全局 RNG | 无 |', '',
+'第0个样本 ID=15：A 的 crop=(top176,left225)、flip=True；B/C 的 gate=0.34304444124330347，crop=(top146,left68)、flip=False。B/C 操作后 mask 本身未变，但 p=1 的 gate 仍推动共享全局 RNG，使后续消费者走向不同参数。样本排列发生在 gate 之前，因此本次排列保持一致。', '',
+'此 B=C≠A 结果只证实该合成管线里的 RNG 通路；是常规工程发现，不升级到训练验证或贡献主张。没有据此归咎 GPU，也没有声称局部随机场消耗了全局 RNG；源码中的全局消耗来自 gate。', '',
+'## 归因边界与停止判断', '',
+'论文 Table I 的 label-only (1,3)/(1,5)/(1,10) 报告 77.57/77.30/76.49，baseline 77.41，并说明同初始化和随机 seed。缺少与每一行绑定的完整 config、日志、checkpoint、环境与数据管线身份，不能把本次 identity 或 RNG trace 归因为这些数字的来源，也不能断言原表错误。[Table I 与实验说明](https://arxiv.org/html/2504.19634v6#S3)。', '',
+'本轮没有进行 NSegment+、scale-aware 延伸、真实数据实验、权重下载或训练。三个预定小剂量全部通过有限 identity 观察，正控和 fixture 通过，目标非零反例停止分支未触发；本轮按既定公开实现审计边界完成，不启动额外训练。该有限分支的完成不代表整个寻找贡献项目关闭。', '',
+'## 预算、验证与交付', '',
+f'从 {protocol["start_utc"]} 开始计时；本报告生成时总耗时 {budget["session_elapsed_seconds"]:.1f} 秒（上限3600秒）。坐标扫描 {scan["elapsed_seconds"]:.3f} 秒（上限1800秒）；trace {trace["elapsed_seconds"]:.3f} 秒（上限600秒）；fixture {fixture["elapsed_seconds"]:.3f} 秒。最大实测 RSS {budget["peak_rss_bytes"]:,} bytes = {budget["peak_rss_bytes"]/2**20:.2f} MiB，小于2 GiB。GPU/MPS/Colab使用均为0。', '',
+'12项 fixture 校准通过，0次修正；1024行 CSV 的集合、范围、区域和校验关系全部通过；已重新载入 NPZ 确认 B/C 数组精确一致，并核对所有保存的 B/C 全局与局部 RNG 状态一致。验证结果见 `validation.json`。扫描并未因结果为零而省略剩余 seed。', '',
+'首次保存进程遇到 exec-server 连接断开，确认目录未写入后重试；首次沙箱下载遭 DNS 限制，保留 `sources/download-attempt-sandbox.json`，随后经正常提权流程只读下载指定官方来源。两项均已解决。缺少 OpenCV 时，从官方 PyPI 在独立 venv 安装固定 wheel，安装记录已保存；无权限拒绝或未决外部动作。未 commit、push、上传或覆盖历史。', '',
+'保留原始协议、每seed CSV、汇总 CSV/JSON、源码/论文/许可证、代码、构建信息、全部 trace 状态与输出、执行日志及检查点。归档前生成每文件 SHA256 清单，归档后复查内容和目标目录副本；最终 tar 与交付验证位于 run 目录旁。详见 README.md。', '']
+(P/'REPORT_ZH.md').write_text('\n'.join(lines))
+print(json.dumps(dict(report='REPORT_ZH.md', summary_rows=len(summary_rows), budget=budget),ensure_ascii=False))

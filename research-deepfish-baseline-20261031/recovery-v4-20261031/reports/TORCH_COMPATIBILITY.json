@@ -1,0 +1,35 @@
+{
+  "status": "STATIC_OFFICIAL_COMPATIBILITY_CONFIRMED_RUNTIME_GATE_PENDING",
+  "source_error": "Torch2.0 deterministic index_put scalar broadcast, bbox_weights[pos_inds]=1.0, 4 vs 1; first forward before optimizer step",
+  "upstream_issue": "https://github.com/pytorch/pytorch/issues/105819",
+  "upstream_fix": "https://github.com/pytorch/pytorch/pull/105833",
+  "observed_fix_in_v2_1_0": "if (sliceSize > 1) {\n      expanded_size.insert(expanded_size.end(), sliceSize);\n    }",
+  "new_official_stack": {
+    "torch": "2.1.0+cu118",
+    "torchvision": "0.16.0+cu118",
+    "mmcv": "2.1.0",
+    "mmengine": "0.10.7",
+    "mmdet": "3.3.0",
+    "python": "3.10.19"
+  },
+  "mmcv_wheel_index": "https://download.openmmlab.com/mmcv/dist/cu118/torch2.1.0/index.html",
+  "safe_loader_force_supported": true,
+  "determinism_disabled": false,
+  "official_mmdet_code_modified": false,
+  "scientific_configuration_modified": false,
+  "efficacy_observations": 0,
+  "prior_resource_ledger": {
+    "prior_CU_upper": 0.4659047455334133,
+    "prior_GPU_seconds_upper": 1260.3443497161866,
+    "CPU_gate_verified": false,
+    "previous_release_confirmed": true,
+    "previous_run_sha256": "fafab1e3494703df035e4c5720dd9fbf06b93fe9406278bc8988e7775c613ad2",
+    "efficacy_observations": 0,
+    "optimizer_updates": 0
+  },
+  "next_gates": [
+    "CPU runtime exact dependencies and compiled synthetic operators",
+    "CUDA deterministic indexed assignment and compiled NMS before weight download",
+    "full original checkpoint matching and unchanged paired preflight"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "status": "FROZEN_BEFORE_PREFLIGHT",
+  "question": "CPU-trained fixed M minus CPU-trained A under same CPU backend and U200; whole strategy including extra exposure",
+  "seed": 20261031,
+  "arms": [
+    "A",
+    "M"
+  ],
+  "updates_per_arm": 200,
+  "epochs": 40,
+  "batch_size": 1,
+  "checkpoint": "final complete state only; both persisted before dev inference",
+  "primary_metric": "AP@100; M-A percentage points",
+  "formal_evaluation_images_per_arm": 64,
+  "test_used": false,
+  "GPU_MPS_upload_install_CU_new": 0,
+  "wall_limit_seconds": 7200,
+  "preflight_limit_seconds": 600,
+  "RSS_cap_bytes": 12884901888,
+  "research_plus_staging_cap_bytes": 8589934592,
+  "retain_margin_bytes": 83886080,
+  "preflight_iterations": {
+    "A": [
+      2
+    ],
+    "M": [
+      43,
+      44
+    ]
+  },
+  "preflight_selection": "training-only prior fixed200 data trajectory: earliest maximum-area positive A; earliest post40 maximum-area positive M; earliest post40 positive M with both Mosaic/MixUp applied. No efficacy selection. Largest observed input750x1333. Geometric upper bound800x1333; factor1333*800/(1333*750) included in forecast.",
+  "preflight_predictions_evaluated": false,
+  "time_rule": {
+    "safety_multiplier": 1.25,
+    "geometry_size_multiplier": 1.0666666666666667,
+    "updates_times_max_measured_per_arm": 200,
+    "evaluation_forwards": 128,
+    "reference_max_CPU_forward_seconds": 2.256413041992346,
+    "checkpoint_save_and_full_verification_allowance_per_arm_seconds": 60,
+    "other_initialization_data_logging_and_release_allowance_seconds": 180,
+    "preflight_elapsed_included": true
+  },
+  "memory_rule": "1.25*(max measured preflight RSS*(800/750)+700MiB checkpoint safe-readback allocation) <=12GiB; runtime process absolute cap12GiB",
+  "support_sha256": "9978bd0fd09becf9dced032315ecf06c63dab0ee2b7abb32925137d2f8b3c2d4",
+  "config_sha256": {
+    "A": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830",
+    "M": "72f991e8d27439ab9732eb21ef30365e0bb91ecb1386c65785b9871d09a8a6aa"
+  },
+  "asset_pins": [
+    {
+      "bytes": 691901857,
+      "path": "assets/groundingdino_swint_ogc_mmdet-822d7e9d.pth",
+      "sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+      "url": "https://download.openmmlab.com/mmdetection/v3.0/grounding_dino/groundingdino_swint_ogc_mmdet-822d7e9d.pth"
+    },
+    {
+      "bytes": 11356,
+      "path": "assets/bert-base-uncased/LICENSE",
+      "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/LICENSE"
+    },
+    {
+      "bytes": 10517,
+      "path": "assets/bert-base-uncased/README.md",
+      "sha256": "9187b6018ea0010d884e78e098e328faa1b88b301570d0cce606bb35e4067e17",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/README.md"
+    },
+    {
+      "bytes": 570,
+      "path": "assets/bert-base-uncased/config.json",
+      "sha256": "7160e1553ad2ca51d8c1cb066be533db31826e12d173824c1bb0cb1a4f187d20",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/config.json"
+    },
+    {
+      "bytes": 440449768,
+      "path": "assets/bert-base-uncased/model.safetensors",
+      "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/model.safetensors"
+    },
+    {
+      "bytes": 466062,
+      "path": "assets/bert-base-uncased/tokenizer.json",
+      "sha256": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/tokenizer.json"
+    },
+    {
+      "bytes": 48,
+      "path": "assets/bert-base-uncased/tokenizer_config.json",
+      "sha256": "a025160ef0431f1a392f6f050c1310f4c5d9fb6f275932dbccba73c4d214bf10",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/tokenizer_config.json"
+    },
+    {
+      "bytes": 231508,
+      "path": "assets/bert-base-uncased/vocab.txt",
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/vocab.txt"
+    }
+  ],
+  "observer_source_sha256": "01eb3b5549842490df1205294bb6b6e037720fe10fd2fcee9ea3486eb9a648a5",
+  "official_implementation_sha256": {
+    "mmcv/image/photometric.py": "7fe2744e5879eb61f01f7c9f365424736bd767bc0f6a427aef278340ca5528fb",
+    "mmcv/ops/multi_scale_deform_attn.py": "223a5406010eb5109bd8a12c06b589baf876db02c4192fdac93c85097e659727",
+    "mmdet/__init__.py": "2cdba8435317cb84202c3b138e71465ed99688f39433e51e5424a363da922d79",
+    "mmdet/datasets/coco.py": "e267a8af63cd6cf0a0966f3b2e6b14831d04b48d9e8f6018dc53e54dece29b76",
+    "mmdet/datasets/transforms/colorspace.py": "c0288547217e983a3ce110fd96d8e9defd9d80d566931a9f5362320ed7ec3e1c",
+    "mmdet/datasets/transforms/formatting.py": "14f3d8dbf9189d7b97e47a9453b97aad67aa3cfd66f69a5c2cd8e330649ba16a",
+    "mmdet/evaluation/metrics/coco_metric.py": "29f5518609ecdb917cc67ee1f815bd03334c01fd9c09871bc755fc59e8cbbc31",
+    "mmdet/models/detectors/grounding_dino.py": "a79d59ca49fe66734273a6df4a338aeb1505a2ea54fc1acd164e6ef638ae3692",
+    "mmdet/models/layers/transformer/dino_layers.py": "efd6c26addba00a7120bb88621d0eb956a8a681ea0e84515b7c0df0e92a4fb22",
+    "mmdet/models/layers/transformer/grounding_dino_layers.py": "cb212298c7598ab5482eec3b96ea2215b5145138118590f99d8510da1d4e7ece",
+    "pycocotools/coco.py": "aa1ab6f44c29dfa0bf09fc4f6232180444d0a4dd8a1d4b96513793f23631a66b",
+    "pycocotools/cocoeval.py": "988485f79624cd42ceed9335d284df4cdcdf7b3d583e052fcbed2dd6bccf0267"
+  },
+  "environment_lock_sha256": "e89e8db6180273b82ef869db5303e4309c8488983be41618e0ac147331e6e162",
+  "core_runtime_versions": {
+    "cv2": "4.11.0",
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "mmengine": "0.10.7",
+    "numpy": "1.24.3",
+    "torch": "2.1.0",
+    "torchvision": "0.16.0"
+  },
+  "comparison_limits": [
+    "new CPU paired experiment; historical CUDA-trained outcomes background only",
+    "not source-exposure matched",
+    "one support episode, one seed, same64dev; exploratory, no novel contribution claim"
+  ],
+  "failure_policy": "Stop and retain logs/complete checkpoints; never shorten U200 or alter recipe; incomplete arms have no efficacy comparison."
+}

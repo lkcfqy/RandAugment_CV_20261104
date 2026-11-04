@@ -1,0 +1,67 @@
+{
+  "CPU_resources": {
+    "affinity_cpu_ids": null,
+    "cgroup_cpu_limits": {},
+    "os_cpu_count": 18,
+    "policy": "fixed 2 intra-op / 1 inter-op; no resource-driven tuning",
+    "thread_environment": {
+      "MKL_DYNAMIC": null,
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null,
+      "OMP_DYNAMIC": null,
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null
+    },
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 2
+  },
+  "backend": "Mac CPU FP32 pinned HF/app basic path",
+  "compute_used_seconds": 547.7135695520119,
+  "counters": {
+    "GPU_operation_attempts": 0,
+    "formal_attempts": 0,
+    "formal_completed": 0,
+    "network_attempts": 0,
+    "pickle_attempts": 0,
+    "precheck_attempts": 0,
+    "root_forward_entered": 0,
+    "root_forward_reserved": 0,
+    "root_forward_returned": 0,
+    "science_reads_during_precheck": 0,
+    "training_steps": 0
+  },
+  "error": "Duplicate torch object <function main.<locals>.forbid_gpu at 0x10b149d20> with different rules: <class 'torch._dynamo.variables.torch.TorchInGraphFunctionVariable'>, <class 'torch._dynamo.variables.functions.SkipFunctionVariable'>",
+  "error_type": "AssertionError",
+  "fixture_changes": 0,
+  "formal_execution_started": false,
+  "freeze_sha256": "8040c4df3dc6ab326a5a74254e650011f6d105d8ce6b9255658a097e7ed7f7a7",
+  "memory": {
+    "peak_rss_bytes": 0
+  },
+  "missing_queries": 492,
+  "mode": "precheck",
+  "precheck_calls": [],
+  "previous_compute_wall_seconds": 545.6848070110136,
+  "retries": 0,
+  "runtime": {
+    "AMP": false,
+    "CPU_default_generator_seeded_without_GPU_seed_calls": true,
+    "device": "cpu",
+    "dtype": "FP32",
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "seed": 42,
+    "versions": {
+      "Pillow": "13.0.0",
+      "numpy": "2.5.4",
+      "safetensors": "0.8.0",
+      "timm": "1.0.30",
+      "tokenizers": "0.21.4",
+      "torch": "2.13.0",
+      "torchvision": "0.28.0",
+      "transformers": "4.49.0"
+    }
+  },
+  "status": "ENGINEERING_BLOCKED",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031/scripts/cpu_worker.py\", line 66, in main\n    model,count,aliases,loading=load_fixed_model(ROOT);report['strict_loading']=loading\n                                ~~~~~~~~~~~~~~~~^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031/scripts/model_io.py\", line 21, in load_fixed_model\n    from countgdpp import CountGDPlusPlus,count\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031/source/countgdpp.py\", line 27, in <module>\n    from util.misc import nested_tensor_from_tensor_list  # noqa: E402\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031/source/util/misc.py\", line 25, in <module>\n    import torchvision\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/__init__.py\", line 8, in <module>\n    from torchvision import (\n    ^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<8 lines>...\n    )  # usort:skip\n    ^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/models/__init__.py\", line 2, in <module>\n    from .convnext import *\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/models/convnext.py\", line 9, in <module>\n    from ..ops.misc import Conv2dNormActivation, Permute\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/ops/__init__.py\", line 23, in <module>\n    from .poolers import MultiScaleRoIAlign\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/ops/poolers.py\", line 10, in <module>\n    from .roi_align import roi_align\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torchvision/ops/roi_align.py\", line 7, in <module>\n    from torch._dynamo.utils import is_compile_supported\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/__init__.py\", line 80, in <module>\n    from .polyfills import loader as _  # usort: skip\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/polyfills/loader.py\", line 35, in <module>\n    POLYFILLED_MODULES: tuple[\"ModuleType\", ...] = tuple(\n                                                   ^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/polyfills/loader.py\", line 36, in <genexpr>\n    importlib.import_module(f\".{submodule}\", package=polyfills.__name__)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/miniforge3/lib/python3.14/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/polyfills/_collections.py\", line 20, in <module>\n    @substitute_in_graph(_collections._count_elements)\n     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/decorators.py\", line 1034, in wrapper\n    rule_map: dict[Any, type[VariableTracker]] = get_torch_obj_rule_map()\n                                                 ~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/lib/python3.14/site-packages/torch/_dynamo/trace_rules.py\", line 3069, in get_torch_obj_rule_map\n    raise AssertionError(\n        f\"Duplicate torch object {obj} with different rules: {v}, {d[obj]}\"\n    )\nAssertionError: Duplicate torch object <function main.<locals>.forbid_gpu at 0x10b149d20> with different rules: <class 'torch._dynamo.variables.torch.TorchInGraphFunctionVariable'>, <class 'torch._dynamo.variables.functions.SkipFunctionVariable'>\n",
+  "worker_wall_seconds": 1.446919624999282
+}

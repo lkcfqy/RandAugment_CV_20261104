@@ -1,0 +1,225 @@
+{
+  "CPU_root_forward_attempts_this_revision": 6,
+  "CPU_root_forward_entered": 6,
+  "CPU_root_forward_returned": 6,
+  "budget": {
+    "cumulative_used_seconds": 601.1680442610086,
+    "failed_setup_seconds": 2.4846074160013814,
+    "finalization_reserve_seconds": 60,
+    "formal_extra_loading_allowance_seconds": 30,
+    "formula": "cumulative_used + 30 new-load allowance + 2*492*max(all6 CPU complete query seconds) + 60 <= 7200",
+    "full492_nominal_seconds": 3217.177216836484,
+    "guard_probe_seconds": 0.8986813340015942,
+    "margin_to7200_seconds": 74.47752206602308,
+    "max_full_query_seconds": 6.538978083000984,
+    "no_budget_based_sample_reduction": true,
+    "nominal_cumulative_seconds": 3908.3452610974928,
+    "only_active_total_cap_seconds": 7200,
+    "original_multiplier_retained": 2,
+    "precheck_external_finalization_included": true,
+    "prior_history_before_CPU_work_seconds": 545.6848070110136,
+    "remaining_seconds": 6598.831955738991,
+    "static_artificial_unit_tests_separately_reported": true,
+    "successful_precheck_seconds": 52.099948499992024,
+    "superseded_90min_draft_active": false,
+    "twofold_admission_allowed": true,
+    "twofold_full492_cumulative_forecast_seconds": 7125.522477933977
+  },
+  "code_tests": {
+    "counters": {
+      "GPU_attempts": 0,
+      "model_forward_attempts": 0,
+      "network_attempts": 0,
+      "pickle_attempts": 0
+    },
+    "errors": 0,
+    "failures": 0,
+    "status": "PASS",
+    "tests": 42,
+    "wall_seconds": 0.7382503749977332
+  },
+  "combined_precheck_episode_including_failed_setup_and_guard_probe_seconds": 55.483237249995,
+  "dtype": "FP32",
+  "entry_root": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031-r1",
+  "evidence_sha256": {
+    "artifact_index": "4ce8269b1ee8668dff5bc84d94316dcf58da43c701d0e340772a00d179188a15",
+    "controller": "fecb5af97c1b2961403d6c8321fdcd4774a8d8ba15a614943d586dbc7a80ce6f",
+    "engineering": "6b9e82c3625ceaaa81447b26c7c7a5816ccede8c7aff8a4e256aa16d2e8a9857"
+  },
+  "first_initialization_failed_wall_seconds": 2.4846074160013814,
+  "first_initialization_failure_directory": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-observation-20261031",
+  "first_initialization_failure_error": "Duplicate torch object <function main.<locals>.forbid_gpu at 0x10b149d20> with different rules: <class 'torch._dynamo.variables.torch.TorchInGraphFunctionVariable'>, <class 'torch._dynamo.variables.functions.SkipFunctionVariable'>",
+  "first_initialization_failure_forward_attempts": 0,
+  "first_initialization_failure_preserved": true,
+  "fixture_changed": false,
+  "fixture_pixel_sha256": "311764e9a1f62545d97d904d0ecd377049a19645a87c478a1af68d8b7a15e87b",
+  "formal_queries_executed": 0,
+  "formal_startup_status": "NOT_STARTED; formal_authorization.template.json remains false; separate matching GO required",
+  "freeze_sha256": "649a171fb5bd1d659aa43675e072024ad6c5aa7fba75b0efefa70d481517a79b",
+  "guard_fix": "Use a distinct closure object per GPU API guard so TorchDynamo does not register one function under conflicting rules; no model/operator/order change. Old frozen entry preserved and new entry built separately.",
+  "guard_probe": {
+    "GPU_operations": [],
+    "model_forwards": 0,
+    "registered_rules": 2768,
+    "status": "PASS_UNIQUE_GPU_GUARDS_DYNAMO_IMPORT",
+    "wall_seconds": 0.8986813340015942
+  },
+  "indexed_artifacts_verified": 8,
+  "input_hashes_per_call": 14,
+  "local_frozen_files": 20,
+  "memory_peak_RSS_bytes": 3998859264,
+  "model_forward_retries": 0,
+  "new_CU": 0,
+  "new_GPU_operations": 0,
+  "new_downloads": 0,
+  "new_uploads": 0,
+  "per_mode_repeatability": {
+    "C": {
+      "actual_native_mask_equal": true,
+      "first_seconds": 6.525064292000025,
+      "numerical_comparison": {
+        "absolute_tolerance": 0.0001,
+        "active_logits": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "coordinates": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "native_mask_equal": true,
+        "relative_tolerance_against_cpu": 0.001,
+        "tolerance_passed": true
+      },
+      "raw_exact_equal": true,
+      "reference_clone_unchanged": true,
+      "second_seconds": 6.527448624998215,
+      "topk_order_equal": true
+    },
+    "F": {
+      "actual_native_mask_equal": true,
+      "first_seconds": 6.487069041992072,
+      "numerical_comparison": {
+        "absolute_tolerance": 0.0001,
+        "active_logits": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "coordinates": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "native_mask_equal": true,
+        "relative_tolerance_against_cpu": 0.001,
+        "tolerance_passed": true
+      },
+      "raw_exact_equal": true,
+      "reference_clone_unchanged": true,
+      "second_seconds": 6.531373666992295,
+      "topk_order_equal": true
+    },
+    "V": {
+      "actual_native_mask_equal": true,
+      "first_seconds": 6.511488584001199,
+      "numerical_comparison": {
+        "absolute_tolerance": 0.0001,
+        "active_logits": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "coordinates": {
+          "max_absolute_error": 0.0,
+          "max_error_divided_by_tolerance": 0.0,
+          "within_tolerance": true
+        },
+        "native_mask_equal": true,
+        "relative_tolerance_against_cpu": 0.001,
+        "tolerance_passed": true
+      },
+      "raw_exact_equal": true,
+      "reference_clone_unchanged": true,
+      "second_seconds": 6.538978083000984,
+      "topk_order_equal": true
+    }
+  },
+  "post_repeat_registered_state_exact_equal": true,
+  "precheck_episode_cap_seconds": 180,
+  "preprocessed_shape": [
+    1,
+    3,
+    800,
+    1333
+  ],
+  "process_alive_after_run": {
+    "caffeinate_pid": false,
+    "worker_pid": false
+  },
+  "recorded_utc": "2026-10-31T07:43:04.590558+00:00",
+  "referenced_assets": 180,
+  "runtime": {
+    "AMP": false,
+    "CPU_default_generator_seeded_without_GPU_seed_calls": true,
+    "device": "cpu",
+    "dtype": "FP32",
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "seed": 42,
+    "versions": {
+      "Pillow": "13.0.0",
+      "numpy": "2.5.4",
+      "safetensors": "0.8.0",
+      "timm": "1.0.30",
+      "tokenizers": "0.21.4",
+      "torch": "2.13.0",
+      "torchvision": "0.28.0",
+      "transformers": "4.49.0"
+    }
+  },
+  "scientific_protocol_unchanged": {
+    "NA_pairs_reported": 6,
+    "adaptive_crop": false,
+    "all_pairs": 47,
+    "images": 82,
+    "labels_sha256": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+    "max_edge": 1333,
+    "metrics_sha256": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+    "pair_count": 41,
+    "pseudo_exemplars": false,
+    "queries": 492,
+    "queries_sha256": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+    "selection_sha256": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+    "short_edge": 800,
+    "threshold": 0.23
+  },
+  "scope": "Repeatability of this pinned Mac CPU app path only; not evidence of higher correctness or CUDA-paper equivalence. Scientific conclusions remain absent until all492 queries and box review.",
+  "status": "PASS_CPU_REPEATABILITY_FORMAL_PENDING_DIFF_REVIEW_AND_GO",
+  "strict_loading": {
+    "actual_aliases": 66,
+    "all_values_equal": true,
+    "custom_attention_extension": false,
+    "logical_keys": 1108,
+    "missing_keys": [],
+    "physical_keys": 1042,
+    "strict": true,
+    "unexpected_keys": []
+  },
+  "successful_precheck_wall_seconds": 52.099948499992024,
+  "threads": {
+    "inter_op": 1,
+    "intra_op": 2
+  },
+  "training_steps": 0,
+  "unchanged_helper_hashes": {
+    "evidence.py": "b3f2fcfb4aa0230284acbbcc85c2283a2ca5a0c94eea020ea50d825ba31e03f1",
+    "fixture.py": "f2b0c5fe44128ef565f8286247bb008210f8e5bbaa56904d4677f428e2ad2688",
+    "hooks.py": "6eeab19d59f75699912026ba06c40be9c3062be51eae773f2ca441128cac68b7",
+    "metrics.py": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+    "model_io.py": "f829a026ec00acb472962f6a82f883c1f82cab052fd40bd5aa8b6c56d5017775",
+    "numerics.py": "7be5f07f4bbf8c0080a96d275b3c2c44321b4914e353e2ab5a5f149e8f0664d3",
+    "transport.py": "74ee7776f6cbc320dea385b958183ebd3224bab6eea338d2abd660092de2b7c3"
+  }
+}

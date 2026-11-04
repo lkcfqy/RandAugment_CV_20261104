@@ -1,0 +1,23 @@
+{
+  "image_info_key_counts": {
+    "jfif": 1483,
+    "jfif_density": 1483,
+    "jfif_unit": 1483,
+    "jfif_version": 1483
+  },
+  "recognized_source_field_counts": {},
+  "recognized_field_unique_counts": {},
+  "recognized_field_values": {},
+  "official_entity_or_collection_batch_mapping_found": false,
+  "basis": [
+    "Official repository tree contains code/config/documentation and visual examples, no entity/batch mapping",
+    "Full ZIP central directory contains images, masks, folders, macOS metadata; no CSV/JSON/entity mapping manifest",
+    "Official paper section 3.2 defines train/test domains and camera positions but supplies no per-image physical-blade identity or capture-session/batch mapping"
+  ],
+  "do_not_infer": [
+    "IMG_ numeric filenames are file identifiers, not documented independent physical blade IDs",
+    "Folder names background/view/illumination/same are domain labels, not independent entity or collection-batch IDs",
+    "Camera metadata or timestamps, if present, do not establish distinct physical specimens"
+  ],
+  "independent_entity_generalization": "not established from official released metadata; leave unresolved for protocol review"
+}

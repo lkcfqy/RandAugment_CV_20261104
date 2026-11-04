@@ -1,0 +1,25 @@
+{
+  "CV_PREDICTIONS.npz": {
+    "head_index": "fold head row",
+    "label": "original true class",
+    "prediction": "clean heldout-original prediction",
+    "scores": "float64 [heldout original records,10]",
+    "support_union_index": "IDENTITIES.json support_union index"
+  },
+  "HEADS.npz": {
+    "W": "[360,192,10] float64",
+    "b": "[360,10] float64"
+  },
+  "QUERY_PREDICTIONS.npz": {
+    "head_index": "row maps HEAD_IDENTITIES.json",
+    "label": "true class per query",
+    "prediction": "argmax class int",
+    "query_index": "column maps QUERY_IDENTITIES.json",
+    "scores": "float64 [360 heads, query images,10 classes], ridge scores not calibrated probabilities"
+  },
+  "policy_order": [
+    "clean",
+    "weak",
+    "ra"
+  ]
+}

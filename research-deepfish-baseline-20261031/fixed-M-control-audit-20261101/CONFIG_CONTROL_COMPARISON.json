@@ -1,0 +1,257 @@
+{
+  "status": "PASS",
+  "only_difference": "train_dataloader.dataset.pipeline[0].transforms",
+  "all_other_configuration_values_identical": true,
+  "historical_original_config_A_sha256": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830",
+  "packaged_config_A_sha256": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830",
+  "candidate_M_sha256": "72f991e8d27439ab9732eb21ef30365e0bb91ecb1386c65785b9871d09a8a6aa",
+  "model": {
+    "as_two_stage": true,
+    "backbone": {
+      "attn_drop_rate": 0.0,
+      "convert_weights": false,
+      "depths": [
+        2,
+        2,
+        6,
+        2
+      ],
+      "drop_path_rate": 0.2,
+      "drop_rate": 0.0,
+      "embed_dims": 96,
+      "mlp_ratio": 4,
+      "num_heads": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "out_indices": [
+        1,
+        2,
+        3
+      ],
+      "patch_norm": true,
+      "qk_scale": null,
+      "qkv_bias": true,
+      "type": "SwinTransformer",
+      "window_size": 7,
+      "with_cp": true
+    },
+    "bbox_head": {
+      "contrastive_cfg": {
+        "bias": false,
+        "log_scale": 0.0,
+        "max_text_len": 256
+      },
+      "loss_bbox": {
+        "loss_weight": 5.0,
+        "type": "L1Loss"
+      },
+      "loss_cls": {
+        "alpha": 0.25,
+        "gamma": 2.0,
+        "loss_weight": 1.0,
+        "type": "FocalLoss",
+        "use_sigmoid": true
+      },
+      "loss_iou": {
+        "loss_weight": 2.0,
+        "type": "GIoULoss"
+      },
+      "num_classes": 1,
+      "sync_cls_avg_factor": true,
+      "type": "GroundingDINOHead"
+    },
+    "data_preprocessor": {
+      "bgr_to_rgb": true,
+      "mean": [
+        123.675,
+        116.28,
+        103.53
+      ],
+      "pad_mask": false,
+      "std": [
+        58.395,
+        57.12,
+        57.375
+      ],
+      "type": "DetDataPreprocessor"
+    },
+    "decoder": {
+      "layer_cfg": {
+        "cross_attn_cfg": {
+          "dropout": 0.0,
+          "embed_dims": 256,
+          "num_heads": 8
+        },
+        "cross_attn_text_cfg": {
+          "dropout": 0.0,
+          "embed_dims": 256,
+          "num_heads": 8
+        },
+        "ffn_cfg": {
+          "embed_dims": 256,
+          "feedforward_channels": 2048,
+          "ffn_drop": 0.0
+        },
+        "self_attn_cfg": {
+          "dropout": 0.0,
+          "embed_dims": 256,
+          "num_heads": 8
+        }
+      },
+      "num_layers": 6,
+      "post_norm_cfg": null,
+      "return_intermediate": true
+    },
+    "dn_cfg": {
+      "box_noise_scale": 1.0,
+      "group_cfg": {
+        "dynamic": true,
+        "num_dn_queries": 100,
+        "num_groups": null
+      },
+      "label_noise_scale": 0.5
+    },
+    "encoder": {
+      "fusion_layer_cfg": {
+        "embed_dim": 1024,
+        "init_values": 0.0001,
+        "l_dim": 256,
+        "num_heads": 4,
+        "v_dim": 256
+      },
+      "layer_cfg": {
+        "ffn_cfg": {
+          "embed_dims": 256,
+          "feedforward_channels": 2048,
+          "ffn_drop": 0.0
+        },
+        "self_attn_cfg": {
+          "dropout": 0.0,
+          "embed_dims": 256,
+          "num_levels": 4
+        }
+      },
+      "num_cp": 6,
+      "num_layers": 6,
+      "text_layer_cfg": {
+        "ffn_cfg": {
+          "embed_dims": 256,
+          "feedforward_channels": 1024,
+          "ffn_drop": 0.0
+        },
+        "self_attn_cfg": {
+          "dropout": 0.0,
+          "embed_dims": 256,
+          "num_heads": 4
+        }
+      }
+    },
+    "language_model": {
+      "add_pooling_layer": false,
+      "name": "assets/bert-base-uncased",
+      "pad_to_max": false,
+      "special_tokens_list": [
+        "[CLS]",
+        "[SEP]",
+        ".",
+        "?"
+      ],
+      "type": "BertModel",
+      "use_sub_sentence_represent": true
+    },
+    "neck": {
+      "act_cfg": null,
+      "bias": true,
+      "in_channels": [
+        192,
+        384,
+        768
+      ],
+      "kernel_size": 1,
+      "norm_cfg": {
+        "num_groups": 32,
+        "type": "GN"
+      },
+      "num_outs": 4,
+      "out_channels": 256,
+      "type": "ChannelMapper"
+    },
+    "num_queries": 900,
+    "positional_encoding": {
+      "normalize": true,
+      "num_feats": 128,
+      "offset": 0.0,
+      "temperature": 20
+    },
+    "test_cfg": {
+      "max_per_img": 300
+    },
+    "train_cfg": {
+      "assigner": {
+        "match_costs": [
+          {
+            "type": "BinaryFocalLossCost",
+            "weight": 2.0
+          },
+          {
+            "box_format": "xywh",
+            "type": "BBoxL1Cost",
+            "weight": 5.0
+          },
+          {
+            "iou_mode": "giou",
+            "type": "IoUCost",
+            "weight": 2.0
+          }
+        ],
+        "type": "HungarianAssigner"
+      }
+    },
+    "type": "GroundingDINO",
+    "with_box_refine": true
+  },
+  "optimizer": {
+    "clip_grad": {
+      "max_norm": 0.1,
+      "norm_type": 2
+    },
+    "optimizer": {
+      "lr": 0.0001,
+      "type": "AdamW",
+      "weight_decay": 0.0001
+    },
+    "paramwise_cfg": {
+      "custom_keys": {
+        "absolute_pos_embed": {
+          "decay_mult": 0.0
+        },
+        "backbone": {
+          "lr_mult": 0.1
+        }
+      }
+    },
+    "type": "OptimWrapper"
+  },
+  "schedule": [],
+  "train_cfg_placeholder": {
+    "max_epochs": 0,
+    "type": "EpochBasedTrainLoop",
+    "val_interval": 99999
+  },
+  "effective_epochs_from_fixed_U": 40,
+  "batch_size": 1,
+  "num_workers": 0,
+  "sampler": {
+    "round_up": false,
+    "shuffle": true,
+    "type": "DefaultSampler"
+  },
+  "randomness": {
+    "deterministic": true,
+    "diff_rank_seed": false,
+    "seed": 20261031
+  }
+}

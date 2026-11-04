@@ -1,0 +1,274 @@
+--- r5/payload/contracts.py
++++ repeat/payload/contracts.py
+@@ -35,6 +35,19 @@
+   estimates[str(u)]=2*t['init_seconds']+1.5*u*(t['p90_update_a']+t['p90_update_b'])+1.5*128*t['p90_predict_seconds']+4*t['checkpoint_bytes']/t['write_bps']+120
+  fit=[u for u in U_CHOICES if estimates[str(u)]<=remaining_seconds]
+  return dict(status='FROZEN' if fit else 'RESOURCE_UNDETERMINED',updates=max(fit) if fit else 0,estimated_seconds=estimates[str(max(fit))] if fit else None,estimates_seconds=estimates,remaining_seconds=remaining_seconds,rule='largest fixed candidate fitting conservative timing cost; no efficacy input')
++def fixed_repeat_updates(timings,remaining_seconds):
++ result=choose_updates(timings,remaining_seconds);fits=result['estimates_seconds']['200']<=remaining_seconds
++ result.update(status='FROZEN' if fits else 'RESOURCE_UNDETERMINED',updates=200 if fits else 0,estimated_seconds=result['estimates_seconds']['200'],rule='previously fixed U200 or no run; no smaller-U fallback',seed=20261101,post_result_exploratory_repeat=True,previous_seed_dev_metrics_seen=True,new_seed_dev_metrics_seen=False)
++ return result
++def repeat_training_seed(config):
++ seed=config.get('randomness',{}).get('seed')
++ if type(seed) is not int or seed!=20261101:raise ContractError('Only the authorized repeat training seed20261101 is allowed.')
++ return seed
++def require_complete_repeat_budget(prior_cu,prior_gpu,rate,elapsed):
++ if not all(isinstance(x,(int,float)) and not isinstance(x,bool) and math.isfinite(x) for x in (prior_cu,prior_gpu,rate,elapsed)) or not 0<=prior_cu<2 or not 0<=prior_gpu<7200 or rate<=0 or elapsed<0:raise ResourceUndetermined('Invalid live cumulative budget.')
++ remaining=min(7200-prior_gpu,(2-prior_cu)*3600/rate)-elapsed;required=2320.621211230755
++ if remaining<required:raise ResourceUndetermined('Complete fixed-U repeat including persistence and release reserve does not fit.')
++ return dict(required_seconds=required,remaining_seconds=remaining,live_rate=rate,prior_cu=prior_cu,prior_gpu_seconds=prior_gpu,paired_seed_count=1,seed=20261101,formal_U=200)
+ def verify_exposures(ids,updates):
+  if not isinstance(updates,int) or updates<=0 or updates%5 or len(ids)!=updates or collections.Counter(ids)!={i:updates//5 for i in SUPPORT_IDS}:raise ContractError('Unequal or missing source exposures.')
+  return dict(updates=updates,per_image=updates//5,counts=dict(collections.Counter(ids)))
+--- r5/payload/driver.py
++++ repeat/payload/driver.py
+@@ -1,7 +1,7 @@
+ """One future Colab entry point. Nothing executes on import; approval gates every side effect."""
+ import argparse,hashlib,json,os,pathlib,shutil,signal,subprocess,sys,time,urllib.request
+ sys.dont_write_bytecode=True
+-from contracts import ContractError,NotAuthorized,ResourceUndetermined,canonical,choose_updates,validate_context,verify_paired_traces,verify_initializations
++from contracts import ContractError,NotAuthorized,ResourceUndetermined,canonical,fixed_repeat_updates,validate_context,verify_paired_traces,verify_initializations
+ from lifecycle import atomic_bytes,atomic_json,emit_evidence,native_unassign
+ from transfer import persist_stage
+ ROOT=pathlib.Path(__file__).resolve().parent
+@@ -66,7 +66,7 @@
+  ctx=dict(ctx,work_deadline_monotonic=work,hard_deadline_monotonic=hard)
+  context_copy=out/'run_context.json';atomic_json(context_copy,ctx)
+  native_guard=subprocess.Popen([sys.executable,'-B',str(ROOT/'lifecycle.py'),'--context',str(context_copy)],start_new_session=True)
+- result={'status':'STARTED','authorization_scope':'this new DeepFish experiment only','preflight_updates_per_arm':15,'formal_updates_per_arm':None,'official_test_used':False}
++ result={'status':'STARTED','authorization_scope':'one authorized post-result exploratory paired seed20261101','seed':20261101,'additional_paired_seed_count':1,'post_result_exploratory_repeat':True,'previous_seed':20261031,'preflight_updates_per_arm':15,'formal_updates_per_arm':200,'official_test_used':False}
+  try:
+   # Content-addressed stdout receipts survive a VM failure; persistent storage is also mandatory.
+   atomic_json(out/'run_report.json',result);emit_evidence('run_started',result)
+@@ -84,9 +84,9 @@
+   timings=dict(init_seconds=max(p['init_seconds'] for p in probes),p90_update_a=probes[0]['p90_update_seconds'],p90_update_b=probes[1]['p90_update_seconds'],p90_predict_seconds=max(p['p90_predict_seconds'] for p in probes),checkpoint_bytes=max(p['state_tensor_bytes'] for p in probes),write_bps=write_bps)
+   # Four initializations remain: formal A/B, then fixed-final dev evaluation A/B.
+   timing_for_rule=dict(timings,init_seconds=2*timings['init_seconds'])
+-  freeze=choose_updates(timing_for_rule,work-time.monotonic());freeze.update(raw_timings=timings,rule_timings=timing_for_rule,initialization_count_remaining=4,preflight_state_reused=False,dev_metrics_seen=False)
++  freeze=fixed_repeat_updates(timing_for_rule,work-time.monotonic());freeze.update(raw_timings=timings,rule_timings=timing_for_rule,initialization_count_remaining=4,preflight_state_reused=False,dev_metrics_seen=False)
+   atomic_json(out/'U_FREEZE.json',freeze);emit_evidence('U_FREEZE',freeze)
+-  if freeze['status']!='FROZEN':raise ResourceUndetermined('No fixed candidate U fits the measured remaining budget.')
++  if freeze['status']!='FROZEN':raise ResourceUndetermined('The previously fixed U200 does not fit; no smaller U may run.')
+   result['formal_updates_per_arm']=freeze['updates']
+   for a in 'AB':phase('formal_'+a)
+   formal=[json.loads((out/('formal_'+a+'.json')).read_text()) for a in 'AB']
+--- r5/payload/model_worker.py
++++ repeat/payload/model_worker.py
+@@ -1,6 +1,6 @@
+ """Future isolated official-Runner phases. Importing this file imports no model framework."""
+ import argparse,copy,hashlib,json,math,os,pathlib,random,sys,time
+-from contracts import ContractError,ResourceUndetermined,canonical,validate_context,verify_exposures,validate_pretrained_key_schema
++from contracts import ContractError,ResourceUndetermined,canonical,validate_context,verify_exposures,validate_pretrained_key_schema,repeat_training_seed
+ from lifecycle import atomic_json
+ from image_contracts import require_bgr_uint8,verify_color_contract
+ ROOT=pathlib.Path(__file__).resolve().parent
+@@ -27,10 +27,11 @@
+  if os.environ.get('TORCH_FORCE_WEIGHTS_ONLY_LOAD')!='1' or os.environ.get('HF_HUB_OFFLINE')!='1':raise ContractError('Safe-load and offline environment required.')
+  out=pathlib.Path(ctx['artifact_dir']);kind,arm=phase.split('_');start=time.monotonic()
+  if kind not in ('preflight','formal','evaluate') or arm not in ('A','B'):raise ContractError('Unknown phase.')
++ cfg=normalize_config(json.loads((ROOT/('config_'+arm+'.json')).read_text()));seed=repeat_training_seed(cfg)
+  freeze=None
+  if kind!='preflight':
+   freeze=json.loads((out/'U_FREEZE.json').read_text())
+-  if freeze['status']!='FROZEN' or freeze['dev_metrics_seen'] or freeze['preflight_state_reused'] or freeze['updates'] not in (25,50,100,200):raise ContractError('Invalid timing-only freeze.')
++  if freeze['status']!='FROZEN' or freeze['dev_metrics_seen'] or freeze['preflight_state_reused'] or freeze['updates']!=200 or freeze.get('seed')!=seed:raise ContractError('Invalid fixed-U repeat freeze.')
+  # All imports below occur only in the separately authorized future worker.
+  import numpy as np
+  import torch
+@@ -50,8 +51,8 @@
+  if mmcv.adjust_color.__globals__.get('imread_backend')!='cv2':raise ContractError('Color backend must be cv2.')
+  color_gate=verify_color_contract(Color)
+  register_all_modules(init_default_scope=True)
+- random.seed(20261031);np.random.seed(20261031);torch.manual_seed(20261031);torch.cuda.manual_seed_all(20261031)
+- cfg=normalize_config(json.loads((ROOT/('config_'+arm+'.json')).read_text()));cfg['work_dir']=str(out/(phase+'_logs'))
++ random.seed(seed);np.random.seed(seed);torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
++ cfg['work_dir']=str(out/(phase+'_logs'))
+  cfg['model']['language_model']['name']=str(ROOT/'assets/bert-base-uncased')
+  cfg['train_dataloader']['dataset']['data_root']=str(ROOT/'data')+'/'
+  cfg['test_dataloader']['dataset']['data_root']=str(ROOT/'data')+'/'
+@@ -107,7 +108,7 @@
+   if not isinstance(final_state,dict) or not all(isinstance(v,torch.Tensor) for v in final_state.values()):raise ContractError('Final checkpoint is not tensor-only.')
+   del final_state,source_state;cfg['load_from']=str(final)
+   runner=Runner.from_cfg(Config(cfg));metrics=runner.test();atomic_json(out/(phase+'.json'),{'status':'COMPLETE','updates':total,'checkpoint_sha256':file_sha(final),'dev_images':64,'dev_boxes':187,'metrics':{k:float(v) for k,v in metrics.items()},'official_test_used':False});return
+- records=[];step_times=[];report={'phase':phase,'color_gate':color_gate,'preflight_state_reused':False,'loss_and_gradients_finite':True}
++ records=[];step_times=[];report={'phase':phase,'seed':seed,'color_gate':color_gate,'preflight_state_reused':False,'loss_and_gradients_finite':True}
+  def state_digest(state):
+   h=hashlib.sha256()
+   for name,value in sorted(state.items()):
+@@ -156,7 +157,7 @@
+   if len(step_times)!=15:raise ContractError('Preflight must contain exactly 15 optimizer updates.')
+   report.update(warmup_updates=5,timed_updates=10,p90_update_seconds=percentile90(step_times[5:]),update_seconds=step_times)
+   inference_cfg=copy.deepcopy(cfg['test_dataloader']);inference_cfg['dataset']['ann_file']='annotations/support5.json'
+-  loader=Runner.build_dataloader(inference_cfg,seed=20261031);runner.model.eval();times=[]
++  loader=Runner.build_dataloader(inference_cfg,seed=seed);runner.model.eval();times=[]
+   with torch.no_grad():
+    for batch in loader:
+     if time.monotonic()>=ctx['work_deadline_monotonic']:raise ResourceUndetermined('Inference timing deadline.')
+--- r5/gpu-run/controller.py
++++ repeat/gpu-run/controller.py
+@@ -1,8 +1,11 @@
+ """Original two-arm driver with verified local stage downloads and cumulative budget."""
+-import base64,hashlib,json,os,pathlib,re,subprocess,sys,time,zipfile
+-from external_watchdog import ROOT,PYTHON,atomic,cli,snapshot,release_owned
++import base64,hashlib,json,os,pathlib,re,shutil,subprocess,sys,time,zipfile
++from external_watchdog import ROOT,PYTHON,atomic,cli,snapshot,release_owned,request_final_release
+ from local_transport import bounded_stream
+ BASE=ROOT.parent
++sys.path.insert(0,str(BASE/'payload'))
++from contracts import require_complete_repeat_budget,ResourceUndetermined
++LOCAL_CPU_PYTHON='/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/bin/python'
+ def sha(path):
+  h=hashlib.sha256()
+  with pathlib.Path(path).open('rb') as f:
+@@ -11,11 +14,15 @@
+ def main():
+  receipt=json.loads((BASE/'reports/PACKAGE_RECEIPT.json').read_text());archive=BASE/receipt['archive'];assert archive.stat().st_size==receipt['archive_bytes'] and sha(archive)==receipt['archive_sha256']
+  ledger=json.loads((BASE/'execution_ledger.json').read_text());assert ledger['CPU_gate_verified'] and ledger['previous_release_confirmed']
++ research=pathlib.Path(ledger['research_directory']);used=sum(p.stat().st_size for p in research.rglob('*') if p.is_file())
++ if used+2*1024**3>6*1024**3 or shutil.disk_usage(BASE).free<10*1024**3:raise RuntimeError('Full paired-result disk reserve unavailable')
++ if ledger['seed']!=20261101 or ledger['additional_paired_seed_count']!=1 or ledger['fixed_updates']!=200:raise RuntimeError('Repeat scope mismatch')
+  prior=ledger['prior_CU_upper'];prior_gpu=ledger['prior_GPU_seconds_upper'];start=time.time();before=snapshot();atomic(ROOT/'before.json',before)
+  if before['active_assignments'] or before['assignments'] or prior>=1.95:raise RuntimeError('Isolated remaining resource budget unavailable')
+- name='deepfish-ab-'+receipt['archive_sha256'][:10]+'-r5';remote='deepfish_ab_'+receipt['archive_sha256'][:10]
++ name='deepfish-repeat20261101-'+receipt['archive_sha256'][:10];remote='deepfish_repeat_'+receipt['archive_sha256'][:10]
+  c={'authorization':{'upload':True,'model_run':True},'authorization_base_archive_sha256':'0fa965babadfaa83b9e7a83aadd81470fc76b566c118e7883ade3b0042ab2263','archive_sha256':receipt['archive_sha256'],'session':name,'allocation_started_epoch':start,'deadline_epoch':start+300,'absolute_limit_epoch':start+7200-prior_gpu,'prior_cu':prior,'prior_gpu_seconds':prior_gpu}
+- atomic(ROOT/'control.json',c);report={'status':'STARTING','prior_cu':prior,'prior_gpu_seconds':prior_gpu,'package_sha256':receipt['archive_sha256'],'allocation_attempts':0,'upload_bytes':0,'stage_receipts':[]};attempt=False;last_poll=0;max_rate=0;operation=0;stage_final_received=False
++ c.update(seed=20261101,additional_paired_seed_count=1,fixed_updates=200)
++ atomic(ROOT/'control.json',c);report={'status':'STARTING','seed':20261101,'additional_paired_seed_count':1,'post_result_exploratory_repeat':True,'prior_cu':prior,'prior_gpu_seconds':prior_gpu,'package_sha256':receipt['archive_sha256'],'allocation_attempts':0,'upload_bytes':0,'stage_receipts':[]};attempt=False;last_poll=0;max_rate=0;operation=0;stage_final_received=False
+  local=ROOT/'artifacts';local.mkdir(exist_ok=False)
+  def check_credit(force=False):
+   nonlocal last_poll,max_rate
+@@ -71,11 +78,18 @@
+    if total!=row['bytes'] or h.hexdigest()!=row['sha256']:raise ValueError('Reassembled artifact mismatch')
+    os.replace(temp,dest)
+    if sha(dest)!=row['sha256']:raise ValueError('Atomic artifact readback mismatch')
++  if data['phase']=='formal_B':
++   check_credit(force=True)
++   pair_receipt=ROOT/'LOCAL_PAIR_VERIFIED.json'
++   audited=subprocess.run([LOCAL_CPU_PYTHON,'-B',str(ROOT/'verify_local_pair.py'),str(local),str(pair_receipt)],capture_output=True,text=True,timeout=60)
++   atomic(ROOT/'local_pair_audit_execution.json',{'returncode':audited.returncode,'stdout':audited.stdout,'stderr':audited.stderr})
++   if audited.returncode or not pair_receipt.exists():raise RuntimeError('Local safe final-pair audit failed before dev')
+   ack={'phase':data['phase'],'index_sha256':data['index_sha256'],'all_files_atomically_persisted_and_hashed':True,'files':len(data['files']),'completed_epoch':time.time()};ackpath=ROOT/(data['phase']+'_download_receipt.json');atomic(ackpath,ack)
+   command(['upload','--session',name,str(ackpath),'content/'+remote+'/payload/acks/'+data['phase']+'.json'],30,'stage_ack');report['upload_bytes']+=ackpath.stat().st_size
+   report['stage_receipts'].append(ack);atomic(ROOT/'progress.json',report)
+   print(json.dumps({'stage':'LOCAL_STAGE_PERSISTED','phase':data['phase'],'files':len(data['files']),'elapsed_GPU_seconds':time.time()-start}),flush=True)
+-  if data['phase']=='final':stage_final_received=True
++  if data['phase']=='final':
++   stage_final_received=True;request_final_release(ROOT)
+  try:
+   with (ROOT/'watchdog.log').open('xb') as f:g=subprocess.Popen([sys.executable,'-B',str(ROOT/'external_watchdog.py'),'--parent-pid',str(os.getpid())],stdout=f,stderr=subprocess.STDOUT,start_new_session=True)
+   until=time.time()+45
+@@ -86,6 +100,7 @@
+   attempt=True;report['allocation_attempts']=1;command(['new','--gpu','T4','--session',name],120,'allocate')
+   allocated=snapshot();assert len(allocated['assignments'])==1 and allocated['assignments'][0]['accelerator']=='T4' and allocated['rate_per_hour']>0
+   max_rate=allocated['rate_per_hour'];c['deadline_epoch']=start+min(7200-prior_gpu,(2-prior)*3600/max_rate);atomic(ROOT/'control.json',c);report['live_rate']=max_rate;atomic(ROOT/'allocated_usage.json',allocated)
++  budget_gate=require_complete_repeat_budget(prior,prior_gpu,max_rate,time.time()-start);atomic(ROOT/'COMPLETE_COST_GATE.json',budget_gate)
+   probe=ROOT/'remote_probe.py';probe.write_text("import pathlib,hashlib,json,os\np=pathlib.Path('/content/"+remote+"');p.mkdir(exist_ok=False);b=(b'DeepFish public non-sensitive persistence marker v1\\n'*200000)[:8388608];f=(p/'marker.bin').open('wb');f.write(b);f.flush();os.fsync(f.fileno());f.close();print('DEEPFISH_PROBE '+json.dumps({'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}))\n")
+   output=command(['exec','--session',name,'--file',str(probe),'--timeout','30'],45,'probe');report['upload_bytes']+=probe.stat().st_size;row=json.loads(next(x[len('DEEPFISH_PROBE '):] for x in output.splitlines() if x.startswith('DEEPFISH_PROBE ')))
+   t=time.monotonic();fetch_file('content/'+remote+'/marker.bin',ROOT/'marker.bin',row,'marker');bps=row['bytes']/(time.monotonic()-t);proof={'remote_sha256':row['sha256'],'local_sha256':sha(ROOT/'marker.bin'),'bytes':row['bytes'],'download_bytes_per_second':bps,'verified_epoch':time.time()};atomic(ROOT/'persistence_probe.json',proof)
+@@ -139,14 +154,14 @@
+   saved=json.loads((local/'run_report.json').read_text());report['remote_result']=saved;report['status']='COMPLETE' if saved['status']=='COMPLETE' else saved['status'];report['all_artifacts_persisted_before_release']=True
+  except BaseException as error:
+   if (ROOT/'final_download_receipt.json').exists() and (local/'run_report.json').exists() and json.loads((local/'run_report.json').read_text()).get('status')=='COMPLETE':report.update(status='COMPLETE',remote_result=json.loads((local/'run_report.json').read_text()),all_artifacts_persisted_before_release=True,transport_warning=type(error).__name__+': '+str(error))
+-  else:report.update(status='INCOMPLETE',error_type=type(error).__name__,error=str(error))
++  else:report.update(status='RESOURCE_UNDETERMINED' if isinstance(error,ResourceUndetermined) else 'INCOMPLETE',error_type=type(error).__name__,error=str(error))
+  finally:
+   if attempt:report.update(release_owned(c))
+   else:report['release']='NOT_ALLOCATED'
+   if report['release'] in ('CONFIRMED','NOT_ALLOCATED'):atomic(ROOT/'RELEASE_CONFIRMED.json',{'release':report['release']})
+   try:final=snapshot();report['final_sessions_usage']=final
+   except Exception as error:report['final_sessions_usage_error']=type(error).__name__
+-  elapsed=max(0,report.get('allocation_release_observed_epoch',time.time())-start) if attempt else 0;report.update(allocation_wall_seconds_upper=elapsed,cumulative_GPU_seconds_upper=prior_gpu+elapsed,cumulative_CU_upper=prior+max(max_rate*elapsed/3600,max(0,before['balance']-report.get('final_sessions_usage',before)['balance'])),scientific_configuration_changed=False)
++  elapsed=max(0,report.get('allocation_release_observed_epoch',time.time())-start) if attempt else 0;report.update(allocation_wall_seconds_upper=elapsed,cumulative_GPU_seconds_upper=prior_gpu+elapsed,cumulative_CU_upper=prior+max(max_rate*elapsed/3600,max(0,before['balance']-report.get('final_sessions_usage',before)['balance'])),scientific_configuration_changed=True,scientific_changes=['training_seed20261031_to20261101'],fixed_U200=True)
+   atomic(ROOT/'controller_report.json',report);print(json.dumps({k:report.get(k) for k in ['status','release','cumulative_CU_upper','cumulative_GPU_seconds_upper','error']}),flush=True)
+  return 0 if report['status']=='COMPLETE' and report['release']=='CONFIRMED' else 2
+ if __name__=='__main__':raise SystemExit(main())
+--- r5/gpu-run/external_watchdog.py
++++ repeat/gpu-run/external_watchdog.py
+@@ -14,6 +14,10 @@
+ def snapshot():
+  s=cli(['--snapshot'],45)
+  return json.loads(next(line[len('DEEPFISH_CONTROL '):] for line in s.splitlines() if line.startswith('DEEPFISH_CONTROL ')))
++def request_final_release(root):
++ root=pathlib.Path(root);receipt=json.loads((root/'final_download_receipt.json').read_text())
++ if receipt.get('phase')!='final' or receipt.get('all_files_atomically_persisted_and_hashed') is not True or len(receipt.get('index_sha256',''))!=64:raise ValueError('Final persistence receipt is not verified')
++ atomic(root/'REQUEST_RELEASE',{'reason':'final_artifacts_locally_persisted_and_ack_uploaded','index_sha256':receipt['index_sha256'],'requested_epoch':time.time()})
+ def release_owned(control):
+  receipt=ROOT/'allocation_receipt.json';endpoint=json.loads(receipt.read_text())['endpoint'] if receipt.exists() else None;errors=[]
+  def own(s):return [x for x in s['assignments'] if x['name']==control['session'] or endpoint is not None and x['endpoint']==endpoint]
+@@ -30,6 +34,7 @@
+ def main():
+  p=argparse.ArgumentParser();p.add_argument('--parent-pid',type=int,required=True);a=p.parse_args();c=json.loads((ROOT/'control.json').read_text())
+  if c['authorization']!={'upload':True,'model_run':True} or c['authorization_base_archive_sha256']!='0fa965babadfaa83b9e7a83aadd81470fc76b566c118e7883ade3b0042ab2263':raise ValueError('Guard scope mismatch')
++ if c.get('seed')!=20261101 or c.get('additional_paired_seed_count')!=1 or c.get('fixed_updates')!=200:raise ValueError('Single fixed-seed repeat scope mismatch')
+  if c['archive_sha256']!=json.loads((ROOT.parent/'reports/PACKAGE_RECEIPT.json').read_text())['archive_sha256']:raise ValueError('Current archive receipt mismatch')
+  before=snapshot();atomic(ROOT/'watchdog_state.json',{'status':'ARMED','pid':os.getpid(),'heartbeat_epoch':time.time(),'independent_snapshot':before,'deadline_epoch':c['deadline_epoch']})
+  while time.time()<c['absolute_limit_epoch']:
+--- r5/gpu-run/verify_local_pair.py
++++ repeat/gpu-run/verify_local_pair.py
+@@ -0,0 +1,31 @@
++"""Local-only safe checkpoint and paired-data audit before dev is released."""
++import argparse,hashlib,json,pathlib,sys
++BASE=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(BASE/'payload'))
++from contracts import ContractError,verify_initializations,verify_paired_traces,verify_exposures,canonical
++def sha(p):
++ h=hashlib.sha256()
++ with p.open('rb') as f:
++  for b in iter(lambda:f.read(1024**2),b''):h.update(b)
++ return h.hexdigest()
++def verify_pair(root):
++ import torch
++ root=pathlib.Path(root);reports=[json.loads((root/f'formal_{a}.json').read_text()) for a in 'AB'];verify_initializations(reports)
++ traces=[json.loads((root/f'formal_{a}_trace.json').read_text()) for a in 'AB'];paired=verify_paired_traces(*traces);checks=[]
++ for arm,r,trace in zip('AB',reports,traces):
++  if r.get('seed')!=20261101 or r['actual_updates']!=200:raise ContractError('Local final pair seed/U mismatch.')
++  exposures=verify_exposures([x['image_id'] for x in trace],200)
++  recorded=dict(r['exposures'],counts={int(k):v for k,v in r['exposures']['counts'].items()})
++  if exposures!=recorded:raise ContractError('Local final exposure receipt mismatch.')
++  ck=r['final_checkpoint']
++  if ck['path']!=f'final_{arm}_U200.pth':raise ContractError('Unexpected fixed-final path.')
++  p=root/ck['path']
++  if p.stat().st_size!=ck['bytes'] or sha(p)!=ck['sha256']:raise ContractError('Local final checkpoint hash mismatch.')
++  state=torch.load(p,map_location='cpu',weights_only=True)
++  if not isinstance(state,dict) or len(state)!=908 or not all(isinstance(x,torch.Tensor) for x in state.values()):raise ContractError('Local final checkpoint is not the expected tensor-only state dict.')
++  if not all(bool(torch.isfinite(x).all()) for x in state.values() if x.is_floating_point()):raise ContractError('Local final checkpoint contains nonfinite values.')
++  checks.append(dict(arm=arm,bytes=ck['bytes'],sha256=ck['sha256'],tensor_keys=len(state),all_floating_finite=True,weights_only=True,map_location='cpu'));del state
++ return dict(status='LOCAL_PAIR_VERIFIED',seed=20261101,formal_updates_per_arm=200,paired_trace_sha256=paired,initial_state_sha256=reports[0]['initial_state_sha256'],checkpoints=checks,model_instantiated=False,dev_evaluated_before_this_receipt=False,torch_version=torch.__version__)
++if __name__=='__main__':
++ p=argparse.ArgumentParser();p.add_argument('artifacts');p.add_argument('receipt');a=p.parse_args();r=verify_pair(a.artifacts)
++ from external_watchdog import atomic
++ atomic(pathlib.Path(a.receipt),r);print(json.dumps({'status':r['status'],'seed':r['seed'],'paired_trace_sha256':r['paired_trace_sha256']}))
+--- r5/config_A.json
++++ repeat/config_A.json
+@@ -269,7 +269,7 @@
+   "randomness": {
+     "deterministic": true,
+     "diff_rank_seed": false,
+-    "seed": 20261031
++    "seed": 20261101
+   },
+   "resume": false,
+   "test_cfg": {
+--- r5/config_B.json
++++ repeat/config_B.json
+@@ -269,7 +269,7 @@
+   "randomness": {
+     "deterministic": true,
+     "diff_rank_seed": false,
+-    "seed": 20261031
++    "seed": 20261101
+   },
+   "resume": false,
+   "test_cfg": {
+--- r5/README.md
++++ repeat/README.md
+@@ -1,3 +1,9 @@
++Authorized post-result exploratory repeat: training seed20261101 only; one additional A/B pair; formal U200 fixed. Original seed20261031 results already seen. Data-selection seed and all support/dev records remain unchanged. No seed20261102. Full final checkpoints persist before dev evaluation.
++
++The historical r5 preparation notes below remain provenance; this repeat cannot select a smaller U.
++
++以下是 r5 的历史说明，仅作溯源；其中 seed20261031 和 U 候选选择不适用于本次 seed20261101、固定 U200 的探索性重复。
++
+ # DeepFish fixed 5-shot exploratory A/B package
+ 
+ Status: explicitly authorized execution; infrastructure-only recovery v1. The scientific data/configuration files remain byte-identical to the reviewed initial package. Prior consumption is carried forward; model efficacy remains unseen before the timing-only U freeze.

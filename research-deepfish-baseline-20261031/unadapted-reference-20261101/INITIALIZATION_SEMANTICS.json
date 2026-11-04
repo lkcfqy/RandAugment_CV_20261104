@@ -1,0 +1,21 @@
+{
+  "DN_evidence": "GroundingDINO.pre_decoder calls dn_query_generator only under if self.training; else uses only checkpoint query_embedding/topk_coords. An assert-only forward hook will reject any DN call during all64 eval forwards.",
+  "complete_in_RAM_state_strict_load": true,
+  "direct_raw_checkpoint_strict_load": false,
+  "head_evidence": "ContrastiveEmbed computes visual_feat @ text_feat.T; seven log_scale=0 constants multiply byexp(0)=1, bias=False. All visual/text projection/regression/query weights are among the900 exact source-loaded tensors; no random class linear head.",
+  "no_head_or_class_semantics_or_postprocessing_changes": true,
+  "static_sources": [
+    {
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/detectors/grounding_dino.py",
+      "sha256": "a79d59ca49fe66734273a6df4a338aeb1505a2ea54fc1acd164e6ef638ae3692"
+    },
+    {
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/dense_heads/grounding_dino_head.py",
+      "sha256": "d90d306bf51b4065ab042aefed56e7e3337c0d9e7cdac126b249d4b38dd05650"
+    },
+    {
+      "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/layers/transformer/dino_layers.py",
+      "sha256": "efd6c26addba00a7120bb88621d0eb956a8a681ea0e84515b7c0df0e92a4fb22"
+    }
+  ]
+}

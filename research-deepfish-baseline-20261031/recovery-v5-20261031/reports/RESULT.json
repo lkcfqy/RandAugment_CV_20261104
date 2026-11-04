@@ -1,0 +1,237 @@
+{
+  "status": "COMPLETE_EXPLORATORY_TWO_ARM_RESULT",
+  "utc": "2026-10-31T15:25:10.575946+00:00",
+  "primary_metric": "COCO AP @[0.50:0.95] on fixed dev64",
+  "finding": "Fixed Color factor0.8 did not improve primary AP in this one episode/seed:26.8 to25.2, delta -1.6 AP points. AP50 alone increased; no reliable novel contribution established.",
+  "metrics": {
+    "A": {
+      "dev/bbox_mAP": 0.268,
+      "dev/bbox_mAP_50": 0.457,
+      "dev/bbox_mAP_75": 0.267,
+      "dev/bbox_mAP_l": 0.393,
+      "dev/bbox_mAP_m": 0.191,
+      "dev/bbox_mAP_s": 0.0
+    },
+    "B": {
+      "dev/bbox_mAP": 0.252,
+      "dev/bbox_mAP_50": 0.481,
+      "dev/bbox_mAP_75": 0.232,
+      "dev/bbox_mAP_l": 0.37,
+      "dev/bbox_mAP_m": 0.181,
+      "dev/bbox_mAP_s": 0.0
+    }
+  },
+  "B_minus_A_AP_points": {
+    "dev/bbox_mAP": -1.6,
+    "dev/bbox_mAP_50": 2.4,
+    "dev/bbox_mAP_75": -3.5,
+    "dev/bbox_mAP_l": -2.3,
+    "dev/bbox_mAP_m": -1.0,
+    "dev/bbox_mAP_s": 0.0
+  },
+  "protocol": {
+    "official_support_shot": 5,
+    "support_images": 5,
+    "support_boxes": 5,
+    "dev_images": 64,
+    "dev_boxes_extra_label_budget": 187,
+    "support_prefix_groups": 3,
+    "dev_prefix_groups": 8,
+    "prefix_group_disjoint": true,
+    "new_scene_generalization_claim": false,
+    "seed": 20261031,
+    "formal_updates_per_arm": 200,
+    "formal_exposures_per_support_image": 40,
+    "preflight_updates_per_arm": 15,
+    "preflight_states_discarded": true,
+    "total_completed_optimizer_updates_including_preflight": 430,
+    "Color_prob": 1.0,
+    "Color_level": 0,
+    "factor_A": 1.0,
+    "factor_B": 0.8,
+    "image_contract": "cv2 uint8 BGR",
+    "geometry": "same fixed official standard geometric pipeline",
+    "fixed_final_checkpoints": true,
+    "save_best": false,
+    "official_test_in_runtime_package": false,
+    "official_test_evaluated": false
+  },
+  "environment": {
+    "python": "3.10.19",
+    "python_distribution": "SHA-pinned Astral python-build-standalone 20251014",
+    "torch": "2.1.0+cu118",
+    "torchvision": "0.16.0+cu118",
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "mmengine": "0.10.7",
+    "device": "single NVIDIA T4",
+    "deterministic_algorithms": true,
+    "weights_only": true,
+    "unsafe_pickle_fallback": false,
+    "trust_remote_code": false
+  },
+  "run_package": {
+    "archive_bytes": 11678781,
+    "archive_sha256": "dd122a9217321602d79f352a0165980b0b893a1bd1f824ddc64cdc68d2a10cd4",
+    "manifest_sha256": "587e82969a9be46c9ee31e9fa683564d07829eec041bd21f104f223030cf7243"
+  },
+  "original_weight_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+  "config_sha256": {
+    "A": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830",
+    "B": "14fc399ec8ce73cc9a20784e8598964ec666829589945f7917e572004c9bb8da"
+  },
+  "final_checkpoints": [
+    {
+      "status": "PASS",
+      "utc": "2026-10-31T15:10:51.451462+00:00",
+      "arm": "A",
+      "bytes": 692175962,
+      "sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+      "tensor_keys": 908,
+      "floating_tensors_all_finite": true,
+      "weights_only": true,
+      "map_location": "cpu",
+      "unsafe_fallback": false,
+      "dynamic_pickle_whitelist": false,
+      "model_instantiated": false,
+      "inspection_torch_version": "2.13.0"
+    },
+    {
+      "status": "PASS",
+      "utc": "2026-10-31T15:20:38.533062+00:00",
+      "arm": "B",
+      "bytes": 692175962,
+      "sha256": "d14239f71925ac4f813eb80c8241ce7ca1670d1017bcf047ecae994327870778",
+      "tensor_keys": 908,
+      "floating_tensors_all_finite": true,
+      "weights_only": true,
+      "map_location": "cpu",
+      "unsafe_fallback": false,
+      "dynamic_pickle_whitelist": false,
+      "model_instantiated": false,
+      "inspection_torch_version": "2.13.0"
+    }
+  ],
+  "paired_trace_sha256": "f7c060a4c367478bd96dc6d8d663aa7cd29d488761086024bf1e0fc04bf7bed1",
+  "U_freeze": {
+    "dev_metrics_seen": false,
+    "estimated_seconds": 1855.3859076570325,
+    "estimates_seconds": {
+      "100": 1386.991360707024,
+      "200": 1855.3859076570325,
+      "25": 1035.6954504945172,
+      "50": 1152.7940872320194
+    },
+    "initialization_count_remaining": 4,
+    "preflight_state_reused": false,
+    "raw_timings": {
+      "checkpoint_bytes": 691880148,
+      "init_seconds": 20.244484609999972,
+      "p90_predict_seconds": 0.4143788810000615,
+      "p90_update_a": 1.5308000149999543,
+      "p90_update_b": 1.5918302980001044,
+      "write_bps": 4337411.375487548
+    },
+    "remaining_seconds": 3941.6649982598583,
+    "rule": "largest fixed candidate fitting conservative timing cost; no efficacy input",
+    "rule_timings": {
+      "checkpoint_bytes": 691880148,
+      "init_seconds": 40.488969219999944,
+      "p90_predict_seconds": 0.4143788810000615,
+      "p90_update_a": 1.5308000149999543,
+      "p90_update_b": 1.5918302980001044,
+      "write_bps": 4337411.375487548
+    },
+    "status": "FROZEN",
+    "updates": 200
+  },
+  "persistence": {
+    "all_70_remote_final_files_independently_rehashed_locally": true,
+    "total_final_artifact_bytes": 1400005868,
+    "raw_predictions_per_arm": 19200,
+    "prediction_image_ids_per_arm": 64,
+    "final_receipt_index_sha256": "74aa237333ec1fb65b9f0510c5200b8f533f6c50ed0bebf4b69cdc8a467f5bbd"
+  },
+  "resources": {
+    "cumulative_CU_conservative_upper_ledger": 1.1001052667892774,
+    "cumulative_allocated_GPU_seconds_upper": 3225.2735856513978,
+    "GPU_minutes_upper": 53.75455976085663,
+    "max_CU": 2,
+    "max_GPU_seconds": 7200,
+    "release": "CONFIRMED",
+    "final_usage": {
+      "active_assignments": 0,
+      "assignments": [],
+      "balance": null,
+      "observed_epoch": 1793460134.177633,
+      "rate_per_hour": 0.0
+    },
+    "billing_note": "Cumulative conservative rate/time ledger including preparation, CPU checks, retries, transfers and an initial buffer; not a settled billing statement.",
+    "gpu_attempts": [
+      {
+        "attempt": "v1",
+        "status": "INCOMPLETE",
+        "release": "CONFIRMED",
+        "cumulative_CU_upper": 0.2116088636362023,
+        "cumulative_GPU_seconds_upper": 464.287675951004,
+        "upload_bytes": 11679788,
+        "evidence": "recovery-v1-20261031/gpu-run/controller_report.json"
+      },
+      {
+        "attempt": "v2",
+        "status": "INCOMPLETE",
+        "release": "CONFIRMED",
+        "cumulative_CU_upper": 0.3172815439545578,
+        "cumulative_GPU_seconds_upper": 795.0891099910737,
+        "upload_bytes": 11680126,
+        "evidence": "recovery-v2-20261031/gpu-run/controller_report.json"
+      },
+      {
+        "attempt": "v3",
+        "status": "INCOMPLETE",
+        "release": "CONFIRMED",
+        "cumulative_CU_upper": 0.4659047455334133,
+        "cumulative_GPU_seconds_upper": 1260.3443497161866,
+        "upload_bytes": 11680584,
+        "evidence": "recovery-v3-20261031/gpu-run/controller_report.json"
+      },
+      {
+        "attempt": "v4",
+        "status": "INCOMPLETE",
+        "release": "CONFIRMED",
+        "cumulative_CU_upper": 0.5530576239191956,
+        "cumulative_GPU_seconds_upper": 1512.7766166667939,
+        "upload_bytes": 11681535,
+        "evidence": "recovery-v4-20261031/gpu-run/controller_report.json"
+      },
+      {
+        "attempt": "v5",
+        "status": "COMPLETE",
+        "release": "CONFIRMED",
+        "cumulative_CU_upper": 1.1001052667892774,
+        "cumulative_GPU_seconds_upper": 3225.2735856513978,
+        "upload_bytes": 11683288,
+        "evidence": "recovery-v5-20261031/gpu-run/controller_report.json"
+      }
+    ],
+    "repeated_gpu_attempt_input_bytes": 58405321,
+    "repeated_upload_note": "Same approved public-data scope uploaded again after released runtime failures; package cap13MiB applies per package, not cumulative network transfer."
+  },
+  "verification": {
+    "local_non_model_tests": 44,
+    "CPU_and_CUDA_primitive_checks": "PASS",
+    "full_initial_state_equal_across_four_training_workers": true,
+    "optimizers_initially_empty": true,
+    "trainable_parameter_names_equal": true,
+    "source_geometry_GT_recorded_rng_equal": true,
+    "both_final_checkpoints_cpu_weights_only_all_finite": true
+  },
+  "remaining_limits": [
+    "One official episode, one seed, one fixed color factor; no robustness, reproducibility across seeds, or novelty established.",
+    "Dev is prefix-group isolated; complete prefixes are not verified independent videos/sites and one habitat code overlaps support.",
+    "Derived detection-box creation process and separate annotation license are not documented in the reviewed archive/public sources.",
+    "Official test stayed outside this experiment. Earlier asset QA inspected three test images, with no model scores.",
+    "Original r4 CLI RuntimeError exact message remains unavailable; that runtime was reconciled and released before this distinct successful attempt."
+  ],
+  "engineering_blockers_remaining": []
+}

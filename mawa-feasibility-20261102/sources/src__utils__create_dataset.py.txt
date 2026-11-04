@@ -1,0 +1,288 @@
+import os
+import torch
+from torchvision import transforms
+from torchvision.datasets import MNIST, CIFAR10, STL10
+from tinyimagenet import TinyImageNet
+from torch.utils.data import Dataset, ConcatDataset
+import torchvision.transforms.functional as TF
+
+
+class ClassSubset(Dataset):
+    """
+    Dataset wrapper that filters to specific classes and optionally remaps labels.
+    """
+    def __init__(self, dataset, class_indices: list, remap_labels: bool = True):
+        """
+        Args:
+            dataset: The original dataset
+            class_indices: List of class indices to keep (e.g., [0, 23, 45])
+            remap_labels: If True (default), remap labels to 0, 1, 2, ...
+                          based on position in class_indices.
+                          If False, keep original labels.
+        """
+        self.dataset = dataset
+        self.class_indices = class_indices
+        self.remap_labels = remap_labels
+        self.label_map = {orig: new for new, orig in enumerate(class_indices)}
+        self.indices = self._compute_indices()
+
+    def _compute_indices(self):
+        """Compute indices of samples belonging to target classes."""
+        class_set = set(self.class_indices)
+        indices = []
+
+        if hasattr(self.dataset, 'targets'):
+            targets = self.dataset.targets
+            if isinstance(targets, torch.Tensor):
+                targets = targets.tolist()
+            for idx, label in enumerate(targets):
+                if label in class_set:
+                    indices.append(idx)
+        else:
+            for idx in range(len(self.dataset)):
+                _, label = self.dataset[idx]
+                if label in class_set:
+                    indices.append(idx)
+
+        return indices
+
+    def __len__(self):
+        return len(self.indices)
+
+    @property
+    def classes(self):
+        """Return the subset of class names/indices."""
+        if hasattr(self.dataset, 'classes'):
+            return [self.dataset.classes[i] for i in self.class_indices]
+        return self.class_indices
+
+    @property
+    def targets(self):
+        """Return remapped targets for the subset."""
+        if hasattr(self.dataset, 'targets'):
+            original_targets = self.dataset.targets
+            if isinstance(original_targets, torch.Tensor):
+                original_targets = original_targets.tolist()
+            subset_targets = [original_targets[i] for i in self.indices]
+            if self.remap_labels:
+                return [self.label_map[t] for t in subset_targets]
+            return subset_targets
+        return None
+
+    def __getitem__(self, idx):
+        original_idx = self.indices[idx]
+        img, label = self.dataset[original_idx]
+
+        if self.remap_labels:
+            label = self.label_map[label]
+
+        return img, label
+
+
+class RotatedDataset(Dataset):
+    def __init__(self, dataset, rotation_angle=90, label_offset=10):
+        self.dataset = dataset
+        self.rotation_angle = rotation_angle
+        self.label_offset = label_offset
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, idx):
+        img, label = self.dataset[idx]
+        # Rotate the image by the specified angle
+        img = TF.rotate(img, angle=self.rotation_angle)
+        # Adjust the label
+        label = label + self.label_offset
+        return img, label
+
+
+def create_dataset(dataset_name: str, root_dir: str='default_root_dir',
+                   class_subset: list | None = None, remap_labels: bool = True):
+    """
+    Create train and test datasets.
+
+    Args:
+        dataset_name: Name of the dataset to create
+        root_dir: Root directory for data storage
+        class_subset: (TinyImageNet only) List of class indices to include. If None, use all classes.
+        remap_labels: If True (default), remap labels to 0, 1, 2, ... when using class_subset. If False, keep original label indices.
+    """
+    
+    data_dir = os.path.join(root_dir, 'data')
+    os.makedirs(data_dir, exist_ok=True)
+
+    if dataset_name == 'MNIST':
+        # dimensions: (N, 1, 28, 28), flattened: 784
+        # train_size: 60000, test_size: 10000
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))
+        ])
+        
+        trainset = MNIST(data_dir, train=True, download=True, transform=transform)
+        testset = MNIST(data_dir, train=False, download=True, transform=transform)
+        
+        return trainset, testset
+
+    elif dataset_name == 'MNIST_Rotated_Full':     
+        train_transform = transforms.Compose(
+            [transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))]
+            )
+        
+        test_transform = transforms.Compose(
+            [transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))]
+            )
+        
+        trainset = MNIST(data_dir, train=True, download=True, transform=train_transform)
+        testset = MNIST(data_dir, train=False, download=True, transform=test_transform)
+
+        trainset_rotated = RotatedDataset(trainset)
+        testset_rotated = RotatedDataset(testset)
+
+        trainset_full = ConcatDataset([trainset, trainset_rotated])
+        testset_full = ConcatDataset([testset, testset_rotated])
+
+        classes_rotated = [i+10 for i in range(10)]
+        classes_full = [i for i in range(10)] + [i+10 for i in range(10)]
+
+        # Set classes
+        trainset_rotated.classes = classes_rotated
+        testset_rotated.classes = classes_rotated
+        trainset_full.classes = classes_full
+        testset_full.classes = classes_full
+
+        return trainset, testset, trainset_rotated, testset_rotated, trainset_full, testset_full
+    
+    elif dataset_name == 'MNIST_Rotated':     
+        train_transform = transforms.Compose(
+            [transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))]
+            )
+        
+        test_transform = transforms.Compose(
+            [transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))]
+            )
+        
+        trainset = MNIST(data_dir, train=True, download=True, transform=train_transform)
+        testset = MNIST(data_dir, train=False, download=True, transform=test_transform)
+
+        trainset_rotated = RotatedDataset(trainset)
+        testset_rotated = RotatedDataset(testset)
+
+        trainset_full = ConcatDataset([trainset, trainset_rotated])
+        testset_full = ConcatDataset([testset, testset_rotated])
+
+        classes_rotated = [i+10 for i in range(10)]
+        classes_full = [i for i in range(10)] + [i+10 for i in range(10)]
+
+        # Set classes
+        trainset_rotated.classes = classes_rotated
+        testset_rotated.classes = classes_rotated
+        trainset_full.classes = classes_full
+        testset_full.classes = classes_full
+
+        return trainset, testset_full
+    
+    elif dataset_name == 'CIFAR10':
+        # dimensions: (N, 3, 32, 32), flattened: 3072
+        # train_size: 50000, test_size: 10000
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.4914, 0.4822, 0.4465],
+                std=[0.247, 0.243, 0.261]
+            )   
+        ])
+        
+        trainset = CIFAR10(data_dir, train=True, download=True, transform=transform)
+        testset = CIFAR10(data_dir, train=False, download=True, transform=transform)
+        
+        return trainset, testset
+    
+    elif dataset_name == 'CIFAR10_Features':
+        # dimensions: (N, 3, 32, 32), flattened: 3072
+        # train_size: 50000, test_size: 10000
+        transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+        
+        trainset = CIFAR10(data_dir, train=True, download=True, transform=transform)
+        testset = CIFAR10(data_dir, train=False, download=True, transform=transform)
+        
+        return trainset, testset
+    
+    elif dataset_name == 'STL10':
+        # dimensions: (N, 3, 96, 96), flattened: 27648
+        # unlabeled: 100000, train: 5000, test: 8000
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.4467, 0.4398, 0.4066],
+                std=[0.2603, 0.2566, 0.2713]
+            )
+        ])
+        
+        trainset = STL10(data_dir, split='unlabeled', download=True, transform=transform)
+        testset = STL10(data_dir, split='test', download=True, transform=transform)
+            
+        return trainset, testset
+    
+    elif dataset_name == 'STL10_Features':
+        # dimensions: (N, 3, 96, 96), flattened: 27648
+        # unlabeled: 100000, train: 5000, test: 8000
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+        
+        trainset = STL10(data_dir, split='unlabeled', download=True, transform=transform)
+        testset = STL10(data_dir, split='test', download=True, transform=transform)
+            
+        return trainset, testset
+    
+    elif dataset_name == 'STL10_Features_Classify':
+        # dimensions: (N, 3, 96, 96), flattened: 27648
+        # unlabeled: 100000, train: 5000, test: 8000
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+        
+        trainset = STL10(data_dir, split='train', download=True, transform=transform)
+        testset = STL10(data_dir, split='test', download=True, transform=transform)
+            
+        return trainset, testset
+    
+    elif dataset_name == 'TinyImageNet':
+        # dimensions: (N, 3, 64, 64), flattened: 12288
+        # train_size: 100000, val_size: 10000, classes: 200
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            #transforms.Resize((224, 224)),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                            std=[0.229, 0.224, 0.225])
+        ])
+
+        trainset = TinyImageNet(root=data_dir, split='train', transform=transform)
+        testset = TinyImageNet(root=data_dir, split='val', transform=transform)
+
+        if class_subset is not None:
+            trainset = ClassSubset(trainset, class_subset, remap_labels=remap_labels)
+            testset = ClassSubset(testset, class_subset, remap_labels=remap_labels)
+
+        return trainset, testset

@@ -1,0 +1,135 @@
+{
+  "official_train": {
+    "images": 3596,
+    "boxes": 12434,
+    "prefix_groups": 46,
+    "habitat_codes": 20
+  },
+  "test_reopened": false,
+  "definitions": {
+    "prefix": "filename without terminal _f<digits>.jpg",
+    "habitat_code": "numeric first token; official slice_df_reg uses this as habitat selector",
+    "prefix_semantics": "not established as a unique video/site"
+  },
+  "shots": {
+    "1": {
+      "support_ids": [
+        2416
+      ],
+      "support_prefixes": [
+        "9852_Acanthopagrus_palmaris"
+      ],
+      "support_prefix_count": 1,
+      "support_habitat_codes": [
+        "9852"
+      ],
+      "support_habitat_count": 1,
+      "remaining_train_excluding_support_prefixes": {
+        "images": 3531,
+        "boxes": 12369,
+        "prefix_groups": 45,
+        "habitat_codes": 20
+      },
+      "remaining_train_excluding_support_habitats": {
+        "images": 3517,
+        "boxes": 12355,
+        "prefix_groups": 44,
+        "habitat_codes": 19
+      }
+    },
+    "5": {
+      "support_ids": [
+        930,
+        1892,
+        1900,
+        2244,
+        2363
+      ],
+      "support_prefixes": [
+        "7463_F7",
+        "9866_acanthopagrus_palmaris",
+        "9870_Gerres"
+      ],
+      "support_prefix_count": 3,
+      "support_habitat_codes": [
+        "7463",
+        "9866",
+        "9870"
+      ],
+      "support_habitat_count": 3,
+      "remaining_train_excluding_support_prefixes": {
+        "images": 3305,
+        "boxes": 12122,
+        "prefix_groups": 43,
+        "habitat_codes": 19
+      },
+      "remaining_train_excluding_support_habitats": {
+        "images": 2831,
+        "boxes": 10533,
+        "prefix_groups": 36,
+        "habitat_codes": 17
+      }
+    },
+    "10": {
+      "support_ids": [
+        1419,
+        1425,
+        1880,
+        1990,
+        2217,
+        2260,
+        2296,
+        2363,
+        3218,
+        3355
+      ],
+      "support_prefixes": [
+        "7398_F2",
+        "7426_F3",
+        "7585_F1",
+        "9866_acanthopagrus_and_caranx",
+        "9866_acanthopagrus_palmaris",
+        "9870_Gerres",
+        "9898_Acanthopagrus_palmaris"
+      ],
+      "support_prefix_count": 7,
+      "support_habitat_codes": [
+        "7398",
+        "7426",
+        "7585",
+        "9866",
+        "9870",
+        "9898"
+      ],
+      "support_habitat_count": 6,
+      "remaining_train_excluding_support_prefixes": {
+        "images": 3018,
+        "boxes": 11645,
+        "prefix_groups": 39,
+        "habitat_codes": 16
+      },
+      "remaining_train_excluding_support_habitats": {
+        "images": 2663,
+        "boxes": 10792,
+        "prefix_groups": 32,
+        "habitat_codes": 14
+      }
+    }
+  },
+  "all_shots_union_habitat_exclusion": {
+    "excluded_codes": [
+      "7398",
+      "7426",
+      "7463",
+      "7585",
+      "9852",
+      "9866",
+      "9870",
+      "9898"
+    ],
+    "images": 2183,
+    "boxes": 9302,
+    "prefix_groups": 23,
+    "habitat_codes": 12
+  }
+}

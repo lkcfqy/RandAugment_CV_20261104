@@ -1,0 +1,81 @@
+{
+  "actual_updates": 15,
+  "color_gate": {
+    "b_matches_cv2_bgr_blend": true,
+    "cv2_version": "4.11.0",
+    "exactly_one_numpy_draw": true,
+    "identity_exact": true,
+    "numpy_version": "1.24.3",
+    "rng_equal": true
+  },
+  "dev_metrics_computed": false,
+  "exposures": {
+    "counts": {
+      "930": 3,
+      "1892": 3,
+      "1900": 3,
+      "2244": 3,
+      "2363": 3
+    },
+    "per_image": 3,
+    "updates": 15
+  },
+  "ignored_checkpoint_tensors": [
+    "language_model.language_backbone.body.model.embeddings.position_ids",
+    "language_model.language_backbone.body.model.pooler.dense.bias",
+    "language_model.language_backbone.body.model.pooler.dense.weight"
+  ],
+  "init_seconds": 19.709918958000003,
+  "initial_state_sha256": "380e266ce6a7ddcd4de0d37acc0ed132fdb8fba0caef9330f5bf6a79dc10ff21",
+  "loss_and_gradients_finite": true,
+  "missing_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale",
+    "dn_query_generator.label_embedding.weight"
+  ],
+  "model_outputs_saved": false,
+  "official_zero_log_scale_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale"
+  ],
+  "optimizer_initial_state_empty": true,
+  "p90_predict_seconds": 0.39700040800005354,
+  "p90_update_seconds": 1.624973811000018,
+  "peak_cuda_bytes": 2148197376,
+  "phase": "preflight_A",
+  "preflight_checkpoint_saved": false,
+  "preflight_state_reused": false,
+  "seed": 20261101,
+  "state_tensor_bytes": 691880148,
+  "status": "COMPLETE",
+  "timed_updates": 10,
+  "trainable_names_sha256": "62f7c4fa11c27bb72c9d472e1885d9a2ff1cd02f74523f7a53ea334770c4fe3a",
+  "update_seconds": [
+    3.581635336999966,
+    1.1256063150000273,
+    1.0219629380000015,
+    1.0489482469999984,
+    1.5250983900000392,
+    1.3979880609999782,
+    1.624973811000018,
+    1.160971371999949,
+    1.6223780690000922,
+    1.390182834999905,
+    1.4468096560000276,
+    1.428826238000056,
+    1.4314342540000098,
+    1.6416732389999424,
+    1.0069278470000427
+  ],
+  "warmup_updates": 5
+}

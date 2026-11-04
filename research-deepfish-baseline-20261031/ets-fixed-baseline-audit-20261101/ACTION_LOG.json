@@ -1,0 +1,24 @@
+{
+  "mode": "local read-only scientific audit; new report files only",
+  "network_reads": "Official public GitHub ETS fixed commit and OpenMMLab fixed commit; text and JSON only",
+  "actions": [
+    {
+      "action": "web open",
+      "target": "https://api.github.com/repos/jaychempan/ETS/commits/main",
+      "outcome": "tool inaccessible; no commit data returned"
+    },
+    {
+      "action": "sandbox urllib GET",
+      "target": "https://api.github.com/repos/jaychempan/ETS/commits/main",
+      "outcome": "DNS resolution failed; HTTP request not completed; no download"
+    },
+    {
+      "action": "authorized network read with escalation",
+      "target": "official GitHub public API/raw source",
+      "outcome": "completed; pinned source hashes recorded"
+    }
+  ],
+  "automatic_approval_rejections": [],
+  "upstream_source_execution": false,
+  "original_asset_mutation": false
+}

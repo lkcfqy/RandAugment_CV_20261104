@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "cpu_only": true,
+  "real_dataset_images": 0,
+  "model_computation": false,
+  "checks": {
+    "rng_branch_independence_and_restore": true,
+    "shuffle_592_drop_last_18_batches": true,
+    "schedule_endpoints": true,
+    "native_randaugment_pool": {
+      "Identity": {
+        "signed": false,
+        "shape": []
+      },
+      "ShearX": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "ShearY": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "TranslateX": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "TranslateY": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Rotate": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Brightness": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Color": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Contrast": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Sharpness": {
+        "signed": true,
+        "shape": [
+          31
+        ]
+      },
+      "Posterize": {
+        "signed": false,
+        "shape": [
+          31
+        ]
+      },
+      "Solarize": {
+        "signed": false,
+        "shape": [
+          31
+        ]
+      },
+      "AutoContrast": {
+        "signed": false,
+        "shape": []
+      },
+      "Equalize": {
+        "signed": false,
+        "shape": []
+      }
+    },
+    "ent_old_cache_magnitudes": [
+      0,
+      0,
+      1,
+      5,
+      9,
+      9
+    ],
+    "synthetic_manifest_dedup_and_split": {
+      "status": "passed",
+      "seconds": 0.09008097648620605,
+      "total_image_files": 1374,
+      "official_rows": 1374,
+      "official_counts": {
+        "trainval": 1298,
+        "test": 76
+      },
+      "included_counts": {
+        "trainval": 1293,
+        "test": 75
+      },
+      "exclusion_counts": {
+        "duplicate": 4,
+        "label_conflict": 2
+      },
+      "duplicate_groups": 5,
+      "validation_count": 592,
+      "support_per_seed": {
+        "11": 592,
+        "22": 592,
+        "33": 592
+      },
+      "test_count": 75,
+      "manifest_sha256": "bf3cae9c45f753217d3798d90ff247329e45f3c6640ca70793374e8a07fc9ac0",
+      "splits_sha256": "9dfaa0ff1210cc0616a89b3d8295f6e528d4a313d0d34875f85df6fb485fa7bf"
+    }
+  },
+  "source_hashes": {
+    "core.py": "11f58cccaa55e691c2fe68a6b195e516b7e5f5b5dad1f32bf92e5cb4268c595a",
+    "manifest.py": "54b5f1f649f601d2f2582e90ddb65be5d3e099afe5512cfd0c1130ce7e317251",
+    "pilot.py": "719b567b4a41a99cd8f46f5a61deabd9618fc5fad67cfd75603a94570a110901",
+    "fixtures.py": "666b08f5819dffa418902a2bbb9daad9b70fb372d4832c02ce2d374caaea2847"
+  }
+}

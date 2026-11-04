@@ -1,0 +1,1 @@
+2026-10-31T15:02:03.045678+00:00 Both preflights complete: 15 updates each; 5 support images used 3 times each. Local verification confirms exact paired trace and initialization hashes. Frozen U=200, E=40 per formal arm, chosen by the original timing-only rule. No dev metrics seen. Formal A started fresh; all preflight states discarded.

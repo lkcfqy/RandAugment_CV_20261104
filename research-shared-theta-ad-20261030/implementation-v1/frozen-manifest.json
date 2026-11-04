@@ -1,0 +1,401 @@
+{
+  "frozen_utc": "2026-10-30T22:28:34Z",
+  "protocol": {
+    "version": "stheta-v1",
+    "status": "implementation/preflight only; formal scoring awaits parent confirmation",
+    "theta_order": [
+      "a=1,b=1",
+      "a=0.8,b=0.8",
+      "a=0.8,b=1",
+      "a=0.8,b=1.2",
+      "a=1,b=0.8",
+      "a=1,b=1.2",
+      "a=1.2,b=0.8",
+      "a=1.2,b=1",
+      "a=1.2,b=1.2"
+    ],
+    "theta_parameters": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        0.8,
+        0.8
+      ],
+      [
+        0.8,
+        1.0
+      ],
+      [
+        0.8,
+        1.2
+      ],
+      [
+        1.0,
+        0.8
+      ],
+      [
+        1.0,
+        1.2
+      ],
+      [
+        1.2,
+        0.8
+      ],
+      [
+        1.2,
+        1.0
+      ],
+      [
+        1.2,
+        1.2
+      ]
+    ],
+    "reference_seeds": [
+      11,
+      22,
+      33
+    ],
+    "shuffle_seeds": [
+      9001,
+      9002,
+      9003,
+      9004,
+      9005
+    ],
+    "primary_shuffle": 9001,
+    "cal_clusters": 64,
+    "refs_per_seed": 64,
+    "image_geometry": "EXIF transpose -> RGB -> Pillow BICUBIC direct 224 square; no crop",
+    "numeric": "FP32 eager, eval, no AMP; ImageNet mean/std; post-final-LN patch L2 eps=1e-8",
+    "photometric": "sRGB -> linear L; per-image per-channel spatial mean mu; clip(a*(b*L+(1-b)*mu),0,1) -> sRGB; no uint8; identity exact shortcut",
+    "identity_meaning": "theta index 0; preserve original floating array and reuse original feature",
+    "near_duplicate": {
+      "phash": "ImageHash.phash(hash_size=8,highfreq_factor=4)",
+      "hamming_max": 4,
+      "ssim_gray": "EXIF transpose -> RGB -> L -> Pillow LANCZOS 256 square",
+      "ssim_min": 0.995,
+      "ssim_parameters": {
+        "data_range": 255,
+        "win_size": 7,
+        "gaussian_weights": false,
+        "use_sample_covariance": true,
+        "K1": 0.01,
+        "K2": 0.03
+      },
+      "train_clustering": "connected components on exactRGB-unique nodes",
+      "cluster_members": "all original paths including exact aliases; sorted (pixelhash,path)",
+      "cluster_id": "SHA256(newline-joined pixelhash + TAB + relative path), no terminal newline",
+      "canonical": "minimum (pixelhash,relative path)",
+      "cross_split": "same-label exact duplicates remove all train members; conflict stops; near duplicates reported only"
+    },
+    "distance": "FP32 exhaustive squared L2 on unit patches; no approximate retrieval",
+    "ties": "theta order, then canonical ref (pixelhash,path), then row-major patch index; strict less update",
+    "primary": {
+      "theta_selection": "mean lowest 204 of 256 distances",
+      "score": "mean largest 13 squared distances"
+    },
+    "mechanism_controls": [
+      "all256_mean_theta_selection",
+      "minimum_top13_mean_over_theta"
+    ],
+    "reference_selection": {
+      "selectors": [
+        "spatial_bow_KL",
+        "trimmed_chamfer"
+      ],
+      "K": [
+        1,
+        4,
+        10
+      ],
+      "bank_modes": [
+        "selected_view",
+        "pool9"
+      ],
+      "kmeans": {
+        "n_clusters": 12,
+        "init": "k-means++",
+        "random_state": 0,
+        "n_init": 10,
+        "algorithm": "lloyd",
+        "max_iter": 300,
+        "tol": 0.0001
+      },
+      "bow": "5x5 grid by floor(5*(patch_index+.5)/16); 12 counts +1e-6 then normalize; KL(h_ref||h_query), lowest20/25 mean",
+      "chamfer": "lowest204/256 mean of A[:,r,theta]; choose theta per ref, then K distinct refs"
+    },
+    "robust_color": {
+      "statistics": "per-channel median and IQR in linear RGB, numpy quantile method=linear",
+      "floor": 0.0001,
+      "target": "cross-reference medians of per-image median and floored IQR",
+      "transform": "S(clip(mbar+sbar*(L-m)/max(IQR,1e-4),0,1))",
+      "feature_reuse": false
+    },
+    "projection": {
+      "fit": "CPU float64 E(delta), S0=E(delta delta^T), Sc=S0-mu mu^T",
+      "delta": "unit augmented patch minus unit identity at same position; all64x8x256",
+      "ranks": [
+        8,
+        16,
+        32
+      ],
+      "matrices": [
+        "S0",
+        "Sc"
+      ],
+      "top32": "single eigh per matrix; nested first8/16/32",
+      "inference_centering": false,
+      "pre": "Qz on query and entire bank, L2 eps1e-8, new exhaustive NN",
+      "post": "Q(original-space winning residual), no renormalization; squared and sqrt top13 means",
+      "banks": [
+        "identity",
+        "pool9"
+      ],
+      "configuration_count": 36
+    },
+    "calibration": {
+      "n": 64,
+      "threshold_ascending_order": 62,
+      "positive": "score > threshold",
+      "ties": "normal",
+      "alpha": 0.05,
+      "target_FPR_guarantee": false
+    },
+    "evaluation": {
+      "test_counts": {
+        "same": {
+          "normal": 230,
+          "anomaly": 459
+        },
+        "illumination": {
+          "normal": 75,
+          "anomaly": 198
+        }
+      },
+      "equal_domain_AUROC": "(same + illumination)/2",
+      "baseline_oracle": "investment gate only; never deployment selection or significance",
+      "gates": {
+        "eq_delta": 0.02,
+        "illumination_delta": 0.03,
+        "same_delta_min": -0.01,
+        "all_seed_eq_delta_strictly_positive": true,
+        "primary_minus_shuffle9001_eq": 0.01
+      },
+      "CI": "none; no physical entity IDs; only official image-split acquisition-condition generalization",
+      "masks_used": false
+    },
+    "budgets": {
+      "preflight_MPS_window_seconds": 300,
+      "future_total_from_first_GPU_wall_seconds": 7200,
+      "stage_wall_seconds": 14400,
+      "disk_bytes": 8589934592,
+      "forecast_margin": 1.2
+    },
+    "method_count": 59,
+    "baseline_count": 51
+  },
+  "code_files": [
+    {
+      "path": "compare_encoders.py",
+      "sha256": "d9cf34fab37b4ac4949615530327df153afbb3243c198fdadffc3de8e94f38e1"
+    },
+    {
+      "path": "encoder_reference_probe.py",
+      "sha256": "3d928acee19c845e3ab49652d944c8e55b407826deb6c87239bed12f7a62d7cc"
+    },
+    {
+      "path": "formal_runner.py",
+      "sha256": "d491987e1e8a245ba7f49f9b8bc0c52c3f1ce2aec152e259a9c8ef27975e105b"
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "3172944155b5958f1e711a3c85002334a4499cc64c0374a0fa8777f5ec03d8a9"
+    },
+    {
+      "path": "preflight.py",
+      "sha256": "d3b489a8d4295a5dffc119db33d04f76b9f6db2f7d008cd261d16b41a75a133f"
+    },
+    {
+      "path": "prepare_data.py",
+      "sha256": "2cf9bf154d99431114f000531cf70d22649b162724ac6fa326edfb8acb49e7ea"
+    },
+    {
+      "path": "stheta/__init__.py",
+      "sha256": "a020a3e50857a31b3475ced7b0737441e210e397d00e98cc166fc01b8e945f59"
+    },
+    {
+      "path": "stheta/data.py",
+      "sha256": "4847eb3991625b60ddd61bf735999c75052afcab303603e6703aee708d4bbf4a"
+    },
+    {
+      "path": "stheta/encoder.py",
+      "sha256": "92f2cab42b5802275dbeb90a44e56638a2be2a607efb5ec269dbad53b8fa3d6d"
+    },
+    {
+      "path": "stheta/methods.py",
+      "sha256": "23d76bdb86afd8a3e0ef3b9ea4b8004d9b65837c257d0f0dd781bb019d5522fb"
+    },
+    {
+      "path": "stheta/metrics.py",
+      "sha256": "2b9faed3d7602e0af89ecbb08bc3d238e55c27f871f98f7f075f6fa4f0a85da5"
+    },
+    {
+      "path": "stheta/protocol.py",
+      "sha256": "07e419e3c43490850f4b65ffc9be3d04e97324ca23a1349e59ca976df8f4f761"
+    },
+    {
+      "path": "stheta/runtime.py",
+      "sha256": "3b8b0835541d84d09c6b0b1029d26a157b3d4a7c57ec95acc49a8a0ce7f37d0a"
+    },
+    {
+      "path": "test_numeric.py",
+      "sha256": "6db2ff40416491cf44f441bb0b33d480a1e441bbbc2bbbc64cc1da8d4597dab7"
+    },
+    {
+      "path": "verify_versions.py",
+      "sha256": "81bd90841a81f9929a1f5af52c7dc4054cd9ccd71dabe84cb90b43e01be49449"
+    }
+  ],
+  "split_manifest_sha256": "a94e405884eb4c6279f6d241c349f0d050248b1750d51619f1ff75a99d751a13",
+  "pre_data_manifest_sha256": "3c2f898f43f69c3b8e40ae1c72322dd50fd744d34b5a6829cc1f0c6b5f954596",
+  "asset_file_manifest_sha256": "ca739d1656b5381050235b3a0acc7ebef918d587872686943b9f31db1908772e",
+  "model_revision": "150c8e7bb7cef2d30ec31b13a517af14840ee3f7",
+  "model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "environment": {
+    "torch": "2.13.0",
+    "transformers": "4.57.1",
+    "safetensors": "0.8.0",
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "ImageHash": "4.3.2",
+    "scikit-image": "0.26.0",
+    "scikit-learn": "1.9.1"
+  },
+  "formal_scoring_authorized": false,
+  "preflight_source_selection": "seed11 references, first calibration cluster; only training normal images",
+  "MPS_preflight_allowed_seconds": 300,
+  "test_model_forwards_allowed": 0,
+  "prohibited_preflight_outputs": [
+    "real AUROC",
+    "real TPR",
+    "real theta winner distributions"
+  ],
+  "method_names": [
+    "identity",
+    "pool9",
+    "primary",
+    "projection/S0/r16/identity/post_sq",
+    "projection/S0/r16/identity/post_sqrt",
+    "projection/S0/r16/identity/pre_sq",
+    "projection/S0/r16/pool9/post_sq",
+    "projection/S0/r16/pool9/post_sqrt",
+    "projection/S0/r16/pool9/pre_sq",
+    "projection/S0/r32/identity/post_sq",
+    "projection/S0/r32/identity/post_sqrt",
+    "projection/S0/r32/identity/pre_sq",
+    "projection/S0/r32/pool9/post_sq",
+    "projection/S0/r32/pool9/post_sqrt",
+    "projection/S0/r32/pool9/pre_sq",
+    "projection/S0/r8/identity/post_sq",
+    "projection/S0/r8/identity/post_sqrt",
+    "projection/S0/r8/identity/pre_sq",
+    "projection/S0/r8/pool9/post_sq",
+    "projection/S0/r8/pool9/post_sqrt",
+    "projection/S0/r8/pool9/pre_sq",
+    "projection/Sc/r16/identity/post_sq",
+    "projection/Sc/r16/identity/post_sqrt",
+    "projection/Sc/r16/identity/pre_sq",
+    "projection/Sc/r16/pool9/post_sq",
+    "projection/Sc/r16/pool9/post_sqrt",
+    "projection/Sc/r16/pool9/pre_sq",
+    "projection/Sc/r32/identity/post_sq",
+    "projection/Sc/r32/identity/post_sqrt",
+    "projection/Sc/r32/identity/pre_sq",
+    "projection/Sc/r32/pool9/post_sq",
+    "projection/Sc/r32/pool9/post_sqrt",
+    "projection/Sc/r32/pool9/pre_sq",
+    "projection/Sc/r8/identity/post_sq",
+    "projection/Sc/r8/identity/post_sqrt",
+    "projection/Sc/r8/identity/pre_sq",
+    "projection/Sc/r8/pool9/post_sq",
+    "projection/Sc/r8/pool9/post_sqrt",
+    "projection/Sc/r8/pool9/pre_sq",
+    "refselect/spatial_bow_KL/K1/pool9",
+    "refselect/spatial_bow_KL/K1/selected_view",
+    "refselect/spatial_bow_KL/K10/pool9",
+    "refselect/spatial_bow_KL/K10/selected_view",
+    "refselect/spatial_bow_KL/K4/pool9",
+    "refselect/spatial_bow_KL/K4/selected_view",
+    "refselect/trimmed_chamfer/K1/pool9",
+    "refselect/trimmed_chamfer/K1/selected_view",
+    "refselect/trimmed_chamfer/K10/pool9",
+    "refselect/trimmed_chamfer/K10/selected_view",
+    "refselect/trimmed_chamfer/K4/pool9",
+    "refselect/trimmed_chamfer/K4/selected_view",
+    "robust_color",
+    "selector/all256",
+    "selector/min_top13",
+    "shuffle/9001",
+    "shuffle/9002",
+    "shuffle/9003",
+    "shuffle/9004",
+    "shuffle/9005"
+  ],
+  "external_baseline_names": [
+    "identity",
+    "pool9",
+    "projection/S0/r16/identity/post_sq",
+    "projection/S0/r16/identity/post_sqrt",
+    "projection/S0/r16/identity/pre_sq",
+    "projection/S0/r16/pool9/post_sq",
+    "projection/S0/r16/pool9/post_sqrt",
+    "projection/S0/r16/pool9/pre_sq",
+    "projection/S0/r32/identity/post_sq",
+    "projection/S0/r32/identity/post_sqrt",
+    "projection/S0/r32/identity/pre_sq",
+    "projection/S0/r32/pool9/post_sq",
+    "projection/S0/r32/pool9/post_sqrt",
+    "projection/S0/r32/pool9/pre_sq",
+    "projection/S0/r8/identity/post_sq",
+    "projection/S0/r8/identity/post_sqrt",
+    "projection/S0/r8/identity/pre_sq",
+    "projection/S0/r8/pool9/post_sq",
+    "projection/S0/r8/pool9/post_sqrt",
+    "projection/S0/r8/pool9/pre_sq",
+    "projection/Sc/r16/identity/post_sq",
+    "projection/Sc/r16/identity/post_sqrt",
+    "projection/Sc/r16/identity/pre_sq",
+    "projection/Sc/r16/pool9/post_sq",
+    "projection/Sc/r16/pool9/post_sqrt",
+    "projection/Sc/r16/pool9/pre_sq",
+    "projection/Sc/r32/identity/post_sq",
+    "projection/Sc/r32/identity/post_sqrt",
+    "projection/Sc/r32/identity/pre_sq",
+    "projection/Sc/r32/pool9/post_sq",
+    "projection/Sc/r32/pool9/post_sqrt",
+    "projection/Sc/r32/pool9/pre_sq",
+    "projection/Sc/r8/identity/post_sq",
+    "projection/Sc/r8/identity/post_sqrt",
+    "projection/Sc/r8/identity/pre_sq",
+    "projection/Sc/r8/pool9/post_sq",
+    "projection/Sc/r8/pool9/post_sqrt",
+    "projection/Sc/r8/pool9/pre_sq",
+    "refselect/spatial_bow_KL/K1/pool9",
+    "refselect/spatial_bow_KL/K1/selected_view",
+    "refselect/spatial_bow_KL/K10/pool9",
+    "refselect/spatial_bow_KL/K10/selected_view",
+    "refselect/spatial_bow_KL/K4/pool9",
+    "refselect/spatial_bow_KL/K4/selected_view",
+    "refselect/trimmed_chamfer/K1/pool9",
+    "refselect/trimmed_chamfer/K1/selected_view",
+    "refselect/trimmed_chamfer/K10/pool9",
+    "refselect/trimmed_chamfer/K10/selected_view",
+    "refselect/trimmed_chamfer/K4/pool9",
+    "refselect/trimmed_chamfer/K4/selected_view",
+    "robust_color"
+  ],
+  "shuffle_mappings_sha256": "cc282b780fb763df40f670075297b4606156a006d1ad45123aecca31a047de4a"
+}

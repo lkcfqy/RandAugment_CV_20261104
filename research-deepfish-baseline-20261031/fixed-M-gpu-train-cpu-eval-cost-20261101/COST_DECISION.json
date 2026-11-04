@@ -1,0 +1,76 @@
+{
+  "CU_headroom": 0.016418823348107403,
+  "actions": {
+    "GPU_allocations": 0,
+    "installs": 0,
+    "models": 0,
+    "new_CU": 0,
+    "ps_or_sysctl_retries": 0,
+    "training": 0,
+    "uploads": 0
+  },
+  "base_seconds": 1689.8039250507293,
+  "budget_gate": {
+    "B_bound": "min(historical4453855.0958829, current allocation successful local-download probe rate, any subsequently lower observed return rate)",
+    "I_bound": "max(historical20.244484609999972, newly observed preflight initialization seconds)",
+    "available_allocation_seconds": "D=min((2.5-C0)*3600/r_upper,9000-G0)",
+    "during_formal": "1.25*(e +1.5*(200-u)*t_bound +2*W/B_bound +120 +180) <=D; elapsed includes completed formal initialization and updates",
+    "during_return": "1.25*(e +2*remaining_checkpoint_bytes/B_bound +remaining_receipt_overhead +180) <=D",
+    "early_bandwidth_gate": "Before expensive setup:1.25*(max(P,e)+I_bound+300*t_reference+2*W/B_bound+120+180)<=D; tentative until actual preflight gate",
+    "elapsed": "All billable allocation elapsed, including preparation and waiting. Carry forward live actual usage; if actual billedCU exceeds rate*elapsed estimate, increase accounted cost before gating.",
+    "failure": "If a gate fails, no formal start or stop as resource-incomplete and release; no reducedU checkpoint/effect result, no retry/allocation merely to consume remainder.",
+    "formal_start": "1.25*(e + I_bound +1.5*200*t_bound +2*W/B_bound +120 +180) <=D",
+    "release": "Retain180s inside the whole25 margin; external actual CU/time watchdog remains a hard upper bound, terminate/release before either hard cap.",
+    "t_bound": "max(historical1.6807091929999842, measured preflight timed-update p90, subsequently observed update p90); no loss/dev-driven budget choice"
+  },
+  "components_before_global25_seconds": {
+    "bookkeeping_saving_local_hash_receipt": 120,
+    "complete_checkpoint_return_with_100pct_stage_margin": 310.82105147059707,
+    "one_formal_model_load": 20.244484609999972,
+    "prepare_and_required_preflight": 554.525631070137,
+    "release": 180,
+    "train_200_with_50pct_stage_margin": 504.21275789999527
+  },
+  "cumulative_CU": 2.4835811766518927,
+  "cumulative_GPU_seconds": 7556.154694786541,
+  "disk": {
+    "after_checkpoint_and100MiB_extra_remaining": 1586842332,
+    "after_one_full_checkpoint_remaining": 1691699932,
+    "physical_free_bytes": 888832000000,
+    "remaining_under_new8GiB": 2383875894,
+    "research_before_decision_archive_bytes": 6206058698
+  },
+  "headroom_seconds_at_historical_rate": 51.39805569842338,
+  "historical_CU": 1.8088330815795528,
+  "historical_GPU_seconds": 5443.899788473129,
+  "margin_definition": "1.25 applied to complete allocation estimate including preparation, preflight, formal load/training, complete checkpoint return, bookkeeping and180s release. Existing50% training and100% transfer buffers also retained. At later gates apply1.25 to elapsed+remaining estimate; do not drop margin on elapsed preparation.",
+  "new_CU": 0.6747480950723398,
+  "nominal_assumptions": {
+    "GPU_update_p90_seconds": 1.6807091929999842,
+    "formal_init_seconds": 20.244484609999972,
+    "full_checkpoint_bytes": 692175962,
+    "preparation_plus_preflight_seconds": 554.525631070137,
+    "return_bytes_per_second": 4453855.0958829
+  },
+  "parent_GPU_headroom_seconds": 1443.8453052134596,
+  "parent_GPU_limit_seconds": 9000,
+  "parent_disk_limit_bytes": 8589934592,
+  "rate_historical_not_live": 1.15,
+  "remaining_CU": 0.6911669184204472,
+  "removed_seconds": {
+    "old_cost_before_global25": 60.024857186005875,
+    "unbuffered_GPU_eval_load_plus64_forwards": 46.76473299400391,
+    "whole25_inclusive": 75.03107148250734
+  },
+  "status": "CONDITIONALLY_WITHIN_CU_AT_HISTORICAL_MEASUREMENTS_NOT_EXECUTION_GO",
+  "thresholds_one_variable_only": {
+    "max_M_update_p90_seconds_at_other_historical": 1.8177706748624465,
+    "max_preflight_end_elapsed_seconds_at_other_historical": 595.6440756288757,
+    "max_rate_CU_per_hour_at_other_historical": 1.1779832532884722,
+    "min_return_bytes_per_second_at_other_historical": 3933494.0795749966
+  },
+  "uniform_margin_fraction": 0.25,
+  "user_CU_limit": 2.5,
+  "whole25_minutes": 35.20424843855686,
+  "whole25_seconds": 2112.2549063134115
+}

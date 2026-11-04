@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-10-30T20:57:37.767647+00:00",
+  "scope": "One bounded idempotent recovery of infer022 inside the same alive session; no new allocation, no training, no changed inference setting.",
+  "evidence": {
+    "readonly_cli_status": "existing T4 session IDLE; last completed scientific exec infer021",
+    "readonly_kernel_probe": {
+      "engine_exists": true,
+      "epoch": 80,
+      "benchmark_steps": 0,
+      "formal_steps": 25040,
+      "formal_presentations": 3200000,
+      "inference_views": 112640,
+      "infer022_done": false,
+      "infer022_array": false
+    }
+  },
+  "safety": "Engine.infer_chunk returns an existing done marker before running; requires exact preceding inference count; kernel requests run serially. A late duplicate request returns the done marker without model execution.",
+  "max_additional_recovery_submissions": 1,
+  "original_pending_child_pid": 17357,
+  "new_allocations": 0,
+  "current_allocation_start": 1793391776.5344,
+  "prior_GPU_seconds": 1652.7684237957,
+  "hard_GPU_seconds": 7200,
+  "wall_deadline": 1793404407.1513782,
+  "cumulative_gpu_seconds_before_recovery": 3734.0018088817596,
+  "exit_code": 0,
+  "stdout": "{\"event\": \"action_done\", \"utc\": \"2026-10-30T20:57:39Z\", \"attempt_seconds\": 2082.6806643009186, \"previous_GPU_seconds\": 1652.7684237957, \"action\": \"infer022\", \"audit\": {\"benchmark_steps\": 0, \"benchmark_presentations\": 0, \"formal_steps\": 25040, \"formal_presentations\": 3200000, \"inference_views\": 117760}}\n",
+  "stderr": "",
+  "duration_seconds": 1.7505810260772705,
+  "finished_utc": "2026-10-30T20:57:39.518662+00:00",
+  "marker_verified_utc": "2026-10-30T20:58:19.198760+00:00",
+  "marker_sha256": "8948e281005e73b72f15f5558a008616b8efb727893ad020328ad79d07d88738",
+  "confirmed_audit": {
+    "benchmark_steps": 0,
+    "benchmark_presentations": 0,
+    "formal_steps": 25040,
+    "formal_presentations": 3200000,
+    "inference_views": 117760
+  },
+  "stale_local_cli_terminated": true,
+  "termination_reason": "Recovered completion marker validated. Only the old local client is ended; original controller reconciles marker and continues, no remote stop/kernel interrupt."
+}

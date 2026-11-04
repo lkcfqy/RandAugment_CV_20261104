@@ -1,0 +1,84 @@
+{
+  "status": "NO_MODEL_THREAD_CONTRACT_PASS",
+  "model_instances": 0,
+  "forward_calls": 0,
+  "dev_test_images": 0,
+  "image_id": 1892,
+  "records": [
+    {
+      "requested_cv2_threads": 4,
+      "reported_cv2_threads": 18,
+      "factor": 1.0,
+      "pipeline_seconds": 0.012637458014069125,
+      "input_shape": [
+        3,
+        749,
+        1333
+      ],
+      "input_sha256": "e112d4420d74588dcadf44356253763d5b2b5285362f6470b93f4f696dce3207",
+      "bbox_sha256": "a32ee966de9b72bef3c7f6ad10d13336184a0741762c1131dcea9399985512d4",
+      "labels_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    {
+      "requested_cv2_threads": 4,
+      "reported_cv2_threads": 18,
+      "factor": 0.8,
+      "pipeline_seconds": 0.011038041004212573,
+      "input_shape": [
+        3,
+        749,
+        1333
+      ],
+      "input_sha256": "f48a9b700de99d489f1aa0d720b044bbe7ce91e67ac89d1dd5c409075b8a787d",
+      "bbox_sha256": "a32ee966de9b72bef3c7f6ad10d13336184a0741762c1131dcea9399985512d4",
+      "labels_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    {
+      "requested_cv2_threads": 0,
+      "reported_cv2_threads": 1,
+      "factor": 1.0,
+      "pipeline_seconds": 0.012115874997107312,
+      "input_shape": [
+        3,
+        749,
+        1333
+      ],
+      "input_sha256": "e112d4420d74588dcadf44356253763d5b2b5285362f6470b93f4f696dce3207",
+      "bbox_sha256": "a32ee966de9b72bef3c7f6ad10d13336184a0741762c1131dcea9399985512d4",
+      "labels_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    {
+      "requested_cv2_threads": 0,
+      "reported_cv2_threads": 1,
+      "factor": 0.8,
+      "pipeline_seconds": 0.012084957998013124,
+      "input_shape": [
+        3,
+        749,
+        1333
+      ],
+      "input_sha256": "f48a9b700de99d489f1aa0d720b044bbe7ce91e67ac89d1dd5c409075b8a787d",
+      "bbox_sha256": "a32ee966de9b72bef3c7f6ad10d13336184a0741762c1131dcea9399985512d4",
+      "labels_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    }
+  ],
+  "prepared_tensors_gt_metadata_byte_identical": true,
+  "parallel_framework": [
+    "Parallel framework:            GCD"
+  ],
+  "original_measured_cv2_setting": {
+    "requested": 4,
+    "reported": 18,
+    "positive_limit_enforcement": false
+  },
+  "proposed_formal_runtime": {
+    "torch_threads": 4,
+    "interop_threads": 1,
+    "cv2_setNumThreads": 0,
+    "cv2_getNumThreads": 1,
+    "cv2_parallel_regions": "sequential"
+  },
+  "official_source": "https://github.com/opencv/opencv/blob/4.11.0/modules/core/src/parallel.cpp",
+  "no_model_rerun_under_proposed_setting": true,
+  "full_512_authorized": false
+}

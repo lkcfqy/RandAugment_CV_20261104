@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "annotation_info": {
+      "description": "CNS-Bench: Benchmarking Image Classifier Robustness Under Continuous Nuisance Shifts",
+      "url": "https://edmond.mpg.de/dataset.xhtml?persistentId=doi:10.17617/3.MAGNKP",
+      "version": "1.0",
+      "year": 2025,
+      "license": "CC0 1.0",
+      "contributor": "Olaf Duenkel",
+      "date_created": "2025/07/22"
+    },
+    "sha256": "b5ebaca56449d9439538f09a54f0cd32bd70e30b1c79665352daaaacacbe29cd",
+    "total_published_image_records": 192168,
+    "selected_image_records": 30228,
+    "by_shift": {
+      "cartoon_style": {
+        "images": 12930,
+        "trajectories": 2155,
+        "complete_trajectories": 2155,
+        "incomplete_trajectories": 0,
+        "classes": 97
+      },
+      "heavy_snow": {
+        "images": 17298,
+        "trajectories": 2883,
+        "complete_trajectories": 2883,
+        "incomplete_trajectories": 0,
+        "classes": 96
+      }
+    },
+    "identity_hash_fields_present": false,
+    "strict_source_identity": "unconfirmed: keys and paths contain no common baseline digest",
+    "license_verified_from_annotation_info": "CC0 1.0",
+    "version_verified_from_annotation_info": "1.0",
+    "common_class_seed_keys": 1608,
+    "common_key_classes": 91,
+    "these_counts_are_metadata_not_prediction_results": true
+  },
+  "prediction_archive": {
+    "zip_sha256": "074a436da05b5af8f35bdf8c7a11e670fe1a13776b320f5ac3ada524a41e80ac",
+    "selected_files": [
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "results/resnet18.a1_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 1197474,
+        "rows": 12930
+      },
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "results/resnet18.a1_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 1551398,
+        "rows": 17298
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "results/vit_base_patch16_224.augreg_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 1197488,
+        "rows": 12930
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "results/vit_base_patch16_224.augreg_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 1552122,
+        "rows": 17298
+      }
+    ],
+    "file_selection": "exact predeclared model and shift filenames"
+  },
+  "prediction_provenance": {
+    "verified_utc": "2026-10-30T11:20:14.941742+00:00",
+    "source_url": "https://edmond.mpg.de/file.xhtml?fileId=318928&version=1.0",
+    "dataset_url": "https://edmond.mpg.de/dataset.xhtml?persistentId=doi:10.17617/3.MAGNKP",
+    "download_method": "Normal Chrome official file detail Access File > ZIP Archive; clicked once; browser completed ~/Downloads/results.zip",
+    "dataset_version": "1.0",
+    "dataset_published_date": "2025-07-22",
+    "license": "CC0 1.0",
+    "license_evidence": "Official Edmond dataset page viewed in normal browser and official annotations_cns.json info.license",
+    "bytes": 76383186,
+    "sha256": "074a436da05b5af8f35bdf8c7a11e670fe1a13776b320f5ac3ada524a41e80ac",
+    "md5_computed": "7f88096bcd433c36b91d6b3baeeb752c",
+    "publisher_md5_display_observed": "7f8…52c",
+    "full_publisher_md5_independently_verified": false,
+    "computed_md5_matches_displayed_prefix_and_suffix": true,
+    "zip_crc_all_members_passed": true,
+    "archive_members": 603,
+    "complete_file_stable_during_hash_and_crc": true,
+    "raw_data_should_not_be_committed": true
+  },
+  "prediction_metadata_match": {
+    "resnet18.a1_in1k": {
+      "prediction_rows": 30228,
+      "annotation_rows": 30228,
+      "annotation_keys_without_prediction": 0,
+      "class_and_filename_stems_match_metadata": true,
+      "exact_image_filenames_match_metadata": false,
+      "png_to_jpg_extension_mapped_rows": 30228,
+      "extension_mapping_explicitly_enabled": true,
+      "image_byte_identity_proven": false
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "prediction_rows": 30228,
+      "annotation_rows": 30228,
+      "annotation_keys_without_prediction": 0,
+      "class_and_filename_stems_match_metadata": true,
+      "exact_image_filenames_match_metadata": false,
+      "png_to_jpg_extension_mapped_rows": 30228,
+      "extension_mapping_explicitly_enabled": true,
+      "image_byte_identity_proven": false
+    }
+  },
+  "model_key_alignment": {
+    "outer_union_rows": 30228,
+    "rows_per_model": {
+      "resnet18.a1_in1k": 30228,
+      "vit_base_patch16_224.augreg_in1k": 30228
+    },
+    "missing_key_counts": {
+      "resnet18.a1_in1k": 0,
+      "vit_base_patch16_224.augreg_in1k": 0
+    }
+  },
+  "identity": {
+    "status": "unverified; no baseline image hashes available",
+    "required_common_complete_sources": 1608,
+    "verified_sources": 0,
+    "primary_identity_coverage_complete": false,
+    "equal_predictions_are_not_identity_proof": true
+  }
+}

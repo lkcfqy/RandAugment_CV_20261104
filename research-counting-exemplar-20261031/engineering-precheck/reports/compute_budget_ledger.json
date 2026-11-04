@@ -1,0 +1,19 @@
+{
+  "total_compute_wall_budget_seconds": 1800,
+  "precheck_wall_seconds_charged": 34.21403079200536,
+  "remaining_seconds": 1765.7859692079946,
+  "formal_queries_executed": 0,
+  "forward_attempts_used": 4,
+  "max_formal_queries_if_frozen": 492,
+  "formal_plan_formula": "T_precheck + T_formal_startup + T_MPS_warmup + 2*492*max(t_MPS_F,t_MPS_C,t_MPS_V) + T_hash_io_reserve",
+  "formal_mps_cost_estimate_available": false,
+  "unavailable_reason": "MPS F warmup failed the predefined numeric tolerance; no successful timed MPS F/C/V set exists",
+  "startup_reference_seconds": 10.253420915993047,
+  "startup_reference_basis": "measured worker start through imports, asset checks, strict CPU loading plus measured CPU-to-MPS transfer; excludes CPU reference forwards",
+  "io_reserve_seconds": 60,
+  "io_reserve_basis": "explicit planning allowance for image identity checks and 492 durable result records; not a measured upper bound",
+  "max_cpu_mode_seconds": 6.159159625007305,
+  "cpu_492_single_pass_arithmetic_seconds": 3030.306535503594,
+  "cpu_fallback_authorized": false,
+  "scientific_result": "NOT_EVALUATED"
+}

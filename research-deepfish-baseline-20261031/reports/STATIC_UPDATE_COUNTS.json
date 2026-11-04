@@ -1,0 +1,73 @@
+{
+  "assumptions": [
+    "DefaultSampler round_up=True",
+    "AspectRatioBatchSampler drop_last=False",
+    "all supplied support dimensions 1920x1080",
+    "no repeat dataset",
+    "OptimWrapper default accumulative_counts=1",
+    "no runtime filtering changes",
+    "30 epochs is an explicit-loop hypothetical; direct Swin-T config resolves to 12"
+  ],
+  "rows": [
+    {
+      "shot": 1,
+      "world_size": 1,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 1,
+      "total_sample_presentations_per_epoch": 1,
+      "optimizer_steps_per_epoch": 1,
+      "steps_12_epochs": 12,
+      "steps_30_epochs": 30
+    },
+    {
+      "shot": 1,
+      "world_size": 4,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 1,
+      "total_sample_presentations_per_epoch": 4,
+      "optimizer_steps_per_epoch": 1,
+      "steps_12_epochs": 12,
+      "steps_30_epochs": 30
+    },
+    {
+      "shot": 5,
+      "world_size": 1,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 5,
+      "total_sample_presentations_per_epoch": 5,
+      "optimizer_steps_per_epoch": 2,
+      "steps_12_epochs": 24,
+      "steps_30_epochs": 60
+    },
+    {
+      "shot": 5,
+      "world_size": 4,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 2,
+      "total_sample_presentations_per_epoch": 8,
+      "optimizer_steps_per_epoch": 1,
+      "steps_12_epochs": 12,
+      "steps_30_epochs": 30
+    },
+    {
+      "shot": 10,
+      "world_size": 1,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 10,
+      "total_sample_presentations_per_epoch": 10,
+      "optimizer_steps_per_epoch": 3,
+      "steps_12_epochs": 36,
+      "steps_30_epochs": 90
+    },
+    {
+      "shot": 10,
+      "world_size": 4,
+      "per_device_batch_size": 4,
+      "sampler_samples_per_rank": 3,
+      "total_sample_presentations_per_epoch": 12,
+      "optimizer_steps_per_epoch": 1,
+      "steps_12_epochs": 12,
+      "steps_30_epochs": 30
+    }
+  ]
+}

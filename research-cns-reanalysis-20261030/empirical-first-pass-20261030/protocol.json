@@ -1,0 +1,16 @@
+{
+  "protocol_version": "1.0",
+  "status": "locked_before_local_prediction_data",
+  "shifts": ["cartoon_style", "heavy_snow"],
+  "models": ["resnet18.a1_in1k", "vit_base_patch16_224.augreg_in1k"],
+  "scales": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5],
+  "target_scale": 1.5,
+  "bootstrap_replicates": 4000,
+  "bootstrap_seed": 20261030,
+  "confidence_level": 0.95,
+  "resource_threshold": 0.05,
+  "primary_changes": ["D_C=Delta_F_common-Delta_F_publisher", "D_E=Delta_T_common-Delta_F_common"],
+  "strict_source_identity_required_for_primary": true,
+  "runtime": "CPU only; no training, inference, images or model weights",
+  "source_commit": "3c09a993007b5844ccd799f8c523a00985aa31ad"
+}

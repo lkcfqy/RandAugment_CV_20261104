@@ -1,0 +1,170 @@
+{
+  "status": "READ_ONLY_LOG_RECONCILIATION_COMPLETE_NO_NEW_RUNTIME",
+  "utc": "2026-10-31T16:34:52.325627+00:00",
+  "planned_formal_updates_per_arm": 200,
+  "actual_formal_updates_completed_per_arm": 0,
+  "dev_images_evaluated_this_seed": 0,
+  "effective_evaluated_seeds": [
+    20261031
+  ],
+  "repeatability": "UNDETERMINED",
+  "raw_run_report_preserved": true,
+  "original_global_full_cost_seconds": 2320.621211230755,
+  "original_global_formula": "1.25 * r5 allocation-to-release observed total + 180 seconds",
+  "remaining_component_formula": "4*max(init_seconds)+1.5*200*(p90_A+p90_B)+1.5*128*max(p90_predict)+4*checkpoint_bytes/min(local_write_bps,8MiB_download_bps)+120",
+  "r5_remaining_components_seconds": {
+    "four_initializations": 80.97793843999989,
+    "formal_400_updates_with_1_5_multiplier": 936.7890939000176,
+    "all128_dev_inference_with_1_5_multiplier": 79.5607451520118,
+    "conservative_checkpoint_IO_4B_over_bandwidth": 638.0581301650033,
+    "fixed_other": 120.0
+  },
+  "repeat_remaining_components_seconds": {
+    "four_initializations": 78.83967583200001,
+    "formal_400_updates_with_1_5_multiplier": 991.7049012000007,
+    "all128_dev_inference_with_1_5_multiplier": 78.68869497601554,
+    "conservative_checkpoint_IO_4B_over_bandwidth": 1175.2339388351086,
+    "fixed_other": 120.0
+  },
+  "component_deltas_seconds": {
+    "four_initializations": -2.138262607999877,
+    "formal_400_updates_with_1_5_multiplier": 54.915807299983044,
+    "all128_dev_inference_with_1_5_multiplier": -0.8720501759962644,
+    "conservative_checkpoint_IO_4B_over_bandwidth": 537.1758086701053,
+    "fixed_other": 0.0
+  },
+  "same_formula_remaining_cost_increase_seconds": 589.0813031860922,
+  "IO_share_of_remaining_cost_increase": 0.9118873842451763,
+  "old_formula_full_extrapolation_seconds": 2442.3530025552564,
+  "repeat_full_extrapolation_seconds": 3068.0877156992346,
+  "difference_vs_original_global_estimate_seconds": 747.4665044684798,
+  "relative_difference_vs_original_global_estimate": 0.3220975921667357,
+  "three_part_difference_bridge_seconds": {
+    "old_global_vs_old_component_formula": 121.7317913245015,
+    "observed_preparation_to_gate_vs_old_receipt_boundary": 36.65340995788574,
+    "same_remaining_formula_new_timings_vs_old": 589.0813031860922
+  },
+  "timing_boundary_caveat": {
+    "r5_preparation_end": "local preflight_B persisted receipt",
+    "repeat_preparation_end": "remote final run_report time immediately after cost-gate rejection",
+    "repeat_receipt_aligned_preparation_seconds": 443.025918006897,
+    "repeat_receipt_aligned_vs_r5_seconds": 36.058823108673096,
+    "repeat_gate_report_after_receipt_seconds": 0.5945868492126465,
+    "not_pure_compute_delta": true
+  },
+  "bandwidth_bytes_per_second": {
+    "r5": 4337411.375487548,
+    "repeat": 2354867.827203123,
+    "relative_decrease": 0.4570798978138376
+  },
+  "early_screen_posthoc_diagnostic_only": {
+    "probe_ready_after_allocation_seconds": 19.087942838668823,
+    "total_budget_seconds_at_allocation_start": 2817.061773529219,
+    "same_component_formula_old_other_timings_new_bandwidth_full_seconds": 2979.5288112253616,
+    "excess_over_total_budget_seconds": 162.4670376961426,
+    "remaining_estimate_at_probe_seconds": 2960.4408683866927,
+    "remaining_budget_at_probe_seconds": 2797.97383069055,
+    "no_new_probe_or_gate_executed": true,
+    "interpretation": "The measured public marker rate was available before dependency setup/model preflights; replacing only that rate in the historical component forecast would already flag a conservative full-cost mismatch. This is a future engineering recommendation, not a retrospective measured full run."
+  },
+  "preallocation_gate": {
+    "formal_U": 200,
+    "live_rate": 1.15,
+    "paired_seed_count": 1,
+    "prior_cu": 1.1001052667892774,
+    "prior_gpu_seconds": 3225.2735856513978,
+    "remaining_seconds": 2805.4269113446944,
+    "required_seconds": 2320.621211230755,
+    "seed": 20261101
+  },
+  "gate_rejection": {
+    "estimated_remaining_work_seconds": 2444.467210843125,
+    "available_work_seconds_after_release_reserve": 2193.445442423068,
+    "shortfall_seconds": 251.02176842005701
+  },
+  "rate_CU_per_hour": 1.15,
+  "ledger_unchanged": {
+    "cumulative_CU_upper": 1.2577442410187722,
+    "cumulative_GPU_seconds_upper": 3718.752113674164,
+    "sessions": 0,
+    "rate_after_release": 0
+  },
+  "checks": {
+    "old_components_match_frozen_cost": true,
+    "new_components_match_frozen_cost": true,
+    "bridge_reconciles": true,
+    "fixed_U_gate_failed": true,
+    "plan_field_remains_raw_200": true,
+    "no_formal_or_eval_phase_receipts": true,
+    "release_confirmed": true,
+    "rate_unchanged": true
+  },
+  "sources": {
+    "original_cost": {
+      "path": "seed-cost-20261031/COST_ESTIMATE.json",
+      "root": "research_archive",
+      "sha256": "2bf0deeae461d6d0947d4a4f78bff42020282c2d05ec87fed457bf8422a02ea5",
+      "bytes": 6937
+    },
+    "r5_freeze": {
+      "path": "recovery-v5-20261031/gpu-run/U_FREEZE.json",
+      "root": "research_archive",
+      "sha256": "f2b94f9c3e18a0ab11297dd9f99c5978643122b4ecf16f08a62f6fe8e20ea7a5",
+      "bytes": 994
+    },
+    "r5_persistence_probe": {
+      "path": "recovery-v5-20261031/gpu-run/persistence_probe.json",
+      "root": "research_archive",
+      "sha256": "6f57f5007c3ec7a91100659dbb7b7e906a5cfe50d34e90e2eb2679282c75fcfd",
+      "bytes": 284
+    },
+    "repeat_freeze": {
+      "path": "gpu-run/U_FREEZE.json",
+      "root": "repeat_workspace",
+      "sha256": "edb42075584d5282c7b4e3133a9efa468dd9b17d524fc6321f92afbed6fe189a",
+      "bytes": 1126
+    },
+    "repeat_persistence_probe": {
+      "path": "gpu-run/persistence_probe.json",
+      "root": "repeat_workspace",
+      "sha256": "37d0b8d18efab849cf6c2e6b2300b2c061402919a3705516101939267a400de2",
+      "bytes": 286
+    },
+    "repeat_run_report": {
+      "path": "gpu-run/run_report.json",
+      "root": "repeat_workspace",
+      "sha256": "5338aca1ef36ea97184073ebea7e59daa988e111e8cb4e25981d824a938f8a3a",
+      "bytes": 649
+    },
+    "repeat_controller_report": {
+      "path": "gpu-run/controller_report.json",
+      "root": "repeat_workspace",
+      "sha256": "612591e615cf300311e1b2a2afda992f444f0991ad7d4678f69f815e44368aa0",
+      "bytes": 2810
+    },
+    "repeat_control": {
+      "path": "gpu-run/control.json",
+      "root": "repeat_workspace",
+      "sha256": "59145a4fd2eaf42ff8272c0d7beab1618e45ceaaeac54f4038de0f27ce8e1f4d",
+      "bytes": 610
+    },
+    "repeat_cost_gate": {
+      "path": "gpu-run/COMPLETE_COST_GATE.json",
+      "root": "repeat_workspace",
+      "sha256": "0bc0757a67051e0af5ab605714bbf8f157b488cdfe98e21a3b8e34cad2357899",
+      "bytes": 250
+    },
+    "repeat_driver": {
+      "path": "payload/driver.py",
+      "root": "repeat_workspace",
+      "sha256": "9fa6f31534d0990d16b895367f1d05f70e19196362fcaefcfae0c7a699671b91",
+      "bytes": 9622
+    },
+    "repeat_contracts": {
+      "path": "payload/contracts.py",
+      "root": "repeat_workspace",
+      "sha256": "40dac1b8edfa89dd2636602fdc45ea9acca2c75018e4dafc9be97aa19ef228d4",
+      "bytes": 6603
+    }
+  }
+}

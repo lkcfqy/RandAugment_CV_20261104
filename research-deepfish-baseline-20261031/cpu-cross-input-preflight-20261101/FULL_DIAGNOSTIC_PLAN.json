@@ -1,0 +1,121 @@
+{
+  "status": "PROPOSED_PARENT_REVIEW_REQUIRED_NOT_EXECUTED",
+  "protocol_sha256": "0b4101c0e9e41904c8dc23618439fa2499815eb136ea106bd3c48ef1ed02e305",
+  "question": "Within an independent CPU runtime, does matching fixed training Color factor and fixed input Color factor alter the A/B AP gap?",
+  "models": [
+    {
+      "seed": 20261031,
+      "arm": "A",
+      "checkpoint_sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+      "config_sha256": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830"
+    },
+    {
+      "seed": 20261031,
+      "arm": "B",
+      "checkpoint_sha256": "d14239f71925ac4f813eb80c8241ce7ca1670d1017bcf047ecae994327870778",
+      "config_sha256": "14fc399ec8ce73cc9a20784e8598964ec666829589945f7917e572004c9bb8da"
+    },
+    {
+      "seed": 20261101,
+      "arm": "A",
+      "checkpoint_sha256": "0bc4d99f77e0fbd8079b4827d0db8042868627964b06fa43411fc023cddc7de8",
+      "config_sha256": "aba5d97e9b30df4ec4d4af256f919a454de90c080c8f0f0ed07cf80a1fdaa628"
+    },
+    {
+      "seed": 20261101,
+      "arm": "B",
+      "checkpoint_sha256": "2747c3bdc75058f286c5dcd17501335054c13dfc188d062e83dd0169d0bb0d24",
+      "config_sha256": "38be13f1dc93ddbe10f0275b53689f93afd3f4c30346c8aa9bcbe8f6480f3593"
+    }
+  ],
+  "inputs": {
+    "dev_images": 64,
+    "GT_boxes": 187,
+    "annotation_sha256": "35f7c48c6040722f860037b0a1216502ff7616f5199d609a2bac1a147b49b730",
+    "image_order": "unchanged dev64.json image order as loaded by official CocoDataset",
+    "conditions_in_order": [
+      1.0,
+      0.8
+    ],
+    "forward_calls_total": 512,
+    "model_loads": 4,
+    "official_test": false,
+    "support_in_formal_evaluation": false
+  },
+  "runtime": {
+    "device": "cpu",
+    "torch_threads": 4,
+    "torch_interop_threads": 1,
+    "OMP_NUM_THREADS": 4,
+    "MKL_NUM_THREADS": 4,
+    "OPENBLAS_NUM_THREADS": 4,
+    "VECLIB_MAXIMUM_THREADS": 4,
+    "NUMEXPR_NUM_THREADS": 4,
+    "batch_size": 1,
+    "dtype": "float32",
+    "autocast": false,
+    "torch_compile": false,
+    "model_eval": true,
+    "safe_load": "torch.load(map_location=cpu,weights_only=True), full strict state_dict; no allowlist or fallback",
+    "HF_assets": "existing pinned official BERT safetensors/tokenizer copied locally without re-download",
+    "candidate_python": "3.11.14 aarch64 from Astral official python-build-standalone, UV0.9.5 pinned catalogue; isolates interpreter without system installer",
+    "python_candidate_revision": "3.11.9 feasibility example -> relocatable3.11.14, samecp311ABI; infrastructure only before any CPU output",
+    "cv2_setNumThreads": 0,
+    "required_cv2_getNumThreads": 1,
+    "Config_container": "mmengine.Config/ConfigDict as official Runner",
+    "pipeline_threads_revision": "No-model exact packed tensor/GT/metadata equality verified in THREAD_CONTRACT_CHECK; eight model probes were under original GCD setting, not rerun.",
+    "checkpoint_load": "weights_only=True CPU; strict=True; exact all-key/dtype/shape/bytes check; no allowlist/fallback"
+  },
+  "metric_contract": {
+    "authorization": "NOT_GO; parent review required after cost evidence",
+    "models": 4,
+    "conditions": 2,
+    "dev_images": 64,
+    "forward_calls": 512,
+    "model_loads": 4,
+    "original_CPU_images_must_be_recomputed": true,
+    "may_mix_old_GPU_original_scores_with_CPU_transformed": false,
+    "official_test": false,
+    "train": false,
+    "third_seed": false,
+    "score_or_strength_selection": false,
+    "COCO_maxDets": [
+      100,
+      300,
+      1000
+    ],
+    "primary_AP_maxDets": 100,
+    "original_AP50_AP75_scale_AP_maxDets": 1000,
+    "saved_predictions_per_image": 300,
+    "GT4195_4660_original_bbox_area_retained": true
+  },
+  "primary_contrast": {
+    "per_seed_input_gap": "Delta(c)=AP(B,c)-AP(A,c)",
+    "interaction": "Delta(0.8)-Delta(1.0)",
+    "units": "percentage points of original primary AP@maxDets100",
+    "direction": "two-sided descriptive result; no threshold/strength selection",
+    "AP50_AP75_scale_AR": "secondary explanation, preserving their original maxDets1000 convention"
+  },
+  "execution_sequence": [
+    "Revalidate local protocol/assets/package pins, CPU-only flags and research disk margin.",
+    "Use four fresh processes in frozen checkpoint order; each runs all64 original inputs followed by all64 factor0.8 inputs; no optimizer, gradients, warmups or new seed.",
+    "Persist complete top300 predictions per image and local atomic receipts for all8 conditions; no score-based filtering or viewing interim AP.",
+    "After all8 conditions exist, evaluate all on the same original dev annotation and official COCO semantics; preserve raw metric/precision arrays and finite outputs.",
+    "Report both seeds and all8 scores, original primary metric and secondary metrics; never mix CPU scores with old GPU scores.",
+    "Stop on contract/resource/finite-value failure; retain partial execution status without converting it into a complete scientific result."
+  ],
+  "disk": {
+    "research_cap_bytes": 6442450944,
+    "planned_new_output_cap_bytes": 104857600,
+    "retain_free_research_margin_bytes": 83886080,
+    "duplicate_models": false
+  },
+  "time": {
+    "planning_seconds": 2887.5877703294245,
+    "measured_full_run": false,
+    "planning_note": "About48.13min; retain a roughly1h local window as a practical estimate, not a promise."
+  },
+  "interpretation_limit": "Artificial fixed input condition; not real domain shift, deployment preprocessing, mechanism proof or general stochastic augmentation effect.",
+  "no_new_training_or_test_or_third_seed": true,
+  "entrypoint_status": "No full-evaluation entrypoint has been executed or added. Existing cpu_preflight*.py are bounded support-only probes and refuse repeated execution."
+}

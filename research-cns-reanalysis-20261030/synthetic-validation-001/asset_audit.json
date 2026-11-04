@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "annotation_info": {
+      "description": "SYNTHETIC NONEMPIRICAL pipeline fixture",
+      "version": "SYNTHETIC-1",
+      "license": "Test fixture; not CNS release data"
+    },
+    "sha256": "5b7864d6392627d255d3e6e3fbb61c0555c1c5f72943c12e311b21192c0595dd",
+    "total_published_image_records": 426,
+    "selected_image_records": 426,
+    "by_shift": {
+      "cartoon_style": {
+        "images": 210,
+        "trajectories": 35,
+        "complete_trajectories": 35,
+        "incomplete_trajectories": 0,
+        "classes": 3
+      },
+      "heavy_snow": {
+        "images": 216,
+        "trajectories": 36,
+        "complete_trajectories": 36,
+        "incomplete_trajectories": 0,
+        "classes": 3
+      }
+    },
+    "identity_hash_fields_present": false,
+    "strict_source_identity": "unconfirmed: keys and paths contain no common baseline digest",
+    "license_verified_from_annotation_info": "Test fixture; not CNS release data",
+    "version_verified_from_annotation_info": "SYNTHETIC-1",
+    "common_class_seed_keys": 35,
+    "common_key_classes": 3,
+    "these_counts_are_metadata_not_prediction_results": true
+  },
+  "prediction_archive": {
+    "zip_sha256": "d2cd43446988bfd075ea2dfe84397ffdf2c0f258e2e3be0003328dee9bf00afe",
+    "selected_files": [
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "SYNTHETIC/resnet18.a1_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 16757,
+        "rows": 210
+      },
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "SYNTHETIC/resnet18.a1_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 16526,
+        "rows": 215
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "SYNTHETIC/vit_base_patch16_224.augreg_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 16785,
+        "rows": 210
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "SYNTHETIC/vit_base_patch16_224.augreg_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 16622,
+        "rows": 216
+      }
+    ],
+    "file_selection": "exact predeclared model and shift filenames"
+  },
+  "prediction_provenance": {
+    "evidence_type": "SYNTHETIC_NONEMPIRICAL",
+    "benchmark_results": false
+  },
+  "prediction_metadata_match": {
+    "resnet18.a1_in1k": {
+      "prediction_rows": 425,
+      "annotation_rows": 426,
+      "annotation_keys_without_prediction": 1,
+      "image_paths_verified_against_metadata": true
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "prediction_rows": 426,
+      "annotation_rows": 426,
+      "annotation_keys_without_prediction": 0,
+      "image_paths_verified_against_metadata": true
+    }
+  },
+  "model_key_alignment": {
+    "outer_union_rows": 426,
+    "rows_per_model": {
+      "resnet18.a1_in1k": 425,
+      "vit_base_patch16_224.augreg_in1k": 426
+    },
+    "missing_key_counts": {
+      "resnet18.a1_in1k": 1,
+      "vit_base_patch16_224.augreg_in1k": 0
+    }
+  },
+  "identity": {
+    "status": "unverified; no baseline image hashes available",
+    "required_common_complete_sources": 35,
+    "verified_sources": 0,
+    "primary_identity_coverage_complete": false,
+    "equal_predictions_are_not_identity_proof": true
+  }
+}

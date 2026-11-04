@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "failures": [],
+  "runs": {
+    "B1": {
+      "N": 1564,
+      "kind": "weak",
+      "cr": 0.11507082500029356,
+      "conservative_step_seconds": 0.11509307500018622,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1564,
+          "warmup": 79,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.00556930029123
+    },
+    "B2": {
+      "N": 759,
+      "kind": "dual",
+      "cr": 0.2370314415995381,
+      "conservative_step_seconds": 0.23708754159961246,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 759,
+          "warmup": 38,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 179.94944407410586
+    },
+    "B3": {
+      "N": 759,
+      "kind": "dual",
+      "cr": 0.2370314415995381,
+      "conservative_step_seconds": 0.23708754159961246,
+      "low_backbone_lr": true,
+      "stage_schedules": [
+        {
+          "N": 759,
+          "warmup": 38,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 179.94944407410586
+    },
+    "B4": {
+      "N": 1236,
+      "kind": "ent",
+      "cr": 0.14562953329950687,
+      "conservative_step_seconds": 0.14672197499967296,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1236,
+          "warmup": 62,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.3483610995958
+    },
+    "B6": {
+      "N": 1028,
+      "kind": "random",
+      "cr": 0.17492757910004003,
+      "conservative_step_seconds": 0.17510938749983324,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1028,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.01245034982855
+    },
+    "C1": {
+      "N": 1039,
+      "kind": "candidate",
+      "cr": 0.1730826958999387,
+      "conservative_step_seconds": 0.17459585830001742,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1039,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.4050967737181
+    },
+    "C2": {
+      "N": 1039,
+      "kind": "candidate",
+      "cr": 0.1730826958999387,
+      "conservative_step_seconds": 0.17459585830001742,
+      "low_backbone_lr": true,
+      "stage_schedules": [
+        {
+          "N": 1039,
+          "warmup": 52,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 181.4050967737181
+    },
+    "B5": {
+      "N": 1639,
+      "N_FT": 1251,
+      "N_head": 388,
+      "kind": "weak_then_head",
+      "cr_FT": 0.11507082500029356,
+      "cr_head": 0.09270771669980604,
+      "low_backbone_lr": false,
+      "stage_schedules": [
+        {
+          "N": 1251,
+          "warmup": 63,
+          "final_base_lr_fraction": 0.1
+        },
+        {
+          "N": 388,
+          "warmup": 20,
+          "final_base_lr_fraction": 0.1
+        }
+      ],
+      "projected_loop_seconds": 180.3082407844551
+    }
+  },
+  "J": 512,
+  "projection": {
+    "mps_already_used": 56.94450285250059,
+    "training_seconds": 4333.151109689456,
+    "evaluation_seconds": 111.7202751116667,
+    "overhead_and_reserve_seconds": 157.4133506285143,
+    "remaining_full_plan_seconds": 4602.284735429636,
+    "total_projected_mps_seconds": 4659.229238282137,
+    "disk_bytes_current": 353675209,
+    "disk_bytes_peak_projected": 1896935835,
+    "state_file_bytes": 22221003,
+    "run_count": 24,
+    "test_model_count": 6
+  }
+}

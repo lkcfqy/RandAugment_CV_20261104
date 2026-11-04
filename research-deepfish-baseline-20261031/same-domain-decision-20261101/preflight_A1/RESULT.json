@@ -1,0 +1,85 @@
+{
+  "GPU_MPS_upload_CU_new": 0,
+  "PID": 49393,
+  "arm": "A1",
+  "completed_source_forwards": 1,
+  "completed_updates": 1,
+  "dev_test_access": false,
+  "elapsed_seconds": 11.702012124995235,
+  "formal_updates_planned": 0,
+  "initial": {
+    "state_sha256": "abee57f5419e64fd71a272d3f9f6e42613bf88db353b1ad9b4748920de510b37",
+    "tensor_bytes": 691880148,
+    "tensor_count": 908
+  },
+  "initial_RNG": {
+    "numpy": "aaec568eefaa66d86acdddfcdad9f230f7109ac438b7cc5d4b929d181cc71eb8",
+    "python": "03ea28b9c50d04a2de2f1f5cc2cd9caf2ffed4c7f0fccec83249cce806711d07",
+    "torch_CPU": "4fafcffc5357fff5f3cda40395c486b7036c9a5830ea0c8e8a53168d15a7bd4b"
+  },
+  "model_load_seconds": 1.2762366250099149,
+  "official_key_schema": {
+    "ignored_checkpoint_keys": [
+      "language_model.language_backbone.body.model.embeddings.position_ids",
+      "language_model.language_backbone.body.model.pooler.dense.bias",
+      "language_model.language_backbone.body.model.pooler.dense.weight"
+    ],
+    "log_scale_keys": [
+      "bbox_head.cls_branches.0.log_scale",
+      "bbox_head.cls_branches.1.log_scale",
+      "bbox_head.cls_branches.2.log_scale",
+      "bbox_head.cls_branches.3.log_scale",
+      "bbox_head.cls_branches.4.log_scale",
+      "bbox_head.cls_branches.5.log_scale",
+      "bbox_head.cls_branches.6.log_scale"
+    ]
+  },
+  "optimizer_groups_sha256": "6b6d9e546744922c8a013ee76b91f647fe185e345a4048fb7bd8a5727b5308f0",
+  "optimizer_initial_state_empty": true,
+  "peak_RSS_bytes": 5227118592,
+  "phase": "preflight",
+  "same_initial_controls_as_A0_M0": true,
+  "scheduler_objects": 0,
+  "seed": 20261031,
+  "source_exposure": {
+    "GT_presentations": 2,
+    "MixUp_applied": 0,
+    "Mosaic_applied": 0,
+    "empty_GT_inputs": 0,
+    "selected_occurrences": 2,
+    "source_forwards": 1
+  },
+  "source_groups": [
+    [
+      1980
+    ],
+    [
+      2009
+    ]
+  ],
+  "stage": "COMPLETE",
+  "status": "PREFLIGHT_COMPLETE",
+  "steps": [
+    {
+      "k": 1,
+      "max_input_shape": [
+        3,
+        750,
+        1333
+      ],
+      "peak_RSS_bytes": 5227118592,
+      "positive_GT_sources": 1,
+      "train_step_seconds": 8.36531095902319,
+      "update": 2
+    }
+  ],
+  "trainable_names_sha256": "62f7c4fa11c27bb72c9d472e1885d9a2ff1cd02f74523f7a53ea334770c4fe3a",
+  "trainable_parameters": 172912413,
+  "trainable_tensors": 896,
+  "update_call_counts": {
+    "clip": 1,
+    "optimizer": 1,
+    "schedule_boundary": 1,
+    "zero_grad": 1
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "overall": {
+    "A": {
+      "original_12_stats": [
+        0.2996506626915451,
+        0.5387286009196712,
+        0.26749770833750464,
+        0.005691642028085388,
+        0.22586423179327084,
+        0.42612966693209015,
+        0.495187165775401,
+        0.5310160427807487,
+        0.5310160427807487,
+        0.1625,
+        0.4602150537634409,
+        0.641860465116279
+      ],
+      "original_log_12_stats": [
+        0.3,
+        0.539,
+        0.267,
+        0.006,
+        0.226,
+        0.426,
+        0.495,
+        0.531,
+        0.531,
+        0.163,
+        0.46,
+        0.642
+      ],
+      "uniform100": {
+        "AP": 0.2996506626915451,
+        "AP50": 0.5381087912032048,
+        "AP75": 0.2669411926033628,
+        "AR": 0.495187165775401
+      },
+      "uniform300": {
+        "AP": 0.3001170680673051,
+        "AP50": 0.5387286009196712,
+        "AP75": 0.26749770833750464,
+        "AR": 0.5310160427807487
+      }
+    },
+    "B": {
+      "original_12_stats": [
+        0.2827776541334792,
+        0.5119214928267727,
+        0.2680007962752358,
+        0.0011420430694681907,
+        0.21182099269628135,
+        0.41029272225074603,
+        0.4652406417112299,
+        0.47700534759358293,
+        0.47700534759358293,
+        0.0875,
+        0.3946236559139785,
+        0.6023255813953489
+      ],
+      "original_log_12_stats": [
+        0.283,
+        0.512,
+        0.268,
+        0.001,
+        0.212,
+        0.41,
+        0.465,
+        0.477,
+        0.477,
+        0.087,
+        0.395,
+        0.602
+      ],
+      "uniform100": {
+        "AP": 0.2827776541334792,
+        "AP50": 0.511631134701734,
+        "AP75": 0.2680204447399512,
+        "AR": 0.4652406417112299
+      },
+      "uniform300": {
+        "AP": 0.2829491223700061,
+        "AP50": 0.5119214928267727,
+        "AP75": 0.2680007962752358,
+        "AR": 0.47700534759358293
+      }
+    }
+  },
+  "prediction_pair_count": 7256,
+  "unpaired_per_arm": 11944,
+  "error_counts": {
+    "A": {
+      "cap100_IoU0.5": {
+        "GT": 187,
+        "TP": 151,
+        "FP": 6249,
+        "FN": 36
+      },
+      "cap100_IoU0.75": {
+        "GT": 187,
+        "TP": 94,
+        "FP": 6306,
+        "FN": 93
+      },
+      "cap300_IoU0.5": {
+        "GT": 187,
+        "TP": 158,
+        "FP": 19042,
+        "FN": 29
+      },
+      "cap300_IoU0.75": {
+        "GT": 187,
+        "TP": 103,
+        "FP": 19097,
+        "FN": 84
+      },
+      "FP300_at50_composition": {
+        "duplicate_candidate": 1770,
+        "localization_near_miss": 2789,
+        "low_annotation_overlap": 14483
+      }
+    },
+    "B": {
+      "cap100_IoU0.5": {
+        "GT": 187,
+        "TP": 148,
+        "FP": 6252,
+        "FN": 39
+      },
+      "cap100_IoU0.75": {
+        "GT": 187,
+        "TP": 85,
+        "FP": 6315,
+        "FN": 102
+      },
+      "cap300_IoU0.5": {
+        "GT": 187,
+        "TP": 152,
+        "FP": 19048,
+        "FN": 35
+      },
+      "cap300_IoU0.75": {
+        "GT": 187,
+        "TP": 86,
+        "FP": 19114,
+        "FN": 101
+      },
+      "FP300_at50_composition": {
+        "duplicate_candidate": 982,
+        "localization_near_miss": 3143,
+        "low_annotation_overlap": 14923
+      }
+    }
+  },
+  "GT_coverage_rank": {
+    "50": {
+      "geometry_candidate_lost": 10,
+      "geometry_candidate_gained": 5,
+      "geometry_candidate_both": 148,
+      "geometry_candidate_neither": 24,
+      "both_first_rank_B_worse": 35,
+      "both_first_rank_B_better": 28,
+      "both_first_rank_equal": 85,
+      "median_first_rank_delta": 0.0,
+      "median_first_global_rank_delta": 5.5,
+      "qualified_candidate_falls_outside_top100": 0,
+      "qualified_candidate_enters_top100": 0,
+      "global_rank_worsens_despite_nonworse_best_iou": 23,
+      "A_candidate_exists_but_COCO_unmatched": 0,
+      "B_candidate_exists_but_COCO_unmatched": 1
+    },
+    "75": {
+      "geometry_candidate_lost": 19,
+      "geometry_candidate_gained": 2,
+      "geometry_candidate_both": 84,
+      "geometry_candidate_neither": 82,
+      "both_first_rank_B_worse": 17,
+      "both_first_rank_B_better": 22,
+      "both_first_rank_equal": 45,
+      "median_first_rank_delta": 0.0,
+      "median_first_global_rank_delta": -2.5,
+      "qualified_candidate_falls_outside_top100": 0,
+      "qualified_candidate_enters_top100": 3,
+      "global_rank_worsens_despite_nonworse_best_iou": 8,
+      "A_candidate_exists_but_COCO_unmatched": 0,
+      "B_candidate_exists_but_COCO_unmatched": 0
+    }
+  },
+  "selected_images": [
+    {
+      "image_id": 541,
+      "file_name": "9908_Epinephelus_f000000.jpg",
+      "group": "9908_Epinephelus",
+      "GT": 1,
+      "A_AP100": 0.3875,
+      "B_AP100": 0.65,
+      "delta_AP100": 0.2625,
+      "selection": "improvement"
+    },
+    {
+      "image_id": 564,
+      "file_name": "9908_Epinephelus_f000047.jpg",
+      "group": "9908_Epinephelus",
+      "GT": 1,
+      "A_AP100": 0.5033333333333333,
+      "B_AP100": 0.75,
+      "delta_AP100": 0.2466666666666667,
+      "selection": "improvement"
+    },
+    {
+      "image_id": 1479,
+      "file_name": "7398_F5_f000252.jpg",
+      "group": "7398_F5",
+      "GT": 2,
+      "A_AP100": 0.7028079857166043,
+      "B_AP100": 0.5129069956175945,
+      "delta_AP100": -0.18990099009900985,
+      "selection": "regression"
+    },
+    {
+      "image_id": 1236,
+      "file_name": "7117_Caranx_sexfasciatus_juvenile_f001311.jpg",
+      "group": "7117_Caranx_sexfasciatus_juvenile",
+      "GT": 4,
+      "A_AP100": 0.4048851460488515,
+      "B_AP100": 0.2696205104381405,
+      "delta_AP100": -0.135264635610711,
+      "selection": "regression"
+    },
+    {
+      "image_id": 735,
+      "file_name": "7463_F3_f000200.jpg",
+      "group": "7463_F3",
+      "GT": 1,
+      "A_AP100": 0.7999999999999999,
+      "B_AP100": 0.7999999999999999,
+      "delta_AP100": 0.0,
+      "selection": "unchanged"
+    },
+    {
+      "image_id": 1481,
+      "file_name": "7398_F5_f000262.jpg",
+      "group": "7398_F5",
+      "GT": 2,
+      "A_AP100": 0.45445544554455436,
+      "B_AP100": 0.45445544554455436,
+      "delta_AP100": 0.0,
+      "selection": "unchanged"
+    }
+  ],
+  "median_GT_best_iou_delta": -0.025946133656925774,
+  "mean_GT_best_iou_delta": -0.03806114246828416,
+  "spatial_pairs_same_GT_both_IoU50": {
+    "pairs": 1051,
+    "median_delta_gt_iou": -0.011663407158811756,
+    "median_delta_score": 0.0009706328273750842,
+    "median_delta_rank": -1.0,
+    "note": "Prediction-level duplicates are not independent observations."
+  },
+  "existing_annotation_overhangs_retained": [
+    {
+      "gt_id": 4195,
+      "image_id": 1236,
+      "bbox": [
+        1867.5,
+        117.5,
+        53.0,
+        117.0
+      ],
+      "area": 6201.0,
+      "right_overhang": 0.5,
+      "bottom_overhang": 0
+    },
+    {
+      "gt_id": 4660,
+      "image_id": 1302,
+      "bbox": [
+        1779.5,
+        85.5,
+        141.0,
+        83.0
+      ],
+      "area": 11703.0,
+      "right_overhang": 0.5,
+      "bottom_overhang": 0
+    }
+  ]
+}

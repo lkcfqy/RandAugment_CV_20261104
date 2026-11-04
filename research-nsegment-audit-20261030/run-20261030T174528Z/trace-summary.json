@@ -1,0 +1,68 @@
+{
+  "status": "complete",
+  "start_utc": "2026-10-30T17:55:05.090176+00:00",
+  "samples": 16,
+  "original_table_i_configuration": false,
+  "scope": "Constructed one-epoch synthetic pipeline; order -> operation -> crop -> flip",
+  "input_shape": [
+    512,
+    512
+  ],
+  "crop_shape": [
+    256,
+    256
+  ],
+  "global_seed": 20261030,
+  "local_seed_rule": "B RandomState(sample_id); C full before-state replay from B; independent of global RNG",
+  "shuffle_rule": "one np.random.permutation(16) before any sample operation",
+  "comparisons": {
+    "AB": {
+      "sample_order_equal": true,
+      "global_rng_all_stages_equal": false,
+      "post_operation_masks_equal": true,
+      "crop_flip_parameters_equal": 0,
+      "final_images_equal": 0,
+      "final_masks_equal": 0,
+      "first_divergence": {
+        "sample_position": 0,
+        "sample_id_a": 15,
+        "sample_id_b": 15,
+        "field": "global_after_operation",
+        "a": "9f9bc16f9a9128f571303b9e49f4b3858b55df36772d4308752dd187f6554948",
+        "b": "a5029722035acb9f0d004e079208429c600bed16181c599cb480adcb725e3425"
+      }
+    },
+    "AC": {
+      "sample_order_equal": true,
+      "global_rng_all_stages_equal": false,
+      "post_operation_masks_equal": true,
+      "crop_flip_parameters_equal": 0,
+      "final_images_equal": 0,
+      "final_masks_equal": 0,
+      "first_divergence": {
+        "sample_position": 0,
+        "sample_id_a": 15,
+        "sample_id_b": 15,
+        "field": "global_after_operation",
+        "a": "9f9bc16f9a9128f571303b9e49f4b3858b55df36772d4308752dd187f6554948",
+        "b": "a5029722035acb9f0d004e079208429c600bed16181c599cb480adcb725e3425"
+      }
+    },
+    "BC": {
+      "sample_order_equal": true,
+      "global_rng_all_stages_equal": true,
+      "post_operation_masks_equal": true,
+      "crop_flip_parameters_equal": 16,
+      "final_images_equal": 16,
+      "final_masks_equal": 16,
+      "first_divergence": null,
+      "local_states_equal": true,
+      "unmodified_maps_equal": true,
+      "dtype_contiguity_ownership_equal": true
+    }
+  },
+  "result": "B=C; A differs in this constructed pipeline",
+  "elapsed_seconds": 0.7580008506774902,
+  "end_utc": "2026-10-30T17:55:05.847896+00:00",
+  "peak_rss_bytes": 111460352
+}

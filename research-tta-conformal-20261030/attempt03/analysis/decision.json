@@ -1,0 +1,106 @@
+{
+  "A_pass": false,
+  "A_opposite_rank_effects": false,
+  "A_coverage_pass": false,
+  "A_numeric_saturation": true,
+  "A_concentration": {
+    "Rp": {
+      "top_one_percent_absolute_contribution_share": 0.08673250322026621,
+      "concentrated": false
+    },
+    "Rq": {
+      "top_one_percent_absolute_contribution_share": 0.06635853416969296,
+      "concentrated": false
+    }
+  },
+  "B_primary_frontier_and_restore_pass": false,
+  "B_pass_after_controls": false,
+  "B_tuning_selection_feasible": false,
+  "B_tuning_guard_details": {
+    "parameters_feasible": true,
+    "temperatures_feasible": false,
+    "all_feasible": false
+  },
+  "B_Tp_star": 5.0,
+  "B_Tq_star": 0.75,
+  "B_all_7_comparators": [
+    {
+      "Tp": 0.5,
+      "gain_pass": false,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 0.75,
+      "gain_pass": false,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 1.0,
+      "gain_pass": false,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 1.5,
+      "gain_pass": true,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 2.0,
+      "gain_pass": true,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 3.0,
+      "gain_pass": true,
+      "D_pass": false,
+      "coverage_pass": false
+    },
+    {
+      "Tp": 5.0,
+      "gain_pass": true,
+      "D_pass": false,
+      "coverage_pass": false
+    }
+  ],
+  "B_restored_gain_pass": false,
+  "B_attenuation_pass": false,
+  "negative_controls": [
+    {
+      "method": "saps",
+      "Tp_tuning": 1.5,
+      "point_M": 4.2087,
+      "point_coverage": 0.9117,
+      "point_Dhat": 0.0019825183133701883,
+      "point_no_larger_and_comparable": false,
+      "in_primary_simultaneous_family": false,
+      "point_comparable": false,
+      "simultaneous_comparability_established": false,
+      "mechanism_beyond_control_established": false,
+      "tuning_feasible": true,
+      "comparison_status": "OUTSIDE_FIXED_CI_FAMILY"
+    },
+    {
+      "method": "rankonly",
+      "Tp_tuning": 1.0,
+      "point_M": 5.2046,
+      "point_coverage": 0.9088,
+      "point_Dhat": 0.0022612073305115785,
+      "point_no_larger_and_comparable": false,
+      "in_primary_simultaneous_family": true,
+      "point_comparable": false,
+      "simultaneous_comparability_established": false,
+      "mechanism_beyond_control_established": false,
+      "tuning_feasible": false,
+      "comparison_status": "TUNING_INFEASIBLE"
+    }
+  ],
+  "candidate_status": "CLOSE_THIS_CANDIDATE",
+  "new_experiment_authorized_by_this_script": false,
+  "single_trained_model_conditional": true,
+  "elapsed_cpu_analysis_seconds": 12.64757490158081
+}

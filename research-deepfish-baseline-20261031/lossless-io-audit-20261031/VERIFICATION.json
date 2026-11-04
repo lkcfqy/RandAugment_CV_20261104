@@ -1,0 +1,60 @@
+{
+  "status": "VERIFIED",
+  "utc": "2026-10-31T16:47:01.111231+00:00",
+  "checks": {
+    "A_908_unique_tensors": true,
+    "A_exact_12_index_references": true,
+    "A_888_actual_changed_8_new": true,
+    "A_full_hash_equality": true,
+    "A_state_byte_accounting": true,
+    "A_measured_package_savings": true,
+    "B_908_unique_tensors": true,
+    "B_exact_12_index_references": true,
+    "B_888_actual_changed_8_new": true,
+    "B_full_hash_equality": true,
+    "B_state_byte_accounting": true,
+    "B_measured_package_savings": true,
+    "no_temporary_large_derived_files_remain": true,
+    "same_cost_formula_recomputed": true,
+    "both_measured_and_zero_metadata_bound_fail": true,
+    "budget_remains_same": true
+  },
+  "all_pass": true,
+  "completed_bitwise_tensor_checks": 1816,
+  "synthetic_byte_comparison_checks": 3,
+  "model_constructed": false,
+  "new_runtime_actions": 0,
+  "classification_caveat": "Saved requires_grad=False follows detach export, not training-time freeze evidence. Reuse decision is actual uint8-byte equality. Repository Swin source identifies relative_position_index as a buffer, but is not used to infer any floating-weight identity.",
+  "sources": {
+    "saved_export_uses_detach_cpu": {
+      "path": "recovery-v5-20261031/payload/model_worker.py",
+      "sha256": "48df49059f2c45b8656072ee291532b6f5e01f31f7d20f66b51a4e769981e3e0"
+    },
+    "original_config": {
+      "path": "recovery-v5-20261031/payload/config_A.json",
+      "sha256": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830"
+    },
+    "saved_training_flag_hash_only": {
+      "path": "recovery-v5-20261031/gpu-run/artifacts/formal_A_initialization.json",
+      "sha256": "21258d1659ea102672d6e1bf6ac74978c593ac462fe185ea846f1fa5b59c6e21"
+    },
+    "existing_swin_buffer_source_for_name_identification_only": {
+      "path": "sources/Domain-RAG/mmdetection/mmdet/models/backbones/swin.py",
+      "sha256": "a239779a44a94c03cfb4c8605f589989e707715e2d57ecf00a945fb47a96c370"
+    },
+    "final_release_snapshot": {
+      "path": "repeat-seed20261101-20261031/reports/FINAL_RELEASE_SNAPSHOT.json",
+      "sha256": "a19999825c7624ba0ef86b74da0c5af5544be34a9cd2401fa91d691454160c1d"
+    }
+  },
+  "last_saved_release_snapshot": {
+    "active_assignments": 0,
+    "assignments": [],
+    "balance": null,
+    "observed_epoch": 1793463845.209624,
+    "rate_per_hour": 0.0
+  },
+  "observed_pair_package_bytes": 1384145022,
+  "observed_pair_saved_bytes": 206902,
+  "cost_same_actual_file_basis_IO_saved_seconds": 0.17572281349288088
+}

@@ -1,0 +1,1467 @@
+{
+  "audit_date_utc": "2026-10-31",
+  "scope": "bounded assets and static configuration only; no model execution, training, GPU or effect evaluation",
+  "data": {
+    "publisher": "lovelyqian/CDFSOD-benchmark",
+    "source_commit": "929413d7d61caf72808a8c27cce19bf51c2973dd",
+    "folder_url": "https://drive.google.com/drive/folders/16SDv_V7RDjTKDk8uodL2ubyubYTMdd5q",
+    "drive_file_id": "1Y7NEUZ4IJjHEvbmHuj0NcfnoVhvMasaW",
+    "file": "assets/FISH.tar.gz",
+    "bytes": 761948029,
+    "sha256": "714ed9b731efab05ddfb4bd3b73127b67ebcb2a3a5f7efa07f66f314b9ad6094",
+    "publisher_checksum_available": false,
+    "original_dataset": "Saleh et al. 2020 DeepFish, tropical Australia underwater data",
+    "original_hf_card": "https://huggingface.co/datasets/Alzayats/DeepFish",
+    "original_license_as_stated_by_author": "CC BY 4.0",
+    "original_archive_not_downloaded": true,
+    "detection_annotation_creation_provenance": "unresolved; published COCO boxes obtained, no creation/mapping instructions found",
+    "derived_detection_license_in_archive": false,
+    "dev_split_in_archive": false,
+    "archive_summary": {
+      "safe_member_checks_passed": true,
+      "file_count": 4510,
+      "member_count": 4514,
+      "uncompressed_bytes": 776254041,
+      "copied_annotations_or_docs": [
+        "FISH/annotations/10_shot.json",
+        "FISH/annotations/5_shot.json",
+        "FISH/annotations/train.json",
+        "FISH/annotations/1_shot.json",
+        "FISH/annotations/test.json"
+      ],
+      "extensions": {
+        ".jpg": 4505,
+        ".json": 5
+      },
+      "full_images_extracted": false
+    },
+    "splits": {
+      "10_shot": {
+        "images": 10,
+        "annotations": 10,
+        "categories": [
+          {
+            "id": 1,
+            "name": "fish",
+            "supercategory": "none"
+          }
+        ],
+        "annotation_file_sha256": "6dbbbfe4641077353f367567fd1ea4989f0793c5620ff85a6ce8731afdf59233",
+        "duplicate_image_ids": 0,
+        "duplicate_annotation_ids": 0,
+        "duplicate_filenames": 0,
+        "missing_image_files": [],
+        "empty_images": 0,
+        "annotation_count_histogram": {
+          "1": 10
+        },
+        "geometry_issues": [],
+        "image_dimensions": {
+          "(1920, 1080)": 10
+        }
+      },
+      "1_shot": {
+        "images": 1,
+        "annotations": 1,
+        "categories": [
+          {
+            "id": 1,
+            "name": "fish",
+            "supercategory": "none"
+          }
+        ],
+        "annotation_file_sha256": "f06bd1ce140a261989a31644f542327faddb7f73e06d7b0bdf60fd94b1a7f5dc",
+        "duplicate_image_ids": 0,
+        "duplicate_annotation_ids": 0,
+        "duplicate_filenames": 0,
+        "missing_image_files": [],
+        "empty_images": 0,
+        "annotation_count_histogram": {
+          "1": 1
+        },
+        "geometry_issues": [],
+        "image_dimensions": {
+          "(1920, 1080)": 1
+        }
+      },
+      "5_shot": {
+        "images": 5,
+        "annotations": 5,
+        "categories": [
+          {
+            "id": 1,
+            "name": "fish",
+            "supercategory": "none"
+          }
+        ],
+        "annotation_file_sha256": "9978bd0fd09becf9dced032315ecf06c63dab0ee2b7abb32925137d2f8b3c2d4",
+        "duplicate_image_ids": 0,
+        "duplicate_annotation_ids": 0,
+        "duplicate_filenames": 0,
+        "missing_image_files": [],
+        "empty_images": 0,
+        "annotation_count_histogram": {
+          "1": 5
+        },
+        "geometry_issues": [],
+        "image_dimensions": {
+          "(1920, 1080)": 5
+        }
+      },
+      "test": {
+        "images": 909,
+        "annotations": 3029,
+        "categories": [
+          {
+            "id": 1,
+            "name": "fish",
+            "supercategory": "object"
+          }
+        ],
+        "annotation_file_sha256": "401816b445140826c584e5fd326aa35d609bed511b15ed04e177aaa2fc4902f1",
+        "duplicate_image_ids": 0,
+        "duplicate_annotation_ids": 0,
+        "duplicate_filenames": 0,
+        "missing_image_files": [],
+        "empty_images": 0,
+        "annotation_count_histogram": {
+          "1": 311,
+          "2": 224,
+          "3": 92,
+          "4": 90,
+          "5": 18,
+          "6": 36,
+          "7": 28,
+          "8": 31,
+          "9": 22,
+          "10": 15,
+          "11": 14,
+          "12": 5,
+          "13": 8,
+          "14": 9,
+          "15": 4,
+          "16": 2
+        },
+        "geometry_issues": [
+          {
+            "annotation_id": 40,
+            "image_id": 21,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 42,
+            "image_id": 22,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 44,
+            "image_id": 23,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 46,
+            "image_id": 24,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 48,
+            "image_id": 25,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 58,
+            "image_id": 30,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 106,
+            "image_id": 68,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 241,
+            "image_id": 152,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 305,
+            "image_id": 167,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 564,
+            "image_id": 252,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 920,
+            "image_id": 303,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 925,
+            "image_id": 304,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 940,
+            "image_id": 307,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 969,
+            "image_id": 311,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1054,
+            "image_id": 322,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1073,
+            "image_id": 325,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1090,
+            "image_id": 327,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1097,
+            "image_id": 328,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1105,
+            "image_id": 329,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1112,
+            "image_id": 330,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1144,
+            "image_id": 338,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1179,
+            "image_id": 356,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1180,
+            "image_id": 357,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1208,
+            "image_id": 373,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1222,
+            "image_id": 379,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2135,
+            "image_id": 531,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2309,
+            "image_id": 629,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2388,
+            "image_id": 642,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2552,
+            "image_id": 689,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2935,
+            "image_id": 867,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2958,
+            "image_id": 875,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3008,
+            "image_id": 898,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3024,
+            "image_id": 906,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3028,
+            "image_id": 908,
+            "issues": [
+              "outside_image"
+            ]
+          }
+        ],
+        "image_dimensions": {
+          "(1920, 1080)": 909
+        }
+      },
+      "train": {
+        "images": 3596,
+        "annotations": 12434,
+        "categories": [
+          {
+            "id": 1,
+            "name": "fish",
+            "supercategory": "object"
+          }
+        ],
+        "annotation_file_sha256": "d7bbd549b111df65fa76c33533dbdb8dfa396f688ad2b42509dd8c28596744a4",
+        "duplicate_image_ids": 0,
+        "duplicate_annotation_ids": 0,
+        "duplicate_filenames": 0,
+        "missing_image_files": [],
+        "empty_images": 0,
+        "annotation_count_histogram": {
+          "1": 1221,
+          "2": 816,
+          "3": 335,
+          "4": 362,
+          "5": 114,
+          "6": 171,
+          "7": 144,
+          "8": 104,
+          "9": 90,
+          "10": 52,
+          "11": 66,
+          "12": 33,
+          "13": 31,
+          "14": 28,
+          "15": 19,
+          "16": 10
+        },
+        "geometry_issues": [
+          {
+            "annotation_id": 164,
+            "image_id": 90,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 170,
+            "image_id": 93,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 180,
+            "image_id": 98,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 184,
+            "image_id": 100,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 188,
+            "image_id": 102,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 192,
+            "image_id": 104,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 196,
+            "image_id": 106,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 201,
+            "image_id": 108,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 203,
+            "image_id": 109,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 205,
+            "image_id": 110,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 206,
+            "image_id": 111,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 210,
+            "image_id": 113,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 216,
+            "image_id": 116,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 218,
+            "image_id": 117,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 222,
+            "image_id": 119,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 230,
+            "image_id": 123,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 235,
+            "image_id": 125,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 237,
+            "image_id": 126,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 238,
+            "image_id": 127,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 242,
+            "image_id": 129,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 244,
+            "image_id": 130,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 248,
+            "image_id": 132,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 250,
+            "image_id": 133,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 254,
+            "image_id": 135,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 258,
+            "image_id": 137,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 261,
+            "image_id": 138,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 267,
+            "image_id": 141,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 406,
+            "image_id": 264,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 416,
+            "image_id": 269,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 418,
+            "image_id": 270,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 421,
+            "image_id": 271,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 423,
+            "image_id": 272,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 425,
+            "image_id": 273,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 808,
+            "image_id": 530,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 928,
+            "image_id": 592,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 934,
+            "image_id": 593,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1074,
+            "image_id": 620,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1170,
+            "image_id": 642,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1370,
+            "image_id": 675,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1440,
+            "image_id": 693,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1450,
+            "image_id": 695,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1456,
+            "image_id": 696,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1467,
+            "image_id": 698,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1883,
+            "image_id": 818,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 1886,
+            "image_id": 819,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2044,
+            "image_id": 886,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2048,
+            "image_id": 887,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 2477,
+            "image_id": 997,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3064,
+            "image_id": 1039,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3081,
+            "image_id": 1040,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3250,
+            "image_id": 1057,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3453,
+            "image_id": 1097,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3497,
+            "image_id": 1105,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3548,
+            "image_id": 1114,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3796,
+            "image_id": 1145,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3811,
+            "image_id": 1147,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 3820,
+            "image_id": 1148,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4195,
+            "image_id": 1236,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4203,
+            "image_id": 1238,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4219,
+            "image_id": 1241,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4225,
+            "image_id": 1242,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4231,
+            "image_id": 1243,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4272,
+            "image_id": 1249,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4315,
+            "image_id": 1256,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4322,
+            "image_id": 1257,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4329,
+            "image_id": 1258,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4584,
+            "image_id": 1291,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4602,
+            "image_id": 1294,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4634,
+            "image_id": 1298,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4644,
+            "image_id": 1299,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4660,
+            "image_id": 1302,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4683,
+            "image_id": 1310,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4722,
+            "image_id": 1320,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4725,
+            "image_id": 1321,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4875,
+            "image_id": 1359,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4959,
+            "image_id": 1402,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4961,
+            "image_id": 1403,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4963,
+            "image_id": 1404,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 4965,
+            "image_id": 1405,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5002,
+            "image_id": 1428,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5005,
+            "image_id": 1431,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5006,
+            "image_id": 1432,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5016,
+            "image_id": 1441,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5116,
+            "image_id": 1502,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 5749,
+            "image_id": 1591,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 6577,
+            "image_id": 1691,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 6591,
+            "image_id": 1692,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 6630,
+            "image_id": 1695,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 7270,
+            "image_id": 1748,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 8557,
+            "image_id": 2018,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9050,
+            "image_id": 2381,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9052,
+            "image_id": 2383,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9054,
+            "image_id": 2385,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9055,
+            "image_id": 2386,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9115,
+            "image_id": 2446,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9116,
+            "image_id": 2447,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9338,
+            "image_id": 2479,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9347,
+            "image_id": 2480,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 9547,
+            "image_id": 2503,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10128,
+            "image_id": 2613,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10161,
+            "image_id": 2628,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10168,
+            "image_id": 2631,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10172,
+            "image_id": 2633,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10197,
+            "image_id": 2644,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10203,
+            "image_id": 2646,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10215,
+            "image_id": 2649,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10219,
+            "image_id": 2650,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10557,
+            "image_id": 2739,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10733,
+            "image_id": 2796,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10927,
+            "image_id": 2849,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10934,
+            "image_id": 2850,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10942,
+            "image_id": 2851,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10950,
+            "image_id": 2852,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 10976,
+            "image_id": 2856,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11004,
+            "image_id": 2860,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11011,
+            "image_id": 2861,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11033,
+            "image_id": 2865,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11034,
+            "image_id": 2866,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11038,
+            "image_id": 2868,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11041,
+            "image_id": 2869,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11046,
+            "image_id": 2874,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 11116,
+            "image_id": 2919,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12073,
+            "image_id": 3434,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12107,
+            "image_id": 3445,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12111,
+            "image_id": 3446,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12122,
+            "image_id": 3449,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12131,
+            "image_id": 3452,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12137,
+            "image_id": 3454,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12182,
+            "image_id": 3475,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12195,
+            "image_id": 3480,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12198,
+            "image_id": 3481,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12215,
+            "image_id": 3486,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12320,
+            "image_id": 3538,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12425,
+            "image_id": 3591,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12427,
+            "image_id": 3592,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12429,
+            "image_id": 3593,
+            "issues": [
+              "outside_image"
+            ]
+          },
+          {
+            "annotation_id": 12431,
+            "image_id": 3594,
+            "issues": [
+              "outside_image"
+            ]
+          }
+        ],
+        "image_dimensions": {
+          "(1920, 1080)": 3596
+        }
+      }
+    },
+    "support_identity_file": "reports/SUPPORT_IDENTITIES.csv",
+    "train_test_filename_overlap_count": 0,
+    "train_test_byte_sha256_overlap_count": 0,
+    "train_test_numeric_id_overlap_count": 909,
+    "filename_prefix_shared_groups": 46,
+    "video_or_site_independence_verified": false,
+    "preview_images": 6,
+    "boxes_created_or_modified": 0
+  },
+  "detector": {
+    "repo": "LiYu0524/Domain-RAG",
+    "commit": "2f66fdcd4a92a0fe1d41aeec48f21f68cd709f54",
+    "entry": "mmdetection/configs/grounding_dino/grounding_dino_swin-t_finetune_16xb2_1x_coco.py",
+    "as_committed_dataset": "DIOR",
+    "fish_substitution_only_static": true,
+    "resolved_direct_train_epochs": 12,
+    "top_level_max_epochs_variable": 30,
+    "resolved_train_batch_per_device": 4,
+    "effective_augmentation": [
+      "RandomFlip(p=0.5)",
+      "RandomChoiceResize",
+      "optional resize-RandomCrop-resize branch"
+    ],
+    "overridden_base_augmentation": [
+      "CachedMosaic",
+      "YOLOXHSVRandomAug",
+      "CachedMixUp"
+    ],
+    "runtime_config_or_model_instantiated": false,
+    "model_or_training_executed": false,
+    "alternative_mm_grounding_dino_weight_downloaded": false,
+    "config_report": "reports/CONFIG_AUDIT_ZH.md"
+  },
+  "weight": {
+    "time_utc": "2026-10-31T09:17:47.377098+00:00",
+    "path": "assets/groundingdino_swint_ogc_mmdet-822d7e9d.pth",
+    "torch_version": "2.13.0",
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "weights_only": true,
+    "map_location": "cpu",
+    "model_instantiated": false,
+    "upstream_code_executed": false,
+    "unsafe_fallback": false,
+    "dynamic_whitelist": false,
+    "bytes": 691901857,
+    "sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+    "md5": "aa587e4dde3f2de265f33593bc9de6c4",
+    "expected_bytes": 691901857,
+    "expected_etag_md5": "aa587e4dde3f2de265f33593bc9de6c4",
+    "top_level_type": "OrderedDict",
+    "status": "inspected",
+    "tensor_count": 903,
+    "total_tensor_elements": 173532066,
+    "all_finite": true,
+    "non_tensor_state_entries": []
+  },
+  "budgets": {
+    "new_download_limit_bytes": 2147483648,
+    "recorded_local_curl_response_bytes": 1484698643,
+    "note": "curl body/header payload ledger; small GitHub/web connector text traffic is not measured wire traffic and is additional, far below remaining allowance",
+    "disk_limit_bytes": 4294967296,
+    "local_directory_bytes_at_manifest_time": 1545837468,
+    "paid_resources_started": false
+  },
+  "unresolved": [
+    "detection box creation/conversion and original-image mapping",
+    "standalone detection annotation license notice",
+    "verified video/habitat/site grouping semantics",
+    "dev/selection protocol for any future effect experiment",
+    "runtime dependency/ABI/checkpoint strictness/throughput/memory on a single CUDA environment"
+  ],
+  "not_claimed": [
+    "paper reproduction",
+    "new research contribution",
+    "augmentation effectiveness",
+    "two-hour feasibility",
+    "dataset suitability verdict"
+  ]
+}

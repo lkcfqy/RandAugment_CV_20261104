@@ -1,0 +1,15 @@
+{
+  "utc": "2026-11-01T07:47:31.962862+00:00",
+  "reason": "Observer main transform return was missed while Mosaic submethod pastes were observed; lineage assertion stopped iteration5. Official output unchanged.",
+  "failed_pass_persisted_records": 4,
+  "failed_pass_pipeline_calls": 5,
+  "debug_replay_pipeline_calls": 5,
+  "scientific_protocol_changed": false,
+  "reference_outputs_reused": true,
+  "change": "Bind executing official transform body by owner identity, method name and official source filename; no operator, pixel, GT or RNG mutation.",
+  "previous_script_sha256": "2f74c06eed9069305f7b9a9fd8f3ee73297799f45a94eb28a5afe9cc21fe1fd2",
+  "revised_script_sha256": "01eb3b5549842490df1205294bb6b6e037720fe10fd2fcee9ea3486eb9a648a5",
+  "root_cause": "autocast_box_type decorator does not set __wrapped__; inspect.unwrap returned its wrapper. First attempt missed operation body; second captured body but the wrapper return overwrote MixUp applied flag. Bind only the official executing transform frame by owner identity/name/source; do not register the outer wrapper.",
+  "second_attempt_pipeline_calls": 6,
+  "second_attempt_persisted_records": 5
+}

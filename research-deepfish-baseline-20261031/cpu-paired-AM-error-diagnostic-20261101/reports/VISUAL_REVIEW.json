@@ -1,0 +1,45 @@
+{
+  "selection": "Four largest per-image AP changes, fixed before subgroup computation; explicitly post-hoc diagnostics. Not representative sampling.",
+  "original_GT_modified": false,
+  "source_images_modified": false,
+  "visual_observations": [
+    {
+      "image_id": 733,
+      "posthoc_selection": "second-model per-image AP improvement rank1",
+      "GT_ids": [
+        1549,
+        1550
+      ],
+      "observation": "左侧小鱼和参照尺后方受遮挡的鱼均能在原图中对应到GT。GT1550的首个IoU>=.75候选排名由39到3，最佳IoU由.838到.884；改善含明显排序变化，并非此前完全没有鱼体候选。",
+      "annotation_uncertainty": "GT1550部分鱼体被参照尺遮挡，精确可见边界有不确定性，未发现足以修改标签的明确依据。"
+    },
+    {
+      "image_id": 541,
+      "posthoc_selection": "improvement rank2",
+      "GT_ids": [
+        819
+      ],
+      "observation": "图像左下边缘截断的大鱼对应GT819。A首位框与GT不重叠，鱼框在第2位；M第1位框IoU=.680、第2位=.925。两臂最佳IoU都约.94，逐图改善不等于产生了更高的最佳定位。",
+      "annotation_uncertainty": "A首位和M第3位指向石块前的小亮斑；仅凭该图无法确认它是粒子、其他物体还是漏标小鱼。"
+    },
+    {
+      "image_id": 564,
+      "posthoc_selection": "regression rank1",
+      "GT_ids": [
+        842
+      ],
+      "observation": "大鱼可见部分与GT842大体对应。A首位框IoU=.912；M首位框扩大到右侧器材/背景，IoU=.645，合格框退至第2位(.859)。全部300候选的最佳IoU也从.939降至.897，故这里同时有排序和更严格IoU下的候选质量变化。",
+      "annotation_uncertainty": "鱼体被画面左边截断且前方有黄色杆；保留原框，未判为错误标注。"
+    },
+    {
+      "image_id": 3303,
+      "posthoc_selection": "regression rank2",
+      "GT_ids": [
+        11841,
+        11842
+      ],
+      "observation": "浑浊水中左侧鱼对应GT11841。A第1框IoU=.731；M第1框垂直扩大、包含更多鱼体上方区域，IoU=.439。首个IoU>=.75候选从第20位退到149位；全部300中仍有.767候选，所以主cap100下的该次丢失是候选落到预算以外。右侧GT11842两臂均无IoU>=.75候选。",
+      "annotation_uncertainty": "右侧鱼轮廓很弱，精确框边界不易目视确认。M右下方额外框指向暗色物体，不能仅凭此图判为真背景或漏标。"
+    }
+  ]
+}

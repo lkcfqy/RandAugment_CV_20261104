@@ -1,0 +1,82 @@
+{
+  "status": "passed_with_documented_extension_mapping",
+  "checked_utc": "2026-10-30T11:21:08.004557+00:00",
+  "outcome_statistics_computed": false,
+  "archive": {
+    "zip_sha256": "074a436da05b5af8f35bdf8c7a11e670fe1a13776b320f5ac3ada524a41e80ac",
+    "selected_files": [
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "results/resnet18.a1_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 1197474,
+        "rows": 12930
+      },
+      {
+        "model": "resnet18.a1_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "results/resnet18.a1_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 1551398,
+        "rows": 17298
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "cartoon_style",
+        "archive_member": "results/vit_base_patch16_224.augreg_in1k__cartoon_style.csv",
+        "uncompressed_bytes": 1197488,
+        "rows": 12930
+      },
+      {
+        "model": "vit_base_patch16_224.augreg_in1k",
+        "shift": "heavy_snow",
+        "archive_member": "results/vit_base_patch16_224.augreg_in1k__heavy_snow.csv",
+        "uncompressed_bytes": 1552122,
+        "rows": 17298
+      }
+    ],
+    "file_selection": "exact predeclared model and shift filenames"
+  },
+  "metadata_match": {
+    "resnet18.a1_in1k": {
+      "prediction_rows": 30228,
+      "annotation_rows": 30228,
+      "annotation_keys_without_prediction": 0,
+      "class_and_filename_stems_match_metadata": true,
+      "exact_image_filenames_match_metadata": false,
+      "png_to_jpg_extension_mapped_rows": 30228,
+      "extension_mapping_explicitly_enabled": true,
+      "image_byte_identity_proven": false
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "prediction_rows": 30228,
+      "annotation_rows": 30228,
+      "annotation_keys_without_prediction": 0,
+      "class_and_filename_stems_match_metadata": true,
+      "exact_image_filenames_match_metadata": false,
+      "png_to_jpg_extension_mapped_rows": 30228,
+      "extension_mapping_explicitly_enabled": true,
+      "image_byte_identity_proven": false
+    }
+  },
+  "model_alignment": {
+    "outer_union_rows": 30228,
+    "rows_per_model": {
+      "resnet18.a1_in1k": 30228,
+      "vit_base_patch16_224.augreg_in1k": 30228
+    },
+    "missing_key_counts": {
+      "resnet18.a1_in1k": 0,
+      "vit_base_patch16_224.augreg_in1k": 0
+    }
+  },
+  "complete_trajectory_audit": {
+    "resnet18.a1_in1k": {
+      "complete": 5038,
+      "incomplete_excluded": 0
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "complete": 5038,
+      "incomplete_excluded": 0
+    }
+  }
+}

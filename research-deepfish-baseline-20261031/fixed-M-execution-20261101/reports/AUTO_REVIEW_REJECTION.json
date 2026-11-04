@@ -1,0 +1,13 @@
+{
+  "action": "/Users/lkc/.local/share/google-colab-cli/bin/python -B gpu-run/controller.py",
+  "operation_executed": false,
+  "parent_GO_was_present": true,
+  "reason_verbatim": "This initiates an external Colab GPU allocation and potentially uploads data and incurs compute cost for a new fixed-M experiment, but the trusted user evidence only approved the earlier 2\u21922.5 CU continuation, not this distinct GPU training action.",
+  "required_new_evidence": "Explicit human approval of this distinct singleM GPU training/upload action inside the unchanged cumulative2.5CU cap; prior budget-only continuation evidence was judged insufficient.",
+  "retried": false,
+  "status": "AUTO_REVIEW_REJECTED_BEFORE_PROCESS_CREATION",
+  "target": "Existing authorized Colab account; oneT4/fixed M seed20261031/U200; <=13MiB public-data package",
+  "tool_outcome": "exec_command CreateProcess Rejected; controller process was not created",
+  "workaround_attempted": false,
+  "working_directory": "/Users/lkc/Documents/Codex/2026-10-31/task-8/deepfish-fixed-M-execution-20261101"
+}

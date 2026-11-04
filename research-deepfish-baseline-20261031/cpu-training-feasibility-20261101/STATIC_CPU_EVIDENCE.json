@@ -1,0 +1,112 @@
+{
+  "mmcv/ops/multi_scale_deform_attn.py": {
+    "relevant_lines": [
+      {
+        "line": 109,
+        "text": "def multi_scale_deformable_attn_pytorch("
+      },
+      {
+        "line": 153,
+        "text": "sampling_value_l_ = F.grid_sample("
+      },
+      {
+        "line": 366,
+        "text": "if ((IS_CUDA_AVAILABLE and value.is_cuda)"
+      }
+    ],
+    "sha256": "223a5406010eb5109bd8a12c06b589baf876db02c4192fdac93c85097e659727"
+  },
+  "mmdet/models/losses/focal_loss.py": {
+    "relevant_lines": [
+      {
+        "line": 13,
+        "text": "def py_sigmoid_focal_loss(pred,"
+      },
+      {
+        "line": 235,
+        "text": "elif torch.cuda.is_available() and pred.is_cuda:"
+      }
+    ],
+    "sha256": "48e6ca192803cfa0caf73a186952b560865ea3ee15538262e30d63e310a25e25"
+  },
+  "mmdet/models/losses/iou_loss.py": {
+    "relevant_lines": [
+      {
+        "line": 52,
+        "text": "ious = bbox_overlaps(pred, target, is_aligned=True).clamp(min=eps)"
+      },
+      {
+        "line": 142,
+        "text": "gious = bbox_overlaps(pred, target, mode='giou', is_aligned=True, eps=eps)"
+      }
+    ],
+    "sha256": "0e38f0bed2863296649085fefbaeb339e10321f745be9f78a82717fa89ecc249"
+  },
+  "mmdet/models/losses/smooth_l1_loss.py": {
+    "relevant_lines": [],
+    "sha256": "7aef5e10e6014bcbd7b6707c912dd984560ad7c479f94c9603c257c2cbdb50ab"
+  },
+  "mmdet/models/task_modules/assigners/hungarian_assigner.py": {
+    "relevant_lines": [
+      {
+        "line": 7,
+        "text": "from scipy.optimize import linear_sum_assignment"
+      },
+      {
+        "line": 125,
+        "text": "# 3. do Hungarian matching on CPU using linear_sum_assignment"
+      },
+      {
+        "line": 127,
+        "text": "if linear_sum_assignment is None:"
+      },
+      {
+        "line": 131,
+        "text": "matched_row_inds, matched_col_inds = linear_sum_assignment(cost)"
+      }
+    ],
+    "sha256": "68465f8aa24c26b0d8c9efc3730332276431984e8617d8e77d17468bc7048019"
+  },
+  "mmdet/structures/bbox/bbox_overlaps.py": {
+    "relevant_lines": [
+      {
+        "line": 13,
+        "text": "def bbox_overlaps(bboxes1, bboxes2, mode='iou', is_aligned=False, eps=1e-6):"
+      },
+      {
+        "line": 117,
+        "text": ">>> overlaps = bbox_overlaps(bboxes1, bboxes2)"
+      },
+      {
+        "line": 119,
+        "text": ">>> overlaps = bbox_overlaps(bboxes1, bboxes2, is_aligned=True)"
+      },
+      {
+        "line": 125,
+        "text": ">>> assert tuple(bbox_overlaps(empty, nonempty).shape) == (0, 1)"
+      },
+      {
+        "line": 126,
+        "text": ">>> assert tuple(bbox_overlaps(nonempty, empty).shape) == (1, 0)"
+      },
+      {
+        "line": 127,
+        "text": ">>> assert tuple(bbox_overlaps(empty, empty).shape) == (0, 0)"
+      }
+    ],
+    "sha256": "fb7a665ba551afd6c6a802ae3b4b420337caf500aef474c7213235056e110b48"
+  },
+  "mmengine/model/base_model/base_model.py": {
+    "relevant_lines": [
+      {
+        "line": 101,
+        "text": "4. Calls ``optim_wrapper.update_params(loss)`` to update model."
+      },
+      {
+        "line": 116,
+        "text": "optim_wrapper.update_params(parsed_losses)"
+      }
+    ],
+    "sha256": "e1eecb1fad343d20f79d305c60f49f5bf5212f29e05c3e2db9d85f88a4102a4d"
+  }
+}

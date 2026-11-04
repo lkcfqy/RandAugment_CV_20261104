@@ -1,0 +1,79 @@
+{
+  "status": "completed",
+  "evidence_type": "SYNTHETIC_NONEMPIRICAL",
+  "completed_utc": "2026-10-30T10:50:43.292825+00:00",
+  "models": [
+    "resnet18.a1_in1k",
+    "vit_base_patch16_224.augreg_in1k"
+  ],
+  "shifts": [
+    "cartoon_style",
+    "heavy_snow"
+  ],
+  "source_key_count": 36,
+  "fixed_class_support_K": [
+    2,
+    4,
+    7
+  ],
+  "cohort_audit": {
+    "resnet18.a1_in1k": {
+      "complete_per_shift": {
+        "cartoon_style": 35,
+        "heavy_snow": 35
+      },
+      "common_complete": 34,
+      "common_first_observed_correct": 34,
+      "scale0_prediction_mismatch_count": 0,
+      "scale0_prediction_mismatch_keys": [],
+      "same_predictions_prove_identity": false
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "complete_per_shift": {
+        "cartoon_style": 35,
+        "heavy_snow": 36
+      },
+      "common_complete": 35,
+      "common_first_observed_correct": 32,
+      "scale0_prediction_mismatch_count": 3,
+      "scale0_prediction_mismatch_keys": [
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "same_predictions_prove_identity": false
+    }
+  },
+  "incomplete_trajectories_excluded": 1,
+  "source_identity": {
+    "status": "unverified; no baseline image hashes available",
+    "required_common_complete_sources": 35,
+    "verified_sources": 0,
+    "primary_identity_coverage_complete": false,
+    "equal_predictions_are_not_identity_proof": true
+  },
+  "resource_gate": {
+    "decision": "not_applicable_synthetic_nonempirical"
+  },
+  "strict_same_source_conclusion_available": false,
+  "training_performed": false,
+  "model_inference_performed": false,
+  "GPU_requested": false,
+  "limitations": [
+    "Already-filtered published cohort only; unmatched and eligibility selection can bias comparisons.",
+    "Different shifts have no equal-physical-strength guarantee.",
+    "T describes only the final observed wrong suffix, not permanent or irreversible failure.",
+    "Zero-event or zero-width bootstrap intervals do not prove absence.",
+    "Class-cluster resampling concerns a different inferential target.",
+    "First-observed correctness does not by itself verify a clean source image."
+  ]
+}

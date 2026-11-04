@@ -1,0 +1,30 @@
+{
+  "scope": "Bounded correctness fixture only; research NO-GO remains in force",
+  "commit": "d854af15467285ad8f46500d6fc2da5225fb5bd0",
+  "formal_compute_wall_seconds_max": 600,
+  "target_model_training_steps": 0,
+  "optimizer_steps": 0,
+  "gpu_or_colab": false,
+  "colab_CU": 0,
+  "real_data_or_weights": false,
+  "third_party_repository_execution": false,
+  "synthetic_samples": 8,
+  "visits_per_sample": 2,
+  "loader_cases": [
+    {"name": "worker0", "workers": 0, "context": null, "persistent": false},
+    {"name": "official_local_spawn", "workers": 8, "context": "spawn", "persistent": false},
+    {"name": "official_settings_fork", "workers": 8, "context": "fork", "persistent": false},
+    {"name": "sensitivity_persistent_spawn", "workers": 8, "context": "spawn", "persistent": true},
+    {"name": "sensitivity_persistent_fork", "workers": 8, "context": "fork", "persistent": true}
+  ],
+  "main_loader_batch_size": 128,
+  "main_loader_shuffle": true,
+  "main_loader_pin_memory_requested": true,
+  "main_loader_pin_memory_effective_override": "False for CPU-only audit; production pinning/CUDA are not reproduced",
+  "main_loader_prefetch_factor": 2,
+  "loader_seed": 20261030,
+  "prefetch_probe": {"workers": 8, "context": "spawn", "persistent": false, "batch_size": 1, "factors": [1, 2], "repeat_order": "0..7 twice", "wait_for_materialized_reads_seconds": 20},
+  "beta": {"alpha": 2.0, "beta": 3.0, "critic": 0.0, "reward": "r(a)=a", "samples": 262144, "seed": 20261030, "float_dtype": "float64", "ci": "pointwise normal 99%, mean +/- 2.5758293035489004 * sample_SE", "same_action_expected": [0.12, -0.08], "independent_old_expected": [0.0, 0.0], "absolute_tolerance": 0.006, "autograd_vs_score_tolerance": 1e-12, "criteria": "Both analytic expectations inside each preselected 99% CI and absolute tolerances; positive-control signs; no seed/sampling retuning after failure"},
+  "permutation": {"seed": 20261030, "enumeration": "All index permutations per small case (n<=4)", "quantization": "min(int(29*m)+1,29)", "coverage": "fraction of receivers with any other donor having a different full effective action tuple", "change_rate": "fraction whose complete effective action tuple actually changes", "joint_action": "operation, quantized level, physical parameter, direction, apply flag, order, other RNG tokens kept together; shared-magnitude multi-op bundle moved atomically", "random_is_derangement": false},
+  "retry_policy": "No outcome-driven seed/tolerance changes. Infrastructure errors remain recorded; only relevant permission evidence can allow one denied-action retry."
+}

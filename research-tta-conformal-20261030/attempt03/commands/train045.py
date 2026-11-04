@@ -1,0 +1,1 @@
+_result=_tta.train_chunk('formal040','a811ff21c490575853432e232795fdd4138526591733ec5bb357677eeeb431d6',45)

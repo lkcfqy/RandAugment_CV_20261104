@@ -1,0 +1,176 @@
+{
+  "method": "Actual standard Rust tokenizer JSON parse + plain Python list reproduction of inspected insertion loop; no repository Python code or learned model executed.",
+  "model_forward_calls": 0,
+  "native_runtime_smoke_passed": false,
+  "negative_boxes_in_group_required": 3,
+  "negative_exemplar_groups_required": 1,
+  "negative_texts_required": [
+    ""
+  ],
+  "note": "C example is illustrative and does not freeze label table; next authorized runtime must assert actual returned token sequence.",
+  "positive_boxes_required": 3,
+  "tokenizers_version": "0.22.2",
+  "traces": [
+    {
+      "after_both_groups": [
+        101,
+        1008,
+        1008,
+        1008,
+        1012,
+        1008,
+        1008,
+        1008,
+        1012,
+        102
+      ],
+      "after_positive_group": [
+        101,
+        1008,
+        1008,
+        1008,
+        1012,
+        1012,
+        102
+      ],
+      "before": [
+        101,
+        1012,
+        1012,
+        102
+      ],
+      "caption": " .  . ",
+      "mode": "V",
+      "tokens": [
+        "[CLS]",
+        "*",
+        "*",
+        "*",
+        ".",
+        "*",
+        "*",
+        "*",
+        ".",
+        "[SEP]"
+      ]
+    },
+    {
+      "after_both_groups": [
+        101,
+        6462,
+        1008,
+        1008,
+        1008,
+        1012,
+        1008,
+        1008,
+        1008,
+        1012,
+        102
+      ],
+      "after_positive_group": [
+        101,
+        6462,
+        1008,
+        1008,
+        1008,
+        1012,
+        1012,
+        102
+      ],
+      "before": [
+        101,
+        6462,
+        1012,
+        1012,
+        102
+      ],
+      "caption": "button .  . ",
+      "mode": "C",
+      "tokens": [
+        "[CLS]",
+        "button",
+        "*",
+        "*",
+        "*",
+        ".",
+        "*",
+        "*",
+        "*",
+        ".",
+        "[SEP]"
+      ]
+    },
+    {
+      "after_both_groups": [
+        101,
+        3154,
+        6462,
+        1008,
+        1008,
+        1008,
+        1012,
+        28670,
+        2317,
+        2030,
+        28799,
+        6462,
+        1008,
+        1008,
+        1008,
+        1012,
+        102
+      ],
+      "after_positive_group": [
+        101,
+        3154,
+        6462,
+        1008,
+        1008,
+        1008,
+        1012,
+        28670,
+        2317,
+        2030,
+        28799,
+        6462,
+        1012,
+        102
+      ],
+      "before": [
+        101,
+        3154,
+        6462,
+        1012,
+        28670,
+        2317,
+        2030,
+        28799,
+        6462,
+        1012,
+        102
+      ],
+      "caption": "clear button . opaque white or beige button . ",
+      "mode": "F",
+      "tokens": [
+        "[CLS]",
+        "clear",
+        "button",
+        "*",
+        "*",
+        "*",
+        ".",
+        "opaque",
+        "white",
+        "or",
+        "beige",
+        "button",
+        "*",
+        "*",
+        "*",
+        ".",
+        "[SEP]"
+      ]
+    }
+  ]
+}

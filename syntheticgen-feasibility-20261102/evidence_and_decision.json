@@ -1,0 +1,68 @@
+{
+  "reviewed_utc": "2026-11-02",
+  "paper": "https://arxiv.org/html/2602.04749v1",
+  "project_page": "https://buddhi19.github.io/SyntheticGen/",
+  "github": {
+    "repository": "Buddhi19/SyntheticGen",
+    "commit": "ca724b2693bbf07725606dbaf4024602bcc0f17a",
+    "commit_date": "2026-08-27T02:08:05Z",
+    "releases": []
+  },
+  "huggingface": {
+    "repository": "buddhi19/SyntheticGenV5",
+    "commit": "225bb99a7a70588dd37e0e7e4e566e6be20ea82f",
+    "csv_sha256": "c48d62ffc8eeb69833be2c133ba4fac590897b4c217f2f6c6b718ba2e81be30b"
+  },
+  "daformer": {
+    "repository": "lhoyer/DAFormer",
+    "commit": "e6f6e041e7477b642106c134c1715fc934ccd210",
+    "paper": "https://openaccess.thecvf.com/content/CVPR2022/html/Hoyer_DAFormer_Improving_Network_Architectures_and_Training_Strategies_for_Domain-Adaptive_Semantic_CVPR_2022_paper.html"
+  },
+  "execution": {
+    "external_repository_code_executed": false,
+    "image_mask_download_bytes": 0,
+    "weight_download_bytes": 0,
+    "training_runs": 0,
+    "inference_runs": 0,
+    "installations": 0,
+    "uploads": 0,
+    "new_cloud_sessions": 0,
+    "new_CU": 0
+  },
+  "access_events": [
+    {
+      "action": "web open HF dataset tree and API",
+      "target": "https://huggingface.co/datasets/buddhi19/SyntheticGenV5/tree/main ; public dataset API",
+      "result": "tool fetch unavailable",
+      "reason": "URL not accessible via web tool",
+      "permission_denied": false
+    },
+    {
+      "action": "Python HTTPS GET of public HF dataset metadata API under default sandbox",
+      "target": "https://huggingface.co/api/datasets/buddhi19/SyntheticGenV5",
+      "result": "DNS failed before HTTP response; no output data",
+      "reason": "socket.gaierror Errno 8; network restricted",
+      "permission_denied": false
+    },
+    {
+      "action": "same public metadata GET using standard require_escalated mechanism",
+      "target": "same metadata API",
+      "result": "approved and completed; 563153 bytes",
+      "reason": "existing explicit authorization for small public metadata",
+      "permission_denied": false
+    }
+  ],
+  "decision": "STOP_CURRENT_CANDIDATE",
+  "blockers": [
+    "Released configuration uses both LoveDA Train domains; source-only provenance for the published transfer experiments is not established.",
+    "No exact mapping of the paper's 2000 pairs to the public 3321-pair pool; no public class-pixel statistics or generation manifests.",
+    "Released SimpleSegNet demo is not the five-backbone downstream training/evaluation implementation used in the paper.",
+    "Adding established RCS on one benchmark alone is not evidence of publishable novelty."
+  ],
+  "huggingface_generator": {
+    "repository": "buddhi19/SyntheticGen",
+    "commit": "098fa01a35185774bc56bdd9daf091dda8d6399f",
+    "weight_archives_not_downloaded": true,
+    "zip_contents_unknown": true
+  }
+}

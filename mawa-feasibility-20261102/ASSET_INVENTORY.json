@@ -1,0 +1,95 @@
+{
+  "UTC": "2026-11-02T03:36:57.888941+00:00",
+  "search_scope": "current project including hidden names except environment/package/Git/vendor code; relevant JSON/Markdown provenance; two standard torch checkpoint cache paths",
+  "identified_supervised_ResNet50_weights": [],
+  "identified_supervised_ResNet50_clean_aug_features": [],
+  "identified_STL10_pixels": [],
+  "torch_cache_paths": {
+    "/Users/lkc/.cache/torch/hub/checkpoints": "absent",
+    "/Users/lkc/Library/Caches/torch/hub/checkpoints": "absent"
+  },
+  "assets": [
+    {
+      "path": "research-frofa-pilot-20261030/cache/features.fp32.npy",
+      "bytes": 3010560128,
+      "kind": "SigLIP clean patch cache, not supervised ResNet50",
+      "array": {
+        "shape": [
+          5000,
+          196,
+          768
+        ],
+        "fortran": false,
+        "dtype": "float32",
+        "header_only": true
+      },
+      "model": "google/siglip-base-patch16-224",
+      "revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+      "source_receipt_sha256": "266835a2e12349a82361a6396ccce6a54f9a7494ad1d86a42f0805c2d49d5732",
+      "cache_sha256_from_prior_receipt": "ae3a3efd142cbff6a2806976e9e95c4ab1c5a0b0779500ff27730b27f22c6201",
+      "full_cache_rehashed_this_task": false,
+      "augmentation": "official pinned SiglipImageProcessor: RGB, bicubic resize to 224x224, rescale 1/255, mean/std .5; no augmentation"
+    },
+    {
+      "path": "research-view-route-20261030/cifar100-amendment-v1/data/original_rgb_uint8.npy",
+      "bytes": 184320128,
+      "kind": "CIFAR100 RGB pixels, not features",
+      "array": {
+        "shape": [
+          60000,
+          32,
+          32,
+          3
+        ],
+        "fortran": false,
+        "dtype": "uint8",
+        "header_only": true
+      }
+    },
+    {
+      "path": "augmentation-research-20261022/diagnostic-optimization-20261022/results/front/initial-features.npz",
+      "bytes": 183016,
+      "kind": "prior ViT/LoRA CLS diagnostic, not supervised ResNet50",
+      "arrays": {
+        "features.npy": {
+          "shape": [
+            2,
+            16,
+            768
+          ],
+          "fortran": false,
+          "dtype": "float32",
+          "header_only": true
+        },
+        "repeat_features.npy": {
+          "shape": [
+            2,
+            16,
+            768
+          ],
+          "fortran": false,
+          "dtype": "float32",
+          "header_only": true
+        }
+      }
+    },
+    {
+      "path": "research-frofa-pilot-20261030/assets/EuroSAT_RGB.zip",
+      "bytes": 94658721,
+      "sha256": "b4f5b234ecb7d7ff9c6cddb046543b4717c53fd6e9815be6c0e80cc614f51b90",
+      "source_from_existing_receipt": "https://zenodo.org/records/7711810/files/EuroSAT_RGB.zip?download=1",
+      "new_download": false,
+      "jpg_members": 27000
+    },
+    {
+      "path": "research-tta-conformal-20261030/recovered-data/cifar-100-python.tar.gz",
+      "bytes": 169001437,
+      "sha256": "85cd44d02ba6437773c5bbd22e183051d648de2e7d6b014e1ef29b855ba677a7",
+      "source_from_existing_receipt": "https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz",
+      "new_download": false
+    }
+  ],
+  "recent_erasing_features": "32 PairTally photos; DeiT-Tiny/DINOv2 only, no suitable ResNet50 and class-labelled clean/aug pairs",
+  "data_reuse_limit": "EuroSAT/CIFAR100 are different domains, existing images already used in prior work; cannot claim fresh confirmation or original STL10 replication",
+  "new_feature_extraction_or_image_decoding": 0
+}

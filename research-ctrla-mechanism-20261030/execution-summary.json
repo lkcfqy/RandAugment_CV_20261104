@@ -1,0 +1,87 @@
+{
+  "finalized_utc": "2026-10-30T12:47:45.983683+00:00",
+  "status": "complete",
+  "decision": "NO_GO_FOR_ONLINE_FORK",
+  "seeds": [
+    {
+      "seed": 0,
+      "primary_gate": {
+        "contrast": "raw N5 error(S)-error(F); positive=F improves",
+        "estimate": 0.0047,
+        "ci95": [
+          0.002865833333333333,
+          0.006633333333333333
+        ],
+        "seed_pass": false,
+        "role": "resource gate, not scientific significance standard",
+        "online_branch_started": false
+      },
+      "renderer_rematched_audit_CE_acceptance": {
+        "S": true,
+        "E": true,
+        "F": true
+      },
+      "frozen_model_BN_unchanged": true
+    },
+    {
+      "seed": 1,
+      "primary_gate": {
+        "contrast": "raw N5 error(S)-error(F); positive=F improves",
+        "estimate": 0.0051333333333333335,
+        "ci95": [
+          0.003065833333333333,
+          0.0071
+        ],
+        "seed_pass": false,
+        "role": "resource gate, not scientific significance standard",
+        "online_branch_started": false
+      },
+      "renderer_rematched_audit_CE_acceptance": {
+        "S": false,
+        "E": false,
+        "F": false
+      },
+      "frozen_model_BN_unchanged": true
+    }
+  ],
+  "budget": {
+    "started_unix": 1793361524.1282098,
+    "deadline_unix": 1793390324.1282098,
+    "train_images": 1840000,
+    "inference_images": 4236891,
+    "train_cap": 1840000,
+    "inference_cap": 8000000,
+    "colab_cu": 0,
+    "formal_compute_begins": "first model benchmark; all later elapsed time included",
+    "updated_unix": 1793364100.359095,
+    "elapsed_wall_seconds": 2576.2308852672577,
+    "synthetic_train_images": 2008,
+    "synthetic_train_images_current_attempt": 1883,
+    "synthetic_counter_correction": "125 first failed step + 1875 successful timed steps +8 gradient-comparison model forwards; zero real exposure"
+  },
+  "remaining_original_planning_ceiling": {
+    "train_images": 7360000,
+    "original_46k_exposures": 160.0,
+    "inference_image_forwards": 3763109,
+    "authorization_for_future_stage": false
+  },
+  "tests": {
+    "adapter": 10,
+    "rendering_geometry_subset": 7,
+    "data": 5,
+    "statistics": 4,
+    "spawn_smoke": true,
+    "reader_tensor_equivalence": true
+  },
+  "historical_tracked_unchanged": 2066,
+  "official_source_unchanged": true,
+  "local_ignore_evidence": "research-ctrla-mechanism-20261030/.gitignore:1:data/\t/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/data/train_images.npy\nresearch-ctrla-mechanism-20261030/.gitignore:2:weights/\t/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/weights/seed0-epoch10.pt\nresearch-ctrla-mechanism-20261030/.gitignore:4:raw/\t/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/raw/seed0-audit-raw-N5-S-full.npz\nresearch-ctrla-mechanism-20261030/.gitignore:3:logs/\t/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/logs/training-events.jsonl\nresearch-ctrla-mechanism-20261030/.gitignore:5:sources/\t/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-ctrla-mechanism-20261030/sources/ControlAugment.tar.gz\n",
+  "blockers": [],
+  "scientific_limits": [
+    "shortened pilot; not v2 or final accuracy reproduction",
+    "small positive rendering benefit below resource gate, not a zero-effect finding",
+    "seed1 rematched CE confidence intervals fail predeclared +/-5% containment; no exclusion of total difficulty",
+    "bootstrap quantifies original-image uncertainty, not training-seed uncertainty",
+    "online feedback compensation untested; no online fork"
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "status": "passed",
+  "fixed_before_comparison": {
+    "locked_utc": "2026-10-30T22:20:17Z",
+    "input_sha256": "eb85d410a7bac43a42307c863bd4301917682ac8cb9c2a1d633310a27f240dcb",
+    "input_shape": [
+      3,
+      3,
+      224,
+      224
+    ],
+    "fixture": "224 RGB gradient, seeded4463 random RGB, constant .5 RGB; ImageNet normalization; synthetic only",
+    "tolerances": {
+      "normalized_patch": {
+        "maxabs": 0.0001,
+        "meanabs": 1e-05
+      },
+      "native_position": {
+        "maxabs": 1e-06,
+        "meanabs": 1e-07
+      },
+      "first_eager_attention": {
+        "maxabs": 0.0001,
+        "meanabs": 1e-05
+      },
+      "last_hidden_state": {
+        "maxabs": 0.001,
+        "meanabs": 0.0001
+      },
+      "patch_after_cls_drop": {
+        "maxabs": 0.001,
+        "meanabs": 0.0001
+      }
+    },
+    "must_be_finite_and_shape_identical": true,
+    "within_each_version_final_LN_check": "exact equality",
+    "tolerance_adaptation_forbidden": true
+  },
+  "checks": {
+    "native_position": {
+      "shape_identical": true,
+      "finite": true,
+      "maxabs": 0.0,
+      "meanabs": 0.0,
+      "passed": true
+    },
+    "first_eager_attention": {
+      "shape_identical": true,
+      "finite": true,
+      "maxabs": 2.086162567138672e-06,
+      "meanabs": 3.695386758739284e-09,
+      "passed": true
+    },
+    "last_hidden_state": {
+      "shape_identical": true,
+      "finite": true,
+      "maxabs": 0.00028836727142333984,
+      "meanabs": 5.746220311650143e-06,
+      "passed": true
+    },
+    "patch_after_cls_drop": {
+      "shape_identical": true,
+      "finite": true,
+      "maxabs": 0.00028836727142333984,
+      "meanabs": 5.75221602458795e-06,
+      "passed": true
+    },
+    "normalized_patch": {
+      "shape_identical": true,
+      "finite": true,
+      "maxabs": 4.863366484642029e-06,
+      "meanabs": 1.0685714222044022e-07,
+      "passed": true
+    }
+  },
+  "reference": {
+    "label": "reference446",
+    "transformers": "4.46.3",
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "device": "cpu",
+    "attention": "eager",
+    "dtype": "float32",
+    "input_sha256": "eb85d410a7bac43a42307c863bd4301917682ac8cb9c2a1d633310a27f240dcb",
+    "weight_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "source_kind": "installed official PyPI wheel built-in Dinov2Model; no downloaded-source execution",
+    "model_source_path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/implementation-v1/.reference-446/lib/python3.9/site-packages/transformers/models/dinov2/modeling_dinov2.py",
+    "model_source_sha256": "890b8c4ef922d2da3c440bc9e4eb8146009f04ea2d8de5df5f467e9033fc0a41",
+    "strict_loading_info": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "within_version_final_norm_maxabs": 0.0,
+    "output_sha256": "c637dd10f656ecc9435141e24e0459d05f1984d3026010f99b9289256d19db3b",
+    "shapes": {
+      "native_position": [
+        1,
+        257,
+        384
+      ],
+      "first_eager_attention": [
+        3,
+        6,
+        257,
+        257
+      ],
+      "last_hidden_state": [
+        3,
+        257,
+        384
+      ],
+      "patch_after_cls_drop": [
+        3,
+        256,
+        384
+      ],
+      "normalized_patch": [
+        3,
+        256,
+        384
+      ]
+    },
+    "finite": true,
+    "CLS_drop_once": true,
+    "final_patch_norm_eps": 1e-08
+  },
+  "actual": {
+    "label": "current457",
+    "transformers": "4.57.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4",
+    "device": "cpu",
+    "attention": "eager",
+    "dtype": "float32",
+    "input_sha256": "eb85d410a7bac43a42307c863bd4301917682ac8cb9c2a1d633310a27f240dcb",
+    "weight_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "source_kind": "installed official PyPI wheel built-in Dinov2Model; no downloaded-source execution",
+    "model_source_path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/.asset-venv/lib/python3.14/site-packages/transformers/models/dinov2/modeling_dinov2.py",
+    "model_source_sha256": "def22737f3b5bb0d1500e9e41ea39fd8af59b462713ce7ef507e12a57c3dc4a5",
+    "strict_loading_info": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "within_version_final_norm_maxabs": 0.0,
+    "output_sha256": "aee949f9cd6fc6e4db7bd665b45660528b4507093ccacf2a3edfd73904ce4f59",
+    "shapes": {
+      "native_position": [
+        1,
+        257,
+        384
+      ],
+      "first_eager_attention": [
+        3,
+        6,
+        257,
+        257
+      ],
+      "last_hidden_state": [
+        3,
+        257,
+        384
+      ],
+      "patch_after_cls_drop": [
+        3,
+        256,
+        384
+      ],
+      "normalized_patch": [
+        3,
+        256,
+        384
+      ]
+    },
+    "finite": true,
+    "CLS_drop_once": true,
+    "final_patch_norm_eps": 1e-08
+  },
+  "scope": "Same official weights; installed official 4.46.3 and 4.57.1 CPU FP32 eager; three fixed224 inputs; no assertion about other dtypes/backends/modes",
+  "formula_only_check_is_not_substitute": true,
+  "no_global_environment_change": true
+}

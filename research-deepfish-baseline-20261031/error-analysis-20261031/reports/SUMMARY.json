@@ -1,0 +1,287 @@
+{
+  "overall": {
+    "A": {
+      "original_12_stats": [
+        0.267624328516414,
+        0.4567657495148212,
+        0.2665014820549935,
+        4.7349921994038764e-05,
+        0.19082236650897585,
+        0.3929397741129988,
+        0.5053475935828877,
+        0.5465240641711231,
+        0.5465240641711231,
+        0.075,
+        0.4537634408602151,
+        0.6906976744186046
+      ],
+      "original_log_12_stats": [
+        0.268,
+        0.457,
+        0.267,
+        0.0,
+        0.191,
+        0.393,
+        0.505,
+        0.547,
+        0.547,
+        0.075,
+        0.454,
+        0.691
+      ],
+      "uniform100": {
+        "AP": 0.267624328516414,
+        "AP50": 0.4561355345226636,
+        "AP75": 0.26586430766299224,
+        "AR": 0.5053475935828877
+      },
+      "uniform300": {
+        "AP": 0.26802630913577674,
+        "AP50": 0.4567657495148212,
+        "AP75": 0.2665014820549935,
+        "AR": 0.5465240641711231
+      }
+    },
+    "B": {
+      "original_12_stats": [
+        0.2515784890979756,
+        0.4807339380605466,
+        0.2317520908508624,
+        0.000358159666365165,
+        0.18057324796683444,
+        0.3700184936078547,
+        0.47219251336898393,
+        0.5347593582887701,
+        0.5347593582887701,
+        0.1125,
+        0.4440860215053763,
+        0.672093023255814
+      ],
+      "original_log_12_stats": [
+        0.252,
+        0.481,
+        0.232,
+        0.0,
+        0.181,
+        0.37,
+        0.472,
+        0.535,
+        0.535,
+        0.113,
+        0.444,
+        0.672
+      ],
+      "uniform100": {
+        "AP": 0.2515784890979756,
+        "AP50": 0.47909297387269906,
+        "AP75": 0.2309034674563059,
+        "AR": 0.47219251336898393
+      },
+      "uniform300": {
+        "AP": 0.2526128348925595,
+        "AP50": 0.4807339380605466,
+        "AP75": 0.2317520908508624,
+        "AR": 0.5347593582887701
+      }
+    }
+  },
+  "prediction_pair_count": 8248,
+  "unpaired_per_arm": 10952,
+  "error_counts": {
+    "A": {
+      "cap100_IoU0.5": {
+        "GT": 187,
+        "TP": 148,
+        "FP": 6252,
+        "FN": 39
+      },
+      "cap100_IoU0.75": {
+        "GT": 187,
+        "TP": 99,
+        "FP": 6301,
+        "FN": 88
+      },
+      "cap300_IoU0.5": {
+        "GT": 187,
+        "TP": 159,
+        "FP": 19041,
+        "FN": 28
+      },
+      "cap300_IoU0.75": {
+        "GT": 187,
+        "TP": 108,
+        "FP": 19092,
+        "FN": 79
+      },
+      "FP300_at50_composition": {
+        "duplicate_candidate": 1868,
+        "localization_near_miss": 3617,
+        "low_annotation_overlap": 13556
+      }
+    },
+    "B": {
+      "cap100_IoU0.5": {
+        "GT": 187,
+        "TP": 144,
+        "FP": 6256,
+        "FN": 43
+      },
+      "cap100_IoU0.75": {
+        "GT": 187,
+        "TP": 87,
+        "FP": 6313,
+        "FN": 100
+      },
+      "cap300_IoU0.5": {
+        "GT": 187,
+        "TP": 162,
+        "FP": 19038,
+        "FN": 25
+      },
+      "cap300_IoU0.75": {
+        "GT": 187,
+        "TP": 99,
+        "FP": 19101,
+        "FN": 88
+      },
+      "FP300_at50_composition": {
+        "duplicate_candidate": 3362,
+        "localization_near_miss": 2991,
+        "low_annotation_overlap": 12685
+      }
+    }
+  },
+  "GT_coverage_rank": {
+    "50": {
+      "geometry_candidate_lost": 6,
+      "geometry_candidate_gained": 9,
+      "geometry_candidate_both": 153,
+      "geometry_candidate_neither": 19,
+      "both_first_rank_B_worse": 48,
+      "both_first_rank_B_better": 52,
+      "both_first_rank_equal": 53,
+      "median_first_rank_delta": 0.0,
+      "median_first_global_rank_delta": 6.0,
+      "qualified_candidate_falls_outside_top100": 5,
+      "qualified_candidate_enters_top100": 4,
+      "global_rank_worsens_despite_nonworse_best_iou": 27,
+      "A_candidate_exists_but_COCO_unmatched": 0,
+      "B_candidate_exists_but_COCO_unmatched": 0
+    },
+    "75": {
+      "geometry_candidate_lost": 23,
+      "geometry_candidate_gained": 14,
+      "geometry_candidate_both": 85,
+      "geometry_candidate_neither": 65,
+      "both_first_rank_B_worse": 22,
+      "both_first_rank_B_better": 26,
+      "both_first_rank_equal": 37,
+      "median_first_rank_delta": 0.0,
+      "median_first_global_rank_delta": 2.0,
+      "qualified_candidate_falls_outside_top100": 2,
+      "qualified_candidate_enters_top100": 4,
+      "global_rank_worsens_despite_nonworse_best_iou": 14,
+      "A_candidate_exists_but_COCO_unmatched": 0,
+      "B_candidate_exists_but_COCO_unmatched": 0
+    }
+  },
+  "selected_images": [
+    {
+      "image_id": 736,
+      "file_name": "7463_F3_f000201.jpg",
+      "group": "7463_F3",
+      "GT": 1,
+      "A_AP100": 0.22777777777777777,
+      "B_AP100": 0.8999999999999999,
+      "delta_AP100": 0.6722222222222222,
+      "selection": "improvement"
+    },
+    {
+      "image_id": 737,
+      "file_name": "7463_F3_f000202.jpg",
+      "group": "7463_F3",
+      "GT": 1,
+      "A_AP100": 0.16000000000000003,
+      "B_AP100": 0.7999999999999999,
+      "delta_AP100": 0.6399999999999999,
+      "selection": "improvement"
+    },
+    {
+      "image_id": 1149,
+      "file_name": "7117_Caranx_sexfasciatus_juvenile_f000375.jpg",
+      "group": "7117_Caranx_sexfasciatus_juvenile",
+      "GT": 9,
+      "A_AP100": 0.3133853769992384,
+      "B_AP100": 0.1426097836050737,
+      "delta_AP100": -0.1707755933941647,
+      "selection": "regression"
+    },
+    {
+      "image_id": 1479,
+      "file_name": "7398_F5_f000252.jpg",
+      "group": "7398_F5",
+      "GT": 2,
+      "A_AP100": 0.6625742574257425,
+      "B_AP100": 0.5058050447901933,
+      "delta_AP100": -0.15676921263554922,
+      "selection": "regression"
+    },
+    {
+      "image_id": 743,
+      "file_name": "7463_F3_f000209.jpg",
+      "group": "7463_F3",
+      "GT": 1,
+      "A_AP100": 0.8999999999999999,
+      "B_AP100": 0.8999999999999999,
+      "delta_AP100": 0.0,
+      "selection": "unchanged"
+    },
+    {
+      "image_id": 1481,
+      "file_name": "7398_F5_f000262.jpg",
+      "group": "7398_F5",
+      "GT": 2,
+      "A_AP100": 0.45445544554455436,
+      "B_AP100": 0.45445544554455436,
+      "delta_AP100": 0.0,
+      "selection": "unchanged"
+    }
+  ],
+  "median_GT_best_iou_delta": -0.005098837666348666,
+  "mean_GT_best_iou_delta": 0.005455533788424128,
+  "spatial_pairs_same_GT_both_IoU50": {
+    "pairs": 1811,
+    "median_delta_gt_iou": -0.0016567389809077904,
+    "median_delta_score": -0.0006719534867443144,
+    "median_delta_rank": 10.0,
+    "note": "Prediction-level duplicates are not independent observations."
+  },
+  "existing_annotation_overhangs_retained": [
+    {
+      "gt_id": 4195,
+      "image_id": 1236,
+      "bbox": [
+        1867.5,
+        117.5,
+        53.0,
+        117.0
+      ],
+      "area": 6201.0,
+      "right_overhang": 0.5,
+      "bottom_overhang": 0
+    },
+    {
+      "gt_id": 4660,
+      "image_id": 1302,
+      "bbox": [
+        1779.5,
+        85.5,
+        141.0,
+        83.0
+      ],
+      "area": 11703.0,
+      "right_overhang": 0.5,
+      "bottom_overhang": 0
+    }
+  ]
+}

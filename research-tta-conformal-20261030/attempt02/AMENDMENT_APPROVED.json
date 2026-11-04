@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-10-30T18:39:39.340240+00:00",
+  "status": "APPROVED_SINGLE_INFRASTRUCTURE_RECOVERY",
+  "original_protocol_sha256": "28a8f92ca9fdd76cbcebe4998e9ff55f259f5e774a29dca190232f2eb5587f0b",
+  "original_lock_sha256": "b25d20942cd32041a922eff50502e171253474fcb002968326478a9e7dcb690e",
+  "scientific_changes": [],
+  "operational_changes": [
+    "foreground five-epoch chunks",
+    "full durable checkpoint at epoch0 and each5epochs",
+    "512-image durable logits shards",
+    "explicit remote commit and local readback acknowledgement"
+  ],
+  "formal_training_steps_both_attempts_max": 50080,
+  "formal_exposures_both_attempts_max": 6400000,
+  "additional_acceptance_updates_both_attempts_max": 400,
+  "additional_acceptance_exposures_both_attempts_max": 51200,
+  "inference_views_both_attempts_conservative_max": 410240,
+  "original_time_CU_storage_and_scientific_gates_unchanged": true,
+  "design_sha256": "8f4fda94002e2bb56e7a8effd75e3d2e9c7c54a750629a3c954b437d568db884",
+  "attempt_selection": "cancel retry if fully verified first result recovered before new attempt; otherwise only attempt02_designated for science regardless of later recovery",
+  "unknown_first_attempt_tail_charged_as_full": true,
+  "approved_registered_utc": "2026-10-30T18:54:16.502821+00:00",
+  "approval_source": "Parent delegation: 主线审定：允许登记并执行这一次基础设施恢复，不是新科学实验。",
+  "only_one_additional_GPU_allocation_authorized": true,
+  "original_pending_sha256": "198e4efcf8ec32c257580c38f2e672e7fb0c1c7edccc286fcca3b4966efb2cbc",
+  "hard_budgets": {
+    "cumulative_GPU_minutes": 120,
+    "cumulative_CU": 6,
+    "continuous_wall_hours": 6,
+    "wall_deadline_utc": "2026-10-30T23:53:27.151378Z",
+    "additional_storage_GiB": 2,
+    "performance_gate_cumulative_GPU_minutes": 90
+  },
+  "acceptance": "Local CPU serialization, then real remote100+50 reference and locally retrieved/uploaded100+50 replay, total200 new updates; full state and all50 losses bitwise equal. Discard acceptance weights.",
+  "resume_boundary": "Formal commits only epoch boundaries; no DataLoader workers. Preserve original on-GPU randperm/augmentation RNG; restore full RNG after model/optimizer construction before next original epoch loop.",
+  "first_attempt_unknown_tail": "Known formal23475 steps minimum, unknown tail charged formal25040; first inference up to205120 views; preserve all prior ledgers."
+}

@@ -1,0 +1,69 @@
+from torch import nn
+from typing import Optional, Union, Callable, Dict, Any
+import copy
+from src.config.run_config import RunConfig
+from src.config.dataloader_config import DataloaderConfig
+from src.config.model_config import ModelConfig
+from src.config.loss_config import LossConfig
+from src.config.optimizer_config import OptimizerConfig
+from src.config.scheduler_config import SchedulerConfig
+from src.config.invariance_config import InvarianceConfig
+
+
+def _is_config_object(obj: Any) -> bool:
+    return hasattr(obj, '__dict__') and not isinstance(obj, dict)
+
+
+def _apply_overrides(obj: Any, overrides: Dict[str, Any]) -> Any:
+    if obj is None:
+        return None
+
+    new_obj = copy.deepcopy(obj)
+
+    for key, value in overrides.items():
+        if not hasattr(new_obj, key):
+            raise AttributeError(f"Object {type(new_obj).__name__} has no attribute '{key}'")
+
+        current_val = getattr(new_obj, key)
+
+        if isinstance(value, dict) and _is_config_object(current_val):
+            # Recursively apply overrides to nested config objects
+            setattr(new_obj, key, _apply_overrides(current_val, value))
+        else:
+            # Direct replacement for everything else
+            setattr(new_obj, key, value)
+
+    return new_obj
+
+
+class TrainConfig:
+    def __init__(self, 
+                 run_config: RunConfig, 
+                 trainloader_config: DataloaderConfig,
+                 testloader_config: DataloaderConfig,
+                 features_config: Optional[Union[nn.Module, ModelConfig]],
+                 encoder_config: Union[nn.Module, ModelConfig],
+                 decoder_config: Optional[Union[nn.Module, ModelConfig]],
+                 augmentations: Optional[Dict[str, Callable]], 
+                 loss_config: LossConfig, 
+                 optimizer_config: OptimizerConfig, 
+                 scheduler_config: Optional[SchedulerConfig], 
+                 invariance_config: Optional[InvarianceConfig]):
+        
+        self.run_config = run_config
+        self.trainloader_config = trainloader_config
+        self.testloader_config = testloader_config
+        self.features_config = features_config
+        self.encoder_config = encoder_config
+        self.decoder_config = decoder_config
+        self.augmentations = augmentations
+        self.loss_config = loss_config
+        self.optimizer_config = optimizer_config
+        self.scheduler_config = scheduler_config
+        self.invariance_config = invariance_config
+
+    def with_overrides(self, overrides: Dict[str, Any]) -> 'TrainConfig':
+        """
+        Create a new TrainConfig with specified overrides applied. Supports nested overrides for sub-configs.
+        """
+        return _apply_overrides(self, overrides)

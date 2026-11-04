@@ -1,0 +1,110 @@
+{
+  "CV": {
+    "fold_assignment": "per-class rank mod4, consistent B8 subset B16",
+    "folds": 4,
+    "selection": "pooled correct count over all original out-of-fold predictions",
+    "tie_order": [
+      "clean",
+      "weak",
+      "ra"
+    ],
+    "validation_input": "clean original once"
+  },
+  "augmentation_seed": "SHA256(salt|geometry or randaugment|decoded RGB SHA256|view0..3), first64bits masked to63; CPU Torch fork_rng",
+  "clean": "PIL RGB; bicubic resize shorter256; center crop224",
+  "clean_view_compression": "four identical clean views represented by one encoder feature then exactly replicated for ridge",
+  "cpu_threads": 4,
+  "deadline_epoch": 1793600400.0,
+  "device": "cpu",
+  "diagnostic": "CV ranking vs mean four fold-model query accuracy vs full-fit query ranking, same tie order; not pure causal decomposition",
+  "dtype_encoder": "float32",
+  "dtype_ridge_scores": "float64",
+  "encoder": "facebook/dinov2-small",
+  "encoder_config_sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+  "encoder_processor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+  "encoder_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+  "encoder_weight_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "expected_fits": 360,
+  "expected_selections": 24,
+  "feature": "final layernorm CLS384, per-view unit L2",
+  "frozen_utc": "2026-11-02T04:29:47.767865+00:00",
+  "identities_sha256": "28d7cab4d55b0811378953efb8ef35b4b321256e36cd933062be9d4769e2b084",
+  "interop_threads": 1,
+  "limits": [
+    "exploratory reused data",
+    "correlated query land patches and overlapping supports; no independent-scene or independence claim",
+    "fixed ridge and 4 Monte Carlo views only",
+    "no thresholds demanding 1 or2pp; no effect-based stopping",
+    "not CLAP/FroFA reproduction or novel theory"
+  ],
+  "mandatory": "all fixed strategies, both budgets, every episode; harmful frequency separately vs weak/RA; posthoc best regret only diagnostic",
+  "max_artifact_bytes": 524288000,
+  "max_rss_bytes": 12884901888,
+  "new_download_install_upload_CU": 0,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "policies": [
+    "clean",
+    "weak",
+    "ra"
+  ],
+  "previous_manifest_sha256": "0b4700a0311be08335ce2a55959dfea1a707c0493bc7fdf788e4b5df0dc48d73",
+  "primary_metrics": [
+    "selected minus weak full-fit query accuracy",
+    "selected minus RA full-fit query accuracy"
+  ],
+  "query_default_per_class": 100,
+  "query_gate": "all 360 heads and 24 CV choices sealed before query extraction/evaluation",
+  "query_reduction_before_any_utility_only": [
+    100,
+    50,
+    25
+  ],
+  "ra": {
+    "after": "same weak geometry per identity/view",
+    "bins": 31,
+    "fill_RGB": [
+      124,
+      116,
+      104
+    ],
+    "interpolation": "bilinear",
+    "magnitude": 9,
+    "num_ops": 2
+  },
+  "ridge": {
+    "intercept": "unpenalized train-only weighted centering",
+    "lambda": 0.001,
+    "objective": "mean_original mean_view squared residual + lambda Frobenius squared W",
+    "original_total_weight": "1/N irrespective of view count",
+    "targets": "onehot10"
+  },
+  "salt": "augmentation-selection-eurosat-dinov2-20261102-v1",
+  "status": "FROZEN_BEFORE_MODEL_UTILITY",
+  "task_start_utc": "2026-11-02T04:20:00+00:00",
+  "views_per_original": 4,
+  "weak": {
+    "RRC_size": 224,
+    "horizontal_flip_probability": 0.5,
+    "interpolation": "bicubic",
+    "ratio": [
+      0.75,
+      1.3333333333333333
+    ],
+    "scale": [
+      0.5,
+      1.0
+    ]
+  },
+  "zip_sha256": "b4f5b234ecb7d7ff9c6cddb046543b4717c53fd6e9815be6c0e80cc614f51b90"
+}

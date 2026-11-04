@@ -1,0 +1,30 @@
+2541: class NoisySegment:
+2542:     def __init__(self, alpha_sigma_list=None, prob=0.5):
+2543:         if not alpha_sigma_list:
+2544:             alpha_sigma_list = [(alpha, sigma) for alpha in [1, 15, 30, 50, 100]
+2545:                                  for sigma in [3, 5, 10]]
+2546:         self.alpha_sigma_list = alpha_sigma_list
+2547:         self.prob = prob
+2548: 
+2549:     def __call__(self, results):
+2550:         if np.random.rand() > self.prob:
+2551:             return results
+2552:         segment = results['gt_seg_map']
+2553:         noisy_segment = self.transform(segment)
+2554:         results['gt_seg_map'] = noisy_segment
+2555:         return results
+2556: 
+2557:     def transform(self, segment, random_state=None):
+2558:         if random_state is None:
+2559:             random_state = np.random.RandomState(None)
+2560:         alpha, sigma = self.alpha_sigma_list[random_state.randint(0, len(self.alpha_sigma_list))]
+2561:         shape = segment.shape[:2]
+2562:         dx = alpha * (2 * random_state.rand(*shape) - 1)
+2563:         dy = alpha * (2 * random_state.rand(*shape) - 1)
+2564:         dx = cv2.GaussianBlur(dx, (0, 0), sigma)
+2565:         dy = cv2.GaussianBlur(dy, (0, 0), sigma)
+2566:         x, y = np.meshgrid(np.arange(shape[1]), np.arange(shape[0]))
+2567:         map_x = np.clip(x + dx, 0, shape[1] - 1).astype(np.float32)
+2568:         map_y = np.clip(y + dy, 0, shape[0] - 1).astype(np.float32)
+2569:         noisy_segment = cv2.remap(segment, map_x, map_y, interpolation=cv2.INTER_NEAREST)
+2570:         return noisy_segment

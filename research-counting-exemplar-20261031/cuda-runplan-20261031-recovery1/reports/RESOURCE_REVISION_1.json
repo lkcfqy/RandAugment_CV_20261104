@@ -1,0 +1,309 @@
+{
+  "CPU_timeout_audit": {
+    "CPU_C_started_no_return": true,
+    "CPU_F_root_shape": [
+      1,
+      3,
+      800,
+      1333
+    ],
+    "CPU_V_attempted": false,
+    "CPU_process_busy_vs_wait_fraction": "NOT_RECORDED",
+    "CUDA_forward_attempts": 0,
+    "OMP_MKL_and_other_thread_environment": "NOT_RECORDED",
+    "actual_torch_thread_getters": "NOT_RECORDED; frozen worker executed setters 2/1 before successful CPU F",
+    "affinity_and_cgroup_quota": "NOT_RECORDED",
+    "event_timeline": [
+      {
+        "compute_used_seconds": 77.12562120400707,
+        "path": "engineering/status.json",
+        "status": "RUNNING",
+        "worker_wall_seconds": 0.000434727000026669
+      },
+      {
+        "compute_used_seconds": 110.47088283500693,
+        "index": 1,
+        "label": "cpu_F",
+        "path": "attempts/0001.json",
+        "phase": "precheck",
+        "status": "STARTED"
+      },
+      {
+        "complete_query_seconds": 80.32887741200005,
+        "compute_used_seconds": 190.8038195950071,
+        "index": 1,
+        "label": "cpu_F",
+        "path": "attempts/0001.json",
+        "phase": "precheck",
+        "status": "COMPLETE"
+      },
+      {
+        "compute_used_seconds": 190.90979090900692,
+        "path": "engineering/status.json",
+        "status": "RUNNING",
+        "worker_wall_seconds": 113.78460651399996
+      },
+      {
+        "compute_used_seconds": 191.05293514400682,
+        "path": "engineering/status.json",
+        "status": "RUNNING",
+        "worker_wall_seconds": 113.92774837800005
+      },
+      {
+        "compute_used_seconds": 191.19209370900694,
+        "index": 2,
+        "label": "cpu_C",
+        "path": "attempts/0002.json",
+        "phase": "precheck",
+        "status": "STARTED"
+      }
+    ],
+    "extra_reference_hash_and_evidence_seconds": 0.2531813759999295,
+    "first_run_CPU_F_before_reference_hash_and_first_evidence_seconds": 80.32887741200005,
+    "first_run_CPU_F_full_seconds": 80.58205878799998,
+    "first_worker_checkpoint_to_F_start_seconds": 33.34526163099986,
+    "fixed_policy": "2 intra-op / 1 inter-op unchanged; next run logs getters, os.cpu_count, affinity, cgroup quotas and whitelisted thread environment without tuning",
+    "install_seconds_outside_CPU_F": 11.64921314899999,
+    "model_forward_on_CPU_confirmed": true,
+    "model_only_CPU_seconds": "NOT_RECORDED",
+    "oversubscription_evidence": "NONE; no CPU-thread performance comparison was made",
+    "projection_is_measurement_of_C_or_V": false,
+    "rough_3_F_plus_loader_projection_seconds": 275.0914379949998,
+    "vCPU_count": "NOT_RECORDED; released VM cannot be queried",
+    "weight_download_seconds_outside_CPU_F": 20.502692109999998
+  },
+  "authorization_enabled": false,
+  "bundle": {
+    "bytes": 100871335,
+    "parts": [
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-000.bin",
+        "sha256": "525a67049ace250b5828897f794dc7c7bb4c9be4e4d0e441b3ec7f7ef685c2b6"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-001.bin",
+        "sha256": "ce5280271c6a07d11c00a8defd91b8453c34364cdc768f88c9edcef0ea374b84"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-002.bin",
+        "sha256": "a98fc1b5471810340de1e65ca63db142054f96fa96bfc7acaf9603038b9ba6a4"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-003.bin",
+        "sha256": "b4b63e8cc7dd6dc5024dfc404fd845e33f10de44f366f3e5294edf73a2c42a8c"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-004.bin",
+        "sha256": "ab94d30c64df0e372bc734b2c4e31ee7513bfa9078c20e584ef0de723d88d9ec"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-005.bin",
+        "sha256": "acc76b0bbd731741850bf340f7683371615e5500328c53de7aa8cb82fe079197"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-006.bin",
+        "sha256": "7f2f398f82cf971ac9384975f605d62afc684911ce05fd0c4c792e28f01f5289"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-007.bin",
+        "sha256": "a9a23d1b58c092e8ba682eba834a356dcec87c44db665c1f16e34b3a0fc60e7d"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-008.bin",
+        "sha256": "43f014443b4bb0569087c21765183dd6a576b491f241e6a4668c2509b527ad14"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-009.bin",
+        "sha256": "0a4f63a70bb356d75fae1139f79a60e0161fee70de6a72432fb2ce3c4b64037b"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-010.bin",
+        "sha256": "38e76893a777392ac25986385a46ac0b41f1ccf3fc9e550d4c4fa8197c0f8fe4"
+      },
+      {
+        "bytes": 8388608,
+        "path": "bundle/part-011.bin",
+        "sha256": "f7b39208b813b87aa629e94afddb710b3228d20a77e7b7f9d9e03032aa4c31c3"
+      },
+      {
+        "bytes": 208039,
+        "path": "bundle/part-012.bin",
+        "sha256": "246e9becd6c3d1ec5696ec6f577e7539911f6a74e78cebc3319170f584309c3b"
+      }
+    ],
+    "path": "bundle/payload.tar.gz",
+    "sha256": "4512328d1a5ab63d2bb9465aeae1741bd6989ddd97d6683740619d023aec4efd"
+  },
+  "bundle_delta_bytes": 1686,
+  "changed_frozen_files": [
+    "build_package.py",
+    "bundle/part-000.bin",
+    "bundle/part-001.bin",
+    "bundle/part-002.bin",
+    "bundle/part-003.bin",
+    "bundle/part-004.bin",
+    "bundle/part-005.bin",
+    "bundle/part-006.bin",
+    "bundle/part-007.bin",
+    "bundle/part-008.bin",
+    "bundle/part-009.bin",
+    "bundle/part-010.bin",
+    "bundle/part-011.bin",
+    "bundle/part-012.bin",
+    "bundle/payload.tar.gz",
+    "payload/execution_contract.json",
+    "payload/package_files.json",
+    "payload/plan.json",
+    "payload/scripts/colab_guard.py",
+    "payload/scripts/contracts.py",
+    "payload/scripts/controller.py",
+    "payload/scripts/launch_template.py",
+    "payload/scripts/release_guard.py",
+    "payload/scripts/remote_runner.py",
+    "payload/scripts/worker.py",
+    "prepare_dependencies.py",
+    "tests/test_contracts.py",
+    "tests/test_controller.py",
+    "tests/test_watchdog.py",
+    "verify_package.py"
+  ],
+  "disk": {
+    "cap_bytes": 6442450944,
+    "first_remote_peak_owned_bytes": 1972317296,
+    "local_owned_bytes": 2468279642
+  },
+  "freeze_sha256": "dc6ce7deb6a8ba9a0f3ead691833ad734865a2e2be31d6b3f10602684277185e",
+  "frozen_files": 244,
+  "ledger": {
+    "CUDA_complete_query_max_needed_if_all_stage_caps_used_seconds": 0.9860909824369813,
+    "CUDA_migration_warmup_FCV_cap_seconds": 90,
+    "CUDA_throughput_still_unmeasured": true,
+    "finalization_reserve_seconds": 60,
+    "first_observed_rate_CU_hour": 1.15,
+    "forecast_CU_at_same_rate_with_prior_and_new_buffer": 1.05646,
+    "full_492_cost_gate": "used_including_all_prior_CPU_MPS_and_all_runtime_preparation + 0_extra_reload_or_warmup + 2*492*max(CUDA_F,C,V_complete_query_seconds) + 60 <= 1800",
+    "global_credit_cap_CU": 2,
+    "loading_snapshot_CPU_FCV_cap_seconds": 360,
+    "preparation_compute_cap_seconds": 60,
+    "prior_compute_seconds": 259.6864732820104,
+    "prior_credit_upper_CU": 0.14396,
+    "rate_must_be_read_after_new_allocation": true,
+    "release_reserve_seconds": 90,
+    "remaining_compute_seconds": 1540.3135267179896,
+    "remaining_credit_CU": 1.85604,
+    "second_allocation_limit_seconds": 2700,
+    "total_compute_cap_seconds": 1800
+  },
+  "new_GPU_API_attempts": 0,
+  "new_allocations": 0,
+  "new_model_forwards": 0,
+  "new_network_attempts": 0,
+  "new_root": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cuda-runplan-20261031-recovery1",
+  "new_run_directory_absent": true,
+  "new_training_steps": 0,
+  "new_uploads": 0,
+  "parser_correction": {
+    "consumer_paths": [
+      "controller snapshot",
+      "independent release watchdog snapshot"
+    ],
+    "diagnostics_preserved": "controller stdout.log; release_watchdog.log via printing complete merged subprocess output",
+    "frame": "CUCONTROL1:",
+    "live_service_retest_performed": false,
+    "unframed_or_malformed_or_duplicate_frames": "fail closed"
+  },
+  "payload_archive_file_count_including_manifest": 217,
+  "payload_changed_files": [
+    "execution_contract.json",
+    "plan.json",
+    "scripts/colab_guard.py",
+    "scripts/contracts.py",
+    "scripts/controller.py",
+    "scripts/launch_template.py",
+    "scripts/release_guard.py",
+    "scripts/remote_runner.py",
+    "scripts/worker.py"
+  ],
+  "payload_manifest_entries": 216,
+  "payload_roster_same": true,
+  "previous_claim_sha256": "eb25adcc94d66fcf3690069d306d552b52b58b6f96c5ff2b73bb4d25468d8118",
+  "previous_files_verified_unchanged": 320,
+  "previous_freeze_sha256": "915d27011f9f948150de676b08f5830d5811066b993fc500aad729f0f284849a",
+  "recorded_utc": "2026-10-31T07:03:09.765966+00:00",
+  "remaining_action": "Parent independent review and explicit GO matching the new freeze; do not allocate now.",
+  "scientific_status": "No real-data query has run. CPU timeout remains an infrastructure block, never a scientific negative. Recovery numerical equivalence and throughput are still unassessed.",
+  "status": "IMPLEMENTED_FROZEN_VERIFIED_PENDING_PARENT_REVIEW_AND_GO",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "run": 48,
+    "successful": true
+  },
+  "transfer": {
+    "cap_bytes": 5368709120,
+    "carry_including_control_allowance_bytes": 3121965844,
+    "downloads_performed_this_revision": 0,
+    "forecast_bytes": 5337088980,
+    "known_or_reconstructed_components": {
+      "first_bundle_encoded_JSON_body_bytes_reconstructed": 134494652,
+      "first_merged_stdout_bytes": 75990,
+      "first_official_weight_bytes": 1378009960,
+      "first_supplemental_file_base64_bytes_upper": 3684,
+      "pre_first_allocation_asset_payload_bytes": 1608332982
+    },
+    "known_payload_bytes": 3120917268,
+    "margin_bytes": 31620140,
+    "minimum_assets_and_two_weight_copies_ignoring_all_packages_and_returns": 4364352902,
+    "no_new_private_file_paths_or_credentials": true,
+    "old_cap_bytes": 3758096384,
+    "return_reserve_components": {
+      "control_envelope_allowance": 1048576,
+      "stdout_existing_cap": 268435456,
+      "supplemental_base64_upper": 357913944,
+      "supplemental_raw_files_existing_cap": 268435456
+    },
+    "scope": "Application payload accounting, with conservative base64/JSON reconstruction and explicit unmeasured control allowance; not a packet capture and excludes unmeasured TLS/TCP headers. Unused previous reserves are not carried as actual downloads.",
+    "second_bundle_encoded_transfer_reserve_bytes": 209715200,
+    "second_official_weights_bytes": 1378009960,
+    "second_return_reserve_bytes": 627397976,
+    "unmeasured_first_control_envelope_allowance_bytes": 1048576
+  },
+  "unchanged_scientific_identities": {
+    "fixture/manifest.json": "e0367df56f4d333f08b19fb90ed106b883d88e66e7b68efb2097541d600415b1",
+    "fixture/texture.rgb": "311764e9a1f62545d97d904d0ecd377049a19645a87c478a1af68d8b7a15e87b",
+    "manifests/model_identity.json": "cb0818961e6242ee6a6af55934feb57cf5240c328f1a4aa3d749c91627d3ba47",
+    "manifests/science_files.json": "141caf0924520d9ec2e203e54c4908705c347bbe218a26144623b9f4ec7f9aba",
+    "science/labels_frozen.json": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+    "science/queries_frozen.json": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+    "science/selection_frozen.json": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+    "scripts/hooks.py": "6eeab19d59f75699912026ba06c40be9c3062be51eae773f2ca441128cac68b7",
+    "scripts/metrics.py": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+    "scripts/model_io.py": "f829a026ec00acb472962f6a82f883c1f82cab052fd40bd5aa8b6c56d5017775",
+    "scripts/numerics.py": "7be5f07f4bbf8c0080a96d275b3c2c44321b4914e353e2ab5a5f149e8f0664d3"
+  },
+  "verification_counters": {
+    "GPU_API_attempts": 0,
+    "module_forward_attempts": 0,
+    "network_attempts": 0,
+    "pickle_attempts": 0
+  },
+  "verified_inputs": {
+    "all_pairs": 47,
+    "eligible_images_hashed": 82,
+    "eligible_pairs": 41,
+    "images_decoded": 0,
+    "query_contracts": 492,
+    "truth_bound_to_labels": true
+  }
+}

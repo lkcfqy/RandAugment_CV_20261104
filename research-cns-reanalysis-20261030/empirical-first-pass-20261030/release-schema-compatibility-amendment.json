@@ -1,0 +1,33 @@
+{
+  "recorded_utc": "2026-10-30T11:20:14.941592+00:00",
+  "stage": "after_release_schema_inspection_before_outcome_statistics",
+  "change": "Explicit opt-in mapping of prediction .png basename to annotation .jpg with exactly equal stem, class folder, shift, class ID, seed, scale",
+  "reason": "All 60,456 selected prediction rows use .png while all corresponding annotation paths use .jpg. Strict adapter correctly stopped.",
+  "checks": {
+    "resnet18.a1_in1k": {
+      "rows": 30228,
+      "unknown_keys": 0,
+      "class_or_stem_mismatches": 0,
+      "prediction_annotation_extension_pairs": [
+        [
+          ".png",
+          ".jpg"
+        ]
+      ]
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "rows": 30228,
+      "unknown_keys": 0,
+      "class_or_stem_mismatches": 0,
+      "prediction_annotation_extension_pairs": [
+        [
+          ".png",
+          ".jpg"
+        ]
+      ]
+    }
+  },
+  "endpoints_cohorts_models_shifts_thresholds_unchanged": true,
+  "image_byte_identity_established": false,
+  "scope": "logical key/stem match only; not proof that prediction and released image bytes are equal"
+}

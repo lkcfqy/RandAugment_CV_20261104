@@ -1,0 +1,268 @@
+--- prior/tests/test_contracts.py
++++ resume25/tests/test_contracts.py
+@@ -13,7 +13,7 @@
+   ctx=self.context();ctx.pop('cu_per_hour_upper_bound')
+   with self.assertRaises(c.ResourceUndetermined):c.validate_context(ctx,1100)
+  def test_preparation_is_charged_from_allocation_start(self):
+-  b=c.validate_context(self.context(),1100);self.assertEqual(b['hard_deadline_epoch'],4600);self.assertEqual(b['work_remaining_seconds'],3320)
++  b=c.validate_context(self.context(),1100);self.assertEqual(b['hard_deadline_epoch'],5500);self.assertEqual(b['work_remaining_seconds'],4220)
+  def test_slow_cu_rate_still_caps_two_gpu_hours(self):
+   ctx=self.context();ctx['cu_per_hour_upper_bound']=.25;self.assertEqual(c.validate_context(ctx,1100)['hard_deadline_epoch'],8200)
+  def test_unverified_persistence_or_release_blocks(self):
+@@ -21,7 +21,7 @@
+    ctx=self.context();ctx[key]=False
+    with self.assertRaises(c.ResourceUndetermined):c.validate_context(ctx,1100)
+  def test_expired_budget_rejected(self):
+-  with self.assertRaises(c.ResourceUndetermined):c.validate_context(self.context(),4500)
++  with self.assertRaises(c.ResourceUndetermined):c.validate_context(self.context(),5400)
+  def test_u_frozen_from_timing_only_before_metrics(self):
+   self.assertEqual(c.choose_updates(self.timings(),2000)['updates'],200)
+   self.assertEqual(c.choose_updates(self.timings(),700)['updates'],50)
+--- prior/tests/test_repeat.py
++++ resume25/tests/test_repeat.py
+@@ -17,9 +17,8 @@
+   for s in [20261031,20261102,True]:
+    with self.assertRaises(c.ContractError):c.repeat_training_seed({'randomness':{'seed':s}})
+  def test_complete_cost_carries_previous_spend_and_rejects_fast_rate(self):
+-  self.assertTrue(hasattr(c,'require_complete_repeat_budget'),'full-cost gate absent')
+-  r=c.require_complete_repeat_budget(1.1001052667892774,3225.2735856513978,1.15,20)
+-  self.assertGreater(r['remaining_seconds'],2797);self.assertLess(r['remaining_seconds'],2798)
+-  with self.assertRaises(c.ResourceUndetermined):c.require_complete_repeat_budget(1.1001052667892774,3225.2735856513978,1.5,20)
+-  with self.assertRaises(c.ResourceUndetermined):c.require_complete_repeat_budget(1.1001052667892774,7100,1.15,20)
++  r=c.complete_repeat_budget(1.1001052667892774,3225.2735856513978,1.15,20,2354867.827203123)
++  self.assertEqual(r['status'],'FITS');self.assertAlmostEqual(r['remaining_seconds'],3954.726414348602)
++  self.assertEqual(c.complete_repeat_budget(1.1001052667892774,3225.2735856513978,1.8,20,2354867.827203123)['status'],'RESOURCE_UNDETERMINED')
++  self.assertEqual(c.complete_repeat_budget(1.1001052667892774,7100,1.15,20,2354867.827203123)['status'],'RESOURCE_UNDETERMINED')
+ if __name__=='__main__':unittest.main()
+--- prior/tests/test_lifecycle.py
++++ resume25/tests/test_lifecycle.py
+@@ -34,8 +34,8 @@
+  def test_expiry_deadline_must_match_verified_allocation_budget(self):
+   from contracts import ContractError
+   self.assertTrue(hasattr(l,'validate_expiry_context'),'bounded expiry contract missing')
+-  ctx=dict(authorization={'upload':True,'model_run':True},allocation_started_epoch=1000,cu_per_hour_upper_bound=2,quote_verified=True,persistent_storage_verified=True,external_release_guard_verified=True,artifact_dir='/mnt/persistent/run',hard_deadline_monotonic=4000,work_deadline_monotonic=3820)
+-  self.assertEqual(l.validate_expiry_context(ctx,1100,500),4000)
++  ctx=dict(authorization={'upload':True,'model_run':True},allocation_started_epoch=1000,cu_per_hour_upper_bound=2,quote_verified=True,persistent_storage_verified=True,external_release_guard_verified=True,artifact_dir='/mnt/persistent/run',hard_deadline_monotonic=4900,work_deadline_monotonic=4720)
++  self.assertEqual(l.validate_expiry_context(ctx,1100,500),4900)
+   ctx['hard_deadline_monotonic']+=1e6
+   with self.assertRaises(ContractError):l.validate_expiry_context(ctx,1100,500)
+ if __name__=='__main__':unittest.main()
+--- prior/tests/test_recovery.py
++++ resume25/tests/test_recovery.py
+@@ -6,7 +6,7 @@
+ class Recovery(unittest.TestCase):
+  def context(self):return dict(authorization={'upload':True,'model_run':True},quote_verified=True,persistent_storage_verified=True,external_release_guard_verified=True,cu_per_hour_upper_bound=1.15,allocation_started_epoch=1000,artifact_dir='/content/outputs/run',persistence_mode='local_cli_sha256',persistence_probe={'bytes':8388608,'remote_sha256':'a'*64,'local_sha256':'a'*64,'download_bytes_per_second':2000000},prior_cu=.0569269504676395,prior_gpu_seconds=20.373)
+  def test_budget_never_resets_prior_cu_or_gpu_time(self):
+-  c=self.context();b=validate_context(c,1100);self.assertAlmostEqual(b['hard_deadline_epoch'],1000+(2-c['prior_cu'])*3600/1.15)
++  c=self.context();b=validate_context(c,1100);self.assertAlmostEqual(b['hard_deadline_epoch'],8179.627)
+  def test_ephemeral_directory_needs_actual_download_hash_receipt(self):
+   c=self.context();c['persistence_probe']['local_sha256']='b'*64
+   with self.assertRaises(ResourceUndetermined):validate_context(c,1100)
+--- prior/payload/README.md
++++ resume25/payload/README.md
+@@ -1,4 +1,6 @@
+ Authorized post-result exploratory repeat: training seed20261101 only; one additional A/B pair; formal U200 fixed. Original seed20261031 results already seen. Data-selection seed and all support/dev records remain unchanged. No seed20261102. Full final checkpoints persist before dev evaluation.
++
++Authorized resumption20261101: cumulative cap raised from2CU to2.5CU only. Carry1.2577442410187722CU/3718.752113674164GPU seconds; cumulative7200GPU seconds remains fixed. Earlier seed20261101 attempt had formal0/dev0. Resume from original weights and empty optimizers, never preflight state. Full checkpoints retained; no tensor-delta encoding. Current-allocation8MiB return bandwidth and live rate feed the same fixed-U component estimator before payload upload or dependency/model preparation. Preparation allowance554.525631070137seconds includes25percent over the previous measured cold preparation; elapsed preparation is subtracted once. Four initializations,1.5p90 update/inference factors,120seconds overhead and180seconds release reserve remain; checkpoint floor692175962bytes covers full files.
+ 
+ The historical r5 preparation notes below remain provenance; this repeat cannot select a smaller U.
+ 
+@@ -28,7 +30,7 @@
+ 
+ Before any future run, an external controller must obtain this experiment's explicit approval, verify the actual CU rate upper bound, record allocation start, arm an independent owned-session release watchdog and verify a public marker round trip through the official Colab CLI into atomically written, hash-checked local storage. It must reconcile actual usage and endpoint release afterward. The independent in-VM watchdog validates the same explicit authorization context and bounded deadline before importing Colab management. It and native unassign are additional fallbacks; their return never claims confirmed release. Content-addressed JSON stdout receipts and atomic fsync/readback preserve progress evidence. Remote /content is ephemeral. Every completed phase emits a complete hash/chunk index and waits for a local acknowledgment after all files are downloaded, atomically persisted and rehashed. Final checkpoints, logs and raw dev predictions are collected before release. Timeout or a missing receipt is reported as incomplete; it never makes ephemeral storage durable.
+ 
+-Both ceilings are charged from allocation start, including preparation, preflight, training, inference and finalization: at most 2 CU and 7200 allocated-GPU seconds. The hard deadline is allocation_start + min(7200 - prior_GPU_seconds, (2 - prior_CU) * 3600 / verified_CU_per_hour); work stops 180 seconds earlier. Unknown rate, persistence, release coverage or compatible environment blocks execution. These are the explicitly approved cumulative ceilings. Prior failed checks and CPU setup are included in the CU ledger; the earlier GPU allocation is included in the GPU-time ledger.
++Both ceilings are charged from allocation start, including preparation, preflight, training, inference and finalization: at most 2.5 CU and 7200 allocated-GPU seconds. The hard deadline is allocation_start + min(7200 - prior_GPU_seconds, (2.5 - prior_CU) * 3600 / verified_CU_per_hour); work stops 180 seconds earlier. Unknown rate, persistence, release coverage or compatible environment blocks execution. These are the explicitly approved cumulative ceilings. Prior failed checks and CPU setup are included in the CU ledger; the earlier GPU allocation is included in the GPU-time ledger.
+ 
+ The external runtime context is NOT shipped with approval. `run_context.example.json` is disabled and cannot run. After approval, resource verification and package SHA verification, the unique pending command in the extracted package directory is:
+ 
+--- prior/payload/contracts.py
++++ resume25/payload/contracts.py
+@@ -3,6 +3,10 @@
+ SUPPORT_IDS=(930,1892,1900,2244,2363)
+ U_CHOICES=(25,50,100,200)
+ RELEASE_RESERVE_SECONDS=180
++MAX_CU=2.5
++MAX_GPU_SECONDS=7200
++FULL_CHECKPOINT_BYTES=692175962
++PREPARATION_ALLOWANCE_SECONDS=554.525631070137
+ class ContractError(RuntimeError):pass
+ class NotAuthorized(ContractError):pass
+ class ResourceUndetermined(ContractError):pass
+@@ -23,10 +27,10 @@
+   if proof.get('remote_sha256')!=proof.get('local_sha256') or len(proof.get('local_sha256',''))!=64 or not positive(proof.get('bytes')) or not positive(proof.get('download_bytes_per_second')):raise ResourceUndetermined('Verified current-allocation local download probe required.')
+  elif path.startswith(('/tmp/','/content/outputs/')):raise ResourceUndetermined('A verified persistence transport is required for ephemeral staging.')
+  prior_cu=ctx.get('prior_cu',0);prior_gpu=ctx.get('prior_gpu_seconds',0)
+- if not isinstance(prior_cu,(int,float)) or not 0<=prior_cu<2 or not isinstance(prior_gpu,(int,float)) or not 0<=prior_gpu<7200:raise ResourceUndetermined('Cumulative resource ledger invalid')
+- hard=start+min(7200-prior_gpu,(2.0-prior_cu)*3600/rate);remaining=hard-now-RELEASE_RESERVE_SECONDS
++ if not isinstance(prior_cu,(int,float)) or not 0<=prior_cu<MAX_CU or not isinstance(prior_gpu,(int,float)) or not 0<=prior_gpu<MAX_GPU_SECONDS:raise ResourceUndetermined('Cumulative resource ledger invalid')
++ hard=start+min(MAX_GPU_SECONDS-prior_gpu,(MAX_CU-prior_cu)*3600/rate);remaining=hard-now-RELEASE_RESERVE_SECONDS
+  if remaining<=0:raise ResourceUndetermined('Resource budget exhausted, including finalization reserve.')
+- return dict(hard_deadline_epoch=hard,work_remaining_seconds=remaining,elapsed_allocated_seconds=now-start,estimated_cu_so_far=(now-start)*rate/3600,max_cu=2.0,max_allocated_seconds=7200)
++ return dict(hard_deadline_epoch=hard,work_remaining_seconds=remaining,elapsed_allocated_seconds=now-start,estimated_cu_so_far=(now-start)*rate/3600,max_cu=MAX_CU,max_allocated_seconds=MAX_GPU_SECONDS)
+ def choose_updates(timings,remaining_seconds):
+  fields={'init_seconds','p90_update_a','p90_update_b','p90_predict_seconds','checkpoint_bytes','write_bps'}
+  if set(timings)!=fields or not all(positive(v) for v in timings.values()) or not positive(remaining_seconds):raise ContractError('Only finite positive timing/cost fields may select U; no loss or metric inputs.')
+@@ -43,11 +47,16 @@
+  seed=config.get('randomness',{}).get('seed')
+  if type(seed) is not int or seed!=20261101:raise ContractError('Only the authorized repeat training seed20261101 is allowed.')
+  return seed
+-def require_complete_repeat_budget(prior_cu,prior_gpu,rate,elapsed):
+- if not all(isinstance(x,(int,float)) and not isinstance(x,bool) and math.isfinite(x) for x in (prior_cu,prior_gpu,rate,elapsed)) or not 0<=prior_cu<2 or not 0<=prior_gpu<7200 or rate<=0 or elapsed<0:raise ResourceUndetermined('Invalid live cumulative budget.')
+- remaining=min(7200-prior_gpu,(2-prior_cu)*3600/rate)-elapsed;required=2320.621211230755
+- if remaining<required:raise ResourceUndetermined('Complete fixed-U repeat including persistence and release reserve does not fit.')
+- return dict(required_seconds=required,remaining_seconds=remaining,live_rate=rate,prior_cu=prior_cu,prior_gpu_seconds=prior_gpu,paired_seed_count=1,seed=20261101,formal_U=200)
++def complete_repeat_budget(prior_cu,prior_gpu,rate,elapsed,download_bps):
++ if not all(isinstance(x,(int,float)) and not isinstance(x,bool) and math.isfinite(x) for x in (prior_cu,prior_gpu,rate,elapsed,download_bps)) or not 0<=prior_cu<MAX_CU or not 0<=prior_gpu<MAX_GPU_SECONDS or rate<=0 or elapsed<0 or download_bps<=0:raise ResourceUndetermined('Invalid live cumulative budget or measured bandwidth.')
++ # Same remaining-work estimator as the post-preflight U200 gate. Reference maxima
++ # come from the two existing T4 preflights; never from loss or dev performance.
++ timings=dict(init_seconds=2*20.244484609999972,p90_update_a=1.624973811000018,p90_update_b=1.6807091929999842,p90_predict_seconds=.4143788810000615,checkpoint_bytes=FULL_CHECKPOINT_BYTES,write_bps=download_bps)
++ remaining_work=choose_updates(timings,MAX_GPU_SECONDS)['estimates_seconds']['200']
++ preparation_remaining=max(0,PREPARATION_ALLOWANCE_SECONDS-elapsed)
++ remaining=min(MAX_GPU_SECONDS-prior_gpu,(MAX_CU-prior_cu)*3600/rate)-elapsed
++ required=preparation_remaining+remaining_work+RELEASE_RESERVE_SECONDS
++ return dict(status='FITS' if required<=remaining else 'RESOURCE_UNDETERMINED',required_seconds=required,remaining_seconds=remaining,margin_seconds=remaining-required,preparation_allowance_seconds=PREPARATION_ALLOWANCE_SECONDS,preparation_remaining_seconds=preparation_remaining,remaining_fixed_U_work_seconds=remaining_work,release_reserve_seconds=RELEASE_RESERVE_SECONDS,reference_rule_timings=timings,elapsed_seconds=elapsed,live_rate=rate,prior_cu=prior_cu,prior_gpu_seconds=prior_gpu,max_cu=MAX_CU,max_gpu_seconds=MAX_GPU_SECONDS,paired_seed_count=1,seed=20261101,formal_U=200)
+ def verify_exposures(ids,updates):
+  if not isinstance(updates,int) or updates<=0 or updates%5 or len(ids)!=updates or collections.Counter(ids)!={i:updates//5 for i in SUPPORT_IDS}:raise ContractError('Unequal or missing source exposures.')
+  return dict(updates=updates,per_image=updates//5,counts=dict(collections.Counter(ids)))
+--- prior/payload/driver.py
++++ resume25/payload/driver.py
+@@ -81,7 +81,8 @@
+   probes=[json.loads((out/('preflight_'+a+'.json')).read_text()) for a in 'AB']
+   verify_initializations(probes)
+   verify_paired_traces(*[json.loads((out/('preflight_'+a+'_trace.json')).read_text()) for a in 'AB'])
+-  timings=dict(init_seconds=max(p['init_seconds'] for p in probes),p90_update_a=probes[0]['p90_update_seconds'],p90_update_b=probes[1]['p90_update_seconds'],p90_predict_seconds=max(p['p90_predict_seconds'] for p in probes),checkpoint_bytes=max(p['state_tensor_bytes'] for p in probes),write_bps=write_bps)
++  from contracts import FULL_CHECKPOINT_BYTES
++  timings=dict(init_seconds=max(p['init_seconds'] for p in probes),p90_update_a=probes[0]['p90_update_seconds'],p90_update_b=probes[1]['p90_update_seconds'],p90_predict_seconds=max(p['p90_predict_seconds'] for p in probes),checkpoint_bytes=max(FULL_CHECKPOINT_BYTES,max(p['state_tensor_bytes'] for p in probes)),write_bps=write_bps)
+   # Four initializations remain: formal A/B, then fixed-final dev evaluation A/B.
+   timing_for_rule=dict(timings,init_seconds=2*timings['init_seconds'])
+   freeze=fixed_repeat_updates(timing_for_rule,work-time.monotonic());freeze.update(raw_timings=timings,rule_timings=timing_for_rule,initialization_count_remaining=4,preflight_state_reused=False,dev_metrics_seen=False)
+--- prior/gpu-run/controller.py
++++ resume25/gpu-run/controller.py
+@@ -4,7 +4,7 @@
+ from local_transport import bounded_stream
+ BASE=ROOT.parent
+ sys.path.insert(0,str(BASE/'payload'))
+-from contracts import require_complete_repeat_budget,ResourceUndetermined
++from contracts import complete_repeat_budget,ResourceUndetermined,MAX_CU,MAX_GPU_SECONDS
+ LOCAL_CPU_PYTHON='/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031/cpu-readiness/.venv/bin/python'
+ def sha(path):
+  h=hashlib.sha256()
+@@ -16,12 +16,12 @@
+  ledger=json.loads((BASE/'execution_ledger.json').read_text());assert ledger['CPU_gate_verified'] and ledger['previous_release_confirmed']
+  research=pathlib.Path(ledger['research_directory']);used=sum(p.stat().st_size for p in research.rglob('*') if p.is_file())
+  if used+2*1024**3>6*1024**3 or shutil.disk_usage(BASE).free<10*1024**3:raise RuntimeError('Full paired-result disk reserve unavailable')
+- if ledger['seed']!=20261101 or ledger['additional_paired_seed_count']!=1 or ledger['fixed_updates']!=200:raise RuntimeError('Repeat scope mismatch')
++ if ledger['seed']!=20261101 or ledger['additional_paired_seed_count']!=1 or ledger['fixed_updates']!=200 or ledger['max_cumulative_CU']!=MAX_CU or ledger['max_cumulative_GPU_seconds']!=MAX_GPU_SECONDS:raise RuntimeError('Repeat scope mismatch')
+  prior=ledger['prior_CU_upper'];prior_gpu=ledger['prior_GPU_seconds_upper'];start=time.time();before=snapshot();atomic(ROOT/'before.json',before)
+- if before['active_assignments'] or before['assignments'] or prior>=1.95:raise RuntimeError('Isolated remaining resource budget unavailable')
+- name='deepfish-repeat20261101-'+receipt['archive_sha256'][:10];remote='deepfish_repeat_'+receipt['archive_sha256'][:10]
++ if before['active_assignments'] or before['assignments'] or prior>=MAX_CU-.05:raise RuntimeError('Isolated remaining resource budget unavailable')
++ name='deepfish-resume25-20261101-'+receipt['archive_sha256'][:10];remote='deepfish_resume25_'+receipt['archive_sha256'][:10]
+  c={'authorization':{'upload':True,'model_run':True},'authorization_base_archive_sha256':'0fa965babadfaa83b9e7a83aadd81470fc76b566c118e7883ade3b0042ab2263','archive_sha256':receipt['archive_sha256'],'session':name,'allocation_started_epoch':start,'deadline_epoch':start+300,'absolute_limit_epoch':start+7200-prior_gpu,'prior_cu':prior,'prior_gpu_seconds':prior_gpu}
+- c.update(seed=20261101,additional_paired_seed_count=1,fixed_updates=200)
++ c.update(seed=20261101,additional_paired_seed_count=1,fixed_updates=200,max_cumulative_CU=MAX_CU,max_cumulative_GPU_seconds=MAX_GPU_SECONDS)
+  atomic(ROOT/'control.json',c);report={'status':'STARTING','seed':20261101,'additional_paired_seed_count':1,'post_result_exploratory_repeat':True,'prior_cu':prior,'prior_gpu_seconds':prior_gpu,'package_sha256':receipt['archive_sha256'],'allocation_attempts':0,'upload_bytes':0,'stage_receipts':[]};attempt=False;last_poll=0;max_rate=0;operation=0;stage_final_received=False
+  local=ROOT/'artifacts';local.mkdir(exist_ok=False)
+  def check_credit(force=False):
+@@ -32,9 +32,9 @@
+    report.setdefault('allocation_release_observed_epoch',s['observed_epoch']);return
+   a=json.loads((ROOT/'allocation_receipt.json').read_text()) if (ROOT/'allocation_receipt.json').exists() else None
+   if a is not None and (len(s['assignments'])!=1 or s['assignments'][0]['endpoint']!=a['endpoint'] or s['assignments'][0]['accelerator']!='T4'):raise RuntimeError('Single owned T4 attribution changed')
+-  if max_rate>0:c['deadline_epoch']=min(c['deadline_epoch'],start+min(7200-prior_gpu,(2-prior)*3600/max_rate));atomic(ROOT/'control.json',c)
++  if max_rate>0:c['deadline_epoch']=min(c['deadline_epoch'],start+min(MAX_GPU_SECONDS-prior_gpu,(MAX_CU-prior)*3600/max_rate));atomic(ROOT/'control.json',c)
+   spent=max(max_rate*(time.time()-start)/3600,max(0,before['balance']-s['balance']))
+-  if prior+spent>=1.98:raise TimeoutError('Cumulative credit boundary')
++  if prior+spent>=MAX_CU-.02:raise TimeoutError('Cumulative credit boundary')
+  def command(args,timeout,label,cleanup=False):
+   nonlocal operation
+   operation+=1;t=time.monotonic();log=ROOT/(str(operation).zfill(4)+'_'+label+'.log');lines=[]
+@@ -99,11 +99,14 @@
+   gs=json.loads((ROOT/'watchdog_state.json').read_text());os.kill(gs['pid'],0);assert time.time()-gs['heartbeat_epoch']<5
+   attempt=True;report['allocation_attempts']=1;command(['new','--gpu','T4','--session',name],120,'allocate')
+   allocated=snapshot();assert len(allocated['assignments'])==1 and allocated['assignments'][0]['accelerator']=='T4' and allocated['rate_per_hour']>0
+-  max_rate=allocated['rate_per_hour'];c['deadline_epoch']=start+min(7200-prior_gpu,(2-prior)*3600/max_rate);atomic(ROOT/'control.json',c);report['live_rate']=max_rate;atomic(ROOT/'allocated_usage.json',allocated)
+-  budget_gate=require_complete_repeat_budget(prior,prior_gpu,max_rate,time.time()-start);atomic(ROOT/'COMPLETE_COST_GATE.json',budget_gate)
++  max_rate=allocated['rate_per_hour'];c['deadline_epoch']=start+min(MAX_GPU_SECONDS-prior_gpu,(MAX_CU-prior)*3600/max_rate);atomic(ROOT/'control.json',c);report['live_rate']=max_rate;atomic(ROOT/'allocated_usage.json',allocated)
+   probe=ROOT/'remote_probe.py';probe.write_text("import pathlib,hashlib,json,os\np=pathlib.Path('/content/"+remote+"');p.mkdir(exist_ok=False);b=(b'DeepFish public non-sensitive persistence marker v1\\n'*200000)[:8388608];f=(p/'marker.bin').open('wb');f.write(b);f.flush();os.fsync(f.fileno());f.close();print('DEEPFISH_PROBE '+json.dumps({'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}))\n")
+   output=command(['exec','--session',name,'--file',str(probe),'--timeout','30'],45,'probe');report['upload_bytes']+=probe.stat().st_size;row=json.loads(next(x[len('DEEPFISH_PROBE '):] for x in output.splitlines() if x.startswith('DEEPFISH_PROBE ')))
+   t=time.monotonic();fetch_file('content/'+remote+'/marker.bin',ROOT/'marker.bin',row,'marker');bps=row['bytes']/(time.monotonic()-t);proof={'remote_sha256':row['sha256'],'local_sha256':sha(ROOT/'marker.bin'),'bytes':row['bytes'],'download_bytes_per_second':bps,'verified_epoch':time.time()};atomic(ROOT/'persistence_probe.json',proof)
++  check_credit(force=True)
++  budget_gate=complete_repeat_budget(prior,prior_gpu,max_rate,time.time()-start,bps);atomic(ROOT/'COMPLETE_COST_GATE.json',budget_gate)
++  print(json.dumps({'stage':'EARLY_FULL_COST_GATE','status':budget_gate['status'],'required_seconds':budget_gate['required_seconds'],'remaining_seconds':budget_gate['remaining_seconds'],'download_bytes_per_second':bps}),flush=True)
++  if budget_gate['status']!='FITS':raise ResourceUndetermined('Measured marker bandwidth and live rate cannot fit full U200 before dependency preparation.')
+   parts=[]
+   with archive.open('rb') as f:
+    for i in range(3):
+@@ -129,7 +132,7 @@
+ print('DEEPFISH_DRIVER_EXIT '+str(p.wait()),flush=True)
+ ''');report['upload_bytes']+=launcher.stat().st_size
+   if report['upload_bytes']>13*1024**2:raise ValueError('Input upload scope exceeded')
+-  print(json.dumps({'stage':'GPU_PACKAGE_UPLOADED_AND_PERSISTENCE_VERIFIED','rate':max_rate,'download_bytes_per_second':bps,'remaining_CU':2-prior}),flush=True)
++  print(json.dumps({'stage':'GPU_PACKAGE_UPLOADED_AND_PERSISTENCE_VERIFIED','rate':max_rate,'download_bytes_per_second':bps,'remaining_CU':MAX_CU-prior}),flush=True)
+   execution_log=ROOT/'execution.stdout.log'
+   def on_line(line):
+    with execution_log.open('a') as f:f.write(line);f.flush();os.fsync(f.fileno())
+@@ -161,7 +164,7 @@
+   if report['release'] in ('CONFIRMED','NOT_ALLOCATED'):atomic(ROOT/'RELEASE_CONFIRMED.json',{'release':report['release']})
+   try:final=snapshot();report['final_sessions_usage']=final
+   except Exception as error:report['final_sessions_usage_error']=type(error).__name__
+-  elapsed=max(0,report.get('allocation_release_observed_epoch',time.time())-start) if attempt else 0;report.update(allocation_wall_seconds_upper=elapsed,cumulative_GPU_seconds_upper=prior_gpu+elapsed,cumulative_CU_upper=prior+max(max_rate*elapsed/3600,max(0,before['balance']-report.get('final_sessions_usage',before)['balance'])),scientific_configuration_changed=True,scientific_changes=['training_seed20261031_to20261101'],fixed_U200=True)
++  elapsed=max(0,report.get('allocation_release_observed_epoch',time.time())-start) if attempt else 0;report.update(allocation_wall_seconds_upper=elapsed,cumulative_GPU_seconds_upper=prior_gpu+elapsed,cumulative_CU_upper=prior+max(max_rate*elapsed/3600,max(0,before['balance']-report.get('final_sessions_usage',before)['balance'])),max_cumulative_CU=MAX_CU,max_cumulative_GPU_seconds=MAX_GPU_SECONDS,scientific_configuration_changed=False,scientific_changes=[],seed_relative_to_original=20261101,prior_seed=20261031,budget_revision='cumulative2CU_to2.5CU; previous repeat scientific configuration unchanged',fixed_U200=True)
+   atomic(ROOT/'controller_report.json',report);print(json.dumps({k:report.get(k) for k in ['status','release','cumulative_CU_upper','cumulative_GPU_seconds_upper','error']}),flush=True)
+  return 0 if report['status']=='COMPLETE' and report['release']=='CONFIRMED' else 2
+ if __name__=='__main__':raise SystemExit(main())
+--- prior/gpu-run/external_watchdog.py
++++ resume25/gpu-run/external_watchdog.py
+@@ -35,6 +35,7 @@
+  p=argparse.ArgumentParser();p.add_argument('--parent-pid',type=int,required=True);a=p.parse_args();c=json.loads((ROOT/'control.json').read_text())
+  if c['authorization']!={'upload':True,'model_run':True} or c['authorization_base_archive_sha256']!='0fa965babadfaa83b9e7a83aadd81470fc76b566c118e7883ade3b0042ab2263':raise ValueError('Guard scope mismatch')
+  if c.get('seed')!=20261101 or c.get('additional_paired_seed_count')!=1 or c.get('fixed_updates')!=200:raise ValueError('Single fixed-seed repeat scope mismatch')
++ if c.get('max_cumulative_CU')!=2.5 or c.get('max_cumulative_GPU_seconds')!=7200:raise ValueError('Authorized cumulative resource cap mismatch')
+  if c['archive_sha256']!=json.loads((ROOT.parent/'reports/PACKAGE_RECEIPT.json').read_text())['archive_sha256']:raise ValueError('Current archive receipt mismatch')
+  before=snapshot();atomic(ROOT/'watchdog_state.json',{'status':'ARMED','pid':os.getpid(),'heartbeat_epoch':time.time(),'independent_snapshot':before,'deadline_epoch':c['deadline_epoch']})
+  while time.time()<c['absolute_limit_epoch']:
+--- /dev/null
++++ resume25/tests/test_budget25.py
+@@ -0,0 +1,41 @@
++"""Catches ledger resets, late bandwidth rejection and inconsistent cost formulas."""
++import pathlib,sys,unittest
++ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'payload'))
++import contracts as c
++
++class Budget25(unittest.TestCase):
++ def ctx(self):return dict(authorization={'model_run':True,'upload':True},allocation_started_epoch=1000,cu_per_hour_upper_bound=1.15,quote_verified=True,persistent_storage_verified=True,external_release_guard_verified=True,artifact_dir='/mnt/persistent/fixed_run',prior_cu=1.2577442410187722,prior_gpu_seconds=3718.752113674164)
++ def test_prior_seconds_remain_the_earlier_boundary_after_CU_extension(self):
++  b=c.validate_context(self.ctx(),1020)
++  self.assertAlmostEqual(b['hard_deadline_epoch'],4481.247886325836)
++  self.assertAlmostEqual(b['work_remaining_seconds'],3281.247886325836)
++ def test_approved_spend_over_two_is_not_rejected_or_reset(self):
++  ctx=self.ctx();ctx.update(prior_cu=2.1,prior_gpu_seconds=4000)
++  try:b=c.validate_context(ctx,1020)
++  except c.ResourceUndetermined as e:self.fail('New approved cumulative cap was not applied: '+str(e))
++  self.assertAlmostEqual(b['hard_deadline_epoch'],2252.173913043478)
++ def gate(self,bps,rate=1.15,elapsed=20):
++  self.assertTrue(hasattr(c,'complete_repeat_budget'),'early marker-based component cost gate missing')
++  return c.complete_repeat_budget(1.2577442410187722,3718.752113674164,rate,elapsed,bps)
++ def test_saved_good_bandwidth_fits_full_U_with_preparation_and_release(self):
++  r=self.gate(2354867.827203123)
++  self.assertEqual(r['status'],'FITS')
++  self.assertAlmostEqual(r['remaining_seconds'],3461.247886325836)
++  self.assertAlmostEqual(r['required_seconds'],3162.505627059545,places=5)
++  self.assertEqual(r['formal_U'],200)
++ def test_slow_marker_blocks_before_any_preparation(self):
++  r=self.gate(1500000)
++  self.assertEqual(r['status'],'RESOURCE_UNDETERMINED')
++  self.assertGreater(r['required_seconds'],r['remaining_seconds'])
++ def test_fast_charge_rate_blocks_even_when_GPU_time_is_left(self):
++  self.assertEqual(self.gate(2354867.827203123,rate=2)['status'],'RESOURCE_UNDETERMINED')
++ def test_elapsed_preparation_is_counted_once(self):
++  a=self.gate(2354867.827203123,elapsed=20);b=self.gate(2354867.827203123,elapsed=200)
++  self.assertAlmostEqual(a['required_seconds']-b['required_seconds'],180)
++  self.assertAlmostEqual(a['remaining_seconds']-b['remaining_seconds'],180)
++ def test_invalid_bandwidth_cannot_enter_cost_gate(self):
++  self.assertTrue(hasattr(c,'complete_repeat_budget'),'early marker-based component cost gate missing')
++  for bps in [0,-1,float('nan'),float('inf')]:
++   with self.assertRaises(c.ResourceUndetermined):c.complete_repeat_budget(1.2577442410187722,3718.752113674164,1.15,20,bps)
++
++if __name__=='__main__':unittest.main()

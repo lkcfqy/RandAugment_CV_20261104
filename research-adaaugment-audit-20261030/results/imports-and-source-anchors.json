@@ -1,0 +1,447 @@
+{
+  "imports": {
+    "config.py": [
+      {
+        "line": 1,
+        "text": "import argparse"
+      }
+    ],
+    "Dataset.py": [
+      {
+        "line": 1,
+        "text": "from torch.utils.data import Dataset"
+      },
+      {
+        "line": 2,
+        "text": "import os"
+      },
+      {
+        "line": 3,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 4,
+        "text": "import pickle"
+      },
+      {
+        "line": 5,
+        "text": "import torch"
+      },
+      {
+        "line": 6,
+        "text": "from organize_transform import make_transform, make_magnitude_transform"
+      }
+    ],
+    "train.py": [
+      {
+        "line": 1,
+        "text": "import os"
+      },
+      {
+        "line": 2,
+        "text": "import time"
+      },
+      {
+        "line": 3,
+        "text": "import yaml"
+      },
+      {
+        "line": 4,
+        "text": "import random"
+      },
+      {
+        "line": 5,
+        "text": "import torch"
+      },
+      {
+        "line": 6,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 7,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 8,
+        "text": "import torchvision.transforms as transforms"
+      },
+      {
+        "line": 10,
+        "text": "from A2C import A2C"
+      },
+      {
+        "line": 11,
+        "text": "from Network import *"
+      },
+      {
+        "line": 12,
+        "text": "from config import get_arg"
+      },
+      {
+        "line": 13,
+        "text": "from Dataset import CIFAR10, CIFAR100"
+      },
+      {
+        "line": 14,
+        "text": "from normalization import batch_Normalization"
+      },
+      {
+        "line": 16,
+        "text": "from torch import optim"
+      },
+      {
+        "line": 17,
+        "text": "from torch.utils.data import DataLoader"
+      },
+      {
+        "line": 18,
+        "text": "from tqdm import tqdm"
+      },
+      {
+        "line": 19,
+        "text": "from warmup_scheduler import GradualWarmupScheduler"
+      }
+    ],
+    "organize_transform.py": [
+      {
+        "line": 1,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 2,
+        "text": "import torchvision.transforms as transforms"
+      },
+      {
+        "line": 3,
+        "text": "from Network import *"
+      },
+      {
+        "line": 4,
+        "text": "from augmentation.cutout import Cutout"
+      },
+      {
+        "line": 5,
+        "text": "from augmentation import adaaugment, trivialaugment"
+      }
+    ],
+    "A2C.py": [
+      {
+        "line": 1,
+        "text": "import torch"
+      },
+      {
+        "line": 2,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 3,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 5,
+        "text": "from torch.distributions import Beta, Normal"
+      }
+    ],
+    "normalization.py": [
+      {
+        "line": 1,
+        "text": "from typing import Any"
+      },
+      {
+        "line": 2,
+        "text": "import math"
+      }
+    ],
+    "augmentation/trivialaugment.py": [
+      {
+        "line": 1,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 2,
+        "text": "import re"
+      },
+      {
+        "line": 3,
+        "text": "from PIL import ImageOps, ImageEnhance, ImageFilter, Image, ImageDraw"
+      },
+      {
+        "line": 4,
+        "text": "import random"
+      },
+      {
+        "line": 5,
+        "text": "from dataclasses import dataclass"
+      },
+      {
+        "line": 6,
+        "text": "from typing import Union"
+      }
+    ],
+    "augmentation/cutout.py": [
+      {
+        "line": 1,
+        "text": "import torch"
+      },
+      {
+        "line": 2,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 3,
+        "text": "import random"
+      },
+      {
+        "line": 4,
+        "text": "from PIL import Image"
+      }
+    ],
+    "augmentation/__init__.py": [
+      {
+        "line": 1,
+        "text": "from .cutout import *"
+      },
+      {
+        "line": 2,
+        "text": "from .autoaugment import *"
+      },
+      {
+        "line": 3,
+        "text": "from .ops import *"
+      }
+    ],
+    "augmentation/ops.py": [
+      {
+        "line": 1,
+        "text": "from PIL import Image, ImageEnhance, ImageOps"
+      },
+      {
+        "line": 2,
+        "text": "import random"
+      }
+    ],
+    "augmentation/adaaugment.py": [
+      {
+        "line": 1,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 2,
+        "text": "import re"
+      },
+      {
+        "line": 3,
+        "text": "from PIL import ImageOps, ImageEnhance, ImageFilter, Image, ImageDraw"
+      },
+      {
+        "line": 4,
+        "text": "import random"
+      },
+      {
+        "line": 5,
+        "text": "from dataclasses import dataclass"
+      },
+      {
+        "line": 6,
+        "text": "from typing import Union"
+      }
+    ],
+    "augmentation/autoaugment.py": [
+      {
+        "line": 1,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 2,
+        "text": "from augmentation.ops import *"
+      }
+    ],
+    "Network/VGG.py": [
+      {
+        "line": 1,
+        "text": "import torch"
+      },
+      {
+        "line": 2,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 3,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 4,
+        "text": "from torchvision import datasets"
+      }
+    ],
+    "Network/shake_pyramidnet.py": [
+      {
+        "line": 3,
+        "text": "import math"
+      },
+      {
+        "line": 5,
+        "text": "import torch"
+      },
+      {
+        "line": 6,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 7,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 8,
+        "text": "from torch.autograd import Variable"
+      },
+      {
+        "line": 10,
+        "text": "from  Network.shakedrop import ShakeDrop"
+      }
+    ],
+    "Network/pyramidnet.py": [
+      {
+        "line": 3,
+        "text": "import torch"
+      },
+      {
+        "line": 4,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 5,
+        "text": "import math"
+      }
+    ],
+    "Network/__init__.py": [
+      {
+        "line": 1,
+        "text": "from .ResNet import *"
+      },
+      {
+        "line": 2,
+        "text": "from .AlexNet import *"
+      },
+      {
+        "line": 3,
+        "text": "from .VGG import *"
+      },
+      {
+        "line": 4,
+        "text": "from .Wide_Resnet import *"
+      },
+      {
+        "line": 5,
+        "text": "from .pyramidnet import *"
+      },
+      {
+        "line": 6,
+        "text": "from .shake_pyramidnet import *"
+      },
+      {
+        "line": 7,
+        "text": "from .shakedrop import *"
+      }
+    ],
+    "Network/ResNet.py": [
+      {
+        "line": 9,
+        "text": "import torch"
+      },
+      {
+        "line": 10,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 11,
+        "text": "import torch.nn.functional as F"
+      }
+    ],
+    "Network/Wide_Resnet.py": [
+      {
+        "line": 1,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 2,
+        "text": "import torch.nn.init as init"
+      },
+      {
+        "line": 3,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 4,
+        "text": "import numpy as np"
+      }
+    ],
+    "Network/shakedrop.py": [
+      {
+        "line": 3,
+        "text": "import torch"
+      },
+      {
+        "line": 4,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 5,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 6,
+        "text": "from torch.autograd import Variable"
+      }
+    ],
+    "Network/AlexNet.py": [
+      {
+        "line": 1,
+        "text": "import torch"
+      },
+      {
+        "line": 2,
+        "text": "import torch.nn as nn"
+      },
+      {
+        "line": 3,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 4,
+        "text": "from torchvision import datasets"
+      }
+    ]
+  },
+  "anchors": {
+    "Dataset.py": {
+      "52": "torch.zeros(50000)",
+      "73": "self.MAGNITUDE[idx] = magnitude",
+      "84": "self.MAGNITUDE[index].item()",
+      "118": "self.MAGNITUDE[idx] = magnitude",
+      "123": "self.MAGNITUDE[index].item()"
+    },
+    "train.py": {
+      "72": "num_workers=8",
+      "131": "trainset.set_MAGNITUDE",
+      "155": "net(ada_aug_inputs",
+      "163": "loss(ada_outputs",
+      "167": "agent.action(none_state)",
+      "169": "trainset.set_MAGNITUDE",
+      "171": "ada_loss.detach()",
+      "181": "agent.update(none_state, magnitude, ada_state, reward)",
+      "231": "train_first_epoch",
+      "232": "is_magnitude = True"
+    },
+    "A2C.py": {
+      "69": "dist.sample()",
+      "76": "dist.log_prob(action)",
+      "83": "actor_loss = -(log_prob"
+    },
+    "augmentation/adaaugment.py": {
+      "366": "PARAMETER_MAX = num_strengths - 1",
+      "636": "k=1",
+      "637": "min(int(PARAMETER_MAX * M)+1, PARAMETER_MAX)"
+    }
+  }
+}

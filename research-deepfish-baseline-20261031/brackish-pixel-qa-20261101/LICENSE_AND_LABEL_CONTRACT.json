@@ -1,0 +1,50 @@
+{
+  "publisher_field": {
+    "file": "../brackish-asset-check-20261101/sources/kaggle_metadata.json",
+    "line": 1,
+    "JSON_pointer": "/licenseName",
+    "verbatim_value": "CC BY-SA 4.0",
+    "SHA256": "3f6475332c14c3b9c2b3cface5750dfae563f02f972945e2eb1bd694645bf0fc",
+    "public_source": "https://www.kaggle.com/api/v1/datasets/view/aalborguniversity/brackish-dataset"
+  },
+  "COCO_fields": [
+    {
+      "file": "../brackish-asset-check-20261101/original_v4/annotations/annotations_COCO/train_groundtruth.json",
+      "line": 1,
+      "JSON_pointer": "/licenses/0",
+      "verbatim_value": "MIT",
+      "SHA256": "22fd4b22e8a6bf52a563619c7f05cadd18e7e66d98284908b25157ff87e9171e"
+    },
+    {
+      "file": "../brackish-asset-check-20261101/original_v4/annotations/annotations_COCO/valid_groundtruth.json",
+      "line": 1,
+      "JSON_pointer": "/licenses/0",
+      "verbatim_value": "MIT",
+      "SHA256": "1acf8ad063bbb475f6ec8f0b36d816ae63f1b938cc8aafd52b76b96293325281"
+    },
+    {
+      "file": "../brackish-asset-check-20261101/original_v4/annotations/annotations_COCO/test_groundtruth.json",
+      "line": 1,
+      "JSON_pointer": "/licenses/0",
+      "verbatim_value": "MIT",
+      "SHA256": "350fc2387f377a8763937afd0c2ca7b95cfabb6f37046f7117293b09526b1c68"
+    }
+  ],
+  "generator": {
+    "file": "../brackish-asset-check-20261101/original_v4/scripts/AnnotationsToCOCO.py",
+    "line": 136,
+    "verbatim_line": "licenses = ['MIT'],"
+  },
+  "author_clarification_obtained": false,
+  "operating_boundary": "Local research only, no external distribution; retain publisher attribution, CC BY-SA license link, modification notice and share-alike provenance. This is a self-imposed task boundary, not a claim CC BY-SA is research-only or that conflict was legally resolved.",
+  "label_source_priority": "AAU is the original annotation table; COCO is an exactly matching box representation. Use original split/frame filename universe only within publisher-declared coverage to restore image identity for zero-annotation frames. Never merge YOLO to invent missing labels.",
+  "empty_frame_status": "Publisher-declared covered, no target annotation; not proven true object absence. Exclude every frame outside stated first-200/first-100 limits regardless of empty or positive annotation.",
+  "frame_numbering_evidence": {
+    "publisher_script": "../brackish-asset-check-20261101/original_v4/scripts/frameExtractor.py:27",
+    "official_muxer_docs": "https://ffmpeg.org/ffmpeg-formats.html#image2-2",
+    "muxer_default_start_number": 1,
+    "note": "image2 output muxer default 1; not the input demuxer default 0. OpenCV sequential decoder first index 0 maps to released -0001 filename."
+  },
+  "exact_official_ffmpeg_export_reproduced": false,
+  "reason": "No ffmpeg command-line executable installed. Existing OpenCV/FFmpeg libraries decode locally; OpenCV cubic resizing is explicitly a QA rendering, not assumed pixel-identical to official swscale bicubic."
+}

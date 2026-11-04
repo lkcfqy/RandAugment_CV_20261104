@@ -1,0 +1,122 @@
+"""Write the terminal report only after complete independent verification."""
+import csv,hashlib,json,pathlib,stat,time
+import numpy as np
+
+ROOT=pathlib.Path('/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/implementation-v1')
+def load(p):return json.loads(pathlib.Path(p).read_text())
+def sha(p):return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+def pct(x):return f'{100*x:.2f}%'
+def pp(x):return f'{100*x:+.4f} pp'
+
+def main():
+    verify=load(ROOT/'reports/formal-independent-verification.json');assert verify['status']=='passed'
+    result=load(ROOT/'formal/results.json');launch=load(ROOT/'reports/formal-launch.json');assert launch['status']=='complete'
+    frozen=load(ROOT/'frozen-manifest.json');complete=load(ROOT/'formal/completion.json');bench=load(ROOT/'reports/throughput-preflight.json')
+    names=frozen['method_names'];baseline=set(frozen['external_baseline_names']);metrics=result['methods'];seeds=['11','22','33']
+    mean=lambda name,domain:float(np.mean([metrics[s][name]['eqAUROC'] if domain=='eq' else metrics[s][name][domain]['AUROC'] for s in seeds]))
+    rows=[]
+    for seed in seeds:
+        for name in names:
+            m=metrics[seed][name]
+            rows.append({'seed':seed,'method':name,'role':'external_baseline' if name in baseline else ('primary' if name=='primary' else 'mechanism_only'),
+              'calibration_threshold':result['thresholds'][seed][name],'same_auroc':m['same']['AUROC'],'illumination_auroc':m['illumination']['AUROC'],'equal_domain_auroc':m['eqAUROC'],
+              'same_tpr':m['same']['TPR'],'same_fpr':m['same']['FPR'],'illumination_tpr':m['illumination']['TPR'],'illumination_fpr':m['illumination']['FPR']})
+    with (ROOT/'reports/all-methods-by-seed.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+    means=[{'method':n,'role':'external_baseline' if n in baseline else ('primary' if n=='primary' else 'mechanism_only'),'same_mean_auroc':mean(n,'same'),'illumination_mean_auroc':mean(n,'illumination'),'equal_domain_mean_auroc':mean(n,'eq')} for n in names]
+    means.sort(key=lambda r:(-r['equal_domain_mean_auroc'],r['method']))
+    with (ROOT/'reports/all-method-means.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(means[0]));w.writeheader();w.writerows(means)
+    rates=[]
+    for seed,methods in result['identity_selection_by_domain_and_NA'].items():
+        for method,groups in methods.items():
+            for group,v in groups.items():rates.append({'seed':seed,'method':method,'domain_and_label':group,**v})
+    with (ROOT/'reports/identity-selection-rates.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(rates[0]));w.writeheader();w.writerows(rates)
+    eq=result['investment_baseline_envelope']['eq'];ill=result['investment_baseline_envelope']['illumination'];d=result['deltas'];g=result['gates']
+    verdict='达到全部预定继续门，仍需父线程独立复核。' if result['continue'] else '未达到预定继续门：本候选在本冻结设置下不追加计算，不以 selector 或其他 shuffle 替换 primary。'
+    selected=list(dict.fromkeys(['primary','identity','pool9','robust_color',eq,ill]))
+    comparison='\n'.join(f'| `{n}` | {pct(mean(n,"same"))} | {pct(mean(n,"illumination"))} | {pct(mean(n,"eq"))} |' for n in selected)
+    conditions=[('等权域 AUROC 相对最高平均 baseline',pp(d['eq']),'≥ +2.00 pp','eq_ge_02'),
+      ('illumination 相对该域最高平均 baseline',pp(d['illumination']),'≥ +3.00 pp','illumination_ge_03'),
+      ('same 相对 identity/pool9 较强者',pp(d['same']),'≥ −1.00 pp','same_drop_le_01'),
+      ('三 seed 相对同一全局 eq 最强 baseline',' / '.join(pp(v) for v in d['per_seed_eq']),'每个都 > 0','each_seed_eq_strictly_positive'),
+      ('primary − shuffle9001 等权域 AUROC',pp(d['shuffle9001_eq']),'≥ +1.00 pp','primary_shuffle9001_ge_01')]
+    gate_table='\n'.join(f'| {label} | {value} | {rule} | {"通过" if g[key] else "未通过"} |' for label,value,rule,key in conditions)
+    seed_table='\n'.join(f'| {s} | {pct(metrics[s]["primary"]["same"]["AUROC"])} | {pct(metrics[s]["primary"]["illumination"]["AUROC"])} | {pct(metrics[s]["primary"]["eqAUROC"])} | {pp(metrics[s]["primary"]["eqAUROC"]-metrics[s][eq]["eqAUROC"])} |' for s in seeds)
+    shuffle='\n'.join(f'| {p} | {pct(mean("shuffle/"+str(p),"eq"))} | {pp(mean("primary","eq")-mean("shuffle/"+str(p),"eq"))} | {"唯一 primary gate" if p==9001 else "仅映射敏感性"} |' for p in [9001,9002,9003,9004,9005])
+    selectors='\n'.join(f'| `{n}` | {pct(mean(n,"same"))} | {pct(mean(n,"illumination"))} | {pct(mean(n,"eq"))} |' for n in ['primary','selector/all256','selector/min_top13'])
+    identities='\n'.join('| '+group+' | '+' | '.join(pct(result['identity_selection_by_domain_and_NA'][s]['primary'][group]['identity_rate']) for s in seeds)+' |' for group in ['same/N','same/A','illumination/N','illumination/A'])
+    runtime=launch['formal_wall_seconds'];globalwall=complete['wall_from_first_gpu'];deadline=bench['absolute_total_deadline_epoch_seconds']
+    now=time.time();allocated=sum(p.lstat().st_blocks*512 for p in ROOT.parent.rglob('*') if stat.S_ISREG(p.lstat().st_mode))
+    assert allocated<=8*1024**3 and now<deadline
+    md=f'''# Shared-theta AD：完整冻结运行终局
+
+**{verdict}**
+
+全部3个seed ×59个配置已完成，共177组方法结果，51个外部baseline均保留；每seed为64校准项+962测试项，合计3078个查询。正式运行前后冻结 SHA256 未改变：`{verify['freeze_sha256']}`。本报告在全部运行完成和独立完整性复核通过后生成。
+
+## 预定继续门
+
+| 条件 | 实际结果 | 冻结要求 | 判定 |
+|---|---:|---:|---|
+{gate_table}
+
+全局最高平均等权域 baseline 是 `{eq}`；illumination 域最高平均 baseline 是 `{ill}`。两者均在完整51方法集合中计算。oracle 包络仅用作本轮投资继续门，不代表可部署的超参选择、显著性证据或独立泛化证明。
+
+## AUROC（跨seed平均）
+
+| 方法 | same | illumination | 两域等权 |
+|---|---:|---:|---:|
+{comparison}
+
+全部59配置、各seed阈值以及两域 AUROC/TPR/FPR 见 `reports/all-methods-by-seed.csv`；全部方法均值见 `reports/all-method-means.csv`。没有省略任何 baseline。校准阈值使用每方法/seed的第62个升序分数，只有严格大于阈值才判异常；两域共用该阈值，未宣称目标域FPR保证。
+
+## Primary 的三个seed
+
+| seed | same AUROC | illumination AUROC | 等权域 AUROC | 相对同一全局eq baseline |
+|---|---:|---:|---:|---:|
+{seed_table}
+
+## 机制诊断（不代替主门）
+
+| shuffle seed | 平均等权域AUROC | primary − shuffle | 用途 |
+|---|---:|---:|---|
+{shuffle}
+
+| selector | same | illumination | 等权域 |
+|---|---:|---:|---:|
+{selectors}
+
+primary 的 identity θ 选择率如下；其余四个shuffle、primary shuffle与两个selector的全部domain×N/A数据见 `reports/identity-selection-rates.csv`。N/A分别为正常/异常。
+
+| 域/标签 | seed11 | seed22 | seed33 |
+|---|---:|---:|---:|
+{identities}
+
+## 完整性与独立核验
+
+- 3seed、59方法、51外部baseline、所有1026查询ID/顺序/标签/域数量及finite检查全部通过。
+- **{verify['ledger_files_verified']}**个缓存/状态文件的大小与SHA256全部复核，总负载 **{verify['ledger_payload_bytes_hashed']:,}字节**；包含3078个距离缓存与1026个原始query feature文件。
+- 全部查询缓存shape、索引范围和finite检查通过；{verify['identity_rate_cells_checked']}个identity率单元由缓存重新计数。
+- 预先固定30个query/seed对，独立NumPy复算 **{verify['sample_scores_independently_recomputed']}** 个分数，最大绝对差 **{verify['maximum_sample_score_abs_difference']:.3g}**，未事后放宽容差。
+- 所有阈值和AUROC/TPR/FPR由独立sklearn/NumPy实现复核，最大指标差 **{verify['maximum_metric_abs_difference']:.3g}**；五个继续门与终局判定一致。
+- 该复核不重新运行模型或NN；完整证据见 `reports/formal-independent-verification.json`。旧4.46.3官方CPU环境及MPS数值检查证据仍保留。
+
+## 成本、释放与限制
+
+正式运行实际 **{runtime/60:.2f}分钟**；完成时距首次GPU启用 **{globalwall/60:.2f}分钟**（含等待）。绝对截止 **2026-10-31 00:28:54 UTC** 未重置。生成本报告时，包括已存资产、参考环境和全部缓存的实际分配磁盘 **{allocated/1024**3:.3f} GiB**，低于8 GiB。完整流程没有新增Colab、没有改数据/科学配置、没有提交或推送；MPS清理已返回，运行进程已退出，退出证据另见 `reports/process-exit-verification.json`。
+
+原始文件全部保留。训练图像的精确重复已按冻结规则合并为520个簇，但官方没有物理叶片实体或采集批次ID；这里仅评价官方图像划分下的采集条件变化，不把图像簇当作独立实体，也不提供伪实体CI。样本精确无重复不能证明实体独立。
+'''
+    (ROOT/'FORMAL_REPORT.md').write_text(md)
+    paths=['formal/results.json','formal/cache-ledger.json','formal/query-manifest.json','formal/completion.json','reports/formal-launch.json','reports/formal-independent-verification.json','reports/all-methods-by-seed.csv','reports/all-method-means.csv','reports/identity-selection-rates.csv','FORMAL_REPORT.md']+[f'formal/seed{s}/scores.json' for s in seeds]
+    manifest=[{'path':p,'bytes':(ROOT/p).stat().st_size,'sha256':sha(ROOT/p)} for p in paths]
+    (ROOT/'reports/final-deliverables-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    summary={'status':'complete_verified','continue':result['continue'],'primary_same_auroc':mean('primary','same'),'primary_illumination_auroc':mean('primary','illumination'),'primary_equal_domain_auroc':mean('primary','eq'),
+       'best_eq_baseline':eq,'best_eq_baseline_auroc':mean(eq,'eq'),'best_illumination_baseline':ill,'best_illumination_baseline_auroc':mean(ill,'illumination'),
+       'deltas':d,'gates':g,'formal_wall_minutes':runtime/60,'first_GPU_to_formal_completion_minutes':globalwall/60,'allocated_disk_GiB_at_report':allocated/1024**3,
+       'all_methods':59,'all_seeds':3,'query_cache_files':3078,'verified_ledger_files':4113,'scientific_config_changes':False,'Colab_allocations':0,'report':'FORMAL_REPORT.md'}
+    (ROOT/'reports/terminal-summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary,indent=2),flush=True)
+
+if __name__=='__main__':main()

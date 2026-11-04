@@ -1,0 +1,13 @@
+# Scope relative to prior work
+
+This pilot is an exploratory fixed-budget augmentation-selector experiment, not a first discovery of noisy validation, label costs, or training-size transfer.
+
+- [Evaluating the Evaluators: Are Validation Methods for Few-Shot Learning Fit for Purpose?](https://www.research.ed.ac.uk/en/publications/evaluating-the-evaluators-are-validation-methods-for-few-shot-lea/) (TMLR 2024; Shimabucoro, Chavhan, Hospedales, Gouk). The institutional record and the [arXiv version](https://arxiv.org/abs/2307.02732) establish closely related task-level few-shot performance estimation and model selection. The final OpenReview page requested browser verification, so no full-final-paper access is claimed. Our four folds were fixed by the delegated protocol, not selected after reading these results.
+- [A Closer Look at the Few-Shot Adaptation of Large Vision-Language Models / CLAP](https://openaccess.thecvf.com/content/CVPR2024/html/Silva-Rodriguez_A_Closer_Look_at_the_Few-Shot_Adaptation_of_Large_Vision-Language_CVPR_2024_paper.html) (CVPR 2024) already challenges large validation sets and task-specific tuning in few-shot adaptation. This is not a CLAP reproduction; we use DINOv2 and a fixed ridge head without text prototypes.
+- [Frozen Feature Augmentation for Few-Shot Image Classification](https://arxiv.org/abs/2403.10519) (CVPR 2024) studies augmentation of cached representations. Here augmentation operates on input pixels before a frozen encoder. None of the earlier Gaussian surrogate/FroFA experiments are resumed.
+- [Population Based Augmentation](https://proceedings.mlr.press/v97/ho19b/ho19b.pdf) (ICML 2019), pp. 5–6, learns schedules on reduced datasets and evaluates them on full training sets, discussing transfer across training scales. Our fold-to-full ranking diagnostic cannot be presented as introducing that issue.
+
+Implementation references: installed torchvision **0.28.0** sources are hashed in CODE_FREEZE.json. Current online [RandAugment](https://docs.pytorch.org/vision/stable/generated/torchvision.transforms.RandAugment.html) and [RandomResizedCrop](https://docs.pytorch.org/vision/stable/generated/torchvision.transforms.RandomResizedCrop.html) pages are general API references; their current documentation version does not replace the pinned installed implementation.
+
+Assets: existing [EuroSAT RGB Zenodo release](https://zenodo.org/records/7711810), verified against the already-saved archive receipt and historical split manifest; [DINOv2-Small](https://huggingface.co/facebook/dinov2-small/tree/ed25f3a31f01632728cabb09d1542f84ab7b0056), local safetensors SHA recorded in PROTOCOL.json. No asset was downloaded during this pilot.
+

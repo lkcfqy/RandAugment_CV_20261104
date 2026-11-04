@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-30T18:11:03.519694+00:00",
+  "torch": "2.13.0",
+  "numpy": "2.5.4",
+  "Pillow": "13.0.0",
+  "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "load_call": "torch.load(path, map_location='cpu', weights_only=True)",
+  "load_attempts": 1,
+  "mps_enabled": false,
+  "dataset_downloaded": false,
+  "state_dict_strict_load": "not yet attempted",
+  "sha256_local": "9aba1fa8e6875e8413b413e8b8d7b843413280b33b972bd313d2ace8c4129943",
+  "top_level_keys": [
+    "early_stopping_epoch",
+    "student",
+    "teacher"
+  ],
+  "status": "ASSET/VALIDATION-BLOCKED",
+  "reason_code": "ASSET_BLOCKED",
+  "exception_type": "KeyError",
+  "error": "'dino_loss'",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Documents/Codex/2026-10-31/task-3/research-hvp-entropy-20261030/asset_gate.py\", line 55, in <module>\n    center = checkpoint[\"dino_loss\"][\"center\"]\n             ~~~~~~~~~~^^^^^^^^^^^^^\nKeyError: 'dino_loss'\n",
+  "safe_deserialization": "passed",
+  "cpu_process_seconds": 0.584946,
+  "validation_wall_seconds": 0.5563820829993347
+}

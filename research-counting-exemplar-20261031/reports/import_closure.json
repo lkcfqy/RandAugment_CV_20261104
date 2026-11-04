@@ -1,0 +1,552 @@
+{
+  "deferred_external_import_roots": {
+    "ipdb": [
+      "groundingdino.util.box_ops",
+      "models.GroundingDINO.backbone.swin_transformer",
+      "util.box_ops"
+    ],
+    "pycocotools": [
+      "models.GroundingDINO.groundingdino",
+      "models.GroundingDINO.groundingdino_app"
+    ],
+    "torch": [
+      "datasets.coco",
+      "groundingdino.util.utils"
+    ]
+  },
+  "edges": [
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 26,
+      "to": "util.slconfig"
+    },
+    {
+      "deferred": true,
+      "from": "util.slconfig",
+      "line": 108,
+      "to": "util.slio"
+    },
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 27,
+      "to": "util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 28,
+      "to": "datasets.transforms_app"
+    },
+    {
+      "deferred": false,
+      "from": "datasets",
+      "line": 4,
+      "to": "datasets.coco"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.coco",
+      "line": 26,
+      "to": "datasets.data_util"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.data_util",
+      "line": 9,
+      "to": "util.slconfig"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.coco",
+      "line": 27,
+      "to": "datasets.transforms_orig"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.transforms_orig",
+      "line": 12,
+      "to": "util.box_ops"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.transforms_orig",
+      "line": 13,
+      "to": "util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.coco",
+      "line": 28,
+      "to": "util.box_ops"
+    },
+    {
+      "deferred": true,
+      "from": "datasets.coco",
+      "line": 520,
+      "to": "datasets.sltransform"
+    },
+    {
+      "deferred": true,
+      "from": "datasets",
+      "line": 21,
+      "to": "datasets.odvg"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.transforms_app",
+      "line": 12,
+      "to": "util.box_ops"
+    },
+    {
+      "deferred": false,
+      "from": "datasets.transforms_app",
+      "line": 13,
+      "to": "util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 29,
+      "to": "models.GroundingDINO.groundingdino_app"
+    },
+    {
+      "deferred": false,
+      "from": "models",
+      "line": 7,
+      "to": "models.GroundingDINO"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO",
+      "line": 15,
+      "to": "models.GroundingDINO.groundingdino"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 27,
+      "to": "groundingdino.util"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 27,
+      "to": "groundingdino.util.box_ops"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 27,
+      "to": "groundingdino.util.get_tokenlizer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 28,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 37,
+      "to": "groundingdino.util.utils"
+    },
+    {
+      "deferred": false,
+      "from": "groundingdino.util.utils",
+      "line": 12,
+      "to": "groundingdino.util.slconfig"
+    },
+    {
+      "deferred": true,
+      "from": "groundingdino.util.slconfig",
+      "line": 100,
+      "to": "groundingdino.util.slio"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 38,
+      "to": "groundingdino.util.visualizer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 39,
+      "to": "groundingdino.util.vl_utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 41,
+      "to": "models.registry"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 42,
+      "to": "models.GroundingDINO.backbone"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone",
+      "line": 1,
+      "to": "models.GroundingDINO.backbone.backbone"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone.backbone",
+      "line": 27,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone.backbone",
+      "line": 29,
+      "to": "models.GroundingDINO.backbone.position_encoding"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone.position_encoding",
+      "line": 27,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone.backbone",
+      "line": 30,
+      "to": "models.GroundingDINO.backbone.swin_transformer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.backbone.swin_transformer",
+      "line": 21,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 43,
+      "to": "models.GroundingDINO.bertwarper"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 48,
+      "to": "models.GroundingDINO.transformer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer",
+      "line": 25,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer",
+      "line": 27,
+      "to": "models.GroundingDINO.fuse_modules"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer",
+      "line": 28,
+      "to": "models.GroundingDINO.ms_deform_attn"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer",
+      "line": 29,
+      "to": "models.GroundingDINO.transformer_vanilla"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer_vanilla",
+      "line": 23,
+      "to": "models.GroundingDINO.utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer",
+      "line": 30,
+      "to": "models.GroundingDINO.utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 49,
+      "to": "models.GroundingDINO.transformer_loca"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.transformer_loca",
+      "line": 1,
+      "to": "models.GroundingDINO.mlp_loca"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 50,
+      "to": "models.GroundingDINO.positional_encoding_loca"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 51,
+      "to": "models.GroundingDINO.utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino",
+      "line": 53,
+      "to": "models.GroundingDINO.matcher"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.matcher",
+      "line": 22,
+      "to": "util.box_ops"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 34,
+      "to": "groundingdino.util"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 34,
+      "to": "groundingdino.util.box_ops"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 34,
+      "to": "groundingdino.util.get_tokenlizer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 35,
+      "to": "groundingdino.util.misc"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 44,
+      "to": "groundingdino.util.utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 45,
+      "to": "groundingdino.util.visualizer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 46,
+      "to": "groundingdino.util.vl_utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 48,
+      "to": "models.registry"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 49,
+      "to": "models.GroundingDINO.backbone"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 50,
+      "to": "models.GroundingDINO.bertwarper"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 55,
+      "to": "models.GroundingDINO.transformer"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 56,
+      "to": "models.GroundingDINO.utils"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 58,
+      "to": "models.GroundingDINO.matcher"
+    },
+    {
+      "deferred": false,
+      "from": "models.GroundingDINO.groundingdino_app",
+      "line": 62,
+      "to": "groundingdino.util.visualizer"
+    },
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 30,
+      "to": "models.GroundingDINO.backbone"
+    },
+    {
+      "deferred": false,
+      "from": "countgdpp",
+      "line": 31,
+      "to": "models.GroundingDINO.transformer"
+    }
+  ],
+  "entrypoint": "countgdpp.py",
+  "external_import_roots": {
+    "MultiScaleDeformableAttention": [
+      "models.GroundingDINO.ms_deform_attn"
+    ],
+    "PIL": [
+      "countgdpp",
+      "datasets.coco",
+      "datasets.transforms_app",
+      "datasets.transforms_orig"
+    ],
+    "addict": [
+      "groundingdino.util.slconfig",
+      "util.slconfig"
+    ],
+    "cv2": [
+      "groundingdino.util.visualizer"
+    ],
+    "huggingface_hub": [
+      "countgdpp"
+    ],
+    "matplotlib": [
+      "groundingdino.util.visualizer",
+      "models.GroundingDINO.groundingdino_app"
+    ],
+    "numpy": [
+      "groundingdino.util.misc",
+      "groundingdino.util.utils",
+      "groundingdino.util.visualizer",
+      "models.GroundingDINO.backbone.swin_transformer",
+      "models.GroundingDINO.groundingdino",
+      "models.GroundingDINO.groundingdino_app",
+      "util.misc"
+    ],
+    "pycocotools": [
+      "datasets.coco",
+      "groundingdino.util.visualizer"
+    ],
+    "scipy": [
+      "models.GroundingDINO.matcher"
+    ],
+    "timm": [
+      "models.GroundingDINO.backbone.swin_transformer",
+      "models.GroundingDINO.fuse_modules"
+    ],
+    "torch": [
+      "countgdpp",
+      "datasets",
+      "datasets.coco",
+      "datasets.data_util",
+      "datasets.transforms_app",
+      "datasets.transforms_orig",
+      "groundingdino.util.box_ops",
+      "groundingdino.util.misc",
+      "groundingdino.util.utils",
+      "groundingdino.util.visualizer",
+      "groundingdino.util.vl_utils",
+      "models.GroundingDINO.backbone.backbone",
+      "models.GroundingDINO.backbone.position_encoding",
+      "models.GroundingDINO.backbone.swin_transformer",
+      "models.GroundingDINO.bertwarper",
+      "models.GroundingDINO.fuse_modules",
+      "models.GroundingDINO.groundingdino",
+      "models.GroundingDINO.groundingdino_app",
+      "models.GroundingDINO.matcher",
+      "models.GroundingDINO.mlp_loca",
+      "models.GroundingDINO.ms_deform_attn",
+      "models.GroundingDINO.positional_encoding_loca",
+      "models.GroundingDINO.transformer",
+      "models.GroundingDINO.transformer_loca",
+      "models.GroundingDINO.transformer_vanilla",
+      "models.GroundingDINO.utils",
+      "util.box_ops",
+      "util.misc"
+    ],
+    "torchvision": [
+      "datasets",
+      "datasets.coco",
+      "datasets.transforms_app",
+      "datasets.transforms_orig",
+      "groundingdino.util.box_ops",
+      "groundingdino.util.misc",
+      "models.GroundingDINO.backbone.backbone",
+      "models.GroundingDINO.bertwarper",
+      "models.GroundingDINO.groundingdino",
+      "models.GroundingDINO.groundingdino_app",
+      "util.box_ops",
+      "util.misc"
+    ],
+    "transformers": [
+      "groundingdino.util.get_tokenlizer",
+      "groundingdino.util.utils",
+      "models.GroundingDINO.bertwarper",
+      "models.GroundingDINO.groundingdino",
+      "models.GroundingDINO.groundingdino_app"
+    ],
+    "yapf": [
+      "groundingdino.util.slconfig",
+      "util.slconfig"
+    ]
+  },
+  "method": "AST only, eager imports plus package __init__ closure; deferred imports listed separately",
+  "modules": [
+    "countgdpp",
+    "datasets",
+    "datasets.coco",
+    "datasets.data_util",
+    "datasets.transforms_app",
+    "datasets.transforms_orig",
+    "groundingdino.util",
+    "groundingdino.util.box_ops",
+    "groundingdino.util.get_tokenlizer",
+    "groundingdino.util.misc",
+    "groundingdino.util.slconfig",
+    "groundingdino.util.utils",
+    "groundingdino.util.visualizer",
+    "groundingdino.util.vl_utils",
+    "models",
+    "models.GroundingDINO",
+    "models.GroundingDINO.backbone",
+    "models.GroundingDINO.backbone.backbone",
+    "models.GroundingDINO.backbone.position_encoding",
+    "models.GroundingDINO.backbone.swin_transformer",
+    "models.GroundingDINO.bertwarper",
+    "models.GroundingDINO.fuse_modules",
+    "models.GroundingDINO.groundingdino",
+    "models.GroundingDINO.groundingdino_app",
+    "models.GroundingDINO.matcher",
+    "models.GroundingDINO.mlp_loca",
+    "models.GroundingDINO.ms_deform_attn",
+    "models.GroundingDINO.positional_encoding_loca",
+    "models.GroundingDINO.transformer",
+    "models.GroundingDINO.transformer_loca",
+    "models.GroundingDINO.transformer_vanilla",
+    "models.GroundingDINO.utils",
+    "models.registry",
+    "util",
+    "util.box_ops",
+    "util.misc",
+    "util.slconfig"
+  ],
+  "optional_cuda_extension": "MultiScaleDeformableAttention import under try/except; _C=None on absence.",
+  "repository_modules_executed": 0
+}

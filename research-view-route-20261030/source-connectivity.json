@@ -1,0 +1,66 @@
+{
+  "cli_checks": [
+    {
+      "action": "curl --head --location --max-time 20 --retry 0",
+      "target": "https://thor.robots.ox.ac.uk/~vgg/data/pets/images.tar.gz",
+      "exit_code": 28,
+      "stderr": "curl: (28) Connection timed out after 20010 milliseconds",
+      "outcome": "executed; no HTTP response or downloaded archive",
+      "denied": false
+    },
+    {
+      "action": "curl -4 --head --location --max-time 20 --retry 0",
+      "target": "https://thor.robots.ox.ac.uk/~vgg/data/pets/annotations.tar.gz",
+      "exit_code": 28,
+      "stderr": "curl: (28) Connection timed out after 20006 milliseconds",
+      "outcome": "executed; no HTTP response or downloaded archive",
+      "denied": false
+    },
+    {
+      "action": "curl --head --location --max-time 20 --retry 0",
+      "target": "https://www.robots.ox.ac.uk/~vgg/data/pets/data/images.tar.gz",
+      "exit_code": 28,
+      "stderr": "curl: (28) Connection timed out after 20011 milliseconds",
+      "outcome": "executed; no HTTP response or downloaded archive",
+      "denied": false
+    },
+    {
+      "action": "urllib.request.urlopen timeout=90",
+      "target": "https://robots.ox.ac.uk/~vgg/data/pets/",
+      "result": "URLError [Errno 60] Operation timed out",
+      "log": "logs-prepare.txt",
+      "denied": false
+    },
+    {
+      "action": "urllib.request.urlopen timeout=90",
+      "target": "https://www.robots.ox.ac.uk/~vgg/data/pets/",
+      "result": "URLError [Errno 60] Operation timed out",
+      "log": "logs-prepare-resume01.txt",
+      "denied": false
+    },
+    {
+      "action": "curl --head direct web-seed descriptor URL",
+      "target": "http://host2.academictorrents.com/oxford-iiit-pet/annotations.tar.gz",
+      "result": "HTTP 404 Not Found",
+      "denied": false
+    },
+    {
+      "action": "curl --head HTTPS upgrade of descriptor web-seed",
+      "target": "https://host2.academictorrents.com/oxford-iiit-pet/annotations.tar.gz",
+      "exit_code": 60,
+      "result": "SSL certificate problem: unable to get local issuer certificate",
+      "certificate_checks_bypassed": false
+    },
+    {
+      "action": "curl --head direct web-seed descriptor URL and HTTPS upgrade",
+      "target": "academictorrents1.cfhcable.net/oxford-iiit-pet/annotations.tar.gz",
+      "exit_code": 28,
+      "result": "Both HTTP and HTTPS timed out at 20 seconds",
+      "denied": false
+    }
+  ],
+  "official_expected_checksums": "https://thor.robots.ox.ac.uk/~vgg/data/pets/annotations.tar.gz\t19173078\t52425fb6de5c424942b7626b428656fcbd798db970a937df61750c0f1d358e91\tannotations.tar.gz\nhttps://thor.robots.ox.ac.uk/~vgg/data/pets/images.tar.gz\t791918971\t67195c5e1c01f1ab5f9b6a5d22b8c27a580d896ece458917e61d459337fa318d\timages.tar.gz\n",
+  "torrent_metadata_only": true,
+  "p2p_started": false,
+  "main_thread_mirror_search": "No verified same-hash non-Oxford HTTPS source found as of main-thread update"
+}

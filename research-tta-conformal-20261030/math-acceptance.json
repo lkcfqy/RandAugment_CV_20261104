@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "elapsed_seconds": 0.01698262500576675,
+  "checks": [
+    {
+      "name": "p=q: all four arms identical for every score",
+      "passed": true
+    },
+    {
+      "name": "pure temperature: rank arms collapse",
+      "passed": true
+    },
+    {
+      "name": "pure class permutation: spectrum arms collapse",
+      "passed": true
+    },
+    {
+      "name": "same spectrum, threshold, U: samplewise set size identical",
+      "passed": true
+    },
+    {
+      "name": "identical strictly positive spectrum over all samples: APS/RAPS invariant under temperature",
+      "passed": true
+    },
+    {
+      "name": "rankonly equals rank-1+U and is spectrum invariant",
+      "passed": true
+    },
+    {
+      "name": "finite sample ceil order statistic without interpolation; k>n gives infinity",
+      "passed": true
+    },
+    {
+      "name": "stable class ID ties, donor rank retained, empty sets allowed, infinite threshold full set",
+      "passed": true
+    },
+    {
+      "name": "float64 tail underflow and cumulative saturation diagnosed without clipping",
+      "passed": true
+    }
+  ],
+  "rankonly_definition": "rank-1+U, randomized uniform rank baseline",
+  "files_sha256": {
+    "conformal_core.py": "92bc68d196d2d73924edbabb6cbca038ae9d14466c2b9fe269283849729b833d",
+    "math_acceptance.py": "e513598d9da02f204ffc612595c2e4671f3c25d7a1cff249f9cc5502d1b9024c"
+  }
+}

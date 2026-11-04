@@ -1,0 +1,39 @@
+{
+  "path": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/torch/optim/adamw.py",
+  "sha256": "bbd3b51e2eac47a260419b8ab8ac06248b6b966973364859f4ec04b0911e58df",
+  "evidence_lines": [
+    [
+      406,
+      "step_t += 1"
+    ],
+    [
+      409,
+      "param.mul_(1 - lr * weight_decay)"
+    ],
+    [
+      412,
+      "exp_avg.lerp_(grad, 1 - beta1)"
+    ],
+    [
+      413,
+      "exp_avg_sq.mul_(beta2).addcmul_(grad, grad, value=1 - beta2)"
+    ],
+    [
+      421,
+      "step_size = lr / bias_correction1"
+    ],
+    [
+      446,
+      "param.addcdiv_(exp_avg, denom)"
+    ],
+    [
+      453,
+      "step_size = lr / bias_correction1"
+    ],
+    [
+      466,
+      "param.addcdiv_(exp_avg, denom, value=-step_size)"
+    ]
+  ],
+  "scope": "static read only; zero LR does not skip moments/backward"
+}

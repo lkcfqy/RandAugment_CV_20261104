@@ -1,0 +1,29 @@
+{
+  "tool_transport_interruptions": [
+    {
+      "action": "create local process for report wording edit",
+      "target": "staging finalize_report.py; frozen training source unaffected",
+      "reason": "exec-server transport disconnected",
+      "execution": "failed before process creation; later checked and retried successfully",
+      "approval_denial": false
+    },
+    {
+      "action": "create read-only status query process",
+      "target": "STATUS.json and mps-ledger.json",
+      "reason": "exec-server transport disconnected",
+      "execution": "query did not execute; later read succeeded",
+      "approval_denial": false
+    }
+  ],
+  "training_continued_during_tool_interruptions": true,
+  "no_training_restart": true,
+  "remaining_execution_blockers": [],
+  "Pets_asset_blocker_preserved_in_parent_report": true,
+  "report_packaging_event": {
+    "action": "write final completion receipt after status/resource close",
+    "reason": "system python3 lacks hashlib.file_digest",
+    "execution": "status and resource documents written; receipt not written on failed attempt; completed with existing project Python",
+    "training_or_metrics_affected": false,
+    "approval_denial": false
+  }
+}

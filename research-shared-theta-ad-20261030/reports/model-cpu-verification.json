@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "model": "facebook/dinov2-small",
+  "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+  "weights_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "weight_bytes": 88249960,
+  "parameter_count": 22056576,
+  "safe_format": "safetensors",
+  "trust_remote_code": false,
+  "local_files_only": true,
+  "torch_load_forbidden_during_check": true,
+  "device": "cpu",
+  "gpu_used": false,
+  "real_image_model_forwards": 0,
+  "synthetic_input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "last_hidden_state_shape": [
+    1,
+    257,
+    384
+  ],
+  "patch_grid_shape": [
+    1,
+    16,
+    16,
+    384
+  ],
+  "patch_size": 14,
+  "hidden_dim": 384,
+  "final_norm_attribute": "model.layernorm",
+  "final_norm_output": "outputs.last_hidden_state[:, 1:, :]",
+  "final_norm_max_abs_difference": 0.0,
+  "norm_epsilon": 1e-06,
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "synthetic_forward_seconds": 0.024650667000969406,
+  "wall_seconds": 2.6438390419934876,
+  "packages": {
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "transformers": "4.57.1",
+    "safetensors": "0.8.0",
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4",
+    "huggingface_hub": "0.36.2"
+  },
+  "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+  "executable": "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-shared-theta-ad-20261030/.asset-venv/bin/python",
+  "forward_source_sha256": "fc810b02e0fafdb7517af2bf2b7eb3dac7db596cf05cbaa17c6c8d7ad6101b80"
+}

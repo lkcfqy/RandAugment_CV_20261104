@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "installed_transformers": "4.57.1",
+  "comparison_version": "4.46.3",
+  "attention": "eager only, FP32 eval, no mask/head mask/dropout",
+  "pos_interpolation_AST_identical": true,
+  "native_pos_max_abs": 0.0,
+  "final_norm_max_abs": 0.0,
+  "full_legacy_formula_max_abs": 0.0,
+  "synthetic_cases": [
+    "zeros",
+    "seed441_normal"
+  ],
+  "equivalence_scope": "Selected Dinov2-small FP32 eager eval path has matching formulas and passes synthetic numerical comparison; no claim for other modes, dtype, backends or general bitwise identity",
+  "new_attention_refactor": "v4.57.1 uses shared eager function; scale=64**(-.5), softmax float32, same no-dropout forward mathematics",
+  "weights_original_asset_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+  "protocol_revision": "150c8e7bb7cef2d30ec31b13a517af14840ee3f7",
+  "same_weight_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "same_config": true,
+  "weight_redownloaded": false,
+  "environment_downgraded": false,
+  "model_eager_config": "eager",
+  "sources": {
+    "4.46.3": "890b8c4ef922d2da3c440bc9e4eb8146009f04ea2d8de5df5f467e9033fc0a41",
+    "4.57.1": "def22737f3b5bb0d1500e9e41ea39fd8af59b462713ce7ef507e12a57c3dc4a5"
+  }
+}

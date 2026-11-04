@@ -1,0 +1,29 @@
+{
+  "status": "BLOCKED_RESOURCE_LOSS",
+  "candidate_scientific_status": "NOT_EVALUATED",
+  "action": "Complete fixed 80epoch run, retrieve final checkpoint and20k×10-view logits, then perform prespecified conformal analysis",
+  "target": "Colab session tta-conformal-20261030; /content/tta_conformal_20261030/results.tar",
+  "reason": "Assignment disappeared; usage reported0active/0rate, subsequent process.log download returned404, sessions pruned stale local record",
+  "cause_of_disappearance": "UNKNOWN",
+  "denied": false,
+  "pending_approval": false,
+  "outcome_uncertain": "Exact final completed step and reason for runtime disappearance; latest confirmed75epochs23475steps",
+  "unavailable_deliverables": [
+    "final-model.pt",
+    "formal logits",
+    "A/B scientific decision",
+    "formal calibration/evaluation estimates",
+    "999paired bootstrap results"
+  ],
+  "completed": [
+    "frozen protocol",
+    "9CPU math acceptance checks",
+    "data MD5/SHA verification and duplicate-safe split",
+    "200step and512image10view performance gate",
+    "75epochs confirmed",
+    "zero leftover assignment/usage check",
+    "CPU-only provenance reconstruction matching all original role ID hashes"
+  ],
+  "why_not_restart": "No available intermediate model/optimizer/RNG checkpoint; restarting80epochs would exceed fixed25240step and3225600presentation caps",
+  "safe_future_recovery_condition": "An available matching full resume checkpoint or a separately revised experiment budget/protocol; neither is assumed or initiated"
+}

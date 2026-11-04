@@ -1,0 +1,4518 @@
+{
+  "G": 0.02868009994675838,
+  "G_exact": [
+    8789723799490915068380532800040494047566517081,
+    306474657194644430244645134513094630886777698000
+  ],
+  "G_gate": false,
+  "G_threshold": 0.1,
+  "NA_pairs": 6,
+  "all_reported_pairs": 47,
+  "deployable_selector": false,
+  "eligible_images": 82,
+  "eligible_pairs": 41,
+  "freeze_sha256": "649a171fb5bd1d659aa43675e072024ad6c5aa7fba75b0efefa70d481517a79b",
+  "frozen_files_and_assets_verified": 200,
+  "independent_metric_implementation": "This script recomputes from frozen labels using Fraction; does not import production metrics.py.",
+  "indexed_artifacts_verified_in_each_of_two_copies": 992,
+  "limitations": [
+    "Engineering failures on MPS/CUDA are not scientific negative results.",
+    "No new contribution established by this fixed observation; no universal absence claim.",
+    "Annotations supply counts and exemplar identities; placeholder point lists cannot validate localization.",
+    "Numerical gates were not met. No after-effect sample removal, changed names, changed thresholds, or follow-up model run."
+  ],
+  "mean_pair_error": {
+    "C": 0.5691780071418521,
+    "F": 0.4714194409074044,
+    "V": 0.6182195288212822
+  },
+  "metric_formula": "E(image,mode)=(abs(pred_A-truth_A)+abs(pred_B-truth_B))/(truth_A+truth_B); each pair=mean(two images); G=mean_41(min(pair_C,pair_V)-pair_F). Count gate: F<=.10 and C>=.30 and V>=.30, at least 10 pairs.",
+  "numeric_investment_gate": false,
+  "oracle_envelope_uses_GT": true,
+  "pair_count_gate": false,
+  "pairs": [
+    {
+      "frozen_input_texts": {
+        "C": "bean",
+        "F_A": "black bean",
+        "F_B": "soy bean"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              448,
+              461
+            ],
+            "F": [
+              224,
+              461
+            ],
+            "V": [
+              26,
+              461
+            ]
+          },
+          "filename": "FOO_INTRA_BEA1_BEA2_231_230_5f4fd4.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 456,
+              "B": 453
+            },
+            "F": {
+              "A": 127,
+              "B": 350
+            },
+            "V": {
+              "A": 241,
+              "B": 214
+            }
+          },
+          "truth": {
+            "A": 231,
+            "B": 230
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              251,
+              558
+            ],
+            "F": [
+              12,
+              31
+            ],
+            "V": [
+              139,
+              279
+            ]
+          },
+          "filename": "FOO_INTRA_BEA1_BEA2_268_290_da9fce.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 241,
+              "B": 514
+            },
+            "F": {
+              "A": 149,
+              "B": 387
+            },
+            "V": {
+              "A": 111,
+              "B": 411
+            }
+          },
+          "truth": {
+            "A": 268,
+            "B": 290
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7108106111849727,
+        "F": 0.43649849555664405,
+        "V": 0.2773035088128504
+      },
+      "mean_error_exact": {
+        "C": [
+          365695,
+          514476
+        ],
+        "F": [
+          6238,
+          14291
+        ],
+        "V": [
+          71333,
+          257238
+        ]
+      },
+      "oracle_minus_F": -0.15919498674379368,
+      "pair_id": "FOO_INTRA_BEA1_BEA2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "深色豆与浅色豆的六框分组相容；品种名称沿用作者，未做品种鉴定。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "coffee candy",
+        "F_A": "brown coffee candy",
+        "F_B": "black coffee candy"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              5,
+              6
+            ],
+            "F": [
+              19,
+              60
+            ],
+            "V": [
+              47,
+              60
+            ]
+          },
+          "filename": "FOO_INTRA_CFC1_CFC2_027_033_c86ba7.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 1,
+              "B": 9
+            },
+            "F": {
+              "A": 20,
+              "B": 45
+            },
+            "V": {
+              "A": 6,
+              "B": 59
+            }
+          },
+          "truth": {
+            "A": 27,
+            "B": 33
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              15,
+              38
+            ],
+            "F": [
+              71,
+              190
+            ],
+            "V": [
+              4,
+              95
+            ]
+          },
+          "filename": "FOO_INTRA_CFC1_CFC2_094_096_6da5f8.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 63,
+              "B": 52
+            },
+            "F": {
+              "A": 56,
+              "B": 129
+            },
+            "V": {
+              "A": 93,
+              "B": 89
+            }
+          },
+          "truth": {
+            "A": 94,
+            "B": 96
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6140350877192983,
+        "F": 0.34517543859649125,
+        "V": 0.41271929824561404
+      },
+      "mean_error_exact": {
+        "C": [
+          35,
+          57
+        ],
+        "F": [
+          787,
+          2280
+        ],
+        "V": [
+          941,
+          2280
+        ]
+      },
+      "oracle_minus_F": 0.06754385964912281,
+      "pair_id": "FOO_INTRA_CFC1_CFC2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "两图A均棕色包装咖啡糖、B均黑色包装咖啡糖。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "chili",
+        "F_A": "long chili",
+        "F_B": "short chili"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              6,
+              13
+            ],
+            "F": [
+              7,
+              65
+            ],
+            "V": [
+              41,
+              65
+            ]
+          },
+          "filename": "FOO_INTRA_CHI1_CHI2_042_023_8aa4f0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 58,
+              "B": 9
+            },
+            "F": {
+              "A": 47,
+              "B": 25
+            },
+            "V": {
+              "A": 66,
+              "B": 6
+            }
+          },
+          "truth": {
+            "A": 42,
+            "B": 23
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              33,
+              118
+            ],
+            "F": [
+              22,
+              59
+            ],
+            "V": [
+              47,
+              118
+            ]
+          },
+          "filename": "FOO_INTRA_CHI1_CHI2_080_038_69ee9c.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 52,
+              "B": 43
+            },
+            "F": {
+              "A": 52,
+              "B": 54
+            },
+            "V": {
+              "A": 51,
+              "B": 56
+            }
+          },
+          "truth": {
+            "A": 80,
+            "B": 38
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.370599739243807,
+        "F": 0.24028683181225555,
+        "V": 0.5145371577574968
+      },
+      "mean_error_exact": {
+        "C": [
+          1137,
+          3068
+        ],
+        "F": [
+          1843,
+          7670
+        ],
+        "V": [
+          7893,
+          15340
+        ]
+      },
+      "oracle_minus_F": 0.1303129074315515,
+      "pair_id": "FOO_INTRA_CHI1_CHI2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "两图A细长辣椒、B短粗辣椒。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "citrus fruit",
+        "F_A": "lime",
+        "F_B": "calamansi"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              88,
+              131
+            ],
+            "F": [
+              153,
+              131
+            ],
+            "V": [
+              100,
+              131
+            ]
+          },
+          "filename": "FOO_INTRA_LIM1_LIM2_037_094_eda672.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 44,
+              "B": 13
+            },
+            "F": {
+              "A": 116,
+              "B": 20
+            },
+            "V": {
+              "A": 89,
+              "B": 46
+            }
+          },
+          "truth": {
+            "A": 37,
+            "B": 94
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              47,
+              131
+            ],
+            "F": [
+              71,
+              131
+            ],
+            "V": [
+              78,
+              131
+            ]
+          },
+          "filename": "FOO_INTRA_LIM1_LIM2_037_094_b3f319.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 15,
+              "B": 119
+            },
+            "F": {
+              "A": 3,
+              "B": 131
+            },
+            "V": {
+              "A": 0,
+              "B": 135
+            }
+          },
+          "truth": {
+            "A": 37,
+            "B": 94
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.5152671755725191,
+        "F": 0.8549618320610687,
+        "V": 0.6793893129770993
+      },
+      "mean_error_exact": {
+        "C": [
+          135,
+          262
+        ],
+        "F": [
+          112,
+          131
+        ],
+        "V": [
+          89,
+          131
+        ]
+      },
+      "oracle_minus_F": -0.33969465648854963,
+      "pair_id": "FOO_INTRA_LIM1_LIM2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A较大青柠、B较小柑橘的外观与作者lime/calamansi分组相容；citrus fruit是共享物体类型，未独立鉴定品种。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "pasta",
+        "F_A": "spiral pasta",
+        "F_B": "penne pasta"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              96,
+              187
+            ],
+            "F": [
+              53,
+              374
+            ],
+            "V": [
+              335,
+              374
+            ]
+          },
+          "filename": "FOO_INTRA_PAS1_PAS2_185_189_5dfd76.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 228,
+              "B": 338
+            },
+            "F": {
+              "A": 137,
+              "B": 194
+            },
+            "V": {
+              "A": 0,
+              "B": 339
+            }
+          },
+          "truth": {
+            "A": 185,
+            "B": 189
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              11,
+              234
+            ],
+            "F": [
+              7,
+              18
+            ],
+            "V": [
+              145,
+              234
+            ]
+          },
+          "filename": "FOO_INTRA_PAS1_PAS2_108_126_5bcffd.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 117,
+              "B": 124
+            },
+            "F": {
+              "A": 73,
+              "B": 70
+            },
+            "V": {
+              "A": 141,
+              "B": 14
+            }
+          },
+          "truth": {
+            "A": 108,
+            "B": 126
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.28018876548288313,
+        "F": 0.26530005941770646,
+        "V": 0.7576900223959048
+      },
+      "mean_error_exact": {
+        "C": [
+          24521,
+          87516
+        ],
+        "F": [
+          893,
+          3366
+        ],
+        "V": [
+          33155,
+          43758
+        ]
+      },
+      "oracle_minus_F": 0.014888706065176654,
+      "pair_id": "FOO_INTRA_PAS1_PAS2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A螺旋、B管状意面；部分框有遮挡，未替换框。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "peppercorn",
+        "F_A": "black peppercorn",
+        "F_B": "white peppercorn"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              80,
+              123
+            ],
+            "F": [
+              22,
+              369
+            ],
+            "V": [
+              332,
+              369
+            ]
+          },
+          "filename": "FOO_INTRA_PEP1_PEP2_186_183_33c6f5.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 11,
+              "B": 118
+            },
+            "F": {
+              "A": 167,
+              "B": 186
+            },
+            "V": {
+              "A": 7,
+              "B": 336
+            }
+          },
+          "truth": {
+            "A": 186,
+            "B": 183
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              44,
+              135
+            ],
+            "F": [
+              8,
+              135
+            ],
+            "V": [
+              11,
+              135
+            ]
+          },
+          "filename": "FOO_INTRA_PEP1_PEP2_074_061_96470e.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 71,
+              "B": 102
+            },
+            "F": {
+              "A": 73,
+              "B": 68
+            },
+            "V": {
+              "A": 73,
+              "B": 71
+            }
+          },
+          "truth": {
+            "A": 74,
+            "B": 61
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.4881662149954833,
+        "F": 0.059439927732610656,
+        "V": 0.4906052393857272
+      },
+      "mean_error_exact": {
+        "C": [
+          2702,
+          5535
+        ],
+        "F": [
+          329,
+          5535
+        ],
+        "V": [
+          5431,
+          11070
+        ]
+      },
+      "oracle_minus_F": 0.42872628726287265,
+      "pair_id": "FOO_INTRA_PEP1_PEP2",
+      "qualifies": true,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A深色、B浅色胡椒粒；暗光下颜色偏移沿用作者语义。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "peanut",
+        "F_A": "peanut with skin",
+        "F_B": "peanut without skin"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              50,
+              87
+            ],
+            "F": [
+              31,
+              87
+            ],
+            "V": [
+              43,
+              58
+            ]
+          },
+          "filename": "FOO_INTRA_PNT1_PNT2_183_165_0ba15b.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 84,
+              "B": 266
+            },
+            "F": {
+              "A": 151,
+              "B": 257
+            },
+            "V": {
+              "A": 84,
+              "B": 324
+            }
+          },
+          "truth": {
+            "A": 183,
+            "B": 165
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              660,
+              769
+            ],
+            "F": [
+              670,
+              769
+            ],
+            "V": [
+              743,
+              769
+            ]
+          },
+          "filename": "FOO_INTRA_PNT1_PNT2_408_361_00c798.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 118,
+              "B": 731
+            },
+            "F": {
+              "A": 87,
+              "B": 710
+            },
+            "V": {
+              "A": 51,
+              "B": 747
+            }
+          },
+          "truth": {
+            "A": 408,
+            "B": 361
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.716485060460667,
+        "F": 0.6137916087469919,
+        "V": 0.8537845836509573
+      },
+      "mean_error_exact": {
+        "C": [
+          47935,
+          66903
+        ],
+        "F": [
+          82129,
+          133806
+        ],
+        "V": [
+          76161,
+          89204
+        ]
+      },
+      "oracle_minus_F": 0.10269345171367503,
+      "pair_id": "FOO_INTRA_PNT1_PNT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A带红皮、B去皮浅色花生。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 411,
+          "B_count": 377,
+          "filename": "FOO_INTRA_SED1_SED2_411_377_cb5c01.jpg"
+        },
+        {
+          "A_count": 214,
+          "B_count": 190,
+          "filename": "FOO_INTRA_SED1_SED2_214_190_042c4a.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "FOO_INTRA_SED1_SED2",
+      "qualifies": null,
+      "reason": "一张固定图的整组种子方向与另图/作者类名相反",
+      "review_note_zh": "首图A1–A3为黑色条纹狭长种子、B1–B3浅色扁种子，和第二图及作者pumpkin/sunflower方向相反；不交换框或计数。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "tomato",
+        "F_A": "normal tomato",
+        "F_B": "baby tomato"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              49,
+              38
+            ],
+            "F": [
+              31,
+              38
+            ],
+            "V": [
+              13,
+              19
+            ]
+          },
+          "filename": "FOO_INTRA_TOM1_TOM2_010_028_cdb93e.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 42,
+              "B": 45
+            },
+            "F": {
+              "A": 29,
+              "B": 16
+            },
+            "V": {
+              "A": 0,
+              "B": 44
+            }
+          },
+          "truth": {
+            "A": 10,
+            "B": 28
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              13,
+              77
+            ],
+            "F": [
+              4,
+              11
+            ],
+            "V": [
+              2,
+              77
+            ]
+          },
+          "filename": "FOO_INTRA_TOM1_TOM2_019_058_ff8286.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 31,
+              "B": 59
+            },
+            "F": {
+              "A": 33,
+              "B": 44
+            },
+            "V": {
+              "A": 20,
+              "B": 57
+            }
+          },
+          "truth": {
+            "A": 19,
+            "B": 58
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7291524265208476,
+        "F": 0.5897129186602871,
+        "V": 0.35509227614490774
+      },
+      "mean_error_exact": {
+        "C": [
+          4267,
+          5852
+        ],
+        "F": [
+          493,
+          836
+        ],
+        "V": [
+          1039,
+          2926
+        ]
+      },
+      "oracle_minus_F": -0.23462064251537937,
+      "pair_id": "FOO_INTRA_TOM1_TOM2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A较大圆番茄、B较小椭圆番茄。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "checker piece",
+        "F_A": "black checker piece",
+        "F_B": "white checker piece"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              47,
+              105
+            ],
+            "F": [
+              23,
+              105
+            ],
+            "V": [
+              1,
+              7
+            ]
+          },
+          "filename": "FUN_INTRA_CHK1_CHK2_050_055_8f7efa.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 32,
+              "B": 26
+            },
+            "F": {
+              "A": 53,
+              "B": 35
+            },
+            "V": {
+              "A": 43,
+              "B": 47
+            }
+          },
+          "truth": {
+            "A": 50,
+            "B": 55
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              1,
+              3
+            ],
+            "F": [
+              7,
+              30
+            ],
+            "V": [
+              1,
+              15
+            ]
+          },
+          "filename": "FUN_INTRA_CHK1_CHK2_040_050_9c21cb.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 25,
+              "B": 35
+            },
+            "F": {
+              "A": 46,
+              "B": 35
+            },
+            "V": {
+              "A": 41,
+              "B": 45
+            }
+          },
+          "truth": {
+            "A": 40,
+            "B": 50
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.3904761904761905,
+        "F": 0.2261904761904762,
+        "V": 0.10476190476190476
+      },
+      "mean_error_exact": {
+        "C": [
+          41,
+          105
+        ],
+        "F": [
+          19,
+          84
+        ],
+        "V": [
+          11,
+          105
+        ]
+      },
+      "oracle_minus_F": -0.12142857142857143,
+      "pair_id": "FUN_INTRA_CHK1_CHK2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A深色、B浅色圆形棋子；checker piece为作者命名。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "chess piece",
+        "F_A": "black chess piece",
+        "F_B": "white chess piece"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              44,
+              115
+            ],
+            "F": [
+              17,
+              115
+            ],
+            "V": [
+              1,
+              5
+            ]
+          },
+          "filename": "FUN_INTRA_CHS1_CHS2_065_050_a409b4.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 33,
+              "B": 38
+            },
+            "F": {
+              "A": 52,
+              "B": 54
+            },
+            "V": {
+              "A": 45,
+              "B": 53
+            }
+          },
+          "truth": {
+            "A": 65,
+            "B": 50
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              38,
+              65
+            ],
+            "F": [
+              6,
+              65
+            ],
+            "V": [
+              16,
+              65
+            ]
+          },
+          "filename": "FUN_INTRA_CHS1_CHS2_070_060_391060.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 33,
+              "B": 21
+            },
+            "F": {
+              "A": 66,
+              "B": 52
+            },
+            "V": {
+              "A": 81,
+              "B": 39
+            }
+          },
+          "truth": {
+            "A": 70,
+            "B": 60
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.4836120401337793,
+        "F": 0.12006688963210703,
+        "V": 0.2230769230769231
+      },
+      "mean_error_exact": {
+        "C": [
+          723,
+          1495
+        ],
+        "F": [
+          359,
+          2990
+        ],
+        "V": [
+          29,
+          130
+        ]
+      },
+      "oracle_minus_F": 0.10301003344481606,
+      "pair_id": "FUN_INTRA_CHS1_CHS2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A黑色、B浅色国际象棋子。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "chinese playing card",
+        "F_A": "chinese playing card without a red circular mark",
+        "F_B": "chinese playing card with a red circular mark"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              62,
+              117
+            ],
+            "F": [
+              3,
+              13
+            ],
+            "V": [
+              7,
+              13
+            ]
+          },
+          "filename": "FUN_INTRA_CSC1_CSC2_059_058_5a6681.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 38,
+              "B": 17
+            },
+            "F": {
+              "A": 80,
+              "B": 52
+            },
+            "V": {
+              "A": 101,
+              "B": 37
+            }
+          },
+          "truth": {
+            "A": 59,
+            "B": 58
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              33,
+              62
+            ],
+            "F": [
+              19,
+              31
+            ],
+            "V": [
+              61,
+              62
+            ]
+          },
+          "filename": "FUN_INTRA_CSC1_CSC2_031_031_cf8ab6.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 8,
+              "B": 21
+            },
+            "F": {
+              "A": 14,
+              "B": 52
+            },
+            "V": {
+              "A": 5,
+              "B": 66
+            }
+          },
+          "truth": {
+            "A": 31,
+            "B": 31
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.5310862972153295,
+        "F": 0.4218362282878412,
+        "V": 0.761166253101737
+      },
+      "mean_error_exact": {
+        "C": [
+          7705,
+          14508
+        ],
+        "F": [
+          170,
+          403
+        ],
+        "V": [
+          1227,
+          1612
+        ]
+      },
+      "oracle_minus_F": 0.10925006892748829,
+      "pair_id": "FUN_INTRA_CSC1_CSC2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "同类中国条形纸牌；区别是红色圆形标记而非牌面完全没有红色。建议共同名chinese playing card，并显式保留这一定义。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "dice",
+        "F_A": "green dice",
+        "F_B": "white dice"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              1,
+              7
+            ],
+            "F": [
+              2,
+              7
+            ],
+            "V": [
+              13,
+              42
+            ]
+          },
+          "filename": "FUN_INTRA_DIC1_DIC2_022_020_ad33f0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 19,
+              "B": 17
+            },
+            "F": {
+              "A": 19,
+              "B": 11
+            },
+            "V": {
+              "A": 18,
+              "B": 11
+            }
+          },
+          "truth": {
+            "A": 22,
+            "B": 20
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              13,
+              12
+            ],
+            "F": [
+              29,
+              24
+            ],
+            "V": [
+              31,
+              24
+            ]
+          },
+          "filename": "FUN_INTRA_DIC1_DIC2_015_009_0400c7.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 25,
+              "B": 25
+            },
+            "F": {
+              "A": 1,
+              "B": 24
+            },
+            "V": {
+              "A": 0,
+              "B": 25
+            }
+          },
+          "truth": {
+            "A": 15,
+            "B": 9
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6130952380952381,
+        "F": 0.7470238095238095,
+        "V": 0.8005952380952381
+      },
+      "mean_error_exact": {
+        "C": [
+          103,
+          168
+        ],
+        "F": [
+          251,
+          336
+        ],
+        "V": [
+          269,
+          336
+        ]
+      },
+      "oracle_minus_F": -0.13392857142857142,
+      "pair_id": "FUN_INTRA_DIC1_DIC2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A绿色、B浅色骰子；dice是共享对象名。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "lego piece",
+        "F_A": "green lego piece",
+        "F_B": "light pink lego piece"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              86,
+              99
+            ],
+            "F": [
+              3,
+              11
+            ],
+            "V": [
+              109,
+              99
+            ]
+          },
+          "filename": "FUN_INTRA_LEG1_LEG2_050_049_d2c34f.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 4,
+              "B": 89
+            },
+            "F": {
+              "A": 42,
+              "B": 68
+            },
+            "V": {
+              "A": 0,
+              "B": 108
+            }
+          },
+          "truth": {
+            "A": 50,
+            "B": 49
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              35,
+              58
+            ],
+            "F": [
+              7,
+              29
+            ],
+            "V": [
+              9,
+              29
+            ]
+          },
+          "filename": "FUN_INTRA_LEG1_LEG2_030_028_55d028.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 6,
+              "B": 39
+            },
+            "F": {
+              "A": 30,
+              "B": 42
+            },
+            "V": {
+              "A": 44,
+              "B": 32
+            }
+          },
+          "truth": {
+            "A": 30,
+            "B": 28
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7360675722744688,
+        "F": 0.25705329153605017,
+        "V": 0.7056774642981539
+      },
+      "mean_error_exact": {
+        "C": [
+          8453,
+          11484
+        ],
+        "F": [
+          82,
+          319
+        ],
+        "V": [
+          2026,
+          2871
+        ]
+      },
+      "oracle_minus_F": 0.4486241727621038,
+      "pair_id": "FUN_INTRA_LEG1_LEG2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A绿色、B浅粉色圆形玩具拼搭片；lego piece沿用作者，不声称独立验证品牌。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "mahjong tile",
+        "F_A": "bamboo mahjong tile",
+        "F_B": "character mahjong tile"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              11,
+              23
+            ],
+            "F": [
+              64,
+              69
+            ],
+            "V": [
+              67,
+              69
+            ]
+          },
+          "filename": "FUN_INTRA_MAH1_MAH2_034_035_39e603.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 60,
+              "B": 42
+            },
+            "F": {
+              "A": 0,
+              "B": 65
+            },
+            "V": {
+              "A": 66,
+              "B": 0
+            }
+          },
+          "truth": {
+            "A": 34,
+            "B": 35
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              43,
+              55
+            ],
+            "F": [
+              36,
+              55
+            ],
+            "V": [
+              8,
+              11
+            ]
+          },
+          "filename": "FUN_INTRA_MAH1_MAH2_028_027_5da45c.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 3,
+              "B": 9
+            },
+            "F": {
+              "A": 1,
+              "B": 36
+            },
+            "V": {
+              "A": 0,
+              "B": 39
+            }
+          },
+          "truth": {
+            "A": 28,
+            "B": 27
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6300395256916996,
+        "F": 0.7910408432147562,
+        "V": 0.8491436100131752
+      },
+      "mean_error_exact": {
+        "C": [
+          797,
+          1265
+        ],
+        "F": [
+          3002,
+          3795
+        ],
+        "V": [
+          1289,
+          1518
+        ]
+      },
+      "oracle_minus_F": -0.16100131752305666,
+      "pair_id": "FUN_INTRA_MAH1_MAH2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A条子（含幺鸡）、B万字麻将牌。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "marble",
+        "F_A": "big marble",
+        "F_B": "small marble"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              48,
+              43
+            ],
+            "F": [
+              51,
+              43
+            ],
+            "V": [
+              46,
+              43
+            ]
+          },
+          "filename": "FUN_INTRA_MAR1_MAR2_017_026_bf7434.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 43,
+              "B": 4
+            },
+            "F": {
+              "A": 43,
+              "B": 1
+            },
+            "V": {
+              "A": 40,
+              "B": 3
+            }
+          },
+          "truth": {
+            "A": 17,
+            "B": 26
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              20,
+              27
+            ],
+            "F": [
+              22,
+              81
+            ],
+            "V": [
+              59,
+              81
+            ]
+          },
+          "filename": "FUN_INTRA_MAR1_MAR2_039_042_e65d30.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 19,
+              "B": 82
+            },
+            "F": {
+              "A": 51,
+              "B": 32
+            },
+            "V": {
+              "A": 10,
+              "B": 72
+            }
+          },
+          "truth": {
+            "A": 39,
+            "B": 42
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.9285099052540913,
+        "F": 0.728825724949756,
+        "V": 0.8990812517944301
+      },
+      "mean_error_exact": {
+        "C": [
+          1078,
+          1161
+        ],
+        "F": [
+          5077,
+          6966
+        ],
+        "V": [
+          6263,
+          6966
+        ]
+      },
+      "oracle_minus_F": 0.17025552684467413,
+      "pair_id": "FUN_INTRA_MAR1_MAR2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "大小玻璃弹珠；两图相对尺寸和分组相容，裁剪放大后的尺寸不可用于比较。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "poker chip",
+        "F_A": "blue poker chip",
+        "F_B": "white poker chip"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              46,
+              57
+            ],
+            "F": [
+              34,
+              57
+            ],
+            "V": [
+              46,
+              57
+            ]
+          },
+          "filename": "FUN_INTRA_PKC1_PKC2_022_035_bcafbd.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 0,
+              "B": 59
+            },
+            "F": {
+              "A": 6,
+              "B": 53
+            },
+            "V": {
+              "A": 0,
+              "B": 59
+            }
+          },
+          "truth": {
+            "A": 22,
+            "B": 35
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              1,
+              1
+            ],
+            "F": [
+              1,
+              16
+            ],
+            "V": [
+              109,
+              80
+            ]
+          },
+          "filename": "FUN_INTRA_PKC1_PKC2_026_054_e28993.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 0,
+              "B": 0
+            },
+            "F": {
+              "A": 30,
+              "B": 53
+            },
+            "V": {
+              "A": 82,
+              "B": 1
+            }
+          },
+          "truth": {
+            "A": 26,
+            "B": 54
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.9035087719298246,
+        "F": 0.3294956140350877,
+        "V": 1.0847587719298246
+      },
+      "mean_error_exact": {
+        "C": [
+          103,
+          114
+        ],
+        "F": [
+          601,
+          1824
+        ],
+        "V": [
+          9893,
+          9120
+        ]
+      },
+      "oracle_minus_F": 0.5740131578947368,
+      "pair_id": "FUN_INTRA_PKC1_PKC2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A蓝色、B白色扑克筹码。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 38,
+          "B_count": 37,
+          "filename": "FUN_INTRA_PLC1_PLC2_038_037_27c0e3.jpg"
+        },
+        {
+          "A_count": 49,
+          "B_count": 48,
+          "filename": "FUN_INTRA_PLC1_PLC2_049_048_d3f542.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "FUN_INTRA_PLC1_PLC2",
+      "qualifies": null,
+      "reason": "一张固定图B3为红心牌，负视觉组不纯",
+      "review_note_zh": "首图B3明确框到红心Q/相邻红心3，不能代表black playing card；第二图六框方向相容。保留原框，整pair建议NA。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "puzzle piece",
+        "F_A": "edge puzzle piece",
+        "F_B": "center puzzle piece"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              45,
+              46
+            ],
+            "F": [
+              13,
+              23
+            ],
+            "V": [
+              113,
+              92
+            ]
+          },
+          "filename": "FUN_INTRA_PUZ1_PUZ2_031_061_3258e7.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 75,
+              "B": 15
+            },
+            "F": {
+              "A": 68,
+              "B": 46
+            },
+            "V": {
+              "A": 92,
+              "B": 9
+            }
+          },
+          "truth": {
+            "A": 31,
+            "B": 61
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              63,
+              46
+            ],
+            "F": [
+              51,
+              46
+            ],
+            "V": [
+              123,
+              92
+            ]
+          },
+          "filename": "FUN_INTRA_PUZ1_PUZ2_031_061_4c3ef0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 104,
+              "B": 8
+            },
+            "F": {
+              "A": 87,
+              "B": 15
+            },
+            "V": {
+              "A": 98,
+              "B": 5
+            }
+          },
+          "truth": {
+            "A": 31,
+            "B": 61
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 1.173913043478261,
+        "F": 0.8369565217391305,
+        "V": 1.2826086956521738
+      },
+      "mean_error_exact": {
+        "C": [
+          27,
+          23
+        ],
+        "F": [
+          77,
+          92
+        ],
+        "V": [
+          59,
+          46
+        ]
+      },
+      "oracle_minus_F": 0.33695652173913043,
+      "pair_id": "FUN_INTRA_PUZ1_PUZ2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A边缘拼图片、B内部拼图片；复核放大上下文后能看到A的直边，非首次缩略图疑似错误。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "battery",
+        "F_A": "small AAA battery",
+        "F_B": "big AA battery"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              12,
+              13
+            ],
+            "F": [
+              12,
+              13
+            ],
+            "V": [
+              12,
+              13
+            ]
+          },
+          "filename": "HOU_INTRA_BAT1_BAT2_014_012_578d7d.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 25,
+              "B": 25
+            },
+            "F": {
+              "A": 2,
+              "B": 24
+            },
+            "V": {
+              "A": 2,
+              "B": 24
+            }
+          },
+          "truth": {
+            "A": 14,
+            "B": 12
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              25,
+              37
+            ],
+            "F": [
+              11,
+              37
+            ],
+            "V": [
+              9,
+              37
+            ]
+          },
+          "filename": "HOU_INTRA_BAT1_BAT2_020_017_74542d.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 22,
+              "B": 40
+            },
+            "F": {
+              "A": 19,
+              "B": 27
+            },
+            "V": {
+              "A": 21,
+              "B": 25
+            }
+          },
+          "truth": {
+            "A": 20,
+            "B": 17
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7993762993762994,
+        "F": 0.6101871101871101,
+        "V": 0.5831600831600832
+      },
+      "mean_error_exact": {
+        "C": [
+          769,
+          962
+        ],
+        "F": [
+          587,
+          962
+        ],
+        "V": [
+          561,
+          962
+        ]
+      },
+      "oracle_minus_F": -0.02702702702702703,
+      "pair_id": "HOU_INTRA_BAT1_BAT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A细AAA、B粗AA电池；尺寸类别沿用作者并与图像相容。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "button",
+        "F_A": "button with 4 holes",
+        "F_B": "button with 2 holes"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              19,
+              27
+            ],
+            "F": [
+              76,
+              81
+            ],
+            "V": [
+              82,
+              81
+            ]
+          },
+          "filename": "HOU_INTRA_BBT1_BBT2_040_041_d9ba63.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 81,
+              "B": 25
+            },
+            "F": {
+              "A": 78,
+              "B": 3
+            },
+            "V": {
+              "A": 81,
+              "B": 0
+            }
+          },
+          "truth": {
+            "A": 40,
+            "B": 41
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              41,
+              64
+            ],
+            "F": [
+              43,
+              64
+            ],
+            "V": [
+              33,
+              32
+            ]
+          },
+          "filename": "HOU_INTRA_BBT1_BBT2_031_033_7e37db.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 4,
+              "B": 19
+            },
+            "F": {
+              "A": 54,
+              "B": 13
+            },
+            "V": {
+              "A": 0,
+              "B": 68
+            }
+          },
+          "truth": {
+            "A": 31,
+            "B": 33
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6721643518518519,
+        "F": 0.8050733024691358,
+        "V": 1.0217978395061729
+      },
+      "mean_error_exact": {
+        "C": [
+          2323,
+          3456
+        ],
+        "F": [
+          8347,
+          10368
+        ],
+        "V": [
+          5297,
+          5184
+        ]
+      },
+      "oracle_minus_F": -0.13290895061728394,
+      "pair_id": "HOU_INTRA_BBT1_BBT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A四孔、B两孔纽扣，两个图六框均可辨。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "bottle cap",
+        "F_A": "beer bottle cap",
+        "F_B": "plastic bottle cap"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              12,
+              13
+            ],
+            "F": [
+              49,
+              65
+            ],
+            "V": [
+              129,
+              130
+            ]
+          },
+          "filename": "HOU_INTRA_BOT1_BOT2_080_050_86b9fa.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 3,
+              "B": 7
+            },
+            "F": {
+              "A": 24,
+              "B": 92
+            },
+            "V": {
+              "A": 8,
+              "B": 107
+            }
+          },
+          "truth": {
+            "A": 80,
+            "B": 50
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              12,
+              55
+            ],
+            "F": [
+              6,
+              11
+            ],
+            "V": [
+              8,
+              55
+            ]
+          },
+          "filename": "HOU_INTRA_BOT1_BOT2_070_040_4f413e.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 57,
+              "B": 29
+            },
+            "F": {
+              "A": 34,
+              "B": 64
+            },
+            "V": {
+              "A": 57,
+              "B": 43
+            }
+          },
+          "truth": {
+            "A": 70,
+            "B": 40
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.5706293706293706,
+        "F": 0.6496503496503496,
+        "V": 0.5688811188811189
+      },
+      "mean_error_exact": {
+        "C": [
+          408,
+          715
+        ],
+        "F": [
+          929,
+          1430
+        ],
+        "V": [
+          1627,
+          2860
+        ]
+      },
+      "oracle_minus_F": -0.08076923076923077,
+      "pair_id": "HOU_INTRA_BOT1_BOT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A金属锯齿瓶盖、B塑料瓶盖。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 70,
+          "B_count": 25,
+          "filename": "HOU_INTRA_COI1_COI2_070_025_5d7214.jpg"
+        },
+        {
+          "A_count": 60,
+          "B_count": 20,
+          "filename": "HOU_INTRA_COI1_COI2_060_020_f6ab29.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "HOU_INTRA_COI1_COI2",
+      "qualifies": null,
+      "reason": "不能从现有原图逐一确认每个框的硬币面额",
+      "review_note_zh": "共享coin明确；多框只能看到模糊头像/暗面，不能逐一确认5分/10分。不是判定作者标错；严格逐框身份准入建议NA。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 96,
+          "B_count": 73,
+          "filename": "HOU_INTRA_CTB1_CTB2_096_073_559f0c.jpg"
+        },
+        {
+          "A_count": 67,
+          "B_count": 32,
+          "filename": "HOU_INTRA_CTB1_CTB2_067_032_f5fbfe.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "HOU_INTRA_CTB1_CTB2",
+      "qualifies": null,
+      "reason": "杆材质与重叠框无法逐一独立确认",
+      "review_note_zh": "共享cotton bud明确；首图A1白色杆及多框重叠导致木杆/塑料杆分配不能独立确认；不能凭色调猜材料，建议NA。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "hair clip",
+        "F_A": "black hair clip",
+        "F_B": "brown hair clip"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              15,
+              31
+            ],
+            "F": [
+              19,
+              31
+            ],
+            "V": [
+              10,
+              31
+            ]
+          },
+          "filename": "HOU_INTRA_HCP1_HCP2_018_013_2d8fe0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 22,
+              "B": 24
+            },
+            "F": {
+              "A": 13,
+              "B": 27
+            },
+            "V": {
+              "A": 26,
+              "B": 15
+            }
+          },
+          "truth": {
+            "A": 18,
+            "B": 13
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              3,
+              14
+            ],
+            "F": [
+              3,
+              28
+            ],
+            "V": [
+              3,
+              8
+            ]
+          },
+          "filename": "HOU_INTRA_HCP1_HCP2_032_024_6dd388.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 26,
+              "B": 30
+            },
+            "F": {
+              "A": 36,
+              "B": 22
+            },
+            "V": {
+              "A": 23,
+              "B": 36
+            }
+          },
+          "truth": {
+            "A": 32,
+            "B": 24
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.3490783410138249,
+        "F": 0.36002304147465436,
+        "V": 0.3487903225806452
+      },
+      "mean_error_exact": {
+        "C": [
+          303,
+          868
+        ],
+        "F": [
+          625,
+          1736
+        ],
+        "V": [
+          173,
+          496
+        ]
+      },
+      "oracle_minus_F": -0.011232718894009217,
+      "pair_id": "HOU_INTRA_HCP1_HCP2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "是抓夹/发夹，不是电动hair clipper。候选black/brown hair clip修正名词且保留A/B。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "pill",
+        "F_A": "white pill",
+        "F_B": "yellow pill"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              19,
+              139
+            ],
+            "F": [
+              25,
+              278
+            ],
+            "V": [
+              23,
+              278
+            ]
+          },
+          "filename": "HOU_INTRA_PIL1_PIL2_160_118_0a67b5.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 139,
+              "B": 135
+            },
+            "F": {
+              "A": 156,
+              "B": 139
+            },
+            "V": {
+              "A": 154,
+              "B": 135
+            }
+          },
+          "truth": {
+            "A": 160,
+            "B": 118
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              47,
+              335
+            ],
+            "F": [
+              59,
+              335
+            ],
+            "V": [
+              2,
+              67
+            ]
+          },
+          "filename": "HOU_INTRA_PIL1_PIL2_186_149_81bb2a.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 143,
+              "B": 145
+            },
+            "F": {
+              "A": 158,
+              "B": 180
+            },
+            "V": {
+              "A": 182,
+              "B": 155
+            }
+          },
+          "truth": {
+            "A": 186,
+            "B": 149
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.13849457747235047,
+        "F": 0.13302373026951572,
+        "V": 0.0562922796091485
+      },
+      "mean_error_exact": {
+        "C": [
+          6449,
+          46565
+        ],
+        "F": [
+          24777,
+          186260
+        ],
+        "V": [
+          2097,
+          37252
+        ]
+      },
+      "oracle_minus_F": -0.07673145066036723,
+      "pair_id": "HOU_INTRA_PIL1_PIL2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A白色、B黄色药片；不推断药物成分。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 88,
+          "B_count": 75,
+          "filename": "HOU_INTRA_TPK1_TPK2_088_075_3302ce.jpg"
+        },
+        {
+          "A_count": 118,
+          "B_count": 123,
+          "filename": "HOU_INTRA_TPK1_TPK2_118_123_0fbb03.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "HOU_INTRA_TPK1_TPK2",
+      "qualifies": null,
+      "reason": "牙签/牙线棒的共同物体名未充分确定",
+      "review_note_zh": "A直牙签、B牙线棒；dental pick是否真是二者共同对象类型含歧义，不能以oral hygiene tool功能大类掩盖。建议C为NA、整pair不进三模式主比较。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "plastic utensil",
+        "F_A": "plastic spoon",
+        "F_B": "plastic fork"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              19,
+              93
+            ],
+            "F": [
+              3,
+              31
+            ],
+            "V": [
+              17,
+              93
+            ]
+          },
+          "filename": "HOU_INTRA_ULT1_ULT2_048_045_4bd16a.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 54,
+              "B": 32
+            },
+            "F": {
+              "A": 51,
+              "B": 39
+            },
+            "V": {
+              "A": 46,
+              "B": 30
+            }
+          },
+          "truth": {
+            "A": 48,
+            "B": 45
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              16,
+              61
+            ],
+            "F": [
+              23,
+              61
+            ],
+            "V": [
+              5,
+              61
+            ]
+          },
+          "filename": "HOU_INTRA_ULT1_ULT2_034_027_fa97b4.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 47,
+              "B": 24
+            },
+            "F": {
+              "A": 50,
+              "B": 20
+            },
+            "V": {
+              "A": 35,
+              "B": 23
+            }
+          },
+          "truth": {
+            "A": 34,
+            "B": 27
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.23329807861801516,
+        "F": 0.23691168693812797,
+        "V": 0.13238145601974263
+      },
+      "mean_error_exact": {
+        "C": [
+          2647,
+          11346
+        ],
+        "F": [
+          448,
+          1891
+        ],
+        "V": [
+          751,
+          5673
+        ]
+      },
+      "oracle_minus_F": -0.10453023091838533,
+      "pair_id": "HOU_INTRA_ULT1_ULT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A塑料勺、B塑料叉，部分倾斜或遮挡；复核上下文后未确认方向冲突。plastic utensil是明确共享对象类别。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "craft stick",
+        "F_A": "red or orange craft stick",
+        "F_B": "blue or purple craft stick"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              6,
+              31
+            ],
+            "F": [
+              6,
+              31
+            ],
+            "V": [
+              8,
+              31
+            ]
+          },
+          "filename": "OFF_INTRA_CRS1_CRS2_013_018_52a59c.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 12,
+              "B": 23
+            },
+            "F": {
+              "A": 14,
+              "B": 23
+            },
+            "V": {
+              "A": 11,
+              "B": 24
+            }
+          },
+          "truth": {
+            "A": 13,
+            "B": 18
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              19,
+              52
+            ],
+            "F": [
+              5,
+              26
+            ],
+            "V": [
+              19,
+              52
+            ]
+          },
+          "filename": "OFF_INTRA_CRS1_CRS2_025_027_61c200.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 14,
+              "B": 35
+            },
+            "F": {
+              "A": 20,
+              "B": 32
+            },
+            "V": {
+              "A": 16,
+              "B": 37
+            }
+          },
+          "truth": {
+            "A": 25,
+            "B": 27
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.2794665012406948,
+        "F": 0.19292803970223324,
+        "V": 0.31172456575682383
+      },
+      "mean_error_exact": {
+        "C": [
+          901,
+          3224
+        ],
+        "F": [
+          311,
+          1612
+        ],
+        "V": [
+          1005,
+          3224
+        ]
+      },
+      "oracle_minus_F": 0.08653846153846154,
+      "pair_id": "OFF_INTRA_CRS1_CRS2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A红/橙、B蓝/紫工艺木棒，背景其他颜色不纳入这两目标。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "heart sticker",
+        "F_A": "big heart sticker",
+        "F_B": "small heart sticker"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              25,
+              94
+            ],
+            "F": [
+              26,
+              47
+            ],
+            "V": [
+              48,
+              47
+            ]
+          },
+          "filename": "OFF_INTRA_HST1_HST2_039_055_447753.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 22,
+              "B": 63
+            },
+            "F": {
+              "A": 23,
+              "B": 91
+            },
+            "V": {
+              "A": 0,
+              "B": 112
+            }
+          },
+          "truth": {
+            "A": 39,
+            "B": 55
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              27,
+              67
+            ],
+            "F": [
+              83,
+              134
+            ],
+            "V": [
+              71,
+              134
+            ]
+          },
+          "filename": "OFF_INTRA_HST1_HST2_054_080_ff5eb0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 28,
+              "B": 108
+            },
+            "F": {
+              "A": 23,
+              "B": 132
+            },
+            "V": {
+              "A": 28,
+              "B": 125
+            }
+          },
+          "truth": {
+            "A": 54,
+            "B": 80
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.3344712607176882,
+        "F": 0.5862972372181645,
+        "V": 0.7755636710066688
+      },
+      "mean_error_exact": {
+        "C": [
+          4213,
+          12596
+        ],
+        "F": [
+          7385,
+          12596
+        ],
+        "V": [
+          9769,
+          12596
+        ]
+      },
+      "oracle_minus_F": -0.25182597650047633,
+      "pair_id": "OFF_INTRA_HST1_HST2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "大小心形贴饰，保留作者heart sticker名称。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "pen",
+        "F_A": "pen with cap",
+        "F_B": "pen without cap"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              1,
+              7
+            ],
+            "F": [
+              3,
+              28
+            ],
+            "V": [
+              1,
+              14
+            ]
+          },
+          "filename": "OFF_INTRA_PEN1_PEN2_015_013_bfd497.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 13,
+              "B": 15
+            },
+            "F": {
+              "A": 13,
+              "B": 14
+            },
+            "V": {
+              "A": 16,
+              "B": 12
+            }
+          },
+          "truth": {
+            "A": 15,
+            "B": 13
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              11,
+              50
+            ],
+            "F": [
+              39,
+              50
+            ],
+            "V": [
+              13,
+              25
+            ]
+          },
+          "filename": "OFF_INTRA_PEN1_PEN2_025_025_d6e6a9.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 33,
+              "B": 22
+            },
+            "F": {
+              "A": 50,
+              "B": 11
+            },
+            "V": {
+              "A": 41,
+              "B": 15
+            }
+          },
+          "truth": {
+            "A": 25,
+            "B": 25
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.18142857142857144,
+        "F": 0.44357142857142856,
+        "V": 0.2957142857142857
+      },
+      "mean_error_exact": {
+        "C": [
+          127,
+          700
+        ],
+        "F": [
+          621,
+          1400
+        ],
+        "V": [
+          207,
+          700
+        ]
+      },
+      "oracle_minus_F": -0.2621428571428571,
+      "pair_id": "OFF_INTRA_PEN1_PEN2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A有笔帽、B露出笔尖的笔；框可能仅覆盖识别部位，未改为全物体框。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "paper clip",
+        "F_A": "colored paper clip",
+        "F_B": "silver paper clip"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              433,
+              1000
+            ],
+            "F": [
+              141,
+              250
+            ],
+            "V": [
+              71,
+              125
+            ]
+          },
+          "filename": "OFF_INTRA_PPC1_PPC2_437_563_8f4bc1.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 258,
+              "B": 309
+            },
+            "F": {
+              "A": 380,
+              "B": 56
+            },
+            "V": {
+              "A": 223,
+              "B": 209
+            }
+          },
+          "truth": {
+            "A": 437,
+            "B": 563
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              676,
+              821
+            ],
+            "F": [
+              523,
+              821
+            ],
+            "V": [
+              515,
+              821
+            ]
+          },
+          "filename": "OFF_INTRA_PPC1_PPC2_382_439_99d386.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 25,
+              "B": 120
+            },
+            "F": {
+              "A": 289,
+              "B": 9
+            },
+            "V": {
+              "A": 48,
+              "B": 258
+            }
+          },
+          "truth": {
+            "A": 382,
+            "B": 439
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6281930572472595,
+        "F": 0.6005140073081607,
+        "V": 0.5976419001218026
+      },
+      "mean_error_exact": {
+        "C": [
+          1031493,
+          1642000
+        ],
+        "F": [
+          246511,
+          410500
+        ],
+        "V": [
+          61333,
+          102625
+        ]
+      },
+      "oracle_minus_F": -0.0028721071863581,
+      "pair_id": "OFF_INTRA_PPC1_PPC2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A彩色、B银色回形针；局部有邻物遮挡，未改框。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "push pin",
+        "F_A": "normal push pin",
+        "F_B": "round push pin"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              49,
+              89
+            ],
+            "F": [
+              30,
+              89
+            ],
+            "V": [
+              104,
+              89
+            ]
+          },
+          "filename": "OFF_INTRA_PPN1_PPN2_037_052_f8d127.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 32,
+              "B": 8
+            },
+            "F": {
+              "A": 38,
+              "B": 81
+            },
+            "V": {
+              "A": 106,
+              "B": 17
+            }
+          },
+          "truth": {
+            "A": 37,
+            "B": 52
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              147,
+              169
+            ],
+            "F": [
+              5,
+              13
+            ],
+            "V": [
+              9,
+              13
+            ]
+          },
+          "filename": "OFF_INTRA_PPN1_PPN2_075_094_6a7f4f.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 16,
+              "B": 6
+            },
+            "F": {
+              "A": 52,
+              "B": 136
+            },
+            "V": {
+              "A": 22,
+              "B": 158
+            }
+          },
+          "truth": {
+            "A": 75,
+            "B": 94
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7101921414799548,
+        "F": 0.36084701815038894,
+        "V": 0.9304235090751944
+      },
+      "mean_error_exact": {
+        "C": [
+          10682,
+          15041
+        ],
+        "F": [
+          835,
+          2314
+        ],
+        "V": [
+          2153,
+          2314
+        ]
+      },
+      "oracle_minus_F": 0.34934512332956585,
+      "pair_id": "OFF_INTRA_PPN1_PPN2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A柱状握柄、B圆头图钉；候选normal/round沿用作者。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "rhinestone",
+        "F_A": "round rhinestone",
+        "F_B": "star rhinestone"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              177,
+              164
+            ],
+            "F": [
+              183,
+              164
+            ],
+            "V": [
+              177,
+              164
+            ]
+          },
+          "filename": "OFF_INTRA_RHS1_RHS2_072_092_2b3171.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 165,
+              "B": 8
+            },
+            "F": {
+              "A": 171,
+              "B": 8
+            },
+            "V": {
+              "A": 165,
+              "B": 8
+            }
+          },
+          "truth": {
+            "A": 72,
+            "B": 92
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              175,
+              232
+            ],
+            "F": [
+              183,
+              232
+            ],
+            "V": [
+              23,
+              29
+            ]
+          },
+          "filename": "OFF_INTRA_RHS1_RHS2_120_112_6681fb.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 10,
+              "B": 177
+            },
+            "F": {
+              "A": 7,
+              "B": 182
+            },
+            "V": {
+              "A": 10,
+              "B": 186
+            }
+          },
+          "truth": {
+            "A": 120,
+            "B": 112
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.9167893187552565,
+        "F": 0.9523233809924306,
+        "V": 0.9361858704793945
+      },
+      "mean_error_exact": {
+        "C": [
+          17441,
+          19024
+        ],
+        "F": [
+          18117,
+          19024
+        ],
+        "V": [
+          8905,
+          9512
+        ]
+      },
+      "oracle_minus_F": -0.0355340622371741,
+      "pair_id": "OFF_INTRA_RHS1_RHS2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A圆形、B星形水钻贴饰。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "rubber band",
+        "F_A": "yellow rubber band",
+        "F_B": "blue rubber band"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              36,
+              77
+            ],
+            "F": [
+              85,
+              308
+            ],
+            "V": [
+              51,
+              154
+            ]
+          },
+          "filename": "OFF_INTRA_RUB1_RUB2_164_144_bdd50f.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 49,
+              "B": 115
+            },
+            "F": {
+              "A": 107,
+              "B": 172
+            },
+            "V": {
+              "A": 93,
+              "B": 175
+            }
+          },
+          "truth": {
+            "A": 164,
+            "B": 144
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              100,
+              193
+            ],
+            "F": [
+              59,
+              386
+            ],
+            "V": [
+              259,
+              386
+            ]
+          },
+          "filename": "OFF_INTRA_RUB1_RUB2_205_181_279a25.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 177,
+              "B": 9
+            },
+            "F": {
+              "A": 182,
+              "B": 145
+            },
+            "V": {
+              "A": 283,
+              "B": 0
+            }
+          },
+          "truth": {
+            "A": 205,
+            "B": 181
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.49283359127918713,
+        "F": 0.21441188345333423,
+        "V": 0.5010766435636902
+      },
+      "mean_error_exact": {
+        "C": [
+          7324,
+          14861
+        ],
+        "F": [
+          25491,
+          118888
+        ],
+        "V": [
+          14893,
+          29722
+        ]
+      },
+      "oracle_minus_F": 0.2784217078258529,
+      "pair_id": "OFF_INTRA_RUB1_RUB2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A浅黄、B蓝色橡皮筋；重叠和白平衡使个别圈不清楚，整体六框与分组相容。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "safety pin",
+        "F_A": "big safety pin",
+        "F_B": "small safety pin"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              54,
+              95
+            ],
+            "F": [
+              32,
+              95
+            ],
+            "V": [
+              53,
+              95
+            ]
+          },
+          "filename": "OFF_INTRA_SFP1_SFP2_048_047_e436b4.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 28,
+              "B": 13
+            },
+            "F": {
+              "A": 44,
+              "B": 19
+            },
+            "V": {
+              "A": 37,
+              "B": 5
+            }
+          },
+          "truth": {
+            "A": 48,
+            "B": 47
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              2,
+              5
+            ],
+            "F": [
+              16,
+              65
+            ],
+            "V": [
+              36,
+              65
+            ]
+          },
+          "filename": "OFF_INTRA_SFP1_SFP2_030_035_9107dd.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 14,
+              "B": 45
+            },
+            "F": {
+              "A": 23,
+              "B": 26
+            },
+            "V": {
+              "A": 0,
+              "B": 41
+            }
+          },
+          "truth": {
+            "A": 30,
+            "B": 35
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.4842105263157895,
+        "F": 0.291497975708502,
+        "V": 0.5558704453441295
+      },
+      "mean_error_exact": {
+        "C": [
+          46,
+          95
+        ],
+        "F": [
+          72,
+          247
+        ],
+        "V": [
+          1373,
+          2470
+        ]
+      },
+      "oracle_minus_F": 0.19271255060728745,
+      "pair_id": "OFF_INTRA_SFP1_SFP2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "大小安全别针；原图相对尺寸支持分组，裁剪图各自放大不表示等大。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "sticky note",
+        "F_A": "dark green sticky note",
+        "F_B": "light green sticky note"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              13,
+              12
+            ],
+            "F": [
+              9,
+              10
+            ],
+            "V": [
+              19,
+              60
+            ]
+          },
+          "filename": "OFF_INTRA_STN1_STN2_032_028_d0abcd.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 63,
+              "B": 62
+            },
+            "F": {
+              "A": 7,
+              "B": 57
+            },
+            "V": {
+              "A": 24,
+              "B": 39
+            }
+          },
+          "truth": {
+            "A": 32,
+            "B": 28
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              36,
+              71
+            ],
+            "F": [
+              44,
+              71
+            ],
+            "V": [
+              40,
+              71
+            ]
+          },
+          "filename": "OFF_INTRA_STN1_STN2_036_035_b9e483.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 62,
+              "B": 25
+            },
+            "F": {
+              "A": 16,
+              "B": 59
+            },
+            "V": {
+              "A": 57,
+              "B": 16
+            }
+          },
+          "truth": {
+            "A": 36,
+            "B": 35
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.79518779342723,
+        "F": 0.7598591549295775,
+        "V": 0.44002347417840376
+      },
+      "mean_error_exact": {
+        "C": [
+          1355,
+          1704
+        ],
+        "F": [
+          1079,
+          1420
+        ],
+        "V": [
+          3749,
+          8520
+        ]
+      },
+      "oracle_minus_F": -0.3198356807511737,
+      "pair_id": "OFF_INTRA_STN1_STN2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A更浓绿色、B浅绿色便签；dark/light指作者两种颜色，不按单个像素亮度重标。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "bead",
+        "F_A": "blue or purple bead",
+        "F_B": "orange or pink bead"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              11,
+              95
+            ],
+            "F": [
+              41,
+              95
+            ],
+            "V": [
+              46,
+              95
+            ]
+          },
+          "filename": "OTR_INTRA_BEA1_BEA2_155_130_a163a3.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 167,
+              "B": 109
+            },
+            "F": {
+              "A": 138,
+              "B": 24
+            },
+            "V": {
+              "A": 163,
+              "B": 0
+            }
+          },
+          "truth": {
+            "A": 155,
+            "B": 130
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              6,
+              19
+            ],
+            "F": [
+              67,
+              285
+            ],
+            "V": [
+              244,
+              285
+            ]
+          },
+          "filename": "OTR_INTRA_BEA1_BEA2_155_130_563274.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 76,
+              "B": 141
+            },
+            "F": {
+              "A": 137,
+              "B": 81
+            },
+            "V": {
+              "A": 0,
+              "B": 219
+            }
+          },
+          "truth": {
+            "A": 155,
+            "B": 130
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.21578947368421053,
+        "F": 0.3333333333333333,
+        "V": 0.6701754385964912
+      },
+      "mean_error_exact": {
+        "C": [
+          41,
+          190
+        ],
+        "F": [
+          1,
+          3
+        ],
+        "V": [
+          191,
+          285
+        ]
+      },
+      "oracle_minus_F": -0.11754385964912281,
+      "pair_id": "OTR_INTRA_BEA1_BEA2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A蓝/紫、B橙/粉珠子；加bead名词，不能按旧文件名green/pink改回。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "bolt",
+        "F_A": "hex head bolt",
+        "F_B": "mushroom head bolt"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              56,
+              85
+            ],
+            "F": [
+              18,
+              85
+            ],
+            "V": [
+              42,
+              85
+            ]
+          },
+          "filename": "OTR_INTRA_BOL1_BOL2_030_055_2d0cc9.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 72,
+              "B": 69
+            },
+            "F": {
+              "A": 13,
+              "B": 54
+            },
+            "V": {
+              "A": 2,
+              "B": 69
+            }
+          },
+          "truth": {
+            "A": 30,
+            "B": 55
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              21,
+              23
+            ],
+            "F": [
+              6,
+              115
+            ],
+            "V": [
+              94,
+              115
+            ]
+          },
+          "filename": "OTR_INTRA_BOL1_BOL2_045_070_b82925.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 97,
+              "B": 123
+            },
+            "F": {
+              "A": 44,
+              "B": 75
+            },
+            "V": {
+              "A": 0,
+              "B": 119
+            }
+          },
+          "truth": {
+            "A": 45,
+            "B": 70
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7859335038363171,
+        "F": 0.1319693094629156,
+        "V": 0.6557544757033248
+      },
+      "mean_error_exact": {
+        "C": [
+          3073,
+          3910
+        ],
+        "F": [
+          258,
+          1955
+        ],
+        "V": [
+          1282,
+          1955
+        ]
+      },
+      "oracle_minus_F": 0.5237851662404092,
+      "pair_id": "OTR_INTRA_BOL1_BOL2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A六角头、B圆顶头螺栓。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": null,
+      "images": [
+        {
+          "A_count": 150,
+          "B_count": 240,
+          "filename": "OTR_INTRA_BUT1_BUT2_150_240_b5bef4.jpg"
+        },
+        {
+          "A_count": 130,
+          "B_count": 220,
+          "filename": "OTR_INTRA_BUT1_BUT2_130_220_44f428.jpg"
+        }
+      ],
+      "mean_error": null,
+      "mean_error_exact": null,
+      "pair_id": "OTR_INTRA_BUT1_BUT2",
+      "qualifies": null,
+      "reason": "官方文字与框相反，计数真实类别归属未核定",
+      "review_note_zh": "两图A全部透明、B全部不透明浅色，与Beige/Clear方向相反；来源链无本地换位，但计数的真实类别绑定未独立解决，建议NA。",
+      "status": "NA"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "bag clip",
+        "F_A": "green bag clip",
+        "F_B": "red bag clip"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              3,
+              8
+            ],
+            "F": [
+              29,
+              80
+            ],
+            "V": [
+              13,
+              20
+            ]
+          },
+          "filename": "OTR_INTRA_IKE1_IKE2_120_120_42a42c.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 166,
+              "B": 164
+            },
+            "F": {
+              "A": 39,
+              "B": 126
+            },
+            "V": {
+              "A": 159,
+              "B": 3
+            }
+          },
+          "truth": {
+            "A": 120,
+            "B": 120
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              24,
+              85
+            ],
+            "F": [
+              49,
+              170
+            ],
+            "V": [
+              71,
+              170
+            ]
+          },
+          "filename": "OTR_INTRA_IKE1_IKE2_080_090_fc92ba.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 82,
+              "B": 136
+            },
+            "F": {
+              "A": 46,
+              "B": 105
+            },
+            "V": {
+              "A": 35,
+              "B": 116
+            }
+          },
+          "truth": {
+            "A": 80,
+            "B": 90
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.3286764705882353,
+        "F": 0.32536764705882354,
+        "V": 0.5338235294117647
+      },
+      "mean_error_exact": {
+        "C": [
+          447,
+          1360
+        ],
+        "F": [
+          177,
+          544
+        ],
+        "V": [
+          363,
+          680
+        ]
+      },
+      "oracle_minus_F": 0.0033088235294117647,
+      "pair_id": "OTR_INTRA_IKE1_IKE2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A绿、B红塑料封口夹；共同名bag clip较ikea clip更明确是物体类型，F同步去品牌命名。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "nail",
+        "F_A": "common nail",
+        "F_B": "concrete nail"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              169,
+              230
+            ],
+            "F": [
+              106,
+              115
+            ],
+            "V": [
+              171,
+              230
+            ]
+          },
+          "filename": "OTR_INTRA_NAI1_NAI2_200_030_2944b0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 98,
+              "B": 97
+            },
+            "F": {
+              "A": 38,
+              "B": 80
+            },
+            "V": {
+              "A": 51,
+              "B": 52
+            }
+          },
+          "truth": {
+            "A": 200,
+            "B": 30
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              173,
+              230
+            ],
+            "F": [
+              118,
+              115
+            ],
+            "V": [
+              33,
+              230
+            ]
+          },
+          "filename": "OTR_INTRA_NAI1_NAI2_200_030_496cdc.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 196,
+              "B": 199
+            },
+            "F": {
+              "A": 66,
+              "B": 132
+            },
+            "V": {
+              "A": 178,
+              "B": 19
+            }
+          },
+          "truth": {
+            "A": 200,
+            "B": 30
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7434782608695653,
+        "F": 0.9739130434782609,
+        "V": 0.4434782608695652
+      },
+      "mean_error_exact": {
+        "C": [
+          171,
+          230
+        ],
+        "F": [
+          112,
+          115
+        ],
+        "V": [
+          51,
+          115
+        ]
+      },
+      "oracle_minus_F": -0.5304347826086957,
+      "pair_id": "OTR_INTRA_NAI1_NAI2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A细长普通钉、B较粗混凝土钉，与作者类别相容。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "nut",
+        "F_A": "hex nut",
+        "F_B": "square nut"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              67,
+              105
+            ],
+            "F": [
+              46,
+              105
+            ],
+            "V": [
+              83,
+              105
+            ]
+          },
+          "filename": "OTR_INTRA_NUT1_NUT2_040_065_c72fc2.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 3,
+              "B": 35
+            },
+            "F": {
+              "A": 21,
+              "B": 92
+            },
+            "V": {
+              "A": 5,
+              "B": 113
+            }
+          },
+          "truth": {
+            "A": 40,
+            "B": 65
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              15,
+              17
+            ],
+            "F": [
+              10,
+              17
+            ],
+            "V": [
+              1,
+              1
+            ]
+          },
+          "filename": "OTR_INTRA_NUT1_NUT2_030_055_fa66e2.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 67,
+              "B": 17
+            },
+            "F": {
+              "A": 6,
+              "B": 81
+            },
+            "V": {
+              "A": 73,
+              "B": 13
+            }
+          },
+          "truth": {
+            "A": 30,
+            "B": 55
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7602240896358543,
+        "F": 0.5131652661064425,
+        "V": 0.8952380952380953
+      },
+      "mean_error_exact": {
+        "C": [
+          1357,
+          1785
+        ],
+        "F": [
+          916,
+          1785
+        ],
+        "V": [
+          94,
+          105
+        ]
+      },
+      "oracle_minus_F": 0.24705882352941178,
+      "pair_id": "OTR_INTRA_NUT1_NUT2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A六角、B方形螺母。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "clothes peg",
+        "F_A": "grey clothes peg",
+        "F_B": "white clothes peg"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              25,
+              168
+            ],
+            "F": [
+              29,
+              112
+            ],
+            "V": [
+              85,
+              336
+            ]
+          },
+          "filename": "OTR_INTRA_PEG1_PEG2_168_168_74683f.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 152,
+              "B": 134
+            },
+            "F": {
+              "A": 166,
+              "B": 83
+            },
+            "V": {
+              "A": 92,
+              "B": 159
+            }
+          },
+          "truth": {
+            "A": 168,
+            "B": 168
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              13,
+              50
+            ],
+            "F": [
+              67,
+              150
+            ],
+            "V": [
+              41,
+              60
+            ]
+          },
+          "filename": "OTR_INTRA_PEG1_PEG2_155_145_604097.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 178,
+              "B": 200
+            },
+            "F": {
+              "A": 43,
+              "B": 167
+            },
+            "V": {
+              "A": 8,
+              "B": 203
+            }
+          },
+          "truth": {
+            "A": 155,
+            "B": 145
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.2044047619047619,
+        "F": 0.352797619047619,
+        "V": 0.4681547619047619
+      },
+      "mean_error_exact": {
+        "C": [
+          1717,
+          8400
+        ],
+        "F": [
+          5927,
+          16800
+        ],
+        "V": [
+          1573,
+          3360
+        ]
+      },
+      "oracle_minus_F": -0.14839285714285713,
+      "pair_id": "OTR_INTRA_PEG1_PEG2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A灰、B白晾衣夹；共同名clothes peg比泛peg明确，F同步补充clothes。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "screw",
+        "F_A": "long silver concrete screw",
+        "F_B": "short bronze screw"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              3,
+              7
+            ],
+            "F": [
+              11,
+              35
+            ],
+            "V": [
+              27,
+              35
+            ]
+          },
+          "filename": "OTR_INTRA_SCR1_SCR2_020_015_59e049.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 25,
+              "B": 25
+            },
+            "F": {
+              "A": 13,
+              "B": 11
+            },
+            "V": {
+              "A": 1,
+              "B": 23
+            }
+          },
+          "truth": {
+            "A": 20,
+            "B": 15
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              7,
+              16
+            ],
+            "F": [
+              23,
+              32
+            ],
+            "V": [
+              3,
+              4
+            ]
+          },
+          "filename": "OTR_INTRA_SCR1_SCR2_048_048_b268e5.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 26,
+              "B": 28
+            },
+            "F": {
+              "A": 21,
+              "B": 6
+            },
+            "V": {
+              "A": 20,
+              "B": 4
+            }
+          },
+          "truth": {
+            "A": 48,
+            "B": 48
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.4330357142857143,
+        "F": 0.5165178571428571,
+        "V": 0.7607142857142857
+      },
+      "mean_error_exact": {
+        "C": [
+          97,
+          224
+        ],
+        "F": [
+          1157,
+          2240
+        ],
+        "V": [
+          213,
+          280
+        ]
+      },
+      "oracle_minus_F": -0.08348214285714285,
+      "pair_id": "OTR_INTRA_SCR1_SCR2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A长银、B短铜色螺钉；材质/用途只沿用作者，不独立验证合金与用途。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "decorative stone",
+        "F_A": "red decorative stone",
+        "F_B": "yellow decorative stone"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              9,
+              7
+            ],
+            "F": [
+              3,
+              14
+            ],
+            "V": [
+              9,
+              7
+            ]
+          },
+          "filename": "OTR_INTRA_STO1_STO2_006_008_1e1c52.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 16,
+              "B": 0
+            },
+            "F": {
+              "A": 9,
+              "B": 8
+            },
+            "V": {
+              "A": 16,
+              "B": 0
+            }
+          },
+          "truth": {
+            "A": 6,
+            "B": 8
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              1,
+              4
+            ],
+            "F": [
+              3,
+              8
+            ],
+            "V": [
+              3,
+              8
+            ]
+          },
+          "filename": "OTR_INTRA_STO1_STO2_012_012_df90b7.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 17,
+              "B": 11
+            },
+            "F": {
+              "A": 15,
+              "B": 18
+            },
+            "V": {
+              "A": 15,
+              "B": 18
+            }
+          },
+          "truth": {
+            "A": 12,
+            "B": 12
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.7678571428571429,
+        "F": 0.29464285714285715,
+        "V": 0.8303571428571429
+      },
+      "mean_error_exact": {
+        "C": [
+          43,
+          56
+        ],
+        "F": [
+          33,
+          112
+        ],
+        "V": [
+          93,
+          112
+        ]
+      },
+      "oracle_minus_F": 0.4732142857142857,
+      "pair_id": "OTR_INTRA_STO1_STO2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "红/黄装饰石（透明玻璃质外观）；共同名decorative stone，yellowstone拆为yellow stone，不指地名。",
+      "status": "EVALUATED"
+    },
+    {
+      "frozen_input_texts": {
+        "C": "washer",
+        "F_A": "metal washer",
+        "F_B": "nylon washer"
+      },
+      "images": [
+        {
+          "error_exact": {
+            "C": [
+              131,
+              200
+            ],
+            "F": [
+              1,
+              1
+            ],
+            "V": [
+              203,
+              200
+            ]
+          },
+          "filename": "OTR_INTRA_WAS1_WAS2_100_100_627895.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 41,
+              "B": 172
+            },
+            "F": {
+              "A": 1,
+              "B": 201
+            },
+            "V": {
+              "A": 0,
+              "B": 203
+            }
+          },
+          "truth": {
+            "A": 100,
+            "B": 100
+          }
+        },
+        {
+          "error_exact": {
+            "C": [
+              129,
+              175
+            ],
+            "F": [
+              114,
+              175
+            ],
+            "V": [
+              166,
+              175
+            ]
+          },
+          "filename": "OTR_INTRA_WAS1_WAS2_090_085_9682d0.jpg",
+          "prediction_counts": {
+            "C": {
+              "A": 15,
+              "B": 139
+            },
+            "F": {
+              "A": 29,
+              "B": 138
+            },
+            "V": {
+              "A": 5,
+              "B": 166
+            }
+          },
+          "truth": {
+            "A": 90,
+            "B": 85
+          }
+        }
+      ],
+      "mean_error": {
+        "C": 0.6960714285714286,
+        "F": 0.8257142857142857,
+        "V": 0.9817857142857143
+      },
+      "mean_error_exact": {
+        "C": [
+          1949,
+          2800
+        ],
+        "F": [
+          289,
+          350
+        ],
+        "V": [
+          2749,
+          2800
+        ]
+      },
+      "oracle_minus_F": -0.12964285714285714,
+      "pair_id": "OTR_INTRA_WAS1_WAS2",
+      "qualifies": false,
+      "reason": "作者来源与逐框目视相容；未独立重数整图",
+      "review_note_zh": "A金属、B白色尼龙垫圈；材质沿用作者，外观相容。",
+      "status": "EVALUATED"
+    }
+  ],
+  "points_used_as_localization_GT": false,
+  "predicted_boxes_preserved": 35754,
+  "processes": {
+    "caffeinate": {
+      "pid": 23944,
+      "state": "exited"
+    },
+    "controller": {
+      "pid": 23941,
+      "state": "exited"
+    },
+    "worker": {
+      "pid": 23943,
+      "state": "exited"
+    }
+  },
+  "qualifying_pair_count": 1,
+  "qualifying_pair_ids": [
+    "FOO_INTRA_PEP1_PEP2"
+  ],
+  "qualifying_pair_required": 10,
+  "qualitative_box_review": "NOT_TRIGGERED_BY_JOINT_NUMERIC_GATE; all predicted boxes retained; no correct-target-selection claim made.",
+  "query_wall_before_final_persistence": {
+    "C": {
+      "max": 5.8470055000070715,
+      "median": 5.738275354000507,
+      "min": 4.101515124988509,
+      "sum": 857.7760642149806
+    },
+    "F": {
+      "max": 5.847358208004152,
+      "median": 5.742189541495463,
+      "min": 4.107202125000185,
+      "sum": 858.3255160439585
+    },
+    "V": {
+      "max": 5.8304206669999985,
+      "median": 5.736323937504494,
+      "min": 4.117114915992715,
+      "sum": 857.4166210859548
+    }
+  },
+  "remaining_blockers": [],
+  "resources": {
+    "actual_loading_gate": {
+      "allowed": true,
+      "cumulative_seconds": 611.922658844007,
+      "extra_startup_seconds": 0.0,
+      "forecast_seconds": 7106.277092516975,
+      "full_queries": 492,
+      "io_reserve_seconds": 60.0,
+      "max_mode_seconds": 6.538978083000984,
+      "multiplier": 2
+    },
+    "formal_terminal_cumulative_seconds": 3310.373824803013,
+    "formal_wall_seconds": 2709.2057805420045,
+    "hard_cap_seconds": 7200,
+    "network_attempts": 0,
+    "new_CU": 0,
+    "new_GPU": 0,
+    "peak_RSS_bytes": 4772626432,
+    "pre_formal_cumulative_seconds": 601.1680442610086,
+    "training_steps": 0
+  },
+  "runtime": {
+    "AMP": false,
+    "CPU_default_generator_seeded_without_GPU_seed_calls": true,
+    "device": "cpu",
+    "dtype": "FP32",
+    "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+    "seed": 42,
+    "versions": {
+      "Pillow": "13.0.0",
+      "numpy": "2.5.4",
+      "safetensors": "0.8.0",
+      "timm": "1.0.30",
+      "tokenizers": "0.21.4",
+      "torch": "2.13.0",
+      "torchvision": "0.28.0",
+      "transformers": "4.49.0"
+    }
+  },
+  "saturated_query_ids": [],
+  "scope": "Frozen CountGD++ HF/app basic path on Mac CPU FP32, threads2/1, .23,800/max1333, no adaptive cropping or pseudo-exemplars; no CUDA/paper/all-method equivalence.",
+  "status": "COMPLETE_492_INDEPENDENTLY_VERIFIED_GATES_NOT_MET",
+  "unique_queries": 492,
+  "verified_at_UTC": "2026-10-31T08:35:00.711854+00:00"
+}

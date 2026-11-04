@@ -1,0 +1,152 @@
+{
+  "CPU_C_completion": "STARTED then killed by external precheck watchdog; no returned output persisted",
+  "CPU_V_attempted": false,
+  "CUDA_root_forward_attempts": 0,
+  "CUDA_throughput": "UNMEASURED",
+  "all_remote_index_files_verified_locally": true,
+  "allocation_attempts": 1,
+  "attempts": [
+    {
+      "complete_query_seconds": 80.32887741200005,
+      "compute_used_seconds": 190.8038195950071,
+      "index": 1,
+      "label": "cpu_F",
+      "phase": "precheck",
+      "status": "COMPLETE"
+    },
+    {
+      "compute_used_seconds": 191.19209370900694,
+      "index": 2,
+      "label": "cpu_C",
+      "phase": "precheck",
+      "status": "STARTED"
+    }
+  ],
+  "completed_cpu_F_full_query_seconds": 80.58205878799998,
+  "completed_cpu_F_native_validity": {
+    "active_logits_finite": true,
+    "coordinate_shape": [
+      1,
+      900,
+      4
+    ],
+    "coordinates_finite": true,
+    "full_logits_finite": false,
+    "logit_shape": [
+      1,
+      900,
+      256
+    ],
+    "padding_exactly_negative_infinity": true,
+    "sigmoid_scores_finite": true,
+    "valid_token_length": 14
+  },
+  "compute_budget": {
+    "GPU_allocation_wall_seconds": 294.1278047090018,
+    "after_balance_snapshot_CU": 40.773594015108486,
+    "allocation_released_confirmed": true,
+    "balance_difference_is_final_bill": false,
+    "before_balance_CU": 40.78554781719211,
+    "compute_cap_seconds": 1800,
+    "compute_remaining_seconds": 1540.3135267179896,
+    "conservative_CU_with_0_05_buffer": 0.14395749317093112,
+    "credit_cap_CU": 2,
+    "cumulative_compute_used_seconds": 259.6864732820104,
+    "installation_wall_separate_seconds": 11.64921314899999,
+    "observed_balance_difference_CU": 0.01195380208362451,
+    "precheck_deadline_seconds": 180,
+    "precheck_external_worker_wall_seconds_including_termination": 180.72682946999998,
+    "preparation_compute_seconds": 22.091234790002147,
+    "prior_compute_wall_seconds": 54.91578541700437,
+    "rate_CU_per_hour": 1.15,
+    "rate_times_allocation_wall_CU": 0.09395749317093112,
+    "reason_balance_not_final_bill": "API balance can settle later; duration/rate plus buffer supplies the conservative bound",
+    "stop_reason": "180 s external precheck wall reached",
+    "this_allocation_charged_increment_conservative_seconds": 204.77068786500604,
+    "weight_download_wall_separate_seconds": 20.502692109999998,
+    "worker_exit_code": -15
+  },
+  "cumulative_transfer_forecast_bytes": 3464493598,
+  "disk_cap_bytes": 6442450944,
+  "formal_metric_evaluation": "NOT_PERFORMED; no real-data predictions exist",
+  "formal_query_attempts": 0,
+  "freeze_sha256": "915d27011f9f948150de676b08f5830d5811066b993fc500aad729f0f284849a",
+  "indexed_files": [
+    "attempts/0001.json",
+    "attempts/0002.json",
+    "engineering/preparation.json",
+    "engineering/status.json",
+    "install.log",
+    "supervisor.json"
+  ],
+  "last_durable_root_forward_counters": {
+    "formal_attempts": 0,
+    "formal_completed": 0,
+    "network_attempts": 0,
+    "pickle_attempts": 0,
+    "precheck_attempts": 1,
+    "root_forward_entered": 1,
+    "root_forward_reserved": 1,
+    "root_forward_returned": 1,
+    "science_reads_during_precheck": 0,
+    "training_steps": 0
+  },
+  "native_environment": {
+    "native_torch_file": "/usr/local/lib/python3.13/dist-packages/torch/__init__.py",
+    "native_torchvision_file": "/usr/local/lib/python3.13/dist-packages/torchvision/__init__.py",
+    "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130",
+    "torch_cuda_build": "13.0",
+    "torchvision": "0.26.0+cu130"
+  },
+  "new_authorization_used": "authorizations/GO-20261031T062317Z.json",
+  "numerical_CPU_CUDA_equivalence": "UNASSESSED; CUDA phase not reached",
+  "peak_tree_RSS_bytes": 4357922816,
+  "postflight_snapshot": {
+    "active_assignments": 0,
+    "assignments": [],
+    "balance": null,
+    "rate_per_hour": 0.0
+  },
+  "precheck_attempts_reserved": 2,
+  "receipt": {
+    "accelerator": "T4",
+    "endpoint": "gpu-t4-s-usw4a1-2dveh9qk5vf7o",
+    "session_name": "counting-fixed-915d27011f9f"
+  },
+  "recorded_utc": "2026-10-31T06:38:09.772579+00:00",
+  "recovery_note": "Primary official unassign returned exit 0. Its following snapshot printed a stale-session pruning notice before JSON, causing the frozen parser to record UNCERTAIN. Independent watchdog and an additional read-only official snapshot both confirmed zero assignments/rate. Historical controller report is preserved unchanged.",
+  "release_confirmed": true,
+  "remaining_blocker": "Frozen remote CPU reference/precheck did not fit 180 s. No permission for another allocation or changed precheck; report to parent without retry.",
+  "remote_owned_disk_bytes": 1972317296,
+  "retry_or_second_allocation": false,
+  "source_and_fixture_or_tolerance_changed": false,
+  "status": "ENGINEERING_BLOCKED_BY_CPU_PRECHECK_WALL_NOT_SCIENTIFIC_NEGATIVE",
+  "strict_loading": {
+    "actual_aliases": 66,
+    "all_values_equal": true,
+    "custom_attention_extension": false,
+    "logical_keys": 1108,
+    "missing_keys": [],
+    "physical_keys": 1042,
+    "strict": true,
+    "unexpected_keys": []
+  },
+  "training_steps": 0,
+  "transfer_cap_bytes": 3758096384,
+  "weight_transfers": [
+    {
+      "bytes": 937560192,
+      "download_wall_seconds": 16.669352521000008,
+      "path": "models/model.safetensors",
+      "sha256": "94eabe4e2595dac1e04cc1703641458b13c1c624ce10072ba57dd96b625a41f5"
+    },
+    {
+      "bytes": 440449768,
+      "download_wall_seconds": 3.8333395889999906,
+      "path": "models/bert-base-uncased/model.safetensors",
+      "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3"
+    }
+  ],
+  "worker_stop_reason": "180 s external precheck wall reached"
+}

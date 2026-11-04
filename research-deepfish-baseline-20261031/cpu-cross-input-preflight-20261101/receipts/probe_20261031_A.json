@@ -1,0 +1,60 @@
+{
+  "status": "STOPPED",
+  "model": "20261031_A",
+  "protocol_sha256": "0b4101c0e9e41904c8dc23618439fa2499815eb136ea106bd3c48ef1ed02e305",
+  "forward_calls_started": 1,
+  "forward_calls_completed": 0,
+  "dev_test_images": 0,
+  "metrics_computed": false,
+  "predictions_saved": false,
+  "GPU_MPS_Colab_actions": 0,
+  "uploads": 0,
+  "conditions": [],
+  "environment": {
+    "torch": "2.1.0",
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "cv2": "4.11.0",
+    "torch_threads": 4,
+    "interop_threads": 1,
+    "cv2_threads": 18,
+    "device": "cpu",
+    "dtype": "float32",
+    "autocast": false,
+    "deterministic_algorithms": true
+  },
+  "load": {
+    "seconds": 1.429319666000083,
+    "checkpoint_sha256": "5a2a8d4955c0a91641c9e66ac879740077fc4640f06379e850640a46da2268f0",
+    "state_sha256": "9d18b2e08d7a626745f532f6456519b606fb3eaa3835f74750571d5eaeb2642b",
+    "state_tensor_count": 908,
+    "state_tensor_bytes": 691880148,
+    "strict": true,
+    "all_tensors_byte_identical": true,
+    "all_checkpoint_values_finite": true,
+    "weights_only": true,
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "image_contract": {
+    "image_id": 1892,
+    "image_sha256": "117ea3546c7b67e1fbc9a213cc7cd920b934b0edaea65af28b1d72c076c22071",
+    "raw_shape": [
+      1080,
+      1920,
+      3
+    ],
+    "raw_dtype": "uint8",
+    "channel_order": "BGR",
+    "backend": "cv2",
+    "A_pixel_identity": true,
+    "B_exact_fixed_blend": true,
+    "equal_rng_consumption": true,
+    "one_numpy_draw": true,
+    "Color_preserves_geometry_and_instances": true,
+    "support_annotation_sha256": "9978bd0fd09becf9dced032315ecf06c63dab0ee2b7abb32925137d2f8b3c2d4"
+  },
+  "reason": "AttributeError: 'dict' object has no attribute 'num_heads'",
+  "total_process_seconds": 27.768744875007542,
+  "peak_RSS_bytes": 2378596352
+}

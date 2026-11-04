@@ -1,0 +1,205 @@
+{
+  "verified_utc": "2026-10-31T09:57:54.912420+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "all_previous_delivery_files_unchanged_by_byte_hash",
+      "pass": true,
+      "detail": {
+        "files": 3011,
+        "errors": [],
+        "test_semantic_content_not_parsed": true
+      }
+    },
+    {
+      "check": "source_train_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_5shot_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixed_official_5shot_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "dev_count_64_and_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "dev_box_budget_187",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "support_box_budget_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "dev_support_id_disjoint",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "prefix_disjoint",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "file_hash_disjoint",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "shared_habitat_reported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "chosen_groups_are_first_eight_fixed_hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "eight_distinct_frames_per_group",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_annotations_reference_original_records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "numeric_contract_finite_positive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "declared_selected_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_exceptions_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "13_samples_37_boxes_decoded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "decoded_original_files_match_published_hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "no_test_sample_decoded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "1shot_remaining_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "5shot_remaining_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "10shot_remaining_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "template_has_no_official_test_json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "template_suppresses_training_validation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "template_disables_general_checkpoint_hook",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "two_rendered_template_differences_only_color_and_directory",
+      "pass": true,
+      "detail": [
+        "color_mag",
+        "work_dir"
+      ]
+    },
+    {
+      "check": "local_audit_scripts_parse_without_execution",
+      "pass": true,
+      "detail": [
+        "measure_planned_inputs.py",
+        "audit_groups_and_select_dev.py",
+        "verify_followup.py",
+        "fetch_bounded_public.py",
+        "preview_selected_contract.py"
+      ]
+    },
+    {
+      "check": "json_artifacts_parse",
+      "pass": true,
+      "detail": 11
+    },
+    {
+      "check": "planned_bytes_consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "download_budget_with_64MiB_metadata_allowance",
+      "pass": true,
+      "detail": {
+        "previous_recorded_payload": 1484698643,
+        "new_direct_http_payload": 1589905,
+        "metadata_allowance": 67108864,
+        "conservative_total": 1553397412,
+        "limit": 2147483648
+      }
+    },
+    {
+      "check": "research_disk_budget",
+      "pass": true,
+      "detail": {
+        "prior_bytes": 1546515283,
+        "new_bytes_before_final_manifest": 26945512,
+        "limit": 4294967296
+      }
+    }
+  ],
+  "checks_passed": 32,
+  "execution_limits": {
+    "upstream_code_executed": false,
+    "model_instantiated": false,
+    "gpu_used": false,
+    "dependencies_installed": false,
+    "data_uploaded": false,
+    "test_semantic_content_reopened": false
+  },
+  "not_verified": [
+    "runtime config resolution",
+    "complete dependency solving/imports",
+    "CUDA ABI, model construction, throughput or efficacy",
+    "all-image annotation completeness",
+    "detection annotation derivation or full prefix-video-site mapping"
+  ]
+}

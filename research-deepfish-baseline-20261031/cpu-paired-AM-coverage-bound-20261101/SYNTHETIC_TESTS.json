@@ -1,0 +1,120 @@
+{
+  "cases": [
+    {
+      "case": "one prediction two GT",
+      "expected_maximum": 1,
+      "matrix": [
+        [
+          1,
+          1
+        ]
+      ],
+      "pairs": [
+        [
+          0,
+          0
+        ]
+      ],
+      "row_column_permutations_checked": 2
+    },
+    {
+      "case": "two predictions one GT",
+      "expected_maximum": 1,
+      "matrix": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "pairs": [
+        [
+          0,
+          0
+        ]
+      ],
+      "row_column_permutations_checked": 2
+    },
+    {
+      "case": "augmenting path avoids greedy trap",
+      "expected_maximum": 2,
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "pairs": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "row_column_permutations_checked": 4
+    },
+    {
+      "case": "no edges",
+      "expected_maximum": 0,
+      "matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "pairs": [],
+      "row_column_permutations_checked": 4
+    },
+    {
+      "case": "three independent",
+      "expected_maximum": 3,
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "row_column_permutations_checked": 36
+    }
+  ],
+  "empty_graph_cases": 3,
+  "note": "Maximum count/recall is permutation invariant; a particular optimal pairing need not be unique.",
+  "status": "PASS"
+}

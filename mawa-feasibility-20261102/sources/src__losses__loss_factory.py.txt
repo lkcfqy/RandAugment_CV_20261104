@@ -1,0 +1,148 @@
+import torch
+from typing import Optional, Callable
+from src.config.loss_config import LossConfig
+from src.config.run_config import RunConfig
+from src.losses.wasserstein import sliced_wasserstein_correlation, sliced_wasserstein_correlation_vectorized
+from src.losses.sim_clr import SimCLR
+from src.losses.hsic import HSIC
+
+class LossFactory:
+    @staticmethod 
+    def create_loss(loss_config: LossConfig) -> Callable:
+
+        sim_clr = SimCLR(temperature=0.5) if loss_config.simclr > 0 else None
+        hsic = HSIC(sigma_x=1.0, sigma_z=1.0, eps=1e-10) if loss_config.hsic > 0 else None
+        
+        def loss_function(
+            data: torch.Tensor,
+            features: Optional[torch.Tensor],
+            encoded: torch.Tensor,
+            augmented_encoded: Optional[torch.Tensor],
+            decoded: Optional[torch.Tensor], 
+            run_config: RunConfig,      
+            ) -> torch.Tensor:
+
+            total_loss = torch.zeros(1, device=data.device)
+            loss_terms = {}
+
+            num_projections = run_config.num_wasserstein_projections
+            p = run_config.wasserstein_p
+            q = run_config.wasserstein_q
+            standardize = run_config.standardize_correlation
+            device = run_config.set_gpu 
+            batch_size = data.shape[0]
+
+            if loss_config.simclr > 0: 
+                sim_clr.to(device)
+            if loss_config.hsic > 0: 
+                hsic.to(device)
+
+            if augmented_encoded is not None:
+                num_augs = run_config.num_augs
+                num_aug_samples = run_config.num_aug_samples
+                log_product_loss = run_config.log_product_loss
+
+            # Flatten
+            flat_data = data.flatten(1)
+            if features is not None: 
+                flat_features = features.flatten(1)
+            flat_encoded = encoded.flatten(1)
+
+            if augmented_encoded is not None:
+                if not log_product_loss: 
+                    flat_augmented_encoded = augmented_encoded.flatten(1)
+                else:
+                    flat_augmented_encoded = augmented_encoded.flatten(2, -1)      
+
+            if decoded is not None: 
+                flat_decoded = decoded.flatten(1)
+
+            # Reconstruction loss 
+            if loss_config.reconstruct > 0:
+                reconstruction_error = torch.mean(torch.square(flat_data - flat_decoded))
+
+                total_loss += loss_config.reconstruct * reconstruction_error
+                loss_terms['L2_reconstruction_error'] = reconstruction_error
+
+            if loss_config.markov_wasserstein > 0:
+                if features is not None:
+                    X = flat_features
+                else: 
+                    X = flat_data
+                identity_loss = torch.mean(torch.square(X - flat_encoded))
+                invariance_loss = torch.mean(torch.square(X - flat_augmented_encoded))
+                total_loss += loss_config.markov_wasserstein * invariance_loss
+                total_loss += loss_config.markov_wasserstein * (identity_loss + invariance_loss) / 2.0
+                loss_terms['markov_wasserstein'] = total_loss
+
+            # Wasserstein correlation; optionally take log product of correlation scores in case of multiple augmentations 
+            if loss_config.wasserstein_correlation > 0:
+                if augmented_encoded is None: 
+                    if features is not None:
+                        X = flat_features
+                    else: 
+                        X = flat_data 
+                    Y = flat_encoded
+                    wasserstein_correlation = sliced_wasserstein_correlation(flat_data, flat_encoded, num_projections=num_projections, p=p, q=q, standardize=standardize, device=device)
+
+                    total_loss -= loss_config.wasserstein_correlation * wasserstein_correlation 
+                    loss_terms['wasserstein_correlation'] = wasserstein_correlation
+                else:
+                    if not log_product_loss:
+                        if features is not None:
+                            X = torch.cat([flat_features] * (num_aug_samples*num_augs + 1), dim=0) 
+                        else:
+                            X = torch.cat([flat_data] * (num_aug_samples*num_augs + 1), dim=0) 
+                        Y = torch.cat([flat_encoded, flat_augmented_encoded], dim=0)
+                        wasserstein_correlation = sliced_wasserstein_correlation(X, Y, num_projections=num_projections, p=p, q=q, standardize=standardize, device=device)
+            
+                        total_loss -= loss_config.wasserstein_correlation * wasserstein_correlation 
+                        loss_terms['wasserstein_correlation'] = wasserstein_correlation
+                    else:
+                        if features is not None: 
+                            X = torch.cat([flat_features] * (num_aug_samples + 1), dim=0)
+                        else:
+                            X = torch.cat([flat_data] * (num_aug_samples + 1), dim=0) 
+                        X = X.unsqueeze(1).expand(-1, num_augs, -1)
+                        encoded_expand = flat_encoded.unsqueeze(1).expand(-1, num_augs, -1)
+                        Y = torch.cat([encoded_expand, flat_augmented_encoded], dim=0)
+                        wasserstein_correlation_vec = sliced_wasserstein_correlation_vectorized(X, Y, num_projections=num_projections, p=p, q=q, standardize=standardize, device=device)
+
+                        log_product_wasserstein_correlation = torch.sum(torch.log(wasserstein_correlation_vec))
+
+                        total_loss -= loss_config.wasserstein_correlation * log_product_wasserstein_correlation 
+                        loss_terms['log_product_wasserstein_correlation'] = log_product_wasserstein_correlation
+
+            if loss_config.simclr > 0:
+                aug_encoded_1 = augmented_encoded[:batch_size]         
+                aug_encoded_2 = augmented_encoded[batch_size:2*batch_size] 
+                simclr_loss_value = sim_clr(aug_encoded_1, aug_encoded_2)
+                total_loss += loss_config.simclr * simclr_loss_value
+                loss_terms['simclr_loss'] = simclr_loss_value
+
+            if loss_config.hsic > 0: 
+                if augmented_encoded is None: 
+                    if features is not None:
+                        X = flat_features
+                    else:
+                        X = flat_data 
+                    Y = flat_encoded
+                    hsic_loss = hsic(X, Y)
+
+                    total_loss -= loss_config.hsic * hsic_loss 
+                    loss_terms['hilbert_schmidt_independence_criterion'] = hsic_loss
+                else:
+                    if features is not None:
+                        X = torch.cat([flat_features] * (num_aug_samples*num_augs + 1), dim=0) 
+                    else:
+                        X = torch.cat([flat_data] * (num_aug_samples*num_augs + 1), dim=0) 
+                    Y = torch.cat([flat_encoded, flat_augmented_encoded], dim=0)
+                    hsic_loss = hsic(X, Y)
+        
+                    total_loss -= loss_config.hsic * hsic_loss 
+                    loss_terms['hilbert_schmidt_independence_criterion'] = hsic_loss
+            
+
+            return total_loss, loss_terms
+
+        return loss_function

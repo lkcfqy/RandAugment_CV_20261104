@@ -1,0 +1,80 @@
+{
+  "actual_updates": 15,
+  "color_gate": {
+    "b_matches_cv2_bgr_blend": true,
+    "cv2_version": "4.11.0",
+    "exactly_one_numpy_draw": true,
+    "identity_exact": true,
+    "numpy_version": "1.24.3",
+    "rng_equal": true
+  },
+  "dev_metrics_computed": false,
+  "exposures": {
+    "counts": {
+      "930": 3,
+      "1892": 3,
+      "1900": 3,
+      "2244": 3,
+      "2363": 3
+    },
+    "per_image": 3,
+    "updates": 15
+  },
+  "ignored_checkpoint_tensors": [
+    "language_model.language_backbone.body.model.embeddings.position_ids",
+    "language_model.language_backbone.body.model.pooler.dense.bias",
+    "language_model.language_backbone.body.model.pooler.dense.weight"
+  ],
+  "init_seconds": 20.244484609999972,
+  "initial_state_sha256": "d40b615baf208851b234590e9022d83c3577dae444a9b227cf6e4777aa1b4f0c",
+  "loss_and_gradients_finite": true,
+  "missing_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale",
+    "dn_query_generator.label_embedding.weight"
+  ],
+  "model_outputs_saved": false,
+  "official_zero_log_scale_keys": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale"
+  ],
+  "optimizer_initial_state_empty": true,
+  "p90_predict_seconds": 0.4143788810000615,
+  "p90_update_seconds": 1.5308000149999543,
+  "peak_cuda_bytes": 2149727744,
+  "phase": "preflight_A",
+  "preflight_checkpoint_saved": false,
+  "preflight_state_reused": false,
+  "state_tensor_bytes": 691880148,
+  "status": "COMPLETE",
+  "timed_updates": 10,
+  "trainable_names_sha256": "62f7c4fa11c27bb72c9d472e1885d9a2ff1cd02f74523f7a53ea334770c4fe3a",
+  "update_seconds": [
+    3.69508650399996,
+    1.779746537000051,
+    1.2354653239999607,
+    1.1209190490000083,
+    1.7634162020000304,
+    1.373875415999919,
+    1.3929780199999868,
+    1.0044318900000917,
+    0.9972890120000102,
+    1.1046881819999044,
+    1.576935934000062,
+    1.5308000149999543,
+    1.3146424239999988,
+    1.3308441269999776,
+    1.1585298690000627
+  ],
+  "warmup_updates": 5
+}

@@ -1,0 +1,576 @@
+--- previous/build_package.py
++++ recovery1/build_package.py
+@@ -3,7 +3,8 @@
+ from pathlib import Path
+ 
+ ROOT=Path('/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031')
+-OUT=ROOT/'cuda-runplan-20261031';PAYLOAD=OUT/'payload';STAGE=Path('/tmp/counting_cuda')
++OLD=ROOT/'cuda-runplan-20261031'
++OUT=ROOT/'cuda-runplan-20261031-recovery1';PAYLOAD=OUT/'payload';STAGE=Path('/tmp/counting_cuda_recovery1')
+ 
+ def sha(path):
+     with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
+@@ -39,20 +40,34 @@
+     pixels=generate();raw=pixels.tobytes();fixture_dir=PAYLOAD/'fixture';fixture_dir.mkdir(exist_ok=True)
+     (fixture_dir/'texture.rgb').write_bytes(raw)
+     write(fixture_dir/'manifest.json',{'version':'textured-toy-v1','generator_sha256':sha(PAYLOAD/'scripts/fixture.py'),'pixel_sha256':hashlib.sha256(raw).hexdigest(),'seed':SEED,'width':WIDTH,'height':HEIGHT,'pixel_bytes':len(raw),'dtype':'uint8','channels':'RGB','positive_xyxy':POSITIVE,'negative_xyxy':NEGATIVE,'texts':TEXTS,'fixture_selection':'single deterministic generator fixed before model execution; no alternatives/tuning','model_rng_seed':42,'channel_standard_deviation':[float(pixels[:,:,i].std()) for i in range(3)]})
+-    previous=54.91578541700437
+-    old=json.loads((ROOT/'observation-entry/protocol_v2_frozen.json').read_text())
+-    current=dict(old);current.update(status='CODE_FROZEN_PENDING_EXPLICIT_ALLOCATION_GO',engineering_status='CUDA_PRECHECK_NOT_RUN',formal_execution_authorized=False,precheck_wall_seconds_charged=previous,metric_code_sha256=sha(PAYLOAD/'scripts/metrics.py'),parent_execution_clarification='2026-10-31: cumulative compute starts at 54.915785417 s; C,V boundaries inclusive >=0.30; truth bound to frozen labels; retain old protocol unchanged for audit',historical_protocol_sha256=sha(ROOT/'observation-entry/protocol_v2_frozen.json'))
+-    current['gate_pair_condition']=dict(old['gate_pair_condition'],C_operator='>=',V_operator='>=')
+-    current['protocol_version']=3;current['protocol_role']='ACTUAL_CUDA_EXECUTION_CONTRACT'
+-    current['supersedes_protocol_sha256']=sha(ROOT/'observation-entry/protocol_v2_frozen.json')
+-    current['authorization_policy']='Frozen before effects. This document grants no runtime permission; separate explicit GO must match FREEZE.json.'
++    previous=259.6864732820104
++    old=json.loads((OLD/'payload/execution_contract.json').read_text())
++    current=dict(old);current.update(status='CODE_FROZEN_PENDING_EXPLICIT_ALLOCATION_GO',engineering_status='FIRST_CUDA_ALLOCATION_CPU_TIMEOUT_RELEASED_RECOVERY_PENDING',precheck_wall_seconds_charged=previous,parent_execution_clarification='2026-10-31 resource-only recovery: carry 259.6864732820104 s and 0.14396 CU; fixed threads 2/1; preparation 60 s, loading+CPU F/C/V 360 s, CUDA migration+warmup+F/C/V 90 s; original cumulative 1800 s and science unchanged',infrastructure_revision=1,supersedes_execution_contract_sha256=sha(OLD/'payload/execution_contract.json'))
+     write(PAYLOAD/'execution_contract.json',current)
+-    plan={'status':'PENDING_EXPLICIT_GO_NO_ALLOCATION','previous_compute_wall_seconds':previous,'total_compute_wall_seconds':1800,'precheck_attempt_cap':7,'precheck_wall_seconds':180,'precheck_order':['CPU_F','CPU_C','CPU_V','CUDA_F_warmup','CUDA_F','CUDA_C','CUDA_V'],'formal_query_count':492,'eligible_pairs':41,'eligible_images':82,'NA_pairs':6,'all_pairs_reported':47,
+-          'allocation_count_cap':1,'accelerator':'T4','allocation_wall_seconds_cap':2700,'controller_release_reserve_seconds':90,'credit_cap_CU_strict':2,'credit_rounding_buffer_CU':.05,'no_new_OAuth':True,'no_model_retry_or_fixture_switch':True,'RSS_bytes_cap':8*1024**3,'CUDA_bytes_cap':8*1024**3,'dtype':'float32','AMP':False,'TF32':False,'native_attention_extension_must_be_None':True,
+-          'compute_gate_formula':'used_including_prior_CPU_MPS_and_all_runtime_preparation + 0_extra_reload_or_warmup + 2*492*max(CUDA_F,C,V_complete_query_seconds) + 60 <= 1800','io_and_finalization_reserve_seconds':60,'same_allocation_model_reuse':True,
+-          'download_bytes_before_allocation':1608332982,'bundle_transfer_budget_bytes':200*1024**2,'result_download_reserve_bytes':256*1024**2,'download_cap_bytes':int(3.5*1024**3),'owned_disk_cap_bytes':6*1024**3,
+-          'numerical_test':'elementwise abs(CUDA-CPU) <= 1e-4 + 1e-3*abs(CPU); active logits and boxes finite, fixed unused token padding exactly -inf; native device masks identical; no reorder rescue','execution_contract_sha256':sha(PAYLOAD/'execution_contract.json'),
+-          'model_forward_count_this_preparation':0,'historical_forward_attempts':6,'historical_real_queries':0,'historical_training_steps':0}
++    historical_downloads=1608332982
++    oldfreeze=json.loads((OLD/'FREEZE.json').read_text())
++    oldresult=json.loads((OLD/'reports/CUDA_RUN_20261031_RESULT.json').read_text())
++    import base64
++    upload_body_bytes=0
++    for part in oldfreeze['bundle']['parts']:
++        path='content/cue_915d27011f9f/'+Path(part['path']).name
++        body={'name':Path(part['path']).name,'path':path,'type':'file','format':'base64','content':base64.b64encode((OLD/part['path']).read_bytes()).decode('ascii'),'chunk':1}
++        upload_body_bytes+=len(json.dumps(body,allow_nan=False).encode())
++    returned_file_bytes=(OLD/'run/artifacts/install.log').stat().st_size
++    measured={'pre_first_allocation_asset_payload_bytes':historical_downloads,'first_official_weight_bytes':sum(x['bytes'] for x in oldresult['weight_transfers']),'first_bundle_encoded_JSON_body_bytes_reconstructed':upload_body_bytes,'first_merged_stdout_bytes':(OLD/'run/stdout.log').stat().st_size,'first_supplemental_file_base64_bytes_upper':4*((returned_file_bytes+2)//3)}
++    transfer_ledger={'known_or_reconstructed_components':measured,'known_payload_bytes':sum(measured.values()),'unmeasured_first_control_envelope_allowance_bytes':1024**2,'scope':'Application payload accounting, with conservative base64/JSON reconstruction and explicit unmeasured control allowance; not a packet capture and excludes unmeasured TLS/TCP headers. Unused previous reserves are not carried as actual downloads.'}
++    before=sum(measured.values())+transfer_ledger['unmeasured_first_control_envelope_allowance_bytes']
++    # Existing independent caps allow 256 MiB stdout and 256 MiB supplemental raw files.
++    # Reserve both, including supplemental base64 expansion; no new retrieval mechanism.
++    return_reserve=256*1024**2+4*((256*1024**2+2)//3)+1024**2
++    plan={'status':'PENDING_EXPLICIT_GO_NO_ALLOCATION','previous_compute_wall_seconds':previous,'total_compute_wall_seconds':1800,'preparation_compute_cap_seconds':60,'precheck_attempt_cap':7,'precheck_wall_seconds':450,'precheck_stage_caps_seconds':{'loading_snapshot_CPU_FCV':360,'CUDA_migration_warmup_FCV':90},'fixed_CPU_threads':{'intra_op':2,'inter_op':1},'precheck_order':['CPU_F','CPU_C','CPU_V','CUDA_F_warmup','CUDA_F','CUDA_C','CUDA_V'],'formal_query_count':492,'eligible_pairs':41,'eligible_images':82,'NA_pairs':6,'all_pairs_reported':47,
++          'allocation_count_cap':1,'prior_allocations':1,'accelerator':'T4','allocation_wall_seconds_cap':2700,'controller_release_reserve_seconds':90,'credit_cap_CU_strict':2,'prior_credit_upper_bound_CU':.14396,'remaining_credit_CU':1.85604,'credit_rounding_buffer_CU':.05,'no_new_OAuth':True,'no_within_allocation_model_retry_or_fixture_switch':True,'RSS_bytes_cap':8*1024**3,'CUDA_bytes_cap':8*1024**3,'dtype':'float32','AMP':False,'TF32':False,'native_attention_extension_must_be_None':True,
++          'compute_gate_formula':'used_including_all_prior_CPU_MPS_and_all_runtime_preparation + 0_extra_reload_or_warmup + 2*492*max(CUDA_F,C,V_complete_query_seconds) + 60 <= 1800','io_and_finalization_reserve_seconds':60,'same_allocation_model_reuse':True,
++          'download_bytes_before_allocation':before,'prior_transfer_ledger':transfer_ledger,'bundle_transfer_budget_bytes':200*1024**2,'result_download_reserve_bytes':return_reserve,'download_cap_bytes':5*1024**3,'owned_disk_cap_bytes':6*1024**3,
++          'numerical_test':json.loads((OLD/'payload/plan.json').read_text())['numerical_test'],'execution_contract_sha256':sha(PAYLOAD/'execution_contract.json'),
++          'model_forward_count_this_preparation':0,'historical_forward_attempts':8,'historical_real_queries':0,'historical_training_steps':0,'previous_freeze_sha256':sha(OLD/'FREEZE.json'),'previous_claim_sha256':sha(OLD/'run/ALLOCATION_CLAIM.json')}
++    plan['cumulative_transfer_forecast_bytes']=before+plan['bundle_transfer_budget_bytes']+sum(x['bytes'] for x in weights)+return_reserve
++    if plan['cumulative_transfer_forecast_bytes']>plan['download_cap_bytes']:raise RuntimeError('recovery cumulative transfer forecast exceeds 5 GiB')
+     write(PAYLOAD/'plan.json',plan)
+     files={str(path.relative_to(PAYLOAD)):{'sha256':sha(path),'bytes':path.stat().st_size} for path in sorted(PAYLOAD.rglob('*')) if path.is_file() and path.name!='package_files.json' and '__pycache__' not in path.parts}
+     write(PAYLOAD/'package_files.json',{'files':files})
+@@ -70,7 +85,7 @@
+             path=bundle_dir/('part-%03d.bin'%index);path.write_bytes(data);parts.append({'path':str(path.relative_to(OUT)),'sha256':sha(path),'bytes':len(data)});index+=1
+     bundle={'path':str(archive.relative_to(OUT)),'bytes':archive.stat().st_size,'sha256':sha(archive),'parts':parts}
+     frozen_files={str(path.relative_to(OUT)):{'sha256':sha(path),'bytes':path.stat().st_size} for path in sorted(OUT.rglob('*')) if path.is_file() and '__pycache__' not in path.parts and not set(path.relative_to(OUT).parts)&{'run','reports','sources'} and path.name not in ('FREEZE.json','authorization.template.json','README_ZH.md','delivery_manifest.json')}
+-    freeze={'status':'PENDING_REVIEW_AND_EXPLICIT_GO','files':frozen_files,'bundle':bundle,'payload_bytes':sum(p.stat().st_size for p in all_files),'package_manifest_sha256':sha(PAYLOAD/'package_files.json'),'fixture_pixel_sha256':sha(fixture_dir/'texture.rgb'),'execution_contract_sha256':sha(PAYLOAD/'execution_contract.json'),'prior_compute_wall_seconds':previous,'new_model_forwards':0,'new_allocations':0,'formal_queries_executed':0}
++    freeze={'status':'PENDING_REVIEW_AND_EXPLICIT_GO','files':frozen_files,'bundle':bundle,'payload_bytes':sum(p.stat().st_size for p in all_files),'package_manifest_sha256':sha(PAYLOAD/'package_files.json'),'fixture_pixel_sha256':sha(fixture_dir/'texture.rgb'),'execution_contract_sha256':sha(PAYLOAD/'execution_contract.json'),'prior_compute_wall_seconds':previous,'prior_credit_upper_bound_CU':.14396,'previous_freeze_sha256':sha(OLD/'FREEZE.json'),'previous_claim_sha256':sha(OLD/'run/ALLOCATION_CLAIM.json'),'new_model_forwards':0,'new_allocations':0,'formal_queries_executed':0}
+     write(OUT/'FREEZE.json',freeze)
+     write(OUT/'authorization.template.json',{'allocation_allowed':False,'freeze_sha256':sha(OUT/'FREEZE.json'),'scope':'one_T4_precheck_then_conditional_492','max_allocations':1,'note':'Template only; parent explicit GO required. Do not auto-enable.'})
+     print(json.dumps({'freeze_sha256':sha(OUT/'FREEZE.json'),'bundle':{k:v for k,v in bundle.items() if k!='parts'},'parts':len(parts),'payload_bytes':freeze['payload_bytes'],'fixture_pixel_sha256':freeze['fixture_pixel_sha256'],'frozen_files':len(frozen_files)},indent=2))
+--- previous/payload/execution_contract.json
++++ recovery1/payload/execution_contract.json
+@@ -5,7 +5,7 @@
+   "authorization_policy": "Frozen before effects. This document grants no runtime permission; separate explicit GO must match FREEZE.json.",
+   "compute_budget_seconds": 1800,
+   "eligible_pairs": 41,
+-  "engineering_status": "CUDA_PRECHECK_NOT_RUN",
++  "engineering_status": "FIRST_CUDA_ALLOCATION_CPU_TIMEOUT_RELEASED_RECOVERY_PENDING",
+   "equal_count_images": "retain",
+   "formal_execution_authorized": false,
+   "formal_queries": 492,
+@@ -26,6 +26,7 @@
+   },
+   "generated_unix": 1793416033.367819,
+   "historical_protocol_sha256": "7f8975bd2150de7d27b6a6cca35b715efca051ee6e6b6e0eb94d632702ba5bc1",
++  "infrastructure_revision": 1,
+   "labels_sha256": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+   "metric_code_sha256": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d",
+   "metric_definition_status": "COMPLETE_FROZEN_BY_PARENT_CLARIFICATION",
+@@ -39,7 +40,7 @@
+   },
+   "numeric_gate_does_not_establish_target_selection": "predicted box review remains mandatory; cancellation never permits deleting/recomputing",
+   "pair_aggregation": "arithmetic mean of the two fixed-image E values, equal image weights",
+-  "parent_execution_clarification": "2026-10-31: cumulative compute starts at 54.915785417 s; C,V boundaries inclusive >=0.30; truth bound to frozen labels; retain old protocol unchanged for audit",
++  "parent_execution_clarification": "2026-10-31 resource-only recovery: carry 259.6864732820104 s and 0.14396 CU; fixed threads 2/1; preparation 60 s, loading+CPU F/C/V 360 s, CUDA migration+warmup+F/C/V 90 s; original cumulative 1800 s and science unchanged",
+   "per_image_mode_error_E": {
+     "A_B": "two separate target queries, combined before normalization",
+     "clip_error": false,
+@@ -48,12 +49,13 @@
+     "prediction_counts": "nonnegative integers"
+   },
+   "point_policy": "random placeholders never localization ground truth",
+-  "precheck_wall_seconds_charged": 54.91578541700437,
++  "precheck_wall_seconds_charged": 259.6864732820104,
+   "protocol_role": "ACTUAL_CUDA_EXECUTION_CONTRACT",
+   "protocol_version": 3,
+   "queries_sha256": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+   "selection_sha256": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+   "status": "CODE_FROZEN_PENDING_EXPLICIT_ALLOCATION_GO",
++  "supersedes_execution_contract_sha256": "81a3d84494eb6335623b826614efc0296ce1f28b798e40023f57ac8dc36e5da0",
+   "supersedes_protocol_sha256": "7f8975bd2150de7d27b6a6cca35b715efca051ee6e6b6e0eb94d632702ba5bc1",
+   "trigger_case_box_review": "required to assess target-selection interpretation; cancellation cannot justify that interpretation; no deletion or recomputed gates"
+ }
+--- previous/payload/plan.json
++++ recovery1/payload/plan.json
+@@ -9,25 +9,30 @@
+   "allocation_count_cap": 1,
+   "allocation_wall_seconds_cap": 2700,
+   "bundle_transfer_budget_bytes": 209715200,
+-  "compute_gate_formula": "used_including_prior_CPU_MPS_and_all_runtime_preparation + 0_extra_reload_or_warmup + 2*492*max(CUDA_F,C,V_complete_query_seconds) + 60 <= 1800",
++  "compute_gate_formula": "used_including_all_prior_CPU_MPS_and_all_runtime_preparation + 0_extra_reload_or_warmup + 2*492*max(CUDA_F,C,V_complete_query_seconds) + 60 <= 1800",
+   "controller_release_reserve_seconds": 90,
+   "credit_cap_CU_strict": 2,
+   "credit_rounding_buffer_CU": 0.05,
+-  "download_bytes_before_allocation": 1608332982,
+-  "download_cap_bytes": 3758096384,
++  "cumulative_transfer_forecast_bytes": 5337088980,
++  "download_bytes_before_allocation": 3121965844,
++  "download_cap_bytes": 5368709120,
+   "dtype": "float32",
+   "eligible_images": 82,
+   "eligible_pairs": 41,
+-  "execution_contract_sha256": "81a3d84494eb6335623b826614efc0296ce1f28b798e40023f57ac8dc36e5da0",
++  "execution_contract_sha256": "4dc2ead8c37d15b373a93f07e33ef55d0f77ca1881c3c060e1556f2c6c12b553",
++  "fixed_CPU_threads": {
++    "inter_op": 1,
++    "intra_op": 2
++  },
+   "formal_query_count": 492,
+-  "historical_forward_attempts": 6,
++  "historical_forward_attempts": 8,
+   "historical_real_queries": 0,
+   "historical_training_steps": 0,
+   "io_and_finalization_reserve_seconds": 60,
+   "model_forward_count_this_preparation": 0,
+   "native_attention_extension_must_be_None": true,
+-  "no_model_retry_or_fixture_switch": true,
+   "no_new_OAuth": true,
++  "no_within_allocation_model_retry_or_fixture_switch": true,
+   "numerical_test": "elementwise abs(CUDA-CPU) <= 1e-4 + 1e-3*abs(CPU); active logits and boxes finite, fixed unused token padding exactly -inf; native device masks identical; no reorder rescue",
+   "owned_disk_cap_bytes": 6442450944,
+   "precheck_attempt_cap": 7,
+@@ -40,9 +45,31 @@
+     "CUDA_C",
+     "CUDA_V"
+   ],
+-  "precheck_wall_seconds": 180,
+-  "previous_compute_wall_seconds": 54.91578541700437,
+-  "result_download_reserve_bytes": 268435456,
++  "precheck_stage_caps_seconds": {
++    "CUDA_migration_warmup_FCV": 90,
++    "loading_snapshot_CPU_FCV": 360
++  },
++  "precheck_wall_seconds": 450,
++  "preparation_compute_cap_seconds": 60,
++  "previous_claim_sha256": "eb25adcc94d66fcf3690069d306d552b52b58b6f96c5ff2b73bb4d25468d8118",
++  "previous_compute_wall_seconds": 259.6864732820104,
++  "previous_freeze_sha256": "915d27011f9f948150de676b08f5830d5811066b993fc500aad729f0f284849a",
++  "prior_allocations": 1,
++  "prior_credit_upper_bound_CU": 0.14396,
++  "prior_transfer_ledger": {
++    "known_or_reconstructed_components": {
++      "first_bundle_encoded_JSON_body_bytes_reconstructed": 134494652,
++      "first_merged_stdout_bytes": 75990,
++      "first_official_weight_bytes": 1378009960,
++      "first_supplemental_file_base64_bytes_upper": 3684,
++      "pre_first_allocation_asset_payload_bytes": 1608332982
++    },
++    "known_payload_bytes": 3120917268,
++    "scope": "Application payload accounting, with conservative base64/JSON reconstruction and explicit unmeasured control allowance; not a packet capture and excludes unmeasured TLS/TCP headers. Unused previous reserves are not carried as actual downloads.",
++    "unmeasured_first_control_envelope_allowance_bytes": 1048576
++  },
++  "remaining_credit_CU": 1.85604,
++  "result_download_reserve_bytes": 627397976,
+   "same_allocation_model_reuse": true,
+   "status": "PENDING_EXPLICIT_GO_NO_ALLOCATION",
+   "total_compute_wall_seconds": 1800
+--- previous/payload/scripts/colab_guard.py
++++ recovery1/payload/scripts/colab_guard.py
+@@ -5,6 +5,7 @@
+ """
+ import json,os,sys
+ from pathlib import Path
++from contracts import CONTROL_PREFIX
+ 
+ def main():
+     os.environ['COLAB_CLI_ASSIGN_RETRIES']='0'
+@@ -19,7 +20,7 @@
+             info=state.client.get_consumption_user_info();sessions,assignments=state.sync_sessions()
+             names={x.endpoint:x.name for x in sessions.values()}
+             data={'balance':info.paid_compute_units_balance,'rate_per_hour':info.consumption_rate_hourly,'active_assignments':info.assignments_count,'assignments':[{'name':names.get(a.endpoint),'endpoint':a.endpoint,'accelerator':a.accelerator.value} for a in assignments]}
+-            print(json.dumps(data,sort_keys=True),flush=True);return 0
++            print('\n'+CONTROL_PREFIX+json.dumps(data,sort_keys=True),flush=True);return 0
+         if args[:1]==['--release-receipt']:
+             receipt=json.loads(Path(args[1]).read_text())
+             state.client.unassign(receipt['endpoint'])
+--- previous/payload/scripts/contracts.py
++++ recovery1/payload/scripts/contracts.py
+@@ -5,6 +5,15 @@
+ from pathlib import PurePosixPath
+ 
+ PREFIX='CUEVIDENCE1:'
++CONTROL_PREFIX='CUCONTROL1:'
++
++def parse_control_frame(output):
++    """Require one explicit control frame; CLI diagnostics remain in the raw log."""
++    frames=[line[len(CONTROL_PREFIX):] for line in output.splitlines() if line.startswith(CONTROL_PREFIX)]
++    if len(frames)!=1:raise ValueError('exactly one Colab control JSON frame required')
++    value=json.loads(frames[0])
++    if not isinstance(value,dict):raise ValueError('Colab control frame must be a JSON object')
++    return value
+ 
+ def canonical(value):
+     return json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+--- previous/payload/scripts/controller.py
++++ recovery1/payload/scripts/controller.py
+@@ -5,7 +5,7 @@
+ """
+ import argparse,hashlib,json,os,subprocess,sys,time,traceback
+ from pathlib import Path
+-from contracts import canonical,validate_go,credit_gate,complete_result_set,make_packet,validate_artifact_path,bound_metric_inputs,decode_packet,PREFIX
++from contracts import canonical,validate_go,credit_gate,complete_result_set,make_packet,validate_artifact_path,bound_metric_inputs,decode_packet,PREFIX,parse_control_frame
+ from evidence import atomic_bytes,owned_size
+ from transport import Collector,bounded_stream,compute_deadline,remaining_timeout,ComputeBudgetExpired
+ from release_guard import release_owned
+@@ -75,7 +75,7 @@
+         atomic_bytes(run/('command-%03d.json'%command_index),canonical({'arguments':arguments,'timeout_seconds':timeout,'elapsed_allocation_seconds':elapsed(),**result}))
+         if result['terminated_by_watchdog'] or result['returncode']!=0:raise RuntimeError('CLI operation failed/uncertain: '+arguments[0])
+         return ''.join(lines)
+-    def snapshot(cleanup=False):return json.loads(command(['--snapshot'],timeout=15,cleanup=cleanup))
++    def snapshot(cleanup=False):return parse_control_frame(command(['--snapshot'],timeout=15,cleanup=cleanup))
+     def watch_credit(force=False):
+         nonlocal last_poll,max_rate,abort
+         if not force and time.monotonic()-last_poll<30:return
+@@ -83,7 +83,7 @@
+         try:
+             state=snapshot();max_rate=max(max_rate,state['rate_per_hour'])
+             spent=max(0.,initial_balance-state['balance'],max_rate*elapsed()/3600)
+-            gate=credit_gate(max_rate,spent,max(0.,2700-elapsed()),2.)
++            gate=credit_gate(max_rate,spent+freeze['prior_credit_upper_bound_CU'],max(0.,2700-elapsed()),2.)
+             own=[a for a in state['assignments'] if a['name']==name]
+             if state['active_assignments']!=1 or len(own)!=1 or own[0]['accelerator']!='T4':raise RuntimeError('single owned T4 identity no longer confirmed')
+             if not gate['allowed']:raise RuntimeError('actual rate/credit forecast exceeds the strict 2 CU cap')
+@@ -93,7 +93,8 @@
+     try:
+         before=snapshot();report['before_allocation']=before;initial_balance=before['balance']
+         if before['active_assignments']!=0 or before['assignments']:raise RuntimeError('existing active assignments prevent isolated rate/cost attribution')
+-        if initial_balance<2:raise RuntimeError('less than the authorized 2 CU reserve is available')
++        if initial_balance<2-freeze['prior_credit_upper_bound_CU']:raise RuntimeError('less than the remaining authorized CU reserve is available')
++        report['credit_ledger']={'total_cap_CU':2.,'prior_upper_bound_CU':freeze['prior_credit_upper_bound_CU'],'remaining_CU':2-freeze['prior_credit_upper_bound_CU']}
+         # Exclusive claim is deliberately never removed, including failed allocations.
+         with (run/'ALLOCATION_CLAIM.json').open('x') as stream:
+             json.dump({'freeze_sha256':freeze_sha,'session':name,'scope':authorization['scope']},stream);stream.flush();os.fsync(stream.fileno())
+--- previous/payload/scripts/launch_template.py
++++ recovery1/payload/scripts/launch_template.py
+@@ -11,6 +11,7 @@
+     start=SCRIPT_START;root=Path('/content')/config['remote_name'];payload=root/'payload'
+     payload.mkdir(parents=True,exist_ok=False)
+     def check_deadlines():
++        if time.monotonic()-start>=60:raise RuntimeError('60 s preparation compute cap reached during assembly')
+         used=config['previous_compute_wall_seconds']+config['local_prelaunch_compute_seconds']+time.monotonic()-start
+         if used>=1740:raise RuntimeError('assembly/import compute deadline reached with finalization reserve')
+         if config['allocation_seconds_left']-(time.monotonic()-start)<=90:raise RuntimeError('assembly allocation release reserve reached')
+--- previous/payload/scripts/release_guard.py
++++ recovery1/payload/scripts/release_guard.py
+@@ -2,7 +2,7 @@
+ import argparse,json,os,subprocess,sys,time
+ from pathlib import Path
+ from evidence import atomic_bytes
+-from contracts import canonical
++from contracts import canonical,parse_control_frame
+ 
+ def release_owned(command,snapshot,receipt,name):
+     """A failed stop never skips reconciliation. Retry only a confirmed own endpoint."""
+@@ -32,9 +32,10 @@
+         remaining=args.deadline-time.monotonic()
+         if remaining<=0:raise TimeoutError('watchdog finite lifetime reached')
+         process=subprocess.run([python,str(guard),*arguments],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=min(timeout,remaining),env=dict(os.environ,PYTHONUNBUFFERED='1'))
++        print(process.stdout,end='',flush=True)
+         if process.returncode:raise RuntimeError('official CLI '+arguments[0]+' failed')
+         return process.stdout
+-    def snapshot():return json.loads(command(['--snapshot'],15))
++    def snapshot():return parse_control_frame(command(['--snapshot'],15))
+     status={'status':'WAITING','finite_deadline_monotonic':args.deadline,'new_authentication':False}
+     atomic_bytes(run/'release_watchdog.json',canonical(status))
+     while time.monotonic()<args.deadline:
+--- previous/payload/scripts/remote_runner.py
++++ recovery1/payload/scripts/remote_runner.py
+@@ -14,17 +14,21 @@
+ ROOT=Path(__file__).resolve().parents[1]
+ LIMIT=6*1024**3
+ 
+-def preparation_termination_reason(*,compute_used,allocation_left,disk_bytes,tree_rss=0):
++def preparation_termination_reason(*,compute_used,allocation_left,disk_bytes,tree_rss=0,preparation_compute_seconds=0):
+     if compute_used>=1740:return 'preparation compute deadline reached with finalization reserve'
++    if preparation_compute_seconds>=60:return '60 s external preparation compute cap reached'
+     if allocation_left<=90:return 'preparation allocation deadline reached with release reserve'
+     if disk_bytes>LIMIT:return '6 GiB owned disk cap exceeded during preparation'
+     if tree_rss>8*1024**3:return '8 GiB preparation RSS cap exceeded'
+     return None
+ 
+-def termination_reason(*,worker_elapsed,saw_formal,compute_used,tree_rss,cuda_peak,allocation_left,disk_bytes=0):
++def termination_reason(*,worker_elapsed,saw_formal,compute_used,tree_rss,cuda_peak,allocation_left,disk_bytes=0,precheck_stage='cpu',stage_elapsed=None):
+     if allocation_left<=90:return 'allocation cleanup reserve reached'
+     if compute_used>=1740:return 'worker compute boundary reached; 60 s reserved for finalization/verification'
+-    if not saw_formal and worker_elapsed>=180:return '180 s external precheck wall reached'
++    if not saw_formal:
++        if precheck_stage=='cpu' and worker_elapsed>=360:return '360 s external loading/snapshot/CPU reference cap reached'
++        if precheck_stage=='cuda' and stage_elapsed is not None and stage_elapsed>=90:return '90 s external CUDA migration/warmup/comparison cap reached'
++        if precheck_stage not in ('cpu','cuda'):return 'unknown precheck resource stage'
+     if tree_rss>8*1024**3:return '8 GiB parent plus worker RSS guard reached'
+     if cuda_peak>8*1024**3:return '8 GiB CUDA memory guard reached'
+     if disk_bytes>LIMIT:return '6 GiB owned disk cap exceeded during formal output'
+@@ -55,13 +59,14 @@
+     def ensure():
+         if left()<=90:raise RuntimeError('allocation cleanup reserve reached')
+         if plan['previous_compute_wall_seconds']+charged()>=1740:raise RuntimeError('total compute budget exhausted by preparation')
++        if charged()>=60:raise RuntimeError('60 s preparation compute cap reached')
+         if owned_bytes()>LIMIT:raise RuntimeError('owned remote disk cap exceeded')
+     try:
+         ensure()
+         preparation_start=time.monotonic();preparing=True
+         def prep_watchdog():
+             nonlocal stop_reason
+-            reason=preparation_termination_reason(compute_used=plan['previous_compute_wall_seconds']+charged(),allocation_left=left(),disk_bytes=owned_bytes(),tree_rss=tree_rss(prep_pid))
++            reason=preparation_termination_reason(compute_used=plan['previous_compute_wall_seconds']+charged(),preparation_compute_seconds=charged(),allocation_left=left(),disk_bytes=owned_bytes(),tree_rss=tree_rss(prep_pid))
+             if reason:stop_reason=reason
+             return reason is not None
+         def prep_started(pid):
+@@ -75,10 +80,11 @@
+         ensure();setup=charged();preparation['setup_compute_seconds']=setup
+         evidence.write('engineering/preparation.json',preparation)
+         environment=os.environ.copy();environment.update(PYTHONPATH=os.pathsep.join([str(ROOT/'deps'),str(ROOT/'scripts')]),PYTHONDONTWRITEBYTECODE='1',PYTHONUNBUFFERED='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',NVIDIA_TF32_OVERRIDE='0')
+-        context={'supervisor_pid':os.getpid(),'setup_compute_seconds':setup,'previous_compute_wall_seconds':plan['previous_compute_wall_seconds'],
++        worker_start=time.monotonic()
++        context={'supervisor_pid':os.getpid(),'worker_started_monotonic':worker_start,'setup_compute_seconds':setup,'previous_compute_wall_seconds':plan['previous_compute_wall_seconds'],
+                  'compute_deadline_monotonic':start+excluded+1800-plan['previous_compute_wall_seconds']-args.assembly_compute_seconds,
+                  'finalization_reserve_seconds':60,'allocation_stop_monotonic':start+args.allocation_seconds_left-90}
+-        atomic_bytes(ROOT/'run_context.json',canonical(context));worker_start=time.monotonic();report['worker_started']=True
++        atomic_bytes(ROOT/'run_context.json',canonical(context));report['worker_started']=True
+         report['setup_compute_seconds']=setup;report['remaining_compute_at_worker_start']=1800-plan['previous_compute_wall_seconds']-setup
+         def on_started(pid):
+             nonlocal worker_pid
+@@ -96,7 +102,8 @@
+                     report['peak_tree_rss_bytes']=max(report.get('peak_tree_rss_bytes',0),rss+parent_rss)
+                 except FileNotFoundError:pass
+             mem=state.get('memory',{})
+-            stop_reason=termination_reason(worker_elapsed=elapsed,saw_formal=saw_formal,compute_used=plan['previous_compute_wall_seconds']+charged(),tree_rss=report.get('peak_tree_rss_bytes',0),cuda_peak=max(mem.get('peak_cuda_allocated_bytes',0),mem.get('peak_cuda_reserved_bytes',0)),allocation_left=left(),disk_bytes=owned_bytes())
++            stage=state.get('precheck_stage','cpu');stage_elapsed=time.monotonic()-state.get('precheck_stage_started_monotonic',worker_start)
++            stop_reason=termination_reason(worker_elapsed=elapsed,saw_formal=saw_formal,precheck_stage=stage,stage_elapsed=stage_elapsed,compute_used=plan['previous_compute_wall_seconds']+charged(),tree_rss=report.get('peak_tree_rss_bytes',0),cuda_peak=max(mem.get('peak_cuda_allocated_bytes',0),mem.get('peak_cuda_reserved_bytes',0)),allocation_left=left(),disk_bytes=owned_bytes())
+             return stop_reason is not None
+         outcome=bounded_stream([sys.executable,'-u',str(ROOT/'scripts/worker.py')],lambda line:print(line,end='',flush=True),watchdog,cwd=ROOT,env=environment,on_started=on_started)
+         report.update(outcome);report['status']='WORKER_COMPLETE' if outcome['returncode']==0 and not outcome['terminated_by_watchdog'] else 'BLOCKED_OR_INCOMPLETE'
+--- previous/payload/scripts/worker.py
++++ recovery1/payload/scripts/worker.py
+@@ -21,12 +21,14 @@
+     for key,value in {'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','HF_HUB_DISABLE_TELEMETRY':'1','TOKENIZERS_PARALLELISM':'false','PYTHONDONTWRITEBYTECODE':'1','MPLCONFIGDIR':str(ROOT/'cache/matplotlib'),'HF_HOME':str(ROOT/'cache/hf'),'NVIDIA_TF32_OVERRIDE':'0'}.items():os.environ[key]=value
+     sys.dont_write_bytecode=True
+     phase='precheck';model=None;hooks=None;monitor=None;stop=threading.Event();calls=[];results=[]
++    precheck_resource=('cpu',context_file['worker_started_monotonic'])
+     counters={'root_forward_reserved':0,'root_forward_entered':0,'root_forward_returned':0,'precheck_attempts':0,'formal_attempts':0,'formal_completed':0,'network_attempts':0,'pickle_attempts':0,'science_reads_during_precheck':0,'training_steps':0}
+     memory={'peak_rss_bytes':0,'cuda_allocated_bytes':0,'cuda_reserved_bytes':0,'peak_cuda_allocated_bytes':0,'peak_cuda_reserved_bytes':0}
+     report={'status':'RUNNING','previous_compute_wall_seconds':plan['previous_compute_wall_seconds'],'setup_compute_seconds':context_file['setup_compute_seconds'],'counters':counters,'precheck_calls':calls,'formal_execution_started':False,'fixture_changes':0,'retries':0}
+     def compute_used():return 1800.-(context_file['compute_deadline_monotonic']-time.monotonic())
+     def save_status():
+-        atomic_bytes(ROOT/'worker_state.json',canonical({'phase':phase,'compute_used_seconds':compute_used(),'memory':memory,'counters':counters}))
++        precheck_stage,precheck_stage_started=precheck_resource
++        atomic_bytes(ROOT/'worker_state.json',canonical({'phase':phase,'precheck_stage':precheck_stage,'precheck_stage_started_monotonic':precheck_stage_started,'compute_used_seconds':compute_used(),'memory':memory,'counters':counters}))
+     def checkpoint():
+         report['compute_used_seconds']=compute_used();report['worker_wall_seconds']=time.monotonic()-START
+         evidence.write('engineering/status.json',report);save_status()
+@@ -52,6 +54,8 @@
+         torch.load=reject_pickle
+         random.seed(42);np.random.seed(42);torch.manual_seed(42)
+         torch.set_num_threads(2);torch.set_num_interop_threads(1)
++        report['CPU_resources']={'os_cpu_count':os.cpu_count(),'affinity_cpu_ids':sorted(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else None,'torch_num_threads':torch.get_num_threads(),'torch_num_interop_threads':torch.get_num_interop_threads(),'thread_environment':{key:os.environ.get(key) for key in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','NUMEXPR_NUM_THREADS','OMP_DYNAMIC','MKL_DYNAMIC')},'cgroup_cpu_limits':{str(p):p.read_text().strip() for p in (Path('/sys/fs/cgroup/cpu.max'),Path('/sys/fs/cgroup/cpu/cpu.cfs_quota_us'),Path('/sys/fs/cgroup/cpu/cpu.cfs_period_us')) if p.is_file()},'policy':'fixed 2 intra-op / 1 inter-op; no resource-driven tuning'}
++        checkpoint()
+         torch.set_float32_matmul_precision('highest');torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
+         if torch.are_deterministic_algorithms_enabled():raise RuntimeError('unexpected deterministic flag would alter native ROI path')
+         if not torch.cuda.is_available() or 'T4' not in torch.cuda.get_device_name(0):raise RuntimeError('approved T4 CUDA runtime required')
+@@ -132,17 +136,23 @@
+             record['timing_includes']='fixture hash/decode, token checks, H2D/D2H and synchronization, model, raw comparison, native masks, JSON serialization, disk capacity check, first evidence fsync/stdout; final timing annotation covered by 60 s reserve'
+             checkpoint()
+         for mode in ['F','C','V']:synthetic('cpu',mode)
++        report['loading_snapshot_CPU_FCV_wall_seconds']=time.monotonic()-precheck_resource[1]
++        if report['loading_snapshot_CPU_FCV_wall_seconds']>=360:raise RuntimeError('360 s CPU stage cap reached before CUDA transition')
++        precheck_resource=('cuda',time.monotonic());save_status();checkpoint()
+         model.to('cuda');torch.cuda.synchronize();model_cuda_snapshot=registered_snapshot(model,aliases)
+         if model_cuda_snapshot!=model_cpu_snapshot:raise RuntimeError('migration changed parameter/buffer value or shared alias identity')
+         report['migration_exact_equal']=True
+         synthetic('cuda','F',warmup=True)
+         for mode in ['F','C','V']:synthetic('cuda',mode)
++        report['CUDA_migration_warmup_FCV_wall_seconds']=time.monotonic()-precheck_resource[1]
++        if report['CUDA_migration_warmup_FCV_wall_seconds']>=90:raise RuntimeError('90 s CUDA stage cap reached before formal transition')
+         timings=[x['complete_query_seconds'] for x in calls if x['device']=='cuda' and not x['warmup']]
+         gate=compute_gate(compute_used(),0.,timings,60.)
+         gate['allocation_time_gate']=time.monotonic()+2*492*max(timings)+60<=context_file['allocation_stop_monotonic']
+         report['compute_gate']=gate;report['formal_extra_loading_or_warmup_seconds']=0.;report['model_reused_in_same_allocation']=True
+         checkpoint()
+         if not gate['allowed'] or not gate['allocation_time_gate']:raise RuntimeError('full 492-query conservative compute/allocation cost gate failed')
++        if time.monotonic()-precheck_resource[1]>=90:raise RuntimeError('90 s CUDA stage cap reached during budget gate finalization')
+         phase='formal';report['formal_execution_started']=True;save_status()
+         science=ROOT/'science';manifest=json.loads((ROOT/'manifests/science_files.json').read_text())
+         for rel,sha in manifest.items():
+--- previous/prepare_dependencies.py
++++ recovery1/prepare_dependencies.py
+@@ -3,7 +3,7 @@
+ import json,hashlib,urllib.request,time
+ 
+ ROOT=Path('/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-counting-exemplar-20261031')
+-PLAN=ROOT/'cuda-runplan-20261031'
++PLAN=ROOT/'cuda-runplan-20261031-recovery1'
+ WHEELS=PLAN/'payload/wheels'
+ META=PLAN/'sources'
+ for p in [WHEELS,META,PLAN/'reports']:p.mkdir(parents=True,exist_ok=True)
+--- previous/tests/test_contracts.py
++++ recovery1/tests/test_contracts.py
+@@ -22,6 +22,15 @@
+         self.assertTrue(m.credit_gate(1.15,0,2700,2)['allowed'])
+         self.assertFalse(m.credit_gate(3.,0,2700,2)['allowed'])
+         self.assertFalse(m.credit_gate(1.,1.96,1,2)['allowed'])
++        self.assertTrue(m.credit_gate(2.45,0,2700,2)['allowed'])
++        self.assertFalse(m.credit_gate(2.45,.14396,2700,2)['allowed'])
++
++    def test_control_frame_ignores_but_does_not_parse_diagnostics(self):
++        m=self.module()
++        text='[colab] Pruned 1 stale local session(s).\nwarning from merged stderr\n'+m.CONTROL_PREFIX+'{"active_assignments":0,"assignments":[],"rate_per_hour":0}\ntrailing diagnostic\n'
++        self.assertEqual(m.parse_control_frame(text)['active_assignments'],0)
++        for bad in ('{"active_assignments":0}',m.CONTROL_PREFIX+'{bad}',text+text,m.CONTROL_PREFIX+'[]',m.CONTROL_PREFIX+'{} trailing'):
++            with self.subTest(output=bad),self.assertRaises(ValueError):m.parse_control_frame(bad)
+ 
+     def test_bad_artifact_path_and_hash_rejected_before_write(self):
+         m=self.module()
+--- previous/tests/test_controller.py
++++ recovery1/tests/test_controller.py
+@@ -5,18 +5,18 @@
+ class ControllerTests(unittest.TestCase):
+     def test_remote_nearly_exhausted_budget_interrupts_blocked_local_finish_and_releases(self):
+         import controller
+-        from contracts import make_packet
++        from contracts import make_packet,CONTROL_PREFIX
+         for blocked_phase in ('download','validation'):
+             with self.subTest(blocked_phase=blocked_phase),tempfile.TemporaryDirectory() as temp:
+                 base=Path(temp);(base/'payload/scripts').mkdir(parents=True)
+                 (base/'payload/scripts/launch_template.py').write_text('__CUE_LAUNCH_CONFIG__')
+                 auth=base/'go.json';auth.write_text(json.dumps({'allocation_allowed':True,'freeze_sha256':'abc','scope':'one_T4_precheck_then_conditional_492','max_allocations':1}))
+-                frozen={'bundle':{'bytes':1,'parts':[],'sha256':'b'},'payload_bytes':1,'package_manifest_sha256':'c','prior_compute_wall_seconds':54.91578541700437}
++                frozen={'bundle':{'bytes':1,'parts':[],'sha256':'b'},'payload_bytes':1,'package_manifest_sha256':'c','prior_compute_wall_seconds':259.6864732820104,'prior_credit_upper_bound_CU':.14396}
+                 calls=[];active=False
+                 def fake(command,on_line,should_stop,**kwargs):
+                     nonlocal active
+                     args=command[2:];calls.append(args);op=args[0]
+-                    if op=='--snapshot':on_line(json.dumps({'balance':40.,'rate_per_hour':1.15 if active else 0.,'active_assignments':int(active),'assignments':[{'name':'counting-fixed-abc','endpoint':'owned','accelerator':'T4'}] if active else []})+'\n')
++                    if op=='--snapshot':on_line('[colab] Pruned 1 stale local session(s).\n'+CONTROL_PREFIX+json.dumps({'balance':40.,'rate_per_hour':1.15 if active else 0.,'active_assignments':int(active),'assignments':[{'name':'counting-fixed-abc','endpoint':'owned','accelerator':'T4'}] if active else []})+'\n')
+                     elif op=='new':
+                         active=True;Path(kwargs['env']['CUE_ALLOCATION_RECEIPT']).write_text(json.dumps({'endpoint':'owned'}))
+                     elif op=='--release-receipt':active=False
+@@ -51,17 +51,17 @@
+ 
+     def test_fake_failed_precheck_persists_then_releases_without_second_allocation(self):
+         import controller
+-        from contracts import make_packet
++        from contracts import make_packet,CONTROL_PREFIX
+         with tempfile.TemporaryDirectory() as temp:
+             base=Path(temp);(base/'payload/scripts').mkdir(parents=True)
+             (base/'payload/scripts/launch_template.py').write_text('__CUE_LAUNCH_CONFIG__')
+             auth=base/'go.json';auth.write_text(json.dumps({'allocation_allowed':True,'freeze_sha256':'abc','scope':'one_T4_precheck_then_conditional_492','max_allocations':1}))
+-            frozen={'bundle':{'bytes':1,'parts':[],'sha256':'b'},'payload_bytes':1,'package_manifest_sha256':'c','prior_compute_wall_seconds':54.91578541700437}
++            frozen={'bundle':{'bytes':1,'parts':[],'sha256':'b'},'payload_bytes':1,'package_manifest_sha256':'c','prior_compute_wall_seconds':259.6864732820104,'prior_credit_upper_bound_CU':.14396}
+             calls=[];active=False
+             def fake(command,on_line,should_stop,**kwargs):
+                 nonlocal active
+                 args=command[2:];calls.append(args);op=args[0]
+-                if op=='--snapshot':on_line(json.dumps({'balance':40.,'rate_per_hour':1.15 if active else 0.,'active_assignments':int(active),'assignments':[{'name':'counting-fixed-abc','endpoint':'owned','accelerator':'T4'}] if active else []})+'\n')
++                if op=='--snapshot':on_line('[colab] Pruned 1 stale local session(s).\n'+CONTROL_PREFIX+json.dumps({'balance':40.,'rate_per_hour':1.15 if active else 0.,'active_assignments':int(active),'assignments':[{'name':'counting-fixed-abc','endpoint':'owned','accelerator':'T4'}] if active else []})+'\n')
+                 elif op=='new':
+                     active=True;Path(kwargs['env']['CUE_ALLOCATION_RECEIPT']).write_text(json.dumps({'endpoint':'owned','session_name':'counting-fixed-abc','accelerator':'T4'}))
+                 elif op=='--release-receipt':active=False
+@@ -78,6 +78,8 @@
+                 report=json.loads((base/'run/controller_report.json').read_text())
+                 self.assertEqual(report['release'],'CONFIRMED');self.assertTrue(report['all_indexed_artifacts_persisted_before_release']);self.assertFalse(active)
+                 self.assertEqual(sum(args[0]=='new' for args in calls),1)
++                self.assertAlmostEqual(report['latest_usage']['credit_gate']['projected_with_rounding_buffer'],1.05646,places=5)
++                self.assertIn('Pruned 1 stale', (base/'run/stdout.log').read_text())
+                 self.assertTrue((base/'run/artifacts/supervisor.json').exists())
+                 self.assertEqual(controller.main(['--run','--authorization',str(auth)]),2)
+                 self.assertEqual(sum(args[0]=='new' for args in calls),1)
+--- previous/tests/test_watchdog.py
++++ recovery1/tests/test_watchdog.py
+@@ -7,10 +7,13 @@
+         from remote_runner import termination_reason
+         common={'worker_elapsed':1,'saw_formal':False,'compute_used':100,'tree_rss':0,'cuda_peak':0,'allocation_left':1000}
+         self.assertIsNone(termination_reason(**common))
+-        for changed in ({'worker_elapsed':180},{'compute_used':1740},{'tree_rss':8*1024**3+1},{'cuda_peak':8*1024**3+1},{'allocation_left':60}):
++        for changed in ({'worker_elapsed':360},{'compute_used':1740},{'tree_rss':8*1024**3+1},{'cuda_peak':8*1024**3+1},{'allocation_left':60}):
+             self.assertIsNotNone(termination_reason(**dict(common,**changed)))
+-        self.assertIsNone(termination_reason(**dict(common,worker_elapsed=181,saw_formal=True)))
+-        self.assertIsNotNone(termination_reason(**dict(common,worker_elapsed=181,saw_formal=False)))
++        self.assertIsNone(termination_reason(**dict(common,worker_elapsed=361,saw_formal=True)))
++        self.assertIsNone(termination_reason(**dict(common,worker_elapsed=359.9)))
++        self.assertIsNone(termination_reason(**dict(common,worker_elapsed=400,precheck_stage='cuda',stage_elapsed=89.9)))
++        self.assertIsNotNone(termination_reason(**dict(common,worker_elapsed=400,precheck_stage='cuda',stage_elapsed=90)))
++        self.assertIsNotNone(termination_reason(**dict(common,worker_elapsed=400,precheck_stage='cuda',stage_elapsed=1,compute_used=1740)))
+ 
+     def test_preparation_deadline_and_disk_are_enforced_before_model_work(self):
+         from remote_runner import preparation_termination_reason
+@@ -19,6 +22,8 @@
+         self.assertIsNotNone(preparation_termination_reason(**dict(values,compute_used=1740)))
+         self.assertIsNotNone(preparation_termination_reason(**dict(values,allocation_left=90)))
+         self.assertIsNotNone(preparation_termination_reason(**dict(values,disk_bytes=6*1024**3+1)))
++        self.assertIsNone(preparation_termination_reason(**dict(values,preparation_compute_seconds=59.9)))
++        self.assertIsNotNone(preparation_termination_reason(**dict(values,preparation_compute_seconds=60)))
+ 
+     def test_external_parent_kills_stalled_preparation_and_never_starts_worker(self):
+         import remote_runner
+@@ -35,4 +40,21 @@
+             pid=int((root/'fake_pid').read_text())
+             with self.assertRaises(ProcessLookupError):os.kill(pid,0)
+ 
++    def test_external_parent_honors_cuda_stage_origin_before_any_formal_work(self):
++        import remote_runner
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)/'payload';(root/'scripts').mkdir(parents=True)
++            (root/'plan.json').write_text(json.dumps({'previous_compute_wall_seconds':259.6864732820104}))
++            (root/'scripts/remote_prepare.py').write_text('import json\nfrom pathlib import Path\np=Path("output/engineering/preparation.json");p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps({"status":"READY","installation_wall_seconds":0,"download_wall_seconds":0}))\n')
++            (root/'scripts/worker.py').write_text('import json,os,time\nfrom pathlib import Path\nPath("fake_pid").write_text(str(os.getpid()))\nPath("worker_state.json").write_text(json.dumps({"phase":"precheck","precheck_stage":"cuda","precheck_stage_started_monotonic":time.monotonic()-90}))\nprint("CUDA_STAGE_STARTED",flush=True)\ntime.sleep(10)\nPath("formal_ran").touch()\n')
++            begin=time.monotonic()
++            with patch.object(remote_runner,'ROOT',root),patch.object(remote_runner,'SCRIPT_START',begin),patch.object(sys,'argv',['runner','--allocation-seconds-left','1000','--assembly-compute-seconds','0']),contextlib.redirect_stdout(io.StringIO()):
++                self.assertEqual(remote_runner.main(),2)
++            report=json.loads((root/'output/supervisor.json').read_text())
++            self.assertTrue(report['worker_started']);self.assertTrue(report['terminated_by_watchdog'])
++            self.assertIn('90 s external CUDA',report['stop_reason'])
++            self.assertFalse((root/'formal_ran').exists());self.assertLess(time.monotonic()-begin,3)
++            pid=int((root/'fake_pid').read_text())
++            with self.assertRaises(ProcessLookupError):os.kill(pid,0)
++
+ if __name__=='__main__':unittest.main()
+--- previous/verify_package.py
++++ recovery1/verify_package.py
+@@ -37,13 +37,25 @@
+     if sha(PAYLOAD/'fixture/texture.rgb')!=fixture['pixel_sha256']:raise ValueError('fixture bytes changed')
+     protocol=json.loads((PAYLOAD/'execution_contract.json').read_text());plan=json.loads((PAYLOAD/'plan.json').read_text())
+     if protocol['gate_pair_condition']['C_operator']!='>=' or protocol['gate_pair_condition']['V_operator']!='>=':raise ValueError('inclusive boundary missing')
+-    if protocol['metric_code_sha256']!=sha(PAYLOAD/'scripts/metrics.py') or plan['previous_compute_wall_seconds']!=54.91578541700437:raise ValueError('metric/budget freeze mismatch')
++    if protocol['metric_code_sha256']!=sha(PAYLOAD/'scripts/metrics.py') or plan['previous_compute_wall_seconds']!=259.6864732820104:raise ValueError('metric/budget freeze mismatch')
+     if sha(BASE.parent/'observation-entry/protocol_v2_frozen.json')!='7f8975bd2150de7d27b6a6cca35b715efca051ee6e6b6e0eb94d632702ba5bc1':raise ValueError('historical protocol altered')
++    old_base=BASE.parent/'cuda-runplan-20261031'
++    if sha(old_base/'FREEZE.json')!='915d27011f9f948150de676b08f5830d5811066b993fc500aad729f0f284849a':raise ValueError('old freeze changed')
++    if plan['prior_credit_upper_bound_CU']!=.14396 or plan['download_cap_bytes']!=5*1024**3 or plan['cumulative_transfer_forecast_bytes']>plan['download_cap_bytes']:raise ValueError('recovery resource ledger differs')
++    old_files=json.loads((old_base/'payload/package_files.json').read_text())['files']
++    new_files=json.loads((PAYLOAD/'package_files.json').read_text())['files']
++    if set(old_files)!=set(new_files):raise ValueError('recovery added or removed package files')
++    unchanged_prefixes=('source/','science/','fixture/','models/','manifests/','wheels/')
++    unchanged_scripts={'scripts/metrics.py','scripts/numerics.py','scripts/model_io.py','scripts/fixture.py','scripts/hooks.py'}
++    for rel in old_files:
++        if rel.startswith(unchanged_prefixes) or rel in unchanged_scripts:
++            if new_files[rel]!=old_files[rel]:raise ValueError('scientific identity changed: '+rel)
++    report['package_roster_unchanged']=True;report['previous_freeze_preserved']=True
+     expected={'selection_frozen.json':'c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc','labels_frozen.json':'8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2','queries_frozen.json':'29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6'}
+     for name,expected_sha in expected.items():
+         if sha(PAYLOAD/'science'/name)!=expected_sha:raise ValueError('original frozen inputs changed')
+     report['unchanged_original_inputs']=expected;report['protocol_version']=protocol['protocol_version'];report['counters']=counters
+-    report.update(status='PASS' if result.wasSuccessful() and not any(counters.values()) else 'FAIL',verification_wall_seconds=time.monotonic()-begin,new_allocations=0,new_uploads=0,new_forward_calls=0,formal_queries_executed=0,prior_compute_wall_seconds=54.91578541700437)
++    report.update(status='PASS' if result.wasSuccessful() and not any(counters.values()) else 'FAIL',verification_wall_seconds=time.monotonic()-begin,new_allocations=0,new_uploads=0,new_forward_calls=0,formal_queries_executed=0,prior_compute_wall_seconds=259.6864732820104)
+     (BASE/'reports/verification.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+     print(json.dumps({k:report[k] for k in ('status','tests','counters','metadata_only_input_validation','verification_wall_seconds')},indent=2))
+     return 0 if report['status']=='PASS' else 2

@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-10-30T12:00:04.431348+00:00",
+  "reason": "First full synthetic benchmark: eval agrees CPU/MPS, backward fails with view stride incompatibility in source channels_last layout.",
+  "change": "Convert complete official network to contiguous NCHW memory format before transfer to MPS. No architectural, parameter, objective, optimizer, crop or operation changes.",
+  "validation_required": "All existing fixtures + CPU/MPS eval + train-mode gradient relative L2 <=1% +15 synthetic MPS train batches.",
+  "protocol_original_preserved": true,
+  "original_protocol_sha256": "f9f681063b518e3612ab78129dacdac9113a50e47a50e3b064320333d6f381a5",
+  "pre_real_training": true,
+  "real_images_used": 0,
+  "outcome_metrics_seen": false,
+  "first_benchmark_counter_correction": "The original finally block assigned planned1875 synthetic images despite failure on first step. Actual attempted first-step125 synthetic model forwards, 8 synthetic CPU/MPS eval forwards; no real training exposure. Preserve first receipt and this correction.",
+  "adapter_sha256": "652dc2ce144249d6c7ad5549ef9ae7d39cae376a3834e1e7b6c5bb90bfb9e8d9"
+}

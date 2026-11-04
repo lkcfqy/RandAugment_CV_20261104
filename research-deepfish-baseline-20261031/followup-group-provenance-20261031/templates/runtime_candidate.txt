@@ -1,0 +1,36 @@
+# Candidate version constraints for review only. NOT installed or solver-validated.
+# Linux x86_64, CPython 3.9.21, one GPU supported by CUDA 11.7.
+# PyTorch official CUDA 11.7 wheel/index; torchvision wheel pairing differs from conda 0.15.0.
+torch==2.0.0
+torchvision==0.15.1
+# CUDA-enabled wheel, NOT mmcv-lite or mmcv-full 1.x:
+# https://download.openmmlab.com/mmcv/dist/cu117/torch2.0.0/mmcv-2.1.0-cp39-cp39-manylinux1_x86_64.whl
+mmcv==2.1.0
+mmengine==0.10.7
+# MMDetection source pinned separately to 44ebd17b145c2372c4b700bfb9cb20dbd28ab64a (v3.3.0).
+transformers==4.34.0
+tokenizers==0.14.1
+huggingface-hub==0.17.3
+safetensors==0.5.3
+fairscale==0.4.13
+numpy==1.24.3
+Pillow==11.1.0
+opencv-python==4.11.0.86
+scipy==1.13.1
+pycocotools==2.0.8
+shapely==2.0.7
+matplotlib==3.9.4
+six==1.17.0
+terminaltables==3.1.10
+tqdm==4.65.2
+addict==2.4.0
+packaging==24.2
+PyYAML==6.0.2
+termcolor==3.0.1
+yapf==0.43.0
+regex==2024.11.6
+requests==2.28.2
+# Remaining transitive dependencies/build tools must be resolved and recorded before running.
+# jsonlines/nltk/pycocoevalcap are omitted from this minimal candidate: the selected
+# pipeline does not use ODVG/caption metrics/NER. Verify import behavior offline first.
+# Do not run nltk.download or fetch a model implicitly. Do not add Flux/diffusers/retrieval.

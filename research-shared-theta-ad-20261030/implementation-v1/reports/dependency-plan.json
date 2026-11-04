@@ -1,0 +1,882 @@
+{
+  "version": "1",
+  "pip_version": "26.2.2",
+  "install": [
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/31/2c/5f0903a53a62029875aaa3884c38070cc388248a2c1b9aa935632669e5a7/ImageHash-4.3.2-py2.py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "02b0f965f8c77cd813f61d7d39031ea27d4780e7ebcad56c6cd6a709acc06e5f"
+          },
+          "hash": "sha256=02b0f965f8c77cd813f61d7d39031ea27d4780e7ebcad56c6cd6a709acc06e5f"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "ImageHash",
+        "version": "4.3.2",
+        "summary": "Image Hashing library",
+        "description": "===========\nImageHash\n===========\n\nAn image hashing library written in Python. ImageHash supports:\n\n* Average hashing\n* Perceptual hashing\n* Difference hashing\n* Wavelet hashing\n* HSV color hashing (colorhash)\n* Crop-resistant hashing\n\n|CI|_ |Coveralls|_ \n\nRationale\n=========\n\nImage hashes tell whether two images look nearly identical.\nThis is different from cryptographic hashing algorithms (like MD5, SHA-1)\nwhere tiny changes in the image give completely different hashes. \nIn image fingerprinting, we actually want our similar inputs to have\nsimilar output hashes as well.\n\nThe image hash algorithms (average, perceptual, difference, wavelet)\nanalyse the image structure on luminance (without color information).\nThe color hash algorithm analyses the color distribution and \nblack & gray fractions (without position information).\n\nInstallation\n============\n\nBased on PIL/Pillow Image, numpy and scipy.fftpack (for pHash)\nEasy installation through `pypi`_::\n\n\tpip install imagehash\n\nBasic usage\n===========\n::\n\n\t>>> from PIL import Image\n\t>>> import imagehash\n\t>>> hash = imagehash.average_hash(Image.open('tests/data/imagehash.png'))\n\t>>> print(hash)\n\tffd7918181c9ffff\n\t>>> otherhash = imagehash.average_hash(Image.open('tests/data/peppers.png'))\n\t>>> print(otherhash)\n\t9f172786e71f1e00\n\t>>> print(hash == otherhash)\n\tFalse\n\t>>> print(hash - otherhash)  # hamming distance\n\t33\n\nEach algorithm can also have its hash size adjusted (or in the case of\ncolorhash, its :code:`binbits`). Increasing the hash size allows an\nalgorithm to store more detail in its hash, increasing its sensitivity\nto changes in detail.\n\nThe demo script **find_similar_images** illustrates how to find similar\nimages in a directory.\n\nSource hosted at GitHub: https://github.com/JohannesBuchner/imagehash\n\nReferences\n-----------\n\n* Average hashing (`aHashref`_)\n* Perceptual hashing (`pHashref`_)\n* Difference hashing (`dHashref`_)\n* Wavelet hashing (`wHashref`_)\n* Crop-resistant hashing (`crop_resistant_hashref`_)\n\n.. _aHashref: https://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html\n.. _pHashref: https://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html\n.. _dHashref: https://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html\n.. _wHashref: https://fullstackml.com/2016/07/02/wavelet-image-hash-in-python/\n.. _pypi: https://pypi.python.org/pypi/ImageHash\n.. _crop_resistant_hashref: https://ieeexplore.ieee.org/document/6980335\n\nExamples\n=========\n\nTo help evaluate how different hashing algorithms behave, below are a few hashes applied\nto two datasets. This will let you know what images an algorithm thinks are basically identical.\n\nExample 1: Icon dataset\n-----------------------\n\nSource: 7441 free icons on GitHub (see examples/github-urls.txt).\n\nThe following pages show groups of images with the same hash (the hashing method sees them as the same).\n\n* `phash <https://johannesbuchner.github.io/imagehash/index3.html>`__ (or `with z-transform <https://johannesbuchner.github.io/imagehash/index9.html>`__)\n* `dhash <https://johannesbuchner.github.io/imagehash/index4.html>`__ (or `with z-transform <https://johannesbuchner.github.io/imagehash/index10.html>`__)\n* `colorhash <https://johannesbuchner.github.io/imagehash/index7.html>`__\n* `average_hash <https://johannesbuchner.github.io/imagehash/index2.html>`__ (`with z-transform <https://johannesbuchner.github.io/imagehash/index8.html>`__)\n\nThe hashes use hashsize=8; colorhash uses binbits=3.\nYou may want to adjust the hashsize or require some manhattan distance (hash1 - hash2 < threshold).\n\nExample 2: Art dataset\n----------------------\n\nSource: 109259 art pieces from https://www.parismuseescollections.paris.fr/en/recherche/image-libre/.\n\nThe following pages show groups of images with the same hash (the hashing method sees them as the same).\n\n* `phash <https://johannesbuchner.github.io/imagehash/art3.html>`__ (or `with z-transform <https://johannesbuchner.github.io/imagehash/art9.html>`__)\n* `dhash <https://johannesbuchner.github.io/imagehash/art4.html>`__ (or `with z-transform <https://johannesbuchner.github.io/imagehash/art10.html>`__)\n* `colorhash <https://johannesbuchner.github.io/imagehash/art7.html>`__\n* `average_hash <https://johannesbuchner.github.io/imagehash/art2.html>`__ (`with z-transform <https://johannesbuchner.github.io/imagehash/art8.html>`__)\n\nFor understanding hash distances, check out these excellent blog posts:\n* https://tech.okcupid.com/evaluating-perceptual-image-hashes-at-okcupid-e98a3e74aa3a\n* https://content-blockchain.org/research/testing-different-image-hash-functions/\n\nStoring hashes\n==============\n\nAs illustrated above, hashes can be turned into strings.\nThe strings can be turned back into a ImageHash object as follows.\n\nFor single perceptual hashes::\n\n\t>>> original_hash = imagehash.phash(Image.open('tests/data/imagehash.png'))\n\t>>> hash_as_str = str(original_hash)\n\t>>> print(hash_as_str)\n\tffd7918181c9ffff\n\t>>> restored_hash = imagehash.hex_to_hash(hash_as_str)\n\t>>> print(restored_hash)\n\tffd7918181c9ffff\n\t>>> assert restored_hash == original_hash\n\t>>> assert str(restored_hash) == hash_as_str\n\nFor crop_resistant_hash::\n\n\t>>> original_hash = imagehash.crop_resistant_hash(Image.open('tests/data/imagehash.png'), min_segment_size=500, segmentation_image_size=1000)\n\t>>> hash_as_str = str(original_hash)\n\t>>> restored_hash = imagehash.hex_to_multihash(hash_as_str)\n\t>>> assert restored_hash == original_hash\n\t>>> assert str(restored_hash) == hash_as_str\n\nFor colorhash::\n\n\t>>> original_hash = imagehash.colorhash(Image.open('tests/data/imagehash.png'), binbits=3)\n\t>>> hash_as_str = str(original_hash)\n\t>>> restored_hash = imagehash.hex_to_flathash(hash_as_str, hashsize=3)\n\nEfficient database search\n-------------------------\n\nFor storing the hashes in a database and using fast hamming distance\nsearches, see pointers at https://github.com/JohannesBuchner/imagehash/issues/127\n(a blog post on how to do this would be a great contribution!)\n\n@KDJDEV points to https://github.com/KDJDEV/imagehash-reverse-image-search-tutorial and writes: \nIn this tutorial I use PostgreSQL and `this extension <https://github.com/fake-name/pg-spgist_hamming>`_, \nand show how you can create a reverse image search using hashes generated by this library.\n\n\nChangelog\n----------\n\n* 4.3: typing annotations by @Avasam @SpangleLabs and @nh2\n\n* 4.2: Cropping-Resistant image hashing added by @SpangleLabs\n\n* 4.1: Add examples and colorhash\n\n* 4.0: Changed binary to hex implementation, because the previous one was broken for various hash sizes. This change breaks compatibility to previously stored hashes; to convert them from the old encoding, use the \"old_hex_to_hash\" function.\n\n* 3.5: Image data handling speed-up\n\n* 3.2: whash now also handles smaller-than-hash images\n\n* 3.0: dhash had a bug: It computed pixel differences vertically, not horizontally.\n       I modified it to follow `dHashref`_. The old function is available as dhash_vertical.\n\n* 2.0: Added whash\n\n* 1.0: Initial ahash, dhash, phash implementations.\n\nContributing\n=============\n\nPull requests and new features are warmly welcome.\n\nIf you encounter a bug or have a question, please open a GitHub issue. You can also try Stack Overflow.\n\nOther projects\n==============\n\n* https://github.com/commonsmachinery/blockhash-python\n* https://github.com/acoomans/instagram-filters\n* https://pippy360.github.io/transformationInvariantImageSearch/\n* https://www.phash.org/\n* https://pypi.org/project/dhash/\n* https://github.com/thorn-oss/perception (based on imagehash code, depends on opencv)\n* https://docs.opencv.org/3.4/d4/d93/group__img__hash.html\n\n.. |CI| image:: https://github.com/JohannesBuchner/imagehash/actions/workflows/testing.yml/badge.svg\n.. _CI: https://github.com/JohannesBuchner/imagehash/actions/workflows/testing.yml\n\n.. |Coveralls| image:: https://coveralls.io/repos/github/JohannesBuchner/imagehash/badge.svg\n.. _Coveralls: https://coveralls.io/github/JohannesBuchner/imagehash\n",
+        "description_content_type": "text/x-rst",
+        "home_page": "https://github.com/JohannesBuchner/imagehash",
+        "author": "Johannes Buchner",
+        "author_email": "buchner.johannes@gmx.at",
+        "license": "2-clause BSD License",
+        "license_file": [
+          "LICENSE"
+        ],
+        "requires_dist": [
+          "PyWavelets",
+          "numpy",
+          "pillow",
+          "scipy"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/40/f5/83590d9355191f86ac663420fec741b82cc547a4afe7c4c1d986bf46e4db/scikit_image-0.26.0-cp314-cp314-macosx_11_0_arm64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "ce00600cd70d4562ed59f80523e18cdcc1fae0e10676498a01f73c255774aefd"
+          },
+          "hash": "sha256=ce00600cd70d4562ed59f80523e18cdcc1fae0e10676498a01f73c255774aefd"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "scikit-image",
+        "version": "0.26.0",
+        "summary": "Image processing in Python",
+        "description": "# scikit-image: Image processing in Python\n\n[![Image.sc forum](https://img.shields.io/badge/dynamic/json.svg?label=forum&url=https%3A%2F%2Fforum.image.sc%2Ftags%2Fscikit-image.json&query=%24.topic_list.tags.0.topic_count&colorB=brightgreen&suffix=%20topics&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABPklEQVR42m3SyyqFURTA8Y2BER0TDyExZ+aSPIKUlPIITFzKeQWXwhBlQrmFgUzMMFLKZeguBu5y+//17dP3nc5vuPdee6299gohUYYaDGOyyACq4JmQVoFujOMR77hNfOAGM+hBOQqB9TjHD36xhAa04RCuuXeKOvwHVWIKL9jCK2bRiV284QgL8MwEjAneeo9VNOEaBhzALGtoRy02cIcWhE34jj5YxgW+E5Z4iTPkMYpPLCNY3hdOYEfNbKYdmNngZ1jyEzw7h7AIb3fRTQ95OAZ6yQpGYHMMtOTgouktYwxuXsHgWLLl+4x++Kx1FJrjLTagA77bTPvYgw1rRqY56e+w7GNYsqX6JfPwi7aR+Y5SA+BXtKIRfkfJAYgj14tpOF6+I46c4/cAM3UhM3JxyKsxiOIhH0IO6SH/A1Kb1WBeUjbkAAAAAElFTkSuQmCC)](https://forum.image.sc/tags/scikit-image)\n[![Stackoverflow](https://img.shields.io/badge/stackoverflow-Ask%20questions-blue.svg)](https://stackoverflow.com/questions/tagged/scikit-image)\n[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://skimage.zulipchat.com)\n[![Scientific Python Ecosystem Coordination](https://img.shields.io/badge/SPEC-0,1,4,6,7,8-green?labelColor=%23004811&color=%235CA038)](https://scientific-python.org/specs/)\n[![LFX Health Score](https://insights.linuxfoundation.org/api/badge/health-score?project=scikit-image-scikit-image)](https://insights.linuxfoundation.org/project/scikit-image-scikit-image)\n\n- **Website (including documentation):** [https://scikit-image.org/](https://scikit-image.org)\n- **Documentation:** [https://scikit-image.org/docs/stable/](https://scikit-image.org/docs/stable/)\n- **User forum:** [https://forum.image.sc/tag/scikit-image](https://forum.image.sc/tag/scikit-image)\n- **Developer forum:** [https://discuss.scientific-python.org/c/contributor/skimage](https://discuss.scientific-python.org/c/contributor/skimage)\n- **Source:** [https://github.com/scikit-image/scikit-image](https://github.com/scikit-image/scikit-image)\n\n## Installation\n\n- **pip:** `pip install scikit-image`\n- **conda:** `conda install -c conda-forge scikit-image`\n\nAlso see [installing `scikit-image`](https://github.com/scikit-image/scikit-image/blob/main/INSTALL.rst).\n\n## License\n\nSee [LICENSE.txt](https://github.com/scikit-image/scikit-image/blob/main/LICENSE.txt).\n\n## Citation\n\nIf you find this project useful, please cite:\n\n> Stéfan van der Walt, Johannes L. Schönberger, Juan Nunez-Iglesias,\n> François Boulogne, Joshua D. Warner, Neil Yager, Emmanuelle\n> Gouillart, Tony Yu, and the scikit-image contributors.\n> _scikit-image: Image processing in Python_. PeerJ 2:e453 (2014)\n> https://doi.org/10.7717/peerj.453\n",
+        "description_content_type": "text/markdown",
+        "maintainer_email": "scikit-image developers <skimage-core@discuss.scientific-python.org>",
+        "license": "Files: *\n Copyright: 2009-2022 the scikit-image team\n License: BSD-3-Clause\n\n Files: doc/source/themes/scikit-image/layout.html\n Copyright: 2007-2010 the Sphinx team\n License: BSD-3-Clause\n\n Files: skimage/feature/_canny.py\n        skimage/filters/edges.py\n        skimage/filters/_rank_order.py\n        skimage/morphology/_skeletonize.py\n        skimage/morphology/tests/test_watershed.py\n        skimage/morphology/watershed.py\n        skimage/segmentation/heap_general.pxi\n        skimage/segmentation/heap_watershed.pxi\n        skimage/segmentation/_watershed.py\n        skimage/segmentation/_watershed_cy.pyx\n Copyright: 2003-2009 Massachusetts Institute of Technology\n            2009-2011 Broad Institute\n            2003 Lee Kamentsky\n            2003-2005 Peter J. Verveer\n License: BSD-3-Clause\n\n Files: skimage/filters/thresholding.py\n        skimage/graph/_mcp.pyx\n        skimage/graph/heap.pyx\n Copyright: 2009-2015 Board of Regents of the University of\n            Wisconsin-Madison, Broad Institute of MIT and Harvard,\n            and Max Planck Institute of Molecular Cell Biology and\n            Genetics\n            2009 Zachary Pincus\n            2009 Almar Klein\n License: BSD-2-Clause\n\n File: skimage/morphology/grayreconstruct.py\n       skimage/morphology/tests/test_reconstruction.py\n Copyright: 2003-2009 Massachusetts Institute of Technology\n            2009-2011 Broad Institute\n            2003 Lee Kamentsky\n License: BSD-3-Clause\n\n File: skimage/morphology/_grayreconstruct.pyx\n Copyright: 2003-2009 Massachusetts Institute of Technology\n            2009-2011 Broad Institute\n            2003 Lee Kamentsky\n            2022 Gregory Lee (added a 64-bit integer variant for large images)\n License: BSD-3-Clause\n\n File: skimage/segmentation/_expand_labels.py\n Copyright: 2020 Broad Institute\n            2020 CellProfiler team\n License: BSD-3-Clause\n\n File: skimage/exposure/_adapthist.py\n Copyright: 1994 Karel Zuiderveld\n License: BSD-3-Clause\n\n Function: skimage/morphology/_skeletonize_various_cy.pyx:_skeletonize_loop\n Copyright: 2003-2009 Massachusetts Institute of Technology\n            2009-2011 Broad Institute\n            2003 Lee Kamentsky\n License: BSD-3-Clause\n\n Function: skimage/_shared/version_requirements.py:_check_version\n Copyright: 2013 The IPython Development Team\n License: BSD-3-Clause\n\n Function: skimage/_shared/version_requirements.py:is_installed\n Copyright: 2009-2011 Pierre Raybaut\n License: MIT\n\n File: skimage/feature/_fisher_vector.py\n Copyright: 2014 2014 Dan Oneata\n License: MIT\n\n File: skimage/_vendored/numpy_lookfor.py\n Copyright: 2005-2023, NumPy Developers\n License: BSD-3-Clause\n\n File: skimage/transform/_thin_plate_splines.py\n Copyright: 2007 Zachary Pincus\n License: BSD-3-Clause\n\n License: BSD-2-Clause\n\n Redistribution and use in source and binary forms, with or without\n modification, are permitted provided that the following conditions\n are met:\n 1. Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n 2. Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n .\n THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE HOLDERS OR\n CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n License: BSD-3-Clause\n\n Redistribution and use in source and binary forms, with or without\n modification, are permitted provided that the following conditions\n are met:\n 1. Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n 2. Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n 3. Neither the name of the University nor the names of its contributors\n    may be used to endorse or promote products derived from this software\n    without specific prior written permission.\n .\n THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE HOLDERS OR\n CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n License: MIT\n\n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included in all\n copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n SOFTWARE.\n",
+        "classifier": [
+          "Development Status :: 4 - Beta",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Science/Research",
+          "License :: OSI Approved :: BSD License",
+          "Programming Language :: C",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3 :: Only",
+          "Topic :: Software Development :: Libraries",
+          "Topic :: Scientific/Engineering",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: POSIX",
+          "Operating System :: Unix",
+          "Operating System :: MacOS"
+        ],
+        "requires_dist": [
+          "numpy>=1.24",
+          "scipy>=1.11.4",
+          "networkx>=3.0",
+          "pillow>=10.1",
+          "imageio!=2.35.0,>=2.33",
+          "tifffile>=2022.8.12",
+          "packaging>=21",
+          "lazy-loader>=0.4",
+          "meson-python>=0.16; extra == \"build\"",
+          "ninja>=1.11.1.1; extra == \"build\"",
+          "Cython!=3.2.0b1,>=3.0.8; extra == \"build\"",
+          "pythran>=0.16; extra == \"build\"",
+          "numpy>=2.0; extra == \"build\"",
+          "spin==0.13; extra == \"build\"",
+          "build>=1.2.1; extra == \"build\"",
+          "pooch>=1.6.0; extra == \"data\"",
+          "pre-commit; extra == \"developer\"",
+          "ipython; extra == \"developer\"",
+          "docstub==0.3.0.post0; extra == \"developer\"",
+          "scikit-image[asv]; extra == \"developer\"",
+          "asv; sys_platform != \"emscripten\" and extra == \"asv\"",
+          "sphinx>=8.0; extra == \"docs\"",
+          "sphinx-gallery[parallel]>=0.18; extra == \"docs\"",
+          "numpydoc>=1.7; extra == \"docs\"",
+          "sphinx-copybutton; extra == \"docs\"",
+          "matplotlib>=3.7; extra == \"docs\"",
+          "dask[array]>=2023.2.0; extra == \"docs\"",
+          "pandas>=2.0; extra == \"docs\"",
+          "seaborn>=0.11; extra == \"docs\"",
+          "pooch>=1.6; extra == \"docs\"",
+          "tifffile>=2022.8.12; extra == \"docs\"",
+          "myst-parser; extra == \"docs\"",
+          "intersphinx-registry>=0.2411.14; extra == \"docs\"",
+          "ipywidgets; extra == \"docs\"",
+          "ipykernel; extra == \"docs\"",
+          "plotly>=5.20; extra == \"docs\"",
+          "kaleido==0.2.1; extra == \"docs\"",
+          "scikit-learn>=1.2; extra == \"docs\"",
+          "sphinx_design>=0.5; extra == \"docs\"",
+          "pydata-sphinx-theme>=0.16; extra == \"docs\"",
+          "PyWavelets>=1.6; extra == \"docs\"",
+          "pytest-doctestplus>=1.6.0; extra == \"docs\"",
+          "SimpleITK; sys_platform != \"emscripten\" and extra == \"optional\"",
+          "scikit-learn>=1.2; extra == \"optional\"",
+          "pyamg>=5.2; sys_platform != \"emscripten\" and python_version < \"3.14\" and extra == \"optional\"",
+          "scikit-image[optional_free_threaded]; extra == \"optional\"",
+          "astropy>=6.0; extra == \"optional-free-threaded\"",
+          "dask[array]>=2023.2.0; extra == \"optional-free-threaded\"",
+          "matplotlib>=3.7; extra == \"optional-free-threaded\"",
+          "pooch>=1.6.0; sys_platform != \"emscripten\" and extra == \"optional-free-threaded\"",
+          "PyWavelets>=1.6; extra == \"optional-free-threaded\"",
+          "numpydoc>=1.7; extra == \"test\"",
+          "pooch>=1.6.0; sys_platform != \"emscripten\" and extra == \"test\"",
+          "pytest>=8.3; extra == \"test\"",
+          "pytest-cov>=2.11.0; extra == \"test\"",
+          "pytest-pretty; extra == \"test\"",
+          "pytest-localserver; extra == \"test\"",
+          "pytest-faulthandler; extra == \"test\"",
+          "pytest-doctestplus>=1.6.0; extra == \"test\""
+        ],
+        "requires_python": ">=3.11",
+        "project_url": [
+          "homepage, https://scikit-image.org",
+          "documentation, https://scikit-image.org/docs/stable",
+          "source, https://github.com/scikit-image/scikit-image",
+          "download, https://pypi.org/project/scikit-image/#files",
+          "tracker, https://github.com/scikit-image/scikit-image/issues"
+        ],
+        "provides_extra": [
+          "build",
+          "data",
+          "developer",
+          "asv",
+          "docs",
+          "optional",
+          "optional-free-threaded",
+          "test"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/9b/ed/d68115577c8b42b0442ebd8180945d4008880a33176094640e00b585128e/scikit_learn-1.9.1-cp314-cp314-macosx_12_0_arm64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "8893bc6331f60f18d4ac75e12ed356e2dcf6a564bf767918b5b7ca54c8c8be49"
+          },
+          "hash": "sha256=8893bc6331f60f18d4ac75e12ed356e2dcf6a564bf767918b5b7ca54c8c8be49"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "scikit-learn",
+        "version": "1.9.1",
+        "summary": "A set of python modules for machine learning and data mining",
+        "description": ".. -*- mode: rst -*-\n\n|GitHubActions| |Codecov| |CircleCI| |Nightly wheels| |Ruff| |PythonVersion| |PyPI| |DOI| |Benchmark|\n\n\n.. |GitHubActions| image:: https://github.com/scikit-learn/scikit-learn/actions/workflows/unit-tests.yml/badge.svg?\n   :target: https://github.com/scikit-learn/scikit-learn/actions/workflows/unit-tests.yml?query=branch%3Amain\n\n.. |CircleCI| image:: https://circleci.com/gh/scikit-learn/scikit-learn/tree/main.svg?style=shield\n   :target: https://circleci.com/gh/scikit-learn/scikit-learn\n\n.. |Codecov| image:: https://codecov.io/gh/scikit-learn/scikit-learn/branch/main/graph/badge.svg?token=Pk8G9gg3y9\n   :target: https://codecov.io/gh/scikit-learn/scikit-learn\n\n.. |Nightly wheels| image:: https://github.com/scikit-learn/scikit-learn/actions/workflows/wheels.yml/badge.svg?event=schedule\n   :target: https://github.com/scikit-learn/scikit-learn/actions?query=workflow%3A%22Wheel+builder%22+event%3Aschedule\n\n.. |Ruff| image:: https://img.shields.io/badge/code%20style-ruff-000000.svg?\n   :target: https://github.com/astral-sh/ruff\n\n.. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/scikit-learn.svg?\n   :target: https://pypi.org/project/scikit-learn/\n\n.. |PyPI| image:: https://img.shields.io/pypi/v/scikit-learn\n   :target: https://pypi.org/project/scikit-learn\n\n.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.17880109.svg?\n   :target: https://zenodo.org/badge/latestdoi/21369/scikit-learn/scikit-learn\n\n.. |Benchmark| image:: https://img.shields.io/badge/Benchmarked%20by-asv-blue\n   :target: https://scikit-learn.org/scikit-learn-benchmarks\n\n.. |PythonMinVersion| replace:: 3.11\n.. |NumPyMinVersion| replace:: 1.24.1\n.. |SciPyMinVersion| replace:: 1.10.0\n.. |JoblibMinVersion| replace:: 1.4.0\n.. |NarwhalsMinVersion| replace:: 2.0.1\n.. |ThreadpoolctlMinVersion| replace:: 3.5.0\n.. |MatplotlibMinVersion| replace:: 3.6.1\n.. |Scikit-ImageMinVersion| replace:: 0.22.0\n.. |PandasMinVersion| replace:: 1.5.0\n.. |SeabornMinVersion| replace:: 0.13.0\n.. |PytestMinVersion| replace:: 7.1.2\n.. |PlotlyMinVersion| replace:: 5.22.0\n\n.. image:: https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/doc/logos/scikit-learn-logo.png\n  :target: https://scikit-learn.org/\n\n**scikit-learn** is a Python module for machine learning built on top of\nSciPy and is distributed under the 3-Clause BSD license.\n\nThe project was started in 2007 by David Cournapeau as a Google Summer\nof Code project, and since then many volunteers have contributed. See\nthe `About us <https://scikit-learn.org/dev/about.html#authors>`__ page\nfor a list of core contributors.\n\nIt is currently maintained by a community of contributors, with volunteers but also `support from several\norganisations <https://scikit-learn.org/dev/institutional_support.html>`__.\n\nWebsite: https://scikit-learn.org\n\nInstallation\n------------\n\nDependencies\n~~~~~~~~~~~~\n\nscikit-learn requires:\n\n- Python (>= |PythonMinVersion|)\n- NumPy (>= |NumPyMinVersion|)\n- SciPy (>= |SciPyMinVersion|)\n- Narwhals (>= |NarwhalsMinVersion|)\n- joblib (>= |JoblibMinVersion|)\n- threadpoolctl (>= |ThreadpoolctlMinVersion|)\n\n=======\n\nScikit-learn plotting capabilities (i.e., functions start with ``plot_`` and\nclasses end with ``Display``) require Matplotlib (>= |MatplotlibMinVersion|).\nFor running the examples Matplotlib >= |MatplotlibMinVersion| is required.\nA few examples require scikit-image >= |Scikit-ImageMinVersion|, a few examples\nrequire pandas >= |PandasMinVersion|, some examples require seaborn >=\n|SeabornMinVersion| and Plotly >= |PlotlyMinVersion|.\n\nUser installation\n~~~~~~~~~~~~~~~~~\n\nIf you already have a working installation of NumPy and SciPy,\nthe easiest way to install scikit-learn is using ``pip``::\n\n    pip install -U scikit-learn\n\nor ``conda``::\n\n    conda install -c conda-forge scikit-learn\n\nThe documentation includes more detailed `installation instructions <https://scikit-learn.org/stable/install.html>`_.\n\n\nChangelog\n---------\n\nSee the `changelog <https://scikit-learn.org/dev/whats_new.html>`__\nfor a history of notable changes to scikit-learn.\n\nDevelopment\n-----------\n\nWe welcome new contributors of all experience levels. The scikit-learn\ncommunity goals are to be helpful, welcoming, and effective. The\n`Development Guide <https://scikit-learn.org/stable/developers/index.html>`_\nhas detailed information about contributing code, documentation, tests, and\nmore. We've included some basic information in this README.\n\nImportant links\n~~~~~~~~~~~~~~~\n\n- Official source code repo: https://github.com/scikit-learn/scikit-learn\n- Download releases: https://pypi.org/project/scikit-learn/\n- Issue tracker: https://github.com/scikit-learn/scikit-learn/issues\n\nSource code\n~~~~~~~~~~~\n\nYou can check the latest sources with the command::\n\n    git clone https://github.com/scikit-learn/scikit-learn.git\n\nContributing\n~~~~~~~~~~~~\n\nTo learn more about making a contribution to scikit-learn, please see our\n`Contributing guide\n<https://scikit-learn.org/dev/developers/contributing.html>`_.\n\nTesting\n~~~~~~~\n\nAfter installation, you can launch the test suite from outside the source\ndirectory (you will need to have ``pytest`` >= |PytestMinVersion| installed)::\n\n    pytest sklearn\n\nSee the web page https://scikit-learn.org/dev/developers/contributing.html#testing-and-improving-test-coverage\nfor more information.\n\nRandom number generation can be controlled during testing by setting the\n``SKLEARN_SEED`` environment variable. See\nhttps://scikit-learn.org/dev/developers/global_configuration.html#sklearn-seed\nfor details.\n\nSubmitting a Pull Request\n~~~~~~~~~~~~~~~~~~~~~~~~~\n\nBefore opening a Pull Request, have a look at the\nfull Contributing page to make sure your code complies\nwith our guidelines: https://scikit-learn.org/stable/developers/index.html\n\nProject History\n---------------\n\nThe project was started in 2007 by David Cournapeau as a Google Summer\nof Code project, and since then many volunteers have contributed. See\nthe `About us <https://scikit-learn.org/dev/about.html#authors>`__ page\nfor a list of core contributors.\n\n**Note**: `scikit-learn` was previously referred to as `scikits.learn`.\n\nHelp and Support\n----------------\n\nDocumentation\n~~~~~~~~~~~~~\n\n- HTML documentation (stable release): https://scikit-learn.org\n- HTML documentation (development version): https://scikit-learn.org/dev/\n- FAQ: https://scikit-learn.org/stable/faq.html\n\nCommunication\n~~~~~~~~~~~~~\n\nMain Channels\n^^^^^^^^^^^^^\n\n- **Website**: https://scikit-learn.org\n- **Blog**: https://blog.scikit-learn.org\n- **Mailing list**: https://mail.python.org/mailman/listinfo/scikit-learn\n\nDeveloper & Support\n^^^^^^^^^^^^^^^^^^^^^^\n\n- **GitHub Discussions**: https://github.com/scikit-learn/scikit-learn/discussions\n- **Stack Overflow**: https://stackoverflow.com/questions/tagged/scikit-learn\n- **Discord**: https://discord.gg/h9qyrK8Jc8\n\nSocial Media Platforms\n^^^^^^^^^^^^^^^^^^^^^^\n\n- **LinkedIn**: https://www.linkedin.com/company/scikit-learn\n- **YouTube**: https://www.youtube.com/channel/UCJosFjYm0ZYVUARxuOZqnnw/playlists\n- **Facebook**: https://www.facebook.com/scikitlearnofficial/\n- **Instagram**: https://www.instagram.com/scikitlearnofficial/\n- **TikTok**: https://www.tiktok.com/@scikit.learn\n- **Bluesky**: https://bsky.app/profile/scikit-learn.org\n- **Mastodon**: https://mastodon.social/@sklearn@fosstodon.org\n\nResources\n^^^^^^^^^\n\n- **Calendar**: https://blog.scikit-learn.org/calendar/\n- **Logos & Branding**: https://github.com/scikit-learn/scikit-learn/tree/main/doc/logos\n\nCitation\n~~~~~~~~\n\nIf you use scikit-learn in a scientific publication, we would appreciate citations: https://scikit-learn.org/stable/about.html#citing-scikit-learn\n",
+        "description_content_type": "text/x-rst",
+        "maintainer_email": "scikit-learn developers <scikit-learn@python.org>",
+        "license_expression": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "classifier": [
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: Developers",
+          "Programming Language :: C",
+          "Programming Language :: Python",
+          "Topic :: Software Development",
+          "Topic :: Scientific/Engineering",
+          "Development Status :: 5 - Production/Stable",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: POSIX",
+          "Operating System :: Unix",
+          "Operating System :: MacOS",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: Implementation :: CPython"
+        ],
+        "requires_dist": [
+          "numpy>=1.24.1",
+          "scipy>=1.10.0",
+          "joblib>=1.4.0",
+          "narwhals>=2.0.1",
+          "threadpoolctl>=3.5.0"
+        ],
+        "requires_python": ">=3.11",
+        "project_url": [
+          "homepage, https://scikit-learn.org",
+          "source, https://github.com/scikit-learn/scikit-learn",
+          "download, https://pypi.org/project/scikit-learn/#files",
+          "tracker, https://github.com/scikit-learn/scikit-learn/issues",
+          "release notes, https://scikit-learn.org/stable/whats_new"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/7d/8a/3b7f62b9df56460959f1b9bef094248d2a4d7f393c5b0d2da8efcdf0e40e/imageio-2.38.1-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "36d23eb7423d2fb63f637098758edb3d2df3687f7125e0a5ce8596572022dcf9"
+          },
+          "hash": "sha256=36d23eb7423d2fb63f637098758edb3d2df3687f7125e0a5ce8596572022dcf9"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "ImageIO",
+        "version": "2.38.1",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "Read and write images and video across all major formats. Supports scientific and volumetric data.",
+        "description": "# IMAGEIO\n\n[![CI](https://github.com/imageio/imageio/workflows/CI/badge.svg)](https://github.com/imageio/imageio/actions/workflows/ci.yml)\n[![CD](https://github.com/imageio/imageio/workflows/CD/badge.svg)](https://github.com/imageio/imageio/actions/workflows/cd.yml)\n[![codecov](https://codecov.io/gh/imageio/imageio/branch/master/graph/badge.svg?token=81Zhu9MDec)](https://codecov.io/gh/imageio/imageio)\n[![Docs](https://readthedocs.org/projects/imageio/badge/?version=latest)](https://imageio.readthedocs.io)\n\n[![Supported Python Versions](https://img.shields.io/pypi/pyversions/imageio.svg)](https://pypi.python.org/pypi/imageio/)\n[![PyPI Version](https://img.shields.io/pypi/v/imageio.svg)](https://pypi.python.org/pypi/imageio/)\n![PyPI Downloads](https://img.shields.io/pypi/dm/imageio?color=blue)\n[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1488561.svg)](https://doi.org/10.5281/zenodo.1488561)\n\nWebsite: <https://imageio.readthedocs.io/>\n\nImageio is a mature Python library that makes it easy to read and write image\nand video data. This includes animated images, video, volumetric data, and\nscientific formats. It is cross-platform, runs on Python 3.11 through 3.14, and is easy to\ninstall.\n\nProfessional support is available via\n[Tidelift](https://tidelift.com/funding/github/pypi/imageio).\n\n## Example\n\nHere's a minimal example of how to use imageio. See the docs for [more\nexamples](https://imageio.readthedocs.io/en/stable/examples.html).\n\n```python\nimport imageio.v3 as iio\nim = iio.imread('imageio:chelsea.png')  # read a standard image\nim.shape  # im is a NumPy array of shape (300, 451, 3)\niio.imwrite('chelsea.jpg', im)  # convert to jpg\n```\n\n## API in a nutshell\n\nYou just have to remember a handful of functions:\n\n```python\nimread()  # for reading\nimwrite() # for writing\nimiter()  # for iterating image series (animations/videos/OME-TIFF/...)\nimprops() # for standardized metadata\nimmeta()  # for format-specific metadata\nimopen()  # for advanced usage\n```\n\nSee the [API docs](https://imageio.readthedocs.io/en/stable/reference/index.html) for more information.\n\n## Features\n\n- Simple interface via a concise set of functions\n- Easy to\n  [install](https://imageio.readthedocs.io/en/stable/getting_started/installation.html)\n  using Conda or pip\n- Few core dependencies (only NumPy and Pillow)\n- Pure Python, runs on Python 3.11 through 3.14, and PyPy\n- Cross platform, runs on Windows, Linux, macOS\n- More than 295 supported\n  [formats](https://imageio.readthedocs.io/en/stable/formats/index.html)\n- Read/Write support for various\n  [resources](https://imageio.readthedocs.io/en/stable/getting_started/requests.html)\n  (files, URLs, bytes, FileLike objects, ...)\n- High code quality and large test suite including functional, regression, and\n  integration tests\n\n## Dependencies\n\nMinimal requirements:\n\n- Python 3.11 through 3.14\n- NumPy\n- Pillow >= 8.3.2\n\nOptional Python packages:\n\n- imageio-ffmpeg (for working with video files)\n- pyav (for working with video files)\n- tifffile (for working with TIFF files)\n- itk or SimpleITK (for ITK plugin)\n- astropy (for FITS plugin)\n- [imageio-flif](https://codeberg.org/monilophyta/imageio-flif) (for working\n  with [FLIF](https://github.com/FLIF-hub/FLIF) image files)\n\n## Security contact information\n\nTo report a security vulnerability, please use the [Tidelift security\ncontact](https://tidelift.com/security). Tidelift will coordinate the fix and\ndisclosure.\n\n## ImageIO for enterprise\n\nAvailable as part of the Tidelift Subscription.\n\nThe maintainers of imageio and thousands of other packages are working with\nTidelift to deliver commercial support and maintenance for the open source\ndependencies you use to build your applications. Save time, reduce risk, and\nimprove code health, while paying the maintainers of the exact dependencies you\nuse. ([Learn\nmore](https://tidelift.com/subscription/pkg/pypi-imageio?utm_source=pypi-imageio&utm_medium=referral&utm_campaign=readme))\n\n## Details\n\nThe core of ImageIO is a set of user-facing APIs combined with a plugin manager.\nAPI calls choose sensible defaults and then call the plugin manager, which\ndeduces the correct plugin/backend to use for the given resource and file\nformat. The plugin manager adds sensible backend-specific defaults and then\ncalls one of ImageIOs many backends to perform the actual loading. This allows\nImageIO to take care of most of the gory details of loading images for you,\nwhile still allowing you to customize the behavior when and where you need to.\nYou can find a more detailed explanation of this process in [our\ndocumentation](https://imageio.readthedocs.io/en/stable/user_guide/overview.html).\n\n## Contributing\n\nWe welcome contributions of any kind. Here are some suggestions on how you are\nable to contribute\n\n- add missing formats to the format list\n- suggest/implement support for new backends\n- report/fix any bugs you encounter while using ImageIO\n\nTo assist you in getting started with contributing code, take a look at the\n[development\nsection](https://imageio.readthedocs.io/en/stable/development/index.html) of the\ndocs. You will find instructions on setting up the dev environment as well as\nexamples on how to contribute code.\n",
+        "description_content_type": "text/markdown",
+        "keywords": [
+          "image",
+          "video",
+          "imread",
+          "imwrite",
+          "io",
+          "animation",
+          "ffmpeg",
+          "image processing",
+          "numpy",
+          "format conversion",
+          "scientific imaging",
+          "medical imaging",
+          "volumetric",
+          "video encoding",
+          "multimedia",
+          "gif",
+          "tiff",
+          "png",
+          "jpeg"
+        ],
+        "author": "ImageIO contributors",
+        "maintainer_email": "Sebastian Wallkotter <sebastian@wallkoetter.net>, Almar Klein <almar.klein@gmail.com>",
+        "license_expression": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: Education",
+          "Intended Audience :: Developers",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: POSIX",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "requires_dist": [
+          "numpy",
+          "pillow>=8.3.2",
+          "imageio-ffmpeg; extra == \"ffmpeg\"",
+          "psutil; extra == \"ffmpeg\"",
+          "fsspec[http]; extra == \"freeimage\"",
+          "pillow-heif; extra == \"pillow-heif\"",
+          "pydicom; extra == \"pydicom\"",
+          "tifffile; extra == \"tifffile\"",
+          "av; extra == \"pyav\"",
+          "astropy; extra == \"fits\"",
+          "rawpy; extra == \"rawpy\"",
+          "numpy>2; extra == \"rawpy\"",
+          "gdal; extra == \"gdal\"",
+          "itk; extra == \"itk\"",
+          "black; extra == \"linting\"",
+          "flake8; extra == \"linting\"",
+          "pytest; extra == \"test\"",
+          "pytest-cov; extra == \"test\"",
+          "fsspec[github]; extra == \"test\"",
+          "sphinx<6; extra == \"docs\"",
+          "numpydoc; extra == \"docs\"",
+          "pydata-sphinx-theme; extra == \"docs\"",
+          "pytest; extra == \"dev\"",
+          "pytest-cov; extra == \"dev\"",
+          "fsspec[github]; extra == \"dev\"",
+          "black; extra == \"dev\"",
+          "flake8; extra == \"dev\"",
+          "av; extra == \"all-plugins\"",
+          "astropy; extra == \"all-plugins\"",
+          "fsspec[http]; extra == \"all-plugins\"",
+          "imageio-ffmpeg; extra == \"all-plugins\"",
+          "numpy>2; extra == \"all-plugins\"",
+          "pillow-heif; extra == \"all-plugins\"",
+          "psutil; extra == \"all-plugins\"",
+          "pydicom; extra == \"all-plugins\"",
+          "rawpy; extra == \"all-plugins\"",
+          "tifffile; extra == \"all-plugins\"",
+          "fsspec[http]; extra == \"all-plugins-pypy\"",
+          "imageio-ffmpeg; extra == \"all-plugins-pypy\"",
+          "psutil; extra == \"all-plugins-pypy\"",
+          "astropy; extra == \"full\"",
+          "av; extra == \"full\"",
+          "black; extra == \"full\"",
+          "flake8; extra == \"full\"",
+          "fsspec[github,http]; extra == \"full\"",
+          "imageio-ffmpeg; extra == \"full\"",
+          "numpydoc; extra == \"full\"",
+          "numpy>2; extra == \"full\"",
+          "pillow-heif; extra == \"full\"",
+          "psutil; extra == \"full\"",
+          "pydicom; extra == \"full\"",
+          "pydata-sphinx-theme; extra == \"full\"",
+          "pytest; extra == \"full\"",
+          "pytest-cov; extra == \"full\"",
+          "rawpy; extra == \"full\"",
+          "sphinx<6; extra == \"full\"",
+          "tifffile; extra == \"full\""
+        ],
+        "requires_python": ">=3.11",
+        "project_url": [
+          "homepage, https://github.com/imageio/imageio",
+          "download, http://pypi.python.org/pypi/imageio",
+          "source, https://github.com/imageio/imageio",
+          "documentation, https://imageio.readthedocs.io"
+        ],
+        "provides_extra": [
+          "bsdf",
+          "dicom",
+          "feisem",
+          "ffmpeg",
+          "freeimage",
+          "lytro",
+          "numpy",
+          "pillow-heif",
+          "pillow",
+          "pydicom",
+          "simpleitk",
+          "spe",
+          "swf",
+          "tifffile",
+          "pyav",
+          "fits",
+          "rawpy",
+          "gdal",
+          "itk",
+          "linting",
+          "test",
+          "docs",
+          "dev",
+          "all-plugins",
+          "all-plugins-pypy",
+          "full"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/18/53/84099323c2ec4be98d935f63c033ac4151ee83836ca1050ede3b3aadf155/joblib-1.6.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba"
+          },
+          "hash": "sha256=3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "joblib",
+        "version": "1.6.0",
+        "dynamic": [
+          "license-file"
+        ],
+        "platform": [
+          "any"
+        ],
+        "summary": "Lightweight pipelining with Python functions",
+        "description": "|PyPi| |CIStatus| |ReadTheDocs| |Codecov|\n\n.. |PyPi| image:: https://badge.fury.io/py/joblib.svg\n   :target: https://badge.fury.io/py/joblib\n   :alt: Joblib version\n\n.. |CIStatus| image:: https://github.com/joblib/joblib/actions/workflows/test.yml/badge.svg\n   :target: https://github.com/joblib/joblib/actions/workflows/test.yml?query=branch%3Amain\n   :alt: CI status\n\n.. |ReadTheDocs| image:: https://readthedocs.org/projects/joblib/badge/?version=latest\n    :target: https://joblib.readthedocs.io/en/latest/?badge=latest\n    :alt: Documentation Status\n\n.. |Codecov| image:: https://codecov.io/gh/joblib/joblib/branch/main/graph/badge.svg\n   :target: https://codecov.io/gh/joblib/joblib\n   :alt: Codecov coverage\n\n\nThe homepage of joblib with user documentation is located on:\n\nhttps://joblib.readthedocs.io\n\nGetting the latest code\n=======================\n\nTo get the latest code using git, simply type::\n\n    git clone https://github.com/joblib/joblib.git\n\nIf you don't have git installed, you can download a zip\nof the latest code: https://github.com/joblib/joblib/archive/refs/heads/main.zip\n\nInstalling\n==========\n\nYou can use `pip` to install joblib from any directory::\n\n    pip install joblib\n\nor install it in editable mode from the source directory::\n\n    pip install -e .\n\nDependencies\n============\n\n- Joblib supports Python >= 3.10.\n- The only dependency is `cloudpickle <https://github.com/cloudpipe/cloudpickle>`_ >= 3.\n- Joblib includes its own vendored copy of\n  `loky <https://github.com/tomMoral/loky>`_ for process management.\n- Joblib can efficiently dump and load numpy arrays but does not require numpy\n  to be installed. The oldest numpy version supported is the oldest numpy version\n  supported by Python 3.10 (numpy version 1.21.3).\n- Joblib can use Dask distributed backend but does not require distributed to be\n  installed. The oldest distributed version supported is 2022.8.1.\n- Joblib has an optional dependency on\n  `python-lz4 <https://pypi.python.org/pypi/lz4>`_ as a faster alternative to\n  zlib and gzip for compressed serialization.\n- Joblib has an optional dependency on psutil to mitigate memory leaks in\n  parallel worker processes.\n- Some examples require external dependencies such as pandas. See the\n  instructions in the `Building the docs`_ section for details.\n\nWorkflow to contribute\n======================\n\nTo contribute to joblib, first create an account on `github\n<https://github.com/>`_. Once this is done, fork the `joblib repository\n<https://github.com/joblib/joblib>`_ to have your own repository,\nclone it using ``git clone``. Make your changes in a branch of your clone, push\nthem to your github account, test them locally, and when you are happy with\nthem, send a pull request to the main repository.\n\nYou can use `pre-commit <https://pre-commit.com/#install>`_ to run code style checks\nbefore each commit::\n\n    pip install pre-commit\n    pre-commit install\n\npre-commit checks can be disabled for a single commit with::\n\n    git commit -n\n\nRunning the test suite\n======================\n\nTo run the test suite, you need the pytest (version >= 3) and coverage modules.\nRun the test suite using::\n\n    pip install joblib[test]\n    pytest joblib\n\nfrom the root of the project.\n\nBuilding the docs\n=================\n\nTo build the docs you need to have sphinx (>=1.4) and some dependencies\ninstalled::\n\n    pip install .[docs]\n\nThe docs can then be built with the following command::\n\n    make doc\n\nThe html docs are located in the ``doc/_build/html`` directory.\n\n\nMaking a source tarball\n=======================\n\nTo create a source tarball, eg for packaging or distributing, run the\nfollowing command::\n\n    pip install build\n    python -m build --sdist\n\nThe tarball will be created in the `dist` directory. This command will create\nthe resulting tarball that can be installed with no extra dependencies than the\nPython standard library.\n\nMaking a release and uploading it to PyPI\n=========================================\n\nTo generate a release, create a new Release in GitHub; the release will be\nautomatically published to PyPI.\n\nUpdating the changelog\n======================\n\nChanges are listed in the CHANGES.rst file. They must be manually updated\nbut, the following git command may be used to generate the lines::\n\n    git log --abbrev-commit --date=short --no-merges --sparse\n",
+        "description_content_type": "text/x-rst",
+        "author_email": "Gael Varoquaux <gael.varoquaux@normalesup.org>",
+        "license_expression": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: Education",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Scientific/Engineering",
+          "Topic :: Utilities",
+          "Topic :: Software Development :: Libraries"
+        ],
+        "requires_dist": [
+          "cloudpickle>=3.0",
+          "distributed; extra == \"test\"",
+          "lz4; extra == \"test\"",
+          "numpy; extra == \"test\"",
+          "memory_profiler; extra == \"test\"",
+          "pytest; extra == \"test\"",
+          "pytest-asyncio; extra == \"test\"",
+          "pytest-cov; extra == \"test\"",
+          "pytest-run-parallel; extra == \"test\"",
+          "pytest-timeout; extra == \"test\"",
+          "threadpoolctl; extra == \"test\"",
+          "distributed; extra == \"docs\"",
+          "lz4; extra == \"docs\"",
+          "numpy; extra == \"docs\"",
+          "numpydoc; extra == \"docs\"",
+          "matplotlib; extra == \"docs\"",
+          "pandas; extra == \"docs\"",
+          "psutil; extra == \"docs\"",
+          "sphinx; extra == \"docs\"",
+          "pydata-sphinx-theme; extra == \"docs\"",
+          "sphinx-gallery; extra == \"docs\"",
+          "sphinx-copybutton; extra == \"docs\"",
+          "sphinx-design; extra == \"docs\"",
+          "tqdm; extra == \"docs\""
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "Homepage, https://joblib.readthedocs.io",
+          "Source, https://github.com/joblib/joblib"
+        ],
+        "provides_extra": [
+          "test",
+          "docs"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/88/39/799be3f2f0f38cc727ee3b4f1445fe6d5e4133064ec2e4115069418a5bb6/cloudpickle-3.1.2-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a"
+          },
+          "hash": "sha256=9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "cloudpickle",
+        "version": "3.1.2",
+        "summary": "Pickler class to extend the standard pickle.Pickler functionality",
+        "description": "# cloudpickle\n\n[![Automated Tests](https://github.com/cloudpipe/cloudpickle/workflows/Automated%20Tests/badge.svg?branch=master&event=push)](https://github.com/cloudpipe/cloudpickle/actions)\n[![codecov.io](https://codecov.io/github/cloudpipe/cloudpickle/coverage.svg?branch=master)](https://codecov.io/github/cloudpipe/cloudpickle?branch=master)\n\n`cloudpickle` makes it possible to serialize Python constructs not supported\nby the default `pickle` module from the Python standard library.\n\n`cloudpickle` is especially useful for **cluster computing** where Python\ncode is shipped over the network to execute on remote hosts, possibly close\nto the data.\n\nAmong other things, `cloudpickle` supports pickling for **lambda functions**\nalong with **functions and classes defined interactively** in the\n`__main__` module (for instance in a script, a shell or a Jupyter notebook).\n\nCloudpickle can only be used to send objects between the **exact same version\nof Python**.\n\nUsing `cloudpickle` for **long-term object storage is not supported and\nstrongly discouraged.**\n\n**Security notice**: one should **only load pickle data from trusted sources** as\notherwise `pickle.load` can lead to arbitrary code execution resulting in a critical\nsecurity vulnerability.\n\n\nInstallation\n------------\n\nThe latest release of `cloudpickle` is available from\n[pypi](https://pypi.python.org/pypi/cloudpickle):\n\n    pip install cloudpickle\n\n\nExamples\n--------\n\nPickling a lambda expression:\n\n```python\n>>> import cloudpickle\n>>> squared = lambda x: x ** 2\n>>> pickled_lambda = cloudpickle.dumps(squared)\n\n>>> import pickle\n>>> new_squared = pickle.loads(pickled_lambda)\n>>> new_squared(2)\n4\n```\n\nPickling a function interactively defined in a Python shell session\n(in the `__main__` module):\n\n```python\n>>> CONSTANT = 42\n>>> def my_function(data: int) -> int:\n...     return data + CONSTANT\n...\n>>> pickled_function = cloudpickle.dumps(my_function)\n>>> depickled_function = pickle.loads(pickled_function)\n>>> depickled_function\n<function __main__.my_function(data:int) -> int>\n>>> depickled_function(43)\n85\n```\n\n\nOverriding pickle's serialization mechanism for importable constructs:\n----------------------------------------------------------------------\n\nAn important difference between `cloudpickle` and `pickle` is that\n`cloudpickle` can serialize a function or class **by value**, whereas `pickle`\ncan only serialize it **by reference**. Serialization by reference treats\nfunctions and classes as attributes of modules, and pickles them through\ninstructions that trigger the import of their module at load time.\nSerialization by reference is thus limited in that it assumes that the module\ncontaining the function or class is available/importable in the unpickling\nenvironment. This assumption breaks when pickling constructs defined in an\ninteractive session, a case that is automatically detected by `cloudpickle`,\nthat pickles such constructs **by value**.\n\nAnother case where the importability assumption is expected to break is when\ndeveloping a module in a distributed execution environment: the worker\nprocesses may not have access to the said module, for example if they live on a\ndifferent machine than the process in which the module is being developed. By\nitself, `cloudpickle` cannot detect such \"locally importable\" modules and\nswitch to serialization by value; instead, it relies on its default mode, which\nis serialization by reference. However, since `cloudpickle 2.0.0`, one can\nexplicitly specify modules for which serialization by value should be used,\nusing the\n`register_pickle_by_value(module)`/`/unregister_pickle_by_value(module)` API:\n\n```python\n>>> import cloudpickle\n>>> import my_module\n>>> cloudpickle.register_pickle_by_value(my_module)\n>>> cloudpickle.dumps(my_module.my_function)  # my_function is pickled by value\n>>> cloudpickle.unregister_pickle_by_value(my_module)\n>>> cloudpickle.dumps(my_module.my_function)  # my_function is pickled by reference\n```\n\nUsing this API, there is no need to re-install the new version of the module on\nall the worker nodes nor to restart the workers: restarting the client Python\nprocess with the new source code is enough.\n\nNote that this feature is still **experimental**, and may fail in the following\nsituations:\n\n- If the body of a function/class pickled by value contains an `import` statement:\n  ```python\n  >>> def f():\n  >>> ... from another_module import g\n  >>> ... # calling f in the unpickling environment may fail if another_module\n  >>> ... # is unavailable\n  >>> ... return g() + 1\n  ```\n\n- If a function pickled by reference uses a function pickled by value during its execution.\n\n\nRunning the tests\n-----------------\n\n- With `tox`, to test run the tests for all the supported versions of\n  Python and PyPy:\n\n      pip install tox\n      tox\n\n  or alternatively for a specific environment:\n\n      tox -e py312\n\n\n- With `pytest` to only run the tests for your current version of\n  Python:\n\n      pip install -r dev-requirements.txt\n      PYTHONPATH='.:tests' pytest\n\nHistory\n-------\n\n`cloudpickle` was initially developed by [picloud.com](http://web.archive.org/web/20140721022102/http://blog.picloud.com/2013/11/17/picloud-has-joined-dropbox/) and shipped as part of\nthe client SDK.\n\nA copy of `cloudpickle.py` was included as part of PySpark, the Python\ninterface to [Apache Spark](https://spark.apache.org/). Davies Liu, Josh\nRosen, Thom Neale and other Apache Spark developers improved it significantly,\nmost notably to add support for PyPy and Python 3.\n\nThe aim of the `cloudpickle` project is to make that work available to a wider\naudience outside of the Spark ecosystem and to make it easier to improve it\nfurther notably with the help of a dedicated non-regression test suite.\n\n",
+        "description_content_type": "text/markdown",
+        "home_page": "https://github.com/cloudpipe/cloudpickle",
+        "author": "The cloudpickle developer team",
+        "author_email": "cloudpipe@googlegroups.com",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: BSD License",
+          "Operating System :: POSIX",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: MacOS :: MacOS X",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: Implementation :: CPython",
+          "Programming Language :: Python :: Implementation :: PyPy",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Topic :: Scientific/Engineering",
+          "Topic :: System :: Distributed Computing"
+        ],
+        "requires_python": ">=3.8"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/23/93/4e45e37f26c820216704b36b8e67cc55c490a7abd287a78a26a2c0e21386/lazy_loader-0.6-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "77253be3391b06124a0e16105bd663b6c54470af1a9ca8e1cf026f38d58ed056"
+          },
+          "hash": "sha256=77253be3391b06124a0e16105bd663b6c54470af1a9ca8e1cf026f38d58ed056"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "lazy-loader",
+        "version": "0.6",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "Makes it easy to load subpackages and functions on demand.",
+        "description": "[![PyPI](https://img.shields.io/pypi/v/lazy-loader)](https://pypi.org/project/lazy-loader/)\n[![Test status](https://github.com/scientific-python/lazy-loader/workflows/test/badge.svg?branch=main)](https://github.com/scientific-python/lazy-loader/actions?query=workflow%3A%22test%22)\n[![Test coverage](https://codecov.io/gh/scientific-python/lazy-loader/branch/main/graph/badge.svg)](https://app.codecov.io/gh/scientific-python/lazy-loader/branch/main)\n\n`lazy-loader` makes it easy to load subpackages and functions on demand.\n\n## Motivation\n\n1. Allow subpackages to be made visible to users without incurring import costs.\n2. Allow external libraries to be imported only when used, improving import times.\n\nFor a more detailed discussion, see [the SPEC](https://scientific-python.org/specs/spec-0001/).\n\n## Installation\n\n```\npip install -U lazy-loader\n```\n\nWe recommend using `lazy-loader` with Python >= 3.11.\nIf using Python 3.11, please upgrade to 3.11.9 or later.\nIf using Python 3.12, please upgrade to 3.12.3 or later.\nThese versions [avoid](https://github.com/python/cpython/pull/114781) a [known race condition](https://github.com/python/cpython/issues/114763).\n\n## Usage\n\n### Lazily load subpackages\n\nConsider the `__init__.py` from [scikit-image](https://scikit-image.org):\n\n```python\nsubpackages = [\n    ...,\n    'filters',\n    ...\n]\n\nimport lazy_loader as lazy\n__getattr__, __dir__, _ = lazy.attach(__name__, subpackages)\n```\n\nYou can now do:\n\n```python\nimport skimage as ski\nski.filters.gaussian(...)\n```\n\nThe `filters` subpackages will only be loaded once accessed.\n\n### Lazily load subpackages and functions\n\nConsider `skimage/filters/__init__.py`:\n\n```python\nfrom ..util import lazy\n\n__getattr__, __dir__, __all__ = lazy.attach(\n    __name__,\n    submodules=['rank'],\n    submod_attrs={\n        '_gaussian': ['gaussian', 'difference_of_gaussians'],\n        'edges': ['sobel', 'scharr', 'prewitt', 'roberts',\n                  'laplace', 'farid']\n    }\n)\n```\n\nThe above is equivalent to:\n\n```python\nfrom . import rank\nfrom ._gaussian import gaussian, difference_of_gaussians\nfrom .edges import (sobel, scharr, prewitt, roberts,\n                    laplace, farid)\n```\n\nExcept that all subpackages (such as `rank`) and functions (such as `sobel`) are loaded upon access.\n\n### Type checkers\n\nStatic type checkers and IDEs cannot infer type information from\nlazily loaded imports. As a workaround you can load [type\nstubs](https://mypy.readthedocs.io/en/stable/stubs.html) (`.pyi`\nfiles) with `lazy.attach_stub`:\n\n```python\nimport lazy_loader as lazy\n__getattr__, __dir__, _ = lazy.attach_stub(__name__, \"subpackages.pyi\")\n```\n\nNote that, since imports are now defined in `.pyi` files, those\nare not only necessary for type checking but also at runtime.\n\nThe SPEC [describes this workaround in more\ndetail](https://scientific-python.org/specs/spec-0001/#type-checkers).\n\n### Early failure\n\nWith lazy loading, missing imports no longer fail upon loading the\nlibrary. During development and testing, you can set the `EAGER_IMPORT`\nenvironment variable to \"1\" or \"true\" to disable lazy loading (\"0\" or \"\" re-enables lazy loading).\n\n### External libraries\n\nThe `lazy.attach` function discussed above is used to set up package\ninternal imports.\n\nUse `lazy.load` to lazily import external libraries:\n\n```python\nsp = lazy.load('scipy')  # `sp` will only be loaded when accessed\nsp.linalg.norm(...)\n```\n\n_Note that lazily importing *sub*packages,\ni.e. `load('scipy.linalg')` will cause the package containing the\nsubpackage to be imported immediately; thus, this usage is\ndiscouraged._\n\nYou can ask `lazy.load` to raise import errors as soon as it is called:\n\n```python\nlinalg = lazy.load('scipy.linalg', error_on_import=True)\n```\n\n#### Optional requirements\n\nOne use for lazy loading is for loading optional dependencies, with\n`ImportErrors` only arising when optional functionality is accessed. If optional\nfunctionality depends on a specific version, a version requirement can\nbe set:\n\n```python\nnp = lazy.load(\"numpy\", require=\"numpy >=1.24\")\n```\n\nIn this case, if `numpy` is installed, but the version is less than 1.24,\nthe `np` module returned will raise an error on attribute access. Using\nthis feature is not all-or-nothing: One module may rely on one version of\nnumpy, while another module may not set any requirement.\n\n_Note that the requirement must use the package [distribution name][] instead\nof the module [import name][]. For example, the `pyyaml` distribution provides\nthe `yaml` module for import._\n\n[distribution name]: https://packaging.python.org/en/latest/glossary/#term-Distribution-Package\n[import name]: https://packaging.python.org/en/latest/glossary/#term-Import-Package\n",
+        "description_content_type": "text/markdown",
+        "author": "Scientific Python Developers",
+        "license_expression": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15"
+        ],
+        "requires_dist": [
+          "packaging",
+          "pytest>=8.0; extra == \"test\"",
+          "pytest-cov>=5.0; extra == \"test\"",
+          "coverage[toml]>=7.2; extra == \"test\"",
+          "pre-commit==4.3.0; extra == \"lint\"",
+          "changelist==0.5; extra == \"dev\"",
+          "spin==0.15; extra == \"dev\""
+        ],
+        "requires_python": ">=3.9",
+        "project_url": [
+          "Home, https://scientific-python.org/specs/spec-0001/",
+          "Source, https://github.com/scientific-python/lazy-loader"
+        ],
+        "provides_extra": [
+          "test",
+          "lint",
+          "dev"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/cf/82/8ef9c7e0f50493307a49c09cfa7f00c5a778b6d1921f7b2dabe1d3a5809e/narwhals-2.28.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "1f69d6385ec30e2fa6e1fdeb37c562ecabd0f713f6f3e3b58a668c5c9df9567f"
+          },
+          "hash": "sha256=1f69d6385ec30e2fa6e1fdeb37c562ecabd0f713f6f3e3b58a668c5c9df9567f"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "narwhals",
+        "version": "2.28.0",
+        "summary": "Extremely lightweight compatibility layer between dataframe libraries",
+        "description": "# Narwhals\n\n<h1 align=\"center\">\n\t<img\n\t\twidth=\"400\"\n\t\talt=\"narwhals_small\"\n\t\tsrc=\"https://github.com/user-attachments/assets/968545af-ea0f-48bb-8377-144e93f7abf8\">\n</h1>\n\n[![PyPI version](https://badge.fury.io/py/narwhals.svg)](https://badge.fury.io/py/narwhals)\n[![Downloads](https://static.pepy.tech/badge/narwhals/month)](https://pepy.tech/project/narwhals)\n[![Trusted publishing](https://img.shields.io/badge/Trusted_publishing-Provides_attestations-bright_green)](https://peps.python.org/pep-0740/)\n[![PYPI - Types](https://img.shields.io/pypi/types/narwhals)](https://pypi.org/project/narwhals)\n[![LFX Health Score](https://insights.linuxfoundation.org/api/badge/health-score?project=narwhals-dev-narwhals)](https://insights.linuxfoundation.org/project/narwhals-dev-narwhals)\n[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/narwhals-dev/narwhals/badge)](https://securityscorecards.dev/viewer/?uri=github.com/narwhals-dev/narwhals)\n\nExtremely lightweight and extensible compatibility layer between dataframe libraries!\n\n- **Full API support**: cuDF, Modin, pandas, Polars, PyArrow.\n- **Lazy-only support**: Dask, DuckDB, Ibis, PySpark, SQLFrame, Daft via the\n  [narwhals-daft](https://github.com/narwhals-dev/narwhals-daft) plugin, and Apache DataFusion via the\n  [narwhals-datafusion](https://github.com/s5dsn-eqee/narwhals-datafusion) plugin.\n\nSeamlessly support all, without depending on any!\n\n- ✅ **Just use** [a subset of **the Polars API**](https://narwhals-dev.github.io/narwhals/api-reference/), no need to learn anything new\n- ✅ **Zero dependencies**, Narwhals only uses what\n  the user passes in so your library can stay lightweight\n- ✅ Separate **lazy** and eager APIs, use **expressions**\n- ✅ Support pandas' complicated type system and index, without\n  either getting in the way\n- ✅ **100% branch coverage**, tested against pandas and Polars nightly builds\n- ✅ **Negligible overhead**, see [overhead](https://narwhals-dev.github.io/narwhals/overhead/)\n- ✅ Let your IDE help you thanks to **full static typing**, see [typing](https://narwhals-dev.github.io/narwhals/api-reference/typing/)\n- ✅ **Perfect backwards compatibility policy**,\n  see [stable api](https://narwhals-dev.github.io/narwhals/backcompat/) for how to opt-in\n\nGet started!\n\n- [Read the documentation](https://narwhals-dev.github.io/narwhals/)\n- [Chat with us on Discord!](https://discord.gg/V3PqtB4VA4)\n- [Join our community call](https://calendar.google.com/calendar/embed?src=27ff6dc5f598c1d94c1f6e627a1aaae680e2fac88f848bda1f2c7946ae74d5ab%40group.calendar.google.com)\n- [Read the contributing guide](https://github.com/narwhals-dev/narwhals/blob/main/CONTRIBUTING.md)\n\n<details>\n<summary>Table of contents</summary>\n\n- [Narwhals](#narwhals)\n  - [Installation](#installation)\n  - [Usage](#usage)\n  - [Example](#example)\n  - [Scope](#scope)\n  - [Roadmap](#roadmap)\n  - [Used by](#used-by)\n  - [Sponsors and institutional partners](#sponsors-and-institutional-partners)\n  - [Support](#support)\n  - [Appears on](#appears-on)\n  - [Why \"Narwhals\"?](#why-narwhals)\n\n</details>\n\n## Installation\n\n- pip (recommended, as it's the most up-to-date)\n  ```\n  pip install narwhals\n  ```\n- conda-forge (also fine, but the latest version may take longer to appear)\n  ```\n  conda install -c conda-forge narwhals\n  ```\n\n## Usage\n\nThere are three steps to writing dataframe-agnostic code using Narwhals:\n\n1. use `narwhals.from_native` to wrap a pandas/Polars/Modin/cuDF/PyArrow\n   DataFrame/LazyFrame in a Narwhals class\n2. use the [subset of the Polars API supported by Narwhals](https://narwhals-dev.github.io/narwhals/api-reference/)\n3. use `narwhals.to_native` to return an object to the user in its original\n   dataframe flavour. For example:\n\n   - if you started with pandas, you'll get pandas back\n   - if you started with Polars, you'll get Polars back\n   - if you started with Modin, you'll get Modin back (and compute will be distributed)\n   - if you started with cuDF, you'll get cuDF back (and compute will happen on GPU)\n   - if you started with PyArrow, you'll get PyArrow back\n\n<h1 align=\"left\">\n\t<img\n\t\twidth=\"600\"\n\t\talt=\"narwhals_gif\"\n\t\tsrc=\"https://github.com/user-attachments/assets/88292d3c-6359-4155-973d-d0f8e3fbf5ac\">\n\n</h1>\n\n## Example\n\nNarwhals allows you to define dataframe-agnostic functions. For example:\n\n```python\nimport narwhals as nw\nfrom narwhals.typing import IntoDataFrameT, IntoLazyFrameT\n\n\ndef agnostic_function(\n    df_native: IntoDataFrameT | IntoLazyFrameT,\n) -> IntoDataFrameT | IntoLazyFrameT:\n    return (\n        nw.from_native(df_native)\n        .with_columns(\n            category=nw.when(nw.col(\"animal\").str.contains(\"whale\"))\n            .then(nw.lit(\"whale\"))\n            .otherwise(nw.lit(\"other\"))\n        )\n        .to_native()\n    )\n```\n\nYou can then pass `pandas.DataFrame`, `polars.DataFrame`, `polars.LazyFrame`, `duckdb.DuckDBPyRelation`,\n`pyspark.sql.DataFrame`, `pyarrow.Table`, and more, to `agnostic_function`. In each case, no additional\ndependencies will be required, and computation will stay native to the input library:\n\n```python\nimport duckdb\nimport polars as pl\nimport pandas as pd\n\ndata = {\n    \"animal\": [\"blue whale\", \"orca\", \"dolphin\", \"humpback whale\", \"seal\"],\n    \"length_m\": [30.0, 8, 2.5, 17, 2.2],\n    \"weight_kg\": [150000, 4000, 200, 30000, 85],\n}\n\nprint(\"Polars result\")\ndf_pl = pl.DataFrame(data)\nprint(agnostic_function(df_pl))\n\nprint(\"DuckDB result\")\nprint(agnostic_function(duckdb.sql(\"select * from df_pl\")))\n\nprint(\"pandas result\")\ndf_pd = pd.DataFrame(data)\nprint(agnostic_function(df_pd))\n```\n\n```terminal\nPolars result\nshape: (5, 4)\n┌────────────────┬──────────┬───────────┬──────────┐\n│ animal         ┆ length_m ┆ weight_kg ┆ category │\n│ ---            ┆ ---      ┆ ---       ┆ ---      │\n│ str            ┆ f64      ┆ i64       ┆ str      │\n╞════════════════╪══════════╪═══════════╪══════════╡\n│ blue whale     ┆ 30.0     ┆ 150000    ┆ whale    │\n│ orca           ┆ 8.0      ┆ 4000      ┆ other    │\n│ dolphin        ┆ 2.5      ┆ 200       ┆ other    │\n│ humpback whale ┆ 17.0     ┆ 30000     ┆ whale    │\n│ seal           ┆ 2.2      ┆ 85        ┆ other    │\n└────────────────┴──────────┴───────────┴──────────┘\nDuckDB result\n┌────────────────┬──────────┬───────────┬──────────┐\n│     animal     │ length_m │ weight_kg │ category │\n│    varchar     │  double  │   int64   │ varchar  │\n├────────────────┼──────────┼───────────┼──────────┤\n│ blue whale     │     30.0 │    150000 │ whale    │\n│ orca           │      8.0 │      4000 │ other    │\n│ dolphin        │      2.5 │       200 │ other    │\n│ humpback whale │     17.0 │     30000 │ whale    │\n│ seal           │      2.2 │        85 │ other    │\n└────────────────┴──────────┴───────────┴──────────┘\n\npandas result\n           animal  length_m  weight_kg category\n0      blue whale      30.0     150000    whale\n1            orca       8.0       4000    other\n2         dolphin       2.5        200    other\n3  humpback whale      17.0      30000    whale\n4            seal       2.2         85    other\n```\n\nSee the [tutorial](https://narwhals-dev.github.io/narwhals/basics/dataframe/) for several examples!\n\n## Scope\n\n- Do you maintain a dataframe-consuming library?\n- Do you have a specific Polars function in mind that you would like Narwhals to have in order to make your work easier?\n\nIf you said yes to both, we'd love to hear from you!\n\n## Roadmap\n\nSee [roadmap discussion on GitHub](https://github.com/narwhals-dev/narwhals/discussions/1370)\nfor an up-to-date plan of future work.\n\n## Used by\n\nJoin the party!\n\n- [altair](https://github.com/vega/altair/)\n- [bokeh](https://github.com/bokeh/bokeh)\n- [darts](https://github.com/unit8co/darts)\n- [fairlearn](https://github.com/fairlearn/fairlearn)\n- [formulaic](https://github.com/matthewwardrop/formulaic)\n- [gt-extras](https://github.com/posit-dev/gt-extras)\n- [hierarchicalforecast](https://github.com/Nixtla/hierarchicalforecast)\n- [lightgbm](https://github.com/lightgbm-org/LightGBM)\n- [marimo](https://github.com/marimo-team/marimo)\n- [metalearners](https://github.com/Quantco/metalearners)\n- [mosaic](https://github.com/uwdata/mosaic)\n- [pandera](https://github.com/pandera-dev/pandera)\n- [panel-graphic-walker](https://github.com/panel-extensions/panel-graphic-walker)\n- [plotly](https://plotly.com)\n- [pointblank](https://github.com/posit-dev/pointblank)\n- [pymarginaleffects](https://github.com/vincentarelbundock/pymarginaleffects)\n- [pyreadr](https://github.com/ofajardo/pyreadr)\n- [pyreadstat](https://github.com/Roche/pyreadstat)\n- [py-shiny](https://github.com/posit-dev/py-shiny)\n- [pysummaries](https://github.com/Genentech/pysummaries)\n- [rio](https://github.com/rio-labs/rio)\n- [scikit-learn](https://github.com/scikit-learn/scikit-learn)\n- [scikit-lego](https://github.com/koaning/scikit-lego)\n- [scikit-playtime](https://github.com/koaning/scikit-playtime)\n- [tabmat](https://github.com/Quantco/tabmat)\n- [tea-tasting](https://github.com/e10v/tea-tasting)\n- [timebasedcv](https://github.com/FBruzzesi/timebasedcv)\n- [tubular](https://github.com/lvgig/tubular)\n- [Validoopsie](https://github.com/akmalsoliev/Validoopsie)\n- [vegafusion](https://github.com/vega/vegafusion)\n- [wimsey](https://github.com/benrutter/wimsey)\n\nFeel free to add your project to the list if it's missing, and/or\n[chat with us on Discord](https://discord.gg/V3PqtB4VA4) if you'd like any support.\n\n## Sponsors and institutional partners\n\nNarwhals is 100% independent, community-driven, and community-owned.\nWe are extremely grateful to the following organisations for having\nprovided some funding / development time:\n\n- [Quansight Labs](https://labs.quansight.org)\n- [Quansight Futures](https://www.qi.ventures)\n- [OpenTeams](https://www.openteams.com)\n- [POSSEE initiative](https://possee.org)\n- [BYU-Idaho](https://www.byui.edu)\n- [Intella](https://www.intella.tech/)\n\nIf you contribute to Narwhals on your organization's time, please let us know. We'd be happy to add your employer\nto this list!\n\n## Support\n\nIf you'd like to say \"thank you\", please give us a ⭐ star ⭐.\n\nPlease contact [hello_narwhals@proton.me](mailto:hello_narwhals@proton.me) if you would like to:\n\n- Receive professional support (e.g., if you're using or would like to use Narwhals at your company).\n- Have any Narwhals fixes / features prioritised.\n- Commission any Narwhals plugins for new backends.\n\n## Appears on\n\nNarwhals has been featured in several talks, podcasts, and blog posts:\n\n- [Inspiring Computing Podcast](https://www.inspiringcomputing.com/2107763/episodes/16702460-the-rise-of-narwhals-in-open-source)\n  The Rise of Narwhals in Open-Source\n\n- [PyCon DE & PyData 2025](https://youtu.be/DJk782DWcss)\n  How Narwhals is silently bringing pandas, Polars, DuckDB, PyArrow, and more together\n\n- [The Python Exchange March 2025](https://youtu.be/TvFWFlK-2po)\n  What Can Narwhals Do for You?\n\n- [PyData London 2025](https://youtu.be/r2PxJlO7_QA)\n  How Narwhals brings Polars, DuckDB, PyArrow, & pandas together\n\n- [Talk Python to me Podcast](https://youtu.be/FSH7BZ0tuE0)\n  Ahoy, Narwhals are bridging the data science APIs\n\n- [Python Bytes Podcast](https://www.youtube.com/live/N7w_ESVW40I?si=y-wN1uCsAuJOKlOT&t=382)\n  Episode 402, topic #2\n\n- [Super Data Science: ML & AI Podcast](https://www.youtube.com/watch?v=TeG4U8R0U8U)\n  Narwhals: For Pandas-to-Polars DataFrame Compatibility\n\n- [Sample Space Podcast | probabl](https://youtu.be/8hYdq4sWbbQ?si=WG0QP1CZ6gkFf18b)\n  How Narwhals has many end users ... that never use it directly. - Marco Gorelli\n\n- [The Real Python Podcast](https://www.youtube.com/watch?v=w5DFZbFYzCM)\n  Narwhals: Expanding DataFrame Compatibility Between Libraries\n\n- [Pycon Lithuania 2024](https://www.youtube.com/watch?v=-mdx7Cn6_6E)\n  Marco Gorelli - DataFrame interoperatiblity - what's been achieved, and what comes next?\n\n- [Pycon Italy 2024](https://www.youtube.com/watch?v=3IqUli9XsmQ)\n  How you can write a dataframe-agnostic library - Marco Gorelli\n\n- [Polars Blog Post](https://pola.rs/posts/lightweight_plotting/)\n  Polars has a new lightweight plotting backend\n\n- [Quansight Labs blog post (w/ Scikit-Lego)](https://labs.quansight.org/blog/scikit-lego-narwhals)\n  How Narwhals and scikit-lego came together to achieve dataframe-agnosticism\n\n## Why \"Narwhals\"?\n\n[Coz they are so awesome](https://youtu.be/ykwqXuMPsoc?si=A-i8LdR38teYsos4).\n\nThanks to [Olha Urdeichuk](https://www.fiverr.com/olhaurdeichuk) for the illustration!\n",
+        "description_content_type": "text/markdown",
+        "keywords": [
+          "dataframes",
+          "interoperability",
+          "pandas",
+          "polars",
+          "pyarrow",
+          "dask",
+          "modin",
+          "cudf"
+        ],
+        "author": "Marco Gorelli",
+        "author_email": "Marco Gorelli <hello_narwhals@proton.me>",
+        "license_expression": "MIT",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: Free Threading :: 2 - Beta",
+          "Typing :: Typed"
+        ],
+        "requires_dist": [
+          "cudf-cu12>=24.10.0 ; sys_platform == 'linux' and extra == 'cudf'",
+          "dask[dataframe]>=2024.8 ; extra == 'dask'",
+          "duckdb>=1.1 ; extra == 'duckdb'",
+          "ibis-framework>=6.0.0 ; extra == 'ibis'",
+          "packaging>=21.3 ; extra == 'ibis'",
+          "pyarrow-hotfix>=0.7 ; extra == 'ibis'",
+          "modin>=0.22.0 ; extra == 'modin'",
+          "pandas>=1.3.4 ; extra == 'pandas'",
+          "polars>=0.20.4 ; extra == 'polars'",
+          "pyarrow>=13.0.0 ; extra == 'pyarrow'",
+          "pyspark>=3.5.0 ; extra == 'pyspark'",
+          "pyspark[connect]>=3.5.0 ; extra == 'pyspark-connect'",
+          "narwhals[duckdb] ; extra == 'sql'",
+          "sqlparse>=0.5.5 ; extra == 'sql'",
+          "sqlframe>=3.22.0,!=3.39.3 ; extra == 'sqlframe'"
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "Homepage, https://github.com/narwhals-dev/narwhals",
+          "Documentation, https://narwhals-dev.github.io/narwhals/",
+          "Repository, https://github.com/narwhals-dev/narwhals",
+          "Bug Tracker, https://github.com/narwhals-dev/narwhals/issues"
+        ],
+        "provides_extra": [
+          "cudf",
+          "dask",
+          "duckdb",
+          "ibis",
+          "modin",
+          "pandas",
+          "polars",
+          "pyarrow",
+          "pyspark",
+          "pyspark-connect",
+          "sql",
+          "sqlframe"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/43/3f/f88a53f60a472b46f4023f56d204dd7de33d34c5d2acbfa0d70a674e639e/threadpoolctl-3.7.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be"
+          },
+          "hash": "sha256=cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.5",
+        "name": "threadpoolctl",
+        "version": "3.7.0",
+        "summary": "threadpoolctl",
+        "description": "# Thread-pool Controls [![Build Status](https://github.com/joblib/threadpoolctl/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/joblib/threadpoolctl/actions?query=branch%3Amaster) [![codecov](https://codecov.io/gh/joblib/threadpoolctl/branch/master/graph/badge.svg)](https://codecov.io/gh/joblib/threadpoolctl)\n\nPython helpers to limit the number of threads used in the\nthreadpool-backed of common native libraries used for scientific\ncomputing and data science (e.g. BLAS and OpenMP).\n\nFine control of the underlying thread-pool size can be useful in\nworkloads that involve nested parallelism so as to mitigate\noversubscription issues.\n\nNote that \"limiting the number of threads\" in practice involves a variety of\npotential semantics depending on the underlying third-party library; see the\nsection on [semantics](#semantics) below.\n\n## Installation\n\n- For users, install the last published version from PyPI:\n\n  ```bash\n  pip install threadpoolctl\n  ```\n\n- For contributors, install from the source repository in developer\n  mode:\n\n  ```bash\n  pip install -r dev-requirements.txt\n  flit install --symlink\n  ```\n\n  then you run the tests with pytest:\n\n  ```bash\n  pytest\n  ```\n\n## Usage: Introspection and debugging\n\n### Command Line Interface\n\nGet a JSON description of thread-pools initialized when importing python\npackages such as numpy or scipy for instance:\n\n```\npython -m threadpoolctl -i numpy scipy.linalg\n[\n  {\n    \"filepath\": \"/home/ogrisel/miniconda3/envs/tmp/lib/libmkl_rt.so\",\n    \"prefix\": \"libmkl_rt\",\n    \"user_api\": \"blas\",\n    \"internal_api\": \"mkl\",\n    \"version\": \"2019.0.4\",\n    \"num_threads\": 2,\n    \"threading_layer\": \"intel\"\n  },\n  {\n    \"filepath\": \"/home/ogrisel/miniconda3/envs/tmp/lib/libiomp5.so\",\n    \"prefix\": \"libiomp\",\n    \"user_api\": \"openmp\",\n    \"internal_api\": \"openmp\",\n    \"version\": null,\n    \"num_threads\": 4\n  }\n]\n```\n\nThe JSON information is written on STDOUT. If some of the packages are missing,\na warning message is displayed on STDERR.\n\n### Python Runtime Programmatic Introspection\n\nIntrospect the current state of the threadpool-enabled runtime libraries\nthat are loaded when importing Python packages:\n\n```python\n>>> from threadpoolctl import threadpool_info\n>>> from pprint import pprint\n>>> pprint(threadpool_info())\n[]\n\n>>> import numpy\n>>> pprint(threadpool_info())\n[{'filepath': '/home/ogrisel/miniconda3/envs/tmp/lib/libmkl_rt.so',\n  'internal_api': 'mkl',\n  'num_threads': 2,\n  'prefix': 'libmkl_rt',\n  'threading_layer': 'intel',\n  'user_api': 'blas',\n  'version': '2019.0.4'},\n {'filepath': '/home/ogrisel/miniconda3/envs/tmp/lib/libiomp5.so',\n  'internal_api': 'openmp',\n  'num_threads': 4,\n  'prefix': 'libiomp',\n  'user_api': 'openmp',\n  'version': None}]\n\n>>> import xgboost\n>>> pprint(threadpool_info())\n[{'filepath': '/home/ogrisel/miniconda3/envs/tmp/lib/libmkl_rt.so',\n  'internal_api': 'mkl',\n  'num_threads': 2,\n  'prefix': 'libmkl_rt',\n  'threading_layer': 'intel',\n  'user_api': 'blas',\n  'version': '2019.0.4'},\n {'filepath': '/home/ogrisel/miniconda3/envs/tmp/lib/libiomp5.so',\n  'internal_api': 'openmp',\n  'num_threads': 4,\n  'prefix': 'libiomp',\n  'user_api': 'openmp',\n  'version': None},\n {'filepath': '/home/ogrisel/miniconda3/envs/tmp/lib/libgomp.so.1.0.0',\n  'internal_api': 'openmp',\n  'num_threads': 4,\n  'prefix': 'libgomp',\n  'user_api': 'openmp',\n  'version': None}]\n```\n\nIn the above example, `numpy` was installed from the default anaconda channel and comes\nwith MKL and its Intel OpenMP (`libiomp5`) implementation while `xgboost` was installed\nfrom pypi.org and links against GNU OpenMP (`libgomp`) so both OpenMP runtimes are\nloaded in the same Python program.\n\nThe state of these libraries is also accessible through the object oriented API:\n\n```python\n>>> from threadpoolctl import ThreadpoolController, threadpool_info\n>>> from pprint import pprint\n>>> import numpy\n>>> controller = ThreadpoolController()\n>>> pprint(controller.info())\n[{'architecture': 'Haswell',\n  'filepath': '/home/jeremie/miniconda/envs/dev/lib/libopenblasp-r0.3.17.so',\n  'internal_api': 'openblas',\n  'num_threads': 4,\n  'prefix': 'libopenblas',\n  'threading_layer': 'pthreads',\n  'user_api': 'blas',\n  'version': '0.3.17'}]\n\n>>> controller.info() == threadpool_info()\nTrue\n```\n\n## Usage when not using Python threads: Restricting Controlled Library Thread Pool Sizes\n\nThere are two scenarios in which you might want to use `threadpoolctl`; each\nrequires you to use different APIs.\n\n1. You do not expect to use any Python threads, so all the work will be started\n   directly from the main thread in the process. This is a simple case\n   where we can globally set thread limits.\n2. You will be parallelizing work using a Python thread pool, and your goal is\n   therefore to limit controlled libraries' thread pool sizes when\n   concurrently called from Python threads. This case is a bit more\n   complex to handle properly and requires a bit more verbose code.\n\nThis section will cover the former case, and the latter is covered in the next\nusage section.\n\n### Setting the Maximum Size of Thread-Pools\n\nControl the number of threads used by the underlying runtime libraries\nin specific sections of your Python program:\n\n```python\n>>> from threadpoolctl import threadpool_limits\n>>> import numpy as np\n\n>>> with threadpool_limits(limits=1, user_api='blas'):\n...     # In this block, calls to blas implementation (like openblas or MKL)\n...     # will be limited to use only one thread. They can thus be used jointly\n...     # with thread-parallelism.\n...     a = np.random.randn(1000, 1000)\n...     a_squared = a @ a\n```\n\nThe threadpools can also be controlled via the object oriented API, which is especially\nuseful to avoid searching through all the loaded shared libraries each time. It will\nhowever not act on libraries loaded after the instantiation of the\n`ThreadpoolController`:\n\n```python\n>>> from threadpoolctl import ThreadpoolController\n>>> import numpy as np\n>>> controller = ThreadpoolController()\n\n>>> with controller.limit(limits=1, user_api='blas'):\n...     a = np.random.randn(1000, 1000)\n...     a_squared = a @ a\n```\n\n### Restricting the Limits to the Scope of a Function\n\n`threadpool_limits` and `ThreadpoolController` can also be used as decorators to set\nthe maximum number of threads used by the supported libraries at a function level. The\ndecorators are accessible through their `wrap` method.\n\n```python\n>>> from threadpoolctl import ThreadpoolController, threadpool_limits\n>>> import numpy as np\n>>> controller = ThreadpoolController()\n\n>>> @controller.wrap(limits=1, user_api='blas')\n... # or @threadpool_limits.wrap(limits=1, user_api='blas')\n... def my_func():\n...     # Inside this function, calls to blas implementation (like openblas or MKL)\n...     # will be limited to use only one thread.\n...     a = np.random.randn(1000, 1000)\n...     a_squared = a @ a\n...\n```\n\n## Usage for Python threads: Restricting Controlled Library Thread Pool Sizes\n\nThis section covers APIs to use when you will be using Python thread pools to parallelize work.\nThe usage is more complicated than one might expect because the underlying APIs have a variety of different semantics, as [explained later in the docs](#semantics).\n\n### Setting the Maximum Size of Thread-Pools, When Python Thread Pools Are Used\n\nLimiting thread pool size in controlled libraries requires a two-step process.\n**Importantly, each Python worker thread must also call a method to limit\ncontrolled libraries in that thread.** With Python's\n`concurrent.futures.ThreadPoolExecutor`, you can do so by passing in an\ninitializer function that will get called on thread startup.\n\n```python\nfrom threadpoolctl import threadpool_limits\nfrom concurrent.futures import ThreadPoolExecutor\n\n# This top-level limiter doesn't actually change the limits initially; it is\n# there to ensure the limits are reset _after_ the Python thread pool is done.\n# This is necessary because some underlying limiting APIs operate on a\n# process-wide basis.\nwith threadpool_limits():\n    # Make sure each Python worker thread also calls threadpool_limits(). If\n    # you're using another thread pool class, you will need to do so some other\n    # way.\n    with ThreadPoolExecutor(4, initializer=lambda: threadpool_limits(limits=1)) as pool:\n        # ... run some BLAS-using code in the thread pool ...\n        pool.map(somefunc, someargs)\n```\n\nWhenever `threadpool_limits` is called, it needs to do some work (inspecting and getting access to third-party shared libraries) that can take some time.\nTo prevent the performance cost of doing this work every time, you can reuse a\n`ThreadpoolController` object:\n\n```python\nfrom threadpoolctl import ThreadpoolController\n\n# This won't have any side-effects:\nCONTROLLER = ThreadpoolController()\n\nwith (\n    CONTROLLER.limit(),\n    ThreadPoolExecutor(4, initializer=lambda: CONTROLLER.limit(limits=1)) as pool,\n):\n    # ... run some BLAS-using code in the thread pool ...\n    pool.map(somefunc, someargs)\n\n# Later...\nwith (\n    CONTROLLER.limit(),\n    ThreadPoolExecutor(4, initializer=lambda: CONTROLLER.limit(limits=2)) as pool,\n):\n    # ... run some BLAS-using code in the thread pool ...\n    pool.map(somefunc, someargs)\n```\n\nYou can also operate without a context manager:\n\n```python\nfrom threadpoolctl import ThreadpoolController\n\nCONTROLLER = ThreadpoolController()\ntry:\n    limiter = CONTROLLER.limit()\n    with ThreadPoolExecutor(\n            4, initializer=lambda: CONTROLLER.limit(limits=1)) as pool:\n        # ... run some BLAS-using code in the thread pool ...\n        pool.map(somefunc, someargs)\nfinally:\n    limiter.restore_original_limits()\n\n```\n\n### Switching Back And Forth Between Main Thread and Python Threads\n\nUnfortunately not all controlled libraries providing limiting APIs that are\nthread-specific, as detailed in the section on [semantics](#semantics) below.\nLimiting some libraries' thread pool sizes can therefore impact the whole\nprocess. This makes switching back and forth between running code that\nuses these libraries in Python threads and running it in the main thread a bit\nmore complex: you need to set the limits each time you switch back and forth.\n\nLet's say your computer has 4 cores, and you're using some OpenMP API.\n\n```python\nPOOL = ThreadPoolExecutor(4)\nCONTROLLER = ThreadpoolController()\n\n# 1. Run some work in a Python thread pool (OpenMP effectively disabled).\nwith CONTROLLER.limit(limits=1):\n\n    def limit_then_do_work(*args, **kwargs):\n        # Set a limit on OpenMP in the current thread:\n        CONTROLLER.limit(limits=1)\n        # Do the actual work:\n        return do_real_work_with_openmp(*args, **kwargs)\n\n    results = POOL.map(limit_then_do_work, args)\n\n\n# 2. Run some work with 4-threads OpenMP parallelism:\nwith CONTROLLER.limit(limits=4):\n    results2 = do_more_work_with_openmp(results)\n\n\n# 3. Nest some OpenMP parallelism under Python-level parallelism:\nwith CONTROLLER.limit(limits=2):\n\n    def limit_then_do_work2(*args, **kwargs):\n        CONTROLLER.limit(limits=2)\n        return do_even_more_real_work_with_openmp(*args, **kwargs)\n\n    results3 = POOL.map(limit_then_do_work2, results2)\n```\n\n## Usage: Additional APIs and details\n\n### Switching the FlexiBLAS backend\n\n`FlexiBLAS` is a BLAS wrapper for which the BLAS backend can be switched at runtime.\n`threadpoolctl` exposes python bindings for this feature. Here's an example but note\nthat this part of the API is experimental and subject to change without deprecation:\n\n```python\n>>> from threadpoolctl import ThreadpoolController\n>>> import numpy as np\n>>> controller = ThreadpoolController()\n\n>>> controller.info()\n[{'user_api': 'blas',\n  'internal_api': 'flexiblas',\n  'num_threads': 1,\n  'prefix': 'libflexiblas',\n  'filepath': '/usr/local/lib/libflexiblas.so.3.3',\n  'version': '3.3.1',\n  'available_backends': ['NETLIB', 'OPENBLASPTHREAD', 'ATLAS'],\n  'loaded_backends': ['NETLIB'],\n  'current_backend': 'NETLIB'}]\n\n# Retrieve the flexiblas controller\n>>> flexiblas_ct = controller.select(internal_api=\"flexiblas\").lib_controllers[0]\n\n# Switch the backend with one predefined at build time (listed in \"available_backends\")\n>>> flexiblas_ct.switch_backend(\"OPENBLASPTHREAD\")\n>>> controller.info()\n[{'user_api': 'blas',\n  'internal_api': 'flexiblas',\n  'num_threads': 4,\n  'prefix': 'libflexiblas',\n  'filepath': '/usr/local/lib/libflexiblas.so.3.3',\n  'version': '3.3.1',\n  'available_backends': ['NETLIB', 'OPENBLASPTHREAD', 'ATLAS'],\n  'loaded_backends': ['NETLIB', 'OPENBLASPTHREAD'],\n  'current_backend': 'OPENBLASPTHREAD'},\n {'user_api': 'blas',\n  'internal_api': 'openblas',\n  'num_threads': 4,\n  'prefix': 'libopenblas',\n  'filepath': '/usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so',\n  'version': '0.3.8',\n  'threading_layer': 'pthreads',\n  'architecture': 'Haswell'}]\n\n# It's also possible to directly give the path to a shared library\n>>> flexiblas_controller.switch_backend(\"/home/jeremie/miniforge/envs/flexiblas_threadpoolctl/lib/libmkl_rt.so\")\n>>> controller.info()\n[{'user_api': 'blas',\n  'internal_api': 'flexiblas',\n  'num_threads': 2,\n  'prefix': 'libflexiblas',\n  'filepath': '/usr/local/lib/libflexiblas.so.3.3',\n  'version': '3.3.1',\n  'available_backends': ['NETLIB', 'OPENBLASPTHREAD', 'ATLAS'],\n  'loaded_backends': ['NETLIB',\n   'OPENBLASPTHREAD',\n   '/home/jeremie/miniforge/envs/flexiblas_threadpoolctl/lib/libmkl_rt.so'],\n  'current_backend': '/home/jeremie/miniforge/envs/flexiblas_threadpoolctl/lib/libmkl_rt.so'},\n {'user_api': 'openmp',\n  'internal_api': 'openmp',\n  'num_threads': 4,\n  'prefix': 'libomp',\n  'filepath': '/home/jeremie/miniforge/envs/flexiblas_threadpoolctl/lib/libomp.so',\n  'version': None},\n {'user_api': 'blas',\n  'internal_api': 'openblas',\n  'num_threads': 4,\n  'prefix': 'libopenblas',\n  'filepath': '/usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so',\n  'version': '0.3.8',\n  'threading_layer': 'pthreads',\n  'architecture': 'Haswell'},\n {'user_api': 'blas',\n  'internal_api': 'mkl',\n  'num_threads': 2,\n  'prefix': 'libmkl_rt',\n  'filepath': '/home/jeremie/miniforge/envs/flexiblas_threadpoolctl/lib/libmkl_rt.so.2',\n  'version': '2024.0-Product',\n  'threading_layer': 'gnu'}]\n```\n\nYou can observe that the previously linked OpenBLAS shared object stays loaded by\nthe Python program indefinitely, but FlexiBLAS itself no longer delegates BLAS calls\nto OpenBLAS as indicated by the `current_backend` attribute.\n\n### Writing a custom library controller\n\nCurrently, `threadpoolctl` has support for `OpenMP` and the main `BLAS` libraries.\nHowever it can also be used to control the threadpool of other native libraries,\nprovided that they expose an API to get and set the limit on the number of threads.\nFor that, one must implement a controller for this library and register it to\n`threadpoolctl`.\n\nA custom controller must be a subclass of the `LibController` class and implement\nthe attributes and methods described in the docstring of `LibController`. Then this\nnew controller class must be registered using the `threadpoolctl.register` function.\nAn complete example can be found [here](\n  https://github.com/joblib/threadpoolctl/blob/master/tests/_pyMylib/__init__.py).\n\n### Sequential BLAS within OpenMP parallel region\n\nWhen one wants to have sequential BLAS calls within an OpenMP parallel region, it's\nsafer to set `limits=\"sequential_blas_under_openmp\"` since setting `limits=1` and\n`user_api=\"blas\"` might not lead to the expected behavior in some configurations\n(e.g. OpenBLAS with the OpenMP threading layer\nhttps://github.com/xianyi/OpenBLAS/issues/2985).\n\n### Known Limitations\n\n- `threadpool_limits` can fail to limit the number of inner threads when nesting\n  parallel loops managed by distinct OpenMP runtime implementations (for instance\n  libgomp from GCC and libomp from clang/llvm or libiomp from ICC).\n\n  See the `test_openmp_nesting` function in [tests/test_threadpoolctl.py](\n  https://github.com/joblib/threadpoolctl/blob/master/tests/test_threadpoolctl.py)\n  for an example. More information can be found at:\n  https://github.com/jeremiedbb/Nested_OpenMP\n\n  Note however that this problem does not happen when `threadpool_limits` is\n  used to limit the number of threads used internally by BLAS calls that are\n  themselves nested under OpenMP parallel loops. `threadpool_limits` works as\n  expected, even if the inner BLAS implementation relies on a distinct OpenMP\n  implementation.\n\n- Using Intel OpenMP (ICC) and LLVM OpenMP (clang) in the same Python program\n  under Linux is known to cause problems. See the following guide for more details\n  and workarounds:\n  https://github.com/joblib/threadpoolctl/blob/master/multiple_openmp.md\n\n- Setting the maximum number of threads of the OpenMP and BLAS libraries has\n  inconsistent scope and semantics (thread-local vs process-wide) depending on\n  the underlying library. For more details see\n  https://github.com/joblib/threadpoolctl/issues/208\n\n  For example, if you're using OpenMP with libgomp (gcc) or libomp (clang), the\n  setting is thread-local and sets how many OpenMP threads will be started in\n  the current thread. On the other hand, with OpenBLAS with pthreads backend or\n  on Windows, the setting is process-wide and impacts the size of a process-wide\n  thread pool shared across all threads in the process.\n\n## <div id=\"semantics\"> Semantics of thread limiting </div>\n\nSetting the number of threads may seem like a simple operation, but in practice\nit can do quite different things depending on the underlying third-party library\nbeing limited.\n\n### Kind of thread pool\n\n* In some libraries, there is a shared process-wide thread pool. Setting the\n  number of threads changes the size of this shared pool.\n* In other libraries, there is a thread pool per calling thread. So each Python\n  thread gets its own personal thread pool from the third-party library.\n\nTo give a concrete example: if you have 10 cores, and you're using OpenBLAS with\nthe `pthreads` backend on Linux, by default there is a single 10-worker pool of\nthreads created by OpenBLAS. If you start 10 Python threads, each calling BLAS\nroutines, all those Python threads will feed into that single 10-thread pool.\nIn total, you will have 20 threads running (10 Python, 10 OpenBLAS).\n\nOn the other hand, if you use MKL, each Python thread gets its own individual\npool of worker threads from MKL, so if each Python threads calls a BLAS routine\nin MKL, you will get 10×10 = 100 MKL threads!\n\n### Scope of limiting\n\nIf you have a third-party library that creates a thread pool per calling thread,\nthere is another question about what limiting the number of threads means: which\nthreads are affected by the limiting API?\n\n* **All threads in the process:** In this case, setting the limits changes it\n  for all threads in the process. So if you limit from the main Python thread,\n  all other Python threads will have the same limit.\n* **Current thread only:** Only the current thread's thread pool size will be\n  limited.\n\nMKL for example has two APIs, covering both cases,\n[`mkl_set_num_threads()`](https://www.intel.com/content/www/us/en/docs/onemkl/developer-reference-c/2026-0/mkl-set-num-threads.html)\nand [`mkl_set_num_threads_local()`](https://www.intel.com/content/www/us/en/docs/onemkl/developer-reference-c/2026-0/mkl-set-num-threads-local.html) respectively.\n\n### `threadpoolctl`'s policy for thread limiting\n\nWhen there is a choice between different APIs, `threadpoolctl` will prefer APIs\nthat:\n\n1. Have a per-thread worker pool (so each Python thread gets its own pool from\n   the underlying third-party library)\n2. Only affect the current thread.\n\nCurrent libraries where `threadpoolctl` explicitly makes this choice are:\n\n* MKL, for all threading backends.\n* OpenBLAS (v0.3.34 or later) when using the OpenMP backend, on Linux and macOS.\n\nWhen using OpenMP, this is also the default on Linux and macOS. On Windows\nOpenMP has a per-thread worker pool but the limiting API affects all threads in\nthe process, not just the current one.\n\n### Checking the behavior of your installed libraries\n\nWhen you run `python -m threadpoolctl` it will include the scope of the API\nlimit in the `\"thread_limit_scope\"` field, with the value of `\"process\"`\nindicating the API affects the whole process and `\"current_thread\"` indicating a\nper-thread thread pool. Information about the kind of limiting in the former\ncase (shared process-wide pool, or per-thread pool) is not included.\n\nHere is example output for OpenBLAS with pthreads:\n\n```shell-session\n$ python -m threadpoolctl -i numpy\n[\n  {\n    \"user_api\": \"blas\",\n    \"internal_api\": \"openblas\",\n    \"num_threads\": 12,\n    \"prefix\": \"libscipy_openblas\",\n    \"version\": \"0.3.33.112.0\",\n    \"threading_layer\": \"pthreads\",\n    \"architecture\": \"Haswell\",\n    \"thread_limit_scope\": \"process\"\n  }\n]\n```\n\nYou can also use another script to empirically determine both the kind and scope of the API. From a checkout of the [`threadpoolctl` GitHub repo](https://github.com/joblib/threadpoolctl):\n\n```shell-session\n$ python -m tests.empirical_scope_observation blas\n== Observed behavior: blas ==\n10x12 Python threads each running a parallel workload with a 2 thread limit.\nMaximum number of observed threads (includes Python and blas threads): 53\nPresumed API scope: process-wide shared thread pool\n```\n\nYou can also call this script with an `openmp` argument instead of `blas`.\n\n## Maintainers\n\nTo make a release:\n\n- Create a PR to bump the version number (`__version__`) in `threadpoolctl.py` and\n  update the release date in `CHANGES.md`.\n\n- Merge the PR and check that the `Publish threadpoolctl distribution to TestPyPI` job\n  of the `publish-to-pypi.yml` workflow successfully uploaded the wheel and source\n  distribution to Test PyPI.\n\n- If everything is fine create a tag for the release and push it to github:\n\n  ```bash\n  git tag -a X.Y.Z\n  git push git@github.com:joblib/threadpoolctl.git X.Y.Z\n  ```\n\n- Check that the `Publish threadpoolctl distribution to PyPI` job of the\n  `publish-to-pypi.yml` workflow successfully uploaded the wheel and source distribution\n  to PyPI this time.\n\n- Create a PR for the release on the [conda-forge feedstock](https://github.com/conda-forge/threadpoolctl-feedstock) (or wait for the bot to make it).\n\n- Publish the release on github.\n\nIf for some reason the steps above can't be achieved and a munual upload of the wheel\nand source distribution is needed:\n\n- Build the distribution archives:\n\n  ```bash\n  pip install flit\n  flit build\n  ```\n\n- Upload the wheels and source distribution to PyPI using flit. Since PyPI doesn't\n  allow password authentication anymore, the username needs to be changed to the\n  generic name `__token__`:\n\n  ```bash\n  FLIT_USERNAME=__token__ flit publish\n  ```\n\n  and a PyPI token has to be passed in place of the password.\n\n### Credits\n\nThe initial dynamic library introspection code was written by @anton-malakhov\nfor the smp package available at https://github.com/IntelPython/smp .\n\nthreadpoolctl extends this for other operating systems. Contrary to smp,\nthreadpoolctl does not attempt to limit the size of Python multiprocessing\npools (threads or processes) or set operating system-level CPU affinity\nconstraints: threadpoolctl only interacts with native libraries via their\npublic runtime APIs.\n\n",
+        "description_content_type": "text/markdown",
+        "author_email": "Thomas Moreau <thomas.moreau.2010@gmail.com>",
+        "license_expression": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Intended Audience :: Developers",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "requires_python": ">=3.9",
+        "project_url": [
+          "homepage, https://github.com/joblib/threadpoolctl"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/5b/bc/9e7664e2d30d4e82ada1b29dbb249d2dcac1ed1114cbbf11764f670d8be7/tifffile-2026.10.15-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "3dcf6c56731a45c1f85c81e90dad922b0a380a2d639e77f71207e010f8ef0f7b"
+          },
+          "hash": "sha256=3dcf6c56731a45c1f85c81e90dad922b0a380a2d639e77f71207e010f8ef0f7b"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "tifffile",
+        "version": "2026.10.15",
+        "dynamic": [
+          "author",
+          "author-email",
+          "classifier",
+          "description",
+          "description-content-type",
+          "home-page",
+          "license",
+          "license-file",
+          "platform",
+          "project-url",
+          "provides-extra",
+          "requires-dist",
+          "requires-python",
+          "summary"
+        ],
+        "platform": [
+          "any"
+        ],
+        "summary": "Read and write TIFF files",
+        "description": "Read and write TIFF files\n=========================\n\nTifffile is a comprehensive Python library to\n\n(1) store NumPy arrays in TIFF (Tagged Image File Format) files, and\n(2) read image and metadata from TIFF-like files used in bioimaging.\n\nImage and metadata can be read from TIFF, BigTIFF, OME-TIFF, GeoTIFF,\nAdobe DNG, ZIF (Zoomable Image File Format), MetaMorph STK, Zeiss LSM,\nImageJ hyperstack, Micro-Manager MMStack and NDTiff, SGI, NIHImage, FLIMage,\nOlympus FluoView and SIS, ScanImage, Molecular Dynamics GEL, Huron TIFF,\nAperio SVS, Leica SCN, Roche BIF, PerkinElmer QPTIFF (QPI, PKI),\nHamamatsu NDPI, Argos AVS, Philips DP, DICOM-TIFF, and ThermoFisher EER\nformatted files.\n\nImage data can be read as NumPy arrays or Zarr arrays/groups from strips,\ntiles, pages (IFDs), SubIFDs, higher-order series, and pyramidal levels.\n\nImage data can be written to TIFF, BigTIFF, OME-TIFF, and ImageJ hyperstack\ncompatible files in multi-page, volumetric, pyramidal, memory-mappable,\ntiled, predicted, or compressed form.\n\nMany compression schemes, predictors, and data types are supported via the\nimagecodecs library, including LZW, PackBits, Deflate, CCITT, PIXTIFF,\nLZMA, LERC, Zstd, JPEG (8 and 12-bit, lossless), JPEG 2000, JPEG XR,\nJPEG XL, WebP, PNG, EER, Jetraw, 24-bit floating-point, packed integers,\nand horizontal differencing.\n\nTifffile can also be used to inspect TIFF structures, read image data from\nmulti-dimensional file sequences, write fsspec ReferenceFileSystem for\nTIFF files and image file sequences, patch TIFF tag values, and parse\nmany proprietary metadata formats.\n\n:Author: `Christoph Gohlke <https://www.cgohlke.com>`_\n:License: BSD-3-Clause\n:Version: 2026.10.15\n:DOI: `10.5281/zenodo.6795860 <https://doi.org/10.5281/zenodo.6795860>`_\n\nQuickstart\n----------\n\nInstall the tifffile package and all dependencies from the\n`Python Package Index <https://pypi.org/project/tifffile/>`_::\n\n    python -m pip install -U tifffile[all]\n\nTifffile is also available in other package repositories such as Anaconda,\nDebian, and MSYS2.\n\nUse tifffile from the command line to inspect and preview TIFF files::\n\n    python -m tifffile --help\n\nSee `Examples`_ and `Documentation <https://www.cgohlke.com/docs/tifffile/>`_\nfor using the programming interface.\n\nSource code and support are available on\n`GitHub <https://github.com/cgohlke/tifffile>`_.\n\nSupport is also provided on the\n`image.sc <https://forum.image.sc/tag/tifffile>`_ forum.\n\nRequirements\n------------\n\nThis revision was tested with the following requirements and dependencies\n(other versions may work):\n\n- `CPython <https://www.python.org>`_ 3.12.10, 3.13.16, 3.14.8, 3.15.0 64-bit\n- `Numpy <https://pypi.org/project/numpy>`_ 2.5.4\n- `Imagecodecs <https://pypi.org/project/imagecodecs/>`_ 2026.10.10\n  (required for encoding or decoding LZW, JPEG, etc. compressed segments)\n- `Xarray <https://pypi.org/project/xarray>`_ 2026.9.0\n  (required only for reading xarray DataArrays)\n- `Matplotlib <https://pypi.org/project/matplotlib/>`_ 3.11.2\n  (required for plotting)\n- `Lxml <https://pypi.org/project/lxml/>`_ 6.1.3\n  (required only for validating and printing XML)\n- `Zarr <https://pypi.org/project/zarr/>`_ 3.4.1\n  (required only for using Zarr stores)\n- `Kerchunk <https://pypi.org/project/kerchunk/>`_ 0.2.10\n  (required only for opening ReferenceFileSystem files)\n\nRevisions\n---------\n\n2026.10.15\n\n- Fix TiffWriter truncating existing file on invalid kind argument.\n- Fix TiffPage.asarray not closing reopened file handle on exceptions.\n- Fix ZarrTiffStore not releasing file cache reference on decode errors.\n- Fix Tiff codec configuration not JSON-serializable with slice key.\n- Fix ZarrStore listing methods omitting chunk keys.\n- Fix FileSequence.asarray leaving missing chunks uninitialized.\n- Fix 'axes' file name pattern matching characters in file name prefix.\n- Fix parse_filenames with _shape argument.\n- Raise ValueError if FileSequence files map to same index (breaking).\n- Disallow writable ZarrFileSequenceStore (breaking).\n- Use struct.unpack_from when possible.\n\n2026.9.20\n\n- Fix TiffPage.delete corrupting NDPI files.\n- Fix unwrapping offsets in LSM files > 4GB with T, P, and M dimensions.\n- Support Mikroscan and Motic formats (structurally identical to SVS).\n- Support MedScan Trestle series and metadata.\n\n2026.9.15\n\n- Fix MMStack series when numeric Summary metadata values are strings (#334).\n\n2026.9.9\n\n- Fix TiffSeries(squeeze=None) incorrectly squeezes 'shaped' series (breaking).\n\n2026.8.23\n\n- Add methods to delete pages from main IFD chain and erase their content.\n\n2026.8.16\n\n- Fix fsspec v3 stores with big-endian floatpred codec (breaking).\n- Require imagecodecs >= 2026.8.16.\n\n2026.7.31\n\n- Fsspec v3 stores using big-endian floatpred are incompatible with zarr>=3.3.\n- Specify bytes codec endian configuration in ZarrFileSequenceStore.\n- Add additional NDPI tags from specification (#331).\n\n2026.7.14\n\n- Fix series.asxarray returns wrong series for sublevels.\n- Support Huron TIFF series and metadata.\n- Support FLIMage FLIM series and metadata.\n- Support DECTRIS IFD and tags.\n- Allow subsampling with any image compression scheme.\n- Detect DICOM-TIFF dual-personality format.\n\n2026.6.1\n\n- Replace NullContext with contextlib.nullcontext (breaking).\n- Fix writing monochrome linear_raw (#328).\n- Fix keyboard axis selection in imshow interactive viewer (#327).\n- Fix reading short ASCII string tag values from NDPI.\n- Add option to suppress writing extrasamples tag.\n- Verify origin of codecs.\n\n2026.5.15\n\n- Update ZarrFileSequenceStore to zarr format 3 (breaking).\n- Derive ZarrFileSequenceStore dimension names from FileSequence.dims.\n- Add option to override dimension names in zarr stores.\n- Add support for Python 3.15.\n\n2026.5.2\n\n- Change TiffFile.series from list to callable TiffSeries sequence (breaking).\n- Remove TiffPageSeries squeeze dual-state (breaking).\n- Remove TiffPageSeries.get_shape, get_axes, and get_coords (breaking).\n- Remove ZarrTiffStore squeeze parameter (breaking).\n- Update ZarrTiffStore to zarr format 3 and multiscales to NGFF 0.5 (breaking).\n- Update multiscales zarr format 2 fsspec files to NGFF 0.4 (breaking).\n- Remove generic TiffPage coords (breaking).\n- Change dims and sizes to use single-char axis codes (breaking).\n- Add zarr format 3 compatible Tiff codec.\n- Add asxarray methods to TiffFile, TiffPage, TiffPageSeries (requires xarray).\n- Add geotiff kind of TiffPageSeries.\n- Add mpp and coord_offsets/scales/units properties to TiffPageSeries.\n- Add attrs property to TiffPage and TiffPageSeries.\n- Add kind and squeeze parameters to memmap.\n- Add kind parameter to imwrite and TiffFile; deprecate ome, imagej, shaped.\n- Add return_as parameter to imread; deprecate aszarr.\n- Fix writing TIFF trees (#326).\n- Fix wrong TiffTagRegistry entries (#323).\n- Implement TiffPageSeries.coords property.\n- Deprecate kwargs to FileSequence.asarray; use imreadargs.\n- Require zarr>=3.2.0 for zarr support.\n- Drop support for numpy 2.0 (SPEC0, #324).\n\n2026.4.11\n\n- …\n\nRefer to the CHANGES file for older revisions.\n\nNotes\n-----\n\nTIFF, the Tagged Image File Format, was created by the Aldus Corporation and\nAdobe Systems Incorporated.\n\nTifffile supports a large subset of the TIFF6 specification, mainly 1-32,\nand 64-bit integer, 16, 32, and 64-bit float, grayscale and multi-sample\nimages.\nSpecifically, OJPEG compression, chroma subsampling without JPEG compression,\ncolor space transformations, samples with differing types, or IPTC, ICC,\nand XMP metadata are not implemented.\n\nBesides classic TIFF, tifffile supports several TIFF-like formats that do not\nstrictly adhere to the TIFF6 specification. Some formats extend TIFF\ncapabilities in various ways, including exceeding the 4 GB limit,\nhandling multi-dimensional data, or working around format constraints:\n\n- **BigTIFF** is identified by version number 43 and uses different file\n  header, IFD, and tag structures with 64-bit offsets. The format also adds\n  64-bit data types. Tifffile can read and write BigTIFF files.\n- **ImageJ hyperstacks** store all image data, which may exceed 4 GB,\n  contiguously after the first IFD. Files > 4 GB contain one IFD only.\n  The size and shape of the up to 6-dimensional image data can be determined\n  from the ImageDescription tag of the first IFD, which is Latin-1 encoded.\n  Tifffile can read and write ImageJ hyperstacks.\n- **OME-TIFF** files store up to 8-dimensional image data in one or multiple\n  TIFF or BigTIFF files. The UTF-8 encoded OME-XML metadata found in the\n  ImageDescription tag of the first IFD defines the position of TIFF IFDs in\n  the high-dimensional image data. Tifffile can read OME-TIFF files\n  and write NumPy arrays to single-file OME-TIFF.\n- **Micro-Manager NDTiff** stores multi-dimensional image data in one\n  or more classic TIFF files. Metadata contained in a separate NDTiff.index\n  binary file defines the position of the TIFF IFDs in the image array.\n  Each TIFF file also contains metadata in a non-TIFF binary structure at\n  offset 8. Downsampled image data of pyramidal datasets are stored in\n  separate folders. Tifffile can read NDTiff files. Version 0 and 1 series,\n  tiling, stitching, and multi-resolution pyramids are not supported.\n- **Micro-Manager MMStack** stores 6-dimensional image data in one or more\n  classic TIFF files. Metadata contained in non-TIFF binary structures and\n  JSON strings define the image stack dimensions and the position of the image\n  frame data in the file and the image stack. The TIFF structures and metadata\n  are often corrupted or wrong. Tifffile can read MMStack files.\n- **Carl Zeiss LSM** files store all IFDs below 4 GB and wrap around 32-bit\n  StripOffsets pointing to image data above 4 GB. The StripByteCounts tag\n  contains the number of bytes for the uncompressed data. Tifffile can read\n  LSM files of any size.\n- **MetaMorph STK** files contain additional image planes stored\n  contiguously after the image data of the first page. The total number of\n  planes is equal to the count of the UIC2 tag. Tifffile can read STK files.\n- **ZIF**, the Zoomable Image File format, is a subspecification of BigTIFF\n  with SGI's ImageDepth extension and additional compression schemes.\n  Only little-endian, tiled, interleaved, 8-bit per sample images with\n  JPEG, PNG, JPEG XR, and JPEG 2000 compression are allowed. Tifffile can\n  read and write ZIF files.\n- **Hamamatsu NDPI** files use some 64-bit offsets in the file header, IFD,\n  and tag structures. Single, LONG typed tag values can exceed 32-bit.\n  The high bytes of 64-bit tag values and offsets are stored after IFD\n  structures. Tifffile can read NDPI files > 4 GB.\n  JPEG compressed segments with dimensions >65530 or missing restart markers\n  cannot be decoded with common JPEG libraries. Tifffile works around this\n  limitation by separately decoding the MCUs between restart markers, which\n  performs poorly.\n  BitsPerSample, SamplesPerPixel, and PhotometricInterpretation tags may\n  contain wrong values, which can be corrected using the value of tag 65441.\n  ASCII string tag values are not stored inline.\n  Tag values and may be shared between multiple pages.\n- **Philips TIFF** slides store padded ImageWidth and ImageLength tag values\n  for tiled pages. The values can be corrected using the DICOM_PIXEL_SPACING\n  attributes of the XML formatted description of the first page. Tile offsets\n  and byte counts may be 0. Tifffile can read Philips slides.\n- **Ventana/Roche BIF** slides store tiles and metadata in a BigTIFF container.\n  Tiles may overlap and require stitching based on the TileJointInfo elements\n  in the XMP tag. Volumetric scans are stored using the ImageDepth extension.\n  Tifffile can read BIF and decode individual tiles but does not perform\n  stitching.\n- **MedScan Trestle** slides are pyramidal tiled TIFF files where tiles\n  in each level overlap their neighbors. The per-level overlap values are\n  specified in the OverlapsXY field of the ImageDescription tag.\n  Tifffile can read Trestle files and decode individual tiles but does not\n  perform stitching.\n- **ScanImage** optionally allows corrupted non-BigTIFF files > 2 GB.\n  The values of StripOffsets and StripByteCounts can be recovered using the\n  constant differences of the offsets of IFD and tag values throughout the\n  file. Tifffile can read such files if the image data are stored contiguously\n  in each page.\n- **GeoTIFF sparse** files allow strip or tile offsets and byte counts to be 0.\n  Such segments are implicitly set to 0 or the NODATA value on reading.\n  Tifffile can read GeoTIFF sparse files.\n- **Tifffile shaped** files store the array shape and user-provided metadata\n  of multi-dimensional image series in JSON format in the ImageDescription tag\n  of the first page of the series. The format allows multiple series,\n  SubIFDs, sparse segments with zero offset and byte count, and truncated\n  series, where only the first page of a series is present, and the image data\n  are stored contiguously. No other software besides Tifffile supports the\n  truncated format.\n\nOther libraries for reading, writing, inspecting, or manipulating scientific\nTIFF files from Python are\n`bioio <https://github.com/bioio-devs/bioio>`_,\n`aicsimageio <https://github.com/AllenCellModeling/aicsimageio>`_,\n`apeer-ometiff-library\n<https://github.com/apeer-micro/apeer-ometiff-library>`_,\n`bigtiff <https://pypi.org/project/bigtiff>`_,\n`fabio.TiffIO <https://github.com/silx-kit/fabio>`_,\n`GDAL <https://github.com/OSGeo/gdal/>`_,\n`imread <https://github.com/luispedro/imread>`_,\n`large_image <https://github.com/girder/large_image>`_,\n`openslide-python <https://github.com/openslide/openslide-python>`_,\n`opentile <https://github.com/imi-bigpicture/opentile>`_,\n`pylibtiff <https://github.com/pearu/pylibtiff>`_,\n`pylsm <https://launchpad.net/pylsm>`_,\n`pymimage <https://github.com/ardoi/pymimage>`_,\n`python-bioformats <https://github.com/CellProfiler/python-bioformats>`_,\n`pytiff <https://github.com/FZJ-INM1-BDA/pytiff>`_,\n`scanimagetiffreader-python\n<https://gitlab.com/vidriotech/scanimagetiffreader-python>`_,\n`SimpleITK <https://github.com/SimpleITK/SimpleITK>`_,\n`slideio <https://gitlab.com/bioslide/slideio>`_,\n`tiffslide <https://github.com/bayer-science-for-a-better-life/tiffslide>`_,\n`tifftools <https://github.com/DigitalSlideArchive/tifftools>`_,\n`tyf <https://github.com/Moustikitos/tyf>`_,\n`xtiff <https://github.com/BodenmillerGroup/xtiff>`_, and\n`ndtiff <https://github.com/micro-manager/NDTiffStorage>`_.\n\nReferences\n----------\n\n- TIFF 6.0 Specification and Supplements. Adobe Systems Incorporated.\n  https://www.adobe.io/open/standards/TIFF.html\n  https://download.osgeo.org/libtiff/doc/\n- TIFF File Format FAQ. https://www.awaresystems.be/imaging/tiff/faq.html\n- The BigTIFF File Format.\n  https://www.awaresystems.be/imaging/tiff/bigtiff.html\n- BigTIFF community standard candidate\n  https://github.com/opengeospatial/BigTIFF\n- MetaMorph Stack (STK) Image File Format.\n  http://mdc.custhelp.com/app/answers/detail/a_id/18862\n- Image File Format Description LSM 5/7 Release 6.0 (ZEN 2010).\n  Carl Zeiss MicroImaging GmbH. BioSciences. May 10, 2011\n- The OME-TIFF format.\n  https://docs.openmicroscopy.org/ome-model/latest/\n- UltraQuant(r) Version 6.0 for Windows Start-Up Guide.\n  http://www.ultralum.com/images%20ultralum/pdf/UQStart%20Up%20Guide.pdf\n- Micro-Manager File Formats.\n  https://micro-manager.org/wiki/Micro-Manager_File_Formats\n- ScanImage BigTiff Specification.\n  https://docs.scanimage.org/Appendix/ScanImage+BigTiff+Specification.html\n- ZIF, the Zoomable Image File format. https://zif.photo/\n- GeoTIFF File Format. https://gdal.org/drivers/raster/gtiff.html\n- Cloud optimized GeoTIFF.\n  https://github.com/cogeotiff/cog-spec/blob/master/spec.md\n- Tags for TIFF and Related Specifications. Digital Preservation.\n  https://www.loc.gov/preservation/digital/formats/content/tiff_tags.shtml\n- CIPA DC-008-2016: Exchangeable image file format for digital still cameras:\n  Exif Version 2.31.\n  http://www.cipa.jp/std/documents/e/DC-008-Translation-2016-E.pdf\n- The EER (Electron Event Representation) file format.\n  https://github.com/fei-company/EerReaderLib\n- Digital Negative (DNG) Specification. Version 1.7.1.0, September 2023.\n  https://helpx.adobe.com/content/dam/help/en/photoshop/pdf/DNG_Spec_1_7_1_0.pdf\n- Roche Digital Pathology. BIF image file format for digital pathology.\n  https://diagnostics.roche.com/content/dam/diagnostics/Blueprint/en/pdf/rmd/Roche-Digital-Pathology-BIF-Whitepaper.pdf\n- Astro-TIFF specification. https://astro-tiff.sourceforge.io/\n- Aperio Technologies, Inc. Digital Slides and Third-Party Data Interchange.\n  Aperio_Digital_Slides_and_Third-party_data_interchange.pdf\n- PerkinElmer image format.\n  https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/PKI_Image%20Format.docx\n- NDTiffStorage. https://github.com/micro-manager/NDTiffStorage\n- Argos AVS File Format.\n  https://github.com/user-attachments/files/15580286/ARGOS.AVS.File.Format.pdf\n- NDP.image File Format.\n  https://nanozoomer.hamamatsu.com/us/en/SDK-API/Our-file-format.html\n\nExamples\n--------\n\nImport functions and classes used in these examples:\n\n>>> from tifffile import TiffFile, imread, imwrite\n\nWrite a NumPy array to a single-page RGB TIFF file:\n\n>>> import numpy\n>>> data = numpy.random.randint(0, 255, (256, 256, 3), 'uint8')\n>>> imwrite('temp.tif', data, photometric='rgb')\n\nRead the image from the TIFF file as NumPy array:\n\n>>> image = imread('temp.tif')\n>>> image.shape\n(256, 256, 3)\n\nUse the ``photometric`` and ``planarconfig`` arguments to write a 3x3x3 NumPy\narray to an interleaved RGB, a planar RGB, or a 3-page grayscale TIFF:\n\n>>> data = numpy.random.randint(0, 255, (3, 3, 3), 'uint8')\n>>> imwrite('temp.tif', data, photometric='rgb')\n>>> imwrite('temp.tif', data, photometric='rgb', planarconfig='separate')\n>>> imwrite('temp.tif', data, photometric='minisblack')\n\nUse the ``extrasamples`` argument to specify how extra components are\ninterpreted, for example, for an RGBA image with unassociated alpha channel:\n\n>>> data = numpy.random.randint(0, 255, (256, 256, 4), 'uint8')\n>>> imwrite('temp.tif', data, photometric='rgb', extrasamples=['unassalpha'])\n\nWrite a 3-dimensional NumPy array to a multi-page, 16-bit grayscale TIFF file:\n\n>>> data = numpy.random.randint(0, 2**12, (64, 301, 219), 'uint16')\n>>> imwrite('temp.tif', data, photometric='minisblack')\n\nRead the whole image stack from the multi-page TIFF file as NumPy array:\n\n>>> image_stack = imread('temp.tif')\n>>> image_stack.shape\n(64, 301, 219)\n>>> image_stack.dtype\ndtype('uint16')\n\nRead the image from the first page in the TIFF file as NumPy array:\n\n>>> image = imread('temp.tif', key=0)\n>>> image.shape\n(301, 219)\n\nRead images from a selected range of pages:\n\n>>> images = imread('temp.tif', key=range(4, 40, 2))\n>>> images.shape\n(18, 301, 219)\n\nIterate over all pages in the TIFF file and successively read images:\n\n>>> with TiffFile('temp.tif') as tif:\n...     for page in tif.pages:\n...         image = page.asarray()\n...\n\nGet information about the image stack in the TIFF file without reading\nany image data:\n\n>>> tif = TiffFile('temp.tif')\n>>> len(tif.pages)  # number of pages in the file\n64\n>>> page = tif.pages[0]  # get shape and dtype of image in first page\n>>> page.shape\n(301, 219)\n>>> page.dtype\ndtype('uint16')\n>>> page.axes\n'YX'\n>>> series = tif.series[0]  # get shape and dtype of first image series\n>>> series.shape\n(64, 301, 219)\n>>> series.dtype\ndtype('uint16')\n>>> series.axes\n'QYX'\n>>> tif.close()\n\nInspect the \"XResolution\" tag from the first page in the TIFF file:\n\n>>> with TiffFile('temp.tif') as tif:\n...     tag = tif.pages[0].tags['XResolution']\n...\n>>> tag.value\n(1, 1)\n>>> tag.name\n'XResolution'\n>>> tag.code\n282\n>>> tag.count\n1\n>>> tag.dtype\n<DATATYPE.RATIONAL: 5>\n\nIterate over all tags in the TIFF file:\n\n>>> with TiffFile('temp.tif') as tif:\n...     for page in tif.pages:\n...         for tag in page.tags:\n...             tag_name, tag_value = tag.name, tag.value\n...\n\nOverwrite the value of an existing tag, for example, XResolution:\n\n>>> with TiffFile('temp.tif', mode='r+') as tif:\n...     _ = tif.pages[0].tags['XResolution'].overwrite((96000, 1000))\n...\n\nWrite a 5-dimensional floating-point array using BigTIFF format, separate\ncolor components, tiling, Zlib compression level 8, horizontal differencing\npredictor, and additional metadata:\n\n>>> data = numpy.random.rand(2, 5, 3, 301, 219).astype('float32')\n>>> imwrite(\n...     'temp.tif',\n...     data,\n...     bigtiff=True,\n...     photometric='rgb',\n...     planarconfig='separate',\n...     tile=(32, 32),\n...     compression='zlib',\n...     compressionargs={'level': 8},\n...     predictor=True,\n...     metadata={'axes': 'TZCYX'},\n... )\n\nWrite a 10 fps time series of volumes with xyz voxel size 2.6755x2.6755x3.9474\nmicron^3 to an ImageJ hyperstack formatted TIFF file:\n\n>>> volume = numpy.random.randn(6, 57, 256, 256).astype('float32')\n>>> image_labels = [f'{i}' for i in range(volume.shape[0] * volume.shape[1])]\n>>> imwrite(\n...     'temp.tif',\n...     volume,\n...     kind='imagej',\n...     resolution=(1.0 / 2.6755, 1.0 / 2.6755),\n...     metadata={\n...         'spacing': 3.947368,\n...         'unit': 'um',\n...         'finterval': 1 / 10,\n...         'fps': 10.0,\n...         'axes': 'TZYX',\n...         'Labels': image_labels,\n...     },\n... )\n\nRead the volume and metadata from the ImageJ hyperstack file\nas xarray DataArray:\n\n>>> with TiffFile('temp.tif') as tif:\n...     volume = tif.asxarray()\n...     imagej_metadata = tif.imagej_metadata\n...\n>>> volume\n<xarray.DataArray '' (T: 6, Z: 57, Y: 256, X: 256)> Size: 90MB\narray([[[[...]]]],\n        shape=(6, 57, 256, 256), dtype=float32)\nCoordinates:\n    * T        (T) float64 48B 0.0 0.1 0.2 0.3 0.4 0.5\n    * Z        (Z) float64 456B 0.0 3.947 ... 221.1\n    * Y        (Y) float32 1kB 0.0 2.675 ... 682.3\n    * X        (X) float32 1kB 0.0 2.675 ... 682.3\nAttributes...\n    photometric:    minisblack\n    mode:           grayscale\n...\n>>> imagej_metadata['slices']\n57\n>>> imagej_metadata['frames']\n6\n\nMemory-map the contiguous image data in the ImageJ hyperstack file:\n\n>>> memmap_volume = memmap('temp.tif')\n>>> memmap_volume.shape\n(6, 57, 256, 256)\n>>> del memmap_volume\n\nCreate a TIFF file containing an empty image and write to the memory-mapped\nNumPy array (note: this does not work with compression or tiling):\n\n>>> memmap_image = memmap(\n...     'temp.tif', shape=(256, 256, 3), dtype='float32', photometric='rgb'\n... )\n>>> type(memmap_image)\n<class 'numpy.memmap'>\n>>> memmap_image[255, 255, 1] = 1.0\n>>> memmap_image.flush()\n>>> del memmap_image\n\nWrite two NumPy arrays to a multi-series TIFF file (note: other TIFF readers\nwill not recognize the two series; use the OME-TIFF format for better\ninteroperability):\n\n>>> series0 = numpy.random.randint(0, 255, (32, 32, 3), 'uint8')\n>>> series1 = numpy.random.randint(0, 255, (4, 256, 256), 'uint16')\n>>> with TiffWriter('temp.tif') as tif:\n...     tif.write(series0, photometric='rgb')\n...     tif.write(series1, photometric='minisblack')\n...\n\nRead the second image series from the TIFF file:\n\n>>> series1 = imread('temp.tif', series=1)\n>>> series1.shape\n(4, 256, 256)\n\nSuccessively write the frames of one contiguous series to a TIFF file:\n\n>>> data = numpy.random.randint(0, 255, (30, 301, 219), 'uint8')\n>>> with TiffWriter('temp.tif') as tif:\n...     for frame in data:\n...         tif.write(frame, contiguous=True)\n...\n\nAppend an image series to the existing TIFF file (note: this does not work\nwith ImageJ hyperstack or OME-TIFF files):\n\n>>> data = numpy.random.randint(0, 255, (301, 219, 3), 'uint8')\n>>> imwrite('temp.tif', data, photometric='rgb', append=True)\n\nDelete pages from the TIFF file, optionally erasing their image data\nand tag values (note: this is irreversible and might invalidate file\nmetadata such as ImageJ or OME-TIFF image descriptions):\n\n>>> with TiffFile('temp.tif', mode='r+') as tif:\n...     tif.pages[-1].delete()  # delete the last page\n...     tif.pages.delete([0, 1], erase=True)  # erase the first two pages\n...\n\nCreate a TIFF file from a generator of tiles:\n\n>>> data = numpy.random.randint(0, 2**12, (31, 33, 3), 'uint16')\n>>> def tiles(data, tileshape):\n...     for y in range(0, data.shape[0], tileshape[0]):\n...         for x in range(0, data.shape[1], tileshape[1]):\n...             yield data[y : y + tileshape[0], x : x + tileshape[1]]\n...\n>>> imwrite(\n...     'temp.tif',\n...     tiles(data, (16, 16)),\n...     tile=(16, 16),\n...     shape=data.shape,\n...     dtype=data.dtype,\n...     photometric='rgb',\n... )\n\nWrite a multi-dimensional, multi-resolution (pyramidal), multi-series OME-TIFF\nfile with optional metadata. Sub-resolution images are written to SubIFDs.\nLimit parallel encoding to 2 threads. Write a thumbnail image as a separate\nimage series:\n\n>>> data = numpy.random.randint(0, 255, (8, 2, 512, 512, 3), 'uint8')\n>>> subresolutions = 2\n>>> pixelsize = 0.29  # micrometer\n>>> with TiffWriter('temp.ome.tif', bigtiff=True) as tif:\n...     metadata = {\n...         'axes': 'TCYXS',\n...         'SignificantBits': 8,\n...         'TimeIncrement': 0.1,\n...         'TimeIncrementUnit': 's',\n...         'PhysicalSizeX': pixelsize,\n...         'PhysicalSizeXUnit': 'µm',\n...         'PhysicalSizeY': pixelsize,\n...         'PhysicalSizeYUnit': 'µm',\n...         'Channel': {'Name': ['Channel 1', 'Channel 2']},\n...         'Plane': {'PositionX': [0.0] * 16, 'PositionXUnit': ['µm'] * 16},\n...         'Description': 'A multi-dimensional, multi-resolution image',\n...         'MapAnnotation': {  # for OMERO\n...             'Namespace': 'openmicroscopy.org/PyramidResolution',\n...             '1': '256 256',\n...             '2': '128 128',\n...         },\n...     }\n...     options = dict(\n...         photometric='rgb',\n...         tile=(128, 128),\n...         compression='jpeg',\n...         resolutionunit='CENTIMETER',\n...         maxworkers=2,\n...     )\n...     tif.write(\n...         data,\n...         subifds=subresolutions,\n...         resolution=(1e4 / pixelsize, 1e4 / pixelsize),\n...         metadata=metadata,\n...         **options,\n...     )\n...     # write pyramid levels to the two subifds\n...     # in production use resampling to generate sub-resolution images\n...     for level in range(subresolutions):\n...         mag = 2 ** (level + 1)\n...         tif.write(\n...             data[..., ::mag, ::mag, :],\n...             subfiletype=1,  # FILETYPE.REDUCEDIMAGE\n...             resolution=(1e4 / mag / pixelsize, 1e4 / mag / pixelsize),\n...             **options,\n...         )\n...     # add a thumbnail image as a separate series\n...     # it is recognized by QuPath as an associated image\n...     thumbnail = (data[0, 0, ::8, ::8] >> 2).astype('uint8')\n...     tif.write(thumbnail, metadata={'Name': 'thumbnail'})\n...\n\nAccess image levels in the pyramidal OME-TIFF file:\n\n>>> baseimage = imread('temp.ome.tif')\n>>> second_level = imread('temp.ome.tif', series=0, level=1)\n>>> with TiffFile('temp.ome.tif') as tif:\n...     series = tif.series[0]\n...     assert series.kind == 'ome'\n...     assert series.sizes == {'T': 8, 'C': 2, 'Y': 512, 'X': 512, 'S': 3}\n...     baseimage = series.asarray()\n...     second_level = series.levels[1].asarray()\n...     number_levels = len(series.levels)  # includes base level\n...\n\nRead image data from a generic kind of series, ignoring OME metadata:\n\n>>> with TiffFile('temp.ome.tif') as tif:\n...     series = tif.series(kind='generic')[0]\n...     assert series.kind == 'generic'\n...     assert series.sizes == {'I': 16, 'Y': 512, 'X': 512, 'S': 3}\n...     image = series.asarray()\n...\n\nIterate over and decode single JPEG compressed tiles in the TIFF file:\n\n>>> with TiffFile('temp.ome.tif') as tif:\n...     fh = tif.filehandle\n...     for page in tif.pages:\n...         for index, (offset, bytecount) in enumerate(\n...             zip(page.dataoffsets, page.databytecounts)\n...         ):\n...             _ = fh.seek(offset)\n...             data = fh.read(bytecount)\n...             tile, indices, shape = page.decode(\n...                 data, index, jpegtables=page.jpegtables\n...             )\n...\n\nUse Zarr to read parts of the tiled, pyramidal images in the TIFF file:\n\n>>> import zarr\n>>> store = imread('temp.ome.tif', return_as='zarr')\n>>> z = zarr.open(store, mode='r')\n>>> z\n<Group ZarrTiffStore>\n>>> z['0']  # base layer\n <Array ZarrTiffStore/0 shape=(8, 2, 512, 512, 3) dtype=uint8>\n>>> z['0'][2, 0, 128:384, 256:].shape  # read a tile from the base layer\n(256, 256, 3)\n>>> store.close()\n\nLoad the base layer from the Zarr store as a dask array:\n\n>>> import dask.array\n>>> store = imread('temp.ome.tif', return_as='zarr')\n>>> dask.array.from_zarr(store, '0')\ndask.array<...shape=(8, 2, 512, 512, 3)...chunksize=(1, 1, 128, 128, 3)...\n>>> store.close()\n\nWrite the Zarr store to a fsspec ReferenceFileSystem in JSON format:\n\n>>> store = imread('temp.ome.tif', return_as='zarr')\n>>> store.write_fsspec('temp.ome.tif.json', url='file://', zarr_format=3)\n>>> store.close()\n\nOpen the fsspec ReferenceFileSystem as a Zarr group and read the first layer:\n\n>>> from kerchunk.utils import refs_as_store\n>>> import imagecodecs.zarr\n>>> imagecodecs.zarr.register_codecs(verbose=False)\n>>> z = zarr.open(refs_as_store('temp.ome.tif.json'), mode='r')\n>>> z['1']  # first layer\n<Array <FsspecStore(ReferenceFileSystem, /)>/1 shape=(8, 2, 256, 256, 3) ...>\n\nCreate an OME-TIFF file containing an empty, tiled image series and write\nto it via the Zarr interface (note: this does not work with compression):\n\n>>> imwrite(\n...     'temp2.ome.tif',\n...     shape=(8, 800, 600),\n...     dtype='uint16',\n...     photometric='minisblack',\n...     tile=(128, 128),\n...     metadata={'axes': 'CYX'},\n... )\n>>> store = imread('temp2.ome.tif', mode='r+', return_as='zarr')\n>>> z = zarr.open(store, mode='r+')\n>>> z\n<Array ZarrTiffStore shape=(8, 800, 600) dtype=uint16>\n>>> z[3, 100:200, 200:300:2] = 1024\n>>> store.close()\n\nRead images from a sequence of TIFF files as NumPy array using two I/O worker\nthreads:\n\n>>> imwrite('temp_C001T001.tif', numpy.random.rand(64, 64))\n>>> imwrite('temp_C001T002.tif', numpy.random.rand(64, 64))\n>>> image_sequence = imread(\n...     ['temp_C001T001.tif', 'temp_C001T002.tif'], ioworkers=2, maxworkers=1\n... )\n>>> image_sequence.shape\n(2, 64, 64)\n>>> image_sequence.dtype\ndtype('float64')\n\nRead an image stack from a series of TIFF files with a file name pattern\nas NumPy or Zarr arrays:\n\n>>> image_sequence = TiffSequence('temp_C0*.tif', pattern=r'_(C)(\\d+)(T)(\\d+)')\n>>> image_sequence.shape\n(1, 2)\n>>> image_sequence.axes\n'CT'\n>>> data = image_sequence.asarray()\n>>> data.shape\n(1, 2, 64, 64)\n>>> store = image_sequence.aszarr()\n>>> zarr.open(store, mode='r', ioworkers=2, maxworkers=1)\n<Array ZarrFileSequenceStore shape=(1, 2, 64, 64) dtype=float64>\n>>> image_sequence.close()\n\nWrite the Zarr store to a fsspec ReferenceFileSystem in JSON format:\n\n>>> store = image_sequence.aszarr()\n>>> store.write_fsspec('temp.json', url='file://', zarr_format=3)\n\nOpen the fsspec ReferenceFileSystem as a Zarr array:\n\n>>> from kerchunk.utils import refs_as_store\n>>> import tifffile.zarr\n>>> tifffile.zarr.register_codec()\n>>> zarr.open(refs_as_store('temp.json'), mode='r')\n<Array <FsspecStore(ReferenceFileSystem, /)> shape=(1, 2, 64, 64) ...>\n\nInspect the TIFF file from the command line::\n\n    $ python -m tifffile temp.ome.tif\n",
+        "description_content_type": "text/x-rst",
+        "home_page": "https://www.cgohlke.com",
+        "author": "Christoph Gohlke",
+        "author_email": "cgohlke@cgohlke.com",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 4 - Beta",
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: Developers",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15"
+        ],
+        "requires_dist": [
+          "numpy>=2.1",
+          "imagecodecs>=2026.8.16; extra == \"codecs\"",
+          "lxml; extra == \"xml\"",
+          "zarr>=3.3.0; extra == \"zarr\"",
+          "fsspec; extra == \"zarr\"",
+          "kerchunk; extra == \"zarr\"",
+          "matplotlib; extra == \"plot\"",
+          "imagecodecs>=2026.8.16; extra == \"all\"",
+          "matplotlib; extra == \"all\"",
+          "lxml; extra == \"all\"",
+          "zarr>=3.3.0; extra == \"all\"",
+          "xarray; extra == \"all\"",
+          "fsspec; extra == \"all\"",
+          "kerchunk; extra == \"all\"",
+          "cmapfile; extra == \"test\"",
+          "czifile; extra == \"test\"",
+          "dask; extra == \"test\"",
+          "fsspec; extra == \"test\"",
+          "imagecodecs; extra == \"test\"",
+          "kerchunk; extra == \"test\"",
+          "lfdfiles; extra == \"test\"",
+          "lxml; extra == \"test\"",
+          "ndtiff; extra == \"test\"",
+          "oiffile; extra == \"test\"",
+          "psdtags; extra == \"test\"",
+          "pytest; extra == \"test\"",
+          "requests; extra == \"test\"",
+          "roifile; extra == \"test\"",
+          "xarray; extra == \"test\"",
+          "zarr; extra == \"test\""
+        ],
+        "requires_python": ">=3.12",
+        "project_url": [
+          "Bug Tracker, https://github.com/cgohlke/tifffile/issues",
+          "Source Code, https://github.com/cgohlke/tifffile",
+          "Documentation, https://www.cgohlke.com/docs/tifffile/"
+        ],
+        "provides_extra": [
+          "codecs",
+          "xml",
+          "zarr",
+          "plot",
+          "all",
+          "test"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/90/16/06309e3c78013514937be186fa2272a30c024c125d87b69344c8a6788443/pywavelets-1.10.0-cp314-cp314-macosx_11_0_arm64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "949c931ea27bd91552c074d03c14ed7978467c57c0cf0801e8df8b69b0842e85"
+          },
+          "hash": "sha256=949c931ea27bd91552c074d03c14ed7978467c57c0cf0801e8df8b69b0842e85"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "PyWavelets",
+        "version": "1.10.0",
+        "summary": "PyWavelets, wavelet transform module",
+        "description": "+---------------+-----------------+\n| Service       | Master branch   |\n+===============+=================+\n| GitHub        | |ghactions_ci|  |\n+---------------+-----------------+\n| Appveyor      | |appveyor_ci|   |\n+---------------+-----------------+\n| Read the Docs | |read_the_docs| |\n+---------------+-----------------+\n\n\n.. |ghactions_ci| image:: https://github.com/PyWavelets/pywt/actions/workflows/tests.yml/badge.svg?branch=main\n   :alt: Build Status\n   :target: https://github.com/PyWavelets/pywt/actions/workflows/tests.yml?query=branch%3Amain\n\n.. |appveyor_ci| image:: https://ci.appveyor.com/api/projects/status/github/PyWavelets/pywt\n   :align: middle\n   :target: https://ci.appveyor.com/project/PyWavelets/pywt\n   :alt: Appveyor Status\n\n.. |read_the_docs| image:: https://readthedocs.org/projects/pywavelets/badge/?version=latest\n   :align: middle\n   :target: https://pywavelets.readthedocs.io/en/latest/?badge=latest\n   :alt: Documentation Status\n\n\nPyWavelets\n==========\n\n.. contents::\n\nWhat is PyWavelets\n------------------\n\nPyWavelets is a free Open Source library for wavelet transforms in Python.\nWavelets are mathematical basis functions that are localized in both time and\nfrequency.  Wavelet transforms are time-frequency transforms employing\nwavelets.  They are similar to Fourier transforms, the difference being that\nFourier transforms are localized only in frequency instead of in time and\nfrequency.\n\nThe main features of PyWavelets are:\n\n  * 1D, 2D and nD Forward and Inverse Discrete Wavelet Transform (DWT and IDWT)\n  * 1D, 2D and nD Multilevel DWT and IDWT\n  * 1D and 2D Stationary Wavelet Transform (Undecimated Wavelet Transform)\n  * 1D and 2D Wavelet Packet decomposition and reconstruction\n  * 1D Continuous Wavelet Transform\n  * Computing Approximations of wavelet and scaling functions\n  * Over 100 `built-in wavelet filters`_ and support for custom wavelets\n  * Single and double precision calculations\n  * Real and complex calculations\n  * Results compatible with Matlab Wavelet Toolbox (TM)\n\n\nDocumentation\n-------------\n\nDocumentation with detailed examples and links to more resources is available\nonline at http://pywavelets.readthedocs.org.\n\nFor more usage examples see the `demo`_ directory in the source package.\n\n\nInstallation\n------------\n\nPyWavelets supports `Python`_ >=3.10, and is only dependent on `NumPy`_\n(supported versions are currently ``>= 1.23.0``). To pass all of the tests,\n`Matplotlib`_ is also required.\n\nThere are binary wheels for Intel Linux, Windows and macOS / OSX on PyPi.  If\nyou are on one of these platforms, you should get a binary (precompiled)\ninstallation with::\n\n    pip install PyWavelets\n\nUsers of the Anaconda_ Python distribution may wish to obtain pre-built\nWindows, Intel Linux or macOS / OSX binaries from the conda-forge channel.\nThis can be done via::\n\n    conda install -c conda-forge pywavelets\n\nSeveral Linux distributions have their own packages for PyWavelets, but these\ntend to be moderately out of date.  Query your Linux package manager tool for\n``python-pywavelets``, ``python-wavelets``, ``python-pywt`` or a similar\npackage name.\n\nIf you want or need to install from source, you will need a working C compiler\n(any common one will work) and a recent version of `Cython`_.  Navigate to the\nPyWavelets source code directory (containing ``pyproject.toml``) and type::\n\n    pip install .\n\nThe most recent *development* version can be found on GitHub at\nhttps://github.com/PyWavelets/pywt.\n\nThe latest release, including source and binary packages for Intel Linux,\nmacOS and Windows, is available for download from the `Python Package Index`_.\nYou can find source releases at the `Releases Page`_.\n\nState of development & Contributing\n-----------------------------------\n\nPyWavelets started in 2006 as an academic project for a master thesis\non `Analysis and Classification of Medical Signals using Wavelet Transforms`\nand was maintained until 2012 by its `original developer`_.  In 2013\nmaintenance was taken over in a `new repo <https://github.com/PyWavelets/pywt>`_)\nby a larger development team - a move supported by the original developer.\nThe repo move doesn't mean that this is a fork - the package continues to be\ndeveloped under the name \"PyWavelets\", and released on PyPi and Github (see\n`this issue <https://github.com/nigma/pywt/issues/13>`_ for the discussion\nwhere that was decided).\n\nAll contributions including bug reports, bug fixes, new feature implementations\nand documentation improvements are welcome.  Moreover, developers with an\ninterest in PyWavelets are very welcome to join the development team!\n\nAs of 2019, PyWavelets development is supported in part by Tidelift.\n`Help support PyWavelets with the Tidelift Subscription <https://tidelift.com/subscription/pkg/pypi-pywavelets?utm_source=pypi-pywavelets&utm_medium=referral&utm_campaign=readme>`_\n\n\nContact\n-------\n\nUse `GitHub Issues`_ or the `mailing list`_ to post your comments or questions.\n\n**Report a security vulnerability:** https://tidelift.com/security\n\nLicense\n-------\n\nPyWavelets is a free Open Source software released under the MIT license.\n\nIf you wish to cite PyWavelets in a publication, please use the following\nJOSS publication.\n\n.. image:: http://joss.theoj.org/papers/10.21105/joss.01237/status.svg\n   :target: https://doi.org/10.21105/joss.01237\n\nSpecific releases can also be cited via Zenodo. The DOI below will correspond\nto the most recent release. DOIs for past versions can be found by following\nthe link in the badge below to Zenodo:\n\n.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1407171.svg\n   :target: https://doi.org/10.5281/zenodo.1407171\n\n.. _built-in wavelet filters: http://wavelets.pybytes.com/\n.. _Cython: http://cython.org/\n.. _demo: https://github.com/PyWavelets/pywt/tree/main/demo\n.. _Anaconda: https://www.continuum.io\n.. _GitHub: https://github.com/PyWavelets/pywt\n.. _GitHub Issues: https://github.com/PyWavelets/pywt/issues\n.. _NumPy: https://www.numpy.org\n.. _SciPy: https://www.scipy.org\n.. _original developer: http://en.ig.ma\n.. _Python: http://python.org/\n.. _Python Package Index: http://pypi.python.org/pypi/PyWavelets/\n.. _mailing list: http://groups.google.com/group/pywavelets\n.. _Releases Page: https://github.com/PyWavelets/pywt/releases\n.. _Matplotlib: http://matplotlib.org\n",
+        "description_content_type": "text/x-rst",
+        "maintainer_email": "The PyWavelets Developers <pywavelets@googlegroups.com>",
+        "license_expression": "MIT AND BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "licenses_bundled/LICENSE_numpy.txt",
+          "licenses_bundled/LICENSE_scipy.txt"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Education",
+          "Intended Audience :: Science/Research",
+          "Operating System :: OS Independent",
+          "Programming Language :: C",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15",
+          "Programming Language :: Python :: Free Threading :: 2 - Beta",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "requires_dist": [
+          "numpy<3,>=1.26.4"
+        ],
+        "requires_python": ">=3.12",
+        "project_url": [
+          "homepage, https://github.com/PyWavelets/pywt",
+          "source, https://github.com/PyWavelets/pywt",
+          "documentation, https://pywavelets.readthedocs.io/"
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.14.10",
+    "os_name": "posix",
+    "platform_machine": "arm64",
+    "platform_release": "27.2.0",
+    "platform_system": "Darwin",
+    "platform_version": "Darwin Kernel Version 27.2.0: Wed Oct 14 23:47:58 PDT 2026; root:xnu-13432.41.4~25/RELEASE_ARM64_T6050",
+    "python_full_version": "3.14.10",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.14",
+    "sys_platform": "darwin"
+  }
+}

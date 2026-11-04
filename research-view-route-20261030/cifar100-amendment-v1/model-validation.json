@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "safe_load": true,
+  "strict_1000_class_load": true,
+  "pretrained_state_sha256": "91344431276dbbd0bb6c8d190867bef3ca6dde7baa34c73a431ffc8d5e7eeb91",
+  "checkpoint_sha256": "a1311bcf4f24e3c95adaa75535db67bc4412d95535b98f7c1dfd1164dda41c97",
+  "parameters_after_head_replacement": 5543716,
+  "feature_dim": 192,
+  "head_classes": 100,
+  "dropout_and_stochastic_depth": 0,
+  "dtype": "float32",
+  "device": "mps",
+  "timm": "1.0.22",
+  "torch": "2.13.0",
+  "torchvision": "0.28.0",
+  "pretrained_cfg": {
+    "url": "https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth",
+    "hf_hub_id": "timm/deit_tiny_patch16_224.fb_in1k",
+    "architecture": "deit_tiny_patch16_224",
+    "tag": "fb_in1k",
+    "custom_load": false,
+    "input_size": [
+      3,
+      224,
+      224
+    ],
+    "fixed_input_size": true,
+    "interpolation": "bicubic",
+    "crop_pct": 0.9,
+    "crop_mode": "center",
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "num_classes": 1000,
+    "pool_size": null,
+    "first_conv": "patch_embed.proj",
+    "classifier": "head",
+    "license": "apache-2.0"
+  }
+}

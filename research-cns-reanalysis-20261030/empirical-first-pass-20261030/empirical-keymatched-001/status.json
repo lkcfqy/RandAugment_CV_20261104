@@ -1,0 +1,358 @@
+{
+  "status": "completed",
+  "evidence_type": "EMPIRICAL_KEY_MATCHED_EXPLORATORY",
+  "completed_utc": "2026-10-30T11:21:36.762318+00:00",
+  "models": [
+    "resnet18.a1_in1k",
+    "vit_base_patch16_224.augreg_in1k"
+  ],
+  "shifts": [
+    "cartoon_style",
+    "heavy_snow"
+  ],
+  "source_key_count": 3430,
+  "fixed_class_support_K": [
+    8,
+    9,
+    13,
+    22,
+    26,
+    31,
+    47,
+    71,
+    79,
+    84,
+    96,
+    99,
+    105,
+    107,
+    144,
+    150,
+    160,
+    163,
+    171,
+    172,
+    178,
+    207,
+    231,
+    232,
+    234,
+    245,
+    247,
+    250,
+    251,
+    254,
+    263,
+    277,
+    288,
+    289,
+    291,
+    301,
+    310,
+    315,
+    327,
+    330,
+    335,
+    337,
+    341,
+    344,
+    347,
+    361,
+    368,
+    372,
+    388,
+    390,
+    397,
+    401,
+    407,
+    447,
+    448,
+    457,
+    462,
+    463,
+    471,
+    472,
+    476,
+    515,
+    555,
+    558,
+    570,
+    579,
+    587,
+    594,
+    609,
+    613,
+    629,
+    637,
+    658,
+    701,
+    717,
+    776,
+    779,
+    805,
+    833,
+    852,
+    895,
+    931,
+    932,
+    933,
+    934,
+    937,
+    943,
+    945,
+    948,
+    951,
+    967,
+    980,
+    981
+  ],
+  "cohort_audit": {
+    "resnet18.a1_in1k": {
+      "complete_per_shift": {
+        "cartoon_style": 2155,
+        "heavy_snow": 2883
+      },
+      "common_complete": 1608,
+      "common_first_observed_correct": 1479,
+      "scale0_prediction_mismatch_count": 31,
+      "scale0_prediction_mismatch_keys": [
+        [
+          26,
+          30
+        ],
+        [
+          163,
+          26
+        ],
+        [
+          163,
+          45
+        ],
+        [
+          171,
+          17
+        ],
+        [
+          172,
+          3
+        ],
+        [
+          172,
+          41
+        ],
+        [
+          172,
+          49
+        ],
+        [
+          232,
+          2
+        ],
+        [
+          232,
+          27
+        ],
+        [
+          232,
+          29
+        ],
+        [
+          234,
+          17
+        ],
+        [
+          234,
+          19
+        ],
+        [
+          234,
+          23
+        ],
+        [
+          234,
+          24
+        ],
+        [
+          234,
+          29
+        ],
+        [
+          234,
+          47
+        ],
+        [
+          245,
+          4
+        ],
+        [
+          250,
+          1
+        ],
+        [
+          250,
+          2
+        ],
+        [
+          250,
+          3
+        ],
+        [
+          250,
+          19
+        ],
+        [
+          372,
+          43
+        ],
+        [
+          397,
+          41
+        ],
+        [
+          401,
+          37
+        ],
+        [
+          407,
+          22
+        ],
+        [
+          407,
+          40
+        ],
+        [
+          658,
+          27
+        ],
+        [
+          658,
+          34
+        ],
+        [
+          658,
+          38
+        ],
+        [
+          658,
+          47
+        ],
+        [
+          658,
+          48
+        ]
+      ],
+      "same_predictions_prove_identity": false
+    },
+    "vit_base_patch16_224.augreg_in1k": {
+      "complete_per_shift": {
+        "cartoon_style": 2155,
+        "heavy_snow": 2883
+      },
+      "common_complete": 1608,
+      "common_first_observed_correct": 1438,
+      "scale0_prediction_mismatch_count": 19,
+      "scale0_prediction_mismatch_keys": [
+        [
+          26,
+          12
+        ],
+        [
+          31,
+          8
+        ],
+        [
+          160,
+          40
+        ],
+        [
+          163,
+          5
+        ],
+        [
+          163,
+          10
+        ],
+        [
+          163,
+          38
+        ],
+        [
+          171,
+          32
+        ],
+        [
+          234,
+          24
+        ],
+        [
+          234,
+          47
+        ],
+        [
+          250,
+          29
+        ],
+        [
+          250,
+          50
+        ],
+        [
+          372,
+          37
+        ],
+        [
+          570,
+          18
+        ],
+        [
+          629,
+          16
+        ],
+        [
+          658,
+          40
+        ],
+        [
+          658,
+          41
+        ],
+        [
+          658,
+          48
+        ],
+        [
+          658,
+          50
+        ],
+        [
+          852,
+          21
+        ]
+      ],
+      "same_predictions_prove_identity": false
+    }
+  },
+  "incomplete_trajectories_excluded": 0,
+  "source_identity": {
+    "status": "unverified; no baseline image hashes available",
+    "required_common_complete_sources": 1608,
+    "verified_sources": 0,
+    "primary_identity_coverage_complete": false,
+    "equal_predictions_are_not_identity_proof": true
+  },
+  "resource_gate": {
+    "decision": "undetermined_source_identity_not_verified"
+  },
+  "strict_same_source_conclusion_available": false,
+  "training_performed": false,
+  "model_inference_performed": false,
+  "GPU_requested": false,
+  "limitations": [
+    "Already-filtered published cohort only; unmatched and eligibility selection can bias comparisons.",
+    "Different shifts have no equal-physical-strength guarantee.",
+    "T describes only the final observed wrong suffix, not permanent or irreversible failure.",
+    "Zero-event or zero-width bootstrap intervals do not prove absence.",
+    "Class-cluster resampling concerns a different inferential target.",
+    "First-observed correctness does not by itself verify a clean source image."
+  ]
+}

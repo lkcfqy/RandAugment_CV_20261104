@@ -1,0 +1,56 @@
+{
+  "CPU": {
+    "autocast": false,
+    "dtype": "float32",
+    "eval": true,
+    "inference_mode": true,
+    "interop_threads": 1,
+    "models_resident_simultaneously": 1,
+    "opencv_threads": 1,
+    "torch_threads": 4
+  },
+  "GT": "full original train annotations retained verbatim (xywh,area,category,crowd/ignore); no relabel/clipping or extra training labels",
+  "actual_prompt": "fish. ",
+  "descriptive": "all12 original COCO metrics and complete 29-prefix AP@100/differences, including negative/zero/no-valid-GT results; no favorable group selection",
+  "failure_handling": "objective corrupt/invalid assets or budget interruption -> incomplete and report; do not replace/select samples, change strength/prompt/checkpoint, or reduce sample count",
+  "formal_run_GO": false,
+  "image_order": "ascending original train imageID, all2014",
+  "input_condition": "original, Color(prob=1,level=0,min_mag=1,max_mag=1) identity after cv2 uint8 BGR decode before FixScaleResize(800,1333), then original LoadAnnotations and PackDetInputs",
+  "loading": "MODEL_IDENTITIES.json; weights_only; complete state hashes; no unsafe fallback",
+  "max_queries_saved_per_image": 300,
+  "metric_mapping": {
+    "AP": "maxDets100",
+    "AP50": "maxDets1000",
+    "AP75": "maxDets1000",
+    "APsmall_medium_large": "maxDets1000",
+    "AR100": "maxDets100",
+    "AR1000": "maxDets1000",
+    "AR300": "maxDets300",
+    "ARsmall_medium_large": "maxDets1000"
+  },
+  "metric_recompute": "recompute from persisted predictions with pinned pycocotools; preserve precision/recall/scores arrays; model processes exited before sequential metric jobs",
+  "model_order": [
+    "P0",
+    "A0",
+    "A1"
+  ],
+  "models_fixed": [
+    "P0",
+    "A0",
+    "A1"
+  ],
+  "new_train_install_upload_GPU_MPS_Colab_CU": 0,
+  "primary": "pool AP IoU.50:.05:.95 maxDets100; paired differences A0-P0 and A1-P0 in percentage points; neither selects the other",
+  "question": "Do existing CPU-trained A0/A1 gains over unadapted P0 after fixed5images/U200 persist on previously unexplored eligible train images? No new algorithm or M branch.",
+  "required_complete_identities": "all6042 unique model/image records durably saved+hash-verified before efficacy evaluation; incomplete matrix cannot substitute a completed subset",
+  "status": "FROZEN_PLAN_ONLY_PENDING_PARENT_GO",
+  "threshold_or_NMS_change": false,
+  "unique_forwards": 6042,
+  "validity_limits": [
+    "not independent scenes/videos/habitats",
+    "prefixes are filename groups; 8 of14 numeric habitat selectors overlap exposed prefixes",
+    "frames within prefix correlated; no image-iid significance tests or independent-sample claim",
+    "protocol planned after exploratory A model selection, before any pool model output; not original preregistration",
+    "official test excluded entirely; 3test images previously QA, their prefixes excluded"
+  ]
+}

@@ -1,0 +1,234 @@
+from src.utils.common_imports import *
+
+def main():
+    root_dir = 'default_root_directory'
+    
+    # Training configuration
+    template = TrainConfig(
+        run_config=RunConfig(
+            root_dir=root_dir,
+            dataset=('STL10_Features', None),
+            invariance_dataset=('STL10_Features_Classify', None), 
+            save_dir_prefix='default_save_prefix',
+            batch_size=1024,
+            epochs=100, 
+            checkpoint_epoch=10, 
+            evaluate_structure_epoch=100,
+            # Structure tests ['topological', 'spectral', 'heat', 'similarity', 'tsne_all']
+            # Use 'tsne_all' for both input and encoded distribution; 'tsne' for encoded distribution only 
+            structure_tests=['similarity', 'tsne_all'],
+            evaluate_invariance_epoch=100, 
+            # Invariance tests ['classification', 'invariance']
+            invariance_tests=None,
+            num_wasserstein_projections=1000,
+            wasserstein_p=2.0,
+            wasserstein_q=2.0,
+            standardize_correlation=False,
+            num_augs=1,
+            num_aug_samples=1,
+            log_product_loss=False, 
+            seed=12, 
+            load_dir=None, 
+            checkpoint_filename=None, 
+            set_gpu='cuda:0',
+            # Set scheduler_batch_update to None for epoch updates 
+            # Set to (k - 1) to update every k batches 
+            scheduler_batch_update=None, 
+            use_autocast=False,
+            grad_set_to_none=False,
+            clear_cache_batch=None,
+            clear_cache_epoch=None,
+            print_memory_and_optimizer_stats=False, 
+            training_run_info=None
+        ), 
+
+        trainloader_config=DataloaderConfig(
+            dataset='train', 
+            params={
+                'shuffle': True,
+                'drop_last': True, 
+                'num_workers': 4
+            }
+        ), 
+
+        testloader_config=DataloaderConfig(
+            dataset='test', 
+            params={
+                'batch_size': 1000,
+                'shuffle': True,
+                'drop_last': False,
+                'num_workers': 0
+            }
+        ),
+
+        features_config=None,
+
+        encoder_config=ModelConfig(
+            model_class=Model.MLP,
+            params={
+                'input_shape': (384,),
+                'output_shape': (384,),  
+                'dense_features': [384, 4096, 384],  
+                'normalization_layer': None,
+                'activation': 'relu'
+            }
+        ),      
+
+        decoder_config=None,
+       
+        augmentations=None, 
+
+        loss_config=LossConfig(
+            reconstruct=0.0,
+            markov_wasserstein=0.0, 
+            wasserstein_correlation=0.0, 
+            simclr=0.0, 
+            hsic=0.0
+        ),
+
+        optimizer_config=OptimizerConfig(
+            optimizer_class=optim.AdamW,
+            params={
+                'lr': 0.001, 
+                'weight_decay': 0.0001
+            }
+        ),
+ 
+        scheduler_config = SchedulerConfig(
+            scheduler_class=optim.lr_scheduler.CosineAnnealingLR,
+            params={
+                'T_max': 'epochs', 
+                'eta_min': 0.0004
+            }
+        ),
+
+        invariance_config=InvarianceConfig(
+            num_classes=10,
+
+            augmentations = None, 
+
+            invariance_trainloader=DataloaderConfig(
+            dataset='train', 
+            params={
+                'batch_size': 256,
+                'shuffle': True,
+                'drop_last': True, 
+                'num_workers': 4
+            }
+            ), 
+
+            invariance_testloader=DataloaderConfig(
+                dataset='test', 
+                params={
+                    'batch_size': 1000,
+                    'shuffle': True,
+                    'drop_last': False,
+                    'num_workers': 0
+                }
+            ),
+
+            classifier_epochs=50, 
+
+            linear_classifier_config=ModelConfig(
+                model_class=Model.MLP,
+                params={
+                    'input_shape': (384,),
+                    'output_shape': (10,),  
+                    'dense_features': [384, 10],  
+                    'normalization_layer': None,
+                    'activation': 'relu'
+                }
+            ),
+
+            nonlinear_classifier_config=ModelConfig(
+                model_class=Model.MLP,
+                params={
+                    'input_shape': (384,),
+                    'output_shape': (10,),  
+                    'dense_features': [384, 4096, 10],  
+                    'normalization_layer': None,
+                    'activation': 'relu'
+                }
+            ),
+
+            classifier_optimizer_config = OptimizerConfig(
+                optimizer_class=optim.AdamW,
+                params={
+                    'lr': 0.001,
+                    'weight_decay': 0.0  
+                }
+            ),
+
+            classifier_scheduler_config = SchedulerConfig(
+                scheduler_class=lr_scheduler.CosineAnnealingLR,
+                params={
+                    'T_max': 50, 
+                    'eta_min': 0.0004
+                }
+            ),
+
+            # End-to-end, fully supervised classifier
+            end_to_end_classifier_epochs = 50,
+
+            end_to_end_classifier_config=ModelConfig(
+                model_class=Model.MLP,
+                params={
+                    'input_shape': (384,),
+                    'output_shape': (10,),  
+                    'dense_features': [384, 4096, 4096, 10],  
+                    'use_batch_norm': False,
+                    'activation': 'relu'
+                }
+            ),
+
+            end_to_end_optimizer_config = OptimizerConfig(
+                optimizer_class=optim.AdamW,
+                params={
+                    'lr': 0.001, 
+                    'weight_decay': 0.0
+                }
+            ),
+
+            end_to_end_scheduler_config = SchedulerConfig(
+                scheduler_class=lr_scheduler.CosineAnnealingLR,
+                params={
+                    'T_max': 50, 
+                    'eta_min': 0.0004
+                }
+            )
+        )
+    )
+
+    # Alter template with experiment-specific overrides 
+    experiments = [ 
+        {
+        'run_config': {
+            'save_dir_prefix': 'STL10_DINO_Rotation_MaWa'
+            },
+
+        'features_config': DINO_ViTs8_Features(), 
+
+        'augmentations': {
+            't_1': K.RandomRotation(degrees=180, p=1.0, same_on_batch=False)
+            },
+
+        'loss_config': {'markov_wasserstein': 1.0},  
+
+        'invariance_config': {
+            'augmentations': {
+                't_1': K.RandomRotation(degrees=180, p=1.0, same_on_batch=False)
+            }
+        } 
+        }
+    ]
+
+    configs = [template.with_overrides(exp) for exp in experiments]
+
+    # Start training
+    for i, _ in enumerate(configs):
+        trainer = Trainer(configs[i])
+        trainer.train()  
+        del trainer
+    
+if __name__ == "__main__":
+    main()

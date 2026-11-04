@@ -1,0 +1,51 @@
+{
+  "upstream_source_unmodified": true,
+  "imported": [
+    "model_lib.airbench_net",
+    "augmentations_CtrlA_Control._apply_op",
+    "augmentations_CtrlA_Control.ControlAugment",
+    "CtrlA_utils.get_ASD"
+  ],
+  "CLI_not_executed": true,
+  "fixes": [
+    {
+      "issue": "gain missing in CLI dict",
+      "adapter": "explicit gain1"
+    },
+    {
+      "issue": "CLI returns8 values but main unpacks7 at pinned commit",
+      "adapter": "structured checkpoint/results, do not call CLI"
+    },
+    {
+      "issue": "CUDA/CPU only and unconditional CUDA sync",
+      "adapter": "MPS explicit + synchronize; fallback0"
+    },
+    {
+      "issue": "/Data paths and test load",
+      "adapter": "verified local train-only loader and fixed partitions"
+    },
+    {
+      "issue": "source CtrlA returns dataset built eagerly",
+      "adapter": "lazy equivalent official PIL views for151k inference per ROR; same order and alternating signs"
+    },
+    {
+      "issue": "epoch optimizer semantics",
+      "adapter": "recreate SGD everyepoch preserved"
+    },
+    {
+      "issue": "cosine horizon",
+      "adapter": "preserve source formula with frozen20 actual horizon"
+    },
+    {
+      "issue": "mid-horizon checkpoint",
+      "adapter": "phase2 controller update at10, then pause; matches horizon20 continuation"
+    }
+  ],
+  "execution_changes": [
+    "explicit deterministic worker seeds, randomized fixed stratified partitions",
+    "checkpoint full state every epoch plus phase boundaries",
+    "float64 fit-only statistics for numerical stability (same population moments)",
+    "CPU Pillow preprocessing is intentional official backend, not MPS tensor fallback"
+  ],
+  "renderer_code": "independent diagnostic implementation; official training unchanged"
+}

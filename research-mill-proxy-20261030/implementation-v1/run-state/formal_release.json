@@ -1,0 +1,27 @@
+{
+  "freeze_sha256": "e7b5ddfaf0beef296612e90138fd37d93337066d520576a6e9a9ba638806f6c7",
+  "static_review": true,
+  "protocol_confirmed": true,
+  "c_anchor_confirmed": true,
+  "synthetic_degeneracy": "variance_1e-12",
+  "absolute_ranking_eligibility": "absolute_R",
+  "unidentifiable_policy": "global",
+  "scope": "formal",
+  "maximum_runs": 1,
+  "maximum_wall_seconds": 1770,
+  "fixture": "fixed real 84-image panel; six train and eight test scenes; four target levels; four seeds; 326 formal forwards",
+  "device": "mps",
+  "formal_authorized": true,
+  "tpost_seconds": 600,
+  "tpost_basis": {
+    "type": "predeclared conservative allowance; not a measured fitting time or a proven runtime upper bound",
+    "fitting_allowance_seconds": 480,
+    "other_post_allowance_seconds": 120,
+    "fitting_allocation": "120 seconds per level for all six train scenes, both A and B; four fixed levels",
+    "A_static_work_per_level": "4097x256 gamma power table shared over 3 channels; 6x3x240000 pixel sufficient statistics and residual/bin passes; 3 two-variable NNLS fits",
+    "B_static_work_per_level": "3 weighted PAVs on 256 nodes; pool and sort 6x3x240000 standardized residuals over 16 bins; 18 full 400x600 ortho FFTs; 240000 complex Hermitian 3x3 principal roots",
+    "other_post_includes": "native input decode and model initialization, all scalar image metrics, generated-cache and parameter persistence/hashing, final aggregation and reporting",
+    "small_oracle_extrapolation_used": false,
+    "real_fit_timed": false
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "status": "PASS_CPU_STATIC_AND_SAFE_TENSOR_INSPECTION",
+  "utc": "2026-10-31T14:36:11.052994+00:00",
+  "torch": "2.13.0",
+  "model_instantiated": false,
+  "upstream_code_executed": false,
+  "weights_only": true,
+  "unsafe_fallback": false,
+  "dynamic_whitelist": false,
+  "checkpoint_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+  "source_tensor_keys": 903,
+  "all_source_floating_tensors_finite": true,
+  "official_config_same_checkpoint": true,
+  "official_log_scale_zero_initializers": [
+    "bbox_head.cls_branches.0.log_scale",
+    "bbox_head.cls_branches.1.log_scale",
+    "bbox_head.cls_branches.2.log_scale",
+    "bbox_head.cls_branches.3.log_scale",
+    "bbox_head.cls_branches.4.log_scale",
+    "bbox_head.cls_branches.5.log_scale",
+    "bbox_head.cls_branches.6.log_scale"
+  ],
+  "log_scale_semantics": "7 independent trainable float32 scalar parameters, initialized 0.0; exp(0)=1.0; official 6 decoder layers plus encoder prediction layer.",
+  "unused_pooler_shapes": {
+    "weight": [
+      768,
+      768
+    ],
+    "bias": [
+      768
+    ]
+  },
+  "pooler_semantics": "official config disables construction, MMDetection consumes encoder hidden states; no pooler output consumed",
+  "legacy_position_ids": "exact arange(512).reshape(1,512); Transformers4.34 registers corresponding buffer persistent=False",
+  "official_loader_strict_defaults": {
+    "load_state_dict": false,
+    "_load_checkpoint_to_model": false,
+    "load_checkpoint": false
+  },
+  "loading_contract": "Official non-strict loader plus independent exact expected 8-missing/3-extra schema; all 900 common tensors must match exactly before any update. Not a claim of strict=True loading.",
+  "unchanged_scientific_files": {
+    "config_A.json": "eac29366389ca942bbbefdb33fac68ed62d2d349cf079dc4b69b05e970a55830",
+    "config_B.json": "14fc399ec8ce73cc9a20784e8598964ec666829589945f7917e572004c9bb8da",
+    "asset_pins.json": "f026a5abd0e30217fcc29331263cab9cd0c23cc4d1dd414be0940b64214f55d6",
+    "implementation_pins.json": "ec21210f2e4ff6f7faeeefd4992965d578b6ab01e6d5efd76767ec2e6bbf5bb8",
+    "data_selection.json": "772c3f81f6d921b214cba036eb353c4358ac347a85117d6bbe6593effc8bbde8",
+    "data/annotations/support5.json": "9978bd0fd09becf9dced032315ecf06c63dab0ee2b7abb32925137d2f8b3c2d4",
+    "data/annotations/dev64.json": "35f7c48c6040722f860037b0a1216502ff7616f5199d609a2bac1a147b49b730"
+  },
+  "scientific_contract_functions_ast_unchanged": [
+    "choose_updates",
+    "verify_exposures",
+    "verify_paired_traces",
+    "verify_initializations"
+  ],
+  "infrastructure_context_validation_revised": true,
+  "sources": [
+    {
+      "name": "official_config",
+      "url": "https://raw.githubusercontent.com/open-mmlab/mmdetection/44ebd17b145c2372c4b700bfb9cb20dbd28ab64a/configs/grounding_dino/grounding_dino_swin-t_finetune_16xb2_1x_coco.py",
+      "bytes": 7119,
+      "sha256": "357d19beb5db518a901225255ced11db099d2d7b26f4fd632d9844ba29c25c58"
+    },
+    {
+      "name": "official_head",
+      "url": "https://raw.githubusercontent.com/open-mmlab/mmdetection/44ebd17b145c2372c4b700bfb9cb20dbd28ab64a/mmdet/models/dense_heads/grounding_dino_head.py",
+      "bytes": 37020,
+      "sha256": "d90d306bf51b4065ab042aefed56e7e3337c0d9e7cdac126b249d4b38dd05650"
+    },
+    {
+      "name": "official_bert",
+      "url": "https://raw.githubusercontent.com/open-mmlab/mmdetection/44ebd17b145c2372c4b700bfb9cb20dbd28ab64a/mmdet/models/language_models/bert.py",
+      "bytes": 9067,
+      "sha256": "19980d55ca439753c1f5fe866140cdb2a82cc82af2937d681d4f8ba67eb9ff5d"
+    },
+    {
+      "name": "official_deformable_detr",
+      "url": "https://raw.githubusercontent.com/open-mmlab/mmdetection/44ebd17b145c2372c4b700bfb9cb20dbd28ab64a/mmdet/models/detectors/deformable_detr.py",
+      "bytes": 27107,
+      "sha256": "7c79cc5c5624d4446579e881958e644f491c57a93c5ffe3e183a2408cfdc5477"
+    },
+    {
+      "name": "official_mmengine_loader",
+      "url": "https://raw.githubusercontent.com/open-mmlab/mmengine/v0.10.7/mmengine/runner/checkpoint.py",
+      "bytes": 30359,
+      "sha256": "ed6108c9dd8f7ea914efdd3f0dd047a35ae6741c4f12ae885b76ad493f52c321"
+    },
+    {
+      "name": "official_transformers_bert",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/v4.34.0/src/transformers/models/bert/modeling_bert.py",
+      "bytes": 83995,
+      "sha256": "f804ee6562fbec4e082cc819fb7daadf29a6a2971fdea5fece1386649eef3cd8"
+    }
+  ],
+  "next_runtime_gate": "Check 7 zeros, requires_grad, exact expected key sets and all 900 source/model tensors; compare full initial state digest across four training workers."
+}

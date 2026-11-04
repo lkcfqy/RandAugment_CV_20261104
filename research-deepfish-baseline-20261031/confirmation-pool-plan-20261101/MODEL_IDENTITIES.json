@@ -1,0 +1,53 @@
+{
+  "P0_fixed_scales_zero": 7,
+  "P0_no_random_new_classifier": true,
+  "P0_raw_file_has_903_keys_active_source_900_model_908": true,
+  "P0_same_initial_state_as_A0_A1": {
+    "state_sha256": "abee57f5419e64fd71a272d3f9f6e42613bf88db353b1ad9b4748920de510b37",
+    "tensor_bytes": 691880148,
+    "tensor_count": 908
+  },
+  "P0_training_only_random_DN_unused_inference": true,
+  "models": [
+    {
+      "bytes": 691901857,
+      "checkpoint": "assets/groundingdino_swint_ogc_mmdet-822d7e9d.pth",
+      "complete_model_state_sha256": "abee57f5419e64fd71a272d3f9f6e42613bf88db353b1ad9b4748920de510b37",
+      "file_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3",
+      "formal_training_updates": 0,
+      "label": "P0",
+      "reference_receipt": "unadapted-reference-20261101/receipts/model_20261031_P0.json",
+      "seed": 20261031,
+      "strict_loading_semantics": "weights_only original file; exact existing903/908 key contract; construct908-state in RAM from900 source tensors+7 fixedzeros+seeded training-only DN; strict=True load; all source bytes and fullinitial hash must match; no saved checkpoint copy",
+      "tensor_bytes": 691880148,
+      "tensor_count": 908
+    },
+    {
+      "bytes": 692247962,
+      "checkpoint": "cpu-paired-AM-20261101/formal_A/final_model.pth",
+      "complete_model_state_sha256": "22baffdc348a74f2e7bc298e6f5b32b1408f78c41be1a3a29034fca09a3ece49",
+      "file_sha256": "08a9c1070b9a34d37b938421ac282b3ddc8131cf0f11eff727dcf19511dffe6b",
+      "formal_training_updates": 200,
+      "label": "A0",
+      "reference_receipt": "cpu-paired-AM-20261101/evaluation/receipts/model_20261031_A.json",
+      "seed": 20261031,
+      "strict_loading_semantics": "weights_only=True, strict=True, no missing/unexpected; all908 tensors byte-exact to complete checkpoint",
+      "tensor_bytes": 691880148,
+      "tensor_count": 908
+    },
+    {
+      "bytes": 692247962,
+      "checkpoint": "same-domain-decision-20261101/formal_A1/final_model.pth",
+      "complete_model_state_sha256": "1fe8d0f1af072c4d5fffc997977f3ebeb8a52eaa5267f310c5f392255ad09595",
+      "file_sha256": "86afddc2ea94caa4cb0cb4977d4b3d169fed3b5862f78fa78f28faec272b8be5",
+      "formal_training_updates": 200,
+      "label": "A1",
+      "reference_receipt": "same-domain-decision-20261101/evaluation/receipts/model_20261031_A1.json",
+      "seed": 20261031,
+      "strict_loading_semantics": "weights_only=True, strict=True, no missing/unexpected; all908 tensors byte-exact to complete checkpoint",
+      "tensor_bytes": 691880148,
+      "tensor_count": 908
+    }
+  ],
+  "weight_hashes_recomputed_without_deserialization": true
+}

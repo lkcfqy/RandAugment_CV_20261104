@@ -1,0 +1,71 @@
+[
+  {
+    "file": "hf_README.md",
+    "url": "https://huggingface.co/datasets/buddhi19/SyntheticGenV5/resolve/225bb99a7a70588dd37e0e7e4e566e6be20ea82f/README.md",
+    "final_url": "https://huggingface.co/api/resolve-cache/datasets/buddhi19/SyntheticGenV5/225bb99a7a70588dd37e0e7e4e566e6be20ea82f/README.md?%2Fdatasets%2Fbuddhi19%2FSyntheticGenV5%2Fresolve%2F225bb99a7a70588dd37e0e7e4e566e6be20ea82f%2FREADME.md=&etag=%225e52d9889d9de140e7c10584befc98167f74533d%22",
+    "bytes": 3001,
+    "sha256": "19a2b88da2df76c5ad29039d246f74c6a713d534ac26d06ee353bd298558a60f",
+    "retrieved_utc": "2026-11-02T03:58:30.342900+00:00",
+    "status": "success",
+    "headers": {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Length": "3001",
+      "ETag": "\"5e52d9889d9de140e7c10584befc98167f74533d\"",
+      "X-Repo-Commit": "225bb99a7a70588dd37e0e7e4e566e6be20ea82f"
+    },
+    "text": "---\npretty_name: SyntheticGenV5\nlicense: mit\ntask_categories:\n- image-segmentation\ntask_ids:\n- semantic-segmentation\ntags:\n- remote-sensing\n- semantic-segmentation\n- synthetic-data\n- domain-adaptation\n- image\nsize_categories:\n- 1K<n<10K\nconfigs:\n- config_name: default\n  default: true\n  drop_labels: true\n  data_files:\n  - split: train\n    path: Train/metadata.csv\n---\n\n# SyntheticGenV5\n\nSyntheticGenV5 is a synthetic remote-sensing semantic segmentation dataset (from the paper https://huggingface.co/papers/2602.04749) built for **Urban\u2013Rural domain-aware learning**.\n\nIt keeps the **original folder layout** and uses `Train/metadata.csv` to connect each image with its semantic mask and RGB mask.\n\n## Why use this dataset?\n\n- \ud83c\udf06 Two domains: **Urban** and **Rural**\n- \ud83d\udef0\ufe0f Designed for **remote-sensing semantic segmentation**\n- \ud83e\uddea Useful for **synthetic augmentation** and **domain generalization**\n- \ud83d\udc40 Includes RGB mask visualizations for easy inspection\n\n## Structure\n\n```text\nTrain/\n\u251c\u2500\u2500 metadata.csv\n\u251c\u2500\u2500 Urban/\n\u2502   \u251c\u2500\u2500 image_png/\n\u2502   \u251c\u2500\u2500 mask_png/\n\u2502   \u2514\u2500\u2500 mask_rgb_png/\n\u2514\u2500\u2500 Rural/\n    \u251c\u2500\u2500 image_png/\n    \u251c\u2500\u2500 mask_png/\n    \u2514\u2500\u2500 mask_rgb_png/\n````\n\n## Metadata Fields\n\nEach row in `Train/metadata.csv` contains:\n\n* `image_file_name`\n* `mask_file_name`\n* `mask_rgb_file_name`\n* `domain`\n* `source_dataset`\n\n## Load the dataset\n\n```python\nfrom datasets import load_dataset\n\nds = load_dataset(\"buddhi19/SyntheticGenV5\")\nprint(ds[\"train\"][0])\n```\n\n## Source\n\nThis dataset is derived based on **LoveDA** \n\n### Your downstream segmentation would work way better if you couple this dataset with original LoveDA dataset ;)\n\n**LoveDA: A Remote Sensing Land-Cover Dataset for Domain Adaptive Semantic Segmentation**\n\n## Citation\n\n### SyntheticGenV5 / Associated Paper\n\n```bibtex\n@misc{wijenayake2026mitigating,\n  title={Mitigating Long-Tail Bias via Prompt-Controlled Diffusion Augmentation},\n  author={Buddhi Wijenayake and Nichula Wasalathilake and Roshan Godaliyadda and Vijitha Herath and Parakrama Ekanayake and Vishal M. Patel},\n  year={2026},\n  eprint={2602.04749},\n  archivePrefix={arXiv},\n  primaryClass={cs.CV},\n  url={https://arxiv.org/abs/2602.04749}\n}\n```\n\n### LoveDA\n\n```bibtex\n@misc{wang2022lovedaremotesensinglandcover,\n      title={LoveDA: A Remote Sensing Land-Cover Dataset for Domain Adaptive Semantic Segmentation}, \n      author={Junjue Wang and Zhuo Zheng and Ailong Ma and Xiaoyan Lu and Yanfei Zhong},\n      year={2022},\n      eprint={2110.08733},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2110.08733}, \n}\n```\n\n\n\n## Notes\n\n* The original directory layout is preserved.\n* `Train/metadata.csv` is used for cleaner loading on Hugging Face.\n* RGB masks are included mainly for visualization.\n* This release currently contains the `train` split.\n\n## Acknowledgement\n\nWe thank the **LoveDA** authors for the original benchmark that inspired and supported this dataset."
+  },
+  {
+    "file": "hf_Train_metadata.csv",
+    "url": "https://huggingface.co/datasets/buddhi19/SyntheticGenV5/resolve/225bb99a7a70588dd37e0e7e4e566e6be20ea82f/Train/metadata.csv",
+    "final_url": "https://huggingface.co/api/resolve-cache/datasets/buddhi19/SyntheticGenV5/225bb99a7a70588dd37e0e7e4e566e6be20ea82f/Train%2Fmetadata.csv?%2Fdatasets%2Fbuddhi19%2FSyntheticGenV5%2Fresolve%2F225bb99a7a70588dd37e0e7e4e566e6be20ea82f%2FTrain%2Fmetadata.csv=&etag=%22acef2cbdd128e1da120626230dfd9eaaba3416e6%22",
+    "bytes": 388630,
+    "sha256": "c48d62ffc8eeb69833be2c133ba4fac590897b4c217f2f6c6b718ba2e81be30b",
+    "retrieved_utc": "2026-11-02T03:58:30.912490+00:00",
+    "status": "success",
+    "headers": {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Length": "388630",
+      "ETag": "\"acef2cbdd128e1da120626230dfd9eaaba3416e6\"",
+      "X-Repo-Commit": "225bb99a7a70588dd37e0e7e4e566e6be20ea82f"
+    },
+    "columns": [
+      "image_file_name",
+      "mask_file_name",
+      "mask_rgb_file_name",
+      "domain",
+      "source_dataset"
+    ],
+    "row_count": 3321,
+    "first_rows": [
+      {
+        "image_file_name": "Urban/images_png/urban_000000.png",
+        "mask_file_name": "Urban/masks_png/urban_000000.png",
+        "mask_rgb_file_name": "Urban/mask_rgb_png/urban_000000.png",
+        "domain": "Urban",
+        "source_dataset": "LoveDA"
+      },
+      {
+        "image_file_name": "Urban/images_png/urban_000001.png",
+        "mask_file_name": "Urban/masks_png/urban_000001.png",
+        "mask_rgb_file_name": "Urban/mask_rgb_png/urban_000001.png",
+        "domain": "Urban",
+        "source_dataset": "LoveDA"
+      }
+    ]
+  },
+  {
+    "file": "hf_dataset_size.json",
+    "url": "https://datasets-server.huggingface.co/size?dataset=buddhi19%2FSyntheticGenV5",
+    "final_url": "https://datasets-server.huggingface.co/size?dataset=buddhi19%2FSyntheticGenV5",
+    "bytes": 648,
+    "sha256": "e4f6622929a666b174d65fac8da095ea193b66651a70e8a85f27f8d145b55c2d",
+    "retrieved_utc": "2026-11-02T03:58:32.041799+00:00",
+    "status": "success",
+    "headers": {
+      "Content-Type": "application/json",
+      "Content-Length": "648"
+    },
+    "text": "{\"size\":{\"dataset\":{\"dataset\":\"buddhi19/SyntheticGenV5\",\"num_bytes_original_files\":null,\"num_bytes_parquet_files\":69937,\"num_bytes_memory\":435051,\"num_rows\":3321,\"estimated_num_rows\":null},\"configs\":[{\"dataset\":\"buddhi19/SyntheticGenV5\",\"config\":\"default\",\"num_bytes_original_files\":null,\"num_bytes_parquet_files\":69937,\"num_bytes_memory\":435051,\"num_rows\":3321,\"num_columns\":5,\"estimated_num_rows\":null}],\"splits\":[{\"dataset\":\"buddhi19/SyntheticGenV5\",\"config\":\"default\",\"split\":\"train\",\"num_bytes_parquet_files\":69937,\"num_bytes_memory\":435051,\"num_rows\":3321,\"num_columns\":5,\"estimated_num_rows\":null}]},\"pending\":[],\"failed\":[],\"partial\":false}"
+  }
+]

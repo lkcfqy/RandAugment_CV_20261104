@@ -1,0 +1,52 @@
+{
+  "status": "PURE_LOCAL_PREPARATION_VERIFIED",
+  "utc": "2026-10-31T16:13:05.080546+00:00",
+  "model_calls": 0,
+  "new_GPU_allocations": 0,
+  "tests_passed": 51,
+  "scientific_config_diff": "randomness.seed20261031->20261101 only in A and B",
+  "all_data_and_selection_byte_identical_to_r5": true,
+  "changed_python_files": [
+    "payload/contracts.py",
+    "payload/driver.py",
+    "payload/model_worker.py",
+    "gpu-run/controller.py",
+    "gpu-run/external_watchdog.py",
+    "gpu-run/verify_local_pair.py"
+  ],
+  "review_diff_sha256": "474172f502304a13ae64e684a41e26eed02c664d4b49010bd26941aa3c27927c",
+  "input_package": {
+    "status": "LOCAL_PACKAGE_VERIFIED",
+    "archive": "deepfish_5shot_two_arm.zip",
+    "archive_bytes": 11679640,
+    "archive_sha256": "392b5c9e3f8675c2d06e67b9e2a1633300fd42765dc6c2148752734cd25af6c9",
+    "archive_limit_bytes": 13631488,
+    "manifest_sha256": "e9eebbfe8c59dff9e0672af6e0b4fa95aee6cd8248ca60072159a1e8073a5005",
+    "sha256sums_sha256": "489c3a8bfac4e48f1e48b904e4c4811d51aeb011cec971fca93b3c8b2255ab7b",
+    "zip_members": 91,
+    "uncompressed_payload_bytes": 11915820,
+    "zip_roundtrip_verified": true,
+    "privacy_audit": {
+      "images": 69,
+      "support_images": 5,
+      "support_boxes": 5,
+      "extra_dev_images": 64,
+      "extra_dev_boxes": 187,
+      "private_metadata_images": [],
+      "all_image_hashes_match": true,
+      "frozen_annotation_digests_match": true,
+      "selected_record_membership_matches": true,
+      "original_edge_boxes_retained": true,
+      "file_allowlist_passed": true,
+      "no_private_paths_or_credential_patterns": true,
+      "official_test_included": false,
+      "weights_repositories_or_old_experiments_included": false,
+      "manifest_payload_file_count": 89
+    },
+    "uploaded": false,
+    "model_executed": false,
+    "dependencies_installed": false,
+    "resource_status": "AUTHORIZED_PENDING_CUDA_PREFLIGHT",
+    "pending_command": "python -B driver.py --run-context /content/deepfish-run-context.json"
+  }
+}

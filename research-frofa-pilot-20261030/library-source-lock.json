@@ -1,0 +1,100 @@
+{
+  "sources": {
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/deps/transformers/models/siglip/modeling_siglip.py": {
+      "sha256": "da1b862c915b861f211ec6dac7615e28d8642f9905b86165ddbdc23b8093eb1d",
+      "bytes": 42039
+    },
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/deps/transformers/models/siglip/configuration_siglip.py": {
+      "sha256": "dc6561226cda5b758217243721f0be64cdd9036aa6bc0fc1123999c8d390c9f9",
+      "bytes": 11697
+    },
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/deps/transformers/models/siglip/image_processing_siglip.py": {
+      "sha256": "f686c098214b194a88fb970e665fd86cdc9e322d34d6b0356acc36e6a1f6b13e",
+      "bytes": 12084
+    },
+    "/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-frofa-pilot-20261030/augmentation.py": {
+      "sha256": "cddfbafc42ab70178f935b75adf165e72fadbf9312e5c9f4f9f0d15420310d8f",
+      "bytes": 2737
+    }
+  },
+  "MAP_forward": "    def forward(self, hidden_state):\n        batch_size = hidden_state.shape[0]\n        probe = self.probe.repeat(batch_size, 1, 1)\n\n        hidden_state = self.attention(probe, hidden_state, hidden_state)[0]\n\n        residual = hidden_state\n        hidden_state = self.layernorm(hidden_state)\n        hidden_state = residual + self.mlp(hidden_state)\n\n        return hidden_state[:, 0]\n",
+  "vision_config": {
+    "return_dict": true,
+    "output_hidden_states": false,
+    "torchscript": false,
+    "dtype": null,
+    "pruned_heads": {},
+    "tie_word_embeddings": true,
+    "chunk_size_feed_forward": 0,
+    "is_encoder_decoder": false,
+    "is_decoder": false,
+    "cross_attention_hidden_size": null,
+    "add_cross_attention": false,
+    "tie_encoder_decoder": false,
+    "architectures": null,
+    "finetuning_task": null,
+    "id2label": {
+      "0": "LABEL_0",
+      "1": "LABEL_1"
+    },
+    "label2id": {
+      "LABEL_0": 0,
+      "LABEL_1": 1
+    },
+    "task_specific_params": null,
+    "problem_type": null,
+    "tokenizer_class": null,
+    "prefix": null,
+    "bos_token_id": null,
+    "pad_token_id": null,
+    "eos_token_id": null,
+    "sep_token_id": null,
+    "decoder_start_token_id": null,
+    "max_length": 20,
+    "min_length": 0,
+    "do_sample": false,
+    "early_stopping": false,
+    "num_beams": 1,
+    "temperature": 1.0,
+    "top_k": 50,
+    "top_p": 1.0,
+    "typical_p": 1.0,
+    "repetition_penalty": 1.0,
+    "length_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "encoder_no_repeat_ngram_size": 0,
+    "bad_words_ids": null,
+    "num_return_sequences": 1,
+    "output_scores": false,
+    "return_dict_in_generate": false,
+    "forced_bos_token_id": null,
+    "forced_eos_token_id": null,
+    "remove_invalid_values": false,
+    "exponential_decay_length_penalty": null,
+    "suppress_tokens": null,
+    "begin_suppress_tokens": null,
+    "num_beam_groups": 1,
+    "diversity_penalty": 0.0,
+    "_name_or_path": "",
+    "transformers_version": "4.57.1",
+    "model_type": "siglip_vision_model",
+    "tf_legacy_loss": false,
+    "use_bfloat16": false,
+    "hidden_size": 768,
+    "intermediate_size": 3072,
+    "num_hidden_layers": 12,
+    "num_attention_heads": 12,
+    "num_channels": 3,
+    "patch_size": 16,
+    "image_size": 224,
+    "attention_dropout": 0.0,
+    "layer_norm_eps": 1e-06,
+    "hidden_act": "gelu_pytorch_tanh",
+    "output_attentions": false
+  },
+  "transformers": "4.57.1",
+  "safetensors": "0.6.2",
+  "torch": "2.13.0",
+  "numpy": "2.5.4",
+  "mps_fallback": false
+}

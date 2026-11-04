@@ -1,0 +1,42 @@
+                                                                                
+ Usage: /Users/lkc/.local/bin/colab run [OPTIONS] {script} [script_args]...     
+                                                                                
+ Run a Python script on a fresh Colab VM, then release the VM                   
+                                                                                
+ Designed to be used as a shebang interpreter, e.g.                             
+                                                                                
+     #!/usr/bin/env -S colab run --gpu T4                                       
+                                                                                
+ so a single executable .py file can rent a GPU, run, and clean up after        
+ itself.                                                                        
+                                                                                
+╭─ Arguments ──────────────────────────────────────────────────────────────────╮
+│ *    script           <str>  Path to a local Python file to execute on a     │
+│                              fresh Colab VM.                                 │
+│                              [required]                                      │
+│      script_args      <str>  Arguments forwarded to the script as            │
+│                              sys.argv[1:]. Anything after the script path is │
+│                              passed through verbatim.                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --session   -s      <str>    Name for the ephemeral session (auto-generated  │
+│                              if omitted). Useful with --keep so you can      │
+│                              attach later via `colab exec -s <name>`.        │
+│ --tpu               <str>    TPU accelerator variant. Supported: v5e1, v6e1. │
+│ --gpu               <str>    GPU accelerator variant. Supported: T4, L4, G4, │
+│                              H100, A100. If omitted (along with --tpu), a    │
+│                              CPU runtime is created.                         │
+│ --high-mem                   Request a high-RAM machine shape. Requires      │
+│                              Colab Pro or Pro+ entitlement. Ignored for L4   │
+│                              and TPU accelerators.                           │
+│ --keep                       Do not stop the session after the script        │
+│                              finishes. The session remains in `colab         │
+│                              sessions` until you run `colab stop`.           │
+│ --timeout           <float>  Timeout in seconds for code execution           │
+│                              [default: 30.0]                                 │
+│ --env               <str>    Set an environment variable in the remote       │
+│                              kernel as KEY=VALUE. Repeat for multiple        │
+│                              variables.                                      │
+│ --help      -h               Show this message and exit.                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

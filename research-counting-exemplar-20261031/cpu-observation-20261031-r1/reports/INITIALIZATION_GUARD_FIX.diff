@@ -1,0 +1,109 @@
+--- initial/scripts/cpu_worker.py
++++ r1/scripts/cpu_worker.py
+@@ -56,12 +56,15 @@
+         torch.set_num_threads(2);torch.set_num_interop_threads(1)
+         report['CPU_resources']={'os_cpu_count':os.cpu_count(),'affinity_cpu_ids':sorted(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else None,'torch_num_threads':torch.get_num_threads(),'torch_num_interop_threads':torch.get_num_interop_threads(),'thread_environment':{key:os.environ.get(key) for key in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','NUMEXPR_NUM_THREADS','OMP_DYNAMIC','MKL_DYNAMIC')},'cgroup_cpu_limits':{str(p):p.read_text().strip() for p in (Path('/sys/fs/cgroup/cpu.max'),Path('/sys/fs/cgroup/cpu/cpu.cfs_quota_us'),Path('/sys/fs/cgroup/cpu/cpu.cfs_period_us')) if p.is_file()},'policy':'fixed 2 intra-op / 1 inter-op; no resource-driven tuning'}
+         checkpoint()
+-        def forbid_gpu(*args,**kwargs):
+-            counters['GPU_operation_attempts']+=1;raise RuntimeError('GPU operation forbidden in the fixed CPU backend')
+-        torch.Tensor.cuda=forbid_gpu;torch.nn.Module.cuda=forbid_gpu
++        def gpu_guard(api):
++            # Distinct function identities preserve TorchDynamo's per-API rule registry.
++            def forbidden(*args,**kwargs):
++                counters['GPU_operation_attempts']+=1;raise RuntimeError('GPU operation forbidden: '+api)
++            return forbidden
++        torch.Tensor.cuda=gpu_guard('Tensor.cuda');torch.nn.Module.cuda=gpu_guard('Module.cuda')
+         for namespace,names in [(torch.cuda,('_lazy_init','init','synchronize','empty_cache','set_device')),(torch.mps,('synchronize','empty_cache','current_allocated_memory','driver_allocated_memory'))]:
+             for name in names:
+-                if hasattr(namespace,name):setattr(namespace,name,forbid_gpu)
++                if hasattr(namespace,name):setattr(namespace,name,gpu_guard(namespace.__name__+'.'+name))
+         report['runtime']={'python':sys.version,'versions':{k:metadata.version(k) for k in plan['runtime_versions']},'device':'cpu','dtype':'FP32','AMP':False,'seed':42,'CPU_default_generator_seeded_without_GPU_seed_calls':True}
+         model,count,aliases,loading=load_fixed_model(ROOT);report['strict_loading']=loading
+         model_cpu_snapshot=registered_snapshot(model,aliases)
+--- initial/scripts/launch_cpu.py
++++ r1/scripts/launch_cpu.py
+@@ -37,7 +37,7 @@
+     args=parser.parse_args(argv);start=START;freeze,freeze_sha=verify_freeze();plan=json.loads((ROOT/'plan.json').read_text())
+     if not args.precheck and not args.formal:
+         print(json.dumps({'status':'CPU_FREEZE_VERIFIED','freeze_sha256':freeze_sha,'forwards':0,'GPU':0,'compute_cap_seconds':7200}));return 0
+-    mode='precheck' if args.precheck else 'formal';prior=plan['prior_compute_seconds'];precheck=None
++    mode='precheck' if args.precheck else 'formal';prior=plan['prior_compute_seconds'];precheck=None;precheck_limit=plan.get('precheck_wall_seconds',180)
+     if args.formal:
+         validate_formal_go(args.authorization,freeze_sha)
+         pre_report=json.loads((ROOT/'precheck/controller_report.json').read_text())
+@@ -51,7 +51,7 @@
+     with (run/'CLAIM.json').open('x') as f:
+         json.dump({'mode':mode,'freeze_sha256':freeze_sha,'prior_compute_seconds':prior,'attempt_cap':6 if args.precheck else 492},f);f.flush();os.fsync(f.fileno())
+     if owned_size(ROOT.parent)+512*1024**2>6*1024**3:raise RuntimeError('owned disk lacks output reserve')
+-    deadline=start+7200-prior;phase_deadline=min(deadline-60,start+180) if args.precheck else deadline-60
++    deadline=start+7200-prior;phase_deadline=min(deadline-60,start+precheck_limit) if args.precheck else deadline-60
+     output=run/'output';collector=Collector(run);pid=None;caffeinate=None;peak_rss=0;reason=None
+     report={'status':'RUNNING','mode':mode,'freeze_sha256':freeze_sha,'prior_compute_seconds':prior,'new_CU':0,'new_GPU':0,'retries':0}
+     context={'supervisor_pid':os.getpid(),'mode':mode,'output':str(output),'previous_compute_wall_seconds':prior,'freeze_sha256':freeze_sha,'compute_deadline_monotonic':deadline,'precheck_engineering':str(precheck) if precheck else None}
+@@ -74,7 +74,7 @@
+     try:
+         outcome=bounded_stream([sys.executable,'-B',str(ROOT/'scripts/cpu_worker.py'),'--context',str(run/'context.json')],collector.line,watchdog,cwd=ROOT,env=dict(os.environ,PYTHONUNBUFFERED='1',PYTHONDONTWRITEBYTECODE='1'),on_started=on_started)
+         report.update(outcome);report['stop_reason']=reason
+-        with compute_deadline(min(deadline,start+180) if args.precheck else deadline):
++        with compute_deadline(min(deadline,start+precheck_limit) if args.precheck else deadline):
+             index_path=collector.artifacts/'artifact_index.json'
+             if not index_path.exists():raise RuntimeError('worker did not persist final artifact index')
+             index=json.loads(index_path.read_text())
+@@ -105,7 +105,7 @@
+             try:caffeinate.wait(timeout=1)
+             except subprocess.TimeoutExpired:caffeinate.kill();caffeinate.wait(timeout=1)
+         report['peak_RSS_bytes']=peak_rss;report['this_compute_wall_seconds']=time.monotonic()-start;report['cumulative_compute_seconds']=prior+report['this_compute_wall_seconds'];report['remaining_compute_seconds']=max(0.,7200-report['cumulative_compute_seconds'])
+-        if report['cumulative_compute_seconds']>7200 or args.precheck and report['this_compute_wall_seconds']>180:report['status']='ENGINEERING_BLOCKED_OR_INCOMPLETE';report['deadline_exhausted']=True
++        if report['cumulative_compute_seconds']>7200 or args.precheck and report['this_compute_wall_seconds']>precheck_limit:report['status']='ENGINEERING_BLOCKED_OR_INCOMPLETE';report['deadline_exhausted']=True
+         atomic_bytes(run/'controller_report.json',canonical(report))
+         print(json.dumps({k:report.get(k) for k in ('status','mode','this_compute_wall_seconds','cumulative_compute_seconds','remaining_compute_seconds','error')},indent=2))
+     return 0 if report['status'] in ('PASS_CPU_REPEATABILITY','COMPLETE_492_PENDING_BOX_REVIEW') else 2
+--- initial/plan.json
++++ r1/plan.json
+@@ -1,11 +1,13 @@
+ {
+   "CPU_interop_threads": 1,
+   "CPU_intraop_threads": 2,
++  "CPU_precheck_total_episode_cap_seconds": 180,
++  "GPU_guard_probe_seconds": 0.8986813340015942,
+   "RSS_cap_bytes": 8589934592,
+   "compute_cap_seconds": 7200,
+   "disk_cap_bytes": 6442450944,
+   "dtype": "FP32",
+-  "execution_contract_sha256": "bad5e3f7ccb3cf766fa749c7237c5b22c56c9d6ca1eb8ca0ede34aa674adf3e4",
++  "execution_contract_sha256": "2b045a06b4349731c182a67a1521cf8a10ac8d6386747d006d7b16be03904cdb",
+   "finalization_reserve_seconds": 60,
+   "fixture_pixel_sha256": "311764e9a1f62545d97d904d0ecd377049a19645a87c478a1af68d8b7a15e87b",
+   "formal_cost_formula": "cumulative_used + extra_loading_if_needed + 2*492*max(CPU_complete_query_times) + 60 <= 7200",
+@@ -25,8 +27,9 @@
+     "C2",
+     "V2"
+   ],
+-  "precheck_wall_seconds": 180,
+-  "prior_compute_seconds": 545.6848070110136,
++  "precheck_prior_failed_setup_seconds": 2.4846074160013814,
++  "precheck_wall_seconds": 176.61671124999702,
++  "prior_compute_seconds": 549.0680957610166,
+   "prior_credit_upper_CU": 0.32145,
+   "runtime_versions": {
+     "Pillow": "13.0.0",
+--- initial/execution_contract.json
++++ r1/execution_contract.json
+@@ -42,7 +42,7 @@
+   },
+   "numeric_gate_does_not_establish_target_selection": "predicted box review remains mandatory; cancellation never permits deleting/recomputing",
+   "pair_aggregation": "arithmetic mean of the two fixed-image E values, equal image weights",
+-  "parent_execution_clarification": "Final resource decision: cumulative 7200 seconds including historical 545.6848070110136, all new CPU repeatability/preparation/queries/persistence; original 2x admission factor retained. Earlier 5400-second draft superseded before effects. Six CPU repeats/180 seconds authorized; formal492 still needs explicit GO.",
++  "parent_execution_clarification": "Final resource decision: cumulative 7200 seconds including historical 549.0680957610166, all new CPU repeatability/preparation/queries/persistence; original 2x admission factor retained. Earlier 5400-second draft superseded before effects. Six CPU repeats/180 seconds total authorized; 3.38328875 seconds already spent in zero-forward guard setup/probe, remaining176.61671125 seconds; formal492 still needs explicit GO.",
+   "per_image_mode_error_E": {
+     "A_B": "two separate target queries, combined before normalization",
+     "clip_error": false,
+@@ -51,7 +51,7 @@
+     "prediction_counts": "nonnegative integers"
+   },
+   "point_policy": "random placeholders never localization ground truth",
+-  "precheck_wall_seconds_charged": 545.6848070110136,
++  "precheck_wall_seconds_charged": 549.0680957610166,
+   "protocol_role": "FIXED_MAC_CPU_APP_EXECUTION_CONTRACT",
+   "protocol_version": 4,
+   "queries_sha256": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",

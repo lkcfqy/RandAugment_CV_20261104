@@ -1,0 +1,71 @@
+{
+  "budget_increase": false,
+  "changed_frozen_files": [
+    "build_package.py",
+    "bundle/part-000.bin",
+    "bundle/part-001.bin",
+    "bundle/part-002.bin",
+    "bundle/part-003.bin",
+    "bundle/part-004.bin",
+    "bundle/part-005.bin",
+    "bundle/part-006.bin",
+    "bundle/part-007.bin",
+    "bundle/part-008.bin",
+    "bundle/part-009.bin",
+    "bundle/part-010.bin",
+    "bundle/part-011.bin",
+    "bundle/part-012.bin",
+    "bundle/payload.tar.gz",
+    "payload/package_files.json",
+    "payload/scripts/controller.py",
+    "payload/scripts/remote_runner.py",
+    "payload/scripts/transport.py",
+    "tests/test_controller.py"
+  ],
+  "external_finalization_watchdog": "POSIX OS ITIMER_REAL wall timer; no post-hoc-only enforcement",
+  "freeze_sha256": "915d27011f9f948150de676b08f5830d5811066b993fc500aad729f0f284849a",
+  "frozen_files": 244,
+  "new_allocations": 0,
+  "new_model_forwards": 0,
+  "new_test_subcases": [
+    "download blocks with remote remaining 0.15 s",
+    "local validation blocks with remote remaining 0.15 s"
+  ],
+  "new_uploads": 0,
+  "notes": "Only three runtime modules and one test file changed. Build script excludes the mutable delivery manifest from re-freezing, preserving the same 244 frozen files. Existing protocol, metric, data, fixture, weight identities and 90 s release protection unchanged.",
+  "one_new_test": "test_remote_nearly_exhausted_budget_interrupts_blocked_local_finish_and_releases",
+  "package_files": 216,
+  "previous_freeze_sha256": "651ac678cfcece5dabdc76c2138e356d88ffd7cbf1731cb0121f6a35957e7c0c",
+  "shared_deadline": "Local exec-submission origin + existing 1800 s allowance - prior/local verification + measured completed install/download exclusions; streamed compute ledger can only tighten. Remote index uses original remote cumulative deadline. All local helper CLI waits and synchronous recomputation are bounded.",
+  "status": "FOCUSED_CORRECTION_COMPLETE_PENDING_REVIEW_GO",
+  "test_assertions": [
+    "OS ITIMER_REAL interrupts before 0.5 s instead of waiting for artificial 0.8 s blocker",
+    "download timeout <= remaining 0.15 s; at most one missing file attempted",
+    "previously streamed evidence persists",
+    "incomplete/deadline-exhausted marker and existing release confirmed by stub"
+  ],
+  "unchanged_scientific_identity": {
+    "payload/execution_contract.json": "81a3d84494eb6335623b826614efc0296ce1f28b798e40023f57ac8dc36e5da0",
+    "payload/fixture/texture.rgb": "311764e9a1f62545d97d904d0ecd377049a19645a87c478a1af68d8b7a15e87b",
+    "payload/manifests/model_identity.json": "cb0818961e6242ee6a6af55934feb57cf5240c328f1a4aa3d749c91627d3ba47",
+    "payload/manifests/science_files.json": "141caf0924520d9ec2e203e54c4908705c347bbe218a26144623b9f4ec7f9aba",
+    "payload/plan.json": "653997eccac35d7c59b7e667a0cda2f520e373999a6ee4ce8b0c5ff7fd70a854",
+    "payload/science/labels_frozen.json": "8f22518b77d7a5fe066503fee99b3250fbd83d5e42185f5caf2b4eef3e8e0ff2",
+    "payload/science/queries_frozen.json": "29b68745766b2e1e594f0704a57be46ac098bc43aa3315cef53a85ababdbfab6",
+    "payload/science/selection_frozen.json": "c7ba6b400d0ec6123eda4274625c4d5a64111a664f978001e31215b3ad27b6bc",
+    "payload/scripts/metrics.py": "12bf80294be3a7fffb58b93935d3ef3a054e0663fc452308a3e110161499db2d"
+  },
+  "upload_parts": 13,
+  "verification": {
+    "errors": 0,
+    "failures": 0,
+    "run": 46,
+    "successful": true
+  },
+  "verification_counters": {
+    "GPU_API_attempts": 0,
+    "module_forward_attempts": 0,
+    "network_attempts": 0,
+    "pickle_attempts": 0
+  }
+}

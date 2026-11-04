@@ -1,0 +1,56 @@
+{
+  "GT_count": 0,
+  "OpenCV_threads": 1,
+  "cache_state": "first frozen M input; empty initial caches; Mosaic/MixUp warmup not complete",
+  "config_sha256": "72f991e8d27439ab9732eb21ef30365e0bb91ecb1386c65785b9871d09a8a6aa",
+  "dev_test_loaded": false,
+  "device": "cpu",
+  "elapsed_seconds": 2.7718596660124604,
+  "error_type": "AttributeError",
+  "formal_training": false,
+  "forward_loss_seconds": 0.1990367079852149,
+  "frozen_parameters": 0,
+  "frozen_tensors": 0,
+  "image_id": 2244,
+  "input_shape": [
+    3,
+    640,
+    716
+  ],
+  "interop": 1,
+  "loss_values_disclosed": false,
+  "model_instances": 1,
+  "model_load_seconds": 0.8714397909934632,
+  "official_key_schema": {
+    "ignored_checkpoint_keys": [
+      "language_model.language_backbone.body.model.embeddings.position_ids",
+      "language_model.language_backbone.body.model.pooler.dense.bias",
+      "language_model.language_backbone.body.model.pooler.dense.weight"
+    ],
+    "log_scale_keys": [
+      "bbox_head.cls_branches.0.log_scale",
+      "bbox_head.cls_branches.1.log_scale",
+      "bbox_head.cls_branches.2.log_scale",
+      "bbox_head.cls_branches.3.log_scale",
+      "bbox_head.cls_branches.4.log_scale",
+      "bbox_head.cls_branches.5.log_scale",
+      "bbox_head.cls_branches.6.log_scale"
+    ]
+  },
+  "optimizer_groups_sha256": "6b6d9e546744922c8a013ee76b91f647fe185e345a4048fb7bd8a5727b5308f0",
+  "optimizer_updates": 0,
+  "peak_RSS_bytes": 1971552256,
+  "pipeline_seconds": 0.02896262498688884,
+  "reason": "'dict' object has no attribute 'num_heads'",
+  "sample_fetches": 1,
+  "seed": 20261031,
+  "stage": "FAILED",
+  "status": "CPU_STEP_BLOCKED",
+  "threads": 4,
+  "torch_version": "2.1.0",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/lkc/Documents/Codex/2026-10-31/task-8/deepfish-CPU-train-probe-20261101/probe.py\", line 88, in <module>\n    t=time.monotonic();log_vars=model.train_step(batch,optim);report['full_train_step_seconds']=time.monotonic()-t\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmengine/model/base_model/base_model.py\", line 114, in train_step\n    losses = self._run_forward(data, mode='loss')  # type: ignore\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Documents/Codex/2026-10-31/task-8/deepfish-CPU-train-probe-20261101/probe.py\", line 76, in forward\n    try:return original_forward(*a,**kw)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmengine/model/base_model/base_model.py\", line 361, in _run_forward\n    results = self(**data, mode=mode)\n              ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/detectors/base.py\", line 92, in forward\n    return self.loss(inputs, data_samples)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/detectors/grounding_dino.py\", line 488, in loss\n    head_inputs_dict = self.forward_transformer(visual_features, text_dict,\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/detectors/grounding_dino.py\", line 306, in forward_transformer\n    encoder_outputs_dict = self.forward_encoder(\n                           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/detectors/grounding_dino.py\", line 322, in forward_encoder\n    memory, memory_text = self.encoder(\n                          ^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/lkc/Downloads/projects/RandAugment_CV_20261104/research-deepfish-baseline-20261031/cpu-cross-input-preflight-20261101/.venv/lib/python3.11/site-packages/mmdet/models/layers/transformer/grounding_dino_layers.py\", line 238, in forward\n    layer_id].self_attn_cfg.num_heads\n                            ^^^^^^^^^\nAttributeError: 'dict' object has no attribute 'num_heads'\n",
+  "trainable_names_sha256": "62f7c4fa11c27bb72c9d472e1885d9a2ff1cd02f74523f7a53ea334770c4fe3a",
+  "trainable_parameters": 172912413,
+  "trainable_tensors": 896,
+  "weight_sha256": "822d7e9db9ce6ff2119b72dc6e78606a1b0a2c307234798adf0cab50f1b424e3"
+}

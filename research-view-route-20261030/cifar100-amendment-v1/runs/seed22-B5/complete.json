@@ -1,0 +1,52 @@
+{
+  "seed": 22,
+  "recipe": "B5",
+  "configuration": {
+    "N": 1639,
+    "N_FT": 1251,
+    "N_head": 388,
+    "kind": "weak_then_head",
+    "cr_FT": 0.11507082500029356,
+    "cr_head": 0.09270771669980604,
+    "low_backbone_lr": false,
+    "stage_schedules": [
+      {
+        "N": 1251,
+        "warmup": 63,
+        "final_base_lr_fraction": 0.1
+      },
+      {
+        "N": 388,
+        "warmup": 20,
+        "final_base_lr_fraction": 0.1
+      }
+    ],
+    "projected_loop_seconds": 180.3082407844551
+  },
+  "initial_state_sha256": "3c2f0957c08a788ad0d4f7d9bc8847cd1f8c109de3efa2fa928095163d67bf3c",
+  "initial_file_sha256": "5c60d6b5ff16ea57ef6760227c05b0ff2c620aa2d4ff34380046f2835f9ea944",
+  "splits_sha256": "ef6ebcff145961a6c6b920ef5a592dddb3f09aa118bed20a726324ddd31f176b",
+  "lock_sha256": "6c6f194320b9eb90e039f5bf73dde9fdd63cef974b007d0e98f0303bcb432958",
+  "started_utc": "2026-10-30T20:02:02.051006+00:00",
+  "J": 512,
+  "mps_started_seconds": 245.82646077117533,
+  "completed_updates": 1639,
+  "status": "complete",
+  "loop_seconds": 187.44178963789454,
+  "full_run_seconds": 192.63217688549776,
+  "full_run_wall_seconds": 192.44919109344482,
+  "resumed": false,
+  "final_file_sha256": "f266f69bec9c43ef109982bc4324fdb3492133a0d2d947a140cf24bbd263b8af",
+  "final_state_sha256": "e56075bae69f0dd4434776a2b5f80412a728ac59302a359199d8d3c9ac1e4a74",
+  "final_validation": {
+    "correct": 980,
+    "count": 1600,
+    "seconds": 1.7693884580003214
+  },
+  "J_validation": {
+    "correct": 987,
+    "count": 1600,
+    "seconds": 1.8034750419974444,
+    "stage": 1
+  }
+}

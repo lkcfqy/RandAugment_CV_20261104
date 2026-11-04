@@ -1,0 +1,143 @@
+{
+  "created_utc": "2026-10-31T00:30:12.890876+00:00",
+  "status": "FORMAL_COMPLETE_NO_UPGRADE",
+  "execution_status": "PASS",
+  "decision": "NO_UPGRADE",
+  "interpretation": "This fixed six-scene calibration did not achieve the required statistical match on held-out real lighting. No cell passed all five B input-statistic gates, so the proposed statistically-matched-but-task-mismatched measurement cannot be evaluated/retained under the preregistered continuation rule.",
+  "freeze_sha256": "e7b5ddfaf0beef296612e90138fd37d93337066d520576a6e9a9ba638806f6c7",
+  "frozen_file_count": 18,
+  "all_frozen_file_hashes_unchanged": true,
+  "panel_sha256": "5b3da46d5849b0c3b8b71aa9604a87e666523a70e43f19b97a579e042528892b",
+  "generation_parameters": 8,
+  "generated_Q8_images": 256,
+  "formal_forward_count": 326,
+  "preflight_artificial_forwards": 4,
+  "unique_formal_attempts": 1,
+  "method_summary": {
+    "A": {
+      "MAE_PSNR_dB": 4.553468900281741,
+      "MAE_DeltaE76": 5.039615520950684,
+      "relative_equal_level_agreement": 0.6988960113960114,
+      "four_levels_sufficient": true
+    },
+    "B": {
+      "MAE_PSNR_dB": 3.0856686666932926,
+      "MAE_DeltaE76": 3.6584153027379926,
+      "relative_equal_level_agreement": 0.6509615384615385,
+      "four_levels_sufficient": true
+    },
+    "C_anchor": {
+      "MAE_PSNR_dB": 4.604558459262332,
+      "MAE_DeltaE76": 6.718904627088332,
+      "relative_equal_level_agreement": 0.6042022792022792,
+      "four_levels_sufficient": true
+    },
+    "C_meanD": {
+      "MAE_PSNR_dB": 2.722359538865083,
+      "MAE_DeltaE76": 4.180374897403857,
+      "relative_equal_level_agreement": 0.5,
+      "four_levels_sufficient": true
+    }
+  },
+  "statistical_gates": {
+    "A": {
+      "all_five_pass": 0,
+      "identifiable": 32,
+      "individual_gate_pass_counts": {
+        "Emean": 15,
+        "Evar": 0,
+        "EKS": 0,
+        "EPSD": 8,
+        "Ecross": 0
+      }
+    },
+    "B": {
+      "all_five_pass": 0,
+      "identifiable": 32,
+      "individual_gate_pass_counts": {
+        "Emean": 27,
+        "Evar": 0,
+        "EKS": 1,
+        "EPSD": 7,
+        "Ecross": 0
+      }
+    }
+  },
+  "close_checks": {
+    "A": {
+      "mae_psnr_le_0_2": false,
+      "mae_color_le_1": false,
+      "four_levels_sufficient": true,
+      "equal_level_agreement_ge_0_8": false
+    },
+    "B": {
+      "mae_psnr_le_0_2": false,
+      "mae_color_le_1": false,
+      "four_levels_sufficient": true,
+      "equal_level_agreement_ge_0_8": false
+    },
+    "C_anchor": {
+      "mae_psnr_le_0_2": false,
+      "mae_color_le_1": false,
+      "four_levels_sufficient": true,
+      "equal_level_agreement_ge_0_8": false
+    }
+  },
+  "continue_checks": {
+    "B_passing_cells": 0,
+    "B_statpass_pair_counts_by_level": {
+      "1": 0,
+      "3": 0,
+      "5": 0,
+      "7": 0
+    },
+    "Lbad": [],
+    "distinct_witness_scenes": [],
+    "retained": false
+  },
+  "absolute_ranking_note": "Separate eligibility uses |R_s-R_t|>=0.5 dB; descriptive only. Same-set B/C_anchor comparisons retained, including empty B-statpass endpoint sets.",
+  "control_note": "D and C_anchor use test GT scoring; diagnostic, not a GT-free deploy predictor",
+  "optional_bootstrap": "Not computed; optional and not a decision gate. No additional post-hoc scientific analysis or rerun.",
+  "formal_wall_seconds": 203.98846216699894,
+  "formal_charge_seconds": 204.0,
+  "total_original_budget_charge_seconds": 234.0,
+  "original_budget_remaining_seconds": 1566.0,
+  "peak_process_RSS_bytes": 1514995712,
+  "peak_process_RSS_MiB": 1444.8125,
+  "asset_directory_allocated_bytes_after_formal": 860323840,
+  "asset_directory_allocated_MiB_after_formal": 820.46875,
+  "disk_cap_bytes": 2147483648,
+  "worker_exit_code": 0,
+  "GPU_release": "MPS-owning worker exited successfully; scheduler exited; ledger active=null and lock absent",
+  "ledger_active": null,
+  "stderr_empty": true,
+  "resource_or_validation_blockers": [],
+  "posthoc_changes": [],
+  "evidence_sha256": {
+    "run-state/formal_release.json": "fb13dcd117601f0d69920170ad92ba37dda7a403c1db785958085fdc2044007a",
+    "run-state/formal_job.json": "ddd3a97cf8682fbf457970022e9915ddff632c8c580e32b99093ffb3811a12cf",
+    "run-state/formal_result.json": "c13ef23fc54d5a9f1657a1e6ca6c460d64e740d684a78f773cba62e6052581cc",
+    "run-state/formal_launch_output.json": "9797e3bd8beb6f9dd70dd7d6cfaa3a4d50e1c4eb238e5d4598d7660a0a5baeab",
+    "run-state/formal_stdout.log": "e30f9e1dcb258018c1a29d288a8e66429ddedeeb02a33da88c89b993b0387989",
+    "run-state/formal_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run-state/compute_ledger.json": "ec156aa31faabd1002218369be2aa1e392ec5bb66a430bc027845590c6a58f55",
+    "run-state/generated/generation_manifest.json": "43a84189c3aca58c73420e2792c1191dde069208721247ed0b7316f512443f87",
+    "reports/freeze.json": "05cfdbecab86fde3ca00ef9d7f6d37d38257624ae08ff36f84911f23af962867",
+    "reports/CODE_SHA256SUMS": "063702cd763f55f3e7b69484d9d4b24d0eae2d3f496f360956904f954d57794c",
+    "reports/oracle_runs.json": "2da75c2b900b28d0f7aaa8a41420e54db6e7d0eeafbae25f81f14129610c1694",
+    "reports/PREFLIGHT_REPORT.json": "02fb0494940991800b835d6b74a8ead68f50791e0489926d212ce14c0a6bfe4b"
+  },
+  "pending": "Independent result review; no further experiment authorized by this completion record",
+  "B_empty_train_bin_fallback_fraction_range": [
+    0.0,
+    0.0
+  ],
+  "B_C_anchor_pair_set_identity_verified": true,
+  "derived_table_sha256": {
+    "cells_32.csv": "b2dd64ced6c0a47147d9152d0b188b6e6c69e6a4c806d14a89ab80e9b279ec92",
+    "forward_records_326.csv": "3d330761354d6e141dd13f1cfb937aac4260ecf0c161caba9efeecfe57511249",
+    "ranking_sets_32.csv": "b63402efaad10cc4459cb8b76c77c8cc9f959025c50070877f33c28bd1a43e34",
+    "ranking_pairs_594.csv": "30508304849e10a44eba0f588b88467467f4656657b011af887e17de83bc61ca",
+    "B_fallback_pixels_128.json": "60683c839f4fb0dcacf730e26945ea64600cdf502ce19d38f706a224f30fbf83"
+  }
+}
